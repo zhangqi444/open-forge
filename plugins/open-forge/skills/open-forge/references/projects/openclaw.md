@@ -5,7 +5,30 @@ description: OpenClaw recipe for open-forge — a self-hosted personal AI agent.
 
 # OpenClaw
 
-OpenClaw is a self-hosted personal AI agent with web browsing, file access, shell execution, and optional messaging-app connectors. The Lightsail blueprint ships with:
+OpenClaw is a self-hosted personal AI agent with web browsing, file access, shell execution, and optional messaging-app connectors.
+
+## Inputs to collect
+
+After preflight (which gathers AWS profile / region / deployment name), OpenClaw-specific prompts. Most users on Path A need to answer **just one question** — everything else has sensible defaults.
+
+| Phase | Prompt | Tool / format | Notes |
+|---|---|---|---|
+| preflight | "Which path?" | `AskUserQuestion`, options: `Lightsail OpenClaw blueprint (recommended — Bedrock pre-wired)` / `Stock Ubuntu + curl installer (any model provider)` | Path A = blueprint; Path B = vanilla Ubuntu. Default A. |
+| provision (if Path A) | none | — | Bedrock model defaults to `claude-sonnet-4-6` via cross-account role; IAM script run autonomously (see below). |
+| provision (if Path B) | "Which model provider?" | `AskUserQuestion`, options: `Anthropic` / `OpenAI` / `Google` / `Local` | Selected provider's API key prompted next |
+| provision (if Path B) | "API key for `<provider>`?" | Free-text (sensitive) | Skipped for `Local`. Pasted into `openclaw onboard` interactive flow, not chat-logged |
+| (optional) hardening | "Switch from Bedrock to a different model provider?" | `AskUserQuestion`, options: `Stay with Bedrock` / `Anthropic direct` / `OpenAI` / `Google` / `Local` | Only asked after the happy-path Bedrock chat is verified working |
+| (optional) hardening | "API key for `<provider>`?" | Free-text (sensitive) | Same as Path B prompt |
+| (optional, only for messaging webhooks) dns | "Custom domain for messaging-app webhooks?" | Free-text (or `Skip`) | Only needed for Telegram/Discord/Slack/WhatsApp inbound; not for chat UI access |
+| (optional) tls | "Email for Let's Encrypt expiration notices?" | Free-text | Only if a domain was given |
+
+After each prompt, write into the state file under `inputs.*` so a resume can skip re-asking.
+
+The `smtp` and `inbound` phases are always skipped for OpenClaw (no transactional email; messaging integrations have their own webhook channels).
+
+## Blueprint architecture (Path A)
+
+The Lightsail OpenClaw blueprint ships with:
 
 - A **Node-based gateway** (process: `openclaw-gateway`) running as a **systemd user unit** (`openclaw-gateway.service` under user `ubuntu`) on `127.0.0.1:18789`.
 - **Apache 2.4** as a TLS-terminating reverse proxy on ports 80 (→ 301 to https) and 443 (snakeoil self-signed cert), proxying to the gateway and supporting WebSocket upgrade.

@@ -15,18 +15,34 @@ Check during preflight; stop and install/configure if missing:
 - A configured AWS profile with Lightsail permissions (`aws configure list-profiles`)
 - The user knows which profile + region they want to use
 
-## Inputs
+## Inputs to collect
 
-Collect and record in the deployment state file:
+Most inputs come from the cross-cutting preflight module — `aws_profile`, `aws_region`, deployment name. The Lightsail adapter only needs to *prompt for* one thing of its own:
 
-| Key | Example | Notes |
-|---|---|---|
-| `inputs.aws_profile` | `qi-experiment` | `--profile` for every AWS CLI call |
-| `inputs.aws_region` | `us-east-1` | `--region` for every AWS CLI call |
-| `outputs.instance_name` | `my-blog` | Usually the deployment name |
-| `outputs.static_ip_name` | `my-blog-ip` | `<instance_name>-ip` by convention |
-| `outputs.bundle_id` | `nano_3_0` | Smallest tier; override if the project recipe needs more |
-| `outputs.blueprint_id` | `ghost_5` | From the project recipe |
+| When | Question to ask | Tool / format | Default |
+|---|---|---|---|
+| End of preflight | "Bundle size?" — only if the project recipe leaves it open | `AskUserQuestion`, options from the table below | Project-recipe-suggested |
+
+The rest is derived (no prompt needed):
+
+| Recorded as | Derived from |
+|---|---|
+| `outputs.instance_name` | Deployment name (1:1) |
+| `outputs.static_ip_name` | `<instance_name>-ip` |
+| `outputs.bundle_id` | Project recipe (Ghost: `nano_3_0`, OpenClaw: `medium_3_0`) |
+| `outputs.blueprint_id` | Project recipe (Ghost: `ghost_5`, OpenClaw: `openclaw_ls_1_0`) |
+| `outputs.public_ip` | `aws lightsail get-static-ip` output |
+| `outputs.ssh_key_path` | `~/.ssh/lightsail-default.pem` (downloaded once, reused) |
+
+### Common bundle options for the "bundle size?" prompt
+
+| `bundle_id` | RAM | vCPU | Approx $/mo | When |
+|---|---|---|---|---|
+| `nano_3_0` | 0.5 GB | 2 | $5 | Toy / static site only |
+| `micro_3_0` | 1 GB | 2 | $7 | Light blog (Ghost OK for personal use) |
+| `small_3_0` | 2 GB | 2 | $12 | Real Ghost / WordPress |
+| `medium_3_0` | 4 GB | 2 | $20 | OpenClaw, Nextcloud, anything with a JVM/Node app |
+| `large_3_0` | 8 GB | 2 | $40 | Heavier workloads |
 
 ## Provisioning
 

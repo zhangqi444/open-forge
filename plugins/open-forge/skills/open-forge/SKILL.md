@@ -9,6 +9,18 @@ description: Automate self-hosting of open-source apps on cloud infrastructure t
 
 Walk a user from "I have a cloud account and a domain" to "working app at `https://my.domain` with TLS and mail." Load the appropriate project recipe and infra adapter based on the user's stated intent; run phases sequentially; record state so the user can resume later.
 
+## Operating principle
+
+**Claude does the work; the user makes the choices.** open-forge replaces the traditional "read a README, copy-paste 30 lines of bash, debug for hours" experience with a guided chat where Claude executes everything via the user's local CLI tools (aws, ssh, jq, curl) and only stops to ask when input is genuinely required.
+
+What this means in practice:
+
+- **Run, don't print.** When a recipe contains a bash block, *Claude executes it*. Announce it in one sentence first ("Opening port 22 in the Lightsail firewall now."), then run. Don't paste the block into chat for the user to run.
+- **Ask for choices and credentials only.** Things only the user can decide or provide: AWS profile name, domain choice, canonical www-vs-apex, SMTP API key, model provider preference. Everything else (which jq command to run, which sed pattern to apply, which IAM script URL to fetch) Claude figures out from the recipe.
+- **One question at a time when possible.** Use the `AskUserQuestion` tool for structured choices (multiple-choice, single-select). Reserve free-text questions for things like API keys and domain names. Avoid wall-of-questions forms.
+- **Auto-install with confirmation, not silently.** If `jq` or `aws` is missing, propose the install command, get one-line approval, then run it. Never `sudo apt-get install` without asking.
+- **The recipe files in `references/projects/` and `references/infra/` are guidance for Claude, not pages for the user to read.** Keep that lens when extending or refactoring.
+
 ## What's supported
 
 Check `references/projects/` and `references/infra/` for available recipes/adapters. As of this writing:
@@ -29,6 +41,8 @@ Before any provisioning, establish three things:
 3. **Deployment name** (short hyphen-case, e.g. `my-blog`) → used as the state file key and often as the instance name
 
 If any are missing or ambiguous, ask the user. Do not guess on infra — the adapter dictates every provisioning command downstream.
+
+After selection, **immediately load `references/modules/preflight.md`** and run its steps before anything else. Preflight handles tool detection, auto-install offers, AWS profile validation, region choice, and state-file initialization — identical for every project + infra combination.
 
 ## Phased workflow
 
@@ -92,18 +106,15 @@ Flag: **`--dry-run`** — print what would be done, do not execute. Useful for r
 
 Commands that cross trust boundaries (paste secrets into config files, send real emails, spend money) should be announced and, when ambiguous, confirmed.
 
-## Inputs collected during preflight
+## Inputs
 
-Per-infra adapter and per-project recipe may require more. Common across v1:
+Inputs split across three layers:
 
-- Cloud profile + region (infra-specific)
-- Deployment name
-- Domain + canonical preference (`www` vs apex)
-- Let's Encrypt email (for expiration notices)
-- SMTP provider choice + API key + From address + display name
-- Inbound forwarder choice + destination inbox (optional)
+- **Cross-cutting (all deployments)** — handled by `references/modules/preflight.md`: AWS profile, region, deployment name, tool install confirmations.
+- **Infra-specific** — handled by the loaded infra adapter (e.g. `references/infra/lightsail.md`): bundle/blueprint choice, SSH key path defaults.
+- **Project-specific** — handled by the loaded project recipe (e.g. `references/projects/ghost.md`): domain, canonical preference, Let's Encrypt email, SMTP provider + API key, model provider, etc.
 
-Collect only what's needed for the chosen project + infra. Do not over-ask.
+Each recipe and adapter has its own **"Inputs to collect"** section listing exactly what it needs and at which phase. Collect just-in-time per phase, not all upfront. Use `AskUserQuestion` for structured choices.
 
 ## Verification after each phase
 

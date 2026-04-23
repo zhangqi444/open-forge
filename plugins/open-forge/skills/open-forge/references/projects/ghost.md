@@ -7,6 +7,24 @@ description: Ghost recipe for open-forge. Assumes the Bitnami Ghost blueprint (s
 
 The Bitnami Ghost blueprint bundles Ghost, Node, MySQL, and Apache as a reverse proxy. Ghost itself listens on `127.0.0.1:2368`; Apache terminates TLS and proxies to it.
 
+## Inputs to collect
+
+After preflight (which gathers AWS profile/region/deployment name), Ghost-specific prompts. Ask each at the phase where it's needed — not all upfront.
+
+| Phase | Prompt | Tool / format | Notes |
+|---|---|---|---|
+| dns | "What's the domain you want to host Ghost on?" | Free-text | Must be one the user controls at their registrar |
+| dns | "Use `www.<domain>` or apex (`<domain>`) as canonical?" | `AskUserQuestion`, options: `www` / `apex` | `www` is safer with bncert-tool's defaults; see *TLS via bncert-tool* gotchas |
+| tls | "Email for Let's Encrypt expiration notices?" | Free-text | Cert auto-renews; this is just the warning channel if it ever breaks |
+| smtp | "Which outbound email provider?" | `AskUserQuestion`, options: `Resend` / `SendGrid` / `Mailgun` / `Other (specify)` / `Skip outbound` | Loads the matching `references/modules/smtp-*.md` |
+| smtp | "API key for `<provider>`?" | Free-text (sensitive — rotate after) | Resend keys start `re_`; SendGrid `SG.`; Mailgun varies |
+| smtp | "From address?" | Free-text | Must be on a verified domain at the provider |
+| smtp | "From display name?" | Free-text | E.g. `Aria Zhang`. Plain string — Claude wraps it correctly in the JSON |
+| inbound (optional) | "Set up inbound forwarding (e.g. `hello@<domain>` → your Gmail)?" | `AskUserQuestion`, options: `Yes — ImprovMX` / `Skip` | If yes, loads `references/modules/inbound-improvmx.md` |
+| inbound | "Where should `<alias>@<domain>` forward to?" | Free-text | Existing inbox the user reads |
+
+After each prompt, write the value into the state file under `inputs.*` so a resume can skip re-asking.
+
 ## Blueprint + bundle
 
 | Field | Value |
