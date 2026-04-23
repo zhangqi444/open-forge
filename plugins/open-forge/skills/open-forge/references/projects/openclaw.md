@@ -13,10 +13,11 @@ After preflight (which gathers AWS profile / region / deployment name), OpenClaw
 
 | Phase | Prompt | Tool / format | Notes |
 |---|---|---|---|
-| preflight | "Which path?" | `AskUserQuestion`, options: `Lightsail OpenClaw blueprint (recommended — Bedrock pre-wired)` / `Stock Ubuntu + curl installer (any model provider)` | Path A = blueprint; Path B = vanilla Ubuntu. Default A. |
+| preflight | "Which path?" | `AskUserQuestion`, options: `A — Lightsail OpenClaw blueprint (AWS, Bedrock pre-wired)` / `B — Stock Ubuntu + curl installer (any provider, no Docker)` / `C — Docker container on any Linux VPS (any provider, easy upgrades)` | Default A for AWS users; suggest C for non-AWS hosts. |
 | provision (if Path A) | none | — | Bedrock model defaults to `claude-sonnet-4-6` via cross-account role; IAM script run autonomously (see below). |
-| provision (if Path B) | "Which model provider?" | `AskUserQuestion`, options: `Anthropic` / `OpenAI` / `Google` / `Local` | Selected provider's API key prompted next |
-| provision (if Path B) | "API key for `<provider>`?" | Free-text (sensitive) | Skipped for `Local`. Pasted into `openclaw onboard` interactive flow, not chat-logged |
+| provision (if Path B or C) | "Which model provider?" | `AskUserQuestion`, options: `Anthropic` / `OpenAI` / `Google` / `Local` | Selected provider's API key prompted next |
+| provision (if Path B or C) | "API key for `<provider>`?" | Free-text (sensitive) | Skipped for `Local`. Pasted into `openclaw onboard` interactive flow, not chat-logged |
+| provision (if Path C, optional) | "Enable agent sandboxing? (each tool execution runs in a separate Docker container — adds overhead, stronger isolation)" | `AskUserQuestion`, options: `Yes` / `No` | Sets `OPENCLAW_SANDBOX=1` before `setup.sh`. See *Path C — Docker container* below. |
 | (optional) hardening | "Switch from Bedrock to a different model provider?" | `AskUserQuestion`, options: `Stay with Bedrock` / `Anthropic direct` / `OpenAI` / `Google` / `Local` | Only asked after the happy-path Bedrock chat is verified working |
 | (optional) hardening | "API key for `<provider>`?" | Free-text (sensitive) | Same as Path B prompt |
 | (optional, only for messaging webhooks) dns | "Custom domain for messaging-app webhooks?" | Free-text (or `Skip`) | Only needed for Telegram/Discord/Slack/WhatsApp inbound; not for chat UI access |
@@ -37,14 +38,15 @@ The Lightsail OpenClaw blueprint ships with:
 
 There is **no `openclaw-gateway` system unit**; the gateway is installed as a systemd `--user` unit by `openclaw gateway install`, with `loginctl enable-linger ubuntu` so it survives no-login sessions.
 
-## Two deployment paths
+## Three deployment paths
 
 | Path | When |
 |---|---|
-| **Official Lightsail OpenClaw blueprint** (default) | Happy path — fastest to a working chat UI. Bedrock-wired out of the box. Apache + snakeoil HTTPS pre-installed. |
-| Stock Ubuntu + official curl installer | Pick if you specifically don't want Bedrock, AWS cross-account role baggage, or the snakeoil-cert HTTPS setup. |
+| **A. Official Lightsail OpenClaw blueprint** (default for AWS users) | Happy path on AWS — fastest to a working chat UI. Bedrock pre-wired via cross-account role. Apache + snakeoil HTTPS pre-installed. |
+| **B. Stock Ubuntu + official curl installer** | Native install on any Linux box. Pick if you specifically don't want Bedrock, AWS cross-account role baggage, or the snakeoil-cert HTTPS setup. |
+| **C. Docker container on any Linux VPS** | Containerized — clean isolation, easy upgrades (`git pull && setup.sh`), runs anywhere with Docker (Lightsail Ubuntu, Hetzner, DigitalOcean, GCP, etc.). Recommended for production / non-AWS hosts. |
 
-This recipe leads with the blueprint path. Path B lives at the end.
+This recipe leads with Path A. Paths B and C live at the end.
 
 ---
 
@@ -429,6 +431,119 @@ openclaw gateway status
 ```
 
 Access via SSH tunnel by default. No Apache pre-installed; if you want a public HTTPS endpoint, add Caddy or certbot/Apache yourself.
+
+---
+
+## Path C — Docker container on any Linux VPS
+
+Containerized deployment using OpenClaw's official Dockerfile + docker-compose + `setup.sh`. Works on any infra that gives you a Linux VM with Docker — Lightsail Ubuntu, Hetzner CX-line, DigitalOcean droplets, GCP Compute Engine, EC2, etc. Upstream docs: [docker](https://docs.openclaw.ai/install/docker) and [docker-vm-runtime](https://docs.openclaw.ai/install/docker-vm-runtime).
+
+### When to pick Path C over Path B
+
+- **You want easy upgrades** — `git pull && bash scripts/docker/setup.sh` re-pulls/rebuilds and restarts cleanly. Path B's curl installer drops files all over the host.
+- **You want container isolation** — config + workspace are bind-mounted host dirs; the rest of the image is throwaway. Easier to wipe and redeploy.
+- **You want sandboxed agent tool execution** (`OPENCLAW_SANDBOX=1`) — runs each agent's exec calls in a separate Docker container.
+- **You're not on Lightsail at all** — Hetzner / DigitalOcean / your own hardware.
+
+### VPS sizing
+
+- **Minimum**: 2 vCPU, 4 GB RAM, 20 GB disk. Image build's `pnpm install` step OOMs below ~2 GB free.
+- **Recommended**: 4 GB RAM (matches the Lightsail blueprint baseline).
+- ARM works — set `OPENCLAW_VARIANT=slim` and use ARM-native binaries per [docker-vm-runtime](https://docs.openclaw.ai/install/docker-vm-runtime).
+
+### Prerequisites on the VPS
+
+```bash
+# Docker engine + compose v2 (Ubuntu/Debian — adjust per OS)
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker "$USER"   # log out + in for group change to apply
+docker compose version            # confirm compose v2 plugin present
+```
+
+### Install
+
+Over SSH to the target VPS:
+
+```bash
+git clone https://github.com/openclaw/openclaw.git ~/openclaw
+cd ~/openclaw
+bash scripts/docker/setup.sh
+```
+
+What `setup.sh` does (summarized — see `scripts/docker/setup.sh` for the full flow):
+
+1. Validates Docker + Compose, builds (or pulls) the OpenClaw image.
+2. Seeds bind-mount dirs at `~/.openclaw/` and `~/.openclaw/workspace/`.
+3. Generates a gateway token (or reuses an existing one from `~/.openclaw/openclaw.json` / `.env`).
+4. Runs `openclaw onboard --mode local --no-install-daemon` interactively — **pause autonomous mode here**, the user pastes their model provider + API key.
+5. Pins `gateway.mode=local` and `gateway.bind=$OPENCLAW_GATEWAY_BIND` (default `lan`) in the config.
+6. `docker compose up -d openclaw-gateway`.
+7. Prints the gateway token, config dir, and useful follow-up commands.
+
+The build is slow first time (~5–10 min on a 4 GB VPS); subsequent runs reuse the BuildKit cache.
+
+### Useful environment variables (set before running setup.sh)
+
+| Variable | Default | Purpose |
+|---|---|---|
+| `OPENCLAW_GATEWAY_BIND` | `lan` | `loopback` (only via tunnel) / `lan` (any iface) / `tailnet` (Tailscale) |
+| `OPENCLAW_GATEWAY_PORT` | `18789` | Host-mapped gateway port |
+| `OPENCLAW_BRIDGE_PORT` | `18790` | Host-mapped bridge port |
+| `OPENCLAW_IMAGE` | `openclaw:local` | Set to a registry image to pull instead of build |
+| `OPENCLAW_SANDBOX` | unset | `1` to enable Docker-isolated agent tool execution |
+| `OPENCLAW_TZ` | `UTC` | IANA timezone string (e.g. `Asia/Shanghai`) |
+| `OPENCLAW_HOME_VOLUME` | unset | Use a named volume instead of `$HOME/.openclaw` bind mount |
+
+All of these get persisted to `~/openclaw/.env` after the first setup run, so re-running `setup.sh` reuses them.
+
+### Firewall
+
+Open port `18789` only if you intend to expose the gateway directly on the public IP. Default and safer: keep it closed and reach the gateway via SSH tunnel. For Lightsail Ubuntu hosts, see `references/infra/lightsail.md`'s `put-instance-public-ports` example. For Hetzner / DigitalOcean / etc., use the provider's firewall UI or `ufw`.
+
+### Access — same as Path A/B
+
+- **SSH tunnel** (default): `ssh -L 18789:127.0.0.1:18789 <user>@<vps-ip>` then open `http://localhost:18789/#token=<TOKEN>`.
+- **Direct over LAN/WAN**: `http://<vps-ip>:18789/#token=<TOKEN>` if port 18789 is open.
+- **Behind a TLS reverse proxy** (recommended for public exposure): see *Optional: public HTTPS with a real cert + custom domain* above. Caddy → `localhost:18789`. Add `https://<domain>` to `gateway.controlUi.allowedOrigins`.
+
+Pairing approval is the same as Path A — `openclaw devices approve --latest --token "$TOKEN"` from inside the container:
+
+```bash
+cd ~/openclaw
+docker compose run --rm openclaw-cli devices approve --latest \
+  --token "$(jq -r '.gateway.auth.token' ~/.openclaw/openclaw.json)"
+```
+
+### Daemon control
+
+```bash
+cd ~/openclaw
+docker compose ps                              # running services
+docker compose logs -f openclaw-gateway        # live logs
+docker compose restart openclaw-gateway        # restart
+docker compose down                            # stop everything
+docker compose up -d openclaw-gateway          # start again
+docker compose exec openclaw-gateway node dist/index.js health \
+  --token "$(jq -r '.gateway.auth.token' ~/.openclaw/openclaw.json)"
+```
+
+### Upgrades
+
+```bash
+cd ~/openclaw
+git pull
+bash scripts/docker/setup.sh   # rebuilds image + restarts; keeps token + config
+```
+
+The bind-mounted `~/.openclaw/` survives. Image cache is reused unless the Dockerfile changed.
+
+### Gotchas (Docker-specific)
+
+- **OOM during image build** on small VMs — script uses `NODE_OPTIONS=--max-old-space-size=2048` to mitigate, but ≤2 GB RAM still fails. Resize up before retrying.
+- **`group_add` for sandbox** needs the host's docker socket GID. `setup.sh` autodetects via `stat -c '%g' /var/run/docker.sock`.
+- **Bind-mount permissions**: setup.sh runs a one-shot root container to `chown` the config dir to uid 1000 (the container's `node` user). On rare hosts (rootless Docker, NFS bind mounts), this can fail — check container logs for `EACCES`.
+- **Re-running `setup.sh` after editing config**: the script may overwrite `gateway.mode` and `gateway.bind` to its defaults. If you've intentionally changed those, re-apply after.
+- **No automatic Bedrock**: Path C does not have the AWS cross-account role assumption. Don't use Bedrock here unless you set up your own IAM credentials inside the container.
 
 ---
 

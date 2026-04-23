@@ -1,7 +1,7 @@
 {
   "name": "open-forge",
-  "version": "0.3.0",
-  "description": "Self-host open-source apps on your own cloud. Guides a user through provisioning, DNS, TLS, SMTP, and inbound email with project-specific recipes and infra adapters. Supported: Ghost on Lightsail, OpenClaw on Lightsail.",
+  "version": "0.4.0",
+  "description": "Self-host open-source apps on your own cloud. Guides a user through provisioning, DNS, TLS, SMTP, and inbound email with project-specific recipes and infra adapters. Supported: Ghost on Lightsail, OpenClaw on Lightsail (Bedrock blueprint, native, or Docker on any Linux VPS).",
   "author": { "name": "zhangqi444" },
   "repository": "https://github.com/zhangqi444/open-forge",
   "license": "MIT"

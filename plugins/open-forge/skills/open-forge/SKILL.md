@@ -28,7 +28,9 @@ Check `references/projects/` and `references/infra/` for available recipes/adapt
 | Project | Infra adapters |
 |---|---|
 | Ghost (Bitnami blueprint) | Lightsail |
-| OpenClaw (Ubuntu + official installer, any model provider) | Lightsail |
+| OpenClaw — Path A (Lightsail OpenClaw blueprint, Bedrock pre-wired) | Lightsail |
+| OpenClaw — Path B (Ubuntu + native curl installer, any model provider) | Lightsail Ubuntu / any Linux VM |
+| OpenClaw — Path C (Docker container) | Any Linux VPS with Docker (Lightsail, Hetzner, DO, GCP, EC2, ...) |
 
 If the user names an unsupported combination, say so plainly and offer to fall back to the closest supported one, or to skip (and hand-roll).
 

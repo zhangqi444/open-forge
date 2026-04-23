@@ -9,7 +9,9 @@ Given a project and a cloud provider, open-forge walks you through provisioning,
 | Project | Infra | Status |
 |---|---|---|
 | Ghost | AWS Lightsail (Bitnami blueprint) | ✅ |
-| OpenClaw (any model provider) | AWS Lightsail (Ubuntu + official installer) | ✅ |
+| OpenClaw — Path A (Bedrock pre-wired) | AWS Lightsail (OpenClaw blueprint) | ✅ |
+| OpenClaw — Path B (any model provider) | AWS Lightsail (Ubuntu + official curl installer) | ✅ |
+| OpenClaw — Path C (any model provider, containerized) | Any Linux VPS with Docker (Lightsail / Hetzner / DO / GCP / EC2 / ...) | ✅ |
 
 More coming.
 
