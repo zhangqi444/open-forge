@@ -1,0 +1,8 @@
+{
+  "name": "open-forge",
+  "version": "0.1.0",
+  "description": "Self-host open-source apps on your own cloud. Guides a user through provisioning, DNS, TLS, SMTP, and inbound email with project-specific recipes and infra adapters.",
+  "author": { "name": "zhangqi444" },
+  "repository": "https://github.com/zhangqi444/open-forge",
+  "license": "MIT"
+}
