@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS/Lightsail/Hetzner/DigitalOcean", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", or names a combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami). More projects and infras added under `references/projects/` and `references/infra/`.
+description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS/Lightsail/Hetzner/DigitalOcean", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint), OpenClaw on AWS Lightsail (openclaw_ls_1_0 blueprint). More projects and infras added under `references/projects/` and `references/infra/`.
 ---
 
 # open-forge
