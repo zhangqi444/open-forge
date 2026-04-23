@@ -9,6 +9,7 @@ Given a project and a cloud provider, open-forge walks you through provisioning,
 | Project | Infra | Status |
 |---|---|---|
 | Ghost | AWS Lightsail (Bitnami blueprint) | ✅ |
+| OpenClaw (any model provider) | AWS Lightsail (Ubuntu + official installer) | ✅ |
 
 More coming.
 
