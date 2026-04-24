@@ -6,23 +6,47 @@ Instructions for any Claude Code session working *on* the open-forge plugin (not
 
 A Claude Code plugin/skill that turns "read a README, copy-paste 30 lines of bash, debug for hours" into a guided chat where Claude executes everything via the user's local CLI tools and the user only makes choices.
 
-## Architecture — 3 layers that combine
+## Architecture — 3 layers, asked in 3 questions
 
-A deployment is a tuple of three independent axes:
+A deployment is a tuple of three independent axes, asked in this order:
 
-```
-software  ×  runtime  ×  infra
-```
-
-| Layer | What it owns | Examples | Lives in |
+| # | Question | Layer | Examples |
 |---|---|---|---|
-| **software** | What the app *is*, app-specific config, gotchas, mail block shape, admin paths | Ghost, OpenClaw, Mastodon, Vaultwarden, Nextcloud | `references/projects/<name>.md` |
-| **runtime** | How the software runs on a host | native (curl/apt installer), Docker + compose, Kubernetes, vendor-managed blueprint | `references/runtimes/<name>.md` |
-| **infra** | The underlying VM / cluster + how to provision it | AWS Lightsail, Hetzner Cloud, DigitalOcean, GCP Compute, EC2 | `references/infra/<name>.md` |
+| 1 | **What** to host? | software | OpenClaw, Ghost, Mastodon, Vaultwarden, Nextcloud |
+| 2 | **Where** to host? | infra (cloud or local) | AWS / Hetzner / DigitalOcean / GCP / Azure / bring-your-own-VPS / **localhost** |
+| 3 | **How** to host (within that cloud)? | infra-service + runtime | AWS: Lightsail blueprint, Lightsail Ubuntu + Docker, EC2 + native, EKS, ECS Fargate. Hetzner: Cloud CX + Docker, Cloud CX + native. localhost: Docker Desktop, native. |
 
-**Reusability is the test.** "Install Docker + run docker-compose" is the same on Lightsail Ubuntu, Hetzner CX-line, and a DO droplet — write it once in the runtime layer, reference from every project. "Install k3s" is the same across clouds — write it once. Project recipes should be 80% software-specific concerns and contain *no* per-runtime install commands beyond a one-line link.
+The third question is *dynamically generated* from (software, cloud) — different clouds expose different compute services, and some software has vendor-bundled blueprints on specific clouds.
 
-**Vendor-managed blueprints** (Lightsail Ghost-Bitnami, Lightsail OpenClaw) are a fourth path — they bundle software+runtime+sometimes-infra into one opinionated package. Document them as a *runtime* (e.g. `references/runtimes/lightsail-blueprint.md`) and have the project recipe note "this software ships with a Lightsail blueprint, see the blueprint runtime."
+**Some infra services bundle the runtime** — EKS → Kubernetes, Lightsail OpenClaw blueprint → vendor's pre-baked install. In those cases the "runtime" question is not asked separately. **Other services give runtime choice** — EC2, plain VPS, localhost — there we ask Docker vs native vs k3s.
+
+**Reusability is the test.** "Install Docker + run docker-compose" is the same on Lightsail Ubuntu, Hetzner CX-line, a DO droplet, and a localhost — write it once in the runtime layer, reference from every project. "Install k3s" is the same across clouds — write it once. Project recipes should be 80% software-specific concerns and contain *no* per-runtime install commands beyond a one-line link.
+
+### File layout for the 3 layers
+
+```
+references/
+├── projects/<sw>.md                       # software layer (thin)
+├── infra/
+│   ├── aws/
+│   │   ├── lightsail-blueprint.md         # vendor-bundled, software-specific
+│   │   ├── lightsail-ubuntu.md            # Lightsail as a plain VM
+│   │   ├── ec2.md
+│   │   ├── eks.md
+│   │   └── ecs-fargate.md
+│   ├── hetzner/cloud-cx.md
+│   ├── digitalocean/droplet.md
+│   ├── gcp/compute-engine.md
+│   ├── byo-vps.md                         # user provides any Linux VPS, Claude SSH-es in
+│   └── localhost.md                       # user's own machine, Claude runs commands directly
+├── runtimes/
+│   ├── docker.md                          # reusable wherever Docker works
+│   ├── native.md                          # native installer (curl/apt)
+│   └── kubernetes.md                      # reusable across EKS/GKE/AKS/k3s
+└── modules/                               # cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring)
+```
+
+`localhost.md` is a first-class infra — for many projects (especially OpenClaw), running locally is the default upstream path. Same conversational UX as a cloud deploy; differences are: no SSH (Claude runs commands directly), no provisioning, public reach via tunnel (`references/modules/tunnels.md`).
 
 ## Operating principles
 
@@ -32,6 +56,7 @@ software  ×  runtime  ×  infra
 4. **One question at a time.** Use `AskUserQuestion` for structured choices. Reserve free-text for credentials and identifiers (domain names, emails). No upfront questionnaires.
 5. **Auto-install with confirmation, never silently.** If `jq` or `aws` is missing, propose the install command, get one-line approval, then run.
 6. **Reference upstream docs; don't replace them.** Recipes condense and translate upstream documentation into Claude-actionable steps — they aren't the source of truth for the product itself. Always link the upstream pages we summarized (e.g. `docs.openclaw.ai/install/docker`, AWS Lightsail user guide, Bitnami docs). Reasons: (a) users can verify what we condensed, (b) when upstream drifts our recipe goes stale fast and the link is the recovery path, (c) credit where due.
+7. **Don't invent — interface.** open-forge is a chat-friendly interface to existing tools. Claude is the orchestrator; the user's existing software stack (AWS CLI, Docker, openclaw, ssh, gh, registrar UIs) is the substrate. **Do not** build custom DSLs, YAML schemas, CLI tools, deployment managers, or wrappers around upstream tools. **Do not** reimplement what an upstream tool already does (e.g. don't rebuild `openclaw onboard`'s prompts in chat — call the command). The state file is a thin orchestration helper for resume, nothing more.
 
 ## Recipe structure (must-have sections)
 
@@ -100,14 +125,19 @@ Publish flow:
 
 Commits authored as `Qi Zhang <zhangqi444@gmail.com>` — set inline via env vars (`GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`, `GIT_COMMITTER_NAME`, `GIT_COMMITTER_EMAIL`), **don't write to git config**.
 
-## Known refactor needed
+## Refactor in progress (started 2026-04-24)
 
-Current state mixes the runtime layer into project recipes:
+Current state collapses three axes into linear "Path A/B/C" inside `openclaw.md`, which hides valid combos and biases preflight toward AWS even for non-AWS deployments. Migrating to the 3-layer file layout above. Order:
 
-- `references/projects/openclaw.md` has Path A (Lightsail blueprint), Path B (Ubuntu native), Path C (Docker) all in one file. The runtime-specific install/upgrade/restart steps should move to `references/runtimes/{lightsail-blueprint,native,docker}.md`, and openclaw.md should become "software-layer concerns + which runtimes are compatible + which is recommended."
-- Same will apply to ghost.md if a Docker runtime is later added.
+1. ✅ CLAUDE.md model locked in (this section).
+2. Preflight refactor — branch on infra choice; only require AWS CLI when infra ∈ AWS.
+3. Skeleton infra adapters: `infra/aws/lightsail-blueprint.md`, `infra/aws/lightsail-ubuntu.md`, `infra/byo-vps.md`, `infra/localhost.md`.
+4. Runtime modules: `runtimes/docker.md`, `runtimes/native.md`. Extracted from openclaw.md Paths B and C.
+5. Slim down `projects/openclaw.md` — software-layer concerns only; reference runtimes + infra modules for everything else.
+6. Add `modules/tunnels.md` for localhost public-reach (Cloudflare Tunnel / Tailscale / ngrok).
+7. Update SKILL.md, README.md support tables and prompts. Bump plugin version.
 
-Plan: do the split incrementally — first time a second project shares a runtime with OpenClaw, extract the runtime layer rather than copy-paste. Don't pre-extract on speculation.
+Each step commits independently. Path A/B/C terminology retired in step 5.
 
 ## Behavioral guidelines (echoes of bota CLAUDE.md, kept here for autonomy)
 
