@@ -3,5 +3,6 @@
 *~
 .vscode/
 .idea/
+.claude/
 __pycache__/
 *.pyc
