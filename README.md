@@ -6,14 +6,22 @@ Given a project and a cloud provider, open-forge walks you through provisioning,
 
 ## Supported today (v0.1)
 
-| Project | Infra | Status |
-|---|---|---|
-| Ghost | AWS Lightsail (Bitnami blueprint) | ✅ |
-| OpenClaw — Path A (Bedrock pre-wired) | AWS Lightsail (OpenClaw blueprint) | ✅ |
-| OpenClaw — Path B (any model provider) | AWS Lightsail (Ubuntu + official curl installer) | ✅ |
-| OpenClaw — Path C (any model provider, containerized) | Any Linux VPS with Docker (Lightsail / Hetzner / DO / GCP / EC2 / ...) | ✅ |
+Supported software:
 
-More coming.
+| Software | What it is |
+|---|---|
+| Ghost | Self-hosted blogging platform |
+| OpenClaw | Self-hosted personal AI agent |
+
+Supported **where**:
+
+| Where | How |
+|---|---|
+| AWS Lightsail | OpenClaw blueprint (Bedrock pre-wired) · Ubuntu + Docker · Ubuntu + native · Ghost Bitnami blueprint |
+| Any Linux VM you already have (Hetzner / DO / GCP / EC2 / bare metal) | Docker · native |
+| **Your own machine** (macOS / Linux / Windows) | Docker Desktop · native |
+
+Three-question flow: what to host, where to host, how to host. Claude asks only what's genuinely ambiguous — if your prompt already names a clear cloud, the first question is skipped.
 
 ## Install
 

@@ -25,26 +25,42 @@ What this means in practice:
 
 Check `references/projects/` and `references/infra/` for available recipes/adapters. As of this writing:
 
-| Project | Infra adapters |
+Supported **software**:
+
+| Software | What it is |
 |---|---|
-| Ghost (Bitnami blueprint) | Lightsail |
-| OpenClaw — Path A (Lightsail OpenClaw blueprint, Bedrock pre-wired) | Lightsail |
-| OpenClaw — Path B (Ubuntu + native curl installer, any model provider) | Lightsail Ubuntu / any Linux VM |
-| OpenClaw — Path C (Docker container) | Any Linux VPS with Docker (Lightsail, Hetzner, DO, GCP, EC2, ...) |
+| Ghost | Self-hosted blogging platform |
+| OpenClaw | Self-hosted personal AI agent (openclaw.ai — NOT the Captain Claw platformer game) |
 
-If the user names an unsupported combination, say so plainly and offer to fall back to the closest supported one, or to skip (and hand-roll).
+Supported **infras** (under `references/infra/`):
 
-## Selection — first thing to do
+| Cloud | Services |
+|---|---|
+| AWS | `aws/lightsail.md` (generic Lightsail provisioning; Ghost Bitnami blueprint + OpenClaw blueprint both use it) |
+| Any Linux VM you already have | `byo-vps.md` — SSH in, no cloud APIs |
+| Your own machine | `localhost.md` — Claude runs commands directly, no SSH |
 
-Before any provisioning, establish three things:
+Supported **runtimes** (under `references/runtimes/`):
 
-1. **Project** → load `references/projects/<project>.md`
-2. **Infra** → load `references/infra/<infra>.md`
-3. **Deployment name** (short hyphen-case, e.g. `my-blog`) → used as the state file key and often as the instance name
+| Runtime | Notes |
+|---|---|
+| Docker | `docker.md` — install Docker on host + lifecycle via docker-compose. Reusable across every infra. |
+| Vendor blueprints | Bundled into infra adapters (e.g. Lightsail Ghost-Bitnami, Lightsail OpenClaw) — runtime choice is the vendor's |
+| Native installer | Project-specific (e.g. OpenClaw's `curl \| bash`); documented in each project recipe |
 
-If any are missing or ambiguous, ask the user. Do not guess on infra — the adapter dictates every provisioning command downstream.
+Hetzner / DigitalOcean / GCP / EC2 dedicated adapters land as needed — until then, any Linux VM on them works through `byo-vps.md`.
 
-After selection, **immediately load `references/modules/preflight.md`** and run its steps before anything else. Preflight handles tool detection, auto-install offers, AWS profile validation, region choice, and state-file initialization — identical for every project + infra combination.
+## Selection — ask three questions
+
+Before provisioning, establish three things by asking (or inferring from the user's prompt):
+
+1. **What** to host? → loads `references/projects/<software>.md`
+2. **Where** to host? → loads `references/infra/<cloud>/<service>.md` or `references/infra/{byo-vps,localhost}.md`
+3. **How** to host? → loads the matching `references/runtimes/<runtime>.md` (skipped if the infra bundles the runtime, e.g. vendor blueprints)
+
+The **how** question is *dynamically generated* from (software, where) — each project lists its "Compatible combos" table in the project recipe, and the options shown are filtered by the user's where answer. If the user's initial prompt already names a clear infra ("deploy to Lightsail" → AWS), announce the inferred choice and continue — don't re-ask. Use `AskUserQuestion` only when genuinely ambiguous.
+
+Then **immediately load `references/modules/preflight.md`** and run its steps. Preflight is combo-aware — it only installs / validates what the chosen tuple actually needs (AWS CLI only when infra ∈ AWS, Docker only when runtime = docker, nothing extra on localhost).
 
 ## Phased workflow
 
