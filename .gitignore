@@ -5,3 +5,7 @@
 .idea/
 __pycache__/
 *.pyc
+
+# Claude Code local state — share only settings.json
+.claude/*
+!.claude/settings.json

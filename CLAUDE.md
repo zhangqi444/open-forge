@@ -56,7 +56,33 @@ references/
 4. **One question at a time.** Use `AskUserQuestion` for structured choices. Reserve free-text for credentials and identifiers (domain names, emails). No upfront questionnaires.
 5. **Auto-install with confirmation, never silently.** If `jq` or `aws` is missing, propose the install command, get one-line approval, then run.
 6. **Reference upstream docs; don't replace them.** Recipes condense and translate upstream documentation into Claude-actionable steps — they aren't the source of truth for the product itself. Always link the upstream pages we summarized (e.g. `docs.openclaw.ai/install/docker`, AWS Lightsail user guide, Bitnami docs). Reasons: (a) users can verify what we condensed, (b) when upstream drifts our recipe goes stale fast and the link is the recovery path, (c) credit where due.
-7. **Don't invent — interface.** open-forge is a chat-friendly interface to existing tools. Claude is the orchestrator; the user's existing software stack (AWS CLI, Docker, openclaw, ssh, gh, registrar UIs) is the substrate. **Do not** build custom DSLs, YAML schemas, CLI tools, deployment managers, or wrappers around upstream tools. **Do not** reimplement what an upstream tool already does (e.g. don't rebuild `openclaw onboard`'s prompts in chat — call the command). The state file is a thin orchestration helper for resume, nothing more.
+7. **Don't invent — interface.** open-forge is a chat-friendly interface to existing tools. Claude is the orchestrator; the user's existing software stack (AWS CLI, Docker, openclaw, ssh, gh, registrar UIs) is the substrate. **Do not** build custom DSLs, YAML schemas, CLI tools, deployment managers, or wrappers around upstream tools. **Do not** reimplement what an upstream tool already does (e.g. don't rebuild `openclaw onboard`'s prompts in chat — call the command). The state file is a thin orchestration helper for resume, nothing more. *Caveat:* "don't invent" applies to **fabricating a deployment path the upstream doesn't support** (e.g. authoring a Helm chart for a project that has no chart). It does **not** mean "no tooling." If upstream supports Docker / k8s / Helm / Terraform, lean on every skill and MCP that helps you orchestrate those paths well — see *Companion skills & MCPs* below.
+
+## Companion skills & MCPs
+
+open-forge orchestrates *upstream-blessed* deployment paths. To do that well, recipes are encouraged to depend on companion skills/MCPs as soft dependencies — declared in prose, not enforced. The filter is one question:
+
+> Does this tool help me **drive** an upstream-supported deploy path more reliably?
+
+| Shape | Stance | Examples |
+|---|---|---|
+| **Operators** — read state, query docs, drive existing CLIs more accurately | ✅ Embrace | `awsdocs` MCP, `gcp-docs` MCP, `cloudflare` MCP, GitHub MCP (fetch upstream `docker-compose.yml` / `charts/`), k8s state-query MCPs |
+| **Generators** — author config from scratch | ❌ Avoid by default | `dockerfile-generator`, `k8s-yaml-generator`, `helm-generator`, `terraform-generator`. Only justified when upstream genuinely ships nothing and we deliberately wrap. |
+| **Plain CLIs** | ✅ Default substrate | `docker`, `kubectl`, `helm`, `aws`, `gcloud`, `az`, `gh`, `ssh`, `terraform` |
+
+How to reference companion tooling — **fallback hierarchy**, in order of preference:
+
+1. **Companion skill/MCP**, if available. Name it in SKILL.md / recipe body in prose: *"If the k8s state MCP is available, use it to confirm pod readiness; otherwise parse `kubectl get pods -o json`."* Claude uses it when present, falls back gracefully when not.
+2. **Captured docs in `references/`**, if no skill/MCP exists. Distill the relevant upstream pages (Helm chart values, k8s CRD schema, AWS CLI flags for the specific service) into a focused reference under `references/modules/<topic>.md` or alongside the recipe. Cite the upstream URL as the source of truth — captured docs are a lossy snapshot, the link is the recovery path (principle #6).
+3. **Inline upstream-doc links** as a last resort, when even capture is overkill — let Claude WebFetch them on demand.
+
+Where to declare companion tooling:
+
+- **In recipe frontmatter**, optionally list `companion-skills:` / `companion-mcps:` as documentation (not enforced — no formal deps mechanism in plugin manifests yet).
+- **In `plugins/open-forge/.mcp.json`**, register MCPs the recipes depend on heavily so they install transparently with the plugin. Reserve this for read-only docs/state MCPs; never wrap deployment commands.
+- **For dev work on open-forge itself** (CI, settings audit, plugin packaging): use whatever skills help your local workflow (`gh-fix-ci`, `claude-settings-audit`) — these don't need to ship with the plugin.
+
+When a recipe is exercised end-to-end and a companion skill/MCP proved necessary — or a captured doc was added to `references/` — record it in the recipe's *Compatible runtimes* or a new *Companion tooling* note alongside upstream doc links. Same first-run discipline applies.
 
 ## Recipe structure (must-have sections)
 

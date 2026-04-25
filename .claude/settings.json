@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(jq:*)",
+      "Skill(skill-creator)",
+      "Skill(simplify)",
+      "Skill(review)",
+      "Skill(security-review)",
+      "Skill(less-permission-prompts)"
+    ]
+  },
+  "enabledPlugins": {
+    "skill-creator@claude-plugins-official": true
+  }
+}
