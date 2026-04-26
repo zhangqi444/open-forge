@@ -1,7 +1,7 @@
 {
   "name": "open-forge",
-  "version": "0.5.0",
-  "description": "Self-host open-source apps on your own cloud, your own VPS, or your own laptop. Chat-friendly interface to existing tools (aws, docker, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw. Supported where: AWS Lightsail, any Linux VPS (BYO), and localhost.",
+  "version": "0.6.0",
+  "description": "Self-host open-source apps on your own cloud, your own VPS, or your own laptop. Chat-friendly interface to existing tools (aws, hcloud, doctl, gcloud, docker, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw. Supported where: AWS (Lightsail + EC2), Hetzner Cloud, DigitalOcean, GCP Compute Engine, any Linux VPS (BYO), and localhost.",
   "author": { "name": "zhangqi444" },
   "repository": "https://github.com/zhangqi444/open-forge",
   "license": "MIT"
