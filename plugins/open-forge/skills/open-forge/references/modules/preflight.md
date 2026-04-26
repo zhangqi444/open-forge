@@ -74,7 +74,7 @@ Runtime-conditional:
 |---|---|
 | Docker | `docker` (engine + compose v2) on the *target host* (local or remote). Not on the user's machine unless infra = localhost. |
 | Native | build tools on the target host; usually installed by the project's installer script |
-| Kubernetes | `kubectl` on the user's machine |
+| Kubernetes | `kubectl` + `helm` v3 on the user's machine. The cluster is the user's responsibility — open-forge does not provision clusters today (point `kubectl` at one and we deploy into it). |
 
 Project-conditional inputs (collected at their specific phases, not here):
 
@@ -122,6 +122,8 @@ Announce in one sentence, then run. Verify after (`<tool> --version`).
 | `hcloud` | `brew install hcloud` | binary release (see `infra/hetzner/cloud-cx.md`) | binary release | binary release | <https://github.com/hetznercloud/cli/releases> |
 | `doctl` | `brew install doctl` | binary release (see `infra/digitalocean/droplet.md`) | binary release | binary release | <https://docs.digitalocean.com/reference/doctl/how-to/install/> |
 | `gcloud` | `brew install --cask google-cloud-sdk` | Google's apt repo (see `infra/gcp/compute-engine.md`) | Google's dnf repo | AUR `google-cloud-sdk` | <https://cloud.google.com/sdk/docs/install> |
+| `kubectl` | `brew install kubectl` | Google's apt repo for kubernetes-tools | `sudo dnf install -y kubectl` | `sudo pacman -S kubectl` | <https://kubernetes.io/docs/tasks/tools/> |
+| `helm` v3 | `brew install helm` | `curl https://baltocdn.com/helm/signing.asc \| sudo …` (Helm's apt repo) | `sudo dnf install -y helm` | `sudo pacman -S helm` | <https://helm.sh/docs/intro/install/> |
 
 `aws` note: `apt-get install awscli` installs v1 on older Ubuntu/Debian. Prefer the official v2 installer:
 
@@ -210,6 +212,18 @@ Ask for the SSH details specified in `references/infra/byo-vps.md` (host, user, 
 ### localhost
 
 Nothing to collect. Skip this step.
+
+### Kubernetes (when runtime = kubernetes)
+
+Before any cluster operation, confirm `kubectl` points at the cluster the user actually wants:
+
+```bash
+kubectl config current-context
+kubectl cluster-info
+kubectl get nodes
+```
+
+Show the user the active context name. If multiple contexts exist (`kubectl config get-contexts`), use `AskUserQuestion` to confirm. open-forge does not provision clusters; the user owns that step in their cloud's k8s-cluster UI / CLI (`eksctl`, `gcloud container clusters create`, `doctl kubernetes cluster create`, k3s installer, etc.). See `references/runtimes/kubernetes.md` for the per-cluster `kubeconfig` setup commands.
 
 ## Step 6 — region (only when applicable)
 

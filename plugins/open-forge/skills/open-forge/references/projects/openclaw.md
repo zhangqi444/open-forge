@@ -1,6 +1,6 @@
 ---
 name: openclaw-project
-description: OpenClaw recipe for open-forge — a self-hosted personal AI agent (openclaw.ai — NOT the Captain Claw platformer game). Covers install on AWS Lightsail (vendor blueprint or Ubuntu VM), AWS EC2, Hetzner Cloud, DigitalOcean, GCP Compute Engine, any Linux VPS (bring-your-own), and localhost. Supports any model provider (Anthropic / OpenAI / Google / Bedrock / local). Pairs with references/runtimes/{docker,native}.md, references/infra/*.md, and references/modules/tunnels.md as needed.
+description: OpenClaw recipe for open-forge — a self-hosted personal AI agent (openclaw.ai — NOT the Captain Claw platformer game). Covers all upstream-blessed install paths: AWS Lightsail (vendor blueprint), Docker Compose (any infra), native installer (any Linux/macOS), and Kubernetes via the official Helm chart (any k8s cluster — managed EKS/GKE/AKS/DOKS, self-hosted k3s, or local Docker Desktop). Supports any model provider (Anthropic / OpenAI / Google / Bedrock / local). Pairs with references/runtimes/{docker,native,kubernetes}.md, references/infra/*.md, and references/modules/tunnels.md as needed.
 ---
 
 # OpenClaw
@@ -23,9 +23,10 @@ Self-hosted personal AI agent with web browsing, file access, shell execution, a
 | GCP | Docker | `infra/gcp/compute-engine.md` + `runtimes/docker.md` | Compute Engine VM; needs `gcloud` configured |
 | GCP | native | `infra/gcp/compute-engine.md` + `runtimes/native.md` | |
 | BYO VPS (any other provider, on-prem) | Docker or native | `infra/byo-vps.md` + `runtimes/{docker,native}.md` | Catch-all when no dedicated adapter exists |
-| **localhost** | Docker Desktop / native | `infra/localhost.md` + `runtimes/{docker,native}.md` | Upstream's default path (openclaw.ai's installer is designed for local). Public reach via `references/modules/tunnels.md`. |
+| Any k8s cluster (EKS / GKE / AKS / DOKS / k3s on a VM) | Kubernetes (Helm) | user-provisioned cluster + `runtimes/kubernetes.md` | Uses the upstream Helm chart at `charts.openclaw.ai`. open-forge does **not** provision the cluster — point `kubectl` at one and we'll deploy into it. |
+| **localhost** | Docker Desktop / native / Docker-Desktop-Kubernetes | `infra/localhost.md` + `runtimes/{docker,native,kubernetes}.md` | Upstream's default path (openclaw.ai's installer is designed for local). Public reach via `references/modules/tunnels.md`. |
 
-The dynamic **how** question's options come from this table filtered by the user's **where** answer. On AWS the blueprint is the recommended default; on localhost the native installer is (simpler than Docker Desktop for most users).
+The dynamic **how** question's options come from this table filtered by the user's **where** answer. On AWS the blueprint is the recommended default; on localhost the native installer is (simpler than Docker Desktop for most users); for k8s the official Helm chart is the only path.
 
 ## Inputs to collect
 
@@ -397,6 +398,82 @@ For public reach on a remote host, see `runtimes/native.md` § *Reverse proxy* (
 
 ---
 
+## Kubernetes (any cluster — managed or self-hosted)
+
+When the user picks **any k8s cluster → Helm chart**. Pair with [`references/runtimes/kubernetes.md`](../runtimes/kubernetes.md) for kubectl/Helm prereqs, namespace + secret hygiene, ingress/cert-manager guidance.
+
+Upstream docs: <https://docs.openclaw.ai/install/kubernetes>. Official chart repo: `https://charts.openclaw.ai`.
+
+### Prereqs (cluster-side)
+
+- A reachable k8s cluster (`kubectl get nodes` returns ready nodes).
+- A default `StorageClass` (the chart creates a PVC for `~/.openclaw/`).
+- An ingress controller (nginx-ingress, Traefik, or a cloud-native one) **if** you want public reach via Ingress; not required if you'll use a `LoadBalancer` Service or just `kubectl port-forward`.
+- cert-manager (only if using Ingress + automatic Let's Encrypt).
+
+### Install
+
+```bash
+helm repo add openclaw https://charts.openclaw.ai
+helm repo update
+
+kubectl create namespace openclaw
+
+# Inline secret — fine for hobby; pre-create a Secret for shared clusters (see runtimes/kubernetes.md)
+helm install openclaw openclaw/openclaw \
+  --namespace openclaw \
+  --set config.anthropicApiKey="<paste>" \
+  --set ingress.enabled=true \
+  --set ingress.host=<your-domain> \
+  --set ingress.tls.enabled=true \
+  --set ingress.tls.issuer=letsencrypt-prod
+```
+
+For other model providers, the chart accepts `config.openaiApiKey`, `config.googleApiKey`, etc. — confirm exact value paths via `helm show values openclaw/openclaw` before installing.
+
+### Verify
+
+```bash
+kubectl -n openclaw get pods,svc,ingress,pvc
+kubectl -n openclaw rollout status deploy/openclaw
+kubectl -n openclaw logs deploy/openclaw -f         # watch onboarding output
+kubectl -n openclaw port-forward svc/openclaw 18789:18789   # local probe before DNS lands
+```
+
+Health: `curl -sI http://127.0.0.1:18789/healthz` through the port-forward should return `200`. The chart wires the gateway token into the pod's environment + `~/.openclaw/openclaw.json`.
+
+### Pairing approval (Kubernetes)
+
+`openclaw devices approve` must run inside the gateway pod where the device-pairing state lives:
+
+```bash
+kubectl -n openclaw exec deploy/openclaw -- bash -lc \
+  'TOKEN=$(jq -r .gateway.auth.token ~/.openclaw/openclaw.json); openclaw devices approve --latest --token "$TOKEN"'
+```
+
+Same `--latest` rule applies (see *Two-layer auth model* above).
+
+### Upgrades
+
+```bash
+helm repo update
+helm upgrade openclaw openclaw/openclaw \
+  --namespace openclaw \
+  --reuse-values
+```
+
+The chart uses `strategy: Recreate` (single-instance — can't run two replicas). Expect a brief downtime gap during upgrades.
+
+### Kubernetes-specific gotchas (OpenClaw-only)
+
+- **PVC survives `helm uninstall`.** The gateway's identity, paired devices, and `openclaw.json` (with the gateway token) all live on the PVC. Reinstalling the chart in the same namespace re-binds to the existing data — paired browsers keep working. To wipe state, delete the PVC explicitly. (See `runtimes/kubernetes.md` § *Persistent storage*.)
+- **No automatic Bedrock cross-account assumption.** Like Docker, the chart has no equivalent of the Lightsail blueprint's IAM scaffolding. Pass an Anthropic / OpenAI / Google key directly, or set up your own AWS credentials (IRSA on EKS, Workload Identity on GKE) inside the pod.
+- **`onboard` is interactive — chart side-steps it.** The chart sets `gateway.mode=local`, generates a token, and bakes the API key from the Secret directly into `openclaw.json` — `openclaw onboard` is **not** invoked at startup. If you need to switch providers post-install, edit values + `helm upgrade`, don't `kubectl exec` into the pod and run `openclaw configure`.
+- **Single-instance only.** OpenClaw holds local browser-pairing state — replicas would diverge. Don't `--set replicaCount=2` even if the chart accepts the value.
+- **`openclaw devices approve` must run in the pod**, not on the user's laptop, because the pairing state is in the pod's PVC. The exec line above handles this.
+
+---
+
 ## Verification before marking `provision` done
 
 - Gateway process alive: `systemctl --user is-active openclaw-gateway` (native) or `docker compose ps` (Docker).
@@ -415,7 +492,7 @@ Universal:
 - **`openclaw onboard` / `openclaw configure` are interactive.** Don't try to automate — pause open-forge's autonomous mode.
 - **Model costs compound.** Long agent runs can burn tokens fast. Set spend limits at the provider dashboard before first real use.
 
-AWS Lightsail blueprint — see *Blueprint gotchas* above. Docker runtime — see *Docker-specific gotchas* + `runtimes/docker.md` § *Common gotchas*. Native — see *Native-specific gotchas* + `runtimes/native.md` § *Common gotchas*.
+AWS Lightsail blueprint — see *Blueprint gotchas* above. Docker runtime — see *Docker-specific gotchas* + `runtimes/docker.md` § *Common gotchas*. Native — see *Native-specific gotchas* + `runtimes/native.md` § *Common gotchas*. Kubernetes — see *Kubernetes-specific gotchas* + `runtimes/kubernetes.md` § *Common gotchas*.
 
 ---
 
@@ -426,3 +503,9 @@ AWS Lightsail blueprint — see *Blueprint gotchas* above. Docker runtime — se
 - Behavior when both Bedrock and a non-Bedrock provider are configured simultaneously.
 - Native installer on macOS (only exercised on Linux so far).
 - Docker runtime end-to-end (verified commands only; first full deploy will surface gotchas to fold back here).
+- Kubernetes / Helm chart end-to-end. Open questions to resolve on the first real cluster deploy:
+  - Exact value paths for non-Anthropic providers (`config.openaiApiKey` etc. is assumed; verify against `helm show values openclaw/openclaw`).
+  - Whether the chart pre-creates an Ingress + cert-manager `Issuer`, or expects them externally.
+  - Whether `--set existingSecret=<name>` is supported and how the chart looks up keys inside it.
+  - Whether `openclaw devices approve` has any chart-provided wrapper (CronJob, Helm hook, sidecar) that obviates `kubectl exec`.
+  - Behavior of `helm uninstall` on the auto-generated gateway token Secret (deleted with the release? orphaned?).

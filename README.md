@@ -23,6 +23,7 @@ Supported **where**:
 | **DigitalOcean** | Droplet + Docker · + native |
 | **GCP Compute Engine** | VM + Docker · + native |
 | Any Linux VM you already have (other providers, bare metal) | Docker · native |
+| **Any Kubernetes cluster** (EKS / GKE / AKS / DOKS / k3s / Docker Desktop) | Helm chart (for projects that ship one — e.g. OpenClaw via `charts.openclaw.ai`) |
 | **Your own machine** (macOS / Linux / Windows) | Docker Desktop · native |
 
 Three-question flow: what to host, where to host, how to host. Claude asks only what's genuinely ambiguous — if your prompt already names a clear cloud, the first question is skipped.
@@ -64,7 +65,7 @@ open-forge/
             ├── references/
             │   ├── projects/           # per-project recipes (ghost.md, openclaw.md, ...)
             │   ├── infra/              # per-infra adapters (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
-            │   ├── runtimes/           # docker.md, native.md
+            │   ├── runtimes/           # docker.md, native.md, kubernetes.md
             │   └── modules/            # cross-cutting (preflight, dns, tls, smtp, inbound, tunnels)
             └── scripts/
 ```

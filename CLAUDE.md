@@ -126,7 +126,7 @@ open-forge/
         ├── SKILL.md                       ← end-user-Claude entrypoint
         ├── references/
         │   ├── projects/<name>.md         ← software layer
-        │   ├── runtimes/<name>.md         ← runtime layer (docker.md, native.md)
+        │   ├── runtimes/<name>.md         ← runtime layer (docker.md, native.md, kubernetes.md)
         │   ├── infra/<name>.md            ← infra layer (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
         │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring)
         └── scripts/                       ← reused operational scripts; empty by default
@@ -158,12 +158,12 @@ Initial state collapsed three axes into linear "Path A/B/C" inside `openclaw.md`
 1. ✅ CLAUDE.md model locked in (this section).
 2. ✅ Preflight refactor — branch on infra choice; only require AWS CLI when infra ∈ AWS.
 3. ✅ Skeleton infra adapters: `infra/aws/lightsail.md` (Bitnami + OpenClaw blueprints share this; the blueprint-vs-Ubuntu split is a project-recipe concern, not a separate adapter), `infra/aws/ec2.md`, `infra/hetzner/cloud-cx.md`, `infra/digitalocean/droplet.md`, `infra/gcp/compute-engine.md`, `infra/byo-vps.md`, `infra/localhost.md`.
-4. ✅ Runtime modules: `runtimes/docker.md`, `runtimes/native.md`. Extracted from openclaw.md Paths B and C.
-5. ✅ Slim down `projects/openclaw.md` — software-layer concerns only; reference runtimes + infra modules for everything else.
+4. ✅ Runtime modules: `runtimes/docker.md`, `runtimes/native.md`, `runtimes/kubernetes.md`. Docker + native extracted from openclaw.md Paths B and C; kubernetes added when openclaw upstream's official Helm chart was wired in (v0.7.0).
+5. ✅ Slim down `projects/openclaw.md` — software-layer concerns only; reference runtimes + infra modules for everything else. Adds a Kubernetes section (v0.7.0) citing the upstream chart at `charts.openclaw.ai`.
 6. ✅ Add `modules/tunnels.md` for localhost public-reach (Cloudflare Tunnel / Tailscale / ngrok).
-7. ✅ Update SKILL.md, README.md support tables and prompts. Bump plugin version (→ 0.6.0).
+7. ✅ Update SKILL.md, README.md support tables and prompts. Bump plugin version (→ 0.7.0).
 
-Path A/B/C terminology retired. Future work tracked in each adapter's *TODO — verify on subsequent deployments* section, not here.
+Path A/B/C terminology retired. Future work tracked in each adapter's *TODO — verify on subsequent deployments* section, not here. Cluster-provisioning adapters (EKS / GKE / AKS / DOKS) are intentionally not in scope — open-forge orchestrates an existing cluster; users own cluster create/delete in their cloud's k8s UI.
 
 ## Behavioral guidelines (echoes of bota CLAUDE.md, kept here for autonomy)
 

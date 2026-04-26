@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS / Lightsail / EC2 / Hetzner / DigitalOcean / GCP", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint); OpenClaw on AWS Lightsail (openclaw_ls_1_0 blueprint), AWS EC2, Hetzner Cloud, DigitalOcean, GCP Compute Engine, BYO VPS, and localhost. More projects and infras added under `references/projects/` and `references/infra/`.
+description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS / Lightsail / EC2 / Hetzner / DigitalOcean / GCP / Kubernetes", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint); OpenClaw via every upstream-blessed path — AWS Lightsail blueprint, Docker Compose on any infra (Lightsail, EC2, Hetzner, DigitalOcean, GCP, BYO VPS, localhost), native installer on Linux/macOS, and Kubernetes via the official Helm chart on any cluster (managed EKS/GKE/AKS/DOKS or self-hosted k3s). More projects and infras added under `references/projects/` and `references/infra/`.
 ---
 
 # open-forge
@@ -49,6 +49,7 @@ Supported **runtimes** (under `references/runtimes/`):
 |---|---|
 | Docker | `docker.md` — install Docker on host + lifecycle via docker-compose. Reusable across every infra. |
 | Native | `native.md` — OS prereqs, systemd / launchd lifecycle, reverse-proxy guidance. Reusable across every infra. |
+| Kubernetes | `kubernetes.md` — kubectl + Helm orchestration. For projects that ship an upstream-blessed chart (e.g. OpenClaw at `charts.openclaw.ai`). open-forge does not provision clusters — point `kubectl` at one and we'll deploy into it. |
 | Vendor blueprints | Bundled into infra adapters (e.g. Lightsail Ghost-Bitnami, Lightsail OpenClaw) — runtime choice is the vendor's |
 
 ## Selection — ask three questions
