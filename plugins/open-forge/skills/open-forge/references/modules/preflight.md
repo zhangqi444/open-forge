@@ -31,7 +31,7 @@ Use `AskUserQuestion`:
 > - Bring-your-own VPS (any Linux VM you already have)
 > - **localhost** (your own machine)
 
-Loads the matching infra adapter — `references/infra/<cloud>/` or `references/infra/{byo-vps,localhost}.md`. For clouds that don't yet have a dedicated adapter, fall through to `byo-vps.md` (user provides an already-provisioned VM).
+Loads the matching infra adapter — `references/infra/<cloud>/<service>.md` or `references/infra/{byo-vps,localhost}.md`. Today AWS (Lightsail + EC2), Hetzner Cloud, DigitalOcean, and GCP Compute Engine each have a dedicated adapter; anything else (other providers, on-prem, etc.) goes through `byo-vps.md`.
 
 ### 1c. How? (service + runtime)
 
@@ -61,10 +61,10 @@ Infra-conditional:
 
 | If infra ∈ | Also required |
 |---|---|
-| AWS | `aws` (v2) CLI |
-| Hetzner (when adapter lands) | `hcloud` CLI |
-| DigitalOcean (when adapter lands) | `doctl` CLI |
-| GCP (when adapter lands) | `gcloud` CLI |
+| AWS (Lightsail or EC2) | `aws` (v2) CLI |
+| Hetzner | `hcloud` CLI |
+| DigitalOcean | `doctl` CLI |
+| GCP | `gcloud` CLI |
 | BYO VPS | `ssh` (usually preinstalled) |
 | localhost | none — Claude runs local Bash |
 
@@ -119,6 +119,9 @@ Announce in one sentence, then run. Verify after (`<tool> --version`).
 | `jq` | `brew install jq` | `sudo apt-get install -y jq` | `sudo dnf install -y jq` | `sudo pacman -S --noconfirm jq` | <https://jqlang.org/download/> |
 | `curl` | preinstalled | `sudo apt-get install -y curl` | `sudo dnf install -y curl` | `sudo pacman -S curl` | preinstalled on macOS |
 | `aws` v2 | `brew install awscli` | official installer (below) | `sudo dnf install -y awscli` | `sudo pacman -S aws-cli-v2` | <https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html> |
+| `hcloud` | `brew install hcloud` | binary release (see `infra/hetzner/cloud-cx.md`) | binary release | binary release | <https://github.com/hetznercloud/cli/releases> |
+| `doctl` | `brew install doctl` | binary release (see `infra/digitalocean/droplet.md`) | binary release | binary release | <https://docs.digitalocean.com/reference/doctl/how-to/install/> |
+| `gcloud` | `brew install --cask google-cloud-sdk` | Google's apt repo (see `infra/gcp/compute-engine.md`) | Google's dnf repo | AUR `google-cloud-sdk` | <https://cloud.google.com/sdk/docs/install> |
 
 `aws` note: `apt-get install awscli` installs v1 on older Ubuntu/Debian. Prefer the official v2 installer:
 
@@ -156,9 +159,49 @@ aws sts get-caller-identity --profile "$AWS_PROFILE"
 
 Show the user *which account* is selected — single most common preflight mistake is using the wrong AWS account. If it errors ("could not be found" / "expired"), help re-auth (`aws sso login --profile <name>` for SSO setups) before continuing.
 
-### Hetzner / DigitalOcean / GCP
+### Hetzner
 
-When those adapters land, each has its own credential flow (`hcloud config`, `doctl auth init`, `gcloud auth login`). Follow their standard onboarding — don't reinvent.
+```bash
+hcloud context list
+hcloud context active
+```
+
+- **No context**: ask the user to generate a project API token (Hetzner Console → project → Security → API Tokens), then run `hcloud context create <name>` interactively to paste it. Never see the token.
+- **One context**: confirm.
+- **Multiple contexts**: `AskUserQuestion` to pick, then `hcloud context use <name>`.
+
+Sanity-check: `hcloud server-type list | head -5`. Surface the active project name so the user can spot a wrong-project mistake.
+
+See `references/infra/hetzner/cloud-cx.md` for full adapter details.
+
+### DigitalOcean
+
+```bash
+doctl auth list
+```
+
+- **No context**: run `doctl auth init` interactively (user pastes the token, generated at <https://cloud.digitalocean.com/account/api/tokens>).
+- **One context**: confirm.
+- **Multiple contexts**: `AskUserQuestion`, then `doctl auth switch --context <name>`.
+
+Sanity-check: `doctl account get` — show the user the active account email.
+
+See `references/infra/digitalocean/droplet.md` for full adapter details.
+
+### GCP
+
+```bash
+gcloud auth list
+gcloud config get-value project
+```
+
+- **No active account**: `gcloud auth login` (opens browser).
+- **No project set**: `gcloud projects list`, then `AskUserQuestion` to pick, then `gcloud config set project <id>`.
+- **API not enabled**: `gcloud services enable compute.googleapis.com` (idempotent, runs once per project).
+
+Sanity-check: `gcloud compute regions list --limit 1` (will fail clearly if billing or API isn't set up).
+
+See `references/infra/gcp/compute-engine.md` for full adapter details.
 
 ### BYO VPS
 

@@ -1,6 +1,6 @@
 ---
 name: openclaw-project
-description: OpenClaw recipe for open-forge — a self-hosted personal AI agent (openclaw.ai — NOT the Captain Claw platformer game). Covers install on AWS Lightsail (vendor blueprint or Ubuntu VM), any Linux VPS (Hetzner / DigitalOcean / bring-your-own), and localhost. Supports any model provider (Anthropic / OpenAI / Google / Bedrock / local). Pairs with references/runtimes/docker.md, references/infra/*.md, and references/modules/tunnels.md as needed.
+description: OpenClaw recipe for open-forge — a self-hosted personal AI agent (openclaw.ai — NOT the Captain Claw platformer game). Covers install on AWS Lightsail (vendor blueprint or Ubuntu VM), AWS EC2, Hetzner Cloud, DigitalOcean, GCP Compute Engine, any Linux VPS (bring-your-own), and localhost. Supports any model provider (Anthropic / OpenAI / Google / Bedrock / local). Pairs with references/runtimes/{docker,native}.md, references/infra/*.md, and references/modules/tunnels.md as needed.
 ---
 
 # OpenClaw
@@ -9,20 +9,27 @@ Self-hosted personal AI agent with web browsing, file access, shell execution, a
 
 ## Compatible combos
 
-| Where (infra) | How (service × runtime) | Notes |
-|---|---|---|
-| **AWS Lightsail** | **OpenClaw blueprint** | Fastest on AWS; Bedrock pre-wired via cross-account role. Requires a one-time IAM setup script. |
-| AWS Lightsail | Ubuntu VM + Docker | Use this if you don't want the vendor blueprint's Bedrock lock-in |
-| AWS Lightsail | Ubuntu VM + native installer | Same as above, no container |
-| AWS EC2 | any + Docker or native | More control; pair with `references/runtimes/docker.md` |
-| Hetzner / DigitalOcean / GCP / BYO VPS | VM + Docker or native | Use `references/infra/byo-vps.md` |
-| **localhost** | Docker Desktop / native | Upstream's default path (openclaw.ai's installer is designed for local). Public reach via `references/modules/tunnels.md`. |
+| Where (infra) | How (service × runtime) | Adapter / runtime | Notes |
+|---|---|---|---|
+| **AWS Lightsail** | **OpenClaw blueprint** | `infra/aws/lightsail.md` (vendor-bundled runtime) | Fastest on AWS; Bedrock pre-wired via cross-account role. Requires a one-time IAM setup script. |
+| AWS Lightsail | Ubuntu VM + Docker | `infra/aws/lightsail.md` + `runtimes/docker.md` | Use this if you don't want the vendor blueprint's Bedrock lock-in |
+| AWS Lightsail | Ubuntu VM + native installer | `infra/aws/lightsail.md` + `runtimes/native.md` | Same as above, no container |
+| AWS EC2 | Docker | `infra/aws/ec2.md` + `runtimes/docker.md` | More control than Lightsail; security groups and AMI choice |
+| AWS EC2 | native | `infra/aws/ec2.md` + `runtimes/native.md` | Same as above, no container |
+| Hetzner Cloud | Docker | `infra/hetzner/cloud-cx.md` + `runtimes/docker.md` | Cheapest VPS option; EU-regulated |
+| Hetzner Cloud | native | `infra/hetzner/cloud-cx.md` + `runtimes/native.md` | |
+| DigitalOcean | Docker | `infra/digitalocean/droplet.md` + `runtimes/docker.md` | Single-click droplets; integrated firewall |
+| DigitalOcean | native | `infra/digitalocean/droplet.md` + `runtimes/native.md` | |
+| GCP | Docker | `infra/gcp/compute-engine.md` + `runtimes/docker.md` | Compute Engine VM; needs `gcloud` configured |
+| GCP | native | `infra/gcp/compute-engine.md` + `runtimes/native.md` | |
+| BYO VPS (any other provider, on-prem) | Docker or native | `infra/byo-vps.md` + `runtimes/{docker,native}.md` | Catch-all when no dedicated adapter exists |
+| **localhost** | Docker Desktop / native | `infra/localhost.md` + `runtimes/{docker,native}.md` | Upstream's default path (openclaw.ai's installer is designed for local). Public reach via `references/modules/tunnels.md`. |
 
 The dynamic **how** question's options come from this table filtered by the user's **where** answer. On AWS the blueprint is the recommended default; on localhost the native installer is (simpler than Docker Desktop for most users).
 
 ## Inputs to collect
 
-After cross-cutting preflight (AWS profile/region only when infra ∈ AWS; nothing for localhost; SSH details for byo-vps):
+After cross-cutting preflight (cloud creds only when infra ∈ AWS/Hetzner/DO/GCP; nothing for localhost; SSH details for byo-vps):
 
 | Phase | Prompt | Tool | Notes |
 |---|---|---|---|
@@ -348,41 +355,45 @@ docker compose run --rm openclaw-cli devices approve --latest \
 
 ---
 
-## Native installer (any Linux host without Docker)
+## Native installer (any Linux/macOS host without Docker)
 
-When the user picks **any Linux host → native installer** or **localhost → native**.
+When the user picks **any Linux/macOS host → native installer** or **localhost → native**. Pair with [`references/runtimes/native.md`](../runtimes/native.md) for the host-level prereqs (build tools, systemd/launchd lifecycle, reverse proxy guidance).
 
 ### Install
 
 ```bash
-# Prereqs on fresh Ubuntu/Debian
-sudo apt-get update && sudo apt-get install -y curl build-essential
+# Linux: native.md installs build-essential / curl / ca-certificates first.
+# macOS: native.md installs Xcode CLI tools first.
 
-# Official installer
+# Official installer (same on Linux + macOS)
 curl -fsSL https://openclaw.ai/install.sh | bash
 exec $SHELL -l
 openclaw --version
-openclaw onboard --install-daemon    # interactive: pick provider, paste API key
+openclaw onboard --install-daemon    # interactive — pause autonomous mode; user picks provider, pastes API key
 openclaw gateway status
 ```
 
-For macOS localhost: `brew install node@22` first (if no Node), then the same installer. On Linux distros other than Debian/Ubuntu, adjust the build-tools package names.
+The installer drops a systemd user unit on Linux and a launchd plist on macOS. Lifecycle commands (`status` / `restart` / `journalctl`) are in `runtimes/native.md`.
 
 ### Access
 
-Gateway binds to `127.0.0.1:18789`. For remote hosts, SSH tunnel is the default:
+Gateway binds to `127.0.0.1:18789`. Two paths to reach it:
 
 ```bash
+# Remote host — SSH tunnel
 ssh -L 18789:127.0.0.1:18789 <user>@<host>
 # then open: http://localhost:18789/#token=<TOKEN>
+
+# Localhost — open directly
+# http://localhost:18789/#token=<TOKEN>
 ```
 
-For localhost, open the URL directly.
+For public reach on a remote host, see `runtimes/native.md` § *Reverse proxy* (Caddy is recommended for new installs; if you're on a Bitnami/Lightsail-blueprint host, Apache is already wired).
 
-### Native-specific gotchas
+### Native-specific gotchas (OpenClaw-only)
 
-- **Node version mismatch after reboot.** The installer pins a specific Node. If the user has nvm or a system Node, verify `openclaw gateway status` after reboot, not just right after install.
-- **Public exposure needs a reverse proxy you set up yourself** (Caddy, nginx, Apache). No vendor-managed proxy like the Lightsail blueprint ships.
+- **Node version mismatch after reboot.** The installer pins a specific Node. If the user has nvm or a system Node, verify `openclaw gateway status` after a deliberate reboot, not just right after install. (See `runtimes/native.md` § *PATH not refreshed* and *Node / Python version pinning* for general handling.)
+- **`openclaw onboard` and `openclaw configure` are interactive** — pause autonomous mode. The native installer never has a non-interactive flow today.
 
 ---
 
@@ -404,7 +415,7 @@ Universal:
 - **`openclaw onboard` / `openclaw configure` are interactive.** Don't try to automate — pause open-forge's autonomous mode.
 - **Model costs compound.** Long agent runs can burn tokens fast. Set spend limits at the provider dashboard before first real use.
 
-AWS Lightsail blueprint — see *Blueprint gotchas* above. Docker runtime — see *Docker-specific gotchas*. Native — see *Native-specific gotchas*.
+AWS Lightsail blueprint — see *Blueprint gotchas* above. Docker runtime — see *Docker-specific gotchas* + `runtimes/docker.md` § *Common gotchas*. Native — see *Native-specific gotchas* + `runtimes/native.md` § *Common gotchas*.
 
 ---
 

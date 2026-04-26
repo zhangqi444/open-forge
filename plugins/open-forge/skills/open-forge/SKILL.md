@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS/Lightsail/Hetzner/DigitalOcean", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint), OpenClaw on AWS Lightsail (openclaw_ls_1_0 blueprint). More projects and infras added under `references/projects/` and `references/infra/`.
+description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS / Lightsail / EC2 / Hetzner / DigitalOcean / GCP", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint); OpenClaw on AWS Lightsail (openclaw_ls_1_0 blueprint), AWS EC2, Hetzner Cloud, DigitalOcean, GCP Compute Engine, BYO VPS, and localhost. More projects and infras added under `references/projects/` and `references/infra/`.
 ---
 
 # open-forge
@@ -36,7 +36,10 @@ Supported **infras** (under `references/infra/`):
 
 | Cloud | Services |
 |---|---|
-| AWS | `aws/lightsail.md` (generic Lightsail provisioning; Ghost Bitnami blueprint + OpenClaw blueprint both use it) |
+| AWS | `aws/lightsail.md` (Ghost Bitnami blueprint + OpenClaw blueprint), `aws/ec2.md` (general-purpose VM with security group + EIP) |
+| Hetzner Cloud | `hetzner/cloud-cx.md` — CX-line VPS via `hcloud` CLI |
+| DigitalOcean | `digitalocean/droplet.md` — Droplet via `doctl` CLI |
+| GCP | `gcp/compute-engine.md` — Compute Engine VM via `gcloud` CLI |
 | Any Linux VM you already have | `byo-vps.md` — SSH in, no cloud APIs |
 | Your own machine | `localhost.md` — Claude runs commands directly, no SSH |
 
@@ -45,10 +48,8 @@ Supported **runtimes** (under `references/runtimes/`):
 | Runtime | Notes |
 |---|---|
 | Docker | `docker.md` — install Docker on host + lifecycle via docker-compose. Reusable across every infra. |
+| Native | `native.md` — OS prereqs, systemd / launchd lifecycle, reverse-proxy guidance. Reusable across every infra. |
 | Vendor blueprints | Bundled into infra adapters (e.g. Lightsail Ghost-Bitnami, Lightsail OpenClaw) — runtime choice is the vendor's |
-| Native installer | Project-specific (e.g. OpenClaw's `curl \| bash`); documented in each project recipe |
-
-Hetzner / DigitalOcean / GCP / EC2 dedicated adapters land as needed — until then, any Linux VM on them works through `byo-vps.md`.
 
 ## Selection — ask three questions
 
