@@ -1,7 +1,7 @@
 {
   "name": "open-forge",
-  "version": "0.7.0",
-  "description": "Self-host open-source apps on your own cloud, your own VPS, your own Kubernetes cluster, or your own laptop. Chat-friendly interface to existing tools (aws, hcloud, doctl, gcloud, kubectl, helm, docker, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw. Supported where: AWS (Lightsail + EC2), Hetzner Cloud, DigitalOcean, GCP Compute Engine, any Linux VPS (BYO), any Kubernetes cluster, and localhost. OpenClaw is supported on every upstream-blessed path: Lightsail blueprint, Docker Compose, native installer, and the official Helm chart at charts.openclaw.ai.",
+  "version": "0.8.0",
+  "description": "Self-host open-source apps on your own cloud, your own VPS, your own Kubernetes cluster, a PaaS, or your own laptop. Chat-friendly interface to existing tools (aws, az, hcloud, doctl, gcloud, flyctl, kubectl, podman, docker, lume, tailscale, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw. For OpenClaw, every upstream-blessed install path documented at docs.openclaw.ai/install/* is covered: Lightsail blueprint, Docker, Podman, Kubernetes (Kustomize), native installers (install.sh / install-cli.sh / install.ps1), ClawDock, Ansible, Nix, Bun, plus per-host adapters for AWS EC2, Azure, Hetzner, DigitalOcean, GCP, Oracle Cloud, Hostinger, Raspberry Pi, macOS-VM (Lume), BYO Linux server, localhost, Fly.io, Render, Railway, Northflank, exe.dev.",
   "author": { "name": "zhangqi444" },
   "repository": "https://github.com/zhangqi444/open-forge",
   "license": "MIT"

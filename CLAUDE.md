@@ -126,8 +126,8 @@ open-forge/
         ├── SKILL.md                       ← end-user-Claude entrypoint
         ├── references/
         │   ├── projects/<name>.md         ← software layer
-        │   ├── runtimes/<name>.md         ← runtime layer (docker.md, native.md, kubernetes.md)
-        │   ├── infra/<name>.md            ← infra layer (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
+        │   ├── runtimes/<name>.md         ← runtime layer (docker.md, podman.md, native.md, kubernetes.md)
+        │   ├── infra/<name>.md            ← infra layer (aws/, azure/, hetzner/, digitalocean/, gcp/, oracle/, paas/, hostinger.md, raspberry-pi.md, macos-vm.md, byo-vps.md, localhost.md)
         │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring)
         └── scripts/                       ← reused operational scripts; empty by default
 ```
@@ -157,13 +157,13 @@ Initial state collapsed three axes into linear "Path A/B/C" inside `openclaw.md`
 
 1. ✅ CLAUDE.md model locked in (this section).
 2. ✅ Preflight refactor — branch on infra choice; only require AWS CLI when infra ∈ AWS.
-3. ✅ Skeleton infra adapters: `infra/aws/lightsail.md` (Bitnami + OpenClaw blueprints share this; the blueprint-vs-Ubuntu split is a project-recipe concern, not a separate adapter), `infra/aws/ec2.md`, `infra/hetzner/cloud-cx.md`, `infra/digitalocean/droplet.md`, `infra/gcp/compute-engine.md`, `infra/byo-vps.md`, `infra/localhost.md`.
-4. ✅ Runtime modules: `runtimes/docker.md`, `runtimes/native.md`, `runtimes/kubernetes.md`. Docker + native extracted from openclaw.md Paths B and C; kubernetes added when openclaw upstream's official Helm chart was wired in (v0.7.0).
-5. ✅ Slim down `projects/openclaw.md` — software-layer concerns only; reference runtimes + infra modules for everything else. Adds a Kubernetes section (v0.7.0) citing the upstream chart at `charts.openclaw.ai`.
+3. ✅ Skeleton infra adapters: `infra/aws/lightsail.md` (Bitnami + OpenClaw blueprints share this; the blueprint-vs-Ubuntu split is a project-recipe concern, not a separate adapter), `infra/aws/ec2.md`, `infra/azure/vm.md`, `infra/hetzner/cloud-cx.md`, `infra/digitalocean/droplet.md`, `infra/gcp/compute-engine.md`, `infra/oracle/free-tier-arm.md`, `infra/hostinger.md`, `infra/raspberry-pi.md`, `infra/macos-vm.md`, `infra/byo-vps.md`, `infra/localhost.md`, plus a PaaS family under `infra/paas/`: `fly.md`, `render.md`, `railway.md`, `northflank.md`, `exe-dev.md`.
+4. ✅ Runtime modules: `runtimes/docker.md`, `runtimes/podman.md`, `runtimes/native.md`, `runtimes/kubernetes.md`. Docker + native extracted from openclaw.md Paths B and C; kubernetes added when openclaw upstream's Kustomize-based path was wired in; podman added in v0.8.0.
+5. ✅ Slim down `projects/openclaw.md` — software-layer concerns only; reference runtimes + infra modules for everything else. v0.8.0: corrected the Kubernetes section to be Kustomize-first (matches upstream `scripts/k8s/deploy.sh`); added Podman, ClawDock, Ansible, Nix, and Bun (experimental) sections; combo table now enumerates every upstream-blessed install method documented under `docs.openclaw.ai/install/*`.
 6. ✅ Add `modules/tunnels.md` for localhost public-reach (Cloudflare Tunnel / Tailscale / ngrok).
-7. ✅ Update SKILL.md, README.md support tables and prompts. Bump plugin version (→ 0.7.0).
+7. ✅ Update SKILL.md, README.md support tables and prompts. Bump plugin version (→ 0.8.0).
 
-Path A/B/C terminology retired. Future work tracked in each adapter's *TODO — verify on subsequent deployments* section, not here. Cluster-provisioning adapters (EKS / GKE / AKS / DOKS) are intentionally not in scope — open-forge orchestrates an existing cluster; users own cluster create/delete in their cloud's k8s UI.
+Path A/B/C terminology retired. Future work tracked in each adapter's *TODO — verify on subsequent deployments* section, not here. Cluster-provisioning adapters (EKS / GKE / AKS / DOKS) are intentionally not in scope — open-forge orchestrates an existing cluster; users own cluster create/delete in their cloud's k8s UI. Cloud-VM adapters and PaaS adapters added in v0.8.0 are documented from upstream docs only — none has been exercised end-to-end yet; first-run discipline (CLAUDE.md § *First-run discipline*) applies as those deployments happen.
 
 ## Behavioral guidelines (echoes of bota CLAUDE.md, kept here for autonomy)
 

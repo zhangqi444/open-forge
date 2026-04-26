@@ -24,14 +24,21 @@ Usually inferred from the user's prompt ("self-host Ghost" → ghost). If ambigu
 Use `AskUserQuestion`:
 
 > **Where should this run?**
-> - AWS
-> - Hetzner
+> - AWS (Lightsail or EC2)
+> - Azure
+> - Hetzner Cloud
 > - DigitalOcean
-> - GCP
-> - Bring-your-own VPS (any Linux VM you already have)
-> - **localhost** (your own machine)
+> - GCP Compute Engine
+> - Oracle Cloud (Always-Free ARM)
+> - Hostinger (managed)
+> - Raspberry Pi (your own Pi)
+> - macOS VM (Lume on Apple Silicon)
+> - Bring-your-own VPS / Linux server (any other provider, on-prem, etc.)
+> - **localhost** (your own machine — macOS / Linux / Windows / WSL2)
+> - PaaS — Fly.io / Render / Railway / Northflank / exe.dev (one-click templates)
+> - Kubernetes (any cluster you already have access to)
 
-Loads the matching infra adapter — `references/infra/<cloud>/<service>.md` or `references/infra/{byo-vps,localhost}.md`. Today AWS (Lightsail + EC2), Hetzner Cloud, DigitalOcean, and GCP Compute Engine each have a dedicated adapter; anything else (other providers, on-prem, etc.) goes through `byo-vps.md`.
+Loads the matching infra adapter under `references/infra/`. Today AWS (Lightsail + EC2), Azure, Hetzner Cloud, DigitalOcean, GCP Compute Engine, Oracle Cloud (free-tier ARM), Hostinger, Raspberry Pi, macOS-VM (Lume), and the PaaS group (Fly.io, Render, Railway, Northflank, exe.dev under `infra/paas/`) each have a dedicated adapter; anything else (other providers, on-prem, etc.) goes through `byo-vps.md`. Localhost (the user's own machine) uses `localhost.md`.
 
 ### 1c. How? (service + runtime)
 
@@ -62,19 +69,29 @@ Infra-conditional:
 | If infra ∈ | Also required |
 |---|---|
 | AWS (Lightsail or EC2) | `aws` (v2) CLI |
+| Azure | `az` CLI + `az extension add -n ssh` |
 | Hetzner | `hcloud` CLI |
 | DigitalOcean | `doctl` CLI |
 | GCP | `gcloud` CLI |
+| Oracle Cloud | `tailscale` CLI (provisioning is Console-driven) |
+| Hostinger | none — fully browser-driven via hPanel |
+| Raspberry Pi | `ssh` (after the user flashed + booted the Pi) |
+| macOS VM (Lume) | `lume` CLI (installed during preflight) |
 | BYO VPS | `ssh` (usually preinstalled) |
 | localhost | none — Claude runs local Bash |
+| Fly.io | `flyctl` CLI |
+| Render / Railway / Northflank / exe.dev | none — browser-driven (or vendor CLI optional) |
 
 Runtime-conditional:
 
 | If runtime = | Also required |
 |---|---|
 | Docker | `docker` (engine + compose v2) on the *target host* (local or remote). Not on the user's machine unless infra = localhost. |
-| Native | build tools on the target host; usually installed by the project's installer script |
-| Kubernetes | `kubectl` + `helm` v3 on the user's machine. The cluster is the user's responsibility — open-forge does not provision clusters today (point `kubectl` at one and we deploy into it). |
+| Podman | `podman` + `podman-compose` (or Quadlet via systemd-user) on the target host. Rootless by default. |
+| Native | build tools on the target host; usually installed by the project's installer script. Three modes: `install.sh` (macOS/Linux/WSL2), `install-cli.sh` (local-prefix, no root), `install.ps1` (native Windows). |
+| Kubernetes | `kubectl` (and optionally `helm` v3) on the user's machine. The cluster is the user's responsibility — open-forge does not provision clusters today (point `kubectl` at one and we deploy into it). |
+| Ansible (openclaw production hardening) | `ansible` on the local control machine; SSH access to the target Debian/Ubuntu host. |
+| Nix (declarative install) | `nix` (Determinate Nix recommended); `home-manager` if using the Home Manager module. |
 
 Project-conditional inputs (collected at their specific phases, not here):
 
@@ -122,8 +139,14 @@ Announce in one sentence, then run. Verify after (`<tool> --version`).
 | `hcloud` | `brew install hcloud` | binary release (see `infra/hetzner/cloud-cx.md`) | binary release | binary release | <https://github.com/hetznercloud/cli/releases> |
 | `doctl` | `brew install doctl` | binary release (see `infra/digitalocean/droplet.md`) | binary release | binary release | <https://docs.digitalocean.com/reference/doctl/how-to/install/> |
 | `gcloud` | `brew install --cask google-cloud-sdk` | Google's apt repo (see `infra/gcp/compute-engine.md`) | Google's dnf repo | AUR `google-cloud-sdk` | <https://cloud.google.com/sdk/docs/install> |
+| `az` | `brew install azure-cli` | `curl -sL https://aka.ms/InstallAzureCLIDeb \| sudo bash` | Microsoft's dnf repo | AUR `azure-cli` | <https://learn.microsoft.com/cli/azure/install-azure-cli> |
+| `flyctl` | `brew install flyctl` | `curl -L https://fly.io/install.sh \| sh` | (binary release) | (binary release) | <https://fly.io/docs/hands-on/install-flyctl/> |
 | `kubectl` | `brew install kubectl` | Google's apt repo for kubernetes-tools | `sudo dnf install -y kubectl` | `sudo pacman -S kubectl` | <https://kubernetes.io/docs/tasks/tools/> |
-| `helm` v3 | `brew install helm` | `curl https://baltocdn.com/helm/signing.asc \| sudo …` (Helm's apt repo) | `sudo dnf install -y helm` | `sudo pacman -S helm` | <https://helm.sh/docs/intro/install/> |
+| `helm` v3 (optional, only if a Helm chart) | `brew install helm` | `curl https://baltocdn.com/helm/signing.asc \| sudo …` (Helm's apt repo) | `sudo dnf install -y helm` | `sudo pacman -S helm` | <https://helm.sh/docs/intro/install/> |
+| `podman` | `brew install podman` | `sudo apt-get install -y podman podman-compose` | `sudo dnf install -y podman podman-compose` | `sudo pacman -S podman` | <https://podman.io/docs/installation> |
+| `tailscale` (Oracle Cloud, etc.) | `brew install tailscale` | `curl -fsSL https://tailscale.com/install.sh \| sh` | (same script) | (same script) | <https://tailscale.com/kb/1031/install-linux> |
+| `lume` (macOS-VM) | (Lume install script) | n/a (Apple Silicon only) | n/a | n/a | <https://cua.ai/docs/lume/guide/getting-started/installation> |
+| `ansible` (production-hardened openclaw install) | `brew install ansible` | `sudo apt-get install -y ansible` | `sudo dnf install -y ansible` | `sudo pacman -S ansible` | <https://docs.ansible.com/> |
 
 `aws` note: `apt-get install awscli` installs v1 on older Ubuntu/Debian. Prefer the official v2 installer:
 
