@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS / Lightsail / EC2 / Hetzner / DigitalOcean / GCP", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint); OpenClaw on AWS Lightsail (openclaw_ls_1_0 blueprint), AWS EC2, Hetzner Cloud, DigitalOcean, GCP Compute Engine, BYO VPS, and localhost. More projects and infras added under `references/projects/` and `references/infra/`.
+description: Automate self-hosting of open-source apps on cloud infrastructure the user owns. Use when the user asks to "self-host", "deploy to my own cloud", "install X on AWS / Lightsail / EC2 / Azure / Hetzner / DigitalOcean / GCP / Oracle Cloud / Hostinger / Raspberry Pi / Kubernetes / Fly.io / Render / Railway / Northflank / exe.dev", "set up my own Ghost blog / Mastodon / WordPress / Nextcloud", wants to deploy the self-hosted personal AI agent **OpenClaw** (openclaw.ai — NOT the Captain Claw platformer game), or names any combination of an open-source app and a cloud provider. Walks the user through provisioning, DNS, TLS, outbound email (SMTP), and inbound email, in phases that are resumable across sessions via a state file at `~/.open-forge/deployments/<name>.yaml`. Supported today: Ghost on AWS Lightsail (Bitnami blueprint); OpenClaw via every upstream-blessed path documented at docs.openclaw.ai/install/* — AWS Lightsail blueprint, Docker Compose, Podman, Kubernetes (Kustomize), native installers (install.sh / install-cli.sh / install.ps1), ClawDock, Ansible, Nix, Bun, plus per-host adapters for AWS EC2 / Azure / Hetzner / DigitalOcean / GCP / Oracle Cloud / Hostinger / Raspberry Pi / macOS-VM (Lume) / BYO Linux server / localhost / Fly.io / Render / Railway / Northflank / exe.dev. More projects and infras added under `references/projects/` and `references/infra/`.
 ---
 
 # open-forge
@@ -34,21 +34,33 @@ Supported **software**:
 
 Supported **infras** (under `references/infra/`):
 
-| Cloud | Services |
+| Cloud / where | Adapter |
 |---|---|
-| AWS | `aws/lightsail.md` (Ghost Bitnami blueprint + OpenClaw blueprint), `aws/ec2.md` (general-purpose VM with security group + EIP) |
-| Hetzner Cloud | `hetzner/cloud-cx.md` — CX-line VPS via `hcloud` CLI |
-| DigitalOcean | `digitalocean/droplet.md` — Droplet via `doctl` CLI |
-| GCP | `gcp/compute-engine.md` — Compute Engine VM via `gcloud` CLI |
-| Any Linux VM you already have | `byo-vps.md` — SSH in, no cloud APIs |
-| Your own machine | `localhost.md` — Claude runs commands directly, no SSH |
+| AWS | `aws/lightsail.md` (Ghost Bitnami + OpenClaw blueprints), `aws/ec2.md` (general-purpose VM) |
+| Azure | `azure/vm.md` (Bastion-hardened, no public IP) |
+| Hetzner Cloud | `hetzner/cloud-cx.md` (CX-line VPS via `hcloud`) |
+| DigitalOcean | `digitalocean/droplet.md` (Droplet via `doctl`) |
+| GCP Compute Engine | `gcp/compute-engine.md` (VM via `gcloud`) |
+| Oracle Cloud | `oracle/free-tier-arm.md` (Always-Free A1.Flex ARM + Tailscale) |
+| Hostinger | `hostinger.md` (managed via hPanel — no CLI) |
+| Raspberry Pi | `raspberry-pi.md` (Pi 4/5 64-bit, ARM64) |
+| macOS VM (Apple Silicon) | `macos-vm.md` (Lume; for iMessage via BlueBubbles) |
+| Any Linux VM (other providers, on-prem) | `byo-vps.md` (SSH-only, no cloud APIs) |
+| Your own machine | `localhost.md` (Claude runs commands directly) |
+| Fly.io | `paas/fly.md` (`fly.toml` + persistent volume; public or private mode) |
+| Render | `paas/render.md` (`render.yaml` Blueprint, one-click) |
+| Railway | `paas/railway.md` (one-click template) |
+| Northflank | `paas/northflank.md` (one-click stack) |
+| exe.dev | `paas/exe-dev.md` (Shelley agent or manual nginx) |
 
 Supported **runtimes** (under `references/runtimes/`):
 
 | Runtime | Notes |
 |---|---|
 | Docker | `docker.md` — install Docker on host + lifecycle via docker-compose. Reusable across every infra. |
-| Native | `native.md` — OS prereqs, systemd / launchd lifecycle, reverse-proxy guidance. Reusable across every infra. |
+| Podman | `podman.md` — rootless Docker-compatible alternative; Quadlet (systemd-user) supported. Reusable across every Linux/macOS infra. |
+| Native | `native.md` — OS prereqs, systemd / launchd / Scheduled-Tasks lifecycle, reverse-proxy guidance. Covers `install.sh` (macOS / Linux / WSL2), `install-cli.sh` (local-prefix, no root), and `install.ps1` (native Windows). |
+| Kubernetes | `kubernetes.md` — kubectl + Kustomize (preferred, what openclaw upstream uses) and Helm orchestration. open-forge does not provision clusters — point `kubectl` at one and we'll deploy into it. |
 | Vendor blueprints | Bundled into infra adapters (e.g. Lightsail Ghost-Bitnami, Lightsail OpenClaw) — runtime choice is the vendor's |
 
 ## Selection — ask three questions

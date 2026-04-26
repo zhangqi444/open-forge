@@ -19,11 +19,18 @@ Supported **where**:
 |---|---|
 | **AWS Lightsail** | OpenClaw blueprint (Bedrock pre-wired) · Ubuntu + Docker · Ubuntu + native · Ghost Bitnami blueprint |
 | **AWS EC2** | Ubuntu / Amazon Linux + Docker · + native |
+| **Azure VM** (Bastion-hardened, no public IP) | Ubuntu + Docker · + native |
 | **Hetzner Cloud** | CX-line VM + Docker · + native |
 | **DigitalOcean** | Droplet + Docker · + native |
 | **GCP Compute Engine** | VM + Docker · + native |
-| Any Linux VM you already have (other providers, bare metal) | Docker · native |
-| **Your own machine** (macOS / Linux / Windows) | Docker Desktop · native |
+| **Oracle Cloud** | Always-Free A1.Flex ARM + native (via Tailscale) |
+| **Hostinger** | Managed (1-Click) or VPS (Docker Manager via hPanel) |
+| **Raspberry Pi** | Pi 4 / Pi 5 (64-bit) + native |
+| **macOS VM** (Lume on Apple Silicon) | Sandboxed macOS + native (for iMessage via BlueBubbles) |
+| Any Linux VM you already have (other providers, bare metal) | Docker · Podman · native |
+| **Any Kubernetes cluster** (EKS / GKE / AKS / DOKS / k3s / kind / Docker Desktop) | Kustomize manifests (or community Helm charts for projects that ship them) |
+| **Fly.io** · **Render** · **Railway** · **Northflank** · **exe.dev** | PaaS one-click templates from the upstream repos |
+| **Your own machine** (macOS / Linux / Windows / WSL2) | Docker Desktop · Podman · native (`install.sh` / `install-cli.sh` / `install.ps1`) |
 
 Three-question flow: what to host, where to host, how to host. Claude asks only what's genuinely ambiguous — if your prompt already names a clear cloud, the first question is skipped.
 
@@ -64,7 +71,7 @@ open-forge/
             ├── references/
             │   ├── projects/           # per-project recipes (ghost.md, openclaw.md, ...)
             │   ├── infra/              # per-infra adapters (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
-            │   ├── runtimes/           # docker.md, native.md
+            │   ├── runtimes/           # docker.md, podman.md, native.md, kubernetes.md
             │   └── modules/            # cross-cutting (preflight, dns, tls, smtp, inbound, tunnels)
             └── scripts/
 ```
