@@ -1,7 +1,7 @@
 {
   "name": "open-forge",
-  "version": "0.11.0",
-  "description": "Self-host open-source apps on your own cloud, your own VPS, your own Kubernetes cluster, a PaaS, or your own laptop. Chat-friendly interface to existing tools (aws, az, hcloud, doctl, gcloud, flyctl, kubectl, helm, podman, docker, lume, tailscale, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw, Hermes-Agent, Ollama, Open WebUI. AI stack focus: Ollama (inference server) + Open WebUI (multi-user UI with RAG / web search / image gen / voice) compose into a complete local-AI stack; OpenClaw + Hermes-Agent are AI agent projects that point at Ollama or any OpenAI-compatible backend. Every recipe covers the upstream-blessed install methods documented at the project's official docs site.",
+  "version": "0.12.0",
+  "description": "Self-host open-source apps on your own cloud, your own VPS, your own Kubernetes cluster, a PaaS, or your own laptop. Chat-friendly interface to existing tools (aws, az, hcloud, doctl, gcloud, flyctl, kubectl, helm, podman, docker, lume, tailscale, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw, Hermes-Agent, Ollama, Open WebUI, Stable Diffusion WebUI (Automatic1111). AI stack focus: Ollama (LLM inference) + Open WebUI (multi-user UI) + Stable Diffusion WebUI (image generation) compose into a complete local-AI stack; OpenClaw + Hermes-Agent are agent projects that point at Ollama or any OpenAI-compatible backend; A1111 plugs into Open WebUI as an image-gen backend. Every recipe covers the upstream-blessed install methods (or the most-active community Docker fork where upstream ships no first-party container, as with A1111).",
   "author": { "name": "zhangqi444" },
   "repository": "https://github.com/zhangqi444/open-forge",
   "license": "MIT"

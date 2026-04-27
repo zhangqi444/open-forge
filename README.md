@@ -15,6 +15,7 @@ Supported software:
 | Hermes-Agent | Self-improving personal AI agent from Nous Research |
 | Ollama | Local-LLM inference server (foundation layer for self-hosted AI) |
 | Open WebUI | Feature-rich web UI for any OpenAI-compatible LLM (pairs with Ollama) |
+| Stable Diffusion WebUI (A1111) | Most-popular open-source AI image generator (text-to-image, ControlNet, LoRA) |
 
 Supported **where**:
 
