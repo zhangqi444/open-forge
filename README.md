@@ -13,6 +13,7 @@ Supported software:
 | Ghost | Self-hosted blogging platform |
 | OpenClaw | Self-hosted personal AI agent (openclaw.ai) |
 | Hermes-Agent | Self-improving personal AI agent from Nous Research |
+| Ollama | Local-LLM inference server (foundation layer for self-hosted AI) |
 
 Supported **where**:
 
