@@ -11,7 +11,8 @@ Supported software:
 | Software | What it is |
 |---|---|
 | Ghost | Self-hosted blogging platform |
-| OpenClaw | Self-hosted personal AI agent |
+| OpenClaw | Self-hosted personal AI agent (openclaw.ai) |
+| Hermes-Agent | Self-improving personal AI agent from Nous Research |
 
 Supported **where**:
 
