@@ -76,11 +76,11 @@ open-forge/
         └── skills/open-forge/
             ├── SKILL.md
             ├── references/
-            │   ├── projects/           # per-project recipes (ghost.md, openclaw.md, ...)
-            │   ├── infra/              # per-infra adapters (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
-            │   ├── runtimes/           # docker.md, podman.md, native.md, kubernetes.md
-            │   └── modules/            # cross-cutting (preflight, dns, tls, smtp, inbound, tunnels)
-            └── scripts/
+            │   ├── projects/       # per-project recipes (ghost.md, openclaw.md, ...)
+            │   ├── infra/          # per-infra adapters (aws/, hetzner/, digitalocean/, gcp/, byo-vps.md, localhost.md)
+            │   ├── runtimes/       # docker.md, podman.md, native.md, kubernetes.md
+            │   └── modules/        # cross-cutting (preflight, dns, tls, smtp, inbound, tunnels)
+            └── scripts/            # optional; only for reused operational scripts
 ```
 
 ## Contributing
@@ -88,6 +88,13 @@ open-forge/
 To add a new project: drop a `references/projects/<name>.md` recipe.
 To add a new infra: drop a `references/infra/<name>.md` adapter.
 See existing files for the expected shape.
+
+When the supported project or infra list changes, update the user-facing metadata in the same PR:
+
+- `README.md` supported tables
+- `plugins/open-forge/skills/open-forge/SKILL.md` supported tables and trigger description
+- `.claude-plugin/marketplace.json` marketplace description
+- `plugins/open-forge/.claude-plugin/plugin.json` description and version when behavior changes
 
 ## License
 
