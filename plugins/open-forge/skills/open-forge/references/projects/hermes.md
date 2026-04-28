@@ -583,9 +583,11 @@ hermes setup
 
 ---
 
-## Homebrew (macOS / Linux)
+## Homebrew (macOS / Linux) — packaging exists, publishing status unverified
 
-Upstream packaging lives at `packaging/homebrew/` in the openclaw-agent repo. Whether the formula is in `homebrew-core` or a Nous-Research-maintained tap depends on upstream's current publishing state — check the README before assuming a tap name.
+> **Borderline community-maintained.** Upstream's `hermes-agent` repo contains a `packaging/homebrew/` directory (canonical install artifact per [`CLAUDE.md`](../../../../../CLAUDE.md) § *Strict doc-verification policy*), but **no upstream docs page documents Homebrew install** — the file's existence is the only signal that this method is intended. None of the `website/docs/getting-started/*` pages (`installation.md`, `quickstart.md`, `nix-setup.md`, `termux.md`, `updating.md`) mentions Homebrew. **Verify the tap name + publish status against the upstream README at first use** — if `brew install` fails, fall back to the curl installer.
+
+Upstream packaging lives at `packaging/homebrew/` in the `hermes-agent` repo. Whether the formula is in `homebrew-core` or a Nous-Research-maintained tap depends on upstream's current publishing state — check the README before assuming a tap name.
 
 ### Install (when published to a tap)
 
