@@ -22,6 +22,7 @@ Supported software:
 | AnythingLLM | RAG-focused workspace + agent platform (drop-in PDFs / URLs, built-in LanceDB, Desktop App + 8 cloud one-clicks) |
 | Aider | AI pair-programming CLI (terminal-based; edits files via diffs, auto-commits; pairs with any LLM) |
 | vLLM | Production-grade LLM inference server (high-throughput multi-tenant; tensor parallelism; prefix caching) |
+| Langfuse | Open-source LLM engineering platform (observability, evals, prompt management, datasets, scoring) |
 
 Supported **where**:
 
