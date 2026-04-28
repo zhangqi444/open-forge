@@ -1,6 +1,6 @@
 ---
 name: librechat-project
-description: LibreChat recipe for open-forge — multi-provider chat UI with deep enterprise plumbing (github.com/danny-avila/LibreChat, ~25k★). Alternative to Open WebUI; positioned for teams that want a polished ChatGPT-like UI fronting OpenAI / Anthropic / Google / Bedrock / Azure / Mistral / Groq / OpenRouter / Helicone / Portkey / any OpenAI-compatible (Ollama, vLLM, LocalAI) — all configurable per-deployment via `librechat.yaml`. Built-in features: multi-user with social logins (GitHub / Google / Discord / OIDC / SAML / Apple / Facebook), per-user balance + transactions, agents + assistants, MCP servers, file uploads with multi-strategy storage (local / S3 / Firebase), RAG via pgvector + a dedicated rag_api service, web search (Serper / SearXNG / Jina / Firecrawl), TTS/STT, prompt library, conversation bookmarks, model presets. Covers every upstream-blessed install method: Docker Compose (the canonical path; 5 services), npm-based source install, plus pointers for one-click cloud deploys (Railway / Zeabur / Sealos) and community Helm charts. Pairs with `references/runtimes/{docker,native,kubernetes}.md`.
+description: LibreChat recipe for open-forge — multi-provider chat UI with deep enterprise plumbing (github.com/danny-avila/LibreChat, ~25k★). Alternative to Open WebUI; positioned for teams that want a polished ChatGPT-like UI fronting OpenAI / Anthropic / Google / Bedrock / Azure / Mistral / Groq / OpenRouter / Helicone / Portkey / any OpenAI-compatible (Ollama, vLLM, LocalAI) — all configurable per-deployment via `librechat.yaml`. Built-in features: multi-user with social logins (GitHub / Google / Discord / OIDC / SAML / Apple / Facebook), per-user balance + transactions, agents + assistants, MCP servers, file uploads with multi-strategy storage (local / S3 / Firebase), RAG via pgvector + a dedicated rag_api service, web search (Serper / SearXNG / Jina / Firecrawl), TTS/STT, prompt library, conversation bookmarks, model presets. Covers every upstream-blessed install method (verified per CLAUDE.md § *Strict doc-verification policy*): Docker Compose dev (`docker-compose.yml`), Docker Compose production (`deploy-compose.yml` with bundled Nginx + TLS), npm / source install, **first-party Helm chart** at `helm/librechat/` (Chart v2.0.2, app v0.8.5, with Bitnami MongoDB / Meilisearch / Redis / first-party rag-api as dependencies), plus upstream-published one-click deploy buttons for Railway, Zeabur, and Sealos. Pairs with `references/runtimes/{docker,native,kubernetes}.md`.
 ---
 
 # LibreChat
@@ -18,12 +18,15 @@ Upstream: <https://github.com/danny-avila/LibreChat> — docs at <https://librec
 
 ## Compatible combos
 
+Verified against the upstream repo + README per CLAUDE.md § *Strict doc-verification policy*. Five upstream-blessed install paths:
+
 | How (runtime / install) | Module | Notes |
 |---|---|---|
-| **Docker Compose** (canonical) | `runtimes/docker.md` + project section below | What upstream's README leads with. `docker compose up -d` from repo root with `.env` + `librechat.yaml` configured. 5 services. |
-| **One-click cloud deploys** | (no first-party adapter — vendor handles infra) | Upstream README links Deploy buttons for **Railway**, **Zeabur**, **Sealos**. Each provisions LibreChat + its dependencies on the chosen vendor. |
+| **Docker Compose — dev** (`docker-compose.yml`) | `runtimes/docker.md` + project section below | What the upstream README leads with for first-time / dev installs. 5 services: api + mongodb + meilisearch + vectordb (pgvector) + rag_api. Default port `3080`. |
+| **Docker Compose — production** (`deploy-compose.yml`) | `runtimes/docker.md` + project section below | Production-oriented variant in the same repo: adds an Nginx `client` service on ports 80/443 for SSL termination + static-content serving in front of the api. Same 5 backend services. |
 | **npm / source install** | `runtimes/native.md` + project section below | Clone repo + `npm ci` + run `npm run backend` and `npm run frontend` separately. Requires Node 20+, MongoDB, Meilisearch, optionally pgvector + the rag_api service running alongside. For contributors and tightly-controlled deploys. |
-| **Kubernetes / Helm** (community-maintained) | `runtimes/kubernetes.md` + project section below | No first-party chart. Multiple community Helm charts exist; flag-and-verify. |
+| **Helm — first-party chart** (`helm/librechat/` in upstream repo) | `runtimes/kubernetes.md` + project section below | **Upstream-blessed.** Chart v2.0.2 / app v0.8.5 (verified against upstream `Chart.yaml`). Sub-charts: Bitnami MongoDB, Meilisearch, Bitnami Redis, plus the in-repo `librechat-rag-api` chart. Configurable image / ingress / persistence / autoscaling / security-context. |
+| **One-click cloud deploys** (Railway, Zeabur, Sealos) | (vendor handles infra) | README ships Deploy buttons for **Railway** (referral-code link), **Zeabur**, and **Sealos**. Each provisions LibreChat + its dependencies on the chosen vendor. |
 
 For the **where** axis, LibreChat is CPU-bound (LLM inference happens at whatever provider is configured). The compose stack runs comfortably on a 2 GB / 1 vCPU VPS for personal use; production with active RAG benefits from 4+ GB and SSD.
 
@@ -528,3 +531,332 @@ DB migrations run on backend startup. Watch `journalctl --user -u librechat` for
 
 ---
 
+## Docker Compose — production (`deploy-compose.yml`)
+
+When the user wants the upstream-blessed production layout: an Nginx static-content + TLS-terminating service in front of the api, plus the same backend stack. Pair with [`references/runtimes/docker.md`](../runtimes/docker.md).
+
+Upstream file: <https://github.com/danny-avila/LibreChat/blob/main/deploy-compose.yml>.
+
+### What's different from `docker-compose.yml`
+
+`deploy-compose.yml` keeps the same five backend services (`api` + `mongodb` + `meilisearch` + `vectordb` + `rag_api`) but adds a sixth:
+
+| Added service | Image | Role |
+|---|---|---|
+| `client` | `nginx:1.27.0-alpine` | Public-facing reverse proxy on **ports 80 + 443**. Serves the pre-built React client from `client/dist/`, proxies `/api/*` to the `api` service. **TLS termination** lives here. |
+
+Implications:
+
+- The `api` service is no longer the public entry point — it's internal. Public traffic hits `client` first.
+- Custom Nginx config is mounted from `client/nginx.conf` (verify upstream's exact path); customize there for redirects, custom headers, or extra-host routing.
+- TLS certs aren't auto-provisioned — you bring them yourself or front the entire stack with another reverse proxy (Caddy / Cloudflare Tunnel) that handles certs.
+
+### Install
+
+```bash
+git clone https://github.com/danny-avila/LibreChat.git
+cd LibreChat
+
+# Same .env + librechat.yaml setup as the dev path (see Docker Compose section above)
+cp .env.example .env
+cp librechat.example.yaml librechat.yaml
+# generate JWT_SECRET / JWT_REFRESH_SECRET / CREDS_KEY / CREDS_IV / MEILI_MASTER_KEY (see dev section)
+
+# Set DOMAIN_CLIENT and DOMAIN_SERVER to your public HTTPS URL — required for OAuth callbacks
+sed -i.bak \
+  -e "s|^DOMAIN_CLIENT=.*|DOMAIN_CLIENT=https://chat.example.com|" \
+  -e "s|^DOMAIN_SERVER=.*|DOMAIN_SERVER=https://chat.example.com|" \
+  .env
+
+# Provision TLS certs (Let's Encrypt via certbot, or your existing certs)
+# Place them where deploy-compose.yml expects (verify upstream's volume mounts)
+# Typical: client/nginx.conf references /etc/nginx/ssl/{fullchain,privkey}.pem
+
+docker compose -f deploy-compose.yml up -d
+docker compose -f deploy-compose.yml logs -f client api
+```
+
+### Cert provisioning options
+
+Upstream doesn't bundle certbot in `deploy-compose.yml`. Three patterns for production TLS:
+
+1. **External Caddy / Traefik / Nginx in front** — keep `client` listening on a high port (or just the API on `3080`) and let your edge proxy handle TLS + routing. Simplest if you already operate one.
+2. **Bring your own certs** — provision via certbot on the host, mount the cert files into the `client` container. Renewal is your responsibility.
+3. **Cloudflare proxied + Origin CA cert** — Cloudflare terminates TLS at the edge; you use a long-lived Origin CA cert in `client`. Pair with `--listen` from a different angle (Cloudflare Tunnel skips the public-IP requirement entirely).
+
+### Lifecycle (production)
+
+```bash
+docker compose -f deploy-compose.yml ps
+docker compose -f deploy-compose.yml logs -f client      # nginx access + error logs
+docker compose -f deploy-compose.yml logs -f api         # app logs
+docker compose -f deploy-compose.yml restart api         # restart after .env changes
+docker compose -f deploy-compose.yml pull && \
+  docker compose -f deploy-compose.yml up -d             # upgrade (preserves named volumes)
+docker compose -f deploy-compose.yml down                # stop everything
+```
+
+### Production-Compose-specific gotchas (LibreChat-only)
+
+- **Two compose files coexist in the repo.** `docker-compose.yml` (dev) and `deploy-compose.yml` (prod) both work; pick one and stick with it. Mixing them on the same host = port collisions + volume confusion.
+- **`-f deploy-compose.yml` on every command.** Don't forget the `-f` flag — bare `docker compose` falls back to `docker-compose.yml` (dev), bringing up dev-port-3080 alongside prod-port-80. Aliasing `dcprod='docker compose -f deploy-compose.yml'` saves grief.
+- **TLS is your responsibility.** Unlike Dify's bundled certbot, LibreChat's prod compose assumes you handle certs. Plan for renewal day-one.
+- **`client/nginx.conf` is upstream-managed.** Edits get clobbered on `git pull`. Use a `docker-compose.override.yml` to mount a custom nginx.conf, or fork the repo.
+- **`DOMAIN_CLIENT` + `DOMAIN_SERVER` mismatch with the public URL** = OAuth callbacks land at the wrong host. Set both to the exact public HTTPS URL before the first OAuth provider is registered.
+
+---
+
+## Helm — first-party chart (`helm/librechat/`)
+
+When the user picks **any k8s cluster → Helm**. Pair with [`references/runtimes/kubernetes.md`](../runtimes/kubernetes.md) for kubectl + Helm prereqs and Secret hygiene.
+
+Upstream-blessed: a real first-party chart lives in the repo at <https://github.com/danny-avila/LibreChat/tree/main/helm/librechat>. Verified Chart.yaml metadata at recipe-write time:
+
+| Field | Value |
+|---|---|
+| Chart name | `librechat` |
+| Chart version | `2.0.2` |
+| App version | `v0.8.5` |
+| Type | `application` |
+| Dependencies | `mongodb` 16.5.45 (Bitnami), `meilisearch` 0.11.0 (Meilisearch's repo), `redis` 24.1.3 (Bitnami), `librechat-rag-api` 0.5.3 (sibling chart in the same repo at `helm/librechat-rag-api/`) |
+
+The sibling `librechat-rag-api` chart is included as a dependency, so `helm install` of the main chart pulls everything required.
+
+### Prereqs
+
+- Reachable k8s cluster (`kubectl get nodes` returns ready nodes).
+- Helm v3.
+- A default `StorageClass` (PVCs for MongoDB / Meilisearch / pgvector / image-volume).
+- Ingress controller installed (nginx-ingress, Traefik, or cloud-native) if you want public reach via Ingress.
+- cert-manager (only if using Ingress + automatic Let's Encrypt).
+
+### Install
+
+There's no public chart repo yet (verify upstream README at first install — packaging may have moved to OCI / GitHub-Pages chart repo by the time you deploy). Until then, install from the repo directly:
+
+```bash
+git clone https://github.com/danny-avila/LibreChat.git
+cd LibreChat/helm/librechat
+
+helm dependency update                                  # pull mongodb / meilisearch / redis / rag-api sub-charts
+
+kubectl create namespace librechat
+
+# Inspect defaults before installing
+helm show values . > /tmp/librechat-defaults.yaml
+
+# Install with explicit secrets + ingress config
+helm upgrade --install librechat . \
+  --namespace librechat \
+  --create-namespace \
+  --set ingress.enabled=true \
+  --set ingress.host=chat.example.com \
+  --set ingress.tls.enabled=true \
+  --set librechat.configEnv.JWT_SECRET="$(openssl rand -base64 32)" \
+  --set librechat.configEnv.JWT_REFRESH_SECRET="$(openssl rand -base64 32)" \
+  --set librechat.configEnv.CREDS_KEY="$(openssl rand -hex 32)" \
+  --set librechat.configEnv.CREDS_IV="$(openssl rand -hex 16)"
+```
+
+For values you'd rather not put on the command line, use `--values my-values.yaml`. The default `values.yaml` covers (verified against upstream):
+
+| Section | What it controls |
+|---|---|
+| `replicaCount` | Pod replicas (default 1; multi-replica needs MongoDB ReplicaSet + Meilisearch readiness) |
+| `image` | Repository, registry, pullPolicy, tag |
+| `imagePullSecrets` | Private-registry auth |
+| `serviceAccount` | Creation + naming + automounting + annotations |
+| `service` | Type (ClusterIP / LoadBalancer / NodePort), port `3080`, annotations |
+| `ingress` | Hostname + TLS toggle |
+| `librechat.imageVolume` | 10 GB PVC for `images/` (uploaded media, generated images) |
+| `librechat.configEnv` | `JWT_SECRET`, `JWT_REFRESH_SECRET`, `CREDS_KEY`, `CREDS_IV` |
+| `librechat.configYamlContent` | The `librechat.yaml` content, injected as a ConfigMap |
+| `global.librechat` | References to existing Secrets for credentials |
+| `mongodb`, `meilisearch`, `redis` | Sub-chart values; `enabled: true` by default — set false to use external instances |
+| `librechat-rag-api` | Optional RAG sub-chart; embeddings provider selection |
+| `resources` | CPU/memory limits + requests (commented out in defaults) |
+| `autoscaling` | HPA config (off by default; range 1-100) |
+| `livenessProbe` / `readinessProbe` | `/health` endpoint |
+| `podSecurityContext` / `securityContext` | Non-root UID 1000, capability dropping |
+| `nodeSelector` / `tolerations` / `affinity` | Pod scheduling |
+| `dnsPolicy` / `dnsConfig` | Custom DNS (for proxies) |
+| `updateStrategy` | RollingUpdate by default |
+
+### Verify + access
+
+```bash
+kubectl -n librechat rollout status deploy/librechat
+kubectl -n librechat get pods,svc,ingress,pvc
+kubectl -n librechat logs deploy/librechat -f
+
+# Local probe via port-forward (before DNS lands)
+kubectl -n librechat port-forward svc/librechat 3080:3080
+# → http://localhost:3080
+```
+
+### Upgrades
+
+```bash
+cd LibreChat
+git pull
+cd helm/librechat
+helm dependency update                            # refresh sub-charts
+helm upgrade librechat . --namespace librechat --reuse-values
+```
+
+For major-version chart bumps (e.g. 2.x → 3.x), **always snapshot the MongoDB volume + the librechat-image-volume PVC** before `helm upgrade`. App-level migrations are handled by the api on startup (`MIGRATION_ENABLED=true` default), but chart-level breaking changes (renamed values, restructured sub-charts) can require manual values.yaml fixups.
+
+### Operating
+
+```bash
+# Scale RAG worker (separate deployment from the main librechat)
+kubectl -n librechat scale deploy/librechat-rag-api --replicas=2
+
+# Restart api after configMap (librechat.yaml) changes
+kubectl -n librechat rollout restart deploy/librechat
+
+# Connect to MongoDB
+kubectl -n librechat exec -it sts/librechat-mongodb-0 -- mongosh -u root
+```
+
+### Helm-specific gotchas (LibreChat-only)
+
+- **Chart bundles MongoDB / Meilisearch / Redis as sub-charts.** Convenient for first install, but you inherit Bitnami's chart conventions for MongoDB ReplicaSet + Redis sentinel. For production, prefer external managed services (MongoDB Atlas, Redis Cloud, Meilisearch Cloud) and `--set mongodb.enabled=false redis.enabled=false meilisearch.enabled=false`, then point the LibreChat values at external connection strings.
+- **`librechat.configYamlContent` is a giant inline string.** The chart injects your `librechat.yaml` content as a ConfigMap. Keeping a separate `librechat.yaml` file under version control + reading it via `--set-file librechat.configYamlContent=librechat.yaml` is cleaner than inlining in `values.yaml`.
+- **PVC reclaim policy.** Default `Delete` reclaim wipes MongoDB + image-volume on `helm uninstall`. For long-lived clusters, switch the StorageClass to `Retain` or take regular `mongodump` backups.
+- **`librechat-rag-api` sub-chart is its own pod.** Distinct from the main librechat pod; talks to pgvector (also a sub-chart). Verify both come up before declaring success.
+- **No public chart repo at recipe-write time.** Install is "git clone + helm install ." pattern. Watch upstream for a published OCI/Pages chart repo — it'll change the install one-liner.
+- **`DOMAIN_CLIENT` / `DOMAIN_SERVER`** still apply — set them in `librechat.configEnv` to your Ingress hostname or OAuth + invite emails break the same way as Compose deploys.
+- **ConfigMap size limit (1 MiB)** can be hit if `librechat.yaml` grows large with many `endpoints.custom` entries + per-endpoint model lists. Mitigations: shorten lists, use `fetch: true`, or split provider config into separately-managed Secrets.
+
+---
+
+## One-click cloud deploys (Railway / Zeabur / Sealos)
+
+Upstream README publishes Deploy buttons for three vendors. These are upstream-blessed shortcuts — the deploy-template manifests live in the LibreChat repo or are upstream-controlled, so they qualify as official install methods per CLAUDE.md § *Strict doc-verification policy*.
+
+> **Vendor-managed infra.** open-forge can't automate vendor click-flows; we narrate the steps and verify the result. For users who want full Claude-driven provisioning, prefer Docker Compose on a VPS or the Helm chart on a managed k8s cluster.
+
+### Railway
+
+1. Open the Deploy button from the upstream README (currently a referral-code-bearing template URL — verify the link before sharing widely).
+2. Sign in to Railway. Railway forks LibreChat into the user's account and provisions:
+   - LibreChat service (Node.js)
+   - MongoDB plugin
+   - Meilisearch plugin
+   - (Optional) pgvector + rag_api services
+3. Set required env vars at deploy-config screen: `OPENAI_API_KEY` (or whichever provider), `JWT_SECRET`, `JWT_REFRESH_SECRET`, `CREDS_KEY`, `CREDS_IV`, `MEILI_MASTER_KEY`. Use `openssl rand` to generate the secrets locally and paste.
+4. (Optional) Custom domain via Railway's Custom Domains tab.
+5. Set `DOMAIN_CLIENT` + `DOMAIN_SERVER` to the Railway-assigned `*.up.railway.app` URL or your custom domain.
+
+Day-to-day: Railway's *Service → Settings* + browser shell handle ops. `railway` CLI works for log tailing.
+
+### Zeabur
+
+1. Open the Zeabur Deploy button from the README.
+2. Sign in; Zeabur provisions LibreChat + dependencies as separate services in a Zeabur project.
+3. Configure env vars in Zeabur's per-service settings panel.
+4. (Optional) bind a custom domain; Zeabur handles TLS.
+
+### Sealos
+
+1. Open the Sealos Deploy button from the README.
+2. Sealos deploys LibreChat as a Kubernetes-backed app on their hosted cluster.
+3. Configure env vars + storage settings in Sealos's web UI.
+4. Public URL is auto-assigned at `*.sealoscloud.io`; custom domain via DNS CNAME.
+
+### One-click-specific gotchas (LibreChat-only)
+
+- **Each vendor's template lags upstream.** The Deploy button targets a specific LibreChat version pinned in the template repo; verify against the latest LibreChat release before deploying. For latest-and-greatest, fork upstream and point the deploy at your fork.
+- **Browser-driven config flow.** open-forge can read out the steps but can't click for the user. Plan for ~10 minutes of manual button-clicking per vendor.
+- **`MEILI_MASTER_KEY` rotation requires re-indexing.** Generate carefully on first deploy; treat as set-once.
+- **Vendor-imposed limits.** Railway's free tier has CPU/RAM caps that LibreChat + MongoDB + Meilisearch + rag_api can saturate. Plan for paid tier for any non-toy use.
+- **`DOMAIN_CLIENT` / `DOMAIN_SERVER` must match the vendor-assigned URL.** Forget this and OAuth callbacks land at `localhost:3080` instead of your `*.up.railway.app` / `*.zeabur.app` / `*.sealoscloud.io` host.
+
+---
+
+## Per-cloud / per-PaaS pointers
+
+LibreChat is CPU-bound (LLM inference happens at whatever provider you wire up). The 5-service compose stack runs on 2 GB / 1 vCPU for personal use; production with active RAG benefits from 4+ GB and SSD.
+
+| Where | Adapter | Recommended path |
+|---|---|---|
+| AWS Lightsail | `infra/aws/lightsail.md` | Docker Compose (dev or prod variant); `medium_3_0` for hobby, `large_3_0` for real |
+| AWS EC2 | `infra/aws/ec2.md` | Docker Compose on `t3.medium`/`t3.large` |
+| Azure VM | `infra/azure/vm.md` | Docker Compose |
+| Hetzner | `infra/hetzner/cloud-cx.md` | Docker Compose on CX22 (4 GB) for hobby, CX32 (8 GB) for real |
+| DigitalOcean | `infra/digitalocean/droplet.md` | Docker Compose on `s-2vcpu-4gb` or larger |
+| GCP Compute Engine | `infra/gcp/compute-engine.md` | Docker Compose |
+| Oracle Cloud (free ARM) | `infra/oracle/free-tier-arm.md` | Docker Compose on the A1.Flex 4-core / 24 GB free tier — **excellent fit** if you can get the capacity |
+| Hostinger | `infra/hostinger.md` | VPS plan + Docker Compose via Hostinger Docker Manager |
+| Raspberry Pi | `infra/raspberry-pi.md` | Pi 5 with 8 GB RAM works for hobby; Pi 4 is tight (rag_api memory) |
+| BYO Linux VPS | `infra/byo-vps.md` | Docker Compose |
+| localhost | `infra/localhost.md` | Docker Compose (dev variant) |
+| Any Kubernetes cluster (EKS / GKE / AKS / DOKS / k3s) | (user-provided) | First-party Helm chart at `helm/librechat/` |
+| **Railway** | `infra/paas/railway.md` (existing PaaS adapter) + the upstream Deploy button | One-click — see *One-click cloud deploys* above |
+| **Zeabur** | (no first-party adapter — vendor handles infra) | One-click — see *One-click cloud deploys* above |
+| **Sealos** | (no first-party adapter — vendor handles infra) | One-click — see *One-click cloud deploys* above |
+| Fly.io | `infra/paas/fly.md` (existing PaaS adapter) | Possible with custom `fly.toml` (multi-process: api + mongo sidecar + meili sidecar). Heavier than Compose; not upstream-templated. |
+| Render / Northflank / exe.dev | (existing PaaS adapters) | Same — possible but each requires multi-service config + persistent volumes + backing DBs. Not upstream-templated; use Railway/Zeabur/Sealos instead. |
+
+---
+
+## Verification before marking `provision` done
+
+- All 5 (or 6 with the prod compose) services running:
+  - Compose dev: `docker compose ps` shows `api`, `mongodb`, `meilisearch`, `vectordb`, `rag_api` as `running`.
+  - Compose prod: same plus `client` (Nginx).
+  - Helm: `kubectl -n librechat get pods` shows main pod + sub-chart pods.
+  - npm: `systemctl --user is-active librechat` and the dependent DBs.
+- HTTP health: `curl -sIo /dev/null -w '%{http_code}\n' http://127.0.0.1:3080/` (dev) or `https://<your-domain>/` (prod) returns `200` or `302`.
+- API health: `curl -s http://127.0.0.1:3080/api/config` returns valid JSON listing the configured providers.
+- Browser loads the UI; first-user registration page is accessible.
+- After registering admin: model picker shows at least one model from a configured provider — confirms the `endpoints.custom` (or `OPENAI_API_KEY`) plumbing reaches the LLM provider.
+- One test message round-trips (UI sends → API → model provider → response renders) — confirms the full chain.
+- (If RAG configured) Upload a PDF, wait for indexing, ask a question that requires the doc — confirms vectordb + rag_api + embedder.
+- (If multi-user) Invite a test user, confirm the invite email arrives (requires `MAIL_TYPE=resend|smtp` configured) — confirms email plumbing.
+
+---
+
+## Consolidated gotchas
+
+Universal:
+
+- **Two config files split the surface.** `.env` for infrastructure, `librechat.yaml` for runtime UX. Both must be set; missing the right one in the right place breaks subtle behavior (OAuth callbacks, CORS, model lists).
+- **`CREDS_KEY` rotation breaks every stored provider key.** Set once and treat as immutable; rotating without re-encrypting the `tokens` collection is an outage.
+- **`DOMAIN_CLIENT` / `DOMAIN_SERVER` mismatch with the public URL** silently breaks OAuth, invite emails, and CORS-checked browser flows.
+- **First user becomes admin.** Race condition on `/install`-equivalent (the registration page) during initial setup — restrict access until admin exists.
+- **`MEILI_MASTER_KEY` is set-once.** Rotating requires re-indexing every conversation.
+- **Email config is mandatory for any non-localhost deploy.** Without `MAIL_TYPE=resend|smtp` + provider keys, invites + password resets silently fail.
+- **`fileStrategy: 'local'` + container recreate = data loss** unless `./images/` and `./uploads/` are bind-mounted (Compose) or backed by PVCs (Helm).
+- **Custom OpenAI-compatible endpoints with `fetch: true`** hit `<baseURL>/v1/models` on every UI render. Use `fetch: false` + explicit `default: [...]` for prod stability.
+- **`balance.enabled: true` forces `transactions.enabled: true`** silently. Can't have one without the other.
+- **`librechat.yaml` schema version must match the running api image.** After `git pull` + `docker compose pull`, verify the example file's `version:` against your custom `librechat.yaml`.
+
+Per-method gotchas live alongside each section above:
+
+- **Docker Compose dev** — see *Docker Compose-specific gotchas* + `runtimes/docker.md` § *Common gotchas*.
+- **Docker Compose prod** — see *Production-Compose-specific gotchas*.
+- **npm / source** — see *npm-install gotchas* + `runtimes/native.md` § *Common gotchas*.
+- **Helm** — see *Helm-specific gotchas* + `runtimes/kubernetes.md` § *Common gotchas*.
+- **One-click cloud deploys** — see *One-click-specific gotchas*.
+
+---
+
+## TODO — verify on subsequent deployments
+
+- **First end-to-end Docker Compose dev deploy** on Linux + a real domain — verify `DOMAIN_CLIENT` / `DOMAIN_SERVER` configuration; verify OAuth callback after attaching a domain.
+- **First end-to-end Docker Compose prod deploy** (`deploy-compose.yml`) — verify Nginx `client` service config, TLS cert provisioning pattern (the recipe lists three options; pick one and document the exact path).
+- **First-party Helm chart** (`helm/librechat/` v2.0.2 / app v0.8.5) — never deployed end-to-end. Verify: `helm dependency update` works against the published chart-dependency repos (Bitnami, Meilisearch); verify the in-repo `librechat-rag-api` sub-chart resolves locally; verify `librechat.configYamlContent` ConfigMap injection works for a non-trivial `librechat.yaml`; verify `librechat.imageVolume` 10GB PVC sizing on real RAG workloads.
+- **Helm chart with external MongoDB / Redis / Meilisearch** (set `mongodb.enabled=false` etc. + point at managed services) — never validated. Document the values.yaml pattern.
+- **Railway / Zeabur / Sealos one-click flows** — none has been exercised by open-forge. The browser-driven nature means we narrate the steps; first user to deploy via each should fold gotchas back into the relevant subsection.
+- **OAuth providers** (GitHub / Google / Discord / OIDC / SAML / Apple / Facebook) — never tested. Verify the callback URL pattern + `WEBUI_URL`-equivalent env-var settings + `ALLOW_SOCIAL_LOGIN` / `ALLOW_SOCIAL_REGISTRATION` interactions.
+- **`CREDS_KEY` rotation procedure** — what happens if the user wants to rotate post-deploy? Verify and document the re-encrypt-tokens-collection pattern (or document the "don't rotate, drop tokens collection" workaround).
+- **MongoDB ReplicaSet for HA** — sub-chart supports it; never tested end-to-end. Verify the values.yaml pattern + LibreChat's connection-string handling.
+- **Migration story** — major LibreChat version bumps occasionally introduce DB schema changes. Verify the `MIGRATION_ENABLED=true` flow on a populated DB across at least one major-version bump.
+- **Backup + restore drill** — exercise the documented MongoDB `mongodump` + filesystem-tar flow against a populated install; verify restore on a fresh host preserves users / chats / RAG indexes / file uploads.
+- **`librechat.yaml` schema-version drift across `git pull`** — verify the failure mode when a freshly-pulled api image expects a higher `version:` than the user's `librechat.yaml`. Document the upgrade procedure (read `librechat.example.yaml` for the new keys, merge into your version-bumped yaml).
+- **MCP server configuration end-to-end** — `mcpServers` in `librechat.yaml` documented from the example, but not validated. Verify with at least one stdio MCP server (`npx -y @modelcontextprotocol/server-puppeteer` per the example).
+- **Composing with Ollama / Open WebUI / OpenClaw / Hermes** — first-run validation: LibreChat as the user-facing UI fronting Ollama (`endpoints.custom`), or LibreChat as a model router that OpenClaw/Hermes/Aider point at via Open-WebUI-equivalent /v1 API.
+- **Web search providers** (Serper / SearXNG / Jina / Firecrawl / Brave) — never tested. Verify the `webSearch` block in `librechat.yaml`.
+- **Image-generation backend integration** — LibreChat doesn't currently integrate A1111 / ComfyUI directly (per current docs). Workaround documented as MCP-server wrapper; verify whether upstream has shipped first-party image-gen support since recipe-write time.
