@@ -19,6 +19,7 @@ Supported software:
 | ComfyUI | Node-based AI image / video generation (workflow graphs; power-user alternative to A1111) |
 | Dify | Open-source LLMOps + AI app builder (visual workflows, RAG, multi-tenant) |
 | LibreChat | Multi-provider chat UI for teams (multi-user, social logins, per-user balance, MCP, RAG) |
+| AnythingLLM | RAG-focused workspace + agent platform (drop-in PDFs / URLs, built-in LanceDB, Desktop App + 8 cloud one-clicks) |
 
 Supported **where**:
 
