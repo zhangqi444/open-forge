@@ -89,7 +89,116 @@ If it fails, check Ghost's log:
 
 > **Source:** <https://ghost.org/docs/install/ubuntu/> (TryGhost/Docs `install/ubuntu.mdx`).
 
-_Section content added in a subsequent commit (Task B of the granular fix plan)._
+The upstream-recommended production path. Ghost-CLI handles NGINX vhost, Let's Encrypt SSL, MySQL DB+user creation, systemd unit, and Ghost itself in a single interactive flow.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Ubuntu version | `22.04` or `24.04` LTS — upstream-supported only |
+| Sudo username | **NOT** `ghost` — upstream warns it conflicts with Ghost-CLI |
+| Node major | Latest LTS supported by Ghost (currently `22`; check <https://ghost.org/docs/faq/node-versions/>) |
+| Site dir name | Ghost-CLI requires its own dir under `/var/www/<sitename>/` |
+| MySQL root password | Generated; needed during `ghost install` for DB creation |
+
+DNS A-record must already point to the server's IP **before** running `ghost install` — Ghost-CLI runs Let's Encrypt during the flow, which fails without resolvable DNS.
+
+### Server prep (Claude runs via SSH as root)
+
+```bash
+# 1. Create a non-root sudoer (must NOT be named 'ghost')
+adduser "${SUDO_USER}"
+usermod -aG sudo "${SUDO_USER}"
+
+# 2. Update packages
+apt-get update && apt-get upgrade -y
+
+# 3. NGINX
+apt-get install -y nginx
+# Open firewall if ufw is active
+ufw status | grep -q active && ufw allow 'Nginx Full'
+
+# 4. MySQL 8 + switch root to password auth (Ghost does NOT support socket auth)
+apt-get install -y mysql-server
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY '${MYSQL_ROOT_PW}'; FLUSH PRIVILEGES;"
+
+# 5. Node.js from Nodesource
+apt-get install -y ca-certificates curl gnupg
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+NODE_MAJOR=22
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_${NODE_MAJOR}.x nodistro main" \
+  | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update && apt-get install -y nodejs
+```
+
+### Install Ghost-CLI + Ghost
+
+```bash
+# Ghost-CLI globally (run as root or with sudo)
+sudo npm install -g ghost-cli@latest
+
+# Switch to the non-root user before installing Ghost itself
+su - "${SUDO_USER}"
+
+# Create site dir
+sudo mkdir -p "/var/www/${SITENAME}"
+sudo chown "${SUDO_USER}:${SUDO_USER}" "/var/www/${SITENAME}"
+sudo chmod 775 "/var/www/${SITENAME}"
+cd "/var/www/${SITENAME}"
+
+# Interactive install
+ghost install
+```
+
+Upstream's `ghost install` prompts (answer using collected inputs):
+
+| Prompt | Answer |
+|---|---|
+| Blog URL | `https://${CANONICAL_HOST}` (must include protocol; IP addresses cause errors) |
+| MySQL hostname | `localhost` |
+| MySQL username / password | `root` / `${MYSQL_ROOT_PW}` |
+| Ghost database name | Generated (e.g. `ghost_prod`) |
+| Set up a ghost MySQL user? | **Yes** (least-privilege; only the Ghost DB) |
+| Set up NGINX? | **Yes** (upstream-recommended) |
+| Set up SSL? | **Yes** — provide `${LETSENCRYPT_EMAIL}` |
+| Set up systemd? | **Yes** |
+| Start Ghost? | **Yes** |
+
+### Verify
+
+```bash
+curl -sI "https://${CANONICAL_HOST}/"            # → 200 with valid cert
+curl -sI "https://${CANONICAL_HOST}/ghost/"      # → 200 admin bootstrap
+ghost ls                                          # → running, 'online'
+ghost log                                         # → no startup errors
+```
+
+Then have the user open `https://${CANONICAL_HOST}/ghost` to claim the owner account (first user wins — guard this URL during the bootstrap window).
+
+### Lifecycle
+
+```bash
+ghost stop             # stop
+ghost start            # start
+ghost restart          # restart
+ghost log              # tail logs
+ghost update           # in-place upgrade to latest Ghost
+ghost help             # full command list
+```
+
+Recovery:
+
+- `ghost uninstall` — clean removal (preferred over `rm -rf` to avoid orphan systemd units / NGINX vhosts).
+- `ghost setup` — resume an interrupted install without rerunning everything.
+
+### Ghost-CLI Ubuntu gotchas
+
+- **Sudo username can't be `ghost`** — Ghost-CLI uses a `ghost` system user under the hood; collision causes the install to fail mid-flow.
+- **MySQL root must be password-auth, not socket** — Ubuntu 22.04+ defaults to `auth_socket`; the `ALTER USER ... mysql_native_password` step above is mandatory.
+- **DNS must propagate first** — Ghost-CLI runs Let's Encrypt inline. If the A-record isn't resolvable when `ghost install` reaches the SSL step, it errors. `dig +short ${CANONICAL_HOST}` should return the server IP before starting.
+- **Web Analytics / self-hosted ActivityPub are NOT supported on Ghost-CLI** — upstream's `ubuntu.mdx` explicitly says these features need the Docker preview install. Ghost-CLI installs use Ghost(Pro)'s hosted ActivityPub service (free with usage caps).
+- **Don't install in `/root`, `/home`, or anywhere outside `/var/www/<sitename>/`** — upstream is opinionated about the site dir layout; deviations break `ghost update` later.
 
 ---
 
