@@ -55,8 +55,65 @@ references/
 3. **Security in mind.** Treat tokens/keys as toxic — never log them, rotate after chat exposure, prefer fragment URLs over query strings. Default firewalls to closed; open ports explicitly. Default to SSH key auth; never password. Let's Encrypt for any public endpoint. Sandbox agent tool execution where the runtime supports it.
 4. **One question at a time.** Use `AskUserQuestion` for structured choices. Reserve free-text for credentials and identifiers (domain names, emails). No upfront questionnaires.
 5. **Auto-install with confirmation, never silently.** If `jq` or `aws` is missing, propose the install command, get one-line approval, then run.
-6. **Reference upstream docs; don't replace them.** Recipes condense and translate upstream documentation into Claude-actionable steps — they aren't the source of truth for the product itself. Always link the upstream pages we summarized (e.g. `docs.openclaw.ai/install/docker`, AWS Lightsail user guide, Bitnami docs). Reasons: (a) users can verify what we condensed, (b) when upstream drifts our recipe goes stale fast and the link is the recovery path, (c) credit where due.
+6. **Reference upstream docs; don't replace them.** Recipes condense and translate upstream documentation into Claude-actionable steps — they aren't the source of truth for the product itself. Always link the upstream pages we summarized (e.g. `docs.openclaw.ai/install/docker`, AWS Lightsail user guide, Bitnami docs). Reasons: (a) users can verify what we condensed, (b) when upstream drifts our recipe goes stale fast and the link is the recovery path, (c) credit where due. **See *Strict doc-verification policy* below — every install method documented by upstream must have its own recipe section, verified against upstream before being written.**
 7. **Don't invent — interface.** open-forge is a chat-friendly interface to existing tools. Claude is the orchestrator; the user's existing software stack (AWS CLI, Docker, openclaw, ssh, gh, registrar UIs) is the substrate. **Do not** build custom DSLs, YAML schemas, CLI tools, deployment managers, or wrappers around upstream tools. **Do not** reimplement what an upstream tool already does (e.g. don't rebuild `openclaw onboard`'s prompts in chat — call the command). The state file is a thin orchestration helper for resume, nothing more. *Caveat:* "don't invent" applies to **fabricating a deployment path the upstream doesn't support** (e.g. authoring a Helm chart for a project that has no chart). It does **not** mean "no tooling." If upstream supports Docker / k8s / Helm / Terraform, lean on every skill and MCP that helps you orchestrate those paths well — see *Companion skills & MCPs* below.
+
+## Strict doc-verification policy (mandatory before writing any recipe)
+
+Recipes are condensations of upstream docs; condensing what we haven't read is speculation. Past failures (the v0.7.0 Helm chart claim sourced from a search snippet, the v0.6.0 OpenClaw "every blessed path" claim that was 4 of 17 because we trusted the README's enumeration) traced back to this. The policy:
+
+### Before writing or expanding any project / infra recipe
+
+1. **Read the upstream README verbatim.** Not summarized — the actual README. Note: the README is necessary but **not sufficient** — many projects' READMEs are deliberately minimal and point at a separate docs site for install methods.
+2. **Locate the upstream install-method index.** Typically:
+   - The project's docs site (`docs.PROJECT.ai`, `PROJECT.com/docs`, `PROJECT.github.io`, etc.).
+   - The repo's `docs/install/` or `website/docs/getting-started/` tree.
+   - The repo's wiki (often a separate `<repo>.wiki.git` clone).
+3. **Enumerate every method documented under that index.** Include:
+   - First-party install scripts (`install.sh`, `install.ps1`, vendor blueprints).
+   - First-party Docker / Compose / Kubernetes / Helm support.
+   - First-party package-manager support (Homebrew, Nix, Pacman, etc.).
+   - First-party PaaS templates (`fly.toml`, `render.yaml`, Railway / Zeabur / Sealos one-click buttons published by upstream).
+   - First-party cloud templates (Terraform / CDK / Computing Nest published by upstream).
+4. **Read the canonical install artifacts in the repo:** `docker-compose.yml`, `Dockerfile`, `flake.nix`, the project's primary config-file example. These often surface details the docs gloss over (service inventory, env-var matrix).
+5. **Write one section per documented method.** No merging, no skipping. Each section's first line cites the upstream URL it's derived from.
+
+### What counts as "official"
+
+| Source | Official? |
+|---|---|
+| Upstream's own README | ✅ |
+| Upstream's own docs site (linked from README) | ✅ |
+| Upstream's repo `docs/` or `website/` tree | ✅ |
+| Upstream's repo wiki | ✅ |
+| Upstream-published PaaS deploy buttons (Railway/Render/Fly/etc.) where the manifest lives in the upstream repo | ✅ |
+| Community-maintained Docker images / Helm charts when upstream ships none | ⚠️ Allowed but **must be flagged** as "community-maintained, verify source"; recipe lists multiple options (most-active first), doesn't pick a winner |
+| Anything else (third-party blogs, search snippets, my training data) | ❌ Not allowed as the basis for a section. If upstream ships no path for X, do not invent one. |
+
+### When upstream-doc fetch fails
+
+- WebFetch rate-limited / 403 / 404 → try `raw.githubusercontent.com/<org>/<repo>/<branch>/<path>` for repo content.
+- Wiki page WebFetch fails → `git clone https://github.com/<org>/<repo>.wiki.git` and read locally.
+- All fetch paths fail → **stop**. Do not write speculative content. Either: (a) ask the user to paste relevant doc text, (b) wait until access is restored, or (c) write only the sections for methods we *did* read and note in the recipe's TODO that the rest is pending verification.
+
+### Community-maintained methods — flagging requirements
+
+When a recipe documents a method upstream doesn't ship (e.g. A1111 + ComfyUI Docker, Helm charts for many projects), the section MUST:
+
+1. Open with an explicit "community-maintained" note in a blockquote.
+2. List **multiple** options when they exist (most-active first; reference upstream README's pointer if upstream lists them).
+3. Frame commands as "illustrative — verify the README at the version you pull"; never present community-chart `--set` values as authoritative.
+4. Document the gap in the recipe's TODO section: "Verify which community option is most actively maintained at first-deploy time."
+
+### Retroactive application
+
+When this policy is added (or strengthened), every existing recipe must be re-verified against its upstream docs index. If the verification surfaces a missing method, file it in that recipe's TODO, write the missing section, and bump the plugin version.
+
+### When in doubt
+
+Ask the user whether to pause for verification or accept the README's enumeration. Don't silently downgrade thoroughness.
+
+---
 
 ## Companion skills & MCPs
 
