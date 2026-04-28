@@ -18,6 +18,7 @@ Supported software:
 | Stable Diffusion WebUI (A1111) | Most-popular open-source AI image generator (text-to-image, ControlNet, LoRA) |
 | ComfyUI | Node-based AI image / video generation (workflow graphs; power-user alternative to A1111) |
 | Dify | Open-source LLMOps + AI app builder (visual workflows, RAG, multi-tenant) |
+| LibreChat | Multi-provider chat UI for teams (multi-user, social logins, per-user balance, MCP, RAG) |
 
 Supported **where**:
 
