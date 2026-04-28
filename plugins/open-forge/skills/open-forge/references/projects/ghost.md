@@ -206,7 +206,164 @@ Recovery:
 
 > **Source:** <https://ghost.org/docs/install/docker/> (TryGhost/Docs `install/docker.mdx`). Tooling repo: <https://github.com/TryGhost/ghost-docker>.
 
-_Section content added in a subsequent commit (Task C of the granular fix plan)._
+New batteries-included tooling shipped with Ghost 6.0. Caddy as webserver (handles TLS), MySQL, Ghost — plus opt-in profiles for self-hosted ActivityPub (`activitypub`) and Tinybird-backed Web Analytics (`analytics`). The only upstream path that supports self-hosting these two features.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Linux distro | Any (DigitalOcean's 2GB/1CPU droplet is upstream's reference). Docker 20.10.13+ required. |
+| Install dir | `/opt/ghost` (upstream convention; clone target) |
+| `DOMAIN` | The canonical host (e.g. `${CANONICAL_HOST}`). |
+| `ADMIN_DOMAIN` | Optional separate admin host (e.g. `admin.${APEX}`). |
+| `DATABASE_ROOT_PASSWORD` / `DATABASE_PASSWORD` | Generated via `openssl rand -hex 32`. **Do not change once initialised** — it changes config but not the actual DB password, breaking connections. |
+| ActivityPub | Off by default (uses Ghost(Pro) hosted ActivityPub, free up to 2000 followers / 2000 following / 100 interactions/day). Self-host by adding `activitypub` to `COMPOSE_PROFILES`. |
+| Web Analytics | Requires a Tinybird account (free tier exists). Self-host by adding `analytics` to `COMPOSE_PROFILES`. |
+
+DNS A-record (and optionally `ADMIN_DOMAIN`'s A-record) must already point at the server before `docker compose up` — Caddy obtains Let's Encrypt certs on first request.
+
+### Install (Claude runs via SSH)
+
+```bash
+# 1. Install Docker per upstream's guide (https://docs.docker.com/engine/install/)
+#    — handled by runtimes/docker.md preflight.
+
+# 2. Clone the upstream tooling
+sudo git clone https://github.com/TryGhost/ghost-docker.git /opt/ghost
+cd /opt/ghost
+
+# 3. Copy example config
+sudo cp .env.example .env
+sudo cp caddy/Caddyfile.example caddy/Caddyfile
+
+# 4. Generate DB passwords
+DB_ROOT_PW=$(openssl rand -hex 32)
+DB_PW=$(openssl rand -hex 32)
+
+# 5. Patch .env (Claude does this with sed/jq, NOT hand-editing)
+sudo sed -i \
+  -e "s|^DOMAIN=.*|DOMAIN=${CANONICAL_HOST}|" \
+  -e "s|^DATABASE_ROOT_PASSWORD=.*|DATABASE_ROOT_PASSWORD=${DB_ROOT_PW}|" \
+  -e "s|^DATABASE_PASSWORD=.*|DATABASE_PASSWORD=${DB_PW}|" \
+  /opt/ghost/.env
+# Plus the SMTP block per the cross-cutting Mail config above.
+
+# 6. Edit Caddyfile blocks for the chosen DNS shape — see Caddy domain setup below.
+
+# 7. Pull + start
+sudo docker compose pull
+sudo docker compose up -d
+```
+
+Visit `https://${CANONICAL_HOST}/` — Caddy provisions TLS on first request. Then `https://${CANONICAL_HOST}/ghost` to claim the owner account.
+
+### Caddy domain setup (one of three shapes — pick one)
+
+The `caddy/Caddyfile.example` ships with three commented-out blocks. Uncomment exactly one:
+
+| Shape | What to uncomment | Required if |
+|---|---|---|
+| Separate admin domain | "Separate admin domains" block | `ADMIN_DOMAIN` is set |
+| Apex (`mysite.com`) canonical, redirect `www` | "Redirect www → root domain" block + DNS for both | `DOMAIN=apex` and you want `www` → apex |
+| `www.mysite.com` canonical, redirect apex | "Redirect root → www domain" block + DNS for both + replace `CHANGE_ME` with the apex | `DOMAIN=www.*` (**required for ActivityPub to work** when using a `www` canonical) |
+
+Other variables come from `.env` and should not be edited in the Caddyfile.
+
+### Optional — Web Analytics (Tinybird)
+
+```bash
+cd /opt/ghost
+
+# 1. Login to Tinybird (interactive — opens browser)
+sudo docker compose run --rm tinybird-login
+
+# 2. Sync schema files into the shared volume
+sudo docker compose run --rm tinybird-sync
+
+# 3. Deploy datasources / pipes / endpoints
+sudo docker compose run --rm tinybird-deploy
+
+# 4. Get tokens to paste into .env
+sudo docker compose run --rm tinybird-login get-tokens
+```
+
+Paste the four `TINYBIRD_*` values from step 4 into the Tinybird block of `.env`, then add `analytics` to `COMPOSE_PROFILES`:
+
+```bash
+sudo sed -i 's|^COMPOSE_PROFILES=.*|COMPOSE_PROFILES=analytics|' /opt/ghost/.env
+sudo docker compose pull
+sudo docker compose up -d
+```
+
+Verify by visiting the site homepage and checking that the visit appears under Ghost admin → **Analytics**.
+
+### Optional — Self-hosted ActivityPub
+
+```bash
+# Add 'activitypub' to COMPOSE_PROFILES (combine with 'analytics' if both wanted)
+sudo sed -i 's|^COMPOSE_PROFILES=.*|COMPOSE_PROFILES=analytics,activitypub|' /opt/ghost/.env
+
+# Uncomment ACTIVITYPUB_TARGET so Ghost talks to the local ActivityPub container
+sudo sed -i 's|^# *ACTIVITYPUB_TARGET=.*|ACTIVITYPUB_TARGET=activitypub:8080|' /opt/ghost/.env
+
+# Restart ghost + caddy
+sudo docker compose pull
+sudo docker compose up -d --force-recreate ghost caddy
+```
+
+Verify under Ghost admin → **Network**.
+
+### Migrating an existing Ghost-CLI install
+
+Upstream ships a migration assistant that copies content + dumps DB + stops the existing NGINX-fronted Ghost-CLI install + brings up the Caddy-fronted Docker stack on the same host.
+
+```bash
+cd /opt/ghost
+# (After cloning + setting up .env + Caddyfile, but BEFORE 'docker compose up -d')
+sudo bash scripts/migrate.sh
+```
+
+The script offers a rollback (`bash recovery_instructions.sh`) if anything fails. Don't delete the old install until the new one is verified.
+
+### Verify
+
+```bash
+curl -sI "https://${CANONICAL_HOST}/"
+sudo docker compose ps           # all services 'running'
+sudo docker compose logs ghost    # no startup errors
+sudo docker compose logs caddy    # cert provisioning OK
+```
+
+### Lifecycle
+
+```bash
+cd /opt/ghost
+
+# Update Ghost (pulls new tooling AND new images)
+sudo git pull && sudo docker compose pull && sudo docker compose up -d
+
+# Recreate ghost after editing .env
+sudo docker compose up -d --force-recreate ghost
+
+# Recreate ghost + caddy after editing DOMAIN / ADMIN_DOMAIN / ACTIVITYPUB_TARGET
+sudo docker compose up -d --force-recreate ghost caddy
+
+# Logs / state
+sudo docker compose ps
+sudo docker compose logs -f <service>
+
+# Image cleanup
+sudo docker image prune
+```
+
+### Docker preview gotchas
+
+- **`DATABASE_*` passwords are write-once.** Changing them after first init breaks DB connectivity (the config changes but the actual stored password doesn't). Treat them as immutable; rotate by full DB recreate + restore from backup.
+- **`www` canonical requires the "Redirect root → www" block uncommented and `CHANGE_ME` replaced with the apex** — required for ActivityPub to work correctly with `www` domains.
+- **First-request TLS cert delay.** Caddy obtains certs on first hit, so the very first browser request can take a few seconds and may show a brief 502 if DNS hasn't fully propagated. Verify with `dig +short ${CANONICAL_HOST}` before declaring failure.
+- **Tinybird deploy can fail mid-update.** When updating Ghost, the `tinybird-deploy` service runs new schema migrations against your workspace — if it fails, the previous deployment stays live, but new Ghost may expect the new schema. `docker compose logs tinybird-deploy` shows what went wrong.
+- **Profiles are case-sensitive in `COMPOSE_PROFILES`.** Use `analytics`, `activitypub` (lowercase), comma-separated, no spaces.
+- **Don't run alongside Ghost-CLI on the same host without using `scripts/migrate.sh`** — port 80/443 collisions between NGINX and Caddy will keep one of them down.
 
 ---
 
