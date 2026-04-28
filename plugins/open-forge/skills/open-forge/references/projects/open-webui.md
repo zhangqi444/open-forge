@@ -418,7 +418,7 @@ docker compose logs -f open-webui
 # register the admin user, then flip back to false and `docker compose up -d`
 ```
 
-For GPU pairing, use upstream's variants: `docker-compose.gpu.yaml` (generic), `docker-compose.cuda.yaml` (NVIDIA), `docker-compose.amdgpu.yaml` (AMD ROCm).
+For GPU pairing, use upstream's variants: `docker-compose.gpu.yaml` (generic NVIDIA via the `nvidia` runtime) or `docker-compose.amdgpu.yaml` (AMD ROCm). Upstream does **not** ship a separate `docker-compose.cuda.yaml`.
 
 ```bash
 docker compose -f docker-compose.yaml -f docker-compose.gpu.yaml up -d
