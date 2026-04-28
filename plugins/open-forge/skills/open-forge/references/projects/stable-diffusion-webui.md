@@ -563,6 +563,38 @@ For open-forge's purposes: when a user asks for "A1111 in Docker," recommend Abd
 
 ---
 
+## Online services (community-maintained)
+
+> **Community-maintained.** Upstream's wiki (`Online-Services.md`) lists these as **third-party** setups for cloud-GPU platforms — none is officially supported by the A1111 maintainer. Verify the linked source at the version you pull. Multiple options exist for most platforms; the most-active are listed first per the upstream wiki ordering.
+
+For users who don't want to run A1111 on their own hardware (or who only need bursts of GPU time), upstream's wiki at <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Online-Services> aggregates community-maintained launchers for these cloud-GPU platforms:
+
+| Platform | Community options |
+|---|---|
+| **Paperspace** | [Cyberes/stable-diffusion-paperspace](https://github.com/Engineer-of-Stuff/stable-diffusion-paperspace) · [camenduru/stable-diffusion-webui-paperspace](https://github.com/camenduru/stable-diffusion-webui-paperspace) · [Paperspace's official guide](https://blog.paperspace.com/stable-diffusion-webui-deployment/) |
+| **RunPod** | [camenduru/stable-diffusion-webui-runpod](https://github.com/camenduru/stable-diffusion-webui-runpod) · [RunPod's official guide](https://blog.runpod.io/stable-diffusion-ui-on-runpod/) |
+| **Kaggle** | [roguewild's notebook](https://www.kaggle.com/code/roguewild/automatic1111-s-stable-diffusion-webui) · [camenduru's notebook](https://www.kaggle.com/code/camenduru/stable-diffusion-webui-kaggle) |
+| **Google Colab** | [TheLastBen/fast-stable-diffusion](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast_stable_diffusion_AUTOMATIC1111.ipynb) · [camenduru/stable-diffusion-webui-colab](https://github.com/camenduru/stable-diffusion-webui-colab) · [ddPn08/automatic1111-colab](https://github.com/ddPn08/automatic1111-colab) · [Akaibu's notebook](https://colab.research.google.com/drive/1kw3egmSn-KgWsikYvOMjJkVDsPLjEMzl) |
+| **Azure ML** | [vladiliescu's guide](https://vladiliescu.net/stable-diffusion-web-ui-on-azure-ml/) |
+| **SageMaker Studio Lab** | [Miraculix200/StableDiffusionUI_SageMakerSL](https://github.com/Miraculix200/StableDiffusionUI_SageMakerSL/blob/main/StableDiffusionUI_SageMakerSL.ipynb) |
+| **vast.ai** | [vast.ai's official guide](https://vast.ai/docs/guides/stable-diffusion) |
+
+These exist because A1111 itself is a self-hosted desktop-style UI; the platforms wrap it in a notebook / template / one-click that handles the GPU + base model + port-forwarding for you. Most are aimed at "run A1111 for an hour, generate some images, shut it down" use cases, not always-on production deploys.
+
+### Caveats
+
+- **Google Colab as of 2023-09-09** restricts Stable Diffusion usage server-side (per upstream wiki note). The Colab notebooks above may stop working without notice; risk of full-account ban for Stable Diffusion usage applies. Avoid for serious work.
+- **Each launcher is its own project** with its own update cadence, README, env vars, and quirks. Don't expect them to share a common interface.
+- **None of these is the right choice for production.** They're optimized for personal / hobby use. For production, use the *Native install — Linux* path on a dedicated cloud-GPU VM (AWS g5/g6, Azure NC, Hetzner GEX, DO GPU Droplet) — see *Per-cloud / per-PaaS pointers* below.
+- **Costs vary wildly.** Paperspace + RunPod bill per second; Kaggle + Colab have free tiers with limits; vast.ai is a marketplace with auction-style pricing. Surface this to the user before recommending one.
+
+### TODO
+
+- **Verify which of these launchers is most actively maintained** at first-deploy time. The wiki listing is "snapshot in time" — projects come and go.
+- **Document any provider-specific gotchas** that surface on first real use (Colab's SD ban, RunPod's image-cache eviction, vast.ai's host-machine variability).
+
+---
+
 ## Per-cloud / per-PaaS pointers
 
 A1111 is GPU-bound — the infra adapter is whatever exposes a usable GPU. Pair the chosen adapter with the *Native Linux* install path above (or AbdBarho's Docker compose if you prefer containers).
