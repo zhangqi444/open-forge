@@ -21,6 +21,7 @@ Supported software:
 | LibreChat | Multi-provider chat UI for teams (multi-user, social logins, per-user balance, MCP, RAG) |
 | AnythingLLM | RAG-focused workspace + agent platform (drop-in PDFs / URLs, built-in LanceDB, Desktop App + 8 cloud one-clicks) |
 | Aider | AI pair-programming CLI (terminal-based; edits files via diffs, auto-commits; pairs with any LLM) |
+| vLLM | Production-grade LLM inference server (high-throughput multi-tenant; tensor parallelism; prefix caching) |
 
 Supported **where**:
 
