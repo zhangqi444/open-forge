@@ -20,6 +20,7 @@ Supported software:
 | Dify | Open-source LLMOps + AI app builder (visual workflows, RAG, multi-tenant) |
 | LibreChat | Multi-provider chat UI for teams (multi-user, social logins, per-user balance, MCP, RAG) |
 | AnythingLLM | RAG-focused workspace + agent platform (drop-in PDFs / URLs, built-in LanceDB, Desktop App + 8 cloud one-clicks) |
+| Aider | AI pair-programming CLI (terminal-based; edits files via diffs, auto-commits; pairs with any LLM) |
 
 Supported **where**:
 
