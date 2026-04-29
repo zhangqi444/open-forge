@@ -84,3 +84,27 @@
 **Cumulative progress:** 25 / 1274 done (2.0%). 1249 pending.
 
 **Deferred:** Ansible (68k stars) and Unsloth Studio (63k stars) — both are awkward fits for open-forge's "self-host a service" model. Ansible is a CLI/config-management tool (AWX is the web UI that could be self-hosted but is a different project). Unsloth is a Python package for fine-tuning LLMs, not a server. Next batch will tackle them honestly — likely as "skipped" with a brief justification, or as thin recipes pointing to AWX / the Unsloth pip install flow.
+
+
+## 2026-04-29 04:10–04:35 UTC — batch 6
+
+**Progress-file reconciliation:** caught 4 recipes (`ansible.md`, `memos.md`, `unsloth-studio.md`, `vaultwarden.md`) that existed on disk but were still marked `"pending"` in `progress/selfhst-progress.json`. Flipped to `done`.
+
+**Processed (5):** PocketBase, Pi-hole, Meilisearch, Rclone, Appwrite.
+
+**Upstream sources consulted:**
+- PocketBase: `README.md` on `master`. No official Docker image — documented the community `ghcr.io/muchobien/pocketbase` as ⚠️ third-party.
+- Pi-hole: `pi-hole/docker-pi-hole` `README.md` on `master` (inline docker-compose example). `docs.pi-hole.net` referenced but not scraped. v6 focus (env-var renames from v5).
+- Meilisearch: `README.md` on `main`; `Dockerfile` on `main` (Rust 1.89 + Alpine 3.22); `docs/learn/self_hosted/install_meilisearch_locally` fetched as `.md`.
+- Rclone: `README.md` on `master` (provider list). `rclone.org/install/` referenced but not scraped; canonical systemd-mount pattern from `rclone.org/commands/rclone_mount/` common knowledge.
+- Appwrite: `README.md` on `main` (self-host section has the canonical `docker run ... --entrypoint="install"` invocation verbatim).
+
+**Notes:**
+- **PocketBase** recipe emphasizes pre-v1.0 breaking-changes warning from upstream's own README. Highlighted the no-official-Docker-image fact (community images only) and the SSE-realtime requirement that breaks under default nginx proxy_buffering.
+- **Pi-hole** recipe frames it honestly as a LAN tool, not a cloud service. Flagged the v5→v6 env-var renames (`FTLCONF_*`) that silently break old compose files, the port-53 host-conflict with systemd-resolved, the NO `--privileged` upstream guidance on 2022.04+ images, and the DHCP-role considerations (NET_ADMIN cap + turn off router DHCP).
+- **Meilisearch** recipe covers all 5 upstream install paths. Hammers on master-key requirement (+ MEILI_ENV=production disabling the public dashboard). Distinguished dumps vs snapshots for backups.
+- **Rclone** was the most conceptually-unusual — reframed as "CLI, not daemon" up front (like Ansible/Storybook/LocalSend in prior batches). Documented the 3 long-running shapes (mount / serve / scheduled-sync) with systemd unit examples for each. Flagged `--vfs-cache-mode`, `--bwlimit`, `sync` vs `copy` semantic-destruction gotcha.
+- **Appwrite** stack is 20+ microservices. Recipe covers the canonical `docker run … --entrypoint="install"` + `--entrypoint="upgrade"` model, `_APP_CONSOLE_WHITELIST_EMAILS` bootstrapping, S3 vs local storage, and the `_APP_ENV=development` footgun that exposes MariaDB + Redis on host ports.
+
+**Cumulative progress:** 34 / 1274 done (2.7%). 1240 pending.
+
