@@ -1,6 +1,6 @@
 {
   "name": "open-forge",
-  "version": "0.19.2",
+  "version": "0.19.3",
   "description": "Self-host open-source apps on your own cloud, your own VPS, your own Kubernetes cluster, a PaaS, or your own laptop. Chat-friendly interface to existing tools (aws, az, hcloud, doctl, gcloud, flyctl, kubectl, helm, podman, docker, lume, tailscale, terraform, cdk, ssh, gh) — Claude runs every command; you only answer what/where/how and provide credentials. Supported software: Ghost, OpenClaw, Hermes-Agent, Ollama, Open WebUI, Stable Diffusion WebUI (Automatic1111), ComfyUI, Dify, LibreChat, AnythingLLM, Aider, vLLM, Langfuse. AI stack focus: Ollama (single-user LLM inference) + vLLM (production-grade LLM inference) + Open WebUI / LibreChat (multi-user chat UIs) + Stable Diffusion WebUI / ComfyUI (image generation) + AnythingLLM (RAG-focused workspace) + Aider (terminal pair-programming CLI) + Langfuse (LLM observability + evals) compose into a complete local-AI stack; OpenClaw + Hermes-Agent are agent projects; Dify is the LLMOps platform layer. Every recipe is verified against upstream's docs index per the strict-doc policy in CLAUDE.md (community-maintained methods are explicitly flagged when upstream ships no first-party version).",
   "author": { "name": "zhangqi444" },
   "repository": "https://github.com/zhangqi444/open-forge",

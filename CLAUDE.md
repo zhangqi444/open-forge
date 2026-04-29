@@ -48,6 +48,39 @@ references/
 
 `localhost.md` is a first-class infra — for many projects (especially OpenClaw), running locally is the default upstream path. Same conversational UX as a cloud deploy; differences are: no SSH (Claude runs commands directly), no provisioning, public reach via tunnel (`references/modules/tunnels.md`).
 
+## Is this software in scope?
+
+open-forge is for **deployable self-hosted services**. Use these criteria when deciding whether a piece of software belongs as a Tier 1 recipe (see *Two-tier coverage model* below).
+
+### Inclusion criteria — recipe is in scope when ALL are true
+
+1. **Software runs as a deployed service or is served from a host the user owns**: long-running daemon, scheduled job, web service, API, CLI agent, or static asset published to a host.
+2. **Source code or binaries are user-installable on infrastructure they control**: cloud VM, VPS, k3s cluster, or localhost. Paid AMIs / vendor stacks (Bitnami, Dify Premium, etc.) count — closed-source SaaS-only does not.
+3. **At least one upstream-documented install method or canonical install artifact in-repo** exists, so the strict-doc-policy below has something to verify against.
+
+### Exclusion criteria — out of scope
+
+- **Pure libraries / SDKs / packages** that you `import` or call (Unsloth, requests, lodash). No deployment surface.
+- **Desktop / mobile end-user apps** with no self-hosted server side (Slack desktop, VS Code, Discord client).
+- **SaaS / managed-only products** with no self-host distribution (Notion, Linear, Figma).
+- **Dev-only tooling that runs ephemerally on a developer machine** and is never deployed (Storybook *dev* mode, Vite dev server, REPLs).
+
+### Edge cases — borderline classes
+
+| Class | Verdict | Recipe shape |
+|---|---|---|
+| **Static-site generators** (Hugo, Jekyll, Docusaurus, Storybook in production-preview mode) | ✅ in scope | Thin: `<sg> build` → static dir → deploy via a static-host module (nginx / S3+CDN / Pages). The SG-specific bit is build config, theme path, content tree. |
+| **CLI agents** (Aider, OpenClaw, Hermes-Agent) | ✅ in scope | Install on a host, run as daemon or interactive CLI. Standard recipe shape. |
+| **AI inference servers** (vLLM, Ollama, TGI) | ✅ in scope | Deployed services exposing HTTP APIs. Standard recipe shape. |
+| **AI training libraries** (Unsloth, axolotl, transformers) | ❌ out of scope | Libraries called from training scripts, not deployed services. If a "training environments" track ever exists, it's a separate category — not project recipes under `references/projects/`. |
+| **CI runners** (GitHub Actions self-hosted, Buildkite agent) | ✅ in scope | Long-running daemon attached to a control plane. Standard recipe shape. |
+| **Standalone databases** (Postgres, ClickHouse, Redis) | ⚠️ borderline | Useful but usually a dependency of another recipe rather than a deployment goal. Document as a supporting service inside the consuming recipe; only write a standalone recipe when there's clear demand. |
+| **Storage backends** (MinIO, SeaweedFS, Garage) | ✅ in scope | Self-hostable services with HTTP APIs. Standard recipe shape. |
+
+### When in doubt
+
+Ask: *"Would the user need open-forge to walk them through provisioning + DNS + TLS + ongoing lifecycle for this?"* If yes, write a recipe. If no (e.g. they'd just `pip install` it inside their own scripts), it's out of scope — or fall back to Tier 2 (below) for one-off requests.
+
 ## Operating principles
 
 1. **Do more, ask less. Non-tech-friendly.** Default to autonomous execution. Only prompt the user for things only they can decide or provide: credentials, opinionated choices, things that touch their accounts at other companies. Hide everything Claude can figure out from the recipe.
@@ -112,6 +145,43 @@ When this policy is added (or strengthened), every existing recipe must be re-ve
 ### When in doubt
 
 Ask the user whether to pause for verification or accept the README's enumeration. Don't silently downgrade thoroughness.
+
+---
+
+## Two-tier coverage model
+
+open-forge ships a finite catalogue of verified recipes (Tier 1) plus a documented fallback for everything else (Tier 2). Both tiers obey the strict-doc-policy above; the difference is *when* the verification happens.
+
+### Tier 1 — verified recipes (the catalogue)
+
+The current set under `references/projects/`. Authored ahead of time, audited against upstream docs, kept current via the first-run discipline + version bumps. **Quality bar:**
+
+- Every install method has a `> **Source:** <upstream URL>` line at the top of its section.
+- Community-maintained methods open with the required ⚠️ blockquote per *Community-maintained methods — flagging requirements*.
+- Gotchas captured from real deploys; TODOs track unresolved verifications.
+- Plugin version bumped on each user-visible change.
+
+### Tier 2 — derived live from upstream docs
+
+When a user asks for software that has no Tier 1 recipe, the skill **falls back** instead of refusing:
+
+1. **Announce the fallback in one sentence**: *"This software isn't in our verified recipe set — I'll fetch upstream docs live and reuse the runtime / infra modules. Treat my output as best-effort, not authoritative."*
+2. **Apply the strict-doc-policy on the fly** — same rules as Tier 1:
+   - Read upstream README via `WebFetch`. If 403/404, fall back to `raw.githubusercontent.com` paths and/or `git clone` the docs repo locally.
+   - Locate the upstream install-method index (docs site, repo `docs/install/` tree, wiki).
+   - Enumerate methods from upstream — **do not invent**. If fetches fail, stop and tell the user; never speculate to fill a gap.
+   - Read canonical install artifacts (`Dockerfile`, `docker-compose.yml`, `helm/`, `flake.nix`).
+3. **Reuse runtime + infra + cross-cutting modules** under `references/runtimes/`, `references/infra/`, `references/modules/` for all the reusable parts (Docker install, k8s prereqs, VM provisioning, DNS, TLS, SMTP). Tier 2 is mostly *software-specific* on top of those — same shape as Tier 1, just authored at request time.
+4. **Cite every upstream URL** the same way Tier 1 does.
+5. **Offer to capture the result** as a new Tier 1 recipe when the deploy succeeds — that's how the catalogue grows. The captured recipe must still go through first-run discipline before claiming Tier 1 status.
+
+### Routing
+
+The skill checks Tier 1 first by name match against `references/projects/*.md`. If no match, fall back to Tier 2 with the announcement above. **Never silently mix tiers** — the user should always know which tier they're in, since the verification depth differs.
+
+### Quality boundary
+
+Tier 2 output is **best-effort, not authoritative.** It will hallucinate at the edges of upstream docs we couldn't fetch; it skips the iterative refinement that Tier 1 recipes get from real deploys. Tell the user this. They're trading verification depth for coverage breadth.
 
 ---
 
