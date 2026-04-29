@@ -589,7 +589,31 @@ Identical to Ghost-CLI Ubuntu — `ghost help`, `ghost update`, `ghost stop / st
 
 > **Source:** <https://ghost.org/docs/install/linode/> (TryGhost/Docs `install/linode.mdx`).
 
-_Section content added in a subsequent commit (Task G of the granular fix plan)._
+A thin wrapper around the Ghost-CLI Ubuntu method on Linode infrastructure. Upstream's `linode.mdx` is essentially three lines of guidance: provision a secured Ubuntu Linode, then follow the Ubuntu method.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Linode image | **Ubuntu** — 22.04 LTS or 24.04 LTS only |
+| RAM | ≥ 1 GiB |
+| Sudo username | **NOT** `ghost` (same constraint as Ghost-CLI Ubuntu) |
+
+### Provision
+
+Follow Linode's own guides (Claude links them; user clicks through their account):
+
+1. **Provision the Linode.** Pick the Ubuntu image. <https://www.linode.com/docs/guides/getting-started/>.
+2. **Secure the Linode.** Standard hardening: non-root user, SSH key auth only, firewall, package updates. <https://www.linode.com/docs/guides/securing-your-server/>.
+3. Once the Linode is configured + secured, switch to **Method — Ghost-CLI on Ubuntu** above and run that flow on the Linode VM.
+
+There are no Linode-specific install commands — the entire Ghost install is the Ubuntu method.
+
+### Linode-specific gotchas
+
+- **Image must be Ubuntu.** Other Linode images (Debian, AlmaLinux, etc.) are not upstream-supported for Ghost-CLI. Pick Ubuntu LTS at create time.
+- **Username constraint applies here too** — even if Linode's own guides default to `linode` or another name, ensure the Ghost-install user is **not** named `ghost`.
+- **Linode firewalls are off by default on basic plans.** Either enable Linode Cloud Firewall (UI) or use `ufw` on the Linode itself; either way, allow ports 22, 80, 443.
 
 ---
 
