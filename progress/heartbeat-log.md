@@ -174,3 +174,25 @@
 
 **Cumulative progress:** 49 / 1274 done (3.8%). 1225 pending.
 
+
+
+## 2026-04-29 06:53–07:25 UTC — batch 10
+
+**Processed (5):** LocalAI, Twenty CRM, Rocket.Chat, Copyparty, Sentry.
+
+**Upstream sources consulted:**
+- LocalAI: `README.md` on `master` (full quickstart with CPU/NVIDIA-CUDA-12/CUDA-13/Jetson/ROCm/Intel-oneAPI/Vulkan tags); `models.localai.io` gallery referenced.
+- Twenty: `README.md` on `main` (points to docs.twenty.com for self-host); `packages/twenty-docker/docker-compose.yml` on `main` (canonical compose with server + worker + db + redis); `packages/twenty-docker/.env.example` on `main`.
+- Rocket.Chat: `README.md` on `develop` (mostly marketing/deployment-provider links); `RocketChat/Docker.Official.Image/compose.yml` on `main` (⚠️ has `DEPRECATED_COMPOSE` env check — upstream is migrating people OFF it); `RocketChat/rocketchat-compose/compose.yml` + `README.md` on `main` (current blessed stack). Deprecation context: Bitnami MongoDB images retired.
+- Copyparty: `README.md` on `hovudstraum` (the 3386-line fever-dream README); `scripts/docker/README.md` on `hovudstraum` for the `min/im/ac/iv/dj` editions table; `contrib/systemd/copyparty.service` on `hovudstraum` for the reference systemd unit.
+- Sentry: `README.md` on `master` (5 lines — just points at dev docs); `install.sh` on `master` for the full install entrypoint sequence; `install/check-minimum-requirements.sh` and `install/_min-requirements.sh` for the 4-CPU/14-GB-RAM (or 2-CPU/7-GB errors-only) floor, Docker/Compose versions, and SSE 4.2 requirement; `docker-compose.yml` on `master` (857 lines, 50+ services) scanned for service inventory.
+
+**Notes:**
+- **LocalAI** recipe focused on the 7 GPU variants (CPU / CUDA-12 / CUDA-13 / Jetson / ROCm / Intel / Vulkan) because that's where most self-hosting decisions happen. Covered the 5 model-loading sources (gallery / huggingface:// / ollama:// / yaml-config / oci://) verbatim from the quickstart. Flagged the mandatory `API_KEY` for anything beyond localhost (default is unauth, anyone can burn your GPU), the VRAM-overflow silent-CPU-fallback footgun, and the macOS DMG-not-signed `xattr` workaround upstream calls out in issue #6268.
+- **Twenty** is a straightforward compose deploy but has the familiar pre-v1 + AGPLv3 combo. Emphasized the `SERVER_URL` exact-match rule (protocol + host + port), the literal `replace_me_with_a_random_string` default for `APP_SECRET`, and the "OAuth env vars are commented-out in the compose block by default" trap that breaks Gmail/Outlook sync setup for new admins. Documented Workspace ≠ superadmin — there's no instance-wide admin over multiple workspaces.
+- **Rocket.Chat** recipe was the most tangled. Upstream is in the middle of a compose-file migration (`Docker.Official.Image` → `rocketchat-compose`), the old compose fails unless `DEPRECATED_COMPOSE_ACK=1` is set, and Bitnami MongoDB images retired in 2025 — recipe surfaces all three and points at the migration forum post. Documented MongoDB replica-set requirement (Meteor change streams), the Oplog URL subtle-performance bug, and the GridFS-in-Mongo default that blows up DB size.
+- **Copyparty** is the maximalist of the batch. Framed it honestly — it speaks HTTP/HTTPS/WebDAV/FTP/FTPS/SFTP/SMB/TFTP/mDNS/SSDP/DLNA from ONE Python file. Covered all the upstream install paths (sfx, pypi, exe, zipapp, Docker editions, OS packages, Termux, bootable flashdrive for recovery). Documented the Docker editions table (`min`/`im`/`ac`/`iv`/`dj`), the accounts+volumes permission string syntax, the "default is open to everyone" footgun, the FTP-passive-port firewall requirement, and the `--xff-hdr cf-connecting-ip` rule for Cloudflare tunnels.
+- **Sentry** recipe leads with upstream's own "low-volume deployments and proofs-of-concept" qualifier because users routinely miss it and then complain Sentry self-hosted doesn't scale. Covered the FSL-1.1-Apache-2.0 licensing (not OSI-open), hardware minimums (4 CPU/14 GB RAM, or 2/7 for errors-only), the ~50-service container inventory, ClickHouse's SSE 4.2 requirement (and the KVM-cpuinfo-masking escape hatch), install.sh's phases, upgrade discipline (always `./install.sh`, never `docker compose pull`), and the Helm-charts-are-NOT-official warning.
+
+**Cumulative progress:** 54 / 1274 done (4.2%). 1220 pending.
+
