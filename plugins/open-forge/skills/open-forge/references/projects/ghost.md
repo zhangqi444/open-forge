@@ -371,7 +371,69 @@ sudo docker image prune
 
 > **Source:** <https://ghost.org/docs/install/local/> (TryGhost/Docs `install/local.mdx`).
 
-_Section content added in a subsequent commit (Task D of the granular fix plan)._
+Fast-track local install for theme development or kicking the tyres. Runs Ghost in `development` mode against SQLite3 — explicitly **not** for production (no auth hardening, no TLS, no proper process supervision).
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Platform | Mac / Windows / Linux (any) |
+| Node major | Latest LTS supported by Ghost (<https://ghost.org/docs/faq/node-versions/>) |
+| Package manager | `npm` or `yarn` |
+| Python 3 + setuptools | Required for native SQLite3 build (<https://ghost.org/docs/faq/python-setuptools-required-sqlite3>) |
+| Install dir | A clean, empty directory the user picks |
+
+### Install
+
+```bash
+# 1. Ghost-CLI globally (no sudo on Windows; sudo on Linux/macOS as needed)
+npm install -g ghost-cli@latest
+
+# 2. cd into an empty directory
+mkdir -p ~/ghost-local && cd ~/ghost-local
+
+# 3. Local install
+ghost install local
+```
+
+When `ghost install local` finishes:
+
+- Site UI: `http://localhost:2368`
+- Admin UI: `http://localhost:2368/ghost`
+- Mode: `development` (less caching than production)
+- DB: SQLite3 auto-created at `<install-dir>/content/data/`
+- Logs: `stdout` only (no log files)
+
+### Lifecycle
+
+```bash
+ghost stop      # stop
+ghost start     # start
+ghost log       # tail logs
+ghost ls        # list every Ghost instance on this machine
+```
+
+### Theme development (the main use case)
+
+Custom themes go under `<install-dir>/content/themes/<theme-name>/`. Edits to existing files hot-reload; **adding new files** requires `ghost restart` to pick up.
+
+Validate themes against the latest Ghost API with `gscan`:
+
+```bash
+npm install -g gscan
+
+gscan /path/to/ghost/content/themes/<theme-name>     # validate a theme dir
+gscan -z /path/to/theme.zip                           # validate a zip
+```
+
+The hosted version at <https://gscan.ghost.org/> is the same tool.
+
+### Local install gotchas
+
+- **Not production.** `ghost install local` runs in development mode with relaxed defaults — never expose this to the internet. For production, use Ghost-CLI on Ubuntu, the Docker preview, or DigitalOcean 1-Click.
+- **Python 3 + setuptools.** Without these, the SQLite3 native build during `ghost install local` fails with cryptic gyp errors. Install via `brew install python@3.12` (macOS), apt's default (Linux), or python.org installer (Windows).
+- **Multiple instances on one machine** — `ghost ls` shows them all. Each has its own port (2368, 2369, ...); `ghost install local --port 2369` for a second instance.
+- **Background process survives shell exits.** `ghost stop` is the only clean shutdown — closing the terminal doesn't kill it.
 
 ---
 
