@@ -765,15 +765,72 @@ Bitnami provisions MySQL on localhost with a generated password. Ghost is alread
 
 ## Method — Docker Hub community image
 
-> **Source:** <https://ghost.org/docs/install/docker-community/> (TryGhost/Docs `install/docker-community.mdx`). Image: <https://hub.docker.com/_/ghost>. Maintained by the docker-library community at <https://github.com/docker-library/ghost>.
+> ⚠️ **Community-maintained.** Upstream's `install/docker-community.mdx` opens with: *"The Docker image for Ghost is an unofficial community package maintained by people within the Ghost developer community."* It is **not** the same as the Docker Compose (preview) method above — that one is the upstream-published `TryGhost/ghost-docker` tooling. This community image at `docker-library/ghost` predates the preview tooling and ships less infrastructure. Verify the image's own README at deploy time (<https://hub.docker.com/_/ghost>) — it drifts independently of Ghost upstream.
+>
+> **Source:** <https://ghost.org/docs/install/docker-community/> (TryGhost/Docs `install/docker-community.mdx`). Image: <https://hub.docker.com/_/ghost>. Repo: <https://github.com/docker-library/ghost>. Issues: <https://github.com/docker-library/ghost/issues>.
 
-_Section content added in a subsequent commit (Task H of the granular fix plan)._
+For users who want a quick bare Ghost container (no Caddy / ActivityPub / Tinybird) — typically as part of a wider Compose stack the user already controls. **Prefer the Docker Compose preview** above for new self-host deploys; this method is documented for completeness and pre-existing deployments.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Image tag | `ghost:<major>` (e.g. `ghost:5-alpine`). Verify the latest major + variant on Docker Hub at deploy time — the docker-library catalogue drifts independently of Ghost upstream's release cadence. |
+| DB | The community compose example pairs Ghost with `mysql:8.0`. SQLite also works for single-container hobby use. |
+| TLS | **Not included** — the community image exposes plain HTTP on `:2368`. Bring your own reverse proxy (Caddy / Traefik / nginx) for TLS. |
+| Default port | Container `:2368` mapped to host `:8080` in the upstream example. |
+
+### Compose template (illustrative — verify against the image's README)
+
+```yaml
+# compose.yaml — based on the docker-library/ghost README; verify before use
+services:
+  ghost:
+    image: ghost:5-alpine
+    restart: always
+    ports:
+      - "8080:2368"
+    environment:
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: ${DB_PW}
+      database__connection__database: ghost
+      url: https://${CANONICAL_HOST}
+    depends_on:
+      - db
+    volumes:
+      - ghost_content:/var/lib/ghost/content
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PW}
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  ghost_content:
+  db_data:
+```
+
+```bash
+docker compose up -d
+# Site at http://<host>:8080 (no TLS — front with a reverse proxy for production)
+```
+
+### Docker Hub community-image gotchas
+
+- **TLS is not handled.** Unlike the Docker preview (which ships Caddy), this image expects you to terminate TLS upstream. For production, put it behind Traefik / Caddy / nginx with Let's Encrypt yourself.
+- **No ActivityPub or Tinybird Analytics.** Those services are part of the `TryGhost/ghost-docker` tooling, not this image. For Web Analytics / self-hosted ActivityPub, use the Docker Compose (preview) method.
+- **Tag layout drifts independently of Ghost upstream.** `ghost:5`, `ghost:5-alpine`, `ghost:latest` may not always track the newest Ghost release the day it's published — check the image's [supported tags](https://hub.docker.com/_/ghost) before pinning.
+- **Migration to the Docker preview.** There's no upstream migration script from this community image to `ghost-docker` — the migration assistant in `ghost-docker/scripts/migrate.sh` only handles Ghost-CLI installs. Manual approach: dump the MySQL DB + content volume from the community stack, restore into the preview stack.
 
 ---
 
 ## TODO — verify on subsequent deployments
 
-- **Tasks B–H of the granular fix plan**: fill in the placeholder method sections in subsequent commits (Ghost-CLI Ubuntu, Docker Compose preview, Local, Source, DigitalOcean 1-Click, Linode, Docker Hub community).
 - **First Ghost-CLI Ubuntu deploy**: verify the install-question list, NGINX vhost paths, and systemd unit name match what's on real Ubuntu 22.04 / 24.04 in 2026.
 - **First Docker Compose preview deploy**: verify the `ghost-docker` repo structure + `.env.example` fields haven't drifted; verify Tinybird workspace creation flow end-to-end.
 - **First DigitalOcean 1-Click deploy**: confirm a base droplet still spins the Ghost-CLI flow on first SSH (per upstream `digitalocean.mdx`).
