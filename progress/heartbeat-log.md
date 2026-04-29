@@ -422,3 +422,25 @@
 
 **Milestone: 100+ done.** 104 / 1274 (8.2%). 1170 pending. Consistent batch-of-5 cadence holding up; 100 crossed in ~19 batches over the past ~3 weeks (per backlog on earlier sessions).
 
+
+
+## 2026-04-29 13:53–14:35 UTC — batch 20
+
+**Processed (5):** NanoClaw, Wiki.js, Grafana Loki, Budibase, Authelia.
+
+**Upstream sources consulted:**
+- NanoClaw: README on `main` (194 lines — fully substantive, not a placeholder). Real upstream project by `qwibitai/nanoclaw`, positioned explicitly as a minimalist MIT-licensed alternative to OpenClaw. No docker-compose at root (not its distribution model; it's a workstation-install-via-`nanoclaw.sh` tool). No fabrication — recipe strictly follows README content.
+- Wiki.js: root README (527 lines — mostly sponsor/donation banners + changelog) has minimal install info; real canonical install doc is in separate `requarks/wiki-docs` repo at `master` branch, `install/docker.md` (196 lines). Got full Docker Compose + Docker run + env-var + LE examples from there. Upstream explicitly warns against `:latest` tag. v2 vs "v3 Next" reality documented.
+- Loki: README on `main` (140 lines — good pointer-to-docs content). Noted the March 2026 Helm chart fork to `grafana-community/helm-charts` for OSS users (from the README). Fetched `production/docker-compose.yaml` (64 lines) — the canonical single-binary dev compose. Grafana docs at grafana.com/docs/loki/latest/ as the actual documentation home.
+- Budibase: README on `master` (197 lines — hybrid product positioning as "AI operations platform" w/ `@budibase/cli`). Fetched `hosting/docker-compose.yaml` — 7-container stack (app-service + worker-service + proxy-service + minio + couchdb + redis + litellm-service). `hosting.properties` (env file) also fetched for full env-var list. GPL-3.0 license.
+- Authelia: README on `master` (483 lines — lots of badges, actual substance ~50 lines). Fetched `examples/compose/lite/compose.yml` (109 lines — canonical Traefik + Authelia lite example). Rich upstream docs at authelia.com; OIDC Provider support noted (beta-stable in 2026).
+
+**Notes on each recipe:**
+- **NanoClaw** (219 lines) — Interesting case: it's an explicit minimalist competitor/alternative to OpenClaw by user `qwibitai`. MIT-licensed. Treated honestly per upstream positioning ("small enough to understand, secure by isolation"). Not a server — installs on user workstation via `nanoclaw.sh` bootstrap. Architecture is Node host process + per-session Docker containers running Bun + Claude Agent SDK, SQLite inbound/outbound databases for message passing. Config-file-less design (customization = Claude Code editing source). Channels installed via `/add-<channel>` skills from `channels` branch; providers via `providers` branch. Docker Sandboxes micro-VM option documented. Gotchas: not server-deployable, fork-drift risk, no multi-user, depends on OneCLI Agent Vault + Claude Code tooling.
+- **Wiki.js** (302 lines) — v2-vs-v3 reality front-and-center ("v3 has been in development for years; v2 is current stable — use v2"). `:latest` explicitly warned against per upstream docs. 10+ install methods documented. Database backend matrix (Postgres recommended). Docker + Docker Compose + env-var + config.yml + Let's Encrypt built-in paths all covered. Git sync feature noted. AGPLv3 license.
+- **Loki** (327 lines, longest in batch) — Explained the key design tradeoff upfront ("no full-text indexing on content, only labels → 10-100x cheaper than ELK, but queries without label filter are slow"). Three deploy modes (monolithic / simple-scalable / microservices). High-cardinality labels = #1 footgun documented. March 2026 Helm chart fork to `grafana-community/helm-charts` for OSS users called out (per upstream README). Compactor + retention nuances. Alloy (current) vs Promtail (feature-complete).
+- **Budibase** (249 lines) — 7-container stack (app + worker + proxy + minio + couchdb + redis + litellm). LiteLLM integration for AI agents (new 2026 positioning — "AI Agents that run your operations"). 5+ mandatory secrets (JWT_SECRET, MINIO_ACCESS_KEY/SECRET_KEY, INTERNAL_API_KEY, API_ENCRYPTION_KEY) all stable-one-way. CouchDB as app-metadata store (unusual choice). GPL-3.0.
+- **Authelia** (374 lines, longest-ever in forge) — Front-loaded the ForwardAuth concept with "how it works in 30 seconds." Covered the Traefik lite example verbatim from upstream. Full `configuration.yml` sample with access_control rules + session + storage + notifier sections. OIDC Provider mode covered for apps that speak OIDC (Grafana/Nextcloud/Gitea/etc.). Parent-domain cookie SSO mechanic called out as the primary architectural constraint. 20+ gotchas including the storage.encryption_key rotation danger and the Redis-for-HA requirement.
+
+**Cumulative progress:** 109 / 1274 done (8.6%). 1165 pending.
+
