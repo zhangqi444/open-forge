@@ -509,3 +509,14 @@
 
 **Cumulative progress:** 124 / 1274 done (9.7%). 1150 pending.
 
+
+## 2026-04-29 — Batch 24 (5 recipes + 1 skipped)
+
+- **dashy** (24850★) — single-container Node/Vue dashboard. Pinned `lissy93/dashy:3.1.1`; flagged no-server-auth + config hot-reload quirks.
+- **netbird** (24822★) — WireGuard mesh with Signal/Management/Relay/coturn + bundled Zitadel IdP. Recommended upstream installer over hand-rolled compose; documented UDP NAT-traversal realities.
+- **plausible** (24690★) — Community Edition repo (`plausible/community-edition`), NOT the main `plausible/analytics` repo (flagged the 2024 rename). Postgres 16 + ClickHouse 24.12, four required ClickHouse overlay XMLs, TOTP_VAULT_KEY permanence warned.
+- **monica** (24568★) — Laravel 10 personal CRM. Apache variant recommended; documented `APP_KEY` permanence, required `php artisan setup:production` post-deploy, DB password double-set trap.
+- **firefly-iii** (23085★) — personal finance manager. 3-service compose (core + mariadb + cron sidecar); flagged `STATIC_CRON_TOKEN` exactly-32-char requirement, `APP_KEY` permanence, MariaDB vs Postgres swap path.
+- **dub** (23454★) — **SKIPPED**: upstream `docker-compose.yml` is explicitly local-dev-only ("Do not use this in production"); no production self-hosting guide published. Would require fabrication to write a recipe.
+
+Running totals: 129 done / 1 skipped / 1144 pending (1274 total).
