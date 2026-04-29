@@ -520,3 +520,13 @@
 - **dub** (23454★) — **SKIPPED**: upstream `docker-compose.yml` is explicitly local-dev-only ("Do not use this in production"); no production self-hosting guide published. Would require fabrication to write a recipe.
 
 Running totals: 129 done / 1 skipped / 1144 pending (1274 total).
+
+## 2026-04-29 — Batch 25 (5 recipes)
+
+- **node-red** (23065★) — Node.js low-code flow editor. `nodered/node-red` Docker image; recommended `:4.1.8` pin. Flagged no-auth-default + `credentialSecret` must be set before storing secrets. `/data` volume uid/gid 1000 perm warning.
+- **dockge** (23016★) — compose-native stack manager (Uptime Kuma author). Canonical `/opt/stacks` left-path-equals-right-path trap explained in depth. Docker socket = root-equivalent warning front-loaded. 1-admin-only / no RBAC noted.
+- **nocobase** (22221★) — no-code plugin platform on Postgres/MySQL/MariaDB/SQLite. Use `docker/app-postgres/docker-compose.yml`, NOT repo-root compose (dev-only with verdaccio/kingbase/adminer). APP_KEY + ENCRYPTION_FIELD_KEY permanence warned. Bumped upstream's `postgres:10` to `postgres:16`.
+- **chartdb** (22069★) — static SPA diagram editor. No backend, no DB; localStorage only. Flagged build-time-vs-runtime `VITE_` env trap for self-hosted LLMs; analytics-on-default; AGPL. Export warning because localStorage evaporates easily.
+- **activepieces** (21950★) — MIT workflow automation, app + worker + pg + redis. Pinned mixed-version-tags gotcha (upstream ships app:0.80.1 + worker:0.79.0 — harmonize). AP_ENCRYPTION_KEY permanence. pgvector image required for AI-memory pieces. `AP_EXECUTION_MODE=UNSANDBOXED` single-tenant caveat.
+
+Running totals: 134 done / 1 skipped / 1139 pending (1274 total, 10.6%).
