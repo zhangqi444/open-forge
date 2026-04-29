@@ -466,3 +466,24 @@
 
 **Cumulative progress:** 114 / 1274 done (8.9%). 1160 pending.
 
+
+
+## 2026-04-29 15:23–15:40 UTC — batch 22
+
+**Processed (5):** RustFS, Infisical, Ente Auth, Ente Photos, Actual Budget.
+
+**Upstream sources consulted:**
+- RustFS: README (16 KB — detailed positioning vs MinIO, full feature status table, 6 install methods) + `docker-compose.yml` (271 lines, w/ 3 profile groups: default/observability/proxy/dev).
+- Infisical: README (13 KB) + `docker-compose.prod.yml` (49 lines, flagged `# PIN THIS TO A SPECIFIC TAG`) + `.env.example` (142 lines — rich env-var reference incl. OAuth providers).
+- Ente (both Photos + Auth): monorepo `ente-io/ente`. README (137 lines) + `server/compose.yaml` (110 lines, explicitly labeled "not meant for production use") + `docs/docs/self-hosting/installation/` (quickstart.md 46 lines + compose-doc.md 83 lines + env-var.md 60 lines + requirements.md 41 lines). Auth and Photos share the same Museum backend — documented as such in both recipes.
+- Actual Budget: README (pointer-to-docs) + `actual-server` README (flags Feb 2025 repo merger into `actualbudget/actual` `packages/sync-server`) + `docker-compose.yml` (tiny, 23 lines — env vars all commented out by default).
+
+**Notes on each recipe:**
+- **RustFS** (248 lines) — Upfront comparison table vs MinIO reflecting upstream's own positioning language. Hedged honestly ("these are RustFS's own claims; MinIO is mature at scale"). Distributed mode's 🚧 status called out as key trade-off vs MinIO. Container UID 10001 chown gotcha front-loaded. Default `rustfsadmin`/`rustfsadmin` credentials flagged as critical vulnerability. 3 compose profiles (observability / proxy / dev) documented.
+- **Infisical** (314 lines) — Free vs Enterprise feature matrix split clearly (SSO/SAML/SCIM/RBAC/IP-allowlist = paid). `ENCRYPTION_KEY` + `AUTH_SECRET` sample values from `.env.example` flagged as genuinely PUBLIC — many self-hosters leave them default. CLI-vs-SDK injection trade-off explained. vs Vault vs Doppler framing.
+- **Ente Photos** (285 lines) — 3-container stack (Museum + Postgres + MinIO + socat workaround for presigned URL resolution). `quickstart.sh` vs compose-from-source paths. 3 hardcoded bucket names (`b2-eu-cen` / `wasabi-eu-central-2-v3` / `scw-eu-fr-v3`) called out — don't rename without editing museum.yaml. Compose file's "not meant for production use" disclaimer respected. E2EE means recovery is impossible by design.
+- **Ente Auth** (184 lines) — Cross-referenced shared architecture with Photos. Made clear: hosted Auth is FREE forever (no reason to self-host Auth alone); if self-hosting, same stack as Photos; or use offline-only mobile apps. 3 install paths explicit. Port :3003 for web UI. Custom-server-URL "long-press sign in" gotcha documented (easy to miss).
+- **Actual Budget** (263 lines) — Local-first architecture explained upfront vs Firefly III's client-server model. Electron desktop apps are a valid no-server option. Feb 2025 repo consolidation (`actual-server` → `actual/packages/sync-server`) called out. Bank sync via GoCardless (EU/UK) or SimpleFIN (US/Canada). E2EE is per-budget opt-in. PikaPods + Fly.io managed alternatives at $1.40-1.50/month mentioned.
+
+**Cumulative progress:** 119 / 1274 done (9.3%). 1155 pending.
+
