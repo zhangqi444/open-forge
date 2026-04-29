@@ -218,3 +218,27 @@
 
 **Cumulative progress:** 59 / 1274 done (4.6%). 1215 pending.
 
+
+
+## 2026-04-29 07:53–08:30 UTC — batch 9
+
+**Context:** Woke up at 59/1274 done (previous batches 7-8 — ran in other sessions I wasn't present for — covered 25 additional apps between my batch 6 and now).
+
+**Processed (5):** Puter, Paperless-ngx, cobalt, Appsmith, PhotoPrism.
+
+**Upstream sources consulted:**
+- Puter: `README.md` + `docker-compose.yml` + `Dockerfile` + `doc/self-hosters/instructions.md` on `main`. Self-host docs noted as ALPHA upstream.
+- Paperless-ngx: `README.md` + `docker/compose/docker-compose.postgres.yml` on `main`. Referenced upstream `install-paperless-ngx.sh`, docs at `docs.paperless-ngx.com`.
+- cobalt: `README.md`, `docs/run-an-instance.md`, `docs/protect-an-instance.md`, `docs/api-env-variables.md`, `docs/examples/docker-compose.example.yml` on `main`.
+- Appsmith: `README.md` + `deploy/docker/docker-compose.yml` on `release` branch. Docs site at `docs.appsmith.com` referenced but not scraped.
+- PhotoPrism: `README.md` on `develop` + `compose.latest.yaml` (dev compose for reference structure). Canonical prod compose comes from `docs.photoprism.app/getting-started/docker-compose/`.
+
+**Notes:**
+- **Puter** recipe leads with upstream's own "ALPHA, not for production" warning. Biggest self-host footgun is the requirement for BOTH `<domain>` AND `api.<domain>` to resolve — documented prominently. Default-user auto-generated password + "change it first" flow called out.
+- **Paperless-ngx** recipe hammers the security posture (DO NOT run on untrusted host; documents stored in the clear). Documented the 4 compose variants (postgres/sqlite × with-or-without-tika), UID/GID bind-mount pitfalls, `PAPERLESS_URL` requirement behind reverse proxy, and the `document_exporter` as the upstream-recommended backup method.
+- **cobalt** recipe reframed the app's stateless nature (no cache, no persistence, "fancy proxy"). Documented the ethics statement from upstream verbatim, the mandatory Turnstile/API-key bot-protection for public instances, the major-version pin (`:11` not `:latest`), and the `FORCE_LOCAL_PROCESSING` bandwidth footgun.
+- **Appsmith** recipe covers CE (Apache-2.0) vs EE (proprietary) split. Biggest footgun: encryption password/salt are write-once; rotating them makes all stored datasource credentials un-decryptable. Documented `appsmithctl backup` / `appsmithctl ssl` / `appsmithctl restore` commands, single-container vs Helm-chart trade-off.
+- **PhotoPrism** recipe covers Docker Compose, Pi-specific tuning (`PHOTOPRISM_DISABLE_TENSORFLOW=true`), bare-metal tar.gz path. Documented the originals-as-source-of-truth model, the `PHOTOPRISM_SITE_URL` trailing-slash gotcha, `AUTH_MODE=public` danger, the TensorFlow memory floor, and the WebDAV endpoint.
+
+**Cumulative progress:** 64 / 1274 done (5.0%). 1210 pending.
+
