@@ -400,3 +400,25 @@
 
 **Cumulative progress:** 99 / 1274 done (7.8%). 1175 pending. One more batch takes us past 100 done.
 
+
+
+## 2026-04-29 13:23–14:00 UTC — batch 19 🎉 crossed 100
+
+**Processed (5):** Homepage (gethomepage), Postiz, SearXNG, Jitsi Meet, Chatwoot.
+
+**Upstream sources consulted:**
+- Homepage: README on `main` (178 lines but mostly banner/feature-list) + `docs/installation/docker.md` (58 lines — the canonical install doc). README-root `docker-compose.yaml` returned 404; docs file has the real compose example.
+- Postiz: README on `main` (145 lines — mostly sponsor banners) + `docker-compose.yaml` (hefty, ~200 lines, all env vars inline) + fetched `gitroomhq/postiz-docs` repo for quickstart.mdx + installation/docker-compose.mdx (362 lines, matches main repo's compose with RUN_CRON addition) + configuration/reference.mdx. Temporal stack with ElasticSearch adds the bulk.
+- SearXNG: main repo's `README.md` was 404 (weird); `searxng-docker` repo has been DEPRECATED per its own README — points to main repo's `container/` dir ("compose-instancing"). Fetched `docs/admin/installation-docker.rst` (206 lines, canonical) + `container/docker-compose.yml` (28 lines, minimal) + `container/.env.example` (15 lines).
+- Jitsi Meet: `jitsi-meet` README is 87 lines (mostly marketing, points to handbook). `docker-jitsi-meet` README (39 lines) + its `docker-compose.yml` (521 lines!) + `env.example` (242 lines) provided the real install details. Handbook URL: jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker.
+- Chatwoot: `develop` branch README (139 lines — good feature list) + `docker-compose.production.yaml` (62 lines — canonical prod compose, minimal structure with base YAML anchor) + `docker-compose.yaml` (dev, irrelevant). Official docs at chatwoot.com/docs/self-hosted.
+
+**Notes on each recipe:**
+- **Homepage** (245 lines) — the standout gotcha: `HOMEPAGE_ALLOWED_HOSTS` is MANDATORY since v1.0 — without it, app returns 403. This is the #1 "why doesn't my upgrade work?" support question. Covered Docker auto-discovery via labels, `HOMEPAGE_VAR_*` / `HOMEPAGE_FILE_*` env var substitution, dashboard-icons integration, and no-built-in-auth reality (needs reverse-proxy auth layer).
+- **Postiz** (321 lines, longest in batch) — multi-service stack with Temporal + ElasticSearch adds complexity. 4 databases total (Postiz PG + Temporal PG + ES + Redis). OAuth redirect-URL setup is the primary onboarding pain. Migration warning for v2.11.2 → v2.12.0 Temporal change. Acknowledged AGPL copyleft for SaaS resellers. Twitter/X API paid-tier reality called out.
+- **SearXNG** (303 lines) — the DEPRECATED `searxng-docker` repo trap is addressed front-and-center; new installs MUST use `container/` compose-instancing from the main repo. Added migration section for users of the deprecated repo. `secret_key` mandatory, `image_proxy: true` for privacy, Valkey (Redis fork) as default KV store. Public-vs-private-instance table distinguishing operational requirements.
+- **Jitsi Meet** (273 lines) — front-loaded the "UDP 10000 + NAT" reality with an ASCII port table; this is the #1 cause of "joined the meeting but can't hear/see anyone." `JVB_ADVERTISE_IPS` required for NAT setups. Cloud firewall rules for UDP are the common blocker on AWS/GCP/Azure. Jibri (recording) + Jigasi (SIP) called out as separate resource-heavy components. E2EE limited to ≤4 participants in production.
+- **Chatwoot** (318 lines) — pgvector-based Postgres is the important detail (plain `postgres:16` fails migration if Captain AI is on). `REDIS_PASSWORD` URL-encoding footgun. Inbound email routing is the hardest part of any Chatwoot deploy. Multi-tenant signup (`ENABLE_ACCOUNT_SIGNUP`) must be disabled for single-tenant internal deploys. Helm chart available for k8s.
+
+**Milestone: 100+ done.** 104 / 1274 (8.2%). 1170 pending. Consistent batch-of-5 cadence holding up; 100 crossed in ~19 batches over the past ~3 weeks (per backlog on earlier sessions).
+
