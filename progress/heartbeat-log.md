@@ -550,3 +550,13 @@ Running totals: **139 done / 1 skipped / 1134 pending** (1274 total, 10.9%).
 - **navidrome** (20743★) — Go music server, Subsonic API. Minimal 1-container compose; read-only root FS + UID mapping; transcoding needs ffmpeg (in image, not binary); SQLite on local disk only (not NFS); first-user-admin; Caddy + Traefik overlay composes noted.
 
 Running totals: 144 done / 1 skipped / 1129 pending (1274 total, 11.3%).
+
+## 2026-04-29 — Batch 25 (5 recipes)
+
+- **neko** (20705★) — WebRTC virtual browser / shared desktop. Flagged WebRTC UDP reality (52000-52100/udp), mandatory `NEKO_NAT1TO1` for VPS NAT, `shm_size: 2gb` requirement, v2→v3 env-key rename (`NEKO_PASSWORD` → `NEKO_MEMBER_MULTIUSER_*`), ICE-Lite vs TURN tradeoff, GPU acceleration via `.nvidia` variants + nvidia-runtime.
+- **pangolin** (20451★) — Fossorial identity-aware reverse proxy + WireGuard. 3-service stack (pangolin/traefik/gerbil). Installer-binary preferred over hand-edited compose. CE (AGPL) vs EE (Fossorial Commercial License, free under $100K rev) positioning. NET_ADMIN + SYS_MODULE on Gerbil trust boundary. Wildcard DNS mandatory. Newt clients at remote sites.
+- **netbox** (20375★) — IPAM/DCIM source-of-truth. Use `netbox-docker` repo **release branch**, NOT main. Pointed out password-double-set trap across 4 env files, `ALLOWED_HOSTS` default `*`, `API_TOKEN_PEPPER_1` rotation cost (re-issue all tokens), two-redis-not-one design (queue + cache), plugin build-at-image-time requirement. Postgres 18 default — noted downgrade path to 16.
+- **teleport** (20194★) — **No upstream docker-compose for the cluster.** Recipe pivots to package+systemd (recommended) and Helm for K8s/HA; Docker is documented but for demos only. One-major-version-at-a-time upgrade rule. CA keys + cluster-name permanence. SQLite vs HA backend reality check. AGPL Community vs Enterprise feature split called out (SSO to major IdPs is EE-only).
+- **docmost** (19945★) — Notion-style collab wiki. 3-service compose (Node + Postgres 18 + Redis 8). Flagged `APP_SECRET` permanence (JWT signing), Postgres-password-double-set trap, **Redis `maxmemory-policy=noeviction` mandatory** for Y.js collab integrity, WebSocket passthrough requirement for real-time editing, S3 storage switch doesn't migrate existing files, telemetry on by default.
+
+Running totals: 149 done / 1 skipped / 1124 pending (1274 total, 11.8%).
