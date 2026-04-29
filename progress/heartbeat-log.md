@@ -130,3 +130,25 @@
 
 **Cumulative progress:** 39 / 1274 done (3.1%). 1235 pending.
 
+
+
+## 2026-04-29 05:25–05:55 UTC — batch 8
+
+**Processed (5):** Odoo, Mastodon, Alist, Huginn, OpenCut.
+
+**Upstream sources consulted:**
+- Odoo: `README.md` on `master` (thin — points at docs site); `docker-library/docs/odoo/content.md` on `master` (canonical Docker image README with compose example + env-var docs); `odoo.com/documentation/master/administration/install/` referenced for APT repo structure.
+- Mastodon: `README.md` on `main`; `docker-compose.yml` on `main` (the canonical production compose shape — Postgres 14, Redis 7, optional Elasticsearch 7.17, web+streaming+sidekiq split).
+- Alist: `README.md` on `main`; `docker-compose.yml` on `main`; `Dockerfile` on `main` (surfaced `INSTALL_FFMPEG` / `INSTALL_ARIA2` build args and the PUID/PGID/UMASK env-var model).
+- Huginn: `README.md` on `master`; `doc/docker/install.md` on `master`. Didn't scrape `.env.example` but referenced it.
+- OpenCut: `README.md` on `main` (explicit self-host-with-Docker section at port 3100; dev-mode Bun flow at 3000). `docker-compose.yaml` at the 14-byte path turned out to be a 404 — real compose file is at the repo root but not fetchable via the `/main/` path tested; recipe cites it generically.
+
+**Notes:**
+- **Odoo** recipe scoped to Community edition; Enterprise mentioned but flagged as paid-subscription-only. Documented the 6 upstream install paths (Docker, APT, RPM, source, nightly tarball, Odoo.sh as out-of-scope). Hammered on the `admin_passwd` footgun (without a strong value set, `/web/database/manager` is publicly destructive), the reverse-proxy `proxy_mode=True` + longpolling `/websocket` routing requirements, and the explicit reality that major-version upgrades (17→18→19) are NOT one-command operations — use OpenUpgrade or Odoo's paid service.
+- **Mastodon** is the canonical federated-social-network deploy. Covered Docker Compose + bare-metal Ubuntu paths. Emphasized the IMMUTABLE `LOCAL_DOMAIN` (changing breaks all federation), the optional-but-painful Elasticsearch config (single-node ES needs specific JVM + mlock config), Sidekiq queue-splitting for scaling, and the S3/R2 object storage upgrade for anything with actual users. Included the full `tootctl` admin CLI reference.
+- **Alist** required geographic context (project originated `Xhofe/alist`, now `AlistGo/alist`; user base heavily Chinese; many China-market drive backends). Framed it correctly as a READ-aggregator + WebDAV server, NOT a sync tool (per upstream's disclaimer about 302-redirect behavior). Flagged the 2FA-before-exposure rule (Alist connects to full-access cloud tokens), the random-admin-password-printed-once on first boot, and the OpenList fork as a possible alternative.
+- **Huginn** recipe distinguishes the three Docker shapes (all-in-one bundled-MySQL, multi-process `huginn-single-process` for scaling, bare-metal). Hammered on default `admin`/`password` creds (inexcusable on any exposed deploy), `ENABLE_INSECURE_AGENTS=true` meaning arbitrary code execution via Shell/Ruby Agents, and the project's maintenance-mode status (newer automation tools like n8n get more active dev).
+- **OpenCut** is another "not quite a traditional server" case (like Storybook, LocalSend, Docusaurus, World Monitor in prior batches). Reframed as "web app is the self-host target; desktop is a user-installed artifact; WASM core is a dev dep." Covered the monorepo structure (Next.js web + GPUI desktop + Rust WASM), production Docker on port 3100 vs dev mode on 3000, and the privacy-first "video data stays in the browser" model (server stores metadata not frames — body-size limits are defensive). Warned about the active-refactor state (export/rendering being rewritten with a new binary approach).
+
+**Cumulative progress:** 44 / 1274 done (3.5%). 1230 pending.
+
