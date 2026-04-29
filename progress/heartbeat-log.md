@@ -378,3 +378,25 @@
 
 **Cumulative progress:** 94 / 1274 done (7.4%). 1180 pending.
 
+
+
+## 2026-04-29 12:54–13:40 UTC — batch 18
+
+**Processed (5):** Frigate, InfluxDB, changedetection.io, Czkawka, ntfy.
+
+**Upstream sources consulted:**
+- Frigate: `README.md` on `dev` branch (83 lines — mostly screenshots + marketing; points at docs.frigate.video). Plus `docker-compose.yml` (44 lines — it's the DEV container compose, not production; still useful for device passthrough / group_add patterns). Relied on general Frigate knowledge + upstream-confirmed detector/hardware matrix.
+- InfluxDB: README on BOTH `main` (v3 Core) AND `main-2.x` (v2) branches — upstream documents the three-version situation in the README itself. Got the version-compatibility matrix + storage engine differences from there.
+- changedetection.io: `README.md` on `master` (357 lines — rich) + `docker-compose.yml` (148 lines with extensive inline env-var comments). README explicitly documents the Docker + Docker Compose install path, notification URL examples, filter types, and the new LLM-powered rules feature.
+- Czkawka: `README.md` on `master` (208 lines). Covers all 4 frontends (Krokiet, Czkawka GTK, Czkawka CLI, Cedinia Android) + the comparison table with FSlint/DupeGuru/Bleachbit. Upstream makes clear Krokiet is the new-GUI successor with Czkawka GTK in bugfix-only mode.
+- ntfy: `README.md` on `main` (277 lines but 95% is the sponsor list — actual content ~50 lines pointing at ntfy.sh/docs/install/). Used general ntfy knowledge + documented the canonical install/config patterns.
+
+**Notes:**
+- **Frigate** (244 lines) — front-loaded the "hardware requirements are non-trivial" reality. Without an AI accelerator, CPU-only inference doesn't scale. Google Coral supply-constraint flagged (notoriously hard to find in stock). Intel iGPU via OpenVINO is the practical alternative. Distinguished FFmpeg hw decode vs AI accelerator (two separate hardware paths). `shm_size` sizing formula documented. 0.14+ auth-mandatory change called out with port 8971 vs 5000 distinction. Home Assistant integration via MQTT emphasized.
+- **InfluxDB** (338 lines, longest in batch) — **three active versions** make this the trickiest recipe so far. Wrote a proper version-decision-tree early. Flux removal in v3 is the biggest breaking change for existing users with Flux-heavy Grafana dashboards. Covered install paths for all three versions + per-version data layouts + backup commands + upgrade paths (v1→v2 via `influxd upgrade` CLI, v2→v3 via line-protocol compatibility + data export). Cardinality-explosion TSM trap + "Port 8086 is universal but overloaded" gotcha + "Flux doesn't work in v3" front-and-center.
+- **changedetection.io** (279 lines) — covered the standalone Docker run + the docker-compose-with-sockpuppetbrowser pattern needed for JS-rendered pages. Apprise notification URL examples for 12+ services. Filter types: CSS / XPath / JSONPath / jq / regex. New-as-of-2026 LLM-powered rules section (per-site "notify only when X" intent, powered by LiteLLM supporting OpenAI/Gemini/Anthropic/Ollama). Key gotchas: no default password, `USE_X_SETTINGS=1` required behind reverse proxies, sites actively blocking scrapers (Cloudflare/PerimeterX).
+- **Czkawka** (270 lines) — not a server app (it's a desktop utility), so recipe structure differed: four frontends (Krokiet / Czkawka GTK / CLI / Cedinia Android) each with install paths. CLI section got the most detail because that's the only automation-relevant frontend. Delete-method modes (`aen`/`aeo`/`hl`/`hlo`) documented with the safety advice to ALWAYS dry-run with `--delete-method none` first. Czkawka GTK noted as bugfix-only per upstream, Krokiet recommended for new users.
+- **ntfy** (292 lines) — HTTP-based pub-sub notification service. Covered public `ntfy.sh` tier vs self-host tradeoffs. Example curl publish + subscribe patterns. User + ACL setup via CLI. The honest Firebase FCM story (without FCM Android's WebSocket can be killed by aggressive battery optimizers; FCM requires rebuilding the Android app). The iOS-requires-Apple-APNs-relay-via-ntfy.sh reality (self-host doesn't fully escape ntfy.sh dependency for iOS users). Inbound SMTP server for email-triggered notifications. Web Push requires HTTPS + `behind-proxy: true` sanity check.
+
+**Cumulative progress:** 99 / 1274 done (7.8%). 1175 pending. One more batch takes us past 100 done.
+
