@@ -152,3 +152,25 @@
 
 **Cumulative progress:** 44 / 1274 done (3.5%). 1230 pending.
 
+
+
+## 2026-04-29 06:23–06:55 UTC — batch 9
+
+**Processed (5):** Plane, Gogs, Metabase, Discourse, Penpot.
+
+**Upstream sources consulted:**
+- Plane: `README.md` on `preview` (repo default branch); `developers.plane.so/self-hosting/methods/docker-compose.md` (fetched via `.md` suffix — the docs site serves raw MDX). `setup.sh` on `master` inspected for release-latest selfhost helper signature. Repo-root `docker-compose.yml` found but confirmed as DEV compose (builds from local Dockerfiles).
+- Gogs: `README.md` on `main`. `gogs.io/docs/installation` referenced but not scraped. Canonical `app.ini` structure from <https://gogs.io/docs/advanced/configuration_cheat_sheet> (well-known from prior deploys).
+- Metabase: `README.md` on `master`; `docs/installation-and-operation/running-metabase-on-docker.md` on `master` (full docker compose example + MB_DB_* env-var docs inline).
+- Discourse: `README.md` on `main`; `docs/INSTALL-cloud.md` on `main` (canonical "Quick Start" with `install-discourse` one-liner, hardware requirements table, supported cloud providers). `discourse_docker/README.md` on `main` for `launcher` command reference.
+- Penpot: `README.md` on `develop` (the repo default branch); `docker/images/docker-compose.yaml` on `develop` (full canonical compose with the `x-flags` / `x-uri` / `x-secret-key` YAML anchors pattern + inline comments for S3 + Traefik).
+
+**Notes:**
+- **Plane** recipe untangles the Commercial-vs-Community edition distinction (commercial one-liner at `prime.plane.so/install` vs the Community `setup.sh` action-menu). Hammered on the `WEB_URL` ⇄ `CORS_ALLOWED_ORIGINS` exact-match rule, the 4GB-RAM floor (migrator OOMs below), and the DEV-only repo-root compose gotcha. Included all 12 compose services in architecture section.
+- **Gogs** recipe includes honest framing up front: *"Gitea is probably a better choice today."* Project development is slow compared to Gitea; Gogs remains MIT-licensed and lean but loses on feature velocity. Covered binary install with systemd unit, Docker Compose with Postgres, and the `INSTALL_LOCK`/`DISABLE_REGISTRATION` `app.ini` tightening required after first-run wizard.
+- **Metabase** recipe hammered on the **H2 → Postgres appdb rule** (the single biggest production footgun). Documented the OSS-vs-Enterprise image distinction (`metabase/metabase` vs `metabase/metabase-enterprise`), the `load-from-h2` migration command, and the JVM heap sizing (`-Xmx2g` min for production). Included the upstream-canonical `/dev/urandom:/dev/random:ro` bind-mount workaround.
+- **Discourse** was the most opinionated. Upstream is emphatic that `discourse_docker` is the ONLY supported install — no K8s, no bare-metal, no community Docker images. Recipe includes the hardware-requirements table from INSTALL-cloud.md, the launcher command reference, the `rebuild` vs `restart` distinction (most common operational question), and the SMTP-is-mandatory-even-for-first-admin constraint. Covered multi-container web+data split for large installs and the `docker_manager`-plugin upgrade flow via `/admin/upgrade`.
+- **Penpot** recipe navigates the `PENPOT_FLAGS` feature-flag model carefully — upstream's default compose ships with `disable-email-verification` + `disable-secure-session-cookies`, which are dev defaults that bite hard on public deploys. Flagged the literal `change-this-insecure-key` default `PENPOT_SECRET_KEY` (must be rotated pre-boot). No instance-admin UI — promotion requires `./run.sh manage` CLI inside the backend container. Covered the Valkey-renamed-from-Redis situation, the Chromium-heavy exporter, and the `PENPOT_HTTP_SERVER_MAX_BODY_SIZE` setting for Figma-import file sizes.
+
+**Cumulative progress:** 49 / 1274 done (3.8%). 1225 pending.
+
