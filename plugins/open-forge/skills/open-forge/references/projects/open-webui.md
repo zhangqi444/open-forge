@@ -271,6 +271,64 @@ rm -rf ~/.open-webui
 
 ---
 
+## uv install (Python 3.11 via `uvx`)
+
+> **Source:** <https://docs.openwebui.com/getting-started/quick-start/> § *Python tab → Uv* (upstream `docs/getting-started/quick-start/tab-python/Uv.md`).
+
+For users who prefer Astral's `uv` over plain pip — runs Open WebUI as an ephemeral `uvx` invocation against an upstream-managed Python 3.11. No virtualenv to manage; `uv` provisions a Python 3.11 toolchain on first use and caches it.
+
+### Install `uv`
+
+```bash
+# macOS / Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+### Run Open WebUI
+
+`DATA_DIR` is **mandatory** here — without it, `uvx` may write to a temp dir that gets cleaned up between runs, losing every chat and setting.
+
+```bash
+# macOS / Linux
+DATA_DIR=~/.open-webui uvx --python 3.11 open-webui@latest serve
+
+# Windows (PowerShell)
+$env:DATA_DIR="C:\open-webui\data"; uvx --python 3.11 open-webui@latest serve
+```
+
+`uvx` resolves the `open-webui` package from PyPI, provisions a Python 3.11 environment on first run, and runs `open-webui serve` against it. Subsequent runs reuse the cached environment.
+
+### Updating
+
+`uvx --python 3.11 open-webui@latest serve` always pulls the latest published version. To pin a version: `uvx --python 3.11 open-webui@0.6.x serve`.
+
+### Uninstall
+
+```bash
+# Stop the running server (Ctrl+C in the terminal)
+
+# Uninstall via uv tool registry (only relevant if you used 'uv tool install' instead of 'uvx')
+uv tool uninstall open-webui
+
+# Clean the uv cache (drops the Python 3.11 toolchain + open-webui binaries)
+uv cache clean
+
+# Remove data — DESTRUCTIVE
+rm -rf ~/.open-webui
+```
+
+### uv-specific gotchas
+
+- **`DATA_DIR` is required.** Without it, `uvx` may use a temporary cache directory; you'll lose every chat and setting between runs. Set it in `.env` / `.bashrc` / a shell profile so you don't forget.
+- **`uvx` is ephemeral by design.** Each invocation starts a fresh `uv tool run`-style process; for a persistent daemon (systemd-user, launchd, Scheduled Task), you'd typically wrap `uvx ... serve` in a unit file the same way the pip section's daemon-lifecycle wraps `open-webui serve`.
+- **Python 3.11 pin is non-optional.** Same constraint as pip: 3.10 fails to start, 3.12+ fails on dep compat. The `--python 3.11` flag tells `uv` exactly which toolchain to fetch.
+- **`uv` itself is fast but not magic.** First run downloads the Python 3.11 toolchain (~30 MB) plus open-webui's deps; subsequent runs are seconds.
+
+---
+
 ## Docker (recommended default)
 
 Pair with [`references/runtimes/docker.md`](../runtimes/docker.md) for host-level Docker install + lifecycle.
@@ -424,6 +482,18 @@ For GPU pairing, use upstream's variants: `docker-compose.gpu.yaml` (generic NVI
 docker compose -f docker-compose.yaml -f docker-compose.gpu.yaml up -d
 ```
 
+Upstream also ships two additional Compose variants worth knowing about, layered the same way:
+
+| Variant file | Purpose |
+|---|---|
+| `docker-compose.api.yaml` | Adds an Ollama service exposing the API on `:11434` (override port via `OLLAMA_WEBAPI_PORT`) — when you want Ollama reachable on the host network for tools beyond Open WebUI. |
+| `docker-compose.otel.yaml` | Adds Grafana LGTM (Loki + Tempo + Mimir) for observability — Open WebUI sends OpenTelemetry traces / metrics to Grafana on `:4317`/`:4318` and you view them at Grafana on `:3000`. |
+
+```bash
+# Open WebUI + Ollama + LGTM observability stack
+docker compose -f docker-compose.yaml -f docker-compose.gpu.yaml -f docker-compose.otel.yaml up -d
+```
+
 ### Lifecycle
 
 ```bash
@@ -463,13 +533,15 @@ For OAuth: set `WEBUI_URL=https://chat.example.com` so the OAuth callback URLs m
 
 ---
 
-## Kubernetes (Kustomize / Helm — community)
+## Kubernetes (Helm — first-party chart)
 
 When the user picks **any k8s cluster → Kubernetes**. Pair with [`references/runtimes/kubernetes.md`](../runtimes/kubernetes.md) for kubectl + Helm prereqs and Secret hygiene.
 
-> **Verify the manifest source first.** Open WebUI upstream's README mentions kubectl / Kustomize / Helm support but does **not ship in-repo manifests**. The k8s deploy options are documented at <https://docs.openwebui.com/getting-started/quick-start/advanced-topics/kubernetes>. Multiple community Helm charts exist (`open-webui/helm-charts` is the most-used); confirm with the user which they intend.
+> **Source:** <https://docs.openwebui.com/getting-started/quick-start/> § *Kubernetes tab → Helm* (upstream `docs/getting-started/quick-start/tab-kubernetes/Helm.md`). Chart repo: <https://github.com/open-webui/helm-charts> (owned by the `open-webui` GitHub org — first-party). Helm-repo URL: `https://helm.openwebui.com` (custom domain) is equivalent to `https://open-webui.github.io/helm-charts`.
+>
+> **Note on Kustomize / kubectl:** Open WebUI's README mentions "kubectl, kustomize or helm" as supported, but the docs site's install index documents **only Helm** as a Kubernetes install path. Kustomize and raw `kubectl apply` are mentioned as possible (you can always render the Helm chart and `kubectl apply -f -`), but no upstream-blessed Kustomize bundle exists.
 
-### Helm (community chart, illustrative)
+### Helm (first-party chart)
 
 ```bash
 helm repo add open-webui https://helm.openwebui.com
@@ -490,7 +562,7 @@ helm upgrade --install open-webui open-webui/open-webui \
   --set webuiSecretKey=$(openssl rand -hex 32)
 ```
 
-Always `helm show values open-webui/open-webui > /tmp/defaults.yaml` first — community chart value schemas drift; the keys above are illustrative.
+Always `helm show values open-webui/open-webui > /tmp/defaults.yaml` first — values can drift between chart versions; the keys above are illustrative.
 
 ### Verify + access
 
@@ -505,7 +577,9 @@ For public exposure via Ingress, pair with cert-manager + an ingress controller.
 
 ### Kubernetes-specific gotchas
 
-- **No first-party manifests.** Charts vary; verify schema before committing to one.
+- **No in-repo manifests.** The Helm chart lives in a separate first-party repo (`open-webui/helm-charts`); raw kubectl / Kustomize manifests are not shipped. If a user needs Kustomize, render the Helm chart with `helm template` and apply the rendered output.
+- **Multi-replica needs Redis + an external vector DB.** Upstream's Helm.md warns: the default ChromaDB uses a local SQLite-backed client that crashes under concurrent writes from multiple workers. Set `VECTOR_DB=pgvector` (or `milvus` / `qdrant`) and configure Redis when `replicaCount > 1` or `UVICORN_WORKERS > 1`.
+- **Updates require scaling to 1 replica first.** Per upstream's danger callout in Helm.md: scale down → apply update → wait for migrations → scale back up. Concurrent migrations corrupt the DB.
 - **PVC reclaim policy.** Default `Delete` reclaim wipes the WebUI database on `helm uninstall`. For long-lived clusters, switch the StorageClass to `Retain` or take regular SQLite/Postgres backups.
 - **Ingress + auth race condition.** If the Ingress is up before you've registered the admin, anyone can grab the role. Either deploy with `ENABLE_SIGNUP=false` first + bootstrap via env vars, or restrict the Ingress (NetworkPolicy / IP allowlist) until admin is set.
 - **Embedding model downloads in pod = slow first start.** First pod after `helm install` downloads embedding models (~80 MB+) before serving. Liveness probe needs a generous initial delay.
@@ -572,7 +646,8 @@ Per-method gotchas:
 - **`:ollama` bundled image** — verify the GPU variant works with NVIDIA Container Toolkit; verify the volume layout for both webui and ollama state across container recreate.
 - **`:cuda` image** — verify which features actually use GPU (RAG embeddings? image gen? STT?) and whether the upgrade from `:main` is non-destructive.
 - **pip install on Python 3.11** — verify the systemd-user lifecycle pattern; verify embedding model auto-download behavior.
-- **Helm chart** — verify which community chart is most actively maintained; confirm the value schema. Consider whether open-forge should standardize on one.
+- **Helm chart** — first-party chart at `open-webui/helm-charts` is now the documented path; verify the value schema against the chart version pulled at deploy time. The custom domain `helm.openwebui.com` and the Pages URL `open-webui.github.io/helm-charts` both serve the same chart index.
+- **Additional upstream-documented install methods not yet covered:** upstream's docs site at `docs.openwebui.com/getting-started/quick-start/` documents Conda, Venv, ManualDocker, DockerCompose-as-its-own-tab, DockerDesktopExtension, DockerSwarm, WSL, Podman, PodmanKubePlay, PodmanQuadlet — none currently have dedicated sections in this recipe. Add as user demand surfaces, per CLAUDE.md § *Strict doc-verification policy* (one section per documented method).
 - **OAuth / OIDC providers** — never tested. Verify OAuth callback behavior with `WEBUI_URL` set vs unset; verify the trusted-header pattern with oauth2-proxy.
 - **Multi-user Postgres deployment** — verify `DATABASE_URL=postgresql://...` migration from default SQLite (or do you start fresh?).
 - **Composing with OpenClaw / Hermes / Aider via Open WebUI's API** — never tested. Verify the per-user API-key flow + `/v1/chat/completions` shape matches what each agent expects.

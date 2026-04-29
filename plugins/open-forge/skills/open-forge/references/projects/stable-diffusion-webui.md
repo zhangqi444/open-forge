@@ -448,7 +448,7 @@ For older AMD ROCm versions or unusual setups, the `Running inside Docker` path 
 
 ### AMD (DirectML) on Windows — community fork only
 
-Upstream A1111 has **no official Windows + AMD support**. The de-facto path is `lshqqytiger/stable-diffusion-webui-directml`, a community fork that uses Microsoft's DirectML.
+> ⚠️ **Community-maintained.** Upstream A1111 has **no official Windows + AMD support**. The de-facto path is `lshqqytiger/stable-diffusion-webui-directml`, a community fork that uses Microsoft's DirectML — verify the fork's README at the version you pull, since it tracks upstream A1111 releases on its own cadence.
 
 ```powershell
 # Same prereqs as upstream Windows (Python 3.10.6 + git)
@@ -485,7 +485,9 @@ Documented for completeness. A 512×512 / 20-step generation takes 5–15 minute
 
 ## Docker / containers (community-maintained)
 
-**A1111 ships no first-party Docker image.** The upstream wiki links to four community-maintained containerizations; the most-starred and most-active is **AbdBarho/stable-diffusion-webui-docker**. Treat container deploys as "verify the source first" — none are blessed by upstream.
+> ⚠️ **Community-maintained.** A1111 ships no first-party Docker image. The upstream wiki at <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Containers> links to four community containerizations — none are upstream-blessed. Treat the install commands below as "illustrative; verify the chosen project's README at the version you pull."
+
+The most-starred and most-active community option is **AbdBarho/stable-diffusion-webui-docker**.
 
 Upstream wiki: <https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Containers>.
 

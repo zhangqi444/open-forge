@@ -1,6 +1,6 @@
 ---
 name: hermes-project
-description: Hermes-Agent recipe for open-forge — a self-improving personal AI agent from Nous Research (github.com/NousResearch/hermes-agent). Two services (`gateway` for messaging + OpenAI-compatible API on port 8642, and `dashboard` web UI on port 9119) with persistent state under `~/.hermes/`. Python (uv-based). Covers every upstream-blessed install method documented under `website/docs/getting-started/*` and `user-guide/docker.md` — `scripts/install.sh` (Linux/macOS/WSL2/Termux), Docker (registry image + docker-compose), Nix (flake + NixOS module with native or container modes), manual dev (`setup-hermes.sh` / uv venv), Termux (Android), Homebrew. Pairs with `references/runtimes/{docker,native}.md`, `references/infra/*.md`, and `references/modules/tunnels.md` as needed. Includes guidance for `hermes claw migrate` (import from OpenClaw).
+description: Hermes-Agent recipe for open-forge — a self-improving personal AI agent from Nous Research (github.com/NousResearch/hermes-agent). Two services (`gateway` for messaging + OpenAI-compatible API on port 8642, and `dashboard` web UI on port 9119) with persistent state under `~/.hermes/`. Python (uv-based). Covers every upstream install method — `scripts/install.sh` (Linux/macOS/WSL2/Termux), `scripts/install.ps1` + `install.cmd` (native Windows), Docker (registry image + docker-compose), Nix (flake + NixOS module with native or container modes), manual dev (`setup-hermes.sh` / uv venv), Termux (Android), Homebrew. Methods documented under `website/docs/getting-started/*` and `user-guide/docker.md`; Windows installer covered per CLAUDE.md § *canonical install artifacts in the repo*. Pairs with `references/runtimes/{docker,native}.md`, `references/infra/*.md`, and `references/modules/tunnels.md` as needed. Includes guidance for `hermes claw migrate` (import from OpenClaw).
 ---
 
 # Hermes-Agent
@@ -16,6 +16,7 @@ OpenClaw documents two parallel axes (Containers + Hosting) with per-cloud guide
 | How (runtime / install) | Module | Notes |
 |---|---|---|
 | **Native installer** (`scripts/install.sh`) | `runtimes/native.md` + project section below | Default. macOS / Linux / WSL2 / Termux — auto-detected. Installs Python 3.11 + Node 22 + ripgrep + ffmpeg. |
+| **Windows installer** (`scripts/install.ps1` / `install.cmd`) | `runtimes/native.md` + project section below | Native Windows (PowerShell 5.1+). `.cmd` is a bootstrap wrapper around PowerShell. Requires Git pre-installed. Scheduled-Task daemon. |
 | **Docker** (registry image `nousresearch/hermes-agent`) | `runtimes/docker.md` + project section below | Two services: `gateway` (port 8642) + `dashboard` (port 9119). State at `/opt/data` ↔ host `~/.hermes`. |
 | **Nix** (flake) | project section below | `nix run`, `nix profile install`, or NixOS module with native + container modes. |
 | **Manual dev** (`setup-hermes.sh` or `uv pip install -e ".[all,dev]"`) | project section below | For contributors. Clone the repo, set up a venv, install with extras. |
@@ -224,6 +225,83 @@ The dashboard has **no auth** by default and stores API keys — never expose it
 - **`hermes setup` is interactive.** Pause autonomous mode. Pre-stage `~/.hermes/.env` and `~/.hermes/config.yaml` if you want a fully scripted install.
 - **Provider auth varies in shape.** Some providers (OpenRouter, Anthropic API) want an API key in `.env`; others (Nous Portal, OpenAI Codex, GitHub Copilot, Anthropic-via-Claude-auth) use OAuth and store tokens elsewhere. Don't assume `<PROVIDER>_API_KEY` is the only path.
 - **Sessions live in `~/.hermes/sessions/`** and resume via `hermes -c` or `hermes --continue`. If `--continue` finds nothing, the user is probably on a different profile — `hermes sessions list` to confirm.
+
+---
+
+## Windows installer (`scripts/install.ps1` / `scripts/install.cmd`)
+
+> **Source:** Canonical artifacts at <https://github.com/NousResearch/hermes-agent/blob/main/scripts/install.ps1> and <https://github.com/NousResearch/hermes-agent/blob/main/scripts/install.cmd>. Not separately documented in the upstream docs site — included here per CLAUDE.md § *Read canonical install artifacts in the repo* (artifacts in `scripts/` count as official even when the docs site doesn't link them).
+
+For native Windows users (no WSL2). The PowerShell script is the actual installer; the `.cmd` wrapper just bootstraps PowerShell from a Command Prompt shell.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Windows version | Windows 10 / 11 (PS 5.1+ on 10; PS 7+ recommended on 11) |
+| Git for Windows | **Required, must be pre-installed.** The script installs Python / Node / uv but does not install Git. <https://git-scm.com/download/win>. |
+| Node.js 22 LTS | Optional — installer offers to install if missing (only needed for browser-tools features). |
+| ripgrep + ffmpeg | Optional — installer offers to install via winget. |
+| Default install dir | `%LOCALAPPDATA%\hermes\hermes-agent` (code) and `%LOCALAPPDATA%\hermes` (config + data). Override with `-InstallDir` / `-HermesHome`. |
+
+### Install (PowerShell — preferred)
+
+```powershell
+# One-liner (downloads and runs install.ps1)
+irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1 | iex
+```
+
+Or download + run with options:
+
+```powershell
+# Save the script first, then invoke with flags
+irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1 -OutFile $env:TEMP\install.ps1
+& "$env:TEMP\install.ps1" -NoVenv -SkipSetup
+```
+
+### Install (Command Prompt via `install.cmd`)
+
+`install.cmd` is purely a wrapper — it sets PowerShell execution policy to bypass and runs the canonical `iex` line above. Use this when launching from `cmd.exe`:
+
+```bat
+:: From a Command Prompt shell — Hermes does not host this artifact at a stable URL,
+:: so you must download the .cmd from the repo first
+curl -L -o %TEMP%\install.cmd https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.cmd
+%TEMP%\install.cmd
+```
+
+If `install.cmd` fails, the wrapper prints the PowerShell fallback message — paste the suggested PowerShell line into a fresh PS window and run directly.
+
+### Daemon lifecycle on Windows
+
+Windows uses **Scheduled Tasks** for autostart (no systemd). The PowerShell installer registers the gateway as a logon-triggered task; manage with:
+
+```powershell
+Get-ScheduledTask -TaskName "hermes*"
+Start-ScheduledTask -TaskName "hermes-gateway"
+Stop-ScheduledTask -TaskName "hermes-gateway"
+Unregister-ScheduledTask -TaskName "hermes-gateway" -Confirm:$false
+```
+
+Or use `hermes gateway start / stop / status` once the CLI is on PATH (it manages the Scheduled Task underneath).
+
+### Access (same as other native installs)
+
+```powershell
+hermes --version
+hermes setup            # interactive — pause autonomous mode
+hermes gateway status
+# Dashboard: http://localhost:9119
+# Gateway: http://localhost:8642
+```
+
+### Windows-installer gotchas
+
+- **Git must be pre-installed.** Unlike `install.sh` which installs Git via apt/Homebrew, `install.ps1` requires Git already on PATH. Install via <https://git-scm.com/download/win> first.
+- **Execution policy.** If `irm | iex` errors with "running scripts is disabled on this system", run PowerShell as Administrator and `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`.
+- **`iwr | iex` errors are non-fatal to the shell.** Same pattern as OpenClaw's `install.ps1`: a failure inside the piped script reports a terminating error but doesn't close the PS window. Always check the success line at the end — silent partial installs happen.
+- **`install.cmd` is just a bootstrap.** Don't expect it to do anything PowerShell can't; it exists for users who only have `cmd.exe` open.
+- **No upstream docs page for Windows.** The website at `nousresearch.github.io/hermes-agent/` documents `installation`, `quickstart`, `nix-setup`, `termux`, and `user-guide/docker.md` — Windows installation is implicit (use the installer in `scripts/`). If `install.ps1` semantics drift, check the PowerShell file's header comments rather than the docs site.
 
 ---
 

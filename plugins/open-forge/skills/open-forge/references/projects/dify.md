@@ -511,6 +511,8 @@ DB migrations run on api startup (`MIGRATION_ENABLED=true`). For a major-version
 
 ## Cloud Templates (Terraform / CDK / Computing Nest)
 
+> ⚠️ **Community-maintained.** Every template below is authored and maintained outside of Dify upstream — `@nikawang`, `@sotazum`, `@KevinZhao`, `@tmokmss`, AWS-samples, etc. The README links them as deployment options but explicitly attributes them to community contributors (see <https://github.com/langgenius/dify> § *Deploying Dify*). Treat the commands below as illustrative; verify each template's README at the version you pull, since they track upstream Dify on their own cadence.
+
 Vendor-shaped one-shot deploys. Each is upstream-linked but maintained in a separate repo; verify the version + the parent docs page before running.
 
 ### Azure — Terraform (community-maintained)
@@ -583,7 +585,47 @@ Vendor-blessed one-click deploy from the Alibaba Cloud marketplace (Computing Ne
 
 ---
 
-## Source code deployment
+## AWS Marketplace — Dify Premium AMI (paid)
+
+> **Source:** Linked from upstream README (<https://github.com/langgenius/dify>) § *Deploying Dify* → *"check out [Dify Premium on AWS Marketplace] and deploy it to your own AWS VPC with one click"*.
+
+A paid AWS-Marketplace AMI published by LangGenius (Dify upstream's company) — the only **upstream-authored** one-click cloud deploy for Dify. Distinct from the community CDK templates above: AMI-based, not CDK-based; pay-per-hour or annual; deploys into the user's AWS account / VPC.
+
+### When to pick this
+
+- You want LangGenius to own the install + ship updates as new AMI versions, rather than running `docker compose pull` against community Compose files.
+- You're OK paying the AMI hourly rate on top of the EC2 instance cost.
+- You want it inside your own AWS VPC (not a managed multi-tenant SaaS — that's `dify.ai` itself).
+
+### Provision (browser-driven via AWS Marketplace UI)
+
+1. Open the marketplace listing: <https://aws.amazon.com/marketplace/pp/prodview-t22mebxzwjhu6>.
+2. Click **Continue to Subscribe** → accept terms → **Continue to Configuration**.
+3. Pick the AMI version (LangGenius publishes new versions periodically; pick the latest unless pinning).
+4. Pick the EC2 region + instance size (the listing recommends a minimum size; verify against the listing's "Recommended Instance Type" at the time you deploy).
+5. **Launch** — choose: launch via 1-Click, via CloudFormation, or via the EC2 console. CloudFormation is the most reproducible.
+6. Configure VPC + subnet + security group (allow 80/443 inbound; SSH only if you need shell access).
+7. Wait for the EC2 instance to come up + the AMI's user-data to bootstrap Dify (typically 5–10 min).
+
+### Access
+
+Once the instance is running, get the public DNS / IP from the EC2 console. Open `http://<public-ip>/install` to bootstrap the admin account (first user wins — guard this URL during the bootstrap window).
+
+For TLS: pair with an Application Load Balancer + ACM cert in front, or follow the AMI's documented `bash` script for in-place certbot setup (varies by AMI version — check the listing's "Usage Information" tab).
+
+### Updating
+
+LangGenius publishes new AMI versions as Dify releases. Two paths:
+
+1. **Re-launch on the new AMI** — provision a new EC2 instance from the latest AMI, restore the DB + storage volumes from a backup of the old instance, swap the DNS / load-balancer target. Cleanest but requires a backup-restore drill.
+2. **In-place update** — SSH in and run the AMI's documented update script (varies by version; check the listing's Usage Information). Fast but couples your install to a single EC2 instance's lifetime.
+
+### AWS Marketplace AMI gotchas
+
+- **Hourly fee on top of EC2.** Verify the exact pricing on the listing before the user clicks Subscribe. Some Marketplace listings have a free trial; some charge from minute one.
+- **VPC / subnet / SG must be ready.** Marketplace 1-Click can create a default VPC, but for production you'll usually want to deploy into an existing VPC with already-defined subnets and SGs. Pre-create these to avoid the wizard creating things you'll later need to tear down.
+- **No upstream support contract by default.** Buying the AMI subscription is not the same as a Dify support contract — for paid support, see the dify.ai pricing page.
+- **AMI version drift vs Docker Compose.** The AMI's pinned Dify version may lag the latest open-source release by days/weeks. If you need a specific feature that's only in `latest`, the Docker Compose path is fresher.
 
 For contributors hacking on Dify itself, or anyone who wants full control of the stack. Pair with [`references/runtimes/native.md`](../runtimes/native.md) for OS prereqs.
 
