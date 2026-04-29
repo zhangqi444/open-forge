@@ -196,3 +196,25 @@
 
 **Cumulative progress:** 54 / 1274 done (4.2%). 1220 pending.
 
+
+
+## 2026-04-29 07:23–07:50 UTC — batch 11
+
+**Processed (5):** RSSHub, SiYuan, Logseq, Cal.com, Payload.
+
+**Upstream sources consulted:**
+- RSSHub: `README.md` + `docker-compose.yml` on `master`. Documented the 3-service stack (rsshub + redis + browserless) and the `chromium-bundled` single-container variant.
+- SiYuan: `README.md` on `master` (Docker Hosting section has the canonical `docker run` + docker-compose example inline). No separate `docker-compose.yml` in repo.
+- Logseq: `README.md` on `master`. Reframed honestly as "desktop app, not server" (like Ansible/Storybook/LocalSend/Rclone in prior batches). Documented 3 deployment shapes: desktop app, community Docker web build (experimental), and publish-spa static-site action.
+- Cal.com: `README.md` + `docker-compose.yml` on `main`. Documented the env-var-heavy setup including the `CALENDSO_ENCRYPTION_KEY` critical-secret footgun (loss = every integration dead) and the EE/AGPL boundary for Organizations/SAML/Workflow SMS.
+- Payload: `README.md` on `main`. Reframed as "npm package in your Next.js app, NOT a standalone server" — Payload's v3 architecture is unique among the CMSes processed so far. Documented 4 deploy paths: BYO Docker, Vercel+Neon+Blob, Cloudflare Workers+D1+R2, existing Next.js integration.
+
+**Notes:**
+- **RSSHub** access-control hammered in the gotchas section — without `ACCESS_KEY`/WHITELIST, public deploys become open scraping proxies and will be used for abuse. Flagged Browserless's 500MB+ RAM cost on small VPS.
+- **SiYuan** recipe covers the paid-tier / free-tier boundary prominently (sync/AI/official backup are paid; local + S3-sync + BYO AI keys are free). Documented PUID/PGID + access auth code + dejavu snapshot repo (key-loss = permanent data loss) as the 3 setup pillars.
+- **Logseq** recipe spends significant time explaining why there's no traditional self-host story — the DB-graph vs file-graph transition, sync options (Syncthing/iCloud/git), publish-spa for read-only static sites. Useful for setting realistic expectations before a user attempts "self-hosting Logseq."
+- **Cal.com** encryption-key warning is flagged in multiple places (inputs, env vars, gotchas) because it's the worst kind of bug — silent until upgrade-day when every user's calendar integration breaks with no recovery. OAuth setup steps for Google / Microsoft / Daily included since calendar integrations are the whole point.
+- **Payload** recipe notes the open-core reality (everything on GitHub is MIT, Payload Cloud is managed hosting not a feature paywall) — different from Cal.com's EE-for-some-features model. Documented 6 storage adapters + 4 DB adapters.
+
+**Cumulative progress:** 59 / 1274 done (4.6%). 1215 pending.
+
