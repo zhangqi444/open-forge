@@ -487,3 +487,25 @@
 
 **Cumulative progress:** 119 / 1274 done (9.3%). 1155 pending.
 
+
+
+## 2026-04-29 15:53–16:10 UTC — batch 23
+
+**Processed (5):** Valkey, WireGuard Easy (wg-easy), Zulip, Project N.O.M.A.D., Karakeep.
+
+**Upstream sources consulted:**
+- Valkey: README (394 lines — heavy on build-from-source; covers TLS/RDMA/systemd/libbacktrace/Lua build flags + testing). Docker Hub tag list (`8.2.x` / `8.1.x` / `8.0.x` / `7.2.x` + -alpine/-bookworm/-trixie variants). Positioning vs Redis OSS 7.2.4 was explicit.
+- wg-easy: README (126 lines — points at docs site for real install guidance). `docker-compose.yml` (44 lines — v15 with IPv6, cap_add NET_ADMIN + SYS_MODULE, sysctls for IP forwarding, IPv4/v6 dual-stack network). Upstream docs site at wg-easy.github.io for specifics.
+- Zulip: repo README (80 lines — terse, points at readthedocs). docker-zulip repo README (62 lines) + docs/how-to/compose-*.md (compose-getting-started 68 lines, manual/docker-compose 65 lines, compose-settings 159 lines, compose-ssl 176 lines, compose-secrets 143 lines). Note: `docker-compose.yml` is NOT at the repo root — `ci/base.yaml` + overlay files per use case. Image MOVED from docker.io/zulip/docker-zulip (legacy, 11.x only) to ghcr.io/zulip/zulip-server:12.0-0.
+- Project N.O.M.A.D.: README (158 lines — feature table, hardware tiers, no-auth security philosophy verbatim). `install/management_compose.yaml` (121 lines — 4 services: admin/dozzle/mysql/redis, explicit "replaceme" placeholders required). Inspected for docker socket mount (admin container has full host access).
+- Karakeep: README (125 lines) + `docker/docker-compose.yml` (44 lines — 3 services: web/chrome/meilisearch). `docs/docs/02-installation/01-docker.md` (89 lines — canonical install walkthrough with .env file contents).
+
+**Notes on each recipe:**
+- **Valkey** (290 lines) — Positioned as drop-in Redis 7.2.4 fork (BSD 3-clause vs Redis's SSPL post-2024). Feature-parity table. Migration path (stop Redis → copy dump.rdb → start Valkey). Explicit note that Redis modules (RediSearch/RedisJSON/etc.) are NOT in Valkey — there are separate projects (valkey-search, valkey-json). Managed offerings (AWS ElastiCache, GCP Memorystore) called out as Valkey-compatible now. Cluster + Sentinel mode protocol identical.
+- **wg-easy** (245 lines) — v14 → v15 rewrite front-loaded as breaking. Verbatim docker-compose.yml with cap_add NET_ADMIN + SYS_MODULE explained (`SYS_MODULE` is unusual). IP forwarding sysctls required on host. UDP port-forwarding caveat for NAT hosts. "All client private keys stored on server" threat model explicit — UX trade-off. Podman NET_RAW note. 2FA + OIDC + one-time links + client expiration + per-client firewall v15 features. Caddy/Traefik reverse proxy (only for TCP :51821; UDP :51820 is raw WG).
+- **Zulip** (251 lines) — Two install paths (standard installer recommended; Docker Compose "moderately increases effort" per upstream). Image migration (docker.io/zulip/docker-zulip → ghcr.io/zulip/zulip-server:12.0-0). Channels + topics model front-loaded as differentiator. Heavy stack (Postgres + RabbitMQ + Redis + memcached + Nginx). Realm = org concept. Zulip Push Notification Service caveat for self-hosted mobile push. Standard installer + certbot one-liner.
+- **Project N.O.M.A.D.** (249 lines) — HONEST security caveat front-loaded: NO AUTH BY DESIGN + upstream explicitly says "not for public internet." Docker socket mount in admin container = full host access. Debian/Ubuntu-only constraint. Hardware tiers (min 4 GB RAM; optimal 32 GB + RTX 3060+). Bundled apps list explicit (Kiwix/Kolibri/Ollama/Qdrant/ProtoMaps/CyberChef/FlatNotes/Dozzle). `replaceme` placeholders in compose explicitly enumerated. Install script + uninstall script + helper scripts. Compared to IIAB/Endless/RACHEL/LibreMesh. Roadmap auth request link included for users who need auth.
+- **Karakeep** (281 lines) — 2024 rename from Hoarder flagged prominently (old image deprecated). Verbatim compose (3-service: web/chrome/meilisearch). AI providers: OpenAI vs Ollama vs LM Studio vs none. `release` tag vs pinned version for upgrades — pin in prod. Browser extension + native mobile apps. Full-page archival storage (~1-5 MB per bookmark) disk-usage warning. Comparison vs Linkwarden/Readeck/Wallabag/Shiori. Meilisearch version-compat caveat on upgrades. vs Pocket (shut down 2024) + Omnivore (shut down 2024) positioning.
+
+**Cumulative progress:** 124 / 1274 done (9.7%). 1150 pending.
+
