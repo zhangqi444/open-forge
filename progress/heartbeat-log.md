@@ -444,3 +444,25 @@
 
 **Cumulative progress:** 109 / 1274 done (8.6%). 1165 pending.
 
+
+
+## 2026-04-29 14:25–14:55 UTC — batch 21
+
+**Processed (5):** Cloudreve, ArchiveBox, KeePassXC, Kestra, SigNoz.
+
+**Upstream sources consulted:**
+- Cloudreve: root README (76 lines — mostly a features bullet + pointers to docs); no compose in main repo. Real deploy docs live in separate `cloudreve/docs` repo (`en/overview/deploy/docker-compose.md`, 92 lines) and the canonical compose in separate `cloudreve/docker-compose` repo (46 lines + 6-line `.env.example`). Community + Pro editions explained upstream.
+- ArchiveBox: README (1607 lines — massive) + `docker-compose.yml` at repo root (195 lines, well-commented with optional overlays for noVNC / Pi-hole / WireGuard / ChangeDetection / PYWB). Sonic full-text search now in-container (no longer separate sidecar); orchestrator/scheduler also in-container.
+- KeePassXC: README (69 lines); NOT a server app — desktop app only. Honest recipe pivots to self-hosting-the-KDBX-file patterns (Nextcloud/Syncthing/WebDAV sync).
+- Kestra: README (250 lines) + `docker-compose.yml` (65 lines, Postgres + Kestra server-standalone). Strict basic-auth password policy (email format + ≥8 chars + uppercase + number) documented verbatim in compose.
+- SigNoz: README (244 lines) + `deploy/docker/docker-compose.yaml` (185 lines, 6 services) + `.env` (1 line). ClickHouse 25.5 + Zookeeper + SigNoz app + OTel Collector + migrator + init-clickhouse (UDF fetcher). Default `SIGNOZ_TOKENIZER_JWT_SECRET=secret` is a real INSECURE default present in upstream — front-loaded as critical gotcha.
+
+**Notes on each recipe:**
+- **Cloudreve** (271 lines) — Multi-cloud storage abstraction explained upfront (10+ providers). Pro-vs-Community edition distinction. Called out `POSTGRES_HOST_AUTH_METHOD=trust` as insecure default. Noted the Dockerfile bundles libreoffice + ffmpeg + vips + libraw (~1.5 GB image). Aria2 BT ports 6888 TCP/UDP + NAT. `TZ=Asia/Shanghai` hardcoded in Dockerfile — override required.
+- **ArchiveBox** (265 lines) — Explained what outputs per snapshot (HTML/PDF/screenshot/DOM/WARC/yt-dlp media/plaintext). `ALLOWED_HOSTS=*` + `CSRF_TRUSTED_ORIGINS` gotchas front-loaded. Disk growth reality ("10K snapshots = 100-1000 GB"). Chromium profile via noVNC for authenticated-site archiving. Full env var table. Optional overlays (Pi-hole/WireGuard/PYWB/ChangeDetection) documented from upstream compose.
+- **KeePassXC** (247 lines) — Honest treatment: this is a desktop app, NOT a server. The "self-hosting" angle = syncing the `.kdbx` file. Recipe covers all install methods (native binaries + flatpak + homebrew + winget), master-key strategies (password / +keyfile / +YubiKey / paranoid-triple), syncing strategies (Nextcloud/Syncthing/rclone/git), mobile clients (KeePassDX/KeePassium/Strongbox), browser integration. Clear warning "if you want web-based multi-user, use Bitwarden/Vaultwarden instead."
+- **Kestra** (322 lines) — Three deploy modes (server local / server standalone / distributed). Docker socket mount security warning front-loaded (anyone who can submit a flow = root on host). Strict basic-auth password policy called out. Enterprise-vs-OSS feature matrix (OIDC/SAML/RBAC = paid). Git integration via `SyncFlows` task. Task runners matrix (process/docker/kubernetes/serverless).
+- **SigNoz** (241 lines) — 6-container stack explained. `SIGNOZ_TOKENIZER_JWT_SECRET=secret` default is genuinely insecure — critical gotcha. ClickHouse memory/disk sizing guide. Retention = cost. Init container fetches `histogram-quantile` UDF from GitHub releases — air-gapped gotcha. OTel-native (nothing SigNoz-specific in SDKs). Vendor-lock-in honesty (no easy data export). vs Datadog/NewRelic positioning.
+
+**Cumulative progress:** 114 / 1274 done (8.9%). 1160 pending.
+
