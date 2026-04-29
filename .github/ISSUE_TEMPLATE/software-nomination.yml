@@ -1,0 +1,84 @@
+name: Software nomination (add to Tier 1 catalogue)
+description: Nominate a self-hostable open-source app to be added to the Tier 1 catalogue under `references/projects/`.
+title: "[software-nomination] <project name>"
+labels: ["software-nomination"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Before nominating**, check the current catalogue at <https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects> and the *Is this software in scope?* section in CLAUDE.md.
+        >
+        > **Tier 2 already covers anything not in the catalogue.** A nomination requests *Tier 1* treatment (verified recipe with first-run discipline). Per the demand-driven graduation criteria, nominations need a real reason — repeat deploys, painful gotchas, or a maintainer pickup — to land.
+
+  - type: input
+    id: software_name
+    attributes:
+      label: Software name
+      placeholder: Vaultwarden
+    validations:
+      required: true
+
+  - type: input
+    id: upstream_repo
+    attributes:
+      label: Upstream repo URL
+      placeholder: https://github.com/dani-garcia/vaultwarden
+    validations:
+      required: true
+
+  - type: input
+    id: upstream_docs
+    attributes:
+      label: Upstream install-method index URL
+      description: Where do install methods live? Docs site, repo `docs/install/` tree, or wiki.
+      placeholder: https://github.com/dani-garcia/vaultwarden/wiki
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why Tier 1?
+      description: |
+        What's painful about this software's install that compounds across deploys? Per the graduation criteria, a Tier 1 recipe earns its keep when the captured tribal knowledge saves the next user real pain. If this is "I just want a recipe", a Tier 2 deploy may already be enough.
+      placeholder: |
+        I've deployed Vaultwarden 4 times — each time I forget that the
+        admin token has to be set via env var BEFORE first run, and the
+        SMTP config requires `secure: starttls` not `secure: true`. The
+        Wiki has these but it's spread across 6 pages.
+    validations:
+      required: true
+
+  - type: input
+    id: intended_combo
+    attributes:
+      label: Intended deploy combo (infra × runtime)
+      description: Which infra adapter and runtime would you use? Helps us know which combos to prioritize.
+      placeholder: Hetzner Cloud CX / Docker
+    validations:
+      required: true
+
+  - type: dropdown
+    id: in_scope_check
+    attributes:
+      label: In-scope check
+      description: Per CLAUDE.md § *Is this software in scope?*, this software is —
+      options:
+        - A deployable service (web app / API / daemon / CLI agent)
+        - A static-site generator (build → deploy static dir)
+        - An AI inference server (HTTP API)
+        - A CI runner (long-running daemon attached to a control plane)
+        - A storage backend (HTTP-API self-hostable)
+        - I'm not sure — please advise
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have read the *Is this software in scope?* and *Demand-driven graduation criteria* sections in CLAUDE.md.
+          required: true
+        - label: This software has at least one upstream-documented install method or canonical install artifact in-repo.
+          required: true

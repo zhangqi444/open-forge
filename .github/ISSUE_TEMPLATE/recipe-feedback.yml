@@ -1,0 +1,88 @@
+name: Recipe feedback (deployment notes)
+description: Share what you learned deploying via the open-forge skill — gotchas, install steps that surprised you, sections that were wrong/outdated.
+title: "[recipe-feedback] <recipe>: <one-line summary>"
+labels: ["recipe-feedback"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Sanitization reminder.** This issue will be public and permanent on GitHub. Strip every domain, IP, SSH key path, API key, AWS account ID, and email before submitting. The open-forge skill drafts these issues with redaction applied automatically — if you're filing manually, double-check.
+        >
+        > **License + liability.** By submitting, you grant a non-revocable license to use this content in the open-forge recipe; the project bears no liability for your decision to share.
+
+  - type: input
+    id: recipe
+    attributes:
+      label: Recipe
+      description: Filename under `references/projects/` (e.g. `ghost.md`, `openclaw.md`).
+      placeholder: ghost.md
+    validations:
+      required: true
+
+  - type: input
+    id: combo
+    attributes:
+      label: Combo (infra × runtime)
+      description: Which infra adapter and runtime did you use?
+      placeholder: DigitalOcean droplet / Ghost-CLI on Ubuntu
+    validations:
+      required: true
+
+  - type: input
+    id: plugin_version
+    attributes:
+      label: Plugin version
+      description: From `plugins/open-forge/.claude-plugin/plugin.json`. Helps us know whether your feedback applies to current state.
+      placeholder: "0.20.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - Deploy succeeded (with notes)
+        - Deploy succeeded after retries
+        - Deploy failed; recovered manually
+        - Deploy failed; abandoned
+        - Recipe was outdated / contradicted upstream
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_recipe_missed
+    attributes:
+      label: What the recipe missed
+      description: Concrete description of what surprised you, what failed, what required manual intervention. Sanitized.
+      placeholder: |
+        In the `tls` phase, `ghost install` errored because DNS hadn't propagated yet.
+        The recipe says "DNS must propagate first" but doesn't tell Claude to actually
+        `dig` and wait before running `ghost install`.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_edit
+    attributes:
+      label: Suggested edit (optional — diff format preferred)
+      description: If you have a specific change in mind, paste it here as a diff or as a "before / after". The AI session that processes this issue will re-verify against upstream before applying.
+      placeholder: |
+        ```diff
+        @@ Method — Ghost-CLI on Ubuntu @@
+        -DNS A-record must already point to the server's IP.
+        +DNS A-record must already point to the server's IP. Verify with
+        +`dig +short ${CANONICAL_HOST}` and block until it returns the IP
+        +— Ghost-CLI runs Let's Encrypt inline.
+        ```
+
+  - type: checkboxes
+    id: sanitization
+    attributes:
+      label: Sanitization confirmation
+      description: Confirm you reviewed every line for identifiers before submitting.
+      options:
+        - label: I have stripped all domains, IP addresses, SSH key paths, API keys, AWS account IDs, and email addresses from this issue body.
+          required: true
+        - label: I understand this issue is public and permanent. I grant a non-revocable license to use this content in the open-forge recipe.
+          required: true
