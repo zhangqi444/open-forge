@@ -183,6 +183,140 @@ The skill checks Tier 1 first by name match against `references/projects/*.md`. 
 
 Tier 2 output is **best-effort, not authoritative.** It will hallucinate at the edges of upstream docs we couldn't fetch; it skips the iterative refinement that Tier 1 recipes get from real deploys. Tell the user this. They're trading verification depth for coverage breadth.
 
+### Tier 2 → Tier 1 graduation criteria
+
+The catalogue grows demand-driven, not by guess. Promote a Tier 2 deploy to a Tier 1 recipe when ANY of:
+
+1. **3+ feedback issues** for the same software (demand signal — see *Issue-driven contribution model*).
+2. **Same user has deployed it 3+ times** and asks for first-run discipline applied.
+3. **A Tier 2 deploy surfaced a non-obvious gotcha** that's likely to bite the next person — capture the gotcha as a recipe even if demand is small (one-shot promotion is allowed when the value is in the captured knowledge).
+4. **A maintainer chooses to deploy the software themselves** (sunk cost is acceptable).
+
+Don't author Tier 1 recipes speculatively from a "popular self-host" list — without a real demand signal, the compounding effect can't kick in and the upfront cost goes to waste.
+
+---
+
+## Issue-driven contribution model
+
+The catalogue evolves through GitHub issues, not direct human PRs. AI coding sessions (whether triggered by a maintainer running this skill, by a scheduled job, or by a webhook) read incoming issues, verify them against upstream docs per *Strict doc-verification policy*, and author patches.
+
+### Three input channels
+
+GitHub issue templates under `.github/ISSUE_TEMPLATE/` define the structured input:
+
+| Template | When to use | Filed by |
+|---|---|---|
+| `recipe-feedback.yml` | A user deployed via the skill and wants to suggest recipe edits (gotchas captured, install steps that surprised them, sections that were wrong/outdated). The skill drafts these automatically at the end of a deploy. | End user (skill-assisted) |
+| `software-nomination.yml` | A user wants software added to the Tier 1 catalogue. Must include rationale + upstream URL + the user's intended deploy combo. | End user |
+| `method-proposal.yml` | A user knows an upstream-supported install method that an existing recipe doesn't cover. Must include the upstream URL where the method is documented. | End user |
+
+A blank-issue / off-template issue is treated as a request for routing — close politely with a pointer to the templates.
+
+### Why issues, not PRs
+
+- **Sanitization happens at submission time.** The skill (or a careful manual filer) redacts identifiers before posting; the issue templates encode the structure. PRs from random users could include credentials in commit history that can't be cleanly removed.
+- **Verification happens centrally.** Every change is re-verified against upstream by the AI session that processes the issue, not trusted because someone filed a PR.
+- **Demand signal lives in the issue stream.** Issues with the most thumbs-up / cross-linking / repeat filings are the demand signal that drives Tier 2 → Tier 1 graduation.
+
+### Direct human PRs
+
+Discouraged. If a maintainer writes a PR by hand, it's still subject to the strict-doc-policy and recipe-structure rules — the issue model is the documented contribution path.
+
+---
+
+## Sanitization principles
+
+User-shared content (deployment logs, gotchas, error output) routinely contains identifiers that **must not** end up in the public repo. Both the skill (when drafting issue content) and any session reviewing user-supplied content (when accepting a PR sourced from an issue) must apply these rules.
+
+### Always strip
+
+| Class | Replace with |
+|---|---|
+| Domain names (apex / canonical / admin) | `${CANONICAL_HOST}` / `${APEX}` / `${ADMIN_DOMAIN}` |
+| IP addresses (public + private + IPv6) | `${PUBLIC_IP}` / `${PRIVATE_IP}` |
+| SSH key paths and contents | `${KEY_PATH}` / `<REDACTED-SSH-KEY>` |
+| API keys and bearer tokens (regex: `re_[A-Za-z0-9_]+`, `SG\.[A-Za-z0-9._-]+`, `sk-[A-Za-z0-9]+`, `xox[bp]-[A-Za-z0-9-]+`, `ghp_[A-Za-z0-9]+`, AWS access keys `AKIA[0-9A-Z]{16}` + secret `[A-Za-z0-9/+=]{40}`, GCP service-account JSON, generic `Bearer [A-Za-z0-9._-]{20,}`) | `<REDACTED>` |
+| AWS account IDs (12 consecutive digits in AWS context) | `${AWS_ACCOUNT}` |
+| AWS profile names | `${AWS_PROFILE}` |
+| Email addresses (LE email, SMTP from-address, user identity) | `${EMAIL}` |
+| State-file contents from `~/.open-forge/deployments/<name>.yaml` | Reference the file by name only, never paste contents |
+| Hostnames embedded in URLs that include the user's domain | `https://${CANONICAL_HOST}/path` |
+| Anything from the user's clipboard / env vars they pasted into chat | `<REDACTED>` |
+
+### Multi-step consent (no auto-post, ever)
+
+The skill flow when posting feedback to GitHub:
+
+1. **Opt-in prompt** — *"Want to share what you learned?"* User must explicitly opt in.
+2. **Show the redacted draft in chat** — full text, before any submission attempt.
+3. **Confirm post?** — explicit "yes" required.
+4. **If user edits the draft**, re-show + re-confirm before submitting.
+5. **Standing reminder text** in the prompt: *"GitHub issues are public and permanent. Once posted, this can't be unposted. Review every line; edit if anything looks identifiable."*
+6. **Liability notice in the issue body**: *"Submitter grants a non-revocable license to use this content in the open-forge recipe; the project bears no liability for the submitter's choice to share."*
+
+### When reviewing PRs sourced from issues
+
+Issue-processing sessions must re-scan PR diffs against the same strip-list before merging. If any identifier slipped through, redact in the PR before merge — never merge content with live identifiers.
+
+---
+
+## Processing incoming issues
+
+When an AI coding session is asked to process incoming issues (whether by a maintainer prompt, a scheduled job, or a webhook), apply this workflow:
+
+### 1. Triage
+
+For each open issue without an `applied` / `out-of-scope` / `needs-info` label:
+
+- Identify the template type from the issue body's structured fields. If the issue doesn't follow a template, comment with a pointer to the templates and label `needs-info`.
+- Validate that the issue is in scope per *Is this software in scope?*. Out-of-scope → comment + `out-of-scope` label + close.
+- Otherwise, label `triaged` and proceed to validation.
+
+### 2. Validate against upstream
+
+Apply *Strict doc-verification policy* to every change:
+
+- For `recipe-feedback`: re-fetch the recipe's cited upstream URLs; verify the user's proposed change is consistent with current upstream content. If upstream has drifted in a way that conflicts with the user's report, prefer upstream and explain the discrepancy in the PR.
+- For `software-nomination`: confirm the software passes inclusion criteria; locate upstream's install-method index; do **not** start authoring a recipe until the index is reachable.
+- For `method-proposal`: confirm the cited upstream URL documents the method; if it's community-maintained, it must be flagged per *Community-maintained methods — flagging requirements*.
+
+If validation fails (upstream URL 404s, software is out of scope, methodology is unverifiable), comment on the issue explaining + label `needs-info` or `out-of-scope` as appropriate. Do not author a patch.
+
+### 3. Author the patch
+
+- Apply the change per *Recipe structure (must-have sections)*.
+- Cite the upstream URL at the top of every section per *Strict doc-verification policy*.
+- Flag community-maintained methods with the required ⚠️ blockquote.
+- Re-scan against the *Sanitization principles* strip-list — if any identifier slipped through user-supplied content, redact before drafting.
+- Bump `plugin.json` `version` per *Versioning + publish flow*.
+- If multiple feedback issues for the same recipe are pending, batch them into a single PR.
+
+### 4. Open the PR
+
+- **Branch naming**: `bot/issue-<N>-<short-slug>` (where `<N>` is the originating issue number).
+- **Commit author**: `Qi Zhang <zhangqi444@gmail.com>` per *Author convention*.
+- **PR body** must cite (a) the originating issue number(s), (b) every upstream URL re-verified, (c) the version bump rationale.
+- After opening, label the issue `in-progress`. After merge, relabel `applied`.
+
+### 5. State-machine via labels
+
+| Label | Meaning |
+|---|---|
+| (none) | New issue, not yet triaged |
+| `triaged` | Identified template type + scope-checked; ready to validate |
+| `in-progress` | A PR is open against this issue |
+| `applied` | PR merged; issue resolved |
+| `needs-info` | Author needs to provide more before processing can continue |
+| `out-of-scope` | Software / request doesn't meet inclusion criteria; closed |
+
+Optionally also: `recipe:<name>`, `tier:1`, `tier:2`, `infra:<cloud>`, `runtime:<runtime>` for filtering.
+
+### 6. Conflicts and ambiguity
+
+- **Contradicting suggestions across issues**: prefer upstream-doc-verified content; cite the upstream URL in the PR explaining which suggestion was chosen and why.
+- **Ambiguous suggestion**: if the issue is unclear about what should change, comment asking for clarification with a deadline (e.g. *"reply within 14 days or this issue will be auto-closed"*) and label `needs-info`.
+- **Idempotency**: never re-process an issue already labeled `applied`. If the same recipe issue resurfaces under a new issue number, treat it as a fresh demand signal (counts toward Tier 2 → Tier 1 graduation per *Two-tier coverage model*).
+
 ---
 
 ## Companion skills & MCPs
@@ -239,6 +373,8 @@ When a recipe is exercised end-to-end against a real deployment for the first ti
 
 This is how the recipe stops being a guess and becomes a known-working deployment template. Don't skip it.
 
+The dominant path for first-run discipline is now **user-submitted feedback issues** processed per *Processing incoming issues* — the skill drafts a sanitized issue at the end of each deploy and the user opts in to share. Maintainer-driven deploys (where the maintainer is also the recipe author) still apply for new recipes. Either way, the same five-step capture applies.
+
 ## File layout
 
 ```
@@ -268,11 +404,13 @@ open-forge/
 - **Bump on**: skill description change, new project/runtime/infra, major recipe rewrite, anything that changes user-visible behavior.
 - **Don't bump on**: typo fixes, internal comment cleanups, lint-only changes.
 
-Publish flow:
+Publish flow (typical path: AI session processing an issue per *Issue-driven contribution model*):
 
-1. Local commit (with version bump if applicable).
-2. `git push` to `github.com/zhangqi444/open-forge`.
-3. End user runs `/plugin marketplace update zhangqi444/open-forge` then re-installs.
+1. Commit the change with version bump if applicable. Author per *Author convention*.
+2. Push to `github.com/zhangqi444/open-forge` — typically as a PR opened against `main` (branch name per *Processing incoming issues*).
+3. After merge, end users run `/plugin marketplace update zhangqi444/open-forge` then re-install.
+
+Maintainer manual edits follow the same flow but skip the issue-tracking labels.
 
 ## Author convention
 
