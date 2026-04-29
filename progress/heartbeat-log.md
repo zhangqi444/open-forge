@@ -530,3 +530,13 @@ Running totals: 129 done / 1 skipped / 1144 pending (1274 total).
 - **activepieces** (21950★) — MIT workflow automation, app + worker + pg + redis. Pinned mixed-version-tags gotcha (upstream ships app:0.80.1 + worker:0.79.0 — harmonize). AP_ENCRYPTION_KEY permanence. pgvector image required for AI-memory pieces. `AP_EXECUTION_MODE=UNSANDBOXED` single-tenant caveat.
 
 Running totals: 134 done / 1 skipped / 1139 pending (1274 total, 10.6%).
+
+## 2026-04-29 17:53 UTC — Batch 25 (5 recipes)
+
+- **mkdocs** (22025★) — honest pivot: framed as a **static site generator**, not a self-hosted service. Four paths documented: pip + nginx (recommended), `squidfunk/mkdocs-material` Docker build-tool, `gh-deploy`, CI build. Flagged `mkdocs serve` = dev only, don't expose. `site_url` subpath trap, Material theme vs Insiders licensing, plugin version-skew warning.
+- **vector** (21727★) — Rust observability pipeline from Datadog. Agent vs aggregator roles explained up front. 4 install paths: deb/rpm, binary, Docker (`timberio/vector`), official Helm. `data_dir` mandatory + `buffer.type:disk` for durability warned front. VRL is its own language. API port 8686 unauthenticated — firewall. Docker-logs source socket mount = root-equivalent.
+- **matomo** (21459★) — Apache variant compose from `matomo-org/docker/.examples/apache`. MariaDB auto-upgrade + skip-upgrade-backup documented. **Trusted Hosts** footgun flagged. Browser-archiving-doesn't-scale → CLI cron example. GeoLite2 license-key requirement post-MaxMind 2019 change. `:Z`/`:z` SELinux label note for non-RHEL hosts.
+- **beszel** (21417★) — PocketBase-based monitoring hub. Architecture diagram: hub pulls from agents over SSH ed25519. Compose variants: hub-only, agent-only, same-system. GPU variants (`-nvidia`/`-intel`). Hub SSH key = trust root (backup warning). Agent socket mount hardening note with `docker-socket-proxy`. Pre-1.0 version-pinning emphasized. Upstream Helm chart at `supplemental/kubernetes/beszel-hub`.
+- **authentik** (21232★) — IdP/SSO. 3-service compose (postgresql/server/worker) — documented the Redis-service removal migration for pre-2024.4 users. Year-based versioning (`2026.2.2` current). Secret-key permanence, outpost-needs-Docker-socket, double-underscore env-var convention, initial-setup flow world-accessible footgun, blueprints startup-reconcile GitOps note.
+
+Running totals: **139 done / 1 skipped / 1134 pending** (1274 total, 10.9%).
