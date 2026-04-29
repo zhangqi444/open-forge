@@ -570,3 +570,13 @@ Running totals: 149 done / 1 skipped / 1124 pending (1274 total, 11.8%).
 - **invidious** (18953★) — YouTube front-end. Documented companion pairing (now ~required), Quay-not-Docker-Hub image location, `:latest` rolling-tag justification given YouTube churn, AGPL, official hosted instances shut down 2024 after Google C&D.
 
 Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
+
+## 2026-04-29 — Batch 29 (5 recipes)
+
+- **ebook2audiobook** (18758★) — ebook→audiobook TTS pipeline. Multi-accelerator image matrix (cpu/cu118-128/rocm/xpu/jetson); upstream compose uses `profiles: [cpu/gpu]`. Flagged: GPU flavor must match CUDA major version; MPS not exposed in Docker; first run downloads multi-GB models; Gradio UI has no auth; legal scope (DRM-free only) front-loaded.
+- **bookstack** (18718★) — Laravel wiki with book/chapter/page hierarchy. Upstream does NOT ship an image; recipe uses community-standard `lscr.io/linuxserver/bookstack` + MariaDB. Flagged: default admin creds `admin@admin.com/password`, `APP_URL` exact-match requirement, APP_KEY permanence, SSO requires editing `.env` not env vars.
+- **bitwarden** (18501★) — Official self-hosted server via `bitwarden.sh` installer. ~10-container stack (nginx/web/api/identity/admin/events/icons/notifications/attachments/mssql). Flagged: amd64-only (SQL Server), 4GB+ RAM, `bitwarden.sh update` regenerates compose (customize via `./bwdata/env/*.override.env`), installation ID+Key required (free), license gated for Organizations, Vaultwarden positioned as lightweight ARM-friendly alternative.
+- **etherpad** (18278★) — Real-time collaborative text editor. Node.js + Postgres 15 upstream compose. Flagged: default admin password `admin/admin` in upstream compose (must override), `DEFAULT_PAD_TEXT` cannot be empty (upstream bug), WebSocket passthrough required, `TRUST_PROXY=true` behind proxies, no built-in auth (pad URLs are the security boundary), `etherpad-lite` → `etherpad` rename, plugin quality varies.
+- **linkwarden** (18109★) — Bookmark manager with full-page archiving + AI tagging. 3-service compose (linkwarden/postgres 16/meilisearch 1.12.8). Flagged: **upstream compose missing `MEILI_MASTER_KEY`** (Meilisearch runs with random key each boot, breaking reconnect), `NEXTAUTH_URL` must include `/api/v1/auth`, first user = admin race, 1-5 MB per archived link (20-50 GB/10k links), SSRF-safe private network block by default. Positioning vs Pocket/Omnivore (both shut down 2024).
+
+**Cumulative progress:** 159 / 1274 done (12.5%) + 1 skipped. 1114 pending.
