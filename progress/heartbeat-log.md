@@ -25,3 +25,24 @@
 
 **Skipped nothing.** Earlier skepticism about Storybook/Docusaurus/Unsloth being "non-self-hostable" was wrong — they're static-site-generators / local-model-training tools, all self-hostable, and will be processed in their star order.
 
+
+## 2026-04-29 01:40–02:30 UTC — batch 3
+
+**Processed (5):** Syncthing, LocalSend, Netdata, Stirling-PDF, code-server.
+
+**Upstream sources consulted:**
+- Syncthing: `README.md` + `README-Docker.md` on `main`; `Dockerfile` on `main`
+- LocalSend: `README.md` on `main`
+- Netdata: `README.md` + `packaging/docker/README.md` on `master`
+- Stirling-PDF: `README.md` on `main`; `exampleYmlFiles/docker-compose-latest.yml` on `master`
+- code-server: `docs/install.md` + `docs/guide.md` + `ci/release-image/Dockerfile` on `main`
+
+**Notes:**
+- Syncthing recipe emphasizes upstream's explicit guidance that `--network=host` is non-negotiable on Linux (LAN discovery breaks otherwise), and documents the UID/GID model shared with the linuxserver.io image.
+- LocalSend is (like Storybook) not a traditional self-hosted server — it's a P2P desktop/mobile app. Recipe frames it honestly, covers the per-platform install matrix, and notes the edge case of running the AppImage under Xvfb on a headless Linux host (not officially supported; Syncthing is a better fit for that role).
+- Netdata recipe covers the parent-child streaming architecture (first-party alternative to Netdata Cloud), the dense Docker mount list (each mount enables specific collectors), and the security implications of exposing `:19999` publicly.
+- Stirling-PDF recipe covers the SYSTEM_ / SECURITY_ / UI_ env-var namespace and flags `SECURITY_ENABLELOGIN=false` as the default (fine for private use, dangerous on public URLs).
+- code-server recipe covers 5 install paths (install.sh, Docker, npm, apt/rpm, Helm), the Open VSX vs Microsoft-marketplace caveat, and the permissions pitfalls of running the container as root.
+
+**Cumulative progress:** 16 / 1274 done (1.3%). 1258 pending.
+
