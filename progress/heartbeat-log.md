@@ -288,3 +288,27 @@
 
 **Cumulative progress:** 74 / 1274 (5.8%). 1200 pending.
 
+
+
+## 2026-04-29 09:53–10:30 UTC — batch 14
+
+**Context:** Woke up at 74/1274 (other sessions added batches 7-13 between my batch 6 at 04:35 and now).
+
+**Processed (5):** Umami, Trilium Notes, 1Panel, Directus, Nextcloud.
+
+**Upstream sources consulted:**
+- Umami: `README.md` + `docker-compose.yml` on `master`. Docs point at <https://umami.is/docs>.
+- Trilium Notes: `README.md` + `docker-compose.yml` on `main` of `TriliumNext/Trilium` (the active fork; zadam/trilium archived early 2024). Docs at <https://docs.triliumnotes.org>.
+- 1Panel: `README.md` on `master` of `1Panel-dev/1Panel` (dev branch has no top-level README; default branch detection via probe). Install script at `resource.1panel.pro/v2/quick_start.sh`.
+- Directus: `directus/readme.md` (README moved to package subfolder on main; no top-level README). `docker-compose.yml` on `main` is explicitly dev-only debug harness — production compose lives at <https://docs.directus.io/self-hosted/docker-guide>.
+- Nextcloud: `nextcloud/server` README + `nextcloud/docker` README + `nextcloud/all-in-one` readme. Three distinct first-party install paths — made all three explicit in the recipe.
+
+**Notes:**
+- **Umami** recipe hammers the `APP_SECRET=replace-me-with-a-random-string` default (upstream ships it in compose.yml) and the `admin`/`umami` default credentials. Documented ad-blocker evasion via `TRACKER_SCRIPT_NAME` + `COLLECT_API_ENDPOINT`. Included v1→v2 migration gotcha.
+- **Trilium Notes** recipe leads with the zadam/trilium → TriliumNext fork transition since that's the #1 confusion now. Covered server+desktop-client sync topology (most users miss that sync is client-pulls-from-server over HTTPS with cert validation — self-signed fails without a client toggle). Protected-notes client-side encryption irrecoverability flagged.
+- **1Panel** recipe is unusual — it's a host-level control plane, not a containerized app. I framed it honestly: "pick one meta control plane per server" with explicit conflict list (CasaOS, cPanel, aaPanel, YunoHost, Coolify, Dokploy, CapRover). Also noted that 1Panel's marketplace prominently features **OpenClaw** as an AI agent runtime and Ollama for local LLMs — that's us in the wild, nice to see. Flagged the "random port + security path is defense-in-depth, not security" reality.
+- **Directus** recipe front-loads the license-revision-in-progress warning (community thread at <https://community.directus.io/t/directus-license-revision-community-feedback-requested/2125>). Critical footgun flagged: the root-of-repo `docker-compose.yml` is a multi-DB dev harness (PG+MySQL+MariaDB+MSSQL+Oracle+MinIO+MailDev+Cockroach+Keycloak all at once), NOT production. Many self-hosters use it and wonder why their VPS is ruined.
+- **Nextcloud** recipe is the longest so far (328 lines) because there are THREE legitimate install paths — AIO (Nextcloud GmbH's recommendation), `nextcloud/docker` (community, expert-only per upstream's own warning), and Helm. Wrote all three explicitly because the "which path?" question dominates self-host Nextcloud support. Also the trusted_domains + OCC + trusted_proxies + overwriteprotocol trio — #1 source of broken reverse-proxy deploys — got its own section.
+
+**Cumulative progress:** 79 / 1274 done (6.2%). 1195 pending.
+
