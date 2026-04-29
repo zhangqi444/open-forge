@@ -580,3 +580,13 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **linkwarden** (18109★) — Bookmark manager with full-page archiving + AI tagging. 3-service compose (linkwarden/postgres 16/meilisearch 1.12.8). Flagged: **upstream compose missing `MEILI_MASTER_KEY`** (Meilisearch runs with random key each boot, breaking reconnect), `NEXTAUTH_URL` must include `/api/v1/auth`, first user = admin race, 1-5 MB per archived link (20-50 GB/10k links), SSRF-safe private network block by default. Positioning vs Pocket/Omnivore (both shut down 2024).
 
 **Cumulative progress:** 159 / 1274 done (12.5%) + 1 skipped. 1114 pending.
+
+## 2026-04-29 — batch 30 (5 recipes)
+
+- **fail2ban** (17636★) — host-level IPS; upstream ships no Docker image. Recipe covers distro-package + systemd as primary path, crazymax/fail2ban container as Docker-host alternative. Front-loads `ignoreip`-lockout risk, `DOCKER-USER` vs `INPUT` chain confusion, `network_mode: host` + `NET_ADMIN/NET_RAW` requirements, and the botnet-immunity limitation (pair with CrowdSec for distributed attacks).
+- **overleaf** (17615★) — LaTeX collaborative editor. Honest recipe: "do not hand-roll compose, use `overleaf/toolkit`". Architecture-in-one-minute explains toolkit's modular compose fragments. Captures Server-Pro-vs-CE line, Docker-socket trust boundary (sibling containers run as host root equivalent), Mongo 8.0 pin, 8–10 GB image size.
+- **asciinema** (17225★) — terminal-recording host. Apache-2.0. Upstream docs-site is Docker-Compose-first with HTTPS (Caddy) and HTTP-only variants. Flags email-link-only login (log access == admin access if SMTP down), `SECRET_KEY_BASE` rotation = session invalidation, full-text search leaks terminal contents.
+- **koel** (17117★) — Laravel music streamer. Two compose templates (MariaDB / Postgres). Security front-loads the public-default admin `admin@koel.dev` / `KoelIsCool` and the `APP_KEY` loss = data loss trap. Covers `docker exec php artisan koel:scan` for rescans, streaming methods (PHP/x-sendfile/x-accel), Plus-paid-features.
+- **calibre-web** (17023★) — Flask ebook UI. Upstream explicitly points to `lscr.io/linuxserver/calibre-web` for Docker; pip install for bare metal. Security front-loads default `admin`/`admin123`, `DOCKER_MODS=universal-calibre` is x86_64-only, SQLite-on-NFS "database is locked" trap, OPDS unauth leak, PUID/PGID mismatches on shared libraries.
+
+**State:** 164 done / 1 skipped / 1109 pending (12.9%). Past 17k stars. Next slice: post-17k-star apps (17000 → 16k band).
