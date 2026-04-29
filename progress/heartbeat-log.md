@@ -266,3 +266,25 @@
 
 **Cumulative progress:** 69 / 1274 done (5.4%). 1205 pending.
 
+
+
+## 2026-04-29 09:23–09:45 UTC — batch 13
+
+**Processed (5):** Portainer, qBittorrent, Sunshine, Reactive Resume, Mattermost.
+
+**Upstream sources consulted:**
+- Portainer: `develop` README (for feature framing + CE-vs-BE context). Deploy details from `docs.portainer.io/start/install-ce` canonical install docs (well-known patterns).
+- qBittorrent: `master` README (pointer-only — real install docs live in `INSTALL` + wiki). LinuxServer.io image shape from their published docs.
+- Sunshine: `master` README (rich — gamepad + encoder compat matrix, install-method table). Docs on `docs.lizardbyte.dev`.
+- Reactive Resume: `main` README + `compose.yml` on `main` — full 4-service stack (postgres + browserless + seaweedfs + reactive_resume + init job). Docs on `docs.rxresu.me`.
+- Mattermost: `master` README (server repo) + `mattermost/docker` repo's `docker-compose.yml` + `README.md`. Canonical install lives in the `mattermost/docker` repo, not the server repo.
+
+**Notes on framing:**
+- **Portainer** — Flagged the 5-minute admin-bootstrap timeout (the #1 Portainer support question) and the CE-vs-Business license split. Added `--admin-password-file` seeding as the automated path.
+- **qBittorrent** — Framed honestly around `qbittorrent-nox` (not the GUI) and the fact that **upstream ships no official Docker image** — LinuxServer.io is community, not upstream. Added the Gluetun VPN-sidecar pattern since that's the dominant self-host shape for public trackers. Documented the default `admin/adminadmin` credentials footgun and the recent random-password behavior.
+- **Sunshine** — Wrote up as what it is (game stream host, NOT remote desktop), documented the many install paths, and put the "headless Linux = no display = no streaming" gotcha front-and-center because it's the #1 confusion for "stream from my basement server" setups. Also HDR combo requirements (Windows + RTX + HDR10 display + client).
+- **Reactive Resume** — Recipe leads with the 4-service architecture since that confuses new users. Documented the `APP_URL` vs `PRINTER_APP_URL` trap (the #1 cause of "blank PDF output") and the chromedp/headless-shell alternative printer. Noted `BROWSERLESS_TOKEN: change-me` default as a must-override.
+- **Mattermost** — Covered Docker (upstream-recommended via `mattermost/docker`), Ubuntu .deb (bare metal), and the TE vs EE license split. Flagged the bind-mount UID 2000 requirement, the "first user becomes SysAdmin" bootstrap, and that Calls require dedicated UDP ports that reverse proxies don't handle. Included `mmctl` section for CLI-based admin.
+
+**Cumulative progress:** 74 / 1274 (5.8%). 1200 pending.
+
