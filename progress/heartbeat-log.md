@@ -242,3 +242,27 @@
 
 **Cumulative progress:** 64 / 1274 done (5.0%). 1210 pending.
 
+
+
+## 2026-04-29 08:53–09:30 UTC — batch 12
+
+**Context:** Woke up at 64/1274. Batches 10-11 (ran in other sessions overnight) added 10 apps between my batch 9 and now.
+
+**Processed (5):** Novu, Outline, IT-Tools, Headscale, ToolJet.
+
+**Upstream sources consulted:**
+- Novu: `README.md` + `docker/community/docker-compose.yml` + `docker/community/.env.example` on `next` branch.
+- Outline: `README.md` + `docker-compose.yml` (dev-only — just Postgres+Redis, no Outline) + `.env.sample` on `main`.
+- IT-Tools: `README.md` on `main`. Trivial project — one-container static SPA.
+- Headscale: `README.md` + `config-example.yaml` on `main` + `docs/setup/install/container.md` (community-maintained per upstream's own disclaimer).
+- ToolJet: `README.md` + `docker-compose.yaml` (dev-only with platform:linux/x86_64 explicit) + `docs/docs/setup/docker.md` on `main`. Production compose lives at `tooljet-deployments.s3.us-west-1.amazonaws.com` (external S3 bucket).
+
+**Notes:**
+- **Novu** recipe hammers on the 3 mandatory secrets (`JWT_SECRET`, `NOVU_SECRET_KEY`, `STORE_ENCRYPTION_KEY`) with the subtle `STORE_ENCRYPTION_KEY` must-be-exactly-32-chars trap documented in gotchas — hex of 16 bytes = 32 hex chars, which is non-obvious. Architecture walked through 9 services (mongo/redis/api/worker/ws/web/embed/widget/localstack). Flagged localstack as dev-only and self-host-lags-cloud reality.
+- **Outline** recipe prominently fronts the "root `docker-compose.yml` is NOT production — it's just Postgres+Redis" footgun because new self-hosters routinely run it expecting Outline to start. Wrote a BYO compose template using `outlinewiki/outline`. Flagged BSL license constraint (no resale-as-service), mandatory OAuth/OIDC (no username+password), and the `FORCE_HTTPS=true` + no-TLS-terminator redirect-loop. Included full Google + generic OIDC setup steps.
+- **IT-Tools** was the shortest recipe in the forge to date. Single `docker run -p 8080:80 corentinth/it-tools` — no config, no secrets, no DB, no state. Positioned honestly: "everything runs client-side." Called out GPL-3.0 (copy-left) vs MIT distinction, and the "cannot be deployed on a subpath without rebuild" Vite base-config gotcha.
+- **Headscale** is the most operationally complex of the batch. Recipe covered: mandatory public HTTPS (Tailscale clients refuse plaintext), DERP strategy tradeoffs (embedded / external / self-hosted), the `server_url` exact-match requirement, private-key irreplaceability (`private.key` + `noise_private.key`), v0.23 user-model migration, ACL HuJSON format, pre-auth-keys vs OIDC node registration, and the "no web UI upstream" reality. Flagged Taildrop/Funnel/multi-tailnet as cloud-only.
+- **ToolJet** recipe covered 3 compose paths (quick-eval single-container, built-in-DB compose, external-PG compose). Biggest footgun flagged: `TOOLJET_HOST` MUST include scheme (`http://` / `https://`) — users miss this constantly. `LOCKBOX_MASTER_KEY` irreplaceability + `SECRET_KEY_BASE` rotation semantics. Documented ToolJet DB vs app DB separation (v2+ feature). CE-vs-EE image mixing warning (they can't interoperate on the same DB).
+
+**Cumulative progress:** 69 / 1274 done (5.4%). 1205 pending.
+
