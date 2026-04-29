@@ -86,6 +86,34 @@ The **how** question is *dynamically generated* from (software, where) — each 
 
 Then **immediately load `references/modules/preflight.md`** and run its steps. Preflight is combo-aware — it only installs / validates what the chosen tuple actually needs (AWS CLI only when infra ∈ AWS, Docker only when runtime = docker, nothing extra on localhost).
 
+## Tier 1 vs Tier 2 routing
+
+open-forge ships a finite catalogue of verified recipes (Tier 1) plus a documented fallback for the long tail (Tier 2). When the user names a piece of software, decide which tier you're in **before** loading anything.
+
+### Tier 1 — verified recipe exists
+
+If `references/projects/<name>.md` matches the user's software, you're in Tier 1. Load it, follow it, and stay in the standard workflow below.
+
+### Tier 2 — no recipe; derive from upstream live
+
+If no recipe matches, **don't refuse — fall back to Tier 2**:
+
+1. **Announce in one sentence**: *"This software isn't in our verified recipe set — I'll fetch upstream docs live and reuse the runtime / infra modules. Treat my output as best-effort, not authoritative."*
+2. **Fetch upstream the same way Tier 1 does**:
+   - `WebFetch` the upstream README first. If 403/404, fall back to `raw.githubusercontent.com/<org>/<repo>/<branch>/README.md`, or `git clone` the docs repo locally if the docs site is Cloudflare-protected.
+   - Locate the upstream install-method index (docs site, repo `docs/install/` tree, wiki).
+   - Enumerate every method documented under that index. **Do not invent methods upstream doesn't ship** — if fetches fail, stop and tell the user, don't speculate.
+   - Read canonical install artifacts in the repo (`Dockerfile`, `docker-compose.yml`, `helm/`, `flake.nix`, primary config example).
+3. **Reuse the existing modules**: drive the Docker install via `runtimes/docker.md`, Kubernetes via `runtimes/kubernetes.md`, VM provisioning via `infra/<cloud>/*.md`, DNS / TLS / SMTP via `references/modules/`. The Tier 2 work is only the software-specific bits on top.
+4. **Cite every upstream URL** in chat the same way Tier 1 sections do (`> Source: <url>`).
+5. **Offer to capture the result** as a new Tier 1 recipe once the deploy succeeds — that's how the catalogue grows. Captured recipes must go through first-run discipline before promotion.
+
+**Quality boundary:** Tier 2 output is best-effort, not authoritative. It will hallucinate at the edges of upstream docs we couldn't fetch and skips the real-deploy refinement Tier 1 recipes get. Always tell the user which tier you're in; never silently mix.
+
+### Out-of-scope software
+
+Some user requests are not deployable services at all (libraries like Unsloth or `requests`, desktop apps like Slack, SaaS like Notion). When you detect this, say so clearly and offer the closest in-scope alternative if there is one. See CLAUDE.md § *Is this software in scope?* for criteria.
+
 ## Phased workflow
 
 Each phase is verifiable and resumable. Do NOT batch phases — complete, verify, and update state before moving on.
