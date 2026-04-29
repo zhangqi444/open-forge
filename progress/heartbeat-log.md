@@ -560,3 +560,13 @@ Running totals: 144 done / 1 skipped / 1129 pending (1274 total, 11.3%).
 - **docmost** (19945★) — Notion-style collab wiki. 3-service compose (Node + Postgres 18 + Redis 8). Flagged `APP_SECRET` permanence (JWT signing), Postgres-password-double-set trap, **Redis `maxmemory-policy=noeviction` mandatory** for Y.js collab integrity, WebSocket passthrough requirement for real-time editing, S3 storage switch doesn't migrate existing files, telemetry on by default.
 
 Running totals: 149 done / 1 skipped / 1124 pending (1274 total, 11.8%).
+
+## 2026-04-29 — Batch 28 (5 recipes)
+
+- **nginx-proxy** (19820★) — docker-gen + nginx combo. Flagged `:latest`/`:alpine` as production-hostile (per upstream), acme-companion pairing, socket-mount risk, multi-container variant, and real-IP-header footgun.
+- **listmonk** (19803★) — Go newsletter manager with Postgres. Two-underscore env naming pattern, `--config ''` flag, bounce-processing gap, Postgres password locked at init, AGPL.
+- **snapdrop** (19713★) — acquired by LimeWire 2023; front-loaded the maintenance status + **PairDrop** as the active fork. Dev compose regenerates self-signed certs daily; `X-Forwarded-For` critical to prevent cross-tenant peer-visibility bug.
+- **cadvisor** (19091★) — Google's container advisor. Covered privileged-mode need, `/dev/kmsg` mapping, cardinality trim flags, gcr.io→ghcr.io image move in v0.53.0, K8s double-count risk, cgroup v2 since v0.46.0.
+- **invidious** (18953★) — YouTube front-end. Documented companion pairing (now ~required), Quay-not-Docker-Hub image location, `:latest` rolling-tag justification given YouTube churn, AGPL, official hosted instances shut down 2024 after Google C&D.
+
+Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
