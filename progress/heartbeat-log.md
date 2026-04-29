@@ -356,3 +356,25 @@
 
 **Cumulative progress:** 89 / 1274 done (7.0%). 1185 pending.
 
+
+
+## 2026-04-29 12:24–13:00 UTC — batch 17
+
+**Processed (5):** Medusa, Nginx Proxy Manager, Glances, Dokku, SeaweedFS.
+
+**Upstream sources consulted:**
+- Medusa: `README.md` on `develop` (thin — it's mostly marketing + "go see the docs"), plus the actual install pages from the docs repo (`www/apps/book/app/learn/installation/page.mdx` and `docker/page.mdx`). The README alone is unsuitable for writing an install recipe; needed the docs mdx files.
+- Nginx Proxy Manager: `README.md` on `master` (good self-contained install section with compose snippet). Root `docker-compose.yml` at the path I tried was empty — turns out upstream keeps the reference compose inline in the README + at <https://nginxproxymanager.com/setup/>. Used the README's snippet as canonical.
+- Glances: `README.rst` on `master` (RST, 688 lines). Extracted install methods, pip extras matrix, Docker tags (`latest-full`, `latest`, `ubuntu-latest-full`, `dev`), and the canonical Docker run commands for console/web modes.
+- Dokku: `README.md` on `master` (116 lines — short, points at dokku.com/docs). Key extract: the exact `bootstrap.sh` install command with a pinned version (`v0.37.10`) and the prereq list (Ubuntu 22.04/24.04 or Debian 11+).
+- SeaweedFS: `README.md` on `master` (657 lines, rich). Plus `docker/seaweedfs-compose.yml` (59 lines) — used as the reference production topology.
+
+**Notes:**
+- **Medusa** (233 lines) — front-loaded architecture explanation because "Medusa" isn't obvious (headless commerce with a modules-based backend + Admin SPA + optional Next.js storefront). Documented both `create-medusa-app` CLI (Node-native) and `dtc-starter` Docker paths. Flagged that upstream's README is intentionally minimal (points at docs + Cloud) so the real install reference is the docs site, not GitHub. `workerMode` + CORS gotchas + Next.js Starter Storefront Node v25 incompatibility called out.
+- **Nginx Proxy Manager** (243 lines) — the classic "reverse proxy with a GUI" recipe. Heavy emphasis on the default `admin@example.com` / `changeme` credentials footgun, the armv7-dropped-in-2.14+ gotcha (must pin `:2.13.7` for old Pis), Let's Encrypt HTTP-01 requiring port 80 open, and shared Docker networks for container-to-container proxying. Compared vs. Traefik/Caddy/HAProxy at the top.
+- **Glances** (277 lines) — long but mostly because of breadth. Covered all 7 modes (console / web / RPC / central browser / exporter / MCP / pip), the full pip extras matrix (18 options), Docker image tag variants, and 30+ exporter destinations. MCP server for AI assistants is new-ish (introduced as a pip extra) — included. Main gotchas: `pip install glances` without `[web]` extra silently lacks web UI; `--password` prompts interactively; `pid: host` + Docker socket = root on host.
+- **Dokku** (241 lines) — SSH/CLI-first PaaS contrast with Dokploy/CapRover/K8s at top. Documented `bootstrap.sh` with pinned version, post-install checklist (global domain, SSH keys, postgres plugin, letsencrypt), `git push dokku main` deploy pattern, Procfile + buildpacks + Dockerfile + compose deploy modes, scaling, env vars. Gotchas: single-host no-HA, dokku-postgres isn't production-grade, buildpack cache fills disk, LE rate limits.
+- **SeaweedFS** (309 lines) — the heaviest recipe in the batch because SeaweedFS has a lot of moving parts (master + volume + filer + S3 + WebDAV + mount, each a separate process optionally). Architecture-in-one-minute section up front. Covered replication placement encoding (`000`/`001`/`110`/etc.), erasure coding, tiered storage to cloud, filer metadata store options (leveldb / Postgres / Cassandra / TiKV), and the production topology (3 masters for Raft, 3+ volume servers, 1-2 filers with external DB). Gotchas include no-auth defaults, single-master SPOF, async erasure coding, and memory footprint scaling with volume count.
+
+**Cumulative progress:** 94 / 1274 done (7.4%). 1180 pending.
+
