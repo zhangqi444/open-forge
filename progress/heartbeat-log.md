@@ -521,7 +521,7 @@
 
 Running totals: 129 done / 1 skipped / 1144 pending (1274 total).
 
-## 2026-04-29 — Batch 25 (5 recipes)
+## 2026-04-29 — Batch 27 (5 recipes)
 
 - **node-red** (23065★) — Node.js low-code flow editor. `nodered/node-red` Docker image; recommended `:4.1.8` pin. Flagged no-auth-default + `credentialSecret` must be set before storing secrets. `/data` volume uid/gid 1000 perm warning.
 - **dockge** (23016★) — compose-native stack manager (Uptime Kuma author). Canonical `/opt/stacks` left-path-equals-right-path trap explained in depth. Docker socket = root-equivalent warning front-loaded. 1-admin-only / no RBAC noted.
@@ -540,3 +540,13 @@ Running totals: 134 done / 1 skipped / 1139 pending (1274 total, 10.6%).
 - **authentik** (21232★) — IdP/SSO. 3-service compose (postgresql/server/worker) — documented the Redis-service removal migration for pre-2024.4 users. Year-based versioning (`2026.2.2` current). Secret-key permanence, outpost-needs-Docker-socket, double-underscore env-var convention, initial-setup flow world-accessible footgun, blueprints startup-reconcile GitOps note.
 
 Running totals: **139 done / 1 skipped / 1134 pending** (1274 total, 10.9%).
+
+## 2026-04-29 — Batch 27 (5 recipes)
+
+- **teable** (21177★) — no-code DB on real PostgreSQL. Standalone compose (app + pg 15.4 + prisma-migrate sidecar). Flagged demo-creds-in-upstream-`.env`, exposed host port 42345 default, app+migrate-image-lockstep requirement, telemetry opt-out.
+- **safeline** (21094★, chaitin/SafeLine) — multi-service WAF (Postgres + mgt + detector + Tengine + Luigi + FVM + Chaos). Upstream one-liner installer preferred; Tengine uses `network_mode: host` (owns 80/443); `SUBNET_PREFIX=169.254.0` link-local caveat; `resetadmin` runbook note; China-region image prefix path.
+- **wordpress** (21070★) — Docker Library image (upstream GitHub repo is SVN mirror, not source of truth). Reference compose w/ MySQL 8. Auto-generated salts → pin via 8 env vars; `WORDPRESS_DB_NAME` must pre-exist; `X-Forwarded-Proto` requirement; permissions UID 33 Debian vs 82 Alpine CLI.
+- **wekan** (20911★) — Meteor/Mongo kanban. Single-node MongoDB **replica set required** (change-streams); 190+ env vars in upstream compose; first-user-is-admin; `ROOT_URL` exact-match; FerretDB alternative noted; upgrade = `rm wekan-app` only, never the DB container.
+- **navidrome** (20743★) — Go music server, Subsonic API. Minimal 1-container compose; read-only root FS + UID mapping; transcoding needs ffmpeg (in image, not binary); SQLite on local disk only (not NFS); first-user-admin; Caddy + Traefik overlay composes noted.
+
+Running totals: 144 done / 1 skipped / 1129 pending (1274 total, 11.3%).
