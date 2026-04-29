@@ -65,3 +65,22 @@
 - **Docusaurus** reframed as a BUILD tool, not a server — the "self-host" question becomes "which static file host?" (nginx / Caddy / GH Pages / Vercel / Netlify / Cloudflare Pages / S3+CloudFront). No database, no orchestrator. Recipe's "Compatible install methods" table lists all upstream-documented deploy targets.
 
 **Cumulative progress:** 22 / 1274 done (1.7%). 1252 pending.
+
+
+## 2026-04-29 03:10–03:40 UTC — batch 5
+
+**Processed (3):** NocoDB, Prometheus, Traefik.
+
+**Upstream sources consulted:**
+- NocoDB: `README.md` on `develop` (install commands). `docker-compose/2_pg/docker-compose.yml` + `docker-compose/3_traefik/docker-compose.yml` on `develop`. `install.nocodb.com/noco.sh` Auto-Upstall script cited (not scraped — too long).
+- Prometheus: `README.md` on `main`. `documentation/examples/prometheus.yml` starter config on `main`.
+- Traefik: `README.md` on `master`. Doc links deferred to `doc.traefik.io/traefik/`.
+
+**Notes:**
+- **NocoDB** license caveat flagged prominently — Sustainable Use License 1.0 is source-available with commercial-use restrictions, NOT OSI open-source. Recipe documents all 5 install paths (Docker one-liner w/ SQLite, Docker w/ external Postgres, Auto-Upstall, compose w/ Postgres only, compose w/ Traefik+LE+Watchtower) and the counterintuitive "SMTP + storage configured in-app, not env" footgun. Auto-Upstall flagged as production-recommended but writes to /root/ by default (non-standard).
+- **Prometheus** recipe emphasizes the pull-only model (Pushgateway is the escape hatch), the cardinality footgun, and that Prometheus has NO built-in auth — basic-auth at the reverse proxy is the common pattern. Documented the three-component deployment shape (Prometheus + Alertmanager + node_exporter) but scoped this recipe to Prometheus only. Binary install with systemd unit is upstream-recommended; Docker variant also documented. Flagged `--web.enable-lifecycle` and `--web.enable-admin-api` as opt-in features.
+- **Traefik** recipe leads with the static-vs-dynamic config distinction (biggest day-one trip-up). Documented the Docker self-host pattern (the most common shape on selfh.st stacks), binary+systemd, and Helm chart for K8s. Emphasized: acme.json MUST be 0600; Let's Encrypt rate limits (50 certs/week — always test with staging CA first); DNS-01 is required for wildcards; dashboard MUST have auth in production.
+
+**Cumulative progress:** 25 / 1274 done (2.0%). 1249 pending.
+
+**Deferred:** Ansible (68k stars) and Unsloth Studio (63k stars) — both are awkward fits for open-forge's "self-host a service" model. Ansible is a CLI/config-management tool (AWX is the web UI that could be self-hosted but is a different project). Unsloth is a Python package for fine-tuning LLMs, not a server. Next batch will tackle them honestly — likely as "skipped" with a brief justification, or as thin recipes pointing to AWX / the Unsloth pip install flow.
