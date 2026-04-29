@@ -108,3 +108,25 @@
 
 **Cumulative progress:** 34 / 1274 done (2.7%). 1240 pending.
 
+
+
+## 2026-04-29 04:53–05:15 UTC — batch 7
+
+**Processed (5):** Gitea, Joplin, Coolify, World Monitor, Jellyfin.
+
+**Upstream sources consulted:**
+- Gitea: `README.md` on `main`; `docs.gitea.com/installation/` index cited. Compose example derived from `docs.gitea.com/installation/install-with-docker`. Systemd unit sourced from `contrib/systemd/gitea.service`.
+- Joplin: `README.md` on `master` (very long client-install matrix); `docker-compose.server.yml` on `dev` (the canonical Joplin Server compose shape). `joplinapp.org/help/install/server_docker` cited.
+- Coolify: `README.md` on `main`; `scripts/install.sh` on `main` (inspected env-var interface directly — `ROOT_USERNAME`, `ROOT_USER_EMAIL`, `AUTOUPDATE`, `REGISTRY_URL`, `DOCKER_ADDRESS_POOL_BASE/SIZE`).
+- World Monitor: `README.md` on `main`; `worldmonitor.app/docs/getting-started` referenced but not scraped.
+- Jellyfin: `README.md` on `master`; `jellyfin.org/docs/general/installation/` index; `jellyfin.org/docs/general/administration/hardware-acceleration/` for HW-accel matrix.
+
+**Notes:**
+- **Gitea** recipe covers the 7 install paths, emphasizing the two dominant shapes (Docker Compose with Postgres, binary+systemd). Documented the GITEA__section__KEY env-var convention that overrides `app.ini`. Flagged Gitea Actions needing a separate `act_runner` and the two SSH patterns (built-in SSH server vs host-OpenSSH-shim).
+- **Joplin** required honest reframing — clients are desktop/mobile-native, and "self-host" specifically means Joplin Server. Recipe starts with "two different self-host framings" table distinguishing Joplin Server vs just pointing clients at existing Nextcloud/Dropbox. Compose derived from upstream's `docker-compose.server.yml` with the `profiles: [full, server]` layering. Flagged the `admin@localhost/admin` default-credential footgun prominently.
+- **Coolify** recipe emphasizes the "only install.sh is supported" upstream stance. Documented env-var pre-seeding (ROOT_USERNAME/PASSWORD/EMAIL, AUTOUPDATE=false, REGISTRY_URL, DOCKER_ADDRESS_POOL_*). Server-addition SSH model (Coolify manages remote servers via its own generated SSH key) called out. Warned about the single-point-of-failure footgun of orchestrating production apps from the same Coolify host.
+- **World Monitor** was the most atypical — AGPL-3.0 Next.js/Tauri hybrid with 5 variant builds, optional Ollama or OpenAI integration, and a downloadable native desktop app. Reframed as "not a traditional server" up front (similar to Storybook / Docusaurus / LocalSend in prior batches). Documented the 5-variant build-scripts (`npm run build:tech` etc.), the Tauri native binaries, and the fact that "self-host" typically means running Next.js in production mode.
+- **Jellyfin** is the first proper "media server" recipe. Covered the full install matrix (APT/DNF repos, upstream Docker image, LinuxServer.io community image, portable tarballs, Windows/macOS installers). Hammered on hardware transcoding (QSV/VAAPI/NVENC/VideoToolbox/AMF), the bundled `jellyfin-ffmpeg` fork vs stock ffmpeg, `JELLYFIN_PublishedServerUrl`, and the three remote-access patterns (LAN-only / Tailscale / public-with-reverse-proxy). Flagged DLNA/discovery needing `network_mode: host` or UDP ports 1900/7359, no built-in rate limiting on login, HEVC/AV1 → H.264 CPU cost without HW accel.
+
+**Cumulative progress:** 39 / 1274 done (3.1%). 1235 pending.
+
