@@ -334,3 +334,25 @@
 
 **Cumulative progress:** 84 / 1274 done (6.6%). 1190 pending.
 
+
+
+## 2026-04-29 11:24–12:05 UTC — batch 16
+
+**Processed (5):** AdGuard Home, Dokploy, restic, Frappe/ERPNext, Web-Check.
+
+**Upstream sources consulted:**
+- AdGuard Home: `README.md` on `master`, and `scripts/install.sh` (verified what the one-liner actually does — systemd unit, `/opt/AdGuardHome/` layout, port 53 preflight).
+- Dokploy: `README.md` on `canary`, plus the actual `dokploy.com/install.sh` (inspected in full — revealed that the one-liner does `docker swarm leave --force`, reinits Swarm, creates `/etc/dokploy` with `chmod 777`, launches Postgres/Redis/Dokploy as Swarm services + Traefik as a `docker run`. Pins `docker 28.5.0` and `traefik:v3.6.7`).
+- restic: `README.md` on `master`. Fairly thin — restic's real docs are at <https://restic.readthedocs.io>. Pulled command patterns + backend list from README.
+- Frappe/ERPNext: ERPNext app `README.md` (marketing-heavy), the `frappe_docker` repo's `README.md`, AND `compose.yaml` (to enumerate the actual 10+ services: configurator, backend, frontend, websocket, queue-short, queue-long, scheduler + db/Redis via overrides + create-site job).
+- Web-Check: Default branch is `master`, but `README.md` lives at `.github/README.md` (resolved via GitHub's `/readme` API). Root `docker-compose.yml` is a tiny stub. README is long and rich (1333 lines); mined the Deployment + Configuring sections for the full env-var list + 1-click deploy URLs.
+
+**Notes:**
+- **AdGuard Home** (285 lines) — gave full weight to the port 53 conflict problem (the #1 install failure, per every support forum for AG Home + Pi-hole), documented the `network_mode: host` vs `bridge` tradeoff (bridge breaks per-client rules), and the DHCP coexistence footgun. Included a side-by-side comparison table with Pi-hole since users usually ask "which one?" Covered encrypted DNS (DoH/DoT/DoQ) both for upstream (AG calling resolvers) and downstream (AG serving phones) use cases — AG's best differentiator.
+- **Dokploy** (200 lines) — recipe led with "install.sh is destructive of existing Docker state" because that's the #1 thing users don't realize. It `docker swarm leave --force`s and reinits Swarm, capturing ports 80/443/3000. Documented the exact Swarm service layout from the install script. Emphasized `/etc/dokploy` being `chmod 777` as a deliberate upstream choice. Called out that the Docker socket mount on both `dokploy` and `dokploy-traefik` means two containers with root-on-host. Not-well-known tip: `DOCKER_SWARM_INIT_ARGS` for AWS VPC CIDR collisions.
+- **restic** (317 lines) — the longest so far. Treated this as the "foundational backup tool" recipe because the forge will want to reference it from many other recipes (every app needs backups). Covered binary install, all backends, REST server as a self-host pattern, systemd timer template, excludes template, cron alternative. Heavy emphasis on "lose the password = lose data forever" — printed in bold, mentioned 3 times because users still lose their password. Pre-0.15 prune slowness, `--pack-size` for huge repos, `bench backup` pattern for live databases, exit code 3 = partial-success quirk.
+- **Frappe/ERPNext** (264 lines) — front-loaded the "this is heavyweight" reality (10+ containers, 8GB RAM comfort). Documented the overrides-based compose approach which is non-obvious (base `compose.yaml` alone won't boot — needs at least a DB override + Redis override). `pwd.yml` demo-only warning prominent. `bench` CLI examples, multi-site, backup-via-`bench`, custom-apps-require-rebuilding-image gotcha, version-skipping prohibition. ERPNext and Frappe are a deeply integrated pair — recipe treated them as one thing (which they are in practice).
+- **Web-Check** (205 lines) — simple stateless container, but the recipe spent real space on ethical / legal gotchas: running port scans + traceroute against targets you don't own can trip IDS/WAF, and your IP is on the hook. Also flagged that `REACT_APP_*` API keys are client-visible (in browser bundle) → use read-only scoped keys. Netlify/Vercel timeout-vs-Docker trade-off. No-auth-by-default public-exposure footgun.
+
+**Cumulative progress:** 89 / 1274 done (7.0%). 1185 pending.
+
