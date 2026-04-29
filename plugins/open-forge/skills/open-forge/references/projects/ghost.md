@@ -441,7 +441,82 @@ The hosted version at <https://gscan.ghost.org/> is the same tool.
 
 > **Source:** <https://ghost.org/docs/install/source/> (TryGhost/Docs `install/source.mdx`).
 
-_Section content added in a subsequent commit (Task E of the granular fix plan)._
+For contributors modifying Ghost itself (server, admin client, default theme, helpers). Runs the monorepo with hot-reload; **not** an install method for users who just want to host a Ghost site — use Ghost-CLI Ubuntu or the Docker preview for that.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| Platform | Mac / Linux (Windows works but unofficial). |
+| Node major | Latest LTS supported by Ghost — install via [nvm](https://github.com/creationix/nvm#install-script). |
+| Docker | Required for the dev MySQL container + other services. |
+| GitHub fork | Required unless on the Ghost core team (push access to `TryGhost/Ghost`). |
+
+### Install
+
+```bash
+# 1. Fork TryGhost/Ghost on GitHub via the web UI.
+
+# 2. Clone WITH submodules (admin client + default theme are submodules)
+git clone --recurse-submodules git@github.com:TryGhost/Ghost && cd Ghost
+
+# 3. (Non-core-team only) point origin at your fork
+git remote rename origin upstream
+git remote add origin git@github.com:<YourUsername>/Ghost.git
+
+# 4. Enable pnpm + run upstream's setup
+corepack enable pnpm
+pnpm run setup        # installs deps, initialises the DB, sets up git hooks + submodules
+
+# 5. Start in dev mode
+pnpm dev
+```
+
+Once running:
+
+- Site: <http://localhost:2368/>
+- Admin: <http://localhost:2368/ghost/>
+
+### Stay up to date
+
+```bash
+pnpm main             # update everything to latest main
+```
+
+### Dev commands
+
+```bash
+# Run variants
+pnpm dev              # default — admin builds + watches for changes
+pnpm dev:ghost        # ignore admin changes
+pnpm dev:admin        # ignore server changes
+pnpm dev --portal     # also run the Portal dev server
+
+# DB migrations (Ghost uses its own knex-migrator)
+pnpm knex-migrator reset       # wipe
+pnpm knex-migrator init        # populate fresh
+
+# Build a production tarball (for installing into a Ghost-CLI site via 'ghost install --archive')
+pnpm archive
+
+# Tests
+pnpm test:unit
+pnpm test:acceptance
+pnpm test:regression
+pnpm test:single path/to/test.js
+pnpm test:all
+pnpm lint
+```
+
+Client (admin) tests live under `ghost/admin/` and use ember-cli; run `ember test` there while `pnpm dev` is up.
+
+### Source-install gotchas
+
+- **Submodules must be initialised** — clone with `--recurse-submodules`, or `git submodule update --init --recursive` after the fact. Skipping this leaves the admin client + default theme empty.
+- **Don't run `ember test` and `pnpm dev` simultaneously** — they fight over the admin build directory; wait for tests to finish.
+- **`pnpm fix` resolves most "Cannot find module" errors** — happens after switching Node versions or interrupting an install.
+- **`pnpm-lock.yaml` rebase conflicts** — don't hand-merge. `git reset HEAD package.json pnpm-lock.yaml` + `git checkout -- package.json pnpm-lock.yaml`, then re-run the dependency add/remove that caused the conflict, then `git add` + `git rebase --continue`.
+- **Source install is dev-only.** Don't deploy `pnpm dev` output to a public URL. Production deploys go through Ghost-CLI's `--archive` flag against a tarball built with `pnpm archive`.
 
 ---
 
