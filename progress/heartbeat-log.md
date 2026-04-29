@@ -312,3 +312,25 @@
 
 **Cumulative progress:** 79 / 1274 done (6.2%). 1195 pending.
 
+
+
+## 2026-04-29 10:53–11:45 UTC — batch 15
+
+**Processed (5):** CyberChef, File Browser, PostHog, Keycloak, Glance.
+
+**Upstream sources consulted:**
+- CyberChef: `README.md` on `master` of `gchq/CyberChef`. Simple static SPA — README has all the install info needed (prebuilt image + build-yourself + release zip).
+- File Browser: `README.md` on `master` of `filebrowser/filebrowser` (short — points at filebrowser.org). Docker compose files at root are 14-byte 404s. Critical find: the README's "Project Status" section documents **maintenance-only mode** as of early 2026 per hacdias' blog post. Active fork `gtsteffaniak/filebrowser` noted for users wanting ongoing features.
+- PostHog: `README.md` on `master` (marketing-heavy but has the deploy-hobby one-liner). Actually fetched and inspected `bin/deploy-hobby` — revealed the "**⚠️ You REALLY need 8GB or more of memory**" warning that contradicts the README's "4GB recommended." Also saw `POSTHOG_SECRET` + `ENCRYPTION_SALT_KEYS` auto-generation.
+- Keycloak: `README.md` on `main` (short — CNCF project, points at keycloak.org/documentation). Pulled the Quarkus Dockerfile for version context.
+- Glance: `README.md` on `main` — rich, 446 lines. Has inline compose snippets, full config examples, and "Common issues" + "FAQ" sections that I mined for gotchas.
+
+**Notes:**
+- **CyberChef** is the simplest recipe to date (187 lines) — no state, no secrets, no DB, no auth. 100% client-side. Emphasized the "no config" nature, flagged the upstream's own "crypto operations should not be relied upon for security" disclaimer, and the localStorage history leak.
+- **File Browser** recipe leads with the maintenance-only upstream reality because that's the #1 consideration for new deploys in 2026. Recommended the `gtsteffaniak` fork as the active alternative while still documenting both paths. Flagged the default-password footgun (older images) vs. the random-password-in-logs footgun (newer images), the `user:` / ownership trap for bind-mounts, the share-links-are-unauth design decision, and the "Execute Command" RCE feature.
+- **PostHog** recipe front-loaded the 8GB RAM / 100k-events-per-month reality. Upstream is explicit that self-host is a "hobby deploy" and Cloud is the recommended path above small scale — I documented this honestly. Covered the 10+ service stack (Postgres + ClickHouse + Kafka + ZK + Redis + MinIO + Nginx + Certbot + Temporal + plugin-server + workers) so users understand the ops burden. Distinguished MIT-licensed core vs. `ee/` proprietary directory; pointed at `posthog-foss` mirror for pure FOSS users.
+- **Keycloak** recipe (328 lines — tied with Nextcloud for longest) covered the serious-tier auth platform cleanly. Distinguished the post-v17 Quarkus vs. pre-v17 WildFly builds (old guides mentioning `standalone.xml` are wrong now). `start` vs `start-dev` distinction prominent. Reverse-proxy headers are Keycloak's #1 support issue — dedicated the largest gotcha section to `KC_PROXY_HEADERS=xforwarded` + matching proxy-side config. Covered bootstrap-admin → delete-after-claiming pattern, realm design (don't use `master` for your users), OIDC vs SAML client modeling, Infinispan caching in HA, and the native-image tradeoffs.
+- **Glance** recipe covered the 3 install paths (upstream docker-compose-template, manual compose, binary + systemd) and the 4 custom-widget mechanisms (iframe / html / extension / custom-api). Upstream README's own "Common issues" section gave me 3 excellent gotchas (Pi-hole rate limits, Dark Reader layout breakage, nested pages YAML trap) verbatim from maintainer docs. Docker socket mount security implications for the `docker-containers` widget explicitly flagged.
+
+**Cumulative progress:** 84 / 1274 done (6.6%). 1190 pending.
+
