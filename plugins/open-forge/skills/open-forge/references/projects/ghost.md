@@ -524,7 +524,64 @@ Client (admin) tests live under `ghost/admin/` and use ember-cli; run `ember tes
 
 > **Source:** <https://ghost.org/docs/install/digitalocean/> (TryGhost/Docs `install/digitalocean.mdx`). Marketplace listing: <https://marketplace.digitalocean.com/apps/ghost>.
 
-_Section content added in a subsequent commit (Task F of the granular fix plan)._
+DigitalOcean is upstream's "official hosting partner" — the marketplace droplet is the only third-party platform Ghost officially endorses. Mechanically it provisions a DO Droplet pre-loaded with Ghost-CLI, then drops you into the same `ghost install` flow as the Ubuntu method.
+
+### Method-specific inputs
+
+| Field | Value |
+|---|---|
+| DO account | Required. Account-level SSH key must be uploaded **before** droplet creation. |
+| Droplet size | Smallest current shared-CPU plan is sufficient for a personal blog; size up for high traffic / many members. |
+| Single droplet only | Ghost is single-process and **cannot** be sharded across droplets. |
+| Domain | Mandatory (for SSL provisioning during the Ghost-CLI flow). |
+
+### Provision (browser-driven, Claude can't fully automate)
+
+This step is a click-flow in the DO UI; Claude reads it aloud and verifies the result:
+
+1. Open <https://marketplace.digitalocean.com/apps/ghost> and click **Create Ghost Droplet**.
+2. Pick a plan (default is fine for a blog), region, and SSH key. Create exactly **one** droplet.
+3. Once the droplet has a public IP, set the DNS A-record for `${CANONICAL_HOST}` → that IP. Wait for propagation (`dig +short ${CANONICAL_HOST}`).
+
+### First SSH = Ghost-CLI auto-flow
+
+```bash
+ssh root@${PUBLIC_IP}
+```
+
+On first login, the droplet auto-runs an update check and prepares the Ghost-CLI environment, then prompts:
+
+```
+Ghost will prompt you for two details:
+
+1. Your domain
+2. Your email address (only used for SSL)
+
+Press enter when you're ready to get started!
+```
+
+Press Enter, then answer the prompts:
+
+| Prompt | Answer |
+|---|---|
+| Blog URL | `https://${CANONICAL_HOST}` (must include `https://`; IPs cause errors) |
+| Email | `${LETSENCRYPT_EMAIL}` |
+
+Ghost-CLI then installs + configures Ghost + obtains the SSL cert. The remaining install questions (NGINX setup / SSL setup / systemd / start Ghost) accept the same answers as the Ubuntu method — see that section's prompt-to-answer table.
+
+### Verify
+
+Same as Ghost-CLI Ubuntu: `curl -sI`, `ghost ls`, `ghost log`. Then claim the owner account at `https://${CANONICAL_HOST}/ghost`.
+
+### Lifecycle
+
+Identical to Ghost-CLI Ubuntu — `ghost help`, `ghost update`, `ghost stop / start / restart`, `ghost log`. The only difference is the underlying VM is a DO Droplet (vs a manually-provisioned Ubuntu host).
+
+### DigitalOcean 1-Click gotchas
+
+- **DNS propagation before first SSH.** Ghost-CLI's auto-flow runs Let's Encrypt as part of the prompt sequence — the A-record must be resolvable before you press Enter, or the SSL step fails. If it fails, run `ghost setup ssl` later.
+- **Single droplet, no sharding.** Ghost has no horizontal-scale story; if the user expects load-balanced multi-droplet, they're on the wrong path.
+- **Failed install recovery.** Same commands as Ghost-CLI Ubuntu: `ghost uninstall` for a clean wipe, `ghost setup` to resume.
 
 ---
 
