@@ -45,6 +45,7 @@ OpenClaw upstream documents two parallel axes — **how to package it** (Contain
 | **Native** (`install.sh`) | `runtimes/native.md` | macOS / Linux / WSL2 — global Node + project install. systemd / launchd daemon. |
 | **Native** (`install-cli.sh`) | `runtimes/native.md` | macOS / Linux / WSL2 — local-prefix install (`~/.openclaw` by default). No root required. |
 | **Native** (`install.ps1`) | `runtimes/native.md` | Native Windows (PowerShell 5+). Scheduled Task daemon. |
+| **Package managers** (`npm` / `pnpm` / `bun`) | `runtimes/native.md` | For users who manage Node themselves. `npm install -g openclaw@latest` — see project-specific section below. |
 | **ClawDock** | (shell wrapper over Docker — see project-specific section below) | Optional UX layer: `clawdock-start`, `clawdock-dashboard` instead of `docker compose ...`. |
 | **Ansible** | (production hardening — see project-specific section below) | The `openclaw-ansible` upstream repo: UFW + Tailscale + Docker-isolated sandbox + systemd-hardened gateway. Native (not containerized) gateway. |
 | **Nix** | (declarative — see project-specific section below) | The `nix-openclaw` Home Manager module: rollback-able, deterministic, launchd-managed (macOS). |
@@ -482,6 +483,75 @@ For public reach on a remote host, see `runtimes/native.md` § *Reverse proxy* (
 - **`openclaw onboard` and `openclaw configure` are interactive** — pause autonomous mode. There is no fully non-interactive onboarding today; `--no-onboard` skips the wizard but then the user must `openclaw configure` or hand-edit `openclaw.json` later.
 - **Windows: `iwr | iex` errors are non-fatal to the shell.** A failure inside the piped script reports a terminating error but doesn't close the PowerShell window. Always check the explicit success line — silent partial installs happen on Windows more than elsewhere.
 - **Local-prefix mode + GUI app on macOS.** The macOS GUI app doesn't inherit shell PATH. For Nix-style local-prefix installs the GUI won't see `openclaw`; the CLI still works.
+
+---
+
+## Package managers (npm / pnpm / bun)
+
+> **Source:** <https://docs.openclaw.ai/install/> § *Package Managers — For existing Node setups* (upstream `docs/install/index.md`).
+
+For users who already manage Node themselves (nvm / fnm / asdf / system package, etc.) and want OpenClaw installed **via the registry** rather than the upstream installer scripts. Skips Node-version negotiation, daemon-autostart wiring, and the `openclaw onboard` flow that `install.sh` adds — leaves all of those to the user.
+
+### When to pick this over `install.sh`
+
+| Constraint | Pick |
+|---|---|
+| Already on a managed Node version (nvm / fnm / asdf / Volta) you want to keep | `npm install -g openclaw@latest` |
+| Want pnpm's content-addressable global store | `pnpm add -g openclaw@latest` |
+| On Bun for everything, accept WhatsApp/Telegram channel issues | `bun add -g openclaw@latest` (dev-only — see *Bun runtime* section) |
+| No existing Node, don't want to manage one | Use `install.sh` / `install-cli.sh` instead |
+
+The `install.sh` script in the *Native installer* section already runs `npm install -g openclaw@latest` under the hood (or `--install-method git` for a git-checkout install). Picking npm/pnpm/bun directly just removes the wrapper.
+
+### Install
+
+```bash
+# npm — system-wide install (may require sudo on Linux/macOS depending on Node setup)
+npm install -g openclaw@latest
+
+# pnpm
+pnpm add -g openclaw@latest
+
+# Bun — only for local CLI use; do NOT run the gateway on Bun in production
+bun add -g openclaw@latest
+
+# GitHub main branch (for testing unreleased changes)
+npm install -g github:openclaw/openclaw#main
+```
+
+After install, the CLI is on PATH:
+
+```bash
+openclaw --version
+openclaw onboard --install-daemon    # interactive — pause autonomous mode
+openclaw gateway status
+```
+
+### Daemon autostart — manual
+
+Unlike `install.sh` (which drops a systemd user unit / launchd plist / Scheduled Task automatically), package-manager installs leave the user to wire the daemon themselves. Two options:
+
+```bash
+# Option 1 — use openclaw's onboarding wizard
+openclaw onboard --install-daemon
+
+# Option 2 — manual systemd user unit (Linux), launchd plist (macOS),
+#           or Scheduled Task (Windows). See runtimes/native.md for templates.
+```
+
+### Updating
+
+```bash
+npm install -g openclaw@latest      # or pnpm add -g openclaw@latest, etc.
+openclaw gateway restart
+```
+
+### Package-manager-specific gotchas
+
+- **PATH after global install.** `npm install -g` installs into the npm global prefix (`npm config get prefix`); ensure `$(npm config get prefix)/bin` is on PATH. nvm-managed Node usually handles this; system Node sometimes doesn't.
+- **No autostart by default.** Unlike `install.sh`, `npm/pnpm/bun add -g` does not register the gateway with systemd / launchd / Scheduled Tasks. Either run `openclaw onboard --install-daemon` after install, or wire lifecycle yourself per `runtimes/native.md`.
+- **Bun's gateway runtime caveat.** `bun add -g` is fine for the CLI, but **don't** run `openclaw gateway` under Bun for production — known issues on WhatsApp + Telegram channels (see *Bun runtime* section below).
+- **Lockfile churn.** Global package managers do not touch repo lockfiles; this is purely an install method, not a development workflow.
 
 ---
 
