@@ -2189,3 +2189,48 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - New license model (FSL) worth a short `patterns/licenses.md` doc when consolidation arrives — it's a 2024+ emerging trend.
 - "Widget-as-homelab-control-plane" is a sub-pattern worth naming in the consolidation pass — not every hub-of-creds tool was DESIGNED as one; some become one by accretion (dashboards, password managers, SSO gateways).
 - "Author-preference scope" now a 3-distinct-pattern family — Dockhand (skip) / AzuraCast (document-with-scope-respect) / Feedbin (document-with-upstream-redirect). Worth codifying in future skill guidance for heartbeat workflow so future recipes handle consistently.
+
+## 2026-04-30 17:13 UTC — batch 90 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged (PAT scope); no new issues.
+
+### Step 2 (selfh.st batch 90)
+- **swag** (3649★) — LinuxServer.io curated Docker image (nginx + certbot + fail2ban + PHP-FPM). 9th institutional-stewardship (LSIO) + proxy-confs-library ecosystem asset + DNS-token-as-privileged-secret + cert-private-keys-as-crown-jewel + fail2ban-requires-NET_ADMIN gotcha + homelab-ecosystem-default-reverse-proxy framing.
+- **garage** (3639★) — AGPL-3 Rust S3-compatible distributed object store by Deuxfleurs. 16th immutability-of-secrets (RPC secret) + 20th hub-of-credentials + 10th institutional-stewardship (Deuxfleurs collective) + 10th transparent-maintenance (explicit small-to-medium scope-limit) + **"replication ≠ backup"** universal warning for ANY replicated-storage tool + **geographic-distribution-value-requires-diversity** framing.
+- **bigcapital** (3622★) — AGPL-3 TypeScript accounting/inventory SMB software. 17th immutability-of-secrets (JWT + encryption keys) + 21st hub-of-credentials (Tier 2 financial-data-subtype) + **"financial data = regulatory crown jewel"** framing (tax retention + SOX/IFRS/GAAP + audit-trail-integrity) + double-entry-invariants warning + test-restore-mandatory + retention-vs-GDPR-tension.
+- **pgadmin** (3593★) — PostgreSQL-licensed PGDG-maintained Postgres admin GUI. **22nd hub-of-credentials (crown-jewel Tier 2)** + 18th immutability-of-secrets (master password) + 7th permissive-license-ecosystem-asset + 11th institutional-stewardship (PGDG) + **"DBA-access-panel = direct-DB-root"** framing + MASTER-PASSWORD-ENABLE-FIRST discipline.
+- **limesurvey** (3576★) — GPL-2+ German-company-backed survey platform. 19th immutability-of-secrets (encryption key) + 23rd hub-of-credentials (research-data-subtype, GDPR-special-category-data) + 12th institutional-stewardship (LimeSurvey GmbH) + IRB/ethics-review-for-academic-use + pseudonymize-for-retention-vs-erasure tension + WCAG-2.0-accessibility-legal-requirement.
+
+**Batch 90 lengths:** swag 191, garage 186, bigcapital 196, pgadmin 174, limesurvey 187.
+**State:** 464 done / 2 skipped / 808 pending — **36.4% done.**
+
+### New precedents
+- **"Replication ≠ backup"** universal warning (Garage): any tool that provides replication (Garage, MinIO, Ceph, Postgres streaming replication, RAID arrays) needs this prominently. Separates durability from backup + frames accidental-delete + malicious-access scenarios where replication doesn't save you.
+- **"Geographic distribution value requires geographic diversity"** framing (Garage): replication theater — running 3 nodes on same cloud provider = same-failure-domain = cosmetic redundancy. Real value requires different providers / continents / network paths / physical homes. Template-worthy for any cluster-replication tool.
+- **"Financial data = regulatory crown jewel"** framing (Bigcapital): financial/accounting data piles regulatory frameworks (tax authority retention + SOX/IFRS/GAAP + audit trail integrity + GDPR + PCI if payments) on top of standard crown-jewel sensitivity. **1st tool in financial-data-regulatory-crown-jewel sub-family.** Template for Akaunting / ERPNext / any future accounting tool.
+- **"Research data regulatory crown jewel"** framing (LimeSurvey): research data piles IRB/ethics + GDPR special-category-data + academic-reproducibility on top of standard sensitivity. **1st tool in research-data-regulatory-crown-jewel sub-family.** Template for future research tools (REDCap alternatives, academic data collection).
+- **"DBA-access-panel tool = direct-DB-root"** framing (pgAdmin): database management UIs (pgAdmin, Adminer, phpMyAdmin, DBeaver connecting to multiple servers) are archetypal crown-jewels — they hold connection credentials for every DB they front. Similar to Homarr-as-control-plane-by-aggregation (batch 89). **1st tool in DBA-panel-hub-of-credentials sub-family.**
+- **"Institutional-stewardship — collective-tier (Deuxfleurs)"** vs **company-tier (LimeSurvey GmbH, TryGhost, Deciso)** vs **foundation-tier (ASF, PGDG, Linux Foundation)**: three institutional-stewardship sub-tiers now identified. Each has different trust characteristics + bus-factor profiles.
+- **"Proxy-confs library as ecosystem asset"** (SWAG): curated config snippets covering 200+ apps is a distinctive asset that raises SWAG above a bare nginx-docker image. Meta-pattern: **"community-curated integration-library"** ecosystem value (similar to Homarr's integrations list, proxy-confs, Home Assistant's integrations catalog). Recipe convention: flag + celebrate curated integration libraries.
+- **"Tool-whose-name-causes-confusion"** flag (SWAG "no relation to Let's Encrypt™"; LimeSurvey's limes-citrus branding is fine): first in a potential future pattern of noting trademark/naming sensitivities.
+- **"Pseudonymize-for-retention vs right-to-erasure tension"** framing (LimeSurvey, extends Bigcapital): recurring tension for tools with regulatory retention requirements that clash with GDPR erasure. Solution: replace direct identifiers with tokens; retain responses/transactions. Template-worthy.
+- **"Fail2ban-requires-NET_ADMIN"** specific operational gotcha (SWAG): concrete technical detail worth surfacing — `cap_add: [NET_ADMIN]` silently required or brute-force protection is bogus. Template-worthy for tools that need netfilter access.
+- **"Master-password-enable-first"** discipline (pgAdmin `PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED=True`): like encryption-enable-first discipline (batch 86 2FAuth + LimeSurvey encryption keys), tools with OPTIONAL encryption features should have the discipline enforced from day one BEFORE storing sensitive data. **Consolidating family: "enable-security-feature-at-bootstrap"**.
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 19 tools** (+ Garage RPC secret, Bigcapital JWT+encryption, pgAdmin master pw, LimeSurvey encryption)
+- **Hub-of-credentials crown-jewel: 23 tools** (+ Garage, Bigcapital, pgAdmin, LimeSurvey) — **FAMILY-DOC MANDATORY at batch 100**
+- **Transparent-maintenance: 10 tools** (+ Garage explicit scope-limit)
+- **Permissive-license-ecosystem-asset: 7 tools** (+ pgAdmin PostgreSQL License)
+- **Institutional-stewardship: 12 tools** (+ LSIO SWAG, Deuxfleurs Garage, PGDG pgAdmin, LimeSurvey GmbH) + sub-tier split (collective / company / foundation)
+- **Control-plane-tier**: 4 tools (Octelium, Guacamole, Homarr by-aggregation, pgAdmin DBA-sub-family)
+- **Regulatory-crown-jewel sub-families (NEW)**: financial-data (Bigcapital), research-data (LimeSurvey), healthcare-data (TBD for future medical tools), legal-data (TBD)
+- **Network-service-legal-risk: 9 tools** (unchanged)
+- **Default-creds-PUBLIC: 4 tools** (unchanged)
+
+### Notes
+- Milestone: **36.4%** done. Batch 100 is 10 batches (50 recipes) away. Pattern-consolidation pass planned for then.
+- Family counts continuing to grow; hub-of-credentials at 23 NOW CLEARLY NEEDS structured documentation — 3-tier split (Control-plane / Crown-jewel / LIGHT) + sub-families (financial / research / DBA-panel).
+- **New consolidating family: "enable-security-feature-at-bootstrap"** — encryption keys, master passwords, 2FA-enforcement, audit-logging, should all be enabled AT bootstrap before sensitive data is added. Worth codifying in a template.
+- Institutional-stewardship at 12 tools with clear sub-tier structure (collective / company / foundation). Family-doc content already half-written via recipe examples.
