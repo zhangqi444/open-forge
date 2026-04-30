@@ -1731,3 +1731,50 @@ Pattern observations across batches 68-74:
 - **"File-format-standards = backward-compat = low-upgrade-risk"** mitigation (Radicale vCard/iCal RFCs): standards-compliance reduces upgrade anxiety. Generalizable to any RFC-based tool.
 
 **Milestone:** 32.1% done. Batch 79 covers 5 mature/established tools (Kimai+DokuWiki+Radicale all 2000s-era). Heavy on **operational-reality** (port 25 blocks, registry rate limits, TLS mandatory, default-auth-off). Pattern: older tools = more "you'll regret this specific thing" institutional knowledge.
+
+## 2026-04-30 14:25 UTC — batch 80 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope).
+
+### Step 2 (selfh.st batch 80)
+- **unbound** (4472★) — BSD-3 NLnet Labs recursive+validating DNS. **OPEN-RESOLVER-= DNS-AMP-DDOS-CRIME** front-loaded + default-deny-access-control + Pi-hole-+Unbound pattern + institutional-grade-NLnet-Labs governance.
+- **mirotalk** (4468★) — AGPL-3 WebRTC P2P conferencing + one-time CodeCanyon commercial license. P2P-vs-SFU architectural decision + TURN-effectively-mandatory + HTTPS-non-negotiable + N²-mesh-scaling + client-side-recording-privacy-win.
+- **kinto** (4417★) — Apache-2 Mozilla-origin now community-stewarded JSON store. PG-only-prod + permissive-default-permissions-review + bucket/collection/record hierarchy + ETag+If-Match-first-class + comparison to PocketBase/Supabase/Appwrite.
+- **your-spotify** (4400★) — GPL-3 Node+Mongo Spotify stats. **Spotify-Dev-App-MANDATORY** + exact-redirect-URI-match + privacy-data-vs-full-privacy-data import semantics + self-documenting-insecure-env-var-name (FRAME_ANCESTORS) + Mongo-not-on-NFS.
+- **opnsense** (4391★) — BSD-2 FreeBSD firewall. pfSense-fork-2014-2015-governance-differences + Realtek-NIC-flaky + AES-NI-for-VPN + don't-expose-WAN + Business-Edition-funds-upstream + config.xml-as-IaC.
+
+**Batch 80 lengths:** unbound 178, mirotalk 162, kinto 167, your-spotify 171, opnsense 164.
+**State:** 414 done / 1 skipped / 859 pending (32.5%).
+
+### New precedents
+- **"OPEN-RESOLVER = DNS-AMP-DDOS-CRIME" front-loaded legal+abuse framing** (Unbound): tools that expose network services need loud criminal/abuse warnings. Extends Scanopy-CFAA (batch 76) + AnonAddy email-abuse (batch 79) family.
+- **"Default-deny-access-control then explicit-allow"** security-posture pattern (Unbound): override the permissive default; don't just accept deny-none defaults.
+- **"Pi-hole + Unbound" canonical-pairing-pattern** (Unbound with port 5335 convention): standard home-lab deployment pattern worth naming + linking.
+- **"Institutional-grade governance (NLnet Labs non-profit foundation)"** trust-pedigree signal (Unbound): different risk class from solo-dev + corporate-backed. DECADES of DNS software pedigree. Comparable to Python Software Foundation / Apache Foundation.
+- **"P2P vs SFU is THE architectural decision"** WebRTC-scaling tradeoff explicit (MiroTalk P2P vs SFU sister project): know meeting-size profile BEFORE choosing.
+- **"TURN effectively mandatory (20-40% connection failure without)"** quantified reality (MiroTalk WebRTC): honest failure-rate citation.
+- **"HTTPS non-negotiable because getUserMedia refuses HTTP"** browser-policy technical-hard-requirement (MiroTalk): not a recommendation, a browser-enforced gate.
+- **"N² mesh = upload-bandwidth linear per peer"** scaling-math explicit (MiroTalk P2P 8 participants → 56 connections): do the math for readers.
+- **"Client-side recording as privacy-feature"** unusual design choice (MiroTalk): call out design-decisions-that-are-unusual when they're actually good.
+- **"One-time commercial license vs recurring subscription"** commercial-tier differentiation (MiroTalk CodeCanyon vs rallly.co recurring): genuine operator choice; worth naming.
+- **"Mozilla-origin now community-stewarded"** governance-transition transparency (Kinto): tools whose original corporate parent has stepped back. Operator-material; mitigates bus-factor when community is healthy.
+- **"Default permissions can be permissive — review before exposing"** framework-class security habit (Kinto): many storage/API services ship "easy defaults" that need hardening.
+- **"Data model hierarchy planning is hard to migrate later"** upfront-design warning (Kinto Bucket→Collection→Record): architectural-commitment decisions that are expensive to reverse.
+- **"Spotify-Developer-App MANDATORY, no shared credentials"** third-party-API-dependency-front-loaded (YourSpotify): OAuth apps can't be shared; self-hosters each register their own. Same pattern applies to Google Calendar sync, Twitter API apps, etc.
+- **"Exact-redirect-URI match"** OAuth-specific-footgun (YourSpotify + all OAuth): scheme/host/port/path all must match; common dev-vs-prod footgun.
+- **"Privacy-data (12mo) vs Full-privacy-data (full-history-30day-wait)"** GDPR-export-nuance (YourSpotify + any GDPR-subject-data-request pattern): upstream-provider-takes-time realities.
+- **"Self-documenting-insecure-env-var-name"** upstream UX win (YourSpotify `i-want-a-security-vulnerability-and-want-to-allow-all-frame-ancestors`): making insecure option LITERALLY named its consequence is a pattern worth celebrating.
+- **"Mongo does NOT support NFS"** official-vendor-support-boundary (YourSpotify carrying this from MongoDB): "tool doesn't work on X substrate" vendor statement.
+- **"pfSense-fork-2014-2015-governance-differences"** project-genealogy transparency (OPNsense): forks with cultural/licensing/governance reasons vs pure technical forks — name the reason.
+- **"Realtek NICs on FreeBSD are historically flaky"** hardware-compat operational wisdom (OPNsense): specific-chipset advice for a niche where it matters.
+- **"AES-NI required-for-VPN-performance"** CPU-feature-prereq-quantified (OPNsense): hardware-selection-implications explicit.
+- **"config.xml-as-IaC"** architectural pattern (OPNsense single-file-config): treat firewall config like code — git track, diff review. Elevate-to-IaC mindset.
+- **"Business Edition funds Deciso"** commercial-tier-funds-upstream continues (OPNsense): pattern count now: Statamic Pro, Baserow Premium/Enterprise, MediaCMS Elestio, Rallly.co, Statamic, Write.as, Railway/Kan, Clidey EE, OPNsense Business. Consistent pattern across OSS+commercial-tier tools.
+
+**Milestone:** 32.5% done. Batch 80 contains **infrastructure-grade tools** (Unbound/OPNsense) alongside **consumer-tools** (MiroTalk/YourSpotify) + **developer-tool** (Kinto). Notable: multiple tools this batch have strong NON-startup governance pedigrees — NLnet Labs (non-profit foundation), Deciso B.V. (commercial company + EU), Mozilla-origin-now-community (Kinto).
+
+### Cross-cutting observations
+- **Network-services legal-abuse warnings** family: CFAA (Scanopy) + email spam infrastructure (AnonAddy) + DNS-amp-DDoS (Unbound). Tools that expose network services need loud legal framing.
+- **"Default permissions / default auth"** review required: Radicale (batch 79), WhoDB (batch 77), Kinto (batch 80) — three tools all ship permissive defaults. Pattern: state plainly + pre-deploy-review-checklist.
+- **Commercial-tier-funds-upstream** count climbs steadily; now >10 tools documented with this pattern. Worth explicit precedent in future project.
