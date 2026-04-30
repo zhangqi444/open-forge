@@ -1646,3 +1646,49 @@ Pattern observations across batches 68-74:
 - **AI-privacy-boundary** emerging: where does my data/query go? Local (Ollama) vs cloud (OpenAI/Anthropic). Privacy + cost + regulatory considerations.
 - **Managed-tier funds upstream** (Railway/Elestio/Write.as/rallly.co/Clidey-EE/Statamic-Pro): ethical-procurement signal continues.
 - **Auth-delegation transparency** (WhoDB CE has no auth; Mathesar DB-user highly privileged; CloudBeaver stores DB creds): be loud about which tool is the trust boundary.
+
+## 2026-04-30 13:55 UTC — batch 78 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope blocked).
+
+### Step 2 (selfh.st batch 78)
+- **baserow** (4737★) — open-core Airtable alt. Django+Vue+PG. MIT core + Premium/Enterprise. Kuma AI + app builder + automations + dashboards. GDPR/HIPAA/SOC2-compliant (cloud; self-host = your responsibility). Repo migration GitLab→GitHub noted.
+- **unregistry** (4734★) — `docker pussh` over SSH. Apache-2.0. Same author as Uncloud (batch 74). rsync-for-Docker-images + containerd-socket-root + SSH-agent-mandatory + not-for-K8s + when-to-use-real-registry matrix.
+- **surveyjs** (4732★) — MIT JS form library, NOT a self-hosted app. Called out product-family split (MIT Form Library vs commercial Creator/Dashboard/PDF). Store submissions in YOUR backend. Form JSON versioning + server-side-revalidation discipline + client-validation-bypass.
+- **ezbookkeeping** (4704★) — Go + SQLite/MySQL/PG personal finance. MIT. Multi-currency+timezone+format + WebAuthn app-lock + MCP-AI-agent-access-threat + finance-data-sensitivity + 5-7yr-tax-retention + exit-strategy-via-open-format.
+- **ackee** (4645★) — Node+Mongo privacy analytics. MIT. No-cookies → banner-claim-is-jurisdiction-dependent + CORS-allow-origin-explicit + ad-blockers-block-analytics + GraphQL-API-differentiator + donation-funded-solo + massive-community-integration-ecosystem-mitigates-bus-factor.
+
+**Batch 78 lengths:** baserow 166, unregistry 167, surveyjs 175, ezbookkeeping 169, ackee 169.
+**State:** 404 done / 1 skipped / 869 pending (31.7%).
+
+### New precedents
+- **"IS-a-library-NOT-an-app"** category-clarification (SurveyJS): some entries in selfh.st directories are libraries you EMBED, not apps you RUN. Call it out loudly; explain the self-host-adjacent scenario.
+- **Product-family MIT-vs-commercial split transparency** (SurveyJS Form Library MIT + Creator/Dashboard/PDF commercial): when a product line has mixed licensing, enumerate per-component license.
+- **Repository migration GitLab→GitHub discontinuity** (Baserow 2025): PRs/MRs don't migrate — historical discussion lives in the old system; link both. Same class as NetVisor→Scanopy rebrand (batch 76).
+- **Open-core gating awareness** (Baserow — RBAC/SAML/audit in Premium/Enterprise): explicit "features you might assume are core aren't" callout to prevent deploy-then-discover-gated.
+- **GDPR/HIPAA/SOC2 compliance statements apply to CLOUD, not self-host** (Baserow + many): compliance is YOUR responsibility when self-hosting. Same OpenEMR pattern (batch 74). Worth naming for every compliance-badged tool.
+- **PostgreSQL-is-queryable-directly** data-sovereignty advantage + corollary (Baserow): users can query data outside the app, bypassing RBAC. Don't hand out DB creds.
+- **"rsync-for-Docker-images"** mental-model tag (unregistry): precisely the right metaphor for this tool class.
+- **Docker-group-membership = root-equivalent** security framing (unregistry): users in `docker` group can escape to root trivially. Worth naming every time a tool requires it.
+- **"NOT-for-K8s" honest-scope-limitation** (unregistry): tell users when a tool is explicitly NOT the right fit.
+- **"Use-a-real-registry-instead-if..." reverse-decision matrix** (unregistry): list conditions where the OPPOSITE tool wins. More helpful than one-sided comparison.
+- **Form JSON schema versioning discipline** (SurveyJS): when schemas evolve, submissions need version tags to be interpretable later. Applies to any JSON-schema-evolving system.
+- **"Client-side validation bypass → server-side revalidate"** web-security axiom (SurveyJS): browser-trust-boundary explicit; re-validate on server.
+- **"File-upload-handling-is-YOUR-problem"** library-vs-infrastructure boundary (SurveyJS): library renders UI; you handle storage. S3 pre-signed uploads recommended over base64-through-form-submit.
+- **5-7 year tax-record retention globally** (ezBookkeeping): jurisdiction-varying but consistent pattern (US 7, DE 10, various EU 5-10). Inform users of retention obligations.
+- **Multi-currency rate-at-transaction-vs-report** semantics trap (ezBookkeeping): financial reporting nuance often glossed over.
+- **Location-tracking = privacy-in-backups** (ezBookkeeping optional feature): features that COULD be privacy-respecting depend on whether you share backups.
+- **Exit-strategy-via-open-format mitigates bus-factor-1** (ezBookkeeping solo-dev + Beancount/GnuCash export): when data is in open format, solo-dev risk is reduced because migration path is clear. Generalizable pattern.
+- **"No-cookie-banner" claim is jurisdiction-dependent** (Ackee): privacy-tool claims need nuance — technical design helps the argument; consult counsel for YOUR deployment. Same "compliance-is-yours" discipline as HIPAA statements.
+- **CORS-ALLOW-ORIGIN-must-be-explicit** (Ackee `ACKEE_ALLOW_ORIGIN`): subdomain/protocol/port mismatches = silent failure. Debug via browser console.
+- **Ad-blockers-block-privacy-analytics** honest reality (Ackee + Plausible + others): 10-30% user-loss inherent to web-analytics tooling; feature of ecosystem, not bug of tool.
+- **Ecosystem-strength mitigates bus-factor** (Ackee's MANY framework wrappers: React/Vue/Angular/Nuxt/Gatsby/Django/WordPress): solo-dev + large community integration ecosystem = different risk profile than solo-dev + no ecosystem.
+- **MongoDB operational burden** call-out (Ackee): adding Mongo to a stack has ongoing cost; don't pretend it's trivial.
+
+**Milestone:** 31.7% done. Batch 78 heavy on **compliance framing** (SOC2/HIPAA/GDPR/jurisdiction-dependent claims) and **honest-scope-limitations** (surveyjs-is-a-library, unregistry-not-for-K8s, ackee-no-cookie-claim-jurisdiction-varies).
+
+### Cross-cutting observation
+- **AI-privacy-boundary** family continues: WhoDB (batch 77) → Baserow Kuma + ezBookkeeping OCR/MCP (batch 78). Three tools in two batches all face the "AI feature sends data where?" question. Worth elevating to a first-class recipe section in future.
+- **MCP threat-model** mentioned in 3 tools in 2 batches (WhoDB batch 77, ezBookkeeping batch 78): Model Context Protocol as new surface area. Agent-can-query-my-tool is powerful + threat-altering.
+- **Repo-migration noting** pattern: Baserow (GitLab→GitHub), Scanopy/NetVisor (rename), Linux Server Community (group moves). When upstream history moved, link both for researchers.
