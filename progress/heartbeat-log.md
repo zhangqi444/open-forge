@@ -1090,3 +1090,31 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Not an ERP" positioning** (InvenTree): parts/inventory, not accounting/HR/payroll — pair with Dolibarr etc. Extends prior "Wallos+Firefly/Sure" pair-with pattern.
 
 **Milestone**: **25.0% — one-quarter of the catalog done.** Batch 61 avg 194 lines.
+
+## 2026-04-30 09:50 UTC — batch 62 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 62)
+- **warpgate** (6850★) — modern bastion (SSH/HTTPS/K8s/MySQL/Postgres) with 2FA/SSO/session recording. Single Rust binary. Apache-2.0.
+- **soft-serve** (6825★) — Charm's Git server with beautiful SSH TUI. Pre-1.0 caveat. No PRs/issues (not a forge). MIT.
+- **vuetorrent** (6755★) — modern qBittorrent WebUI (Vue 3). **Not a torrent client** front-loaded. LinuxServer.io DOCKER_MODS one-liner. GPL-3.0.
+- **humhub** (6669★) — modular social intranet. **Cron mandatory**, **MySQL only** (no Postgres) warning front-loaded. 80+ modules. AGPL-3.0 + EE.
+- **requestly** (6654★) — dev HTTP intercept/mock platform. Browser-ext + desktop + optional self-host backend. **HTTPS interception CA safety warning**. **Self-host less-documented than cloud** caveat. AGPL-3.0.
+
+**Batch 62 lengths:** warpgate 189, soft-serve 212, vuetorrent 160, humhub 242, requestly 185.
+**State:** 324 done / 1 skipped / 949 pending (25.4%).
+
+### New precedents
+- **"Bastion limitations + break-glass path" operational warning** (Warpgate): single-point-of-failure; document alt-access (direct bastion IP monitored + alerted) before rolling out to prod. Extends "critical-infra-DR" pattern.
+- **Informed-consent for session recording** (Warpgate): ethics + legal — pop banner + policy. Nuanced to session-recording tooling.
+- **"Pre-1.0 schema/config changes" caveat** (Soft Serve): pin versions, read release notes. Reinforces Kavita/Dawarich/RomM pre-1.0 pattern.
+- **"NOT a torrent client" front-loaded** (VueTorrent): heads off the most common misunderstanding for frontend-only projects. Clean pattern for "X is a UI for Y, not Y" recipes.
+- **DOCKER_MODS one-liner pattern** (VueTorrent via LinuxServer.io): document the simplest install mode first when it's the LinuxServer.io mod pattern.
+- **"MySQL only — no Postgres" explicit exclusion** (HumHub): note DB-engine lock-in up front for orgs with Postgres mandates. Extends "DB-lock-in" pattern (prior Mailu/Mattermost variants).
+- **HTTPS CA-trust ephemerality warning** (Requestly): installing debug CA on phones = trust permanence risk; uninstall when done. Security-hygiene caveat for traffic-interception tools.
+- **Android 14+ user-CA rejection** (Requestly): modern-OS-behavior-breaks-assumptions list extended — complements WatchYourLAN MAC-randomization.
+- **"Self-host less-documented than cloud" honesty** (Requestly): for OSS projects that prioritize their SaaS path. Avoids surprising the self-hoster; complements "heavyweight self-host" and "newsblur ops demanding" patterns.
+
+**Milestone:** Passing 25% comfortably. Avg batch length ~198 lines.
