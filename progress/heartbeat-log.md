@@ -3327,3 +3327,67 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Multiple milestones (80-transparent-maintenance, 5-zero-lock-in)
 - Baby Buddy's CROWN-JEWEL sub-category (child-data) is particularly notable — first tool in a child-focused category
 - Pattern-consolidation still deferred; ledger is authoritative
+
+## 2026-04-30 21:33 UTC — batch 107 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 107)
+- **tubesync** (2710★) — Django YouTube-PVR (sync channels+playlists as TV seasons). **AGPL-3.0** 16th AGPL-network-service-disclosure. 87th hub-of-credentials. YouTube-PVR-category: 2 tools (ytdl-sub+TubeSync); yt-dlp-API-drift-risk 2 tools. **Copyright-content-hosting-risk META-FAMILY: 5 tools** (+TubeSync). **TB-scale-storage-requirement: 3 tools** (+TubeSync). 73rd institutional-stewardship + 81st transparent-maintenance.
+- **tududi** (2709★) — Hierarchical task/project/area manager (areas→projects→tasks→subtasks) + Telegram integration. **88th hub-of-credentials Tier 2 — NEW sub-family "productivity-life-management-personal-history-risk"** (1st — tududi). **NEW commercial-tier sub-category: "hosted-OSS-as-service" (same-features-you-pay-for-hosting)** (1st — tududi; distinct from Dittofeed's feature-gated closed). **NEW institutional-stewardship sub-tier: "sole-maintainer-with-multi-stream-monetization"** (1st — chrisvel/tududi; GitHub Sponsors+Patreon+BMC+hosted-tier). **NEW recipe conventions**: "multi-channel-sponsorship + paid-hosted-tier" business-model + "recurring-task-state-management complexity" + "Telegram-bot-token-integration". **NEW positive-signal: "philosophy-blog-for-design-decisions"** (1st — tududi). 74th institutional-stewardship + 82nd transparent-maintenance.
+- **gokapi** (2702★) — Go Firefox-Send-alternative (expiring shares, e2e, S3, OIDC, roles). **Public-UGC-host-abuse-conduit-risk META-FAMILY: 7 tools** (+Gokapi; file-requests = external-upload by design). 89th hub-of-credentials Tier 2. **NEW recipe conventions**: "E2E-encryption-key-management-burden" + "expiry-enforcement-depends-on-server-uptime" + "Firefox-Send-successor-responsibility" + "admin-injected-CSS-JS-XSS-surface" + "dedup-file-existence-inference-risk". **NEW positive-signals**: "role-based-upload restricts abuse-surface" + "Go-Report-Card" (1st — Gokapi) + S3-API-as-portability-layer 2nd tool + "measurable-code-coverage" (Baby Buddy precedent — 2 tools now). 75th institutional-stewardship + 83rd transparent-maintenance.
+- **fasten-health** (2701★) — Personal Health Record (PHR); OSS OnPrem + separate commercial Fasten Connect. **90th hub-of-credentials CROWN-JEWEL Tier 1 — "personal-health-record-tool" sub-category formalized** (Fasten 1st pure-PHR). **HEALTHCARE-CROWN-JEWEL sub-family NOW 4 TOOLS** (SparkyFitness+Garmin-Grafana+Papermerge+Fasten) 🎯. **NEW commercial-tier sub-category: "parallel-commercial-product-with-different-capabilities"** (1st — Fasten; distinct from feature-gated tiers). **NEW institutional-stewardship sub-tier: "community-OSS-with-commercial-parallel-product"** (1st — Fasten). **NEW recipe conventions**: "OSS-tier-without-EHR-integration vs commercial-tier-with-integrations" clear-split + "self-host-for-self-vs-others legal distinction" + "disk-encryption-at-rest required for health-tools" + "encrypted-backups-mandatory for health-tools" + "manual-entry-data-accuracy-limit" + "app-level-encryption-gap" + "MFA-mandatory for health-tools". **NEW positive-signal: "FHIR-standard-support"** (1st — Fasten). 76th institutional-stewardship + 84th transparent-maintenance. CROWN-JEWEL Tier 1: 23 tools / 20 sub-categories.
+- **autobrr** (2691★) — Go torrent/Usenet automation (IRC-announce+RSS+arr-stack). **91st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "private-tracker-credential-aggregator"** (1st — autobrr; passkeys=account-equivalent, multiple trackers). **Copyright-content-hosting-risk META-FAMILY: 6 tools** (+autobrr). **NEW recipe conventions**: "filter-logic-test-dry-run-mode" + "supply-chain-defense for credential-aggregators". **NEW positive-signals**: "IRC-announce-latency-advantage" (1st — autobrr) + "distroless-Docker-images" (1st — autobrr) + "seedbox-ecosystem-first-class-support" (1st — autobrr; Swizzin/Saltbox/QuickBox). 77th institutional-stewardship + **85th transparent-maintenance 🎯 85-TOOL MILESTONE**. CROWN-JEWEL Tier 1: 24 tools / 21 sub-categories.
+
+**Batch 107 lengths:** tubesync 165, tududi 173, gokapi 180, fasten-health 185, autobrr 186.
+**State:** 549 done / 2 skipped / 723 pending — **43.1% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 24 tools / 21 sub-categories** 🎯 (+Fasten PHR +autobrr tracker-credential-aggregator)
+- **Transparent-maintenance: 85 tools** 🎯 **85-MILESTONE at autobrr**
+- **HEALTHCARE-CROWN-JEWEL sub-family: 4 tools** 🎯 (Fasten-as-pure-PHR joins)
+- **Copyright-content-hosting-risk META-FAMILY: 6 tools** (+TubeSync +autobrr)
+- **Hub-of-credentials: 91 tools**
+- **Public-UGC-host-abuse-conduit-risk META-FAMILY: 7 tools** (+Gokapi)
+- **YouTube-PVR-category: 2 tools** (ytdl-sub + TubeSync)
+- **Institutional-stewardship: 77 tools** (3 NEW sub-tiers this batch: hosted-OSS-as-service [tududi] + sole-maintainer-multi-stream-monetization [tududi] + community-OSS-with-commercial-parallel-product [Fasten])
+
+### New precedents this batch
+- **"personal-health-record-tool" CROWN-JEWEL Tier 1 sub-category** formalized (Fasten 1st pure-PHR)
+- **"private-tracker-credential-aggregator" CROWN-JEWEL Tier 1 sub-category** (autobrr 1st)
+- **"productivity-life-management-personal-history-risk" sub-family** hub-of-credentials (tududi 1st)
+- **"hosted-OSS-as-service" commercial-tier sub-category** (tududi 1st)
+- **"parallel-commercial-product-with-different-capabilities" commercial-tier sub-category** (Fasten 1st)
+- **"sole-maintainer-with-multi-stream-monetization" institutional-stewardship sub-tier** (tududi 1st)
+- **"community-OSS-with-commercial-parallel-product" institutional-stewardship sub-tier** (Fasten 1st)
+- **"multi-channel-sponsorship + paid-hosted-tier" business-model convention** (tududi)
+- **"recurring-task-state-management complexity" convention** (tududi)
+- **"Telegram-bot-token-integration" callout** (tududi)
+- **"philosophy-blog-for-design-decisions" positive-signal** (tududi 1st)
+- **"E2E-encryption-key-management-burden" convention** (Gokapi 1st)
+- **"expiry-enforcement-depends-on-server-uptime" convention** (Gokapi)
+- **"Firefox-Send-successor-responsibility" convention** (Gokapi 1st)
+- **"admin-injected-CSS-JS-XSS-surface" convention** (Gokapi 1st)
+- **"dedup-file-existence-inference-risk" convention** (Gokapi 1st — subtle)
+- **"role-based-upload restricts abuse-surface" positive-signal** (Gokapi 1st)
+- **"Go-Report-Card" positive-signal** (Gokapi 1st)
+- **"OSS-tier-without-EHR-integration vs commercial-tier-with-integrations" clear-split** (Fasten)
+- **"self-host-for-self-vs-others legal distinction" convention** (Fasten 1st)
+- **"disk-encryption-at-rest required for health-tools" convention** (Fasten 1st)
+- **"encrypted-backups-mandatory for health-tools" convention** (Fasten)
+- **"manual-entry-data-accuracy-limit" convention** (Fasten)
+- **"app-level-encryption-gap" convention** (Fasten)
+- **"MFA-mandatory for health-tools" convention** (Fasten 1st)
+- **"FHIR-standard-support" positive-signal** (Fasten 1st)
+- **"filter-logic-test-dry-run-mode" convention** (autobrr 1st)
+- **"supply-chain-defense for credential-aggregators" convention** (autobrr 1st)
+- **"IRC-announce-latency-advantage" positive-signal** (autobrr 1st)
+- **"distroless-Docker-images" positive-signal** (autobrr 1st formally)
+- **"seedbox-ecosystem-first-class-support" positive-signal** (autobrr 1st named)
+
+### Notes
+- 43.1% — batch 107 exceptionally dense (5+ new sub-categories/sub-tiers)
+- Particularly notable: Fasten Health as pure-PHR CROWN-JEWEL + autobrr as tracker-credential CROWN-JEWEL
+- 3 new institutional-stewardship sub-tiers (one batch record)
+- Multiple milestones: 85-transparent-maintenance + 4-healthcare-CROWN-JEWEL
