@@ -3782,3 +3782,51 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - dockcheck's 4-funding-venues (Ko-fi+LiberaPay+GitHub Sponsors+PayPal) is the widest funding-breadth we've documented
 - Chitchatter's "URL-as-encryption-key" architecture is a genuinely novel security model — zero-credentials-tool
 - Pattern-consolidation URGENT: 32 CROWN-JEWEL sub-categories, 126 hub-of-credentials, 118 transparent-maintenance
+
+## 2026-04-30 23:55 UTC — batch 115 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 115)
+- **docspell** (2204★) — Scala DMS (OCR + Stanford CoreNLP + IMAP + Android + CLI; eikek sole; Scala-Steward auto-deps; Gitter). **127th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "personal-DMS + email-ingest-IMAP-creds"** (1st — Docspell). **CROWN-JEWEL Tier 1: 36 tools / 33 sub-categories**. **Microservice-complexity-tax: 6 tools** 🎯 **6-TOOL MILESTONE**. **NEW recipe conventions**: "GPL-dependency-cascades-license" (1st formally — Docspell; CoreNLP forces GPL) + "IMAP-polling-for-document-ingest" (1st — Docspell). **NEW positive-signals**: "local-NLP-on-personal-data" (1st formally — Docspell) + "Scala-Steward-automated-dep-updates" (1st — Docspell) + "CLI-companion-for-automation" (1st formally) + "worker-queue-backpressure-discipline". **NEW neutral-signal: "Gitter-legacy-community-channel"** (1st formally — Docspell). 113th institutional-stewardship + 119th transparent-maintenance.
+- **cleanuparr** (2187★) — C# automated *arr-stack cleanup (strike-system + malware-blocker; Sonarr/Radarr/Lidarr/Readarr/Whisparr v2+v3 + qBittorrent; Cleanuparr org; Discord; GitAds). **128th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "media-stack-credential-aggregator + destroyer-class"** (1st — Cleanuparr; CAN destroy media libraries). **CROWN-JEWEL Tier 1: 37 tools / 34 sub-categories**. **NEW recipe conventions**: "destructive-automation-config-discipline" (1st formally — Cleanuparr) + "community-sourced-threat-intel-integrity-risk" (1st — Cleanuparr). **NEW positive-signals**: "community-threat-intel" (1st formally — Cleanuparr) + "cross-seed-integration" (1st formally — Cleanuparr) + "community-pain-point-origin" (1st formally — Cleanuparr; Reddit-rooted) + "project-centric-GitHub-org" (1st formally — Cleanuparr) + "CI-tests-badge". **NEW neutral-signal: "GitAds-README-sponsored"** (1st — Cleanuparr). 114th institutional-stewardship + **120th transparent-maintenance** 🎯 **120-TOOL MILESTONE**.
+- **stump** (2179★) — Rust Axum+SeaORM+React comics/manga/book server with OPDS (aaronleopold sole; MIT; Discord; Awesome-SH). **🚧 ACTIVE WIP — "DO NOT expect fully featured or bug-free"** — HONEST self-assessment. **129th hub-of-credentials Tier 2**. **NEW institutional-stewardship sub-tier: "honest-WIP-disclaimer"** (1st — Stump; DISTINCT 4th flavor). **Honest-maintainer-declaration: 4 tools** 🎯 **4-TOOL MILESTONE** — **4 DISTINCT FLAVORS**: (1) Scriberr honest-life-pause, (2) Astuto honest-discontinuation, (3) Jellystat honest-rewrite-pause, (4) **Stump honest-WIP-pre-1.0-disclaimer**. **Read-only-library-mount-discipline: 3 tools** (Polaris+Kyoo+Stump) 🎯 **3-TOOL MILESTONE**. **Rust-built-high-throughput-tool: 3 tools** (Polaris+Parseable+Stump) 🎯 **3-TOOL MILESTONE**. **NEW recipe convention: "pre-1.0-operational-discipline"** (1st — Stump). **NEW positive-signals**: "open-standard-protocol-interop" (1st — Stump; OPDS) + "awesome-self-hosted-listed" (1st formally — Stump). 115th institutional-stewardship + 121st transparent-maintenance.
+- **pigallery2** (2171★) — Node TypeScript photo gallery optimized for RPi (bpatrik sole; MIT; Coveralls-tested; directory-first; read-only; Render-demo). **130th hub-of-credentials Tier 3**. **Read-only-library-mount-discipline: 4 tools** 🎯 **4-TOOL MILESTONE**. **Raspberry-Pi-first-class-support: 2 tools** (DockSTARTer+PiGallery2) 🎯 **2-TOOL MILESTONE**. **Cold-start-latency-UX-tradeoff: 2 tools** (+PiGallery2) 🎯 **2-TOOL MILESTONE**. **NEW positive-signals**: "directory-first-data-model" (1st formally — PiGallery2) + "intentional-minimalism" (1st formally — PiGallery2; no-AI-no-faces-no-cloud) + "regeneratable-cache-ephemeral-OK" (1st — PiGallery2) + "Coveralls-test-coverage-badge" (1st — PiGallery2) + "explicit-unsupported-install-path" (1st — PiGallery2) + "read-only-source-design-principle" (reinforces). 116th institutional-stewardship + 122nd transparent-maintenance.
+- **logdy** (2166★) — Go single-binary log viewer (runs locally; zero-dep; 4 input modes; TypeScript custom parsers; Go library; MIT; logdyhq org; v0.17.0 Jun 2025). **131st hub-of-credentials Tier 4/ZERO**. **Zero-credential-hub-tool Tier 4/ZERO: 3 tools** (MAZANOKE+Chitchatter+Logdy) 🎯 **3-TOOL MILESTONE**. **Stateless-tool-rarity: 13 tools** 🎯 **13-TOOL MILESTONE**. **NEW recipe conventions**: "localhost-only-binding-discipline" (1st formally — Logdy; critical for log-tools) + "log-content-secret-spillover" (reinforces Parseable 113). **NEW positive-signals**: "in-browser-TypeScript-editor" (1st — Logdy; novel) + "dual-binary-plus-library" (1st formally — Logdy) + "zero-dependency-single-binary" (1st formally — Logdy; strongest single-binary form) + "multi-input-mode-flexibility" (1st — Logdy). **NEW neutral-signal: "ad-hoc-tool-not-daemon"** (1st — Logdy). 117th institutional-stewardship + 123rd transparent-maintenance.
+
+**Batch 115 lengths:** docspell 199, cleanuparr 164, stump 157, pigallery2 162, logdy 163.
+**State:** 589 done / 2 skipped / 683 pending — **46.2% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 120 tools** 🎯 **120-TOOL MILESTONE at Cleanuparr**
+- **CROWN-JEWEL Tier 1: 37 tools / 34 sub-categories** (+2 new: DMS-email-ingest + media-stack-destroyer)
+- **Honest-maintainer-declaration: 4 tools** 🎯 **4-TOOL MILESTONE — 4 distinct flavors taxonomized**
+- **Stateless-tool-rarity: 13 tools** 🎯 **13-TOOL MILESTONE**
+- **Microservice-complexity-tax: 6 tools** 🎯 **6-TOOL MILESTONE**
+- **Read-only-library-mount-discipline: 4 tools** 🎯 **4-TOOL MILESTONE**
+- **Zero-credential-hub-tool Tier 4/ZERO: 3 tools** 🎯 **3-TOOL MILESTONE**
+- **Rust-built-high-throughput-tool: 3 tools** 🎯
+- **Raspberry-Pi-first-class-support: 2 tools** 🎯
+- **Cold-start-latency-UX-tradeoff: 2 tools** 🎯
+- **Hub-of-credentials: 131 tools**
+- **Institutional-stewardship: 117 tools**
+
+### New precedents this batch
+- **"personal-DMS + email-ingest-IMAP-creds" CROWN-JEWEL Tier 1 sub-category** (Docspell 1st)
+- **"media-stack-credential-aggregator + destroyer-class" CROWN-JEWEL Tier 1 sub-category** (Cleanuparr 1st — has delete-authority)
+- **"honest-WIP-disclaimer" institutional-stewardship sub-tier** (Stump 1st — 4th flavor)
+- **Honest-declaration taxonomy now 4-dimensional**:
+  - honest-life-pause (Scriberr 109)
+  - honest-discontinuation (Astuto 113)
+  - honest-rewrite-pause (Jellystat 114)
+  - **honest-WIP-pre-1.0-disclaimer (Stump 115 — NEW)**
+- **15+ new recipe conventions** and **13+ new positive-signals** (see per-tool notes)
+
+### Notes
+- **🎯 4-FLAVOR HONEST-DECLARATION TAXONOMY COMPLETE** (life-pause, discontinuation, rewrite-pause, WIP-disclaimer)
+- 46.2% done — passed 46% mark
+- Docspell's GPL-cascade-from-CoreNLP is an important convention — many tools' licenses are constrained by dependencies
+- Cleanuparr's "destructive-automation-config-discipline" applies broadly (dockcheck 114, any auto-update tool)
+- Logdy's "zero-dependency-single-binary" sets a high-water-mark for simplicity
+- Pattern-consolidation URGENT: 34 CROWN-JEWEL sub-categories, 131 hub-of-credentials, 123 transparent-maintenance, 117 institutional-stewardship
