@@ -1476,3 +1476,48 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Objects + Queries are NOT a database"** scope-clarifying caveat (SilverBullet): prevents users from mistaking index-over-markdown for a real DB and hitting scale walls.
 
 **Milestone:** 29.7% — approaching 30% (next batch probably hits it). Average batch lengths stabilizing around 160-175 lines. Notable pattern this batch: **heavy threat-model framing** (3 of 5 recipes had explicit "treat this like SSH/shell" warnings) reflecting trend toward operator-hardening content over pure feature documentation.
+
+## 2026-04-30 12:50 UTC — batch 74 (5 recipes) — **30.1% MILESTONE CROSSED 🎯**
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open (unchanged — blocked by PAT scope).
+
+### Step 2 (selfh.st batch 74)
+- **writefreely** (5140★) — federated (ActivityPub) blogging. AGPL-3.0. `keys/` loss = federation identity loss DR framing.
+- **uncloud** (5120★) — Docker orchestration without K8s/Swarm. WireGuard mesh + Caddy + corrosion CRDT. Pre-1.0 + bus-factor-1 + SSH-trust-boundary.
+- **zoraxy** (5106★) — reverse proxy Swiss-army. AGPL-3.0. Single-maintainer + admin-UI-trust-boundary.
+- **openemr** (5100★) — EHR/PHI. Front-loaded HIPAA/GDPR/PIPEDA regulatory framing + PHI-backup-retention (6 years HIPAA) + BAA/data-sovereignty + vendor-support-recommendation.
+- **draw-io** (5064★) — diagramming. Quoted no-PR development model + restricted stencil license (Atlassian marketplace exclusion) + Apache-2.0 source.
+
+**Batch 74 lengths:** writefreely 182, uncloud 169, zoraxy 158, openemr 197, drawio 153.
+**State:** 384 done / 1 skipped / 889 pending (30.14%). **30% CROSSED** after 74 batches.
+
+### New precedents
+- **"ActivityPub federation requires HTTPS + real public domain"** fediverse-install prerequisite (WriteFreely): self-signed/LAN-only = federation broken. Name the requirement not just the feature.
+- **"Signing-key loss = federated identity loss"** DR framing for federated tools (WriteFreely `keys/`): losing cryptographic identity breaks peer-server caches. Backup-priority signal.
+- **"AGPL-3.0 public hosting = must publish modifications"** license consequence plain-English (WriteFreely, Zoraxy): reader doesn't need to be a lawyer; state the practical effect.
+- **"Managed-tier directly funds upstream"** ethical-purchase framing (Write.as → WriteFreely): when a commercial tier supports the OSS, note it as a valid choice not a second-class option.
+- **"Imperative over declarative — GitOps patterns don't fit"** design-philosophy consequence (Uncloud): when upstream design explicitly rejects a paradigm, surface the downstream-user impact (Flux/ArgoCD won't work).
+- **"SSH access IS the trust boundary"** multi-host-orchestrator framing (Uncloud): for tools that bootstrap machines via SSH, name SSH as the security plane (not something elsewhere).
+- **"Corrosion CRDT = eventual consistency; design for it"** underlying-tech consequence (Uncloud): for tools using unfamiliar backends, explain what that means for app design.
+- **"Unregistry-style local-push = no external registry needed"** operational-benefit framing (Uncloud): name the pattern explicitly — it's an adoption win.
+- **"Binding 80/443 needs root OR `setcap cap_net_bind_service`"** Linux capability recipe (Zoraxy): concrete privilege-minimization command for common proxy-install pain point.
+- **"Let's Encrypt rate limits: 50 certs/week per registered domain"** operational limit (Zoraxy + every ACME tool): numeric citation for shared pain.
+- **"DNS-01 challenge requires API token = treat as secret"** TLS-automation trust-boundary (Zoraxy + every ACME-DNS): tokens for DNS providers ARE sensitive.
+- **"Regulated software = compliance is YOUR responsibility even self-hosted"** regulatory-framing up front (OpenEMR HIPAA/GDPR/PIPEDA): self-hosting transfers responsibility; doesn't eliminate it.
+- **"PHI backup retention = 6 years minimum (HIPAA)"** specific-timescale citation (OpenEMR): concrete regulatory number.
+- **"BAAs with hosting + email providers"** compliance-operational requirement (OpenEMR): for regulated software, name the legal-paperwork layer not just tech.
+- **"Audit logs = regulatory requirement, separate DB server recommended for integrity"** compliance+architecture pattern (OpenEMR): don't just say "audit logs on"; explain why separation matters.
+- **"20-year codebase with heavy migrations — test upgrades on copy, ALWAYS"** legacy-system operational discipline (OpenEMR): age-of-project = upgrade-caution scaling.
+- **"Vendor support recommended for real clinical use"** scope-honesty for high-stakes tools (OpenEMR): name when paid support is the sensible choice for non-hobbyists.
+- **"Source + icon/stencil have SEPARATE licenses"** split-license transparency (drawio): quote both licenses + the specific business-protective restriction. Rare pattern worth explicit treatment.
+- **"No PRs accepted" development model** upfront honesty (drawio quote): not every OSS project wants code contributions; state it upfront so contributors don't waste time.
+- **"Self-hosted = no server-side data to back up"** stateless-app simplicity note (drawio): when app is truly client-side, say so — operators often over-engineer DR for such apps.
+- **"`.drawio` XML is Git-diffable = code-review for diagrams"** VCS-friendliness highlight (drawio): practical benefit worth front-loading for dev audiences.
+
+**Milestone:** **30.1% done** — crossed 30% milestone after 74 batches. Averaged ~5.1 recipes per batch; 1,274 total apps; ~200 batches to finish at current pace. Average recipe length stabilizing around 170-180 lines.
+
+Pattern observations across batches 68-74:
+- **Governance transparency** (batches 68-71 set precedent; 72-74 extended): acquisition-forks (OpenCloud), maintenance-mode (Organizr), job-hunt-bus-factor (TaxHacker), no-PR-development (drawio), foundation-vs-company (Zammad).
+- **Regulatory framing** is a newer emphasis (OpenEMR batch 74): HIPAA, GDPR as first-class content. Will recur when compliance-sensitive tools (e.g., paperless-ngx for legal/tax, Mattermost Enterprise, Vaultwarden) come up.
+- **Trust-boundary articulation** (Webmin, Livebook, Zoraxy, WeTTY, Uncloud): consistently asking "where's the security perimeter?" and naming it.
