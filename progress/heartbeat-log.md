@@ -1521,3 +1521,42 @@ Pattern observations across batches 68-74:
 - **Governance transparency** (batches 68-71 set precedent; 72-74 extended): acquisition-forks (OpenCloud), maintenance-mode (Organizr), job-hunt-bus-factor (TaxHacker), no-PR-development (drawio), foundation-vs-company (Zammad).
 - **Regulatory framing** is a newer emphasis (OpenEMR batch 74): HIPAA, GDPR as first-class content. Will recur when compliance-sensitive tools (e.g., paperless-ngx for legal/tax, Mattermost Enterprise, Vaultwarden) come up.
 - **Trust-boundary articulation** (Webmin, Livebook, Zoraxy, WeTTY, Uncloud): consistently asking "where's the security perimeter?" and naming it.
+
+## 2026-04-30 13:05 UTC — batch 75 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope blocked).
+
+### Step 2 (selfh.st batch 75)
+- **rallly** (5064★) — AGPL group-scheduling. SMTP-is-mandatory + commercial-managed-funds-upstream pattern.
+- **restreamer** (5000★) — multi-platform live restreaming. Bandwidth-bottleneck discipline + stream-keys-are-credentials + HW-accel-variant picking + `--privileged` justification.
+- **shlink** (4935★) — URL shortener. PHP 8.4+ hard-requirement + phishing-adjacent-threat-model + short-link-domain permanence.
+- **mathesar** (4935★) — spreadsheet UI on real Postgres. 501(c)(3) Foundation governance + "Postgres IS the data model" architectural philosophy + real-GRANT-statements transparency.
+- **kener** (4896★) — GPL-3 status page. `SECRET_KEY`+`ORIGIN` BEFORE first run + Redis mandatory + subpath-nuance + SSL-expiry-check + heartbeat-check value.
+
+**Batch 75 lengths:** rallly 165, restreamer 154, shlink 179, mathesar 183, kener 170.
+**State:** 389 done / 1 skipped / 884 pending (30.5%).
+
+### New precedents
+- **"SMTP IS mandatory (not optional) for magic-link-auth tools"** email-deliverability hard dependency (Rallly): for tools with no-password auth, state that bad SMTP = broken tool. Email deliverability quality (SPF/DKIM/DMARC) = first-class concern.
+- **"Changing `NEXT_PUBLIC_BASE_URL` / `SECRET_KEY` breaks existing sessions + magic links"** env-var-immutability practical consequence (Rallly + Kener): name which envs are "set once, never change" vs "rotate routinely."
+- **"Bandwidth is YOUR bottleneck for multi-restream"** physical-constraint math (Restreamer 5Mbps × 3 = 15Mbps): for network-intensive tools, do the math concretely, not just "consider bandwidth."
+- **"Hardware-acceleration variant matching"** image-tag selection discipline (Restreamer cuda/vaapi/rpi): variant picking is a first-run decision with big perf consequences; articulate the mapping explicitly.
+- **"`--privileged` only for LOCAL devices; drop for network sources"** container-privilege-minimization (Restreamer): concrete case-based rule for when elevated is needed vs gratuitous.
+- **"`--security-opt seccomp=unconfined` weakens isolation — document why"** security-workaround honesty (Restreamer): upstream documents this as a workaround; state the tradeoff.
+- **"Stream keys are credentials"** terminology-framing (Restreamer): treat stream keys like API keys / passwords. Simple but not always obvious.
+- **"Phishing-adjacent threat model for URL shorteners"** threat-category framing (Shlink): public URL shorteners attract phishing; state the implications for abuse handling + reputation-hygiene.
+- **"Short-link domain permanence: changing breaks all existing links"** permanence-constraint (Shlink): choose the URL namespace carefully because migration is essentially-impossible.
+- **"PHP 8.4/8.5 hard requirement — shared hosting often lags"** platform-requirement-reality (Shlink): acknowledge when a tool's platform reqs exclude common hosting scenarios.
+- **"GeoLite2 license key = free signup required; geo-stats degraded without"** soft-degradation disclosure (Shlink): when a missing config doesn't error but loses functionality, call it out.
+- **"501(c)(3) nonprofit steward = strongest governance signal"** consolidated-framing (Mathesar Foundation): name the governance pattern explicitly as a differentiator from company-owned projects.
+- **"Architecture IS a philosophy: Postgres is the data model (vs abstraction layer)"** architectural-differentiation framing (Mathesar vs Airtable/Baserow/NocoDB): when a tool's architecture is its differentiator, lead with it.
+- **"Adding collaborator = real Postgres GRANT statement; role naming convention needed"** DBA-practical consequence (Mathesar): for tools integrating deeply with the stack, surface the admin-layer consequences.
+- **"Foundation governance mitigates corporate-acquisition-fork risk (OpenCloud pattern)"** meta-comparison (Mathesar): explicitly reference the OpenCloud/OCIS pattern as the thing foundations prevent.
+- **"Mathesar's user IS highly privileged — lock down its DB connection user"** admin-security pattern (Mathesar): when one app has admin DB credentials, network-restrict + minimize its attack surface.
+- **"Subpath deployment URL nuance: keep ORIGIN as origin-only"** common-mistake prevention (Kener upstream NOTE): specific misconfig warning that upstream explicitly notes.
+- **"Monitoring discipline > monitoring breadth — start critical services only"** operational-philosophy (Kener): the classic "more monitoring isn't more reliability" lesson.
+- **"SSL-expiry checks = genuinely useful for every HTTPS service you own"** specific-check-value callout (Kener): when a tool does one thing particularly well, highlight it.
+- **"Heartbeat checks solve cron-job-silently-broke problem"** use-case articulation (Kener push-heartbeat): name the problem the feature solves, not just the feature.
+
+**Milestone:** 30.5% done. Last 4 batches (72-75) averaged 170-180 lines. Governance-transparency continues as a thematic thread (Mathesar 501(c)(3), OpenCloud forked-after-acquisition, Zammad foundation-vs-company).
