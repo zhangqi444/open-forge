@@ -2042,3 +2042,45 @@ Three families are now mature enough (6-11 tools each) that a **patterns/** subd
 - `patterns/transparent-status-honesty.md` (6 instances)
 
 Punt for now to maintain batch-velocity; flag for a mid-scale consolidation pass ~batch 100.
+
+## 2026-04-30 16:40 UTC — batch 87 (5 recipes) — **35% MILESTONE CROSSED**
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope-blocked).
+
+### Step 2 (selfh.st batch 87)
+- **shaarli** (3845★) — NOASSERTION/custom-FOSS PHP minimalist bookmarking. Flat-file-no-DB + single-user + review-LICENSE-for-commercial + 10k-link-scale-ceiling + French FOSS ethos + Netscape-export lock-in-free + comprehensive alternatives (Linkding, Wallabag, Shiori, LinkAce).
+- **azuracast** (3832★) — AGPL-3 PHP all-in-one web radio suite. **"100% human-coded, no AI PRs"** contributor-policy respect + 7th network-service-legal-risk (royalties/PROs) + CC-music-as-safe-path + Ethical-Source-badge + 9th hub-of-credentials (Icecast creds) + bandwidth-per-listener planning.
+- **rotki** (3825★) — AGPL-3 Python/Electron privacy-first crypto portfolio + tax. **Password=encryption-key warn** + 12th immutability-of-secrets + READ-ONLY-API-keys-only discipline + 10th hub-of-credentials + tax-as-input-not-output + Premium commercial-tier-feature-gate + desktop-first-not-just-server.
+- **yarr** (3810★) — MIT Go single-binary RSS reader. **Fever API mobile-app compat** differentiator + single-user-by-design + binary-distribution-trust + desktop+server hybrid + Miniflux-as-next-step-up alternative guidance.
+- **guacamole** (3799★) — Apache-2.0 ASF clientless remote-desktop gateway (VNC/RDP/SSH/Kubernetes in browser). **11th hub-of-credentials + THE archetypal extreme** (keys for EVERY protocol) + **bastion-host-tier infrastructure** framing + 3rd default-creds-PUBLIC (`guacadmin`/`guacadmin`) + 8th institutional-stewardship (ASF) + session-recording labor-law + guacd+client version-match-mandatory.
+
+**Batch 87 lengths:** shaarli 168, azuracast 160, rotki 164, yarr 148, guacamole 195.
+**State:** 449 done / 2 skipped / 823 pending — **35.2% done; 35% milestone officially crossed.**
+
+### New precedents
+- **"Author-preference signals: anti-AI-PR vs anti-AI-scraping"** distinction (AzuraCast vs Dockhand batch 85): two very different author-values signals. AzuraCast's "no AI-PR contributions" is a CODE CONTRIBUTION policy (they control their codebase's authorship) + they still publish docs publicly + welcome users. Dockhand's was anti-DOCUMENTATION/SCRAPING + embedded prompt-injection. **AzuraCast → document normally + respect contributor-policy if submitting upstream.** Dockhand → skip. Respecting the author's *specific scope* rather than blanket refusal-on-keyword-match.
+- **"Default-creds-PUBLIC family at 3 tools"** — Black Candy (83), PMS (86), Guacamole (87). Pattern consistent: documented creds are scanner-known + change-immediately-on-first-boot is the universal advice.
+- **"Hub-of-credentials crown-jewel archetypal extreme"** (Guacamole 11th tool + most extreme): Guacamole's entire *value proposition* is aggregating credentials for many protocols. Recipe can name tools at different ends of the spectrum: minimal (Redis Commander — one Redis DB) to extreme (Guacamole — every RDP/SSH/VNC across your infrastructure). Pattern-family framing helps readers calibrate threat-model intensity.
+- **"Institutional-stewardship ASF membership"** (Guacamole 8th): Apache Software Foundation stewardship is the industrial-scale pinnacle of the institutional-trust family. Bus-factor-effectively-zero. Same family: NLnet Labs, Deciso, TryGhost, Codeberg e.V., LinuxServer.io, Element, Linux Foundation.
+- **"Permissive-license-ecosystem-asset family at 3 tools"** (Rustpad 85, IronCalc 86, yarr 87 + Guacamole 87 = 4 actually): MIT/Apache/BSD tools in a 2024-2026 AGPL-dominated landscape deserve positive highlighting. Embedding-friendly + commercial-redistribution-friendly = ecosystem-value rare-quality signal.
+- **"Crypto-API-key security hygiene: READ-ONLY ONLY"** (Rotki): specific operational-knowledge for crypto-adjacent tools — always-read-only-API-keys, never-trading, never-withdrawal, defense-in-depth. Applies to ALL crypto-integration tools (Rotki, Chartbrew connecting to crypto data sources, etc.). Template-worthy for crypto-adjacent recipes.
+- **"Desktop-app-first vs server-first"** deployment-model framing (Rotki + yarr both): some tools are primarily desktop + optionally server-hostable. Recipe convention: acknowledge the primary deployment model + the secondary option. Aligns reader expectations.
+- **"Bandwidth-per-listener planning"** (AzuraCast): specific operational knowledge for stream-based-tools (radio, video, WebRTC-like). Applies to: AzuraCast (audio), MiroTalk (80, video WebRTC), any future streaming tools. Recipe convention: calculate N × bitrate × concurrent-users + warn about monthly-bandwidth-limits.
+- **"CC-music-as-safe-path"** legal-risk-mitigation (AzuraCast): for copyright-risky tools, document the LEGAL alternative path in recipes. AzuraCast + CC-licensed-music = zero-royalty legal path. Template for other legal-risk tools: for Bitmagnet, legal use is "my own legal torrents" (Linux ISOs, etc.); for 13ft-ladder, legal use is "your own archive of your own reads". Positive-framing-of-legal-paths improves recipe utility.
+- **"Contributor-policy vs user-policy distinction"** (AzuraCast 100%-human-coded): upstream policies apply to DIFFERENT audiences. Code contributors vs operators using the tool vs docs readers. Recipes should respect author policies in the SCOPE the author specified, not over-apply them.
+- **"Bastion-host-tier infrastructure"** deployment-hardening framing (Guacamole): certain tools deserve the full bastion-host security treatment (dedicated VM / no co-tenancy / VPN-gated / intensive monitoring / session recording / regular credential rotation). Pattern-worthy for high-crown-jewel tools. Recipe convention: when hub-of-credentials is extreme, recommend bastion-host-tier deployment explicitly.
+
+**Milestone:** **35.2% done (449/1274 recipes shipped + 2 skipped).** Batch 87 spans **minimalist-bookmarks** (Shaarli) + **web-radio-production** (AzuraCast) + **crypto-portfolio-privacy** (Rotki) + **minimalist-RSS** (yarr) + **enterprise-remote-access** (Guacamole). Broad spread across personal-use-small-footprint (yarr, Shaarli) + specialty-production (AzuraCast) + extreme-security (Guacamole).
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 12 tools** (+ Rotki password)
+- **Hub-of-credentials crown-jewel: 11 tools** (+ AzuraCast + Rotki + Guacamole) — **consolidation strongly warranted**
+- **Transparent-status / honest-maintenance: 6 tools** (unchanged)
+- **Network-service-legal-risk: 7 tools** (+ AzuraCast music-royalties)
+- **Default-creds-PUBLIC: 3 tools** (+ Guacamole)
+- **Institutional-stewardship: 8 tools** (+ Apache-SF for Guacamole)
+- **Permissive-license-ecosystem-asset: 4 tools** (Rustpad, IronCalc, yarr, Guacamole)
+- **Author-preference-respect: 2 distinct patterns** (Dockhand skip vs AzuraCast document-with-acknowledgment)
+
+Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
