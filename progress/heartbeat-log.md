@@ -2989,3 +2989,74 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - 40.7% — crossed 40% threshold solidly
 - Pattern-family complexity continuing to grow; consolidation deferred per batch 100 plan
 - AI-model-serving-tool category confirmed at 2 tools (Speaches 96, Willow's WIS 101)
+
+## 2026-04-30 20:11 UTC — batch 102 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 102)
+- **speakr** (2981★) — AGPL-3.0 AI transcription + intelligent notes. **63rd hub-of-credentials — CROWN-JEWEL Tier 1 (12th tool; NEW sub-category "meeting-recording-repository")**. **3rd AI-model-serving-tool** (after Speaches 96, Willow 101; new sub-category "ASR-transcription-service"). **NEW recipe conventions**: "audio-recording-consent-framework" + "HIPAA-Business-Associate-Agreement-requirement" + "LLM-provider-privacy-cascading-dependency" + "retention-policy-as-compliance-feature". 42nd immutability-of-secrets + 49th institutional-stewardship (25th sole-maintainer-with-community) + 56th transparent-maintenance.
+- **password-pusher** (2980★) — Ruby on Rails secure credential-transfer service. **64th hub-of-credentials — CROWN-JEWEL Tier 1 (13th tool; NEW sub-category "credential-transfer-service")**. **NEW sub-convention in immutability-of-secrets: "master-encryption-key-immutability"** (PWP_MASTER_KEY) — 43rd tool. **NEW conventions**: "ephemeral-mode-as-security-feature" + "email-prefetcher-anti-pattern". **50th institutional-stewardship — 50-TOOL MILESTONE** 🎯 (founder-with-commercial-tier-funded-development). 57th transparent-maintenance.
+- **filegator** (2976★) — PHP multi-user file manager. **MIT**. 65th hub-of-credentials Tier 2 + **Public-UGC-host-abuse-conduit-risk META-FAMILY extended to 5 tools** (+FileGator). **9th default-creds-risk** (admin/admin123 well-known). **NEW recipe convention**: "PHP-version-EOL-check". **NEW recipe convention**: "config-file-with-plaintext-cloud-creds". **5th sole-maintainer-with-visible-sponsor-support** (Patreon + visible-sponsors — sub-tier now 5 tools solidified further). 51st institutional-stewardship + 58th transparent-maintenance.
+- **godoxy** (2961★) — Go reverse proxy + WebUI + idlesleeper + Proxmox integration. **66th hub-of-credentials — CROWN-JEWEL Tier 1 (14th tool; NEW sub-category "reverse-proxy-at-edge")**. **docker-socket-mount-privilege-escalation family extended to 2 tools** (+GoDoxy). **44th immutability-of-secrets** (TLS cert keys). **NEW conventions**: "cold-start-as-feature" + "external-hypervisor-API-token" (Proxmox integration) + "ChatGPT-assistant-for-user-support" positive-signal + "external-db-dependency" (Maxmind). 52nd institutional-stewardship (26th sole-maintainer-with-community) + 59th transparent-maintenance.
+- **basic-memory** (2937★) — Python MCP server; markdown+LLM persistent memory. **AGPL-3.0**. **NEW category: "MCP-server tools"** (Basic Memory 1st). 67th hub-of-credentials Tier 2. **NEW recipe conventions**: "LLM-write-access-to-files-risk" + "prompt-injection-via-memory-contents" + "don't-store-secrets-in-LLM-memory" + "MCP-ecosystem-maturity-risk" + "per-project-cloud-routing" positive-signal + "OSS-discount-code" positive-signal. **2nd tool in zero-lock-in pattern** (Flatnotes 101 1st; solidifying at 2). 53rd institutional-stewardship (founder-with-commercial-tier-funded-development) + **60th transparent-maintenance — 60-TOOL MILESTONE** 🎯.
+
+**Batch 102 lengths:** speakr 211, password-pusher 211, filegator 172, godoxy 206, basic-memory 212.
+**State:** 524 done / 2 skipped / 748 pending — **41.1% done.**
+
+### 🎯 MILESTONES this batch
+- **CROWN-JEWEL Tier 1: 14 tools** (+Speakr, +Password Pusher, +GoDoxy — BIG batch for Tier 1)
+- **Institutional-stewardship: 53 tools — 50-TOOL MILESTONE CROSSED** 🎯
+- **Transparent-maintenance: 60 tools — 60-TOOL MILESTONE** 🎯
+- **Hub-of-credentials: 67 tools**
+- **Immutability-of-secrets: 44 tools**
+- **Public-UGC-host-abuse-conduit-risk META-FAMILY: 5 tools**
+- **Default-creds-risk: 9 tools**
+
+### CROWN-JEWEL Tier 1 sub-categories (now 14 total)
+1. VPN/zero-trust (Octelium)
+2. Bastion (Guacamole, Sshwifty)
+3. Dashboard (Homarr)
+4. DBA panel (pgAdmin)
+5. WireGuard admin (WGDashboard)
+6. Commerce platform (Lunar)
+7. Workflow orchestrator (Dagu)
+8. B2B outreach (GrowChief)
+9. Marketing/brand (Mixpost)
+10. Infrastructure-control-plane (Vito)
+11. Meeting-recording-repository (Speakr) **NEW batch 102**
+12. Credential-transfer-service (Password Pusher) **NEW batch 102**
+13. Reverse-proxy-at-edge (GoDoxy) **NEW batch 102**
+
+### New precedents this batch
+- **"Meeting-recording-repository" sub-category** CROWN-JEWEL Tier 1 (Speakr)
+- **"Credential-transfer-service" sub-category** CROWN-JEWEL Tier 1 (Password Pusher)
+- **"Reverse-proxy-at-edge" sub-category** CROWN-JEWEL Tier 1 (GoDoxy)
+- **"ASR-transcription-service" sub-category** of AI-model-serving-tool (Speakr)
+- **"Audio-recording-consent-framework" callout** (Speakr)
+- **"HIPAA-BAA-requirement" callout** (Speakr)
+- **"LLM-provider-privacy-cascading-dependency" convention** (Speakr)
+- **"Retention-policy-as-compliance-feature" positive-signal** (Speakr)
+- **"Master-encryption-key-immutability" sub-convention** of immutability-of-secrets (Password Pusher — PWP_MASTER_KEY)
+- **"Ephemeral-mode-as-security-feature" positive-signal** (Password Pusher)
+- **"Email-prefetcher-anti-pattern" warning** (Password Pusher + any one-time-link tool)
+- **"PHP-version-EOL-check" convention** (FileGator 1st)
+- **"Config-file-with-plaintext-cloud-creds" risk** (FileGator)
+- **"Cold-start-as-feature" trade-off convention** (GoDoxy)
+- **"External-hypervisor-API-token" callout** (GoDoxy — Proxmox integration)
+- **"ChatGPT-assistant-for-user-support" positive-signal** (GoDoxy)
+- **"External-db-dependency" callout** (GoDoxy — Maxmind)
+- **"MCP-server tools" NEW category** (Basic Memory 1st)
+- **"LLM-write-access-to-files-risk" convention** (Basic Memory)
+- **"Prompt-injection-via-memory-contents" convention** (Basic Memory)
+- **"Don't-store-secrets-in-LLM-memory" callout** (Basic Memory)
+- **"MCP-ecosystem-maturity-risk" convention** (Basic Memory)
+- **"Per-project-cloud-routing" positive-signal** (Basic Memory)
+- **"OSS-discount-code" positive-signal** (Basic Memory)
+
+### Notes
+- 41.1% done; heavy CROWN-JEWEL batch (3 new Tier 1 tools)
+- Transparent-maintenance + institutional-stewardship both hit 50/60 milestones
+- New "MCP-server tools" category opens space for future memory/tool MCP servers
+- Consolidation work (40+ patterns/ docs) still deferred
