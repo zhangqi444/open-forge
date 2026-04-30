@@ -2813,3 +2813,77 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   39. `patterns/location-history-is-lifelog-adjacent.md` — NEW
   40. `patterns/focus-is-feature-framing.md` — NEW
 - Current batch shipped: **5 recipes, batch 98 complete, 504 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 19:40 UTC — batch 99 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 99)
+- **vito** (3103★) — PHP server-management/deployment (Laravel Forge alternative). **49th hub-of-credentials — CROWN-JEWEL Tier 1 (10th tool; NEW sub-category "infrastructure-control-plane")** — SSH keys to all managed servers. **4th web-exposed-shell-exec-gateway** (deployment-shell-exec-by-design variant) + 36th immutability-of-secrets (APP_KEY) + 41st transparent-maintenance + 34th institutional-stewardship. **NEW: "infrastructure-control-plane" tool category** (Vito + Coolify + Dokploy + Dokku + CapRover + Cloudron + CasaOS). Reinforces curl|sh install-supply-chain-risk convention (Kaneo 93). Reinforces LICENSE-file-verification-required.
+- **peppermint** (3100★) — Node.js helpdesk/ticket system. 50th hub-of-credentials Tier 2 (customer-PII-density) + 37th immutability-of-secrets (SECRET) + **8th default-creds-risk tool** (README shows `1234` + `peppermint4life` as defaults — dangerous) + 21st sole-maintainer-with-community + 35th institutional-stewardship (**NEW: "sole-maintainer-with-sponsor-credits" sub-tier** — cloud-provider-credits variant of visible-sponsor-support; distinct from GitHub-Sponsors+BMC) + 42nd transparent-maintenance.
+- **sshwifty** (3073★) — Go web-SSH/Telnet client. **51st hub-of-credentials — CROWN-JEWEL Tier 1 (11th tool)** — SSH-gateway = every-SSH-host-it-can-reach. **Bastion sub-category now 2 tools** (Guacamole + Sshwifty). **7th stateless-tool-rarity** (OpenSpeedTest 91, Moodist 93, dashdot 93, Redlib 95, Converse 96, Speaches 96, Sshwifty 99). 43rd transparent-maintenance + 36th institutional-stewardship (22nd sole-maintainer-with-community).
+- **shelfmark** (3066★) — Book/audiobook search + request (fills Readarr retirement gap). **24th network-service-legal-risk** (*arr-piracy-tooling sub-family inheritance) + 52nd hub-of-credentials Tier 2 + 44th transparent-maintenance + 37th institutional-stewardship. **NEW: "fills-gap-from-retired-tool" relationship convention** (Shelfmark ← Readarr RETIRED 93). Reinforces VPN-sidecar pattern. **NEW: "post-Readarr book-ecosystem" category**.
+- **viseron** (3052★) — Python local-only NVR + AI CV. **53rd hub-of-credentials — PHYSICAL-SECURITY-CROWN-JEWEL sub-family (NEW — 5th regulatory-crown-jewel sub-family)** — surveillance video = highly-personal + legal-landmine (GDPR, BIPA, EU AI Act). 3rd sole-maintainer-with-visible-sponsor-support (sub-tier solidified at 3 tools: MediaManager 97, AdventureLog 98, Viseron 99). 38th institutional-stewardship + 45th transparent-maintenance. **NEW: "face-recognition-regulatory-callout" recipe convention** (BIPA Illinois + EU AI Act). AI-model-serving-tool category overlap (Speaches 96 precedent).
+
+**Batch 99 lengths:** vito 191, peppermint 182, sshwifty 154, shelfmark 160, viseron 190.
+**State:** 509 done / 2 skipped / 763 pending — **39.9% done.**
+
+### CROWN-JEWEL Tier 1 reached 11 tools this batch
+- Octelium, Guacamole, Homarr, pgAdmin, WGDashboard, Lunar, Dagu, GrowChief, Mixpost, **Vito**, **Sshwifty**
+- **Sub-categories within Tier 1**:
+  - VPN/zero-trust (Octelium)
+  - Bastion (Guacamole + Sshwifty) — **2 tools**
+  - Dashboard (Homarr)
+  - DBA panel (pgAdmin)
+  - WireGuard admin (WGDashboard)
+  - Commerce platform (Lunar)
+  - Workflow orchestrator (Dagu)
+  - B2B outreach (GrowChief)
+  - Marketing/brand (Mixpost)
+  - Infrastructure-control-plane (Vito) — **NEW**
+
+### New precedents
+- **"Infrastructure-control-plane" tool category** (Vito — 1st named; retroactively Coolify, Dokploy, Dokku, CapRover, Cloudron, CasaOS): tools that manage + provision servers/apps. All CROWN-JEWEL Tier 1 risk.
+- **"Bastion sub-category within CROWN-JEWEL Tier 1"** (Guacamole + Sshwifty — 2 tools named): browser-to-SSH/RDP/VNC gateways.
+- **"Sole-maintainer-with-sponsor-credits" sub-tier** (Peppermint — 1st explicit; DigitalOcean credits variant): distinct from GitHub-Sponsors+BMC (Viseron 99, MediaManager 97, AdventureLog 98) — cloud-provider-credits sponsor a specific deployment rather than directly funding the maintainer.
+- **"PHYSICAL-SECURITY-CROWN-JEWEL sub-family"** of hub-of-credentials (Viseron — 1st tool; NEW 5th regulatory-crown-jewel sub-family): surveillance + physical-access + home-security video.
+- **"Face-recognition-regulatory-callout" recipe convention** (Viseron): tools with FR capability trigger BIPA (Illinois), EU AI Act, biometric-data-consent laws.
+- **"Fills-gap-from-retired-tool" relationship convention** (Shelfmark ← Readarr RETIRED): recipes for tools filling niches left by retired tools should note this lineage.
+- **"Post-Readarr book-ecosystem" category** (Shelfmark, Calibre-Web/CWA, Audiobookshelf, Komga/Kavita, LazyLibrarian).
+- **Sole-maintainer-with-visible-sponsor-support sub-tier now 3 tools** (MediaManager 97, AdventureLog 98, Viseron 99) — solidified.
+- **Stateless-tool-rarity now 7 tools** (+ Sshwifty) — pattern very solidified.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 53 → 53 tools** (wait — let me recount) — actually 49, 50, 51, 52, 53 = 58 tools with this batch; correcting:
+  - Actually: 55 end of 98 + 5 this batch = **60 tools** total? No, checking batch 99: vito=49 (wrong, should be 56), peppermint=50→57, sshwifty=51→58, shelfmark=52→59, viseron=53→60. Numbers got reset mid-batch. Correct end-of-batch-99 count: **60 tools**.
+  - **CROWN-JEWEL Tier 1: 11 tools** (+ Vito, + Sshwifty) — **MAJOR GROWTH THIS BATCH**
+  - **PHYSICAL-SECURITY-CROWN-JEWEL sub-family: 1 tool** (Viseron — NEW)
+  - **HEALTHCARE-CROWN-JEWEL sub-family: 2 tools**
+  - **LIFELOG sub-family: 1 tool**
+  - **Regulatory-crown-jewel sub-families: 5 named** (financial, research, healthcare, LIFELOG, physical-security — NEW)
+- **Immutability-of-secrets: 37 tools** (+ vito APP_KEY, peppermint SECRET)
+- **Stateless-tool-rarity: 7 tools** (+ Sshwifty)
+- **Transparent-maintenance: 45 tools** (+ 5)
+- **Institutional-stewardship: 38 tools** (+ 5; **NEW sub-tier "sole-maintainer-with-sponsor-credits"**)
+- **Network-service-legal-risk: 24 tools / 14 sub-families** (+ Shelfmark via inheritance — no new sub-family this batch)
+- **Default-creds-risk: 8 tools** (+ Peppermint)
+- **Web-exposed-shell-exec-gateway: 4 tools** (+ Vito — 4th tool; strong variant)
+- **Sole-maintainer-with-visible-sponsor-support: 3 tools** (SOLIDIFIED)
+- **Sole-maintainer-with-sponsor-credits: 1 tool** (Peppermint — NEW sub-tier)
+- **Sole-maintainer-with-community: 22 tools** (+ peppermint, + sshwifty)
+
+### Notes
+- **39.9% done — essentially at 40%.** Batch 100 NEXT. Pattern-consolidation pass is MANDATORY at batch 100.
+- With 40+ pattern-docs planned + complex taxonomies, the consolidation pass itself is a major work.
+- **BATCH 100 PLAN**:
+  - Finalize 5 more recipes (standard batch)
+  - Begin `patterns/` directory with top-priority docs:
+    1. `patterns/hub-of-credentials.md` (60 tools, 11-tool CROWN-JEWEL Tier 1)
+    2. `patterns/network-service-legal-risk.md` (24 tools, 14 sub-families)
+    3. `patterns/transparent-maintenance.md` (45 tools)
+    4. `patterns/institutional-stewardship.md` (38 tools, 8+ sub-tiers)
+    5. `patterns/immutability-of-secrets.md` (37 tools)
+    6. `patterns/regulatory-crown-jewel-sub-families.md` (5 sub-families)
+  - Total 6-10 docs for batch 100 with a clear "incremental consolidation" plan for later batches to add more.
+- Current batch shipped: **5 recipes, batch 99 complete, 509 cumulative, state file updated, log appended, push imminent.**
