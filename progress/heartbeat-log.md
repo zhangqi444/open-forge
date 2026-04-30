@@ -2135,3 +2135,57 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Pattern-consolidation pass at batch ~100 still on schedule (~12 batches away). Hub-of-credentials family at 14 now; split into 3 tiers (Control-plane / Crown-jewel / LIGHT) seems the right framing.
 - Permissive-license family at 5 tools — worth celebrating as recurring positive signal.
 - Transparent-maintenance at 7 — honest upstream project-health signaling has become a recognizable pattern across recipes.
+
+## 2026-04-30 16:58 UTC — batch 89 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; no new issues.
+
+### Step 2 (selfh.st batch 89)
+- **feedbin** (3742★) — MIT Ruby-on-Rails RSS reader. **NEW CATEGORY: "open-source-of-record"** — upstream EXPLICITLY discourages self-hosting + provides no self-host support + points users to yarr/TTRSS/FreshRSS. **8th transparent-maintenance** (anti-self-host-honest signal) + **new commercial-tier entry: "primary-SaaS with OSS-of-record"** + 15th hub-of-credentials (LIGHT).
+- **osticket** (3742★) — GPL-2 PHP support ticketing. 20+-year mature + commercial support at osticket.com. `setup/` folder deletion mandatory + email-deliverability SPF/DKIM/DMARC mandatory + 16th hub-of-credentials (LIGHT-MID IMAP gateway).
+- **bknd** (3723★) — **FSL-1.1-MIT (Functional Source License)** backend-as-a-service. **NEW LICENSE TAXONOMY ENTRY: "source-available with time-delayed OSS conversion"** — FSL/BSL class not OSI-approved + 2-year-to-MIT auto-conversion. Pre-1.0 transparent-maintenance (**9th**) + 13th immutability-of-secrets (JWT key) + 17th hub-of-credentials + edge-deployment-compatible + WinterTC portability.
+- **hi-events** (3686★) — AGPL-3 Laravel+React event ticketing. **Payment-processing-highest-stakes-infrastructure** framing (Stripe + PCI scope + fraud) + 14th immutability-of-secrets (APP_KEY) + 18th hub-of-credentials (Tier 2, money + PII) + GDPR ticketing-data + email-deliverability + 14-language i18n + `hosted-SaaS-of-OSS-product` commercial tier.
+- **homarr** (3676★) — MIT Next.js homelab dashboard. **19th hub-of-credentials** approaching Tier 1 (holds API keys for EVERY homelab tool) + 15th immutability-of-secrets (SECRET_ENCRYPTION_KEY) + Docker-socket-root-equivalent + provider-API-churn-reality + 6th permissive-license-ecosystem-asset + K8s Helm production-ready.
+
+**Batch 89 lengths:** feedbin 150, osticket 167, bknd 177, hi-events 188, homarr 184.
+**State:** 459 done / 2 skipped / 813 pending — **36.0% done.**
+
+### New precedents
+- **"Open-source-of-record"** category (Feedbin): projects whose code is OSS-licensed + publicly available primarily for transparency, auditability, community PRs, possible forks, but whose primary product is commercial SaaS + where the author EXPLICITLY discourages self-hosting + refuses to provide self-host support. Distinct from merely "primary-SaaS-with-OSS-option" — Feedbin goes further: actively redirects would-be self-hosters to alternative tools. **1st tool in this new category.** Honest positioning respected; recipe explicitly points readers at upstream-recommended alternatives.
+- **Commercial-tier taxonomy updated** — now 5 tiers:
+  1. **Feature-gated Premium** (Rotki 87, Chartbrew 86): OSS core + paid advanced features
+  2. **Hosted-SaaS-of-OSS-product** (Piwigo 88, AzuraCast 87, Hi.Events 89): Same product, paid-hosting convenience
+  3. **Open-core**: OSS core + proprietary enterprise-only features
+  4. **Primary-SaaS with OSS-of-record** (Feedbin 89): Commercial SaaS IS the product; OSS is for-transparency-not-for-self-host; may actively discourage self-hosting
+  5. **Services-around-OSS** (osTicket 89): Paid support + cloud hosting around primary-OSS product
+- **License taxonomy expanded** — **"source-available with time-delayed OSS conversion"** (FSL = Functional Source License, bknd 89):
+  - **Traditional OSI-approved OSS** (MIT/Apache/GPL/AGPL)
+  - **Dual-licensed** (Octelium 88 Apache+AGPL, IronCalc 86 MIT+Apache)
+  - **Permissive** family at 6 now (+ Homarr 89 MIT)
+  - **NEW: FSL/BSL-class** (bknd 89): Source-available but not OSI-approved; restricts competing SaaS use for N years; auto-converts to OSS after delay. Emerging 2024-2026 trend (Sentry, others). **1st tool in this class.**
+- **"Payment-processing = highest-stakes-infrastructure"** framing (Hi.Events): tools that touch real money (payment processors, stripe/paypal/square integrations) deserve strongest security + compliance guidance. PCI DSS scope + chargeback/fraud operational awareness + 3D Secure. **1st tool in payment-processing-crown-jewel-tier** — future financial tools (Bigcapital, Paperless-NGX invoicing features, any e-commerce tool) inherit this framing.
+- **"Anti-self-host upstream signal respected"** (Feedbin): unlike Dockhand 85 (anti-scraping → skip) or AzuraCast 87 (anti-AI-PR-contributions → respect scope + continue), Feedbin is third distinct author-preference scope: **anti-self-host-discouragement**. Recipe documents honestly + respects signal + amplifies upstream's redirect to alternatives rather than glossing over it. **3rd distinct author-preference pattern.**
+- **"Widget-as-homelab-control-plane"** framing (Homarr): dashboard tools like Homarr / Homepage / Organizr end up holding API keys for EVERYTHING in your homelab. Recipe should flag this prominently — dashboards become crown-jewels by accretion. Pattern applies to: Homarr + future homepage/dashboard tools we document. Same as Guacamole (87) and Octelium (88) control-plane framing, but by aggregation rather than by design.
+- **"Plugin-as-RCE + scoped-API-key defense"** reinforcement (Homarr): same defense-in-depth pattern as Rotki (crypto read-only keys) — when integrating tool A with tool B, always use MINIMUM-SCOPED credentials. API keys with read-only / specific-endpoint scope limit blast radius.
+- **"Provider-API-churn-reality"** extends to multi-provider aggregators (Homarr across 30+ integrations): aggregator tools inherit the fragility of every integrated upstream's API stability. Active dev + quick-release cadence = mitigation; but a tool that integrates with 30+ services means some integrations are probably broken at any given moment. **Manage expectations via recipe.**
+- **"Setup folder deletion discipline"** (osTicket specific): leaving installer's setup folder accessible = remote-hijacking vector. Post-install checklist universal for PHP tools with install-wizards: WordPress wp-admin/install.php, osTicket setup/, etc. **Worth standing up as template warning.**
+- **"Edge-deployment compatibility"** framing (bknd): some tools target serverless/edge runtimes (Cloudflare Workers, Vercel Edge, Deno Deploy, etc.) as first-class. Different scaling + state assumptions. Recipe convention: flag if tool runs on edge + explain state-persistence-via-separate-service requirement.
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 15 tools** (+ bknd JWT, Hi.Events APP_KEY, Homarr SECRET_ENCRYPTION_KEY)
+- **Hub-of-credentials crown-jewel: 19 tools** (+ Feedbin LIGHT, osTicket LIGHT-MID, bknd Tier 2, Hi.Events Tier 2, Homarr approaching Tier 1) — **CONSOLIDATION MANDATORY THIS PASS**
+- **Transparent-status / honest-maintenance: 9 tools** (+ Feedbin anti-self-host, bknd pre-1.0)
+- **Permissive-license-ecosystem-asset: 6 tools** (+ Homarr MIT)
+- **Network-service-legal-risk: 9 tools** (unchanged)
+- **Default-creds-PUBLIC: 4 tools** (unchanged)
+- **Control-plane-tier (by-design or by-aggregation)**: Octelium, Guacamole, Homarr (by-aggregation) — 3 tools
+- **Author-preference-scopes**: 3 distinct (Dockhand scrape-skip, AzuraCast PR-contrib-scope, Feedbin self-host-discouragement)
+- **Commercial-tier taxonomy**: 5 tiers (feature-gated Premium, hosted-SaaS-of-OSS, open-core, primary-SaaS with OSS-of-record, services-around-OSS)
+- **License taxonomy**: OSI-OSS + dual-license + FSL-1.1-MIT (time-delayed conversion) = 3+ distinct models
+
+### Notes
+- Pattern-consolidation at batch ~100 still tracking (~11 batches away). Hub-of-credentials at 19 now STRONGLY WARRANTS family-doc with 3-tier split (Control-plane / Crown-jewel / LIGHT).
+- New license model (FSL) worth a short `patterns/licenses.md` doc when consolidation arrives — it's a 2024+ emerging trend.
+- "Widget-as-homelab-control-plane" is a sub-pattern worth naming in the consolidation pass — not every hub-of-creds tool was DESIGNED as one; some become one by accretion (dashboards, password managers, SSO gateways).
+- "Author-preference scope" now a 3-distinct-pattern family — Dockhand (skip) / AzuraCast (document-with-scope-respect) / Feedbin (document-with-upstream-redirect). Worth codifying in future skill guidance for heartbeat workflow so future recipes handle consistently.
