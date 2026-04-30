@@ -1118,3 +1118,30 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Self-host less-documented than cloud" honesty** (Requestly): for OSS projects that prioritize their SaaS path. Avoids surprising the self-hoster; complements "heavyweight self-host" and "newsblur ops demanding" patterns.
 
 **Milestone:** Passing 25% comfortably. Avg batch length ~198 lines.
+
+## 2026-04-30 10:05 UTC — batch 63 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 63)
+- **spacebar** (6652★) — self-hostable Discord-compatible chat/voice/video (formerly Fosscord). **Development-status** + **Discord API drift** warnings front-loaded. AGPL-3.0.
+- **simplelogin** (6631★) — email alias service. **Proton AG acquisition** context front-loaded. Full mail-self-host prereq block preserved. MIT.
+- **databasus** (6597★) — DB backup scheduler with UI. Postgres/MySQL/MariaDB/MongoDB. **Encryption key is sacred** imperative. **Test restores routinely** imperative. Apache-2.0 + commercial tiers.
+- **blocky** (6573★) — fast Go DNS ad-blocker. **"DNS outage = internet-broken perception"** operational gotcha. Android Private DNS caveat. Apache-2.0.
+- **sink** (6569★) — Cloudflare-native URL shortener. **"Cloudflare lock-in" front-loaded** — literally can't run outside Cloudflare. MIT.
+
+**Batch 63 lengths:** spacebar 180, simplelogin 207, databasus 171, blocky 220, sink 178.
+**State:** 329 done / 1 skipped / 944 pending (25.8%).
+
+### New precedents
+- **"Acquired-by-bigger-company" ownership disclosure** (SimpleLogin → Proton AG 2022): front-load corporate ownership changes that affect roadmap / hosted-service arrangement vs self-host. New pattern separate from "fork" / "rename" — this is about upstream stewardship shift.
+- **"Test restores routinely — untested backups aren't backups"** imperative (Databasus): drill operational discipline that's specific to backup tools. Complements "encryption key is sacred" for the complete backup-ops pair.
+- **"Encryption key is sacred" + offline-multi-location backup** (Databasus): for crypto-at-rest backup tools, the key is the single biggest operational failure point. Articulate clearly.
+- **"Cloudflare lock-in" / platform-specific deployment honesty** (Sink): front-load that the project only runs on one platform — no exit path without rewrite. Extends the "managed-only" vs "self-host" transparency principle.
+- **"DNS outage = internet-broken perception"** user-facing ops warning (Blocky): unique to DNS tooling — secondary resolver + dual-handout in DHCP. Fold into DNS-tool-specific recipes.
+- **Android Private DNS / DoT defaults** breaking expectations (Blocky): modern OS behavior breaks blocker assumptions; same family as the Android-14-user-CA-rejection precedent.
+- **"Development-status" transparency** (Spacebar): stronger than "pre-1.0" — actual "don't use for prod-critical" honesty for unstable clones of successful SaaS.
+- **"Moving-target-API-compatibility" caveat** (Spacebar mimicking Discord's API): honest about the maintenance treadmill for API-clones. Useful for federation/compat recipes.
+
+**Milestone:** Approaching 26%. Avg batch length 191 lines.
