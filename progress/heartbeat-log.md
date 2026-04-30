@@ -820,3 +820,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 48 lengths:** kavita 198, bunkerweb 273, aureus 269, woocommerce 256, pairdrop 218.
 **State:** 254 done / 1 skipped / 1019 pending (19.9%).
+
+## 2026-04-30 06:35 UTC — batch 49 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write; already addressed in code).
+
+### Step 2 (selfh.st batch 49)
+- **blinko** (10141★) — AI-powered card notes. pgvector MANDATORY warning front-loaded. AI-cost transparency (OpenAI pricing + Ollama local alternative). First-user-is-admin race. macOS "damaged" unquarantine fix from upstream FAQ. Alternatives: Obsidian+livesync, Logseq, Memos, AppFlowy, Joplin, TriliumNext.
+- **evershop** (10041★) — TS/Node+GraphQL+React ecommerce. Positioned in the Node.js commerce landscape (vs Medusa headless-only, vs Vendure TS mature). Postgres-only noted. `/install` endpoint first-run-only + first-user race. Smaller ecosystem than WooCommerce.
+- **filepizza** (10019★) — P2P file transfer via WebRTC link-based model (vs PairDrop's pairing). v2 architecture (Redis-backed channels, Service Worker streaming, direct WebRTC without WebTorrent). HTTPS-mandatory, uploader-tab-must-stay-open, TURN for NAT.
+- **healthchecks** (9992★) — cron monitoring / dead-man's-switch. **`sendalerts` must be running** warning front-loaded (most critical gotcha for self-hosters). Separate-container pattern shown. `SITE_ROOT` bake-in warning. Pair-with-Gatus advice for complete coverage. Alternatives: Cronitor, DMS, Cronicle.
+- **piped** (9932★) — privacy YT frontend. Multi-service architecture (backend + frontend + proxy + nginx + postgres) documented. YouTube-breaks-periodically warning front-loaded. Bandwidth math (viewers × bitrate via your server). Legal-gray-area disclaimer for public instances. Mobile clients (LibreTube/Yattee/Pipeline) noted.
+
+**Batch 49 lengths:** blinko 216, evershop 236, filepizza 193, healthchecks 255, piped 229.
+**State:** 259 done / 1 skipped / 1014 pending (20.3%) — **crossed 20%!**
