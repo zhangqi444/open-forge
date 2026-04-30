@@ -2404,3 +2404,69 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   11. `patterns/network-recon-risk.md` — new pattern
   12. `patterns/retired-but-cataloged-status-class.md` — new pattern
 - Current batch shipped: **5 recipes, batch 93 complete, 479 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 18:14 UTC — batch 94 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 94)
+- **tvheadend** (3407★) — GPL-3 C/C++ TV streaming server + DVR. 7th default-creds-risk (empty admin password on first-boot) + 36th hub-of-credentials Tier 2 + 12th network-service-legal-risk (**NEW: "DVR-personal-use legal nuance" sub-family** — distinct from *arr-piracy-tooling: Betamax rule + post-Dobbs-style jurisdiction analysis for broadcast-TV recording) + 17th institutional-stewardship (community-steward-of-legacy-tool sub-tier; 20+ years) + 18th transparent-maintenance (Coverity scan badge) + 10th pure-donation/community category + Age-as-maturity reinforced.
+- **pinry** (3362★) — BSD-2 Python/Django+Vue image pinboard. 37th hub-of-credentials LIGHT + 27th immutability-of-secrets (Django SECRET_KEY) + 19th transparent-maintenance + 11th pure-community + 2nd SSRF-via-user-URL (joining CommaFeed batch 92) + **NEW: "image-copyright-DMCA-takedown-procedure"** gotcha for public pin/bookmark instances (applicable to Linkwarden/Hoarder/Shiori/Wallabag family).
+- **dagu** (3338★) — GPL-3 Go workflow orchestrator. 38th hub-of-credentials CROWN-JEWEL Tier 1 (7th in crown-jewel sub-list) + 2nd in web-exposed-shell-exec-gateway class (joining OliveTin 91) + 20th transparent-maintenance + 18th institutional-stewardship (emerging-company sub-tier, dagucloud) + **NEW: "workflow-orchestrator-crown-jewel sub-family"** naming (Dagu + Airflow + Prefect + n8n + Temporal + Argo + Kestra + Windmill — all store-creds + execute-code) — 1st explicitly-named tool in this sub-family.
+- **growchief** (3321★) — AGPL-3 social-media automation. **⚠️ ToS-VIOLATION-RISK** 13th network-service-legal-risk (**NEW: "ToS-violation sub-family"** — distinct from illegal-content / music-royalty / IoT-safety / *arr-piracy / DVR-personal-use) — 1st tool in this sub-family. 39th hub-of-credentials CROWN-JEWEL Tier 1 (8th) — session cookies + MFA for LinkedIn/X = reputational blast radius. Neutral-honest-framing applied (similar to pyLoad 88); catalog with prominent warning banner + honest regulatory framing (CAN-SPAM/GDPR/CASL/PECR).
+- **sparkyfitness** (3308★) — OSS MyFitnessPal alternative w/ native iOS+Android apps + 20+ languages. 40th hub-of-credentials — **NEW: "HEALTHCARE-CROWN-JEWEL" sub-family** — 1st tool (GDPR Article 9 special-category + HIPAA + Washington My Health My Data Act + UK DPA 2018 + post-Dobbs reproductive-data). 11th sole-maintainer-with-community + **NEW: "post-Dobbs-US reproductive-data regulatory-crown-jewel"** sub-flag + **NEW: "eating-disorder-mental-health risk"** framing for fitness apps + **NEW: "domestic-violence threat model"** for family-access multi-user apps.
+
+**Batch 94 lengths:** tvheadend 185, pinry 171, dagu 190, growchief 151, sparkyfitness 140.
+**State:** 484 done / 2 skipped / 788 pending — **38.0% done.**
+
+### New precedents
+- **"DVR-personal-use legal nuance" sub-family** of network-service-legal-risk (tvheadend): Betamax rule + jurisdiction-specific analysis for broadcast-TV recording. Distinct from *arr-piracy-tooling. Applicable to: tvheadend, MythTV, Jellyfin DVR, Plex DVR.
+- **"ToS-violation sub-family" of network-service-legal-risk** (GrowChief): automation tools that violate major-platform ToS. 1st tool named. Applicable to: GrowChief + LinkedIn scrapers + Instagram growth tools + scraping-as-a-service + Phantom Buster clones.
+- **"Workflow-orchestrator-crown-jewel sub-family"** (Dagu): code-executing orchestrators that hold creds-of-all-creds. Dagu 1st explicitly-named; Airflow + Prefect + n8n + Temporal + Argo + Kestra + Windmill pending-but-same-family. 
+- **"HEALTHCARE-CROWN-JEWEL sub-family"** of hub-of-credentials (SparkyFitness): 1st explicit tool. Regulatory-crown-jewel sub-families now 3-named: financial (Bigcapital, Lunar), research (LimeSurvey), **healthcare (SparkyFitness)**. Healthcare-specific regulatory frameworks: GDPR Art.9 + HIPAA + WA-My-Health-My-Data + UK-DPA + state-level CA CMIA + IL BIPA + post-Dobbs-US.
+- **"Post-Dobbs-US reproductive-data regulatory-crown-jewel"** sub-flag (SparkyFitness): emergent US post-Dobbs era; period/fertility/menstrual data legally sensitive + subject to subpoena in abortion-law enforcement. Threat model includes legal-adversary, not just hacker. Applies to: any health tracking app with reproductive-data, cycle trackers, fertility apps. **Novel legal-threat-model framing** — 1st tool.
+- **"Domestic-violence threat model for family-access multi-user apps"** (SparkyFitness): multi-user family-access features can become surveillance-tools in DV/abuse situations. Recipe convention: for any family-access / shared-account / child-tracking app, discuss DV threat model. Applicable to: SparkyFitness, fitness/health apps, location-tracking, monitoring apps, screen-time tools, school apps.
+- **"Eating-disorder-mental-health risk framing"** (SparkyFitness): fitness apps associated with disordered eating in ED-prone populations. Recipe convention: flag wellness-claim scope + ED-sensitivity + potential opt-in-for-ED-sensitive-features. Applicable to: any calorie/weight-tracking app.
+- **"Image-copyright-DMCA-takedown-procedure"** gotcha (Pinry): pinboard/bookmark/image-aggregator apps may redistribute third-party content → takedown procedure + abuse contact required for public instances. Applicable to: Pinry, Linkwarden, Hoarder/Karakeep, Shiori, Wallabag, image-galleries-with-public-sharing.
+- **2nd tool in web-exposed-shell-exec-gateway class** (Dagu joining OliveTin): orchestrators + shell-command webUIs + CI/CD runners form this class. Naming-crystallizes at 2 tools; future tools in class: GitLab runners, Gitea runners, Jenkins, Rundeck, Ansible AWX, etc.
+- **2nd tool in SSRF-via-user-URL family** (Pinry joining CommaFeed): user-pastes-URL-server-fetches-content pattern is SSRF-risky. Future tools in family: most bookmarking + link-preview + webhook-receiver apps.
+- **"Neutral-honest-framing for legal-gray-area tools"** recipe-convention (reinforces pyLoad 88, applies to GrowChief 94): catalog with honest warning banner + regulatory-framework discussion + don't moralistic-skip. Consistency vs moralistic-skip for Bitmagnet-class.
+- **AI-translation-quality-note** gotcha (SparkyFitness OpenAITx): AI-powered translations need native-speaker audit for serious use. Applicable to: any project claiming many-languages via AI translation.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 40 tools** (+ tvheadend Tier 2, pinry LIGHT, dagu CROWN-JEWEL Tier 1, growchief CROWN-JEWEL Tier 1, sparkyfitness HEALTHCARE-CROWN-JEWEL) — **FAMILY-DOC MANDATORY AT BATCH 100**
+  - **CROWN-JEWEL Tier 1: 8 tools** (Octelium, Guacamole, Homarr, pgAdmin, WGDashboard, Lunar, Dagu, GrowChief)
+- **Immutability-of-secrets: 27 tools** (+ pinry Django SECRET_KEY)
+- **Transparent-maintenance: 20 tools** (+ tvheadend Coverity, pinry, dagu)
+- **Institutional-stewardship: 18 tools** (+ tvheadend community-steward, dagu emerging-company)
+  - Community-steward sub-tier now has 2 tools (ddclient 93, tvheadend 94)
+- **Network-service-legal-risk: 13 tools** (+ tvheadend DVR-personal-use, growchief ToS-violation)
+  - **Sub-families now 6 named**: illegal-content, music-royalty, IoT-safety, *arr-piracy-tooling, DVR-personal-use, ToS-violation
+- **Sole-maintainer-with-community: 11 tools** (+ SparkyFitness CodeWithCJ)
+- **Pure-donation/community: 11 tools** (+ tvheadend, pinry)
+- **Default-creds-risk: 7 tools** (+ tvheadend empty-password-bootstrap)
+- **Web-exposed-shell-exec-gateway class: 2 tools** (OliveTin 91, Dagu 94 — class named at 2 tools)
+- **SSRF-via-user-URL family: 2 tools** (CommaFeed 92, Pinry 94)
+- **Regulatory-crown-jewel sub-families: 3 named** (financial: Bigcapital+Lunar, research: LimeSurvey, healthcare: SparkyFitness + future)
+- **Workflow-orchestrator-crown-jewel sub-family: 1 tool** (Dagu 1st; pending: Airflow, Prefect, n8n, Temporal, Argo, Kestra, Windmill)
+- **RETIRED-BUT-CATALOGED: 1 tool** (Readarr 93)
+
+### Notes
+- **38.0% done.** Batch 100 now 6 batches (30 recipes) away. Pattern-consolidation pass imminent. Consolidation plan now expanded:
+  1. `patterns/hub-of-credentials.md` — 3-tier + CROWN-JEWEL-Tier-1-sublist (8 tools) + 7+ subtypes (financial, research, healthcare, DBA-panel, transitive, aggregated-public-presence, workflow-orchestrator)
+  2. `patterns/immutability-of-secrets.md` — 27-tool catalog
+  3. `patterns/network-service-legal-risk.md` — 6 sub-families (illegal-content, music-royalty, IoT-safety, *arr-piracy, DVR-personal-use, ToS-violation)
+  4. `patterns/transparent-maintenance.md` — 20 tools with honest-retirement + explicit-CVE + Coverity sub-signals
+  5. `patterns/commercial-tier-taxonomy.md` — 9+ tiers
+  6. `patterns/license-taxonomy.md`
+  7. `patterns/institutional-stewardship.md` — 4 sub-tiers
+  8. `patterns/stateless-tool-rarity.md` — 3-tool pattern
+  9. `patterns/regulatory-crown-jewel-sub-families.md` — financial + research + healthcare + commerce-platform + post-Dobbs-reproductive + domestic-violence-threat-model
+  10. `patterns/backup-tool-recipe-template.md`
+  11. `patterns/network-recon-risk.md`
+  12. `patterns/retired-but-cataloged-status-class.md`
+  13. `patterns/web-exposed-shell-exec-gateway.md` — 2-tool class emerging
+  14. `patterns/ssrf-via-user-url.md` — 2-tool family
+  15. `patterns/wellness-ed-dv-threat-models.md` — emerging
+- Current batch shipped: **5 recipes, batch 94 complete, 484 cumulative, state file updated, log appended, push imminent.**
