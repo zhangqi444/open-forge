@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="open-forge">
+  <!-- rounded-square background -->
+  <rect width="64" height="64" rx="14" fill="#0F172A"/>
+
+  <!-- spark / flame above the anvil -->
+  <path d="M32 12 L28.5 22 L31 21 L30 26 L34 19 L32 20 Z" fill="#FACC15" stroke="#F59E0B" stroke-width="0.6" stroke-linejoin="round"/>
+
+  <!-- anvil top plate -->
+  <rect x="14" y="34" width="36" height="4.5" rx="1.5" fill="#F97316"/>
+
+  <!-- anvil horn (left) -->
+  <path d="M14 34 Q9 34 9 30 Q9 27 12 27 L14 27 Z" fill="#F97316"/>
+
+  <!-- anvil shoulder (right step) -->
+  <path d="M50 34 L52 34 L52 32 L50 32 Z" fill="#F97316"/>
+
+  <!-- anvil body / waist -->
+  <path d="M19 38.5 L45 38.5 L42 47 L22 47 Z" fill="#EA580C"/>
+
+  <!-- anvil base -->
+  <rect x="18" y="47" width="28" height="5" rx="1" fill="#C2410C"/>
+</svg>
