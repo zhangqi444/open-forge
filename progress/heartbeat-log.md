@@ -630,3 +630,13 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **freshrss** (14876★) — PHP RSS aggregator. Tiny (runs on Pi 1). Supports SQLite/Postgres/MySQL/MariaDB. Front-loads: `/data/` must NOT be web-exposed (Docker image handles this; manual installs must block), `CRON_MIN` empty = no polling, XPath scrapers are brittle, Fever/GReader/Nextcloud-News APIs for mobile apps. Linked Miniflux/TTRSS/Commafeed as alternatives.
 
 **State:** 184 done / 1 skipped / 1089 pending (14.4%). Crossed into the 14k-star band. Next: `vert` (14692★), `peertube` (14656★), `seafile` (14629★), then below 14500.
+
+## 2026-04-30 — batch 35 (5 recipes)
+
+- **vert** (14692★) — privacy-first browser-side file converter (SvelteKit + WebAssembly) + optional `vertd` daemon (Rust + FFmpeg) for video. Architecture section: two separate repos/containers, `PUB_*` build args are BAKED at build time (not runtime). Front-loads: prebuilt image has localhost:5173 hardcoded; Docker Desktop Win/macOS = no GPU; COOP/COEP headers needed for WASM threads; AGPL-3.0.
+- **peertube** (14656★) — federated video platform (ActivityPub + WebTorrent). 6-container compose (peertube + postgres:17-alpine + redis:8-alpine + webserver + certbot + postfix). Front-loads: **`PEERTUBE_WEBSERVER_HOSTNAME` is PERMANENT** (baked into every federated ID), static 172.18.0.42 IP is deliberate, DKIM record must be published from `docker-volume/opendkim/keys/*/*.txt`, AGPL-3.0 copyleft.
+- **seafile** (14629★) — high-perf file sync/share with client-side encryption libraries, SeaDoc, optional AI face recognition. CE covered (AGPL-3.0); PE mentioned as commercial. 3 required + several optional containers via `COMPOSE_FILE` chain. Front-loads: default admin pw `asecret`, encrypted libraries have NO admin reset, S3 is PE-only, no CalDAV, file locking is PE-only.
+- **librespeed** (14591★) — HTML5 speedtest.net alternative. 3 modes (standalone / backend / frontend for multi-POP). Telemetry off by default. Front-loads: stats page has no auth without `PASSWORD`, GDPR_EMAIL is regulatory not cosmetics, measurement capped by server bandwidth, `OBFUSCATION_SALT` auto-changes on restart = broken old URLs.
+- **duplicati** (14500★) — incremental+encrypted+deduplicated backup client (not a storage server). 4 release channels (latest/beta/experimental/canary). Front-loads: **lose passphrase = lose backup forever**, distinct `SETTINGS_ENCRYPTION_KEY` vs per-backup passphrase, historical 2.0.5/2.0.6 data-loss bugs → test restores monthly, default runs as root. Alternatives: Restic, BorgBackup, Kopia.
+
+**State:** 189 done / 1 skipped / 1084 pending (14.8%). Average recipe lengths in batch: vert 195, peertube 179, seafile 194, librespeed 211, duplicati 194.
