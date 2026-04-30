@@ -1206,3 +1206,33 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Meta-backup for backup tools** (Zerobyte): same discipline as Databasus — back up the backup tool's own state + document repo-password-recovery offline.
 
 **Milestone:** 26.6% done. Avg batch length ~176 lines (leaner — simpler tools this round). Pending 934.
+
+## 2026-04-30 10:50 UTC — batch 66 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 66)
+- **opensign** (6236★) — OSS DocuSign alternative. **Legal-enforceability + OTP-as-identity-verification-backbone** framing. Audit-log retention imperative. AGPL-3.0.
+- **the-lounge** (6220★) — modern web IRC client. **WebSocket reverse-proxy timeout** gotcha for long-idle IRC connections. Shout-fork history. MIT.
+- **lldap** (6195★) — Light LDAP. **"Intentionally minimal — not a full LDAP"** positioning front-loaded. "Use readonly bind user for apps" hardening. GPL-3.0.
+- **komga** (6184★) — comic/manga server. **Tachiyomi first-class integration**. ComicInfo.xml metadata standard. MIT.
+- **backrest** (6152★) — mature Restic web UI. **Compared-to-Zerobyte positioning** (maturity contrast). 3-2-1 backup rule callout. GPL-3.0.
+
+**Batch 66 lengths:** opensign 183, the-lounge 179, lldap 184, komga 173, backrest 178.
+**State:** 344 done / 1 skipped / 929 pending (27.0%).
+
+### New precedents
+- **Legal-enforceability caveat + "consult a lawyer for high-value contracts"** (OpenSign): when a tool has legal weight (e-sig, HIPAA, etc.), explicitly disclaim + point users at professional review. Extends regulatory-compliance pattern.
+- **"OTP is the identity-verification backbone — SMTP must be rock solid"** (OpenSign): when user workflows depend on email deliverability, call out "use transactional email provider, not Gmail SMTP." Concrete ops advice tied to feature.
+- **Audit-log retention-period imperative** (OpenSign 7-year US/EU): regulatory retention windows are business-critical; articulate specific durations.
+- **WebSocket reverse-proxy timeout gotcha** (The Lounge `proxy_read_timeout 24h`): for long-lived-connection tools (chat, IRC, WebSockets), reverse-proxy timeouts default too short → silent disconnects. New operational gotcha category.
+- **"Intentionally minimal — not a full X" positioning** (lldap vs OpenLDAP): explicit design-choice transparency that helps users choose. "Not a bug, it's a feature." Companion to the fork-supersedes-parent pattern.
+- **"Use readonly bind user for apps"** hardening (lldap): extends the principle-of-least-privilege pattern to LDAP integrations specifically.
+- **"Rename-lineage for search discoverability"** framing: Pi.Alert/PiAlert/NetAlertX (batch 65), PlexPy/Tautulli, Fosscord/Spacebar — we consistently mention old names because search engines + old tutorials still reference them.
+- **3-2-1 backup rule callout** (Backrest): articulate the industry-standard "3 copies / 2 media / 1 offsite" rule in backup-tool recipes.
+- **Cross-recipe comparison** (Backrest vs Zerobyte maturity contrast): when multiple recipes cover overlapping space, explicit side-by-side "choose X if..." guidance.
+- **Tachiyomi first-class integration callout** (Komga): when a tool has a canonical mobile-app pairing, highlight it as the recommended flow.
+- **ComicInfo.xml / metadata-standard specification** (Komga): for media servers, document the metadata format + tooling (ComicTagger, Mylar3) that writes it.
+
+**Milestone:** 27.0% done. Averaging 179 lines/recipe.
