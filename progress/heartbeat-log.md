@@ -1692,3 +1692,42 @@ Pattern observations across batches 68-74:
 - **AI-privacy-boundary** family continues: WhoDB (batch 77) → Baserow Kuma + ezBookkeeping OCR/MCP (batch 78). Three tools in two batches all face the "AI feature sends data where?" question. Worth elevating to a first-class recipe section in future.
 - **MCP threat-model** mentioned in 3 tools in 2 batches (WhoDB batch 77, ezBookkeeping batch 78): Model Context Protocol as new surface area. Agent-can-query-my-tool is powerful + threat-altering.
 - **Repo-migration noting** pattern: Baserow (GitLab→GitHub), Scanopy/NetVisor (rename), Linux Server Community (group moves). When upstream history moved, link both for researchers.
+
+## 2026-04-30 14:10 UTC — batch 79 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 79)
+- **kimai** (4617★) — MIT PHP time tracker. Subdomain-only + MySQL/MariaDB-only + APP_SECRET immutability + plugin marketplace revenue + budgets-alert-not-enforce + invoice-template-test-before-real-billing.
+- **diun** (4613★) — MIT Go image update notifier. NOTIFY-not-auto-update (feature) + docker-socket = root-equiv + rate-limit-on-registries + digest-change-detection-differentiator + notification-fatigue-tuning + pairing-with-Unregistry-Uncloud homelab stack.
+- **anonaddy** (4608★) — AGPL Laravel email forwarding. **SELF-HOSTING-EMAIL-IS-HARD** headline + port-25-blocked-on-most-VPS + MX-domain-cannot-also-be-recipient + DKIM-private-key-most-critical + warm-up-IP-reputation + SMTP-relay-pattern + death-contingency-plan-transparency.
+- **dokuwiki** (4606★) — GPL-2 flat-file PHP wiki since 2004. Data-dir-must-not-be-webaccessible + plugin-trust-auditing + DokuWiki-syntax-NOT-markdown + 1000s-pages-ok-100000s-no + git-version-data-dir for extra history.
+- **radicale** (4604★) — GPLv3 Python CalDAV/CardDAV. **Default-config-has-NO-auth** + TLS-mandatory + `.well-known/caldav`-carddav-redirects + Apple-refuses-self-signed + pair-with-DAVx5-Android + comparison to Baikal/Nextcloud/SOGo.
+
+**Batch 79 lengths:** kimai 195, diun 158, anonaddy 159, dokuwiki 195, radicale 191.
+**State:** 409 done / 1 skipped / 864 pending (32.1%).
+
+### New precedents
+- **"Subdomain-required NOT subdirectory"** deployment constraint explicit (Kimai): tools with path-base limitations should say so upfront; DNS planning implication.
+- **"MySQL/MariaDB-only — no Postgres"** platform lock-in (Kimai, AnonAddy-ish): when a PHP app supports only one DB family, state plainly; DB-standardization decision impact.
+- **"Notify-only is a feature vs auto-update"** design-philosophy contrast (Diun vs Watchtower): deliberate human-in-the-loop safety design. Explain why (stateful apps, breaking migrations).
+- **"Rate limits on registries for polling tools"** (Diun with Docker Hub 100/6h anonymous): specific quantified limit + mitigation (auth pulls) — extends "cite-numeric-limits" pattern.
+- **"Digest-change detection catches same-tag rebuilds"** feature-differentiator (Diun): security-rebuild scenario (e.g., `nginx:1.25` re-pushed with CVE fix) — why digest-watching matters beyond tag-watching.
+- **"Homelab happy stack" pairing recipe** (Diun + Unregistry + Uncloud): three tools by two authors covering notify → push → deploy. Pattern-naming helps readers build coherent stacks.
+- **"SELF-HOSTING-EMAIL-IS-HARD" + port-25-blocked list** (AnonAddy DigitalOcean/AWS/GCP/Oracle/Vultr blocked; Hetzner unblocks on request): specific VPS-provider-list with citations. Operational-reality headline.
+- **"MX-domain-cannot-also-be-recipient → use subdomain"** email-DNS loop trap (AnonAddy FAQ): subtle setup concept worth front-loading.
+- **"DKIM-private-key-is-THE-secret"** backup-criticality call (AnonAddy): lose it + public DNS = mail rejected. Back up offline + separately.
+- **"Warm-up-IP-reputation / use-SMTP-relay"** outbound-deliverability reality (AnonAddy): new-VPS-IP + direct-to-Gmail = spam folder for weeks. Relay via Mailgun/Postmark/SES is the mitigation. 
+- **"Death-contingency plan transparency"** (AnonAddy FAQ + Ackee batch 78 donation-funded honesty): solo-dev projects that publicly document continuity plans earn serious bus-factor-mitigation credit.
+- **"Data-dir-must-NOT-be-web-accessible"** PHP-flat-file hardening (DokuWiki): classic PHP-app security bug; explicit check via curl to raw-page-URL.
+- **"DokuWiki syntax ≠ Markdown"** syntax-pitfall warning (DokuWiki): new users often assume Markdown; DW has its own flavor. Mention the plugin path if Markdown needed.
+- **"Git-versioning data/" pattern for flat-file apps** (DokuWiki + Radicale + SilverBullet batch 73): recurring pattern — when data is on disk as plain text/iCal/vCard/Markdown, cron `git add+commit+push` = free off-site versioned backup. Worth elevating to cross-cutting section.
+- **"Scales to X pages/users, beyond consider Y"** scaling-threshold explicit (DokuWiki ~1000s pages, Radicale ~10s users): help readers self-select-out when tool is wrong scale.
+- **"Default config has NO auth — you MUST configure BEFORE exposing"** Radicale-class trap: multiple tools ship zero-auth-by-default for simplicity. State plainly + pre-install-before-expose warning.
+- **".well-known/caldav + carddav redirects"** reverse-proxy snippet (Radicale): explicit curl-safe syntax so readers can paste. Applies to any CalDAV/CardDAV exposure.
+- **"iOS vs Android CalDAV client quality gap"** client-recommendation (Radicale: DAVx⁵ on Android massively better): platform-specific UX honesty.
+- **"Poll-based-not-push calendar semantics"** limitation (Radicale vs iCloud): battery-vs-freshness tradeoff on mobile.
+- **"File-format-standards = backward-compat = low-upgrade-risk"** mitigation (Radicale vCard/iCal RFCs): standards-compliance reduces upgrade anxiety. Generalizable to any RFC-based tool.
+
+**Milestone:** 32.1% done. Batch 79 covers 5 mature/established tools (Kimai+DokuWiki+Radicale all 2000s-era). Heavy on **operational-reality** (port 25 blocks, registry rate limits, TLS mandatory, default-auth-off). Pattern: older tools = more "you'll regret this specific thing" institutional knowledge.
