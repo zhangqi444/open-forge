@@ -5,7 +5,8 @@
 <h1 align="center">open-forge</h1>
 
 <p align="center">
-  <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.0-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.1-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
+  <a href="https://deepwiki.com/zhangqi444/open-forge"><img src="https://img.shields.io/badge/docs-DeepWiki-22D3EE?style=flat-square&labelColor=0F172A" alt="DeepWiki" /></a>
   <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/badge/verified%20recipes-180+-EA580C?style=flat-square&labelColor=0F172A" alt="Verified recipes" /></a>
   <a href="#install"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-D77756?style=flat-square&labelColor=0F172A" alt="Built for Claude Code" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=22D3EE" alt="MIT License" /></a>
@@ -69,36 +70,15 @@ That's why captured tribal knowledge already includes things like *"Bitnami's `b
 - **Consistent across clouds** — "install Docker on Ubuntu" is written once and reused for Hetzner / DO / Lightsail / localhost. Swap clouds without re-deriving.
 - **Source-attributed** — every install method cites the upstream URL it derives from. When upstream drifts, the link is the recovery path.
 
-## What you can deploy
+## Coverage
 
-**~180 verified recipes** with captured gotchas + ongoing maintenance. A taste:
+- **Software**: ~180 verified recipes for popular self-hostable apps — AI stack (Ollama · vLLM · Open WebUI · …), publishing (Ghost · WordPress · …), productivity (Nextcloud · Joplin · …), photos & media (Immich · Jellyfin · …), monitoring, security, networking, communication, automation. Plus **live-derived fallback** for anything else with public docs (best-effort; you'll see a banner before it starts).
+- **Where**: any cloud VM (AWS · Azure · GCP · Hetzner · DigitalOcean · Oracle Always-Free ARM · Hostinger), your own machine, Raspberry Pi, macOS VM (Lume), any Kubernetes cluster (EKS · GKE · AKS · DOKS · k3s · kind), or PaaS (Fly.io · Render · Railway · Northflank · exe.dev).
+- **How**: Docker · Podman · Native · Kubernetes (Kustomize-first; Helm where upstream ships one).
 
-| Category | Examples |
-|---|---|
-| **AI stack** | Ollama · vLLM · Open WebUI · LibreChat · AnythingLLM · Aider · Dify · Langfuse · ComfyUI · A1111 |
-| **Publishing** | Ghost · WordPress · Docusaurus · Outline · BookStack · Wiki.js |
-| **Productivity** | Nextcloud · Joplin · Logseq · Trilium · Plane · Twenty CRM |
-| **Photos & media** | Immich · PhotoPrism · Jellyfin · Navidrome |
-| **Dev tools** | Gitea · Coolify · Portainer · Code-Server |
-| **Monitoring** | Grafana · Prometheus · Uptime Kuma · Netdata · SigNoz |
-| **Security** | Vaultwarden · Authelia · Authentik · Keycloak |
-| **Networking** | Pi-hole · AdGuard Home · NetBird · Headscale · wg-easy |
-| **Communication** | Mastodon · Mattermost · Rocket.Chat · Jitsi Meet |
-| **Automation** | n8n · Windmill · Activepieces · Node-RED |
+📖 **Browse the catalog**: [deepwiki.com/zhangqi444/open-forge](https://deepwiki.com/zhangqi444/open-forge) — auto-generated wiki view of every recipe, infra adapter, and module. Stays current with the repo.
 
-Full list: [`references/projects/`](plugins/open-forge/skills/open-forge/references/projects/).
-
-**Don't see what you want?** The skill falls back to a **live-derived recipe** — fetches upstream docs at request time and reuses the runtime + infra modules. Best-effort, not authoritative; you'll see a banner before it starts.
-
-## Where you can deploy
-
-**17 infra adapters × 4 runtimes** — write once, reuse everywhere.
-
-- **Cloud VMs**: AWS (Lightsail · EC2) · Azure · Hetzner · DigitalOcean · GCP · Oracle Cloud (Always-Free ARM) · Hostinger
-- **Bare metal / home**: Raspberry Pi · macOS VM (Lume) · any Linux VM you already have · your own machine
-- **Kubernetes**: any cluster (EKS · GKE · AKS · DOKS · k3s · kind · Docker-Desktop)
-- **PaaS**: Fly.io · Render · Railway · Northflank · exe.dev
-- **Runtimes**: Docker · Podman · Native · Kubernetes (Kustomize-first; Helm where upstream ships one)
+Or just ask Claude — *"self-host X on Y"* — and it'll match.
 
 ## Contributing
 
