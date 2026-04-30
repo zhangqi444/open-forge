@@ -3459,3 +3459,66 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - OWA's session-recording raises GDPR considerations (distinct from standard analytics)
 - CROWN-JEWEL Tier 1 now 25 tools / 22 sub-categories
 - Pattern-consolidation still urgently-deferred; ledger authoritative
+
+## 2026-04-30 22:03 UTC — batch 109 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 109)
+- **checkcle** (2660★) — Multi-language full-stack monitoring (English/Khmer/Japanese/Chinese). 97th hub-of-credentials Tier 2. **NEW positive-signal: "uncommon-language-support"** (1st — CheckCle for Khmer; inclusive). **NEW recipe convention: "README-thin-need-upstream-verification"** (CheckCle 1st). 83rd institutional-stewardship + 91st transparent-maintenance.
+- **sablier** (2653★) — Go scale-to-zero controller (wakes containers on reverse-proxy request; Traefik/Caddy/Nginx/Envoy/APISIX/Istio). **Docker-socket-mount-privilege-escalation: 3 tools** (+Sablier). **Stateless-tool-rarity: 7 tools** (+Sablier). **NEW recipe conventions**: "cold-start-latency-UX-tradeoff" + "reverse-proxy-plugin-version-matrix" + "workload-label-discipline". **NEW positive-signals**: "OpenSSF-Scorecard-badge" (1st formally) + "scale-to-zero-for-self-hosted" (1st — Sablier) + "corporate-sponsor-for-OSS-tool". **NEW institutional-stewardship sub-tier: "org-with-corporate-OSS-sponsor"** (1st formally — Sablier; DigitalOcean). 98th hub-of-credentials. 84th institutional-stewardship + 92nd transparent-maintenance.
+- **spliit** (2650★) — Next.js Splitwise-alternative (shared expenses; receipt AI-scan; Vercel-ready; PWA). **99th hub-of-credentials Tier 2** — joins financial-data sub-family. **LLM-feature-sends-data-externally: 2 tools** (EventCatalog 108 + Spliit). **Hosted-OSS-as-service: 2 tools** (tududi 107 + Spliit) 🎯 2-TOOL MILESTONE. **NEW recipe conventions**: "multi-user-shared-data-consent" (1st — Spliit) + "Next.js-Vercel-optimization-leakage" (1st formally — Spliit). **NEW positive-signal: "PWA-no-app-store"** (1st formally — Spliit). 85th institutional-stewardship + 93rd transparent-maintenance.
+- **scriberr** (2609★) — Offline Whisper-based audio transcription. **⚠️ DEVELOPMENT PAUSED** (maintainer eBay-layoffs; honest README update; not abandoned). **100th hub-of-credentials Tier 2** 🎯 **100-TOOL MILESTONE**. **NEW sub-family: "intimate-audio-content-risk"** (1st — Scriberr). **Hardware-dependent-tool: 3 tools** (+Scriberr as GPU-optional). **AI-model-serving-tool: 4 tools** (+Scriberr). **NEW recipe conventions**: "development-paused-maintainer-life-circumstances" (1st formally — Scriberr; honest-hiatus callout) + "paused-but-not-abandoned distinction" (1st — Scriberr) + "OSS-model-upstream-dependency". **NEW positive-signals**: "transparent-maintainer-circumstances" (1st — Scriberr; honest > silent) + "local-AI-inference-privacy-first" (1st formally) + "Ko-Fi-funding" (1st formally — Scriberr). **NEW institutional-stewardship sub-tier: "sole-maintainer-in-life-transition-honest"** (1st — Scriberr). 86th institutional-stewardship + 94th transparent-maintenance (honest-maintenance, not active-maintenance).
+- **krakend** (2604★) — Go API Gateway (70K+ reqs/s; <50MB RAM; stateless; declarative JSON; GitOps; 4 extension mechanisms). **101st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "API-gateway-credential-hub"** (1st — KrakenD formally). **Stateless-tool-rarity: 8 tools** 🎯 **8-TOOL MILESTONE**. **Zero-lock-in: 6 tools** (+KrakenD) 🎯 **6-TOOL MILESTONE**. **FOSSA-license-compliance: 2 tools** (YunoHost+KrakenD). **NEW positive-signals**: "performance-benchmarked" (1st formally — KrakenD; concrete 70K reqs/s) + "declarative-config-GitOps-ready" (1st formally) + "no-vendor-lock-in-claim" + "multi-language-extension-mechanisms" (1st formally) + "broad-telemetry-integration". **Commercial-parallel-with-OSS-core: reinforces** (Dittofeed+Fasten+KrakenD = 3 tools now in this sub-tier). 87th institutional-stewardship + 95th transparent-maintenance. CROWN-JEWEL Tier 1: 26 tools / 23 sub-categories.
+
+**Batch 109 lengths:** checkcle 124, sablier 166, spliit 175, scriberr 182, krakend 178.
+**State:** 559 done / 2 skipped / 713 pending — **43.9% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Hub-of-credentials: 101 tools** 🎯 **100-TOOL MILESTONE CROSSED at Scriberr, 101 at KrakenD**
+- **CROWN-JEWEL Tier 1: 26 tools / 23 sub-categories** 🎯 (+KrakenD API-gateway-credential-hub)
+- **Stateless-tool-rarity: 8 tools** 🎯 **8-MILESTONE at KrakenD**
+- **Zero-lock-in: 6 tools** 🎯 **6-MILESTONE at KrakenD**
+- **Hardware-dependent-tool: 3 tools** (+Scriberr)
+- **AI-model-serving-tool: 4 tools** (+Scriberr)
+- **Docker-socket-mount-privilege-escalation: 3 tools** (+Sablier)
+- **Hosted-OSS-as-service: 2 tools** (tududi+Spliit)
+- **LLM-feature-sends-data-externally: 2 tools** (EventCatalog+Spliit)
+- **Institutional-stewardship: 87 tools** (2 NEW sub-tiers: org-with-corporate-OSS-sponsor [Sablier] + sole-maintainer-in-life-transition-honest [Scriberr])
+- **Transparent-maintenance: 95 tools** — approaching 100!
+
+### New precedents this batch
+- **"API-gateway-credential-hub" CROWN-JEWEL Tier 1 sub-category** (KrakenD 1st)
+- **"intimate-audio-content-risk" sub-family** hub-of-credentials (Scriberr 1st)
+- **"org-with-corporate-OSS-sponsor" institutional-stewardship sub-tier** (Sablier 1st formally)
+- **"sole-maintainer-in-life-transition-honest" institutional-stewardship sub-tier** (Scriberr 1st)
+- **"development-paused-maintainer-life-circumstances" recipe convention** (Scriberr 1st)
+- **"paused-but-not-abandoned distinction" recipe convention** (Scriberr 1st)
+- **"OSS-model-upstream-dependency" convention** (Scriberr)
+- **"transparent-maintainer-circumstances" positive-signal** (Scriberr 1st)
+- **"local-AI-inference-privacy-first" positive-signal** (Scriberr 1st formally)
+- **"Ko-Fi-funding" positive-signal** (Scriberr 1st formally)
+- **"multi-user-shared-data-consent" convention** (Spliit 1st)
+- **"Next.js-Vercel-optimization-leakage" convention** (Spliit 1st formally)
+- **"PWA-no-app-store" positive-signal** (Spliit 1st formally)
+- **"cold-start-latency-UX-tradeoff" convention** (Sablier 1st)
+- **"reverse-proxy-plugin-version-matrix" convention** (Sablier)
+- **"workload-label-discipline" convention** (Sablier)
+- **"OpenSSF-Scorecard-badge" positive-signal** (Sablier 1st formally)
+- **"scale-to-zero-for-self-hosted" positive-signal** (Sablier 1st)
+- **"corporate-sponsor-for-OSS-tool" positive-signal** (Sablier)
+- **"uncommon-language-support" positive-signal** (CheckCle 1st)
+- **"README-thin-need-upstream-verification" convention** (CheckCle 1st)
+- **"performance-benchmarked" positive-signal** (KrakenD 1st formally)
+- **"declarative-config-GitOps-ready" positive-signal** (KrakenD 1st formally)
+- **"no-vendor-lock-in-claim" positive-signal** (KrakenD)
+- **"multi-language-extension-mechanisms" positive-signal** (KrakenD 1st formally)
+- **"broad-telemetry-integration" positive-signal** (KrakenD)
+
+### Notes
+- **🎯 100-TOOL MILESTONE in hub-of-credentials crossed at Scriberr (100) + 101 at KrakenD**
+- 43.9% done — batch 109 dense; 26 new conventions/signals
+- Scriberr's paused-but-honest status introduces new honest-maintenance category (different from abandoned)
+- KrakenD hits 3 simultaneous milestones (stateless-8 + zero-lock-in-6 + new CROWN-JEWEL sub-category)
+- Pattern-consolidation URGENT: 23 CROWN-JEWEL sub-categories, 101 hub-of-credentials, 95 transparent-maintenance
