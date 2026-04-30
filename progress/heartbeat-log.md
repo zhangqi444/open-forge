@@ -775,3 +775,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 45 lengths:** quickwit 212, nginx-ui 205, umbrelos 170, seerr 199, komodo 196.
 **State:** 239 done / 1 skipped / 1034 pending (18.8%).
+
+## 2026-04-30 05:50 UTC — batch 46 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 unchanged.
+
+### Step 2 (selfh.st batch 46)
+- **datasette** (11008★) — Simon Willison's SQLite-to-website publisher. Framing: "GitHub Pages for datasets." One-liner cloud deploys via `datasette publish <target>`. Plugin ecosystem (~100 plugins). Read-only by default; positioned as publish-tool not edit-tool. Alternatives: Grist (editable), Superset/Metabase (BI), CKAN (gov open-data), NocoDB/Baserow.
+- **grist** (11001★) — Airtable alternative with real Python in formulas. Community Edition = full-featured OSS core; commercial extras (audit streaming, SCIM, enterprise admin) clearly enumerated. Front-loaded: **Python formulas = unsandboxed code execution by default** — `GRIST_SANDBOX_FLAVOR=gvisor` required for untrusted users. Positioned vs Datasette (publish vs edit). Alternatives: NocoDB, Baserow, Rowy, Airtable.
+- **esphome** (10986★) — YAML → ESP32/8266 firmware, Home Assistant companion. Two-part architecture (dashboard server + device firmware). Split install methods (HA add-on vs Docker vs pip). Open Home Foundation membership noted. Voice Preview Edition + BLE proxying + mmWave radar callouts. Alternatives: Tasmota, WLED, ESPEasy, Arduino/PlatformIO raw, MicroPython.
+- **simplex-chat** (10959★) — identifier-less messenger. Recipe focuses on **self-hosting SMP + XFTP servers** (simplex-chat/simplexmq) rather than the clients. Architecture: no user IDs at all, unidirectional disposable queues, clients hold all state. Front-loaded: `server_identity.key` = CRITICAL (losing breaks all users), SMP is short-lived not archive, no server-side message backup. Detailed vs-Signal/Matrix/Session comparison. AGPL-3.0.
+- **mosquitto** (10843★) — THE canonical MQTT broker. Eclipse Mosquitto. Backbone of HA + Zigbee2MQTT + ESPHome + industrial. Front-loaded: **2.x changed default from `allow_anonymous true` to `false`** (1.x → 2.x breaking change), port 1883 cleartext, retained-messages persist forever. Minimal mosquitto.conf + ACL examples. Alternatives: EMQX, HiveMQ, VerneMQ, NanoMQ. "Mosquitto is right for 99% of self-hosted installs" — explicit scale advice.
+
+**Batch 46 lengths:** datasette 235, grist 226, esphome 248, simplex-chat 223, mosquitto 259.
+**State:** 244 done / 1 skipped / 1029 pending (19.2%).
