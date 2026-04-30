@@ -1267,3 +1267,35 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Audit log before first real use"** compliance precedent (OpenBao): enable audit trails *before* loading real data; otherwise you can't answer forensic questions about early access.
 
 **Milestone:** 27.4% done. Avg batch length 182 lines.
+
+## 2026-04-30 11:20 UTC — batch 68 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 68)
+- **homebox** (5866★) — home inventory. **Archived-original vs active-fork** (hay-kot → sysadminsmedia) front-loaded. Lock-registration imperative. AGPL-3.0.
+- **passbolt** (5865★) — team password manager with user-owned PGP keys. **EU-Luxembourg jurisdiction + annual audits** front-loaded. Domain-change-breaks-GPG-fingerprints warning. AGPL-3.0 CE + commercial Pro.
+- **zabbix** (5860★) — enterprise monitoring. **Default creds `Admin/zabbix` change immediately** warning. TimescaleDB recommended for scale. LTS vs non-LTS release advice. AGPL-3.0.
+- **countly** (5854★) — product analytics. **License-complexity warning — non-commercial terms in Lite** front-loaded. MongoDB sizing + iOS ATS HTTPS requirement. AGPL-3.0 with additional terms + commercial.
+- **weblate** (5846★) — git-backed translation mgmt. **"hosted.weblate.org is free for FOSS — don't self-host FOSS"** honesty. Git credentials + bot-account pattern. GPL-3.0+ (note or-later).
+
+**Batch 68 lengths:** homebox 164, passbolt 204, zabbix 204, countly 180, weblate 181.
+**State:** 354 done / 1 skipped / 919 pending (27.8%).
+
+### New precedents
+- **"Archived-original vs active-fork" transparency** (HomeBox hay-kot archived → sysadminsmedia active): distinct from rename chains — this is about upstream maintenance transfer. Pattern: point at both repos, name the successor, note the DB-compatibility status.
+- **"EU-jurisdiction + headquartered-in-X" privacy positioning** (Passbolt Luxembourg): explicit geographic jurisdiction callout for compliance-sensitive buyers. New regulatory-transparency category.
+- **"Annually audited, findings public"** security-posture framing (Passbolt): for security-critical tools, articulate audit cadence + where findings are published. Security-transparency precedent.
+- **"User-owned key model"** cryptographic-design articulation (Passbolt PGP vs Bitwarden derived-from-password): distinguish between key-derivation models in password managers. Helps buyers understand "zero-knowledge" claims.
+- **"Domain change breaks server identity"** extension (Passbolt GPG fingerprint): same family as Pixelfed federation domain, MeshCentral agent-trust-FQDN — now extended to password-manager server keys.
+- **"Default creds are widely known — change IMMEDIATELY"** concrete-credential callout (Zabbix `Admin/zabbix`): when default credentials are well-known and scanner-bot targets, name them explicitly so users know what to change.
+- **"Enable agent↔server encryption — default is plaintext"** operational security (Zabbix): default-insecure-traffic callout with concrete port (10051). Pattern for protocol-level encryption gotchas.
+- **LTS vs non-LTS release guidance** (Zabbix 6.0, 7.0 LTS): when upstream distinguishes LTS from non-LTS, tell users to stay on LTS for production. Extends the pin-versions-in-production pattern.
+- **"License with additional non-commercial terms"** warning (Countly Lite): distinct from pure AGPL/MIT — "AGPL-3.0 WITH additional terms" is its own category. Tell users to READ the LICENSE file for commercial threshold clauses.
+- **"iOS ATS / Android network-security-config HTTPS-mandatory for SDKs"** (Countly): for mobile-SDK-ingesting analytics, mobile OS policies require HTTPS. Extends the HTTPS-mandatory pattern to mobile SDKs specifically.
+- **"Use the free hosted instance if you're FOSS"** honesty (Weblate hosted.weblate.org): extends wger.de + SN-hosted patterns — when upstream provides a free hosted version for FOSS/personal users, recommend that over self-host.
+- **"Git credentials via dedicated bot account + deploy key"** hardening (Weblate integration): when a tool pushes to upstream repos, bot-account + scoped-key is the hardening pattern. Extends principle-of-least-privilege to VCS integrations.
+- **"Pre-commit hooks fight auto-committers"** gotcha (Weblate + pre-commit): when tools auto-commit, pre-commit reformatters conflict. Operational gotcha for git-integrated tools.
+
+**Milestone:** 27.8% done. Avg batch length 187 lines.
