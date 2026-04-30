@@ -760,3 +760,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 44 lengths:** whoogle 178, shiori 200, homer 185, owncast 182, misskey 189.
 **State:** 234 done / 1 skipped / 1039 pending (18.4%).
+
+## 2026-04-30 05:35 UTC — batch 45 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 unchanged.
+
+### Step 2 (selfh.st batch 45)
+- **quickwit** (11114★) — Rust search engine for logs/traces/events. Stateless compute + S3 storage model; Elasticsearch-compat API; Jaeger/OTEL native. Front-loaded: v0.x API unstable, append-only (no UPDATE), HA needs Kafka, metastore Postgres is SPOF. Alternatives: Elasticsearch, Loki, VictoriaLogs, ClickHouse, Signoz, Jaeger.
+- **nginx-ui** (11095★) — nginx admin panel. Two deploy modes (bundled-with-nginx Docker image vs native-alongside-existing-nginx). Positioned vs Nginx Proxy Manager (NPM hides nginx.conf, Nginx UI exposes it). Front-loaded: Docker socket = root on host, git-init /etc/nginx for rollback (UI has no rollback), AI features send configs to third-party LLMs. Alternatives: NPM, Zoraxy, Caddy, Traefik.
+- **umbrelos** (11078★) — **full OS** (not a container); Debian-based home-server distro. License pivot in 1.0: **PolyForm Noncommercial** (not OSI-OSS) — free for personal use, paid for commercial. Hardware tiers: Umbrel Pro/Home (full support) vs Pi 5/x86 (best-effort). Tailscale-first remote access. Alternatives: CasaOS, Unraid, TrueNAS SCALE, Yunohost, HexOS, Runtipi, Proxmox.
+- **seerr** (11049★) — media request manager. **Successor to Jellyseerr** (which forked Overseerr). Lineage front-loaded. Jellyfin/Plex/Emby + Sonarr/Radarr integration. Per-user quotas, 4K separate permission. Migration from Jellyseerr/Overseerr noted. Alternatives: Ombi, Petio, Requestrr, Doplarr.
+- **komodo** (11024★) — Docker fleet manager (former "Monitor"). Core + Periphery architecture. GPL-3.0 + (optionally) FerretDB instead of Mongo for SSPL-free stack. Front-loaded: Docker-socket = root, KOMODO_HOST permanence for OAuth, first-user-is-admin, git-sync GitOps pattern, `komodo.skip` label to protect infra containers. Vs Portainer: Komodo wins on git-sync/builds, "no business edition" explicit. Alternatives: Portainer, Dockge, Yacht, Swarm, k8s+Lens, Nomad, CapRover, Rancher.
+
+**Batch 45 lengths:** quickwit 212, nginx-ui 205, umbrelos 170, seerr 199, komodo 196.
+**State:** 239 done / 1 skipped / 1034 pending (18.8%).
