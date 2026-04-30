@@ -1,4 +1,17 @@
-# open-forge
+<p align="center">
+  <img src="assets/icon.svg" width="120" height="120" alt="open-forge" />
+</p>
+
+<h1 align="center">open-forge</h1>
+
+<p align="center">
+  <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.0-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/badge/verified%20recipes-180+-EA580C?style=flat-square&labelColor=0F172A" alt="Verified recipes" /></a>
+  <a href="#built-for-claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-D77756?style=flat-square&labelColor=0F172A" alt="Built for Claude Code" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=22D3EE" alt="MIT License" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/stargazers"><img src="https://img.shields.io/github/stars/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=FACC15" alt="GitHub stars" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/issues"><img src="https://img.shields.io/github/issues/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=A78BFA" alt="Open issues" /></a>
+</p>
 
 > **Self-host any open-source app on your own infrastructure — guided by Claude Code.**
 > No more "read a README, copy-paste 30 lines of bash, debug for hours."

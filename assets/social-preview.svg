@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" fill="none" role="img" aria-label="open-forge — self-host any open-source app, guided by Claude Code">
+  <!-- background -->
+  <rect width="1280" height="640" fill="#0F172A"/>
+
+  <!-- subtle grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="640" fill="url(#grid)"/>
+
+  <!-- accent ring on the right -->
+  <circle cx="1080" cy="320" r="260" fill="#1E293B" opacity="0.6"/>
+
+  <!-- icon (anvil) at right -->
+  <g transform="translate(960, 200) scale(4)">
+    <!-- spark -->
+    <path d="M32 12 L28.5 22 L31 21 L30 26 L34 19 L32 20 Z" fill="#FACC15" stroke="#F59E0B" stroke-width="0.6" stroke-linejoin="round"/>
+    <!-- anvil top plate -->
+    <rect x="14" y="34" width="36" height="4.5" rx="1.5" fill="#F97316"/>
+    <!-- horn -->
+    <path d="M14 34 Q9 34 9 30 Q9 27 12 27 L14 27 Z" fill="#F97316"/>
+    <!-- shoulder -->
+    <path d="M50 34 L52 34 L52 32 L50 32 Z" fill="#F97316"/>
+    <!-- body -->
+    <path d="M19 38.5 L45 38.5 L42 47 L22 47 Z" fill="#EA580C"/>
+    <!-- base -->
+    <rect x="18" y="47" width="28" height="5" rx="1" fill="#C2410C"/>
+  </g>
+
+  <!-- title -->
+  <text x="100" y="290" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="92" font-weight="800" fill="#F8FAFC" letter-spacing="-2">open-forge</text>
+
+  <!-- tagline line 1 -->
+  <text x="100" y="358" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="500" fill="#CBD5E1">Self-host any open-source app on your own infra.</text>
+
+  <!-- tagline line 2 -->
+  <text x="100" y="404" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="500" fill="#CBD5E1">Guided by Claude Code.</text>
+
+  <!-- accent stats line -->
+  <g transform="translate(100, 480)">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#F97316"/>
+    <text x="26" y="13" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#F8FAFC">~180 verified recipes</text>
+
+    <rect x="280" y="0" width="14" height="14" rx="3" fill="#22D3EE"/>
+    <text x="306" y="13" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#F8FAFC">17 infra adapters</text>
+
+    <rect x="510" y="0" width="14" height="14" rx="3" fill="#A78BFA"/>
+    <text x="536" y="13" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="600" fill="#F8FAFC">resumable + self-improving</text>
+  </g>
+
+  <!-- repo URL footer -->
+  <text x="100" y="580" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="20" fill="#64748B">github.com/zhangqi444/open-forge</text>
+</svg>
