@@ -91,6 +91,32 @@ Ask: *"Would the user need open-forge to walk them through provisioning + DNS + 
 6. **Reference upstream docs; don't replace them.** Recipes condense and translate upstream documentation into Claude-actionable steps — they aren't the source of truth for the product itself. Always link the upstream pages we summarized (e.g. `docs.openclaw.ai/install/docker`, AWS Lightsail user guide, Bitnami docs). Reasons: (a) users can verify what we condensed, (b) when upstream drifts our recipe goes stale fast and the link is the recovery path, (c) credit where due. **See *Strict doc-verification policy* below — every install method documented by upstream must have its own recipe section, verified against upstream before being written.**
 7. **Don't invent — interface.** open-forge is a chat-friendly interface to existing tools. Claude is the orchestrator; the user's existing software stack (AWS CLI, Docker, openclaw, ssh, gh, registrar UIs) is the substrate. **Do not** build custom DSLs, YAML schemas, CLI tools, deployment managers, or wrappers around upstream tools. **Do not** reimplement what an upstream tool already does (e.g. don't rebuild `openclaw onboard`'s prompts in chat — call the command). The state file is a thin orchestration helper for resume, nothing more. *Caveat:* "don't invent" applies to **fabricating a deployment path the upstream doesn't support** (e.g. authoring a Helm chart for a project that has no chart). It does **not** mean "no tooling." If upstream supports Docker / k8s / Helm / Terraform, lean on every skill and MCP that helps you orchestrate those paths well — see *Companion skills & MCPs* below.
 
+## Credential handling (expanded from Operating Principle #3)
+
+Pasting raw credentials into Claude Code is risky — secrets enter session history, may be relayed via MCP servers, and could appear in shared transcripts. The skill must offer safer alternatives **first** and only fall back to direct paste with explicit risk acknowledgement.
+
+### The five patterns (priority order)
+
+| # | Pattern | When to suggest |
+|---|---|---|
+| 1 | **Local file path** — user gives skill a path; skill `cat`s it | Personal-use API keys; user already has a `.env` or `.secrets` file |
+| 2 | **Env var name** — user pre-exports the secret; skill reads `$<NAME>` | Shell users with secrets in `.envrc` / `.bashrc` |
+| 3 | **Cloud-CLI session** — user runs `<provider> login` ahead of time; skill uses the resulting profile / session | Default for AWS, GCP, Azure, GitHub, DigitalOcean, Hetzner, Cloudflare |
+| 4 | **Secrets-manager reference** — user gives skill a `op://` / `bw://` / `vault://` reference; skill calls the matching CLI just-in-time | Users with proper secret management (1Password, Bitwarden, Vault, AWS Secrets Manager, GCP Secret Manager, `pass`) |
+| 5 | **Direct chat paste** — last resort, requires risk acknowledgement | When patterns 1-4 don't apply; user explicitly opts in |
+
+### Hard rules
+
+- **Always offer the five patterns** when asking for any sensitive input. Don't silently accept a paste; don't assume Claude Code is a vault.
+- **Surface the risk** before accepting a direct paste: *"the key will live in this session's history; rotate after deploy completes."*
+- **Never accept SSH key contents.** Always ask for the key file *path* (skill uses `ssh -i <path>`); never the key material itself in chat.
+- **Validate before proceeding**: `test -r <path>` for file paths; `test -n "$<VAR>"` for env vars; smoke-command for cloud-CLI sessions and secrets-manager refs.
+- **Refuse files with permissions wider than 600**; offer to `chmod 600` first.
+- **Detect accidental pastes** (regex for `re_*`, `sk-*`, `AKIA*`, etc. in a prompt that expected a path) and stop the user before the secret commits to chat.
+- **End-of-deploy rotation reminder** if the user pasted any secret directly during the deploy: list each pasted credential + the provider's dashboard URL; recommend rotating now that the deploy is done.
+
+The full pattern catalog with skill prompt templates, per-credential-class recommendations, and failure-mode handling lives in [`plugins/open-forge/skills/open-forge/references/modules/credentials.md`](plugins/open-forge/skills/open-forge/references/modules/credentials.md).
+
 ## Strict doc-verification policy (mandatory before writing any recipe)
 
 Recipes are condensations of upstream docs; condensing what we haven't read is speculation. Past failures (the v0.7.0 Helm chart claim sourced from a search snippet, the v0.6.0 OpenClaw "every blessed path" claim that was 4 of 17 because we trusted the README's enumeration) traced back to this. The policy:
