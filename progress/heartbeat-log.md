@@ -730,3 +730,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 42 lengths:** formbricks 202, mealie 219, rybbit 211, yourls 202, sftpgo 216.
 **State:** 224 done / 1 skipped / 1049 pending (17.6%).
+
+## 2026-04-30 05:05 UTC — batch 43 (5 recipes)
+
+### Step 0 / Step 1
+- Synced (up to date). #24/#25/#26/#27 unchanged (still open; PAT can't close; code already fixed).
+
+### Step 2 (selfh.st batch 43)
+- **logto** (11951★) — OSS Auth0/Okta/Clerk alternative. Two-port split (3001 user-facing OIDC, 3002 admin console). Upstream compose is flagged "demo only" — documented prod-style. ENDPOINT is permanent (OIDC `iss` claim). MPL-2.0 license (weaker than AGPL; file-level copyleft). Alternatives: Authelia, Keycloak, Zitadel, Authentik, Casdoor, Ory.
+- **planka** (11906★) — Trello clone in Node.js+Postgres. 1337 internal port. `DEFAULT_ADMIN_EMAIL` locks that user from deletion (intentional safety feature). 100+ notification providers via Apprise. Pro tier for fine-grained permissions. Alternatives: Wekan, Kanboard, Vikunja, Nextcloud Deck.
+- **docuseal** (11781★) — document signing. Simpler start than Documenso (auto-generates signing cert on first run; SQLite default). Bundled Caddy sidecar compose. Front-loaded: auto-generated cert is self-signed (Adobe shows untrusted); losing `certs/` = unverifiable signatures. Compared DocuSeal-vs-Documenso trade-offs (DocuSeal=easier start, Documenso=more production-minded).
+- **adnanh-webhook** (11774★) — Go binary that runs shell commands on HTTP webhooks. Mature maintenance-mode project. NO OFFICIAL DOCKER IMAGE — documented 4 community images per README. Front-loaded: no-auth-if-no-trigger-rule is an RCE, HMAC signature type per provider (GitHub X-Hub-Signature-256, GitLab X-Gitlab-Token), shell-injection hygiene, Docker-socket access = root. Alternatives: n8n, Caddy exec plugin, smee.io, systemd socket activation.
+- **amnezia** (11616★) — **unusual**: the "repo" is the CLIENT app, server is deployed BY the client via SSH to your VPS. Purpose-built for censored regions (Iran/China/Russia/Myanmar). Protocol selection guide table (WireGuard vs AmneziaWG vs OpenVPN+Cloak vs XRay+Reality vs Shadowsocks) mapped to threat model. Russian-origin threat-model note. Keenetic router native AmneziaWG support noted. Alternatives: Outline, AlgoVPN, Streisand (dead), PiVPN, wg-easy, Marzban.
+
+**Batch 43 lengths:** logto 197, planka 203, docuseal 219, adnanh-webhook 256, amnezia 165.
+**State:** 229 done / 1 skipped / 1044 pending (18.0%).
