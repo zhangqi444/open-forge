@@ -1,0 +1,10 @@
+# Drop this file into your project root (or merge with existing config) to load
+# open-forge as default context for every Aider session in the project.
+
+read:
+  - /home/user/open-forge/CLAUDE.md
+  - /home/user/open-forge/plugins/open-forge/skills/open-forge/SKILL.md
+  - /home/user/open-forge/plugins/open-forge/skills/open-forge/references/modules/credentials.md
+  - /home/user/open-forge/plugins/open-forge/skills/open-forge/references/modules/feedback.md
+
+auto-commits: false   # open-forge state files at ~/.open-forge/ shouldn't be auto-committed
