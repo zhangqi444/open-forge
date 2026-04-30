@@ -1402,3 +1402,39 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"WhatsApp Business API costs per conversation"** platform-cost disclosure (Zammad WABA): extends iCloud+ / Apple HKSV precedent to Meta platform costs.
 
 **Milestone:** 29.0% done. Avg batch length 166 lines.
+
+## 2026-04-30 12:20 UTC — batch 72 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open.
+
+### Step 2 (selfh.st batch 72)
+- **pulse** (5502★) — Proxmox/Docker/K8s monitoring. BYOK-AI model + Proxmox token scoping. Community + Pro tiers.
+- **calibre-web-automated** (5484★) — ebook library automation. **Default `admin/admin123` + piracy disclaimer** front-loaded. Docker-only by design. GPL-3.0.
+- **isponsorblocktv** (5443★) — TV YouTube ad-skip. **"YouTube keeps changing the protocol"** ongoing-breakage + ToS caveat front-loaded. GPL-3.0.
+- **arcane** (5396★) — modern Docker UI. **Repo-org move (`kmendell/arcane` → `getarcaneapp/arcane`)** + Docker-socket = root framing. SBOM transparency. BSD-3-Clause.
+- **opencloud** (5327★) — cloud storage. **"Successor to OCIS after Kiteworks acquisition of ownCloud"** governance context (joined MariaDB/OpenTofu/OpenBao pattern). Apache-2.0. Database-less architecture DR notes.
+
+**Batch 72 lengths:** pulse 175, cwa 175, isponsorblocktv 156, arcane 181, opencloud 174.
+**State:** 374 done / 1 skipped / 899 pending (29.4%).
+
+### New precedents
+- **"BYOK-AI sees your infra metadata — tune caps + local Ollama option"** AI-usage cost+privacy pattern (Pulse): extends Paperless-AI's cloud-LLM-sees-documents precedent to infrastructure-metadata context.
+- **"Audit `curl | bash` one-liner before piping to root"** installer-security hygiene (Pulse Proxmox LXC one-liner): general principle made explicit; applies beyond Pulse.
+- **"Proxmox API tokens — use read-only PVEAuditor role"** least-privilege for specific platform (Pulse): vendor-specific privilege-scoping callout. Builds on repeated least-privilege theme across batches.
+- **"Docker-only by design" = bundled proprietary tools justify containerization** (CWA Calibre CLI + KFX): some projects truly don't make sense natively; front-load the constraint + reason.
+- **"Library on HDD vs SSD — metadata/conversion benefits from SSD"** storage-tier recommendation (CWA): concrete storage-type guidance when workload characteristics vary.
+- **"Piracy disclaimer + responsibility framing"** (CWA + Shelfmark): for tools adjacent to possible copyright-infringing use, include upstream's disclaimer + clear user-responsibility statement.
+- **"Upstream protocol keeps changing — subscribe to releases for breakage alerts"** (iSponsorBlockTV YouTube): for tools bridging to third-party closed protocols, articulate the ongoing-breakage risk. Extends batch 71 Zammad "Channel APIs volatile" precedent to consumer-protocol reverse-engineering.
+- **"Paid official alternative exists (YouTube Premium)"** alternative-honesty (iSBTV): disclose the official paid path alongside the self-host workaround. Respect users' informed choice.
+- **"Ad-block is ToS-violation; risk acknowledged"** ToS-transparency (iSBTV): for tools that circumvent service ToS, name it. Don't pretend risk doesn't exist.
+- **"SponsorBlock community-moderated = occasional false positives"** data-source-quality transparency (iSBTV): when tool quality depends on community data, surface that.
+- **"Repo-org move — update image paths"** operational migration note (Arcane kmendell → getarcaneapp): pattern for projects that change ownership/org. Quote + link to old + new.
+- **"SBOM published (getarcane.app/sbom)"** supply-chain-transparency signal (Arcane): surface SBOM publication as trust signal. New precedent for supply-chain security framing.
+- **"Docker-socket-proxy for scoped access"** concrete-hardening-tool recommendation (Arcane/Portainer/every Docker UI): specific named mitigation tool (Tecnativa) for a common class of risk.
+- **"Successor to X after corporate acquisition — joined community-fork pattern"** (OpenCloud ← OCIS after Kiteworks ownCloud acquisition): consolidated precedent now explicitly naming peer projects (MariaDB, OpenTofu, OpenBao) as same pattern. Community-fork-after-corporate-change is a recognized category.
+- **"Database-less backend — simpler DR model but POSIX-xattr requirements"** (OpenCloud): for architecturally unusual tools, articulate the DR-model consequences (not just feature claims). Different-simpler-but-with-caveats pattern.
+- **"Narrower but more focused" positioning vs comprehensive alternative** (OpenCloud vs Nextcloud): explicit positioning statement rather than pretending feature-parity. Honesty about scope.
+- **"Client ecosystem fragmentation vs dominant alternative"** (OpenCloud vs Nextcloud's client dominance): new precedent for acknowledging client-app ecosystem differences — a real lived-in-experience concern for users.
+
+**Milestone:** 29.4% done. Avg batch length 172 lines. Pattern observation: last 4 batches (69-72) heavy on **project-vitality + governance transparency** — maintenance mode, successor announcements, org moves, community-forks-after-acquisition. Users need this info explicitly.
