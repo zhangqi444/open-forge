@@ -3693,3 +3693,44 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Docker Socket Proxy stands out: a **rare OSS tool that DECREASES attack surface** (vs tools that ADD surface by being installed)
 - AliasVault CROWN-JEWEL is unusual because it concentrates password + email (MFA-reset destination) in ONE tool — biggest blast radius we've tagged
 - Pattern-consolidation URGENT: 29 CROWN-JEWEL sub-categories, 116 hub-of-credentials, 110 transparent-maintenance, 102 institutional-stewardship
+
+## 2026-04-30 23:24 UTC — batch 113 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 113)
+- **spoolman** (2389★) — Python FastAPI 3D-printer filament spool tracker (OctoPrint/Moonraker/OctoEverywhere/HA integrations; SQLite/PG/MySQL/Cockroach; Prometheus; 18-lang Weblate; community SpoolmanDB). **117th hub-of-credentials Tier 3**. **Community-translation-infrastructure: 2 tools** (AliasVault Crowdin + Spoolman Weblate) 🎯 **2-TOOL MILESTONE**. **NEW positive-signals**: "community-supported-data-DB-separate-repo" (1st — Spoolman; rare) + "Weblate-hosted-translation" (1st formally — Spoolman) + "built-in-label-printing" (1st — Spoolman) + "Prometheus-metrics-built-in" (1st formally) + "multi-DB-backend-choice" + "niche-hobbyist-community" (1st formally). 103rd institutional-stewardship + 111th transparent-maintenance.
+- **bytestash** (2385★) — Node+SQLite code-snippet manager (PikaPods + Unraid + JWT). **118th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "code-snippet-archive-credentials-spillover"** (1st — ByteStash; applies broadly to ALL snippet/note tools — devs DO paste secrets into snippets). **CROWN-JEWEL Tier 1: 33 tools / 30 sub-categories** 🎯 **30-SUB-CATEGORY MILESTONE**. **SQLite-single-file-backup-simplicity: 3 tools** (LubeLogger+Spoolman+ByteStash) 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "JWT-secret-rotation-discipline" (1st formally — ByteStash) + "signup-window-lockdown-after-bootstrap" (1st formally — ByteStash; applies broadly) + "debug-flag-production-check" (1st formally — ByteStash) + "dev-tool-credentials-in-snippets-inevitable" (1st — ByteStash; retroactive to Grimoire/Silex/NoteDiscovery). **NEW positive-signal: "Unraid-app-store-listing"** (1st formally — ByteStash). 104th institutional-stewardship + 112th transparent-maintenance.
+- **parseable** (2365★) — Rust MELT-observability log-analytics (S3-native object-store; commercial parallel; Slack community). **119th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "central-log-aggregator + MELT-observability-hub"** (1st — Parseable). **CROWN-JEWEL Tier 1: 34 tools / 31 sub-categories**. **Commercial-parallel-with-OSS-core: 7 tools** (+Parseable) 🎯 **7-TOOL MILESTONE**. **NEW recipe conventions**: "log-hygiene-upstream-responsibility" (1st formally — Parseable; universal for log-stores) + "object-storage-credential-blast-radius" (1st — Parseable) + "log-retention-GDPR-compliance" (1st — Parseable) + "MELT-unified-data-single-point-of-compromise" (1st — Parseable) + "production-scale-tool-overkill-for-homelab" (1st formally — Parseable). **NEW positive-signals**: "Rust-built-high-throughput-tool" (reinforces Polaris 110) + "object-storage-native-architecture" (1st formally — Parseable). **Slack-community-enterprise-oriented** neutral-signal (1st — Parseable). 105th institutional-stewardship + 113th transparent-maintenance.
+- **astuto** (2351★) — Ruby on Rails customer feedback tool (roadmap + voting + OAuth2 + webhooks). ⚠️ **NOT MAINTAINED ANYMORE — issue #487, honest discontinuation by maintainer riggraz**. **120th hub-of-credentials Tier 2**. Recipe **PRESERVED as historical + fork-base + stewardship-example**. Recommended new alt: **Fider** (active OSS; Go). **NEW institutional-stewardship sub-tier: "honest-discontinuation-notice"** (1st — Astuto; DISTINCT from Scriberr 109 "paused-but-not-abandoned"). **Honest-maintainer-declaration: 2 tools** 🎯 **2-TOOL MILESTONE** (Scriberr honest-pause + Astuto honest-end). **NEW recipe conventions**: "unmaintained-but-honestly-declared" (1st formally — Astuto) + "fork-opportunity-for-abandoned-OSS" (1st — Astuto) + "customer-feedback-legal-exposure" (1st — Astuto) + "Product-Hunt-launch-artifact" (1st — Astuto). 106th institutional-stewardship. **NOT counted toward transparent-maintenance** (requires active).
+- **anycable** (2313★) — Go WebSocket + SSE realtime server (Evil Martians; Action Cable alt; MIT; Pro + managed parallel). **121st hub-of-credentials Tier 3**. **Stateless-tool-rarity: 11 tools** (+AnyCable) 🎯 **11-TOOL MILESTONE**. **Commercial-parallel-with-OSS-core: 8 tools** 🎯 **8-TOOL MILESTONE**. **Commercial-consultancy-maintained-OSS-tool: 3 tools** (Tecnativa + Evil Martians + Zerodha Tech) 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "RPC-callback-to-app-backend" (1st formally — AnyCable) + "WS-upgrade-reverse-proxy-requirement" (1st — AnyCable) + "library-server-protocol-version-match" (1st formally — AnyCable). **NEW positive-signals**: "recognized-community-consultancy-steward" (reinforces) + "security-contact-published" (1st formally — AnyCable). 107th institutional-stewardship + 114th transparent-maintenance.
+
+**Batch 113 lengths:** spoolman 161, bytestash 152, parseable 191, astuto 138, anycable 159.
+**State:** 579 done / 2 skipped / 693 pending — **45.4% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 34 tools / 31 sub-categories** 🎯 **30-SUB-CATEGORY MILESTONE at ByteStash** (+2 new sub-categories: snippet-archive + log-aggregator)
+- **Stateless-tool-rarity: 11 tools** 🎯 **11-TOOL MILESTONE**
+- **Commercial-parallel-with-OSS-core: 8 tools** 🎯 **8-TOOL MILESTONE**
+- **Commercial-consultancy-maintained-OSS-tool: 3 tools** 🎯 **3-TOOL MILESTONE**
+- **Honest-maintainer-declaration: 2 tools** 🎯 (Scriberr honest-pause + Astuto honest-end — distinct flavors)
+- **SQLite-single-file-backup-simplicity: 3 tools** 🎯
+- **Community-translation-infrastructure: 2 tools** 🎯
+- **Hub-of-credentials: 121 tools**
+- **Institutional-stewardship: 107 tools**
+- **Transparent-maintenance: 114 tools**
+
+### New precedents this batch
+- **"code-snippet-archive-credentials-spillover" CROWN-JEWEL Tier 1 sub-category** (ByteStash 1st; applies broadly)
+- **"central-log-aggregator + MELT-observability-hub" CROWN-JEWEL Tier 1 sub-category** (Parseable 1st)
+- **"honest-discontinuation-notice" institutional-stewardship sub-tier** (Astuto 1st; DISTINCT from Scriberr's honest-pause)
+- **Many new recipe conventions**: JWT-secret-rotation-discipline (ByteStash 1st), signup-window-lockdown-after-bootstrap (ByteStash 1st), debug-flag-production-check (ByteStash 1st), dev-tool-credentials-in-snippets-inevitable (ByteStash 1st; retroactive applicability), log-hygiene-upstream-responsibility (Parseable 1st), object-storage-credential-blast-radius (Parseable 1st), log-retention-GDPR-compliance (Parseable 1st), MELT-unified-data-single-point-of-compromise (Parseable 1st), production-scale-tool-overkill-for-homelab (Parseable 1st), unmaintained-but-honestly-declared (Astuto 1st), fork-opportunity-for-abandoned-OSS (Astuto 1st), customer-feedback-legal-exposure (Astuto 1st), RPC-callback-to-app-backend (AnyCable 1st), WS-upgrade-reverse-proxy-requirement (AnyCable 1st), library-server-protocol-version-match (AnyCable 1st), printer-integration-API-token-holder (Spoolman)
+- **New positive-signals**: community-supported-data-DB-separate-repo (Spoolman 1st), Weblate-hosted-translation (Spoolman 1st formally), built-in-label-printing (Spoolman 1st), Prometheus-metrics-built-in (Spoolman 1st formally), multi-DB-backend-choice (Spoolman), niche-hobbyist-community (Spoolman 1st), Unraid-app-store-listing (ByteStash 1st formally), Rust-built-high-throughput-tool (reinforces), object-storage-native-architecture (Parseable 1st formally), recognized-community-consultancy-steward (AnyCable 1st formally), security-contact-published (AnyCable 1st formally), MIT-permissive-license (neutral), Slack-community-enterprise-oriented (neutral)
+
+### Notes
+- **🎯 MULTI-MILESTONE BATCH**: 30-CROWN-JEWEL-sub-categories + 11-stateless + 8-commercial-parallel + 3-consultancy + 2-honest-declarations
+- 45.4% done — exceptional density of new conventions and sub-categories
+- **Astuto is 2nd skip-worthy-but-preserved recipe** (prior: BookWyrm-no-AI, some rebrand-migrations) — preserved to document "honest-discontinuation-notice" as stewardship pattern
+- ByteStash's "dev-tool-credentials-in-snippets-inevitable" has **retroactive applicability** to Grimoire (106), Silex (106), NoteDiscovery (112), and any note-taking tool
+- Pattern-consolidation URGENT: 31 CROWN-JEWEL sub-categories, 121 hub-of-credentials
