@@ -13,7 +13,7 @@
 </p>
 
 > **Self-host any open-source app on your own infrastructure — guided by Claude Code.**
-> No more reading READMEs and copy-pasting bash for hours.
+> A self-improving recipe catalog that gets better every time anyone deploys.
 
 ```
 > "Self-host Ghost on a Hetzner CX22 with a Resend SMTP relay."
@@ -42,11 +42,32 @@ Then say what you want to deploy:
 >
 > *"Deploy Mastodon on a Hetzner VPS — I'll bring my own SMTP."*
 
-## What makes it different from raw Claude Code
+## A self-improving catalog (the key idea)
 
-- **Captured gotchas** — recipes include the surprises that aren't in any README. Bitnami's `bncert-tool` won't accept `--unattended`. MySQL on Ubuntu 22+ rejects socket-auth that Ghost needs. Ghost-CLI's sudo username can't actually be `ghost`. The 1001st deploy is faster than the first because the previous 1000 contributed.
-- **Resumable** — phased workflow + state file at `~/.open-forge/deployments/<name>.yaml`. If TLS fails at 11pm, resume from the `tls` phase tomorrow.
-- **Self-improving** — every deploy can feed back into the catalog via a sanitized GitHub issue you opt in to. An AI agent re-verifies against upstream and patches the recipe for the next user.
+Raw Claude Code starts from zero every session. `open-forge` *accumulates* — every deploy can feed gotchas back into the catalog so the next user starts further ahead.
+
+```
+   you deploy ─► skill captures gotchas ─► you review + opt in to share
+        ▲                                         │
+        │                                         ▼
+        └─ improved recipe ◄─ AI agent patches ◄─ sanitized issue
+```
+
+**The loop:**
+
+1. **You deploy.** Skill walks you through provisioning, DNS, TLS, SMTP, hardening — recording state for resume.
+2. **Skill drafts a sanitized issue** at the end with the gotchas it observed and proposed recipe edits. Domains, IPs, API keys, AWS account IDs are stripped before you see the draft.
+3. **You review and opt in** (or don't — never auto-posted). One click; takes seconds.
+4. **An AI agent processes the issue** — re-fetches upstream docs, applies the [strict doc-verification policy](CLAUDE.md), patches the recipe, opens a PR, bumps the version.
+5. **The next user gets the improved recipe.**
+
+That's why captured tribal knowledge already includes things like *"Bitnami's `bncert-tool` won't accept `--unattended`"*, *"MySQL on Ubuntu 22+ rejects socket-auth that Ghost needs"*, and *"Ghost-CLI's sudo username can't be `ghost`"* — none of which are in any upstream README.
+
+## Other reasons it's better than raw Claude Code
+
+- **Resumable across sessions** — phased workflow + state file at `~/.open-forge/deployments/<name>.yaml`. If TLS fails at 11pm, resume from the `tls` phase tomorrow.
+- **Consistent across clouds** — "install Docker on Ubuntu" is written once and reused for Hetzner / DO / Lightsail / localhost. Swap clouds without re-deriving.
+- **Source-attributed** — every install method cites the upstream URL it derives from. When upstream drifts, the link is the recovery path.
 
 ## What you can deploy
 
