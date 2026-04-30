@@ -805,3 +805,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 47 lengths:** gatus 268, kutt 217, obsidian-livesync 244, linkding 197, sonarqube 225.
 **State:** 249 done / 1 skipped / 1024 pending (19.5%).
+
+## 2026-04-30 06:20 UTC — batch 48 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 48)
+- **kavita** (10416★) — reading server for manga/comics/books. Pre-1.0 warning front-loaded (upstream explicitly says "You may lose data"). SQLite-only (no Postgres). Kavita+ paid tier transparency (external metadata, scrobbling). Alternatives: Komga (Postgres-capable), Calibre-Web, Stump (Rust), Audiobookshelf. Mihon/Tachiyomi integration noted.
+- **bunkerweb** (10367★) — nginx+ModSec+OWASP CRS WAF turnkey. Multi-container architecture documented (BunkerWeb + Scheduler + DB + UI). Scheduler-is-the-brain warning; DB is source of truth for settings after first boot. 1.5→1.6 setting renames front-loaded. ModSec false-positive tuning warning. Alternatives: manual nginx+ModSec, Traefik+CrowdSec, Cloudflare WAF.
+- **aureus** (10348★) — Laravel 11 + Filament 5 ERP. "Young project" warning front-loaded. PHP 8.3+ mandatory, MySQL 8+/SQLite only (no MariaDB/Postgres listed). Plugin-uninstall drops tables warning from upstream. Alternatives: Odoo CE, ERPNext, Dolibarr, Axelor, Akaunting.
+- **woocommerce** (10272★) — WordPress e-commerce plugin. Recipe distinguishes: **monorepo is for contributors**, operators install via wp plugin install. TLS mandatory for payments, PCI-DSS scope warning, HPOS migration guide linked. Extensive payment-gateway ecosystem. Email-deliverability warning (`mail()` spams-bin, use SMTP plugin). Alternatives: Shopify, Medusa, Saleor, PrestaShop.
+- **pairdrop** (10181★) — AirDrop clone in browser. HTTPS-is-mandatory (WebRTC blocks plain HTTP). TURN server required for internet transfers (20-30% of combos need it); coturn docker snippet provided. Stateless server. Alternatives: LocalSend (native apps), Snapdrop (parent, dormant), OnionShare, Croc, KDE Connect.
+
+**Batch 48 lengths:** kavita 198, bunkerweb 273, aureus 269, woocommerce 256, pairdrop 218.
+**State:** 254 done / 1 skipped / 1019 pending (19.9%).
