@@ -3124,3 +3124,68 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - 41.5% — batch 103 continuing steady pace
 - Pattern-family count continuing to grow; deferring pattern-consolidation
 - Particularly rich batch: LittleLink (stateless + no-credentials), Gramps (2-decade + project-governance), EspoCRM (decade + commercial-extensions), PicoShare (Litestream innovation), Papermerge (long-term-archive category)
+
+## 2026-04-30 20:45 UTC — batch 104 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 104)
+- **yunohost** (2884★) — Debian-based self-hosting OS; 500+ app catalog; SSO; AGPL; NLnet/NGI0/EU funded. **72nd hub-of-credentials Tier 1 CROWN-JEWEL — NEW sub-category "OS-as-PaaS" (holistic-server-management)** (1st — YunoHost). **NEW positive-signals**: "Debian-base" + "EU-public-interest-grant-funded" (1st — YunoHost). **NEW recipe conventions**: "community-packaged-app-quality-tiers" + "centralized-LDAP-auth-attack-vector" + "opinionated-OS-don't-edit-underlying-configs". **NEW institutional-stewardship sub-tier: "EU-public-interest-funded project"** (1st — YunoHost). 58th institutional-stewardship + 66th transparent-maintenance. CROWN-JEWEL Tier 1: 15 tools; 14 sub-categories.
+- **raneto** (2881★) — Node.js markdown KB (file-based + auth + editor). 73rd hub-of-credentials Tier 3. 47th immutability-of-secrets (SESSION_SECRET). **NEW positive-signals**: "FOSSA-license-compliance-badge" + "security-mailing-list" (1sts). **NEW recipe convention**: "markdown-XSS-sanitization". **Zero-lock-in: 4 tools** (+Raneto). **Git-as-backup positive-signal: 2 tools** (+Raneto). **NEW meta-family: "markdown-file-based-knowledge-base"** (3 tools: Flatnotes 101 + Basic Memory 102 + Raneto 104). 59th institutional-stewardship + 67th transparent-maintenance.
+- **myspeed** (2877★) — Node.js speed-test analysis (30-day history; Ookla/LibreSpeed/Cloudflare; multi-notification). 74th hub-of-credentials Tier 3. **NEW positive-signal**: "Prometheus-exporter" (1st — MySpeed). **NEW recipe conventions**: "speed-test-frequency-vs-ISP-fair-use" + "behavioral-pattern-leakage-via-metrics" + "multi-notification-channel-complexity" + "external-test-server-dependency". 60th institutional-stewardship + 68th transparent-maintenance.
+- **steam-headless** (2851★) — Unofficial headless Steam server in Docker (GPU + Xfce + Moonlight). **75th hub-of-credentials Tier 1 CROWN-JEWEL — NEW sub-category "game-platform-account-as-payment-hub"** (1st — Steam Headless). **Hardware-dependent-tool: 2 tools** (+Steam Headless GPU; Willow 101 was mic). **NEW recipe conventions**: "privileged-container-host-compromise-risk" + "GPU-driver-kernel-trust-boundary" + "anti-cheat-Linux-compatibility" + "one-active-client-per-Steam-account" + "TB-scale-storage-requirement" + "network-mode-steam-remote-play-tradeoff" + "unofficial-vendor-wrapping-headless-tool" + "home-dir-only-persistent". 61st institutional-stewardship + 69th transparent-maintenance. CROWN-JEWEL Tier 1: 16 tools; 15 sub-categories.
+- **canine** (2829★) — Apache-2.0 K8s PaaS (Heroku-for-K8s; SAML/OIDC/LDAP). **76th hub-of-credentials Tier 1 CROWN-JEWEL — "infra-control-plane" sub-category now 3 tools** (Vito 99 + GoDoxy 102 + Canine). 48th immutability-of-secrets (SECRET_KEY_BASE). **NEW recipe conventions**: "CI-execution-on-webhook attack-surface" + "K8s-namespace-multi-tenancy-isolation-limits" + "build-isolation-trust-boundary" + "container-registry-write-credential" + "enterprise-SSO-as-selling-point" signal. 62nd institutional-stewardship + **70th transparent-maintenance 🎯 70-TOOL MILESTONE**. CROWN-JEWEL Tier 1: 17 tools; 15 sub-categories.
+
+**Batch 104 lengths:** yunohost 211, raneto 194, myspeed 159, steam-headless 212, canine 199.
+**State:** 534 done / 2 skipped / 738 pending — **41.9% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 70 tools** 🎯 **70-MILESTONE hit at Canine**
+- **CROWN-JEWEL Tier 1: 17 tools / 15 sub-categories** (+YunoHost OS-as-PaaS +Steam Headless game-platform-account +Canine infra-control-plane 3rd tool)
+- **Hub-of-credentials: 76 tools** (CROWN-JEWEL + high-density entries)
+- **Immutability-of-secrets: 48 tools** (+Raneto SESSION_SECRET +Canine SECRET_KEY_BASE)
+- **Institutional-stewardship: 62 tools** (**NEW sub-tier: "EU-public-interest-funded project"** — YunoHost)
+- **Zero-lock-in pattern: 4 tools** (+Raneto; solidifying)
+- **Hardware-dependent-tool: 2 tools** (+Steam Headless GPU)
+- **Markdown-file-based-knowledge-base META-FAMILY: 3 tools** (Flatnotes + Basic Memory + Raneto)
+- **Git-as-backup positive-signal: 2 tools** (+Raneto)
+- **infra-control-plane sub-category: 3 tools** (Vito + GoDoxy + Canine)
+
+### New precedents this batch
+- **"OS-as-PaaS" CROWN-JEWEL Tier 1 sub-category** (YunoHost 1st)
+- **"game-platform-account-as-payment-hub" CROWN-JEWEL Tier 1 sub-category** (Steam Headless 1st)
+- **"EU-public-interest-grant-funded" positive-signal** (YunoHost 1st)
+- **"Debian-base" positive-signal** (YunoHost 1st)
+- **"community-packaged-app-quality-tiers" convention** (YunoHost)
+- **"centralized-LDAP-auth-attack-vector" convention** (YunoHost)
+- **"opinionated-OS-don't-edit-underlying-configs" convention** (YunoHost)
+- **"EU-public-interest-funded project" institutional-stewardship sub-tier** (YunoHost)
+- **"FOSSA-license-compliance-badge" positive-signal** (Raneto 1st)
+- **"security-mailing-list" positive-signal** (Raneto 1st)
+- **"markdown-XSS-sanitization" convention** (Raneto)
+- **"markdown-file-based-knowledge-base" meta-family** (3 tools formalized)
+- **"Prometheus-exporter" positive-signal** (MySpeed 1st)
+- **"speed-test-frequency-vs-ISP-fair-use" convention** (MySpeed)
+- **"behavioral-pattern-leakage-via-metrics" convention** (MySpeed)
+- **"multi-notification-channel-complexity" convention** (MySpeed)
+- **"external-test-server-dependency" convention** (MySpeed)
+- **"privileged-container-host-compromise-risk" convention** (Steam Headless)
+- **"GPU-driver-kernel-trust-boundary" convention** (Steam Headless)
+- **"anti-cheat-Linux-compatibility" convention** (Steam Headless)
+- **"one-active-client-per-Steam-account" convention** (Steam Headless)
+- **"TB-scale-storage-requirement" convention** (Steam Headless)
+- **"network-mode-steam-remote-play-tradeoff" convention** (Steam Headless)
+- **"unofficial-vendor-wrapping-headless-tool" convention** (Steam Headless)
+- **"home-dir-only-persistent" convention** (Steam Headless)
+- **"CI-execution-on-webhook attack-surface" convention** (Canine)
+- **"K8s-namespace-multi-tenancy-isolation-limits" convention** (Canine)
+- **"build-isolation-trust-boundary" convention** (Canine)
+- **"container-registry-write-credential" convention** (Canine)
+- **"enterprise-SSO-as-selling-point" signal** (Canine)
+
+### Notes
+- 41.9% — batch 104 exceptionally pattern-rich
+- **3 new CROWN-JEWEL Tier 1 additions** in one batch (YunoHost OS-as-PaaS; Steam Headless game-account; Canine infra-control-plane 3rd)
+- Transparent-maintenance 70 hit at Canine
+- YunoHost + Canine = both PaaS-flavored but vastly different (OS-level vs K8s-level)
