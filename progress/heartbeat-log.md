@@ -943,3 +943,25 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **External-SaaS-dependency transparency**: Papermark (Resend/Tinybird/Stripe) — some OSS projects lean heavily on commercial cloud services; document honestly so self-hosters know what they're signing up for.
 - **Zero-knowledge architecture front-loading**: PrivateBin's URL-fragment-key model deserves upfront explanation, not buried.
 - **"Not tax/investment advice" disclaimers** for finance tools (Ghostfolio) — extends safety-critical front-loading to legal/compliance territory.
+
+## 2026-04-30 08:20 UTC — batch 56 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 56)
+- **graylog** (8022★) — log-management platform. **SSPL license** front-loaded (not OSI-approved). 3-part architecture (Graylog+MongoDB+OpenSearch) front-loaded. OpenSearch vs ES compatibility matrix called out. Enterprise-features-locked called out. Positioned vs Loki/OpenSearch-direct/Wazuh/Splunk.
+- **librephotos** (7982★) — Google Photos alt with face + object ML. **Initial-scan-is-slow-on-CPU** front-loaded. Evolved-from-Ownphotos noted (original README is stale). Positioned vs Immich (wins on mobile sync) + PhotoPrism (wins on simplicity). MIT.
+- **mumble** (7956★) — low-latency voice chat. **"Certificate = identity, back up the cert"** imperative front-loaded. UDP-preferred, TCP-fallback-is-lag caveat. Positioned vs Discord (quality + privacy) / TeamSpeak / Jitsi / Element. BSD-3.
+- **teslamate** (7923★) — Tesla data logger. **Upstream security warning about deceptive forks/fake apps** front-loaded verbatim. Tesla Fleet API onboarding change (post-2023) flagged. **"No built-in auth — MUST reverse-proxy with auth"** front-loaded. AGPL-3.0.
+- **sure-finance** (7900★) — personal finance app. **Community fork of abandoned Maybe Finance** history front-loaded. Trademark-compliance note preserved. "Early project state" warning. Plaid-access-friction gotcha. Positioned vs Firefly III/Actual/GnuCash/Ghostfolio. AGPL-3.0.
+
+**Batch 56 lengths:** graylog 217, librephotos 220, mumble 218, teslamate 209, sure-finance 217.
+**State:** 294 done / 1 skipped / 979 pending (23.1%).
+
+### New precedents
+- **Security-warning-verbatim-from-upstream**: TeslaMate's README ships a CAUTION block about malicious forks + fake App Store apps stealing Tesla creds; preserved verbatim. Extends earlier "maintainer-policy quotes" pattern to security advisories.
+- **Architectural-history front-loading**: LibrePhotos (Ownphotos origin, stale README). Sure (Maybe Finance fork). Helps self-hosters understand why the docs may not match the code.
+- **SSPL-license transparency**: Graylog — extends BSL/Elastic-2.0/PolyForm pattern to another non-OSI license; flagged for re-hosters.
+- **"No built-in auth — reverse-proxy is mandatory"**: TeslaMate, extends earlier pattern (HTTPS-mandatory for WebRTC).
+- **Trademark-preservation-in-forks**: Sure's README reminds forkers not to use Maybe's name/logo; preserved for downstream.
