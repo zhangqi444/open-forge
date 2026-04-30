@@ -712,3 +712,21 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 41 lengths:** audiobookshelf 221, stalwart 240, dozzle 243, termix 214, stash 198.
 **State:** 219 done / 1 skipped / 1054 pending (17.2%).
+
+## 2026-04-30 04:50 UTC — batch 42 (5 recipes)
+
+### Step 0 (sync)
+- `git pull --rebase --autostash` — already up to date (unrelated branch `claude/go-setup-RLDJL` seen on origin but not touching main).
+
+### Step 1 (issues)
+- No new issues since last heartbeat. #24, #25, #26, #27 still open on GitHub; all **addressed in code via commit `ce8accf`** (previous heartbeat). Cannot close via API (PAT lacks `issues:write`). Awaiting human manual close.
+
+### Step 2 (selfh.st batch 42)
+- **formbricks** (12143★) — OSS Typeform/survey platform. Next.js + Postgres, encryption key ≥32 bytes (unrecoverable if lost), first-user-is-admin + SIGNUP_DISABLED flag. `WEBAPP_URL` permanent. Compared to Tally/Typeform/LimeSurvey/OhMyForm.
+- **mealie** (12070★) — recipe manager + meal planner. Default branch `mealie-next`. Both SQLite (1-20 users) and Postgres compose documented from upstream install docs. Front-loaded: **SQLite+NAS=corruption risk** (use Postgres), pin `vX.Y.Z` tag (upstream explicitly recommends), repo rename `hay-kot/mealie` → `mealie-recipes/mealie`. Alternatives: Tandoor, Nextcloud Cookbook, Grocy, Paprika, Cooklang.
+- **rybbit** (12025★) — privacy-first analytics (GA4/PostHog/Plausible competitor). Heavy stack: Caddy + Next.js client + Node.js backend + ClickHouse + Postgres. Bundled Caddy profile `with-webserver` vs BYO-proxy. Session replay opt-in + capacity warning. Mapbox token optional for geo. `DISABLE_SIGNUP` + `DISABLE_TELEMETRY` flagged. v0.x churn warning. Alternatives: Plausible, Umami, PostHog, Matomo, GoatCounter.
+- **yourls** (11996★) — PHP link shortener since 2009. Official Docker image. Spam + domain-blacklist risk front-loaded; `YOURLS_PRIVATE=true` strongly recommended; 128-char cookie key; Cloudflare Turnstile plugin for public-facing. `YOURLS_SITE` domain = permanent (short URLs are absolute). Compared to Shlink/Kutt/Dub/Polr.
+- **sftpgo** (11972★) — SFTP/SCP/FTPS/HTTP/WebDAV server in Go. Detailed Community-vs-Enterprise comparison table (dual-edition model). Pluggable storage (local/S3/GCS/Azure/SFTP/HTTP/Crypt), per-user home on cloud bucket. Front-loaded: preserve host keys across upgrades (else clients see "host key changed" warning), port 2022 vs 22 decision, UID 1000, 3 image variants (full/alpine/distroless), Enterprise for ISO-27001 / high-perf cloud / compliance. Alternatives: openssh-sftp, ProFTPd, MinIO, Nextcloud, rclone serve.
+
+**Batch 42 lengths:** formbricks 202, mealie 219, rybbit 211, yourls 202, sftpgo 216.
+**State:** 224 done / 1 skipped / 1049 pending (17.6%).
