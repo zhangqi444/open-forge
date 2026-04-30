@@ -988,3 +988,26 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"First user is admin — register quickly"**: Wallos. Extends prior SAM (self-assigned admin) warnings to a subscription tracker.
 
 **Milestones:** Crossed **23.5%** with a compact, lean set — 4 of 5 recipes under 220 lines. Consistent quality without bloat.
+
+## 2026-04-30 08:50 UTC — batch 58 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 58)
+- **miniserve** (7569★) — Rust single-binary HTTP file server. `python -m http.server` replacement, featureful. CLI recipes dominant. MIT.
+- **cryptpad** (7532★) — **E2E encrypted** real-time office suite (docs/sheets/slides/kanban/whiteboard/forms). **Two-domain architecture** (main + sandbox) front-loaded. **"Active attack" threat model** preserved verbatim. AGPL-3.0. XWiki SAS / EU-funded.
+- **newsblur** (7437★) — RSS reader with ML intelligence classifier + Blurblog social + mobile apps. **"Heavyweight self-host — 6+ GB RAM"** warning front-loaded. Microservice-y architecture. Positioned vs Miniflux/FreshRSS. MIT.
+- **tinyauth** (7287★) — minimal forward-auth middleware for reverse proxies. **Active-development-config-changes** warning from upstream preserved verbatim. **Org rename to `tinyauthapp`** flagged. Traefik/Nginx/Caddy snippets. Positioned vs Authelia/Authentik/oauth2-proxy/Pocket ID. GPL-3.0.
+- **traccar** (7222★) — GPS tracking server (200+ protocols, 2000+ devices). **"Tracker needs public internet + protocol ports 5000-5200"** front-loaded. Default `admin/admin` warning. H2→Postgres scale advice. 10-year-mature. Apache-2.0.
+
+**Batch 58 lengths:** miniserve 207, cryptpad 223, newsblur 174, tinyauth 206, traccar 216.
+**State:** 304 done / 1 skipped / 969 pending (23.9%).
+
+### New precedents
+- **"Active-development breaking-config" upstream warning preserved**: Tinyauth — ongoing pattern of preserving upstream WARNINGs verbatim; this one is operational (upgrade-caution) vs security-oriented.
+- **"Active attack" threat-model nuance**: CryptPad — the "server delivers the JS that does encryption" caveat is a distinct E2E-subtlety worth calling out vs simpler "zero-knowledge" claims (e.g., PrivateBin). Enriches zero-knowledge precedent by honestly acknowledging its trust boundary.
+- **Two-domain architecture mandatory**: CryptPad — origin-isolation is load-bearing; reverse-proxy guide must allocate 2 domains. New pattern.
+- **Org-rename notices preserved**: Tinyauth — `tinyauthapp` is official; old paths may mislead.
+- **"Heavyweight self-host" warning for SaaS-first projects**: NewsBlur — projects designed primarily as SaaS have rough self-host stories. Tell users to consider Miniflux/FreshRSS for "just RSS" and hosted NewsBlur if they want its unique features.
+- **CLI-dominant recipe format**: miniserve — for pure-CLI tools, "Quick recipes" section with many one-liners works better than full install stanzas.
