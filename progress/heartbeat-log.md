@@ -2470,3 +2470,69 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   14. `patterns/ssrf-via-user-url.md` — 2-tool family
   15. `patterns/wellness-ed-dv-threat-models.md` — emerging
 - Current batch shipped: **5 recipes, batch 94 complete, 484 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 18:30 UTC — batch 95 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 95)
+- **linkace** (3284★) — GPL-3 PHP/Laravel bookmark manager w/ Internet Archive integration. 41st hub-of-credentials LIGHT + 28th immutability-of-secrets (APP_KEY) + 3rd SSRF-via-user-URL (CommaFeed 92, Pinry 94, LinkAce 95) + 21st transparent-maintenance + **NEW: "sole-maintainer-with-commercial-Cloud-funding" sub-tier** (1st explicit: Kovah/LinkAce).
+- **redlib** (3273★) — AGPL-3 Rust Reddit private-front-end. 42nd hub-of-credentials LIGHT (Reddit OAuth) OR 4th stateless-tool-rarity if no OAuth + 14th network-service-legal-risk (**NEW: "platform-front-end-proxy-risk" sub-family** distinct from GrowChief B2B ToS-violation — Redlib proxies client requests not automates). **NEW: "Forking-after-upstream-archival"** pattern (Redlib←Libreddit 2023). **NEW: "private-front-end ecosystem"** meta-pattern (Invidious/Nitter/Piped/FreeTube/SearXNG). **NEW: "upstream-platform-dependency-risk"** framing. 22nd transparent-maintenance.
+- **opnform** (3269★) — AGPL-3 Laravel+Vue form builder w/ managed Cloud. 43rd hub-of-credentials Tier 2 + 29th immutability-of-secrets + 23rd transparent-maintenance + 19th institutional-stewardship (company tier) + primary-SaaS-with-OSS-of-record tier (15th commercial-tier entry) + **NEW: "data-collection-tool regulatory-framework" recipe convention** (GDPR + CCPA + HIPAA + Art.9-special-category). Reinforces LimeSurvey research-sub-family (batch 90).
+- **kometa** (3262★) — MIT Python Plex/Jellyfin metadata manager (formerly Plex Meta Manager, renamed 2024). 44th hub-of-credentials Tier 2 (Plex token = admin) + 5th ecosystem-asset-of-integration-library (Community Configs) + 13th sole-maintainer-with-community (meisnate12) + 20th institutional-stewardship (**NEW: "transitional-from-sole-maintainer-to-team" sub-tier** — 1st explicit) + 24th transparent-maintenance + 14th pure-donation (GitHub Sponsors) + 2nd rebrand-preservation (PMM→Kometa joining GetCandy→Lunar batch 92) + reinforces "script-not-daemon mental model" + metadata-stored-outside = DB-loss-survival.
+- **ryot** (3251★) — GPL-3 Rust+React life-tracking all-in-one. 45th hub-of-credentials — **NEW: "LIFELOG" CROWN-JEWEL sub-family** (1st tool) — aggregation of movies+books+games+fitness+music = more leverage than any single commercial tracker. 30th immutability-of-secrets (JWT) + 21st institutional-stewardship (3rd tool in sole-maintainer-with-commercial-backing sub-tier joining Kaneo 93, LinkAce 95) + 25th transparent-maintenance + open-core commercial-tier (16th overall).
+
+**Batch 95 lengths:** linkace 197, redlib 161, opnform 174, kometa 168, ryot 177.
+**State:** 489 done / 2 skipped / 783 pending — **38.4% done.**
+
+### New precedents
+- **"Sole-maintainer-with-commercial-Cloud-funding" sub-tier** of institutional-stewardship: now 3 tools (Kaneo 93, LinkAce 95, Ryot 95). Pattern naming-crystallized at 3 tools. More sustainable than pure-donation sole-maintainers; the commercial-Cloud tier funds upstream development. Worth documenting as sub-tier.
+- **"Platform-front-end-proxy-risk" sub-family** of network-service-legal-risk (Redlib): proxying commercial platform content for privacy. Distinct from GrowChief ToS-violation (B2B outreach automation — growth-hack orientation). Redlib-class tools face: platform enforcement + API-pricing-lockout + potential legal-letters. Applicable to: Redlib, Invidious, Nitter, FreeTube, Piped, LibreTranslate-style tools, Bibliogram (Instagram, now dead), SearXNG (not platform-specific).
+- **"Forking-after-upstream-archival"** pattern (Redlib←Libreddit): healthy OSS response to upstream death. Recipe convention: flag when a catalog tool is a fork continuation. Applicable to: Redlib, various Nitter forks, Forgejo←Gitea-codebase (though more nuanced), community-maintained-after-abandonment tools.
+- **"Private-front-end ecosystem"** meta-pattern: Invidious + Nitter + Piped + FreeTube + SearXNG + Redlib + LibreTranslate form an ecosystem of commercial-platform proxies. Worth naming as a meta-category. Future recipes in this ecosystem warrant cross-linking.
+- **"Upstream-platform-dependency-risk"** framing (Redlib): tools that fundamentally depend on external commercial platform's API / tolerance policy. Reddit can kill Redlib anytime. Recipe convention: flag this existential dependency for affected tools (all private-front-ends, any tool relying on specific commercial API that may change).
+- **"LIFELOG CROWN-JEWEL sub-family"** of hub-of-credentials (Ryot): aggregation of personal consumption+fitness+reading+viewing data across multiple domains = more sensitive than any single component. 1st tool. Applicable to: Ryot + combined-Home-Assistant+Immich+Paperless setups + personal-digital-twin tools. 4th regulatory-crown-jewel sub-family: financial + research + healthcare + **LIFELOG**.
+- **"Data-collection-tool regulatory-framework" recipe convention** (OpnForm): form builders + survey tools + analytics tools + CRMs trigger GDPR + CCPA + HIPAA (if health) + Art.9 (if special-category). Recipe section template: "what regulations apply when users collect data with this tool". Applicable to: OpnForm, LimeSurvey 90, Formbricks, CRMs (Mautic, SuiteCRM, EspoCRM), customer-feedback tools, analytics tools (Plausible, Umami, Matomo).
+- **"Transitional-from-sole-maintainer-to-team" institutional-stewardship sub-tier** (Kometa): projects that were founded-by-one-person but now have visible active team. Distinct from sole-maintainer-with-community (person still does 90%+ of work) + emerging-company (incorporated entity). Common mid-stage. Pattern naming-worthy. Applicable to: Kometa (meisnate12→Kometa Team), many successful OSS projects mid-transition.
+- **"Rebrand-preservation" pattern recognized at 2 tools**: Lunar (GetCandy→Lunar 2022) + Kometa (PMM→Kometa 2024). Recipe convention: in gotchas, note old name + why renamed + where old docs/tutorials might still reference old name. Applicable to: any rebranded OSS tool (some popular examples: LBRY→Odysee, Matrix-Synapse→newer-forks, various forks-with-new-names).
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 45 tools** (+ linkace LIGHT, redlib LIGHT, opnform Tier 2, kometa Tier 2, ryot LIFELOG-CROWN-JEWEL) — **FAMILY-DOC MANDATORY AT BATCH 100**
+  - **CROWN-JEWEL Tier 1: 8 tools** (unchanged this batch)
+  - **LIFELOG sub-family: 1 tool** (Ryot — NEW)
+  - **Regulatory sub-families now 4**: financial + research + healthcare + LIFELOG
+- **Immutability-of-secrets: 30 tools** (+ linkace APP_KEY, opnform APP_KEY, ryot JWT)
+- **SSRF-via-user-URL: 3 tools** (CommaFeed 92, Pinry 94, LinkAce 95) — family-doc threshold crossed
+- **Stateless-tool-rarity: 4 tools** (+ Redlib if no OAuth) — solidifying as pattern
+- **Transparent-maintenance: 25 tools** (+ 5)
+- **Institutional-stewardship: 21 tools** (+ opnform company, kometa transitional-team, ryot sole-founder-with-commercial)
+- **Network-service-legal-risk: 14 tools** (+ Redlib platform-front-end-proxy-risk)
+- **Sole-maintainer-with-commercial-Cloud-funding: 3 tools** (Kaneo 93, LinkAce 95, Ryot 95) — NEW sub-tier named
+- **Sole-maintainer-with-community: 13 tools** (+ Kometa meisnate12 — transitional)
+- **Pure-donation/community: 14 tools** (+ Kometa GitHub Sponsors; Redlib community)
+- **Ecosystem-asset-of-integration-library: 5 tools** (+ Kometa Community Configs)
+- **Rebrand-preservation pattern: 2 tools** (Lunar 92, Kometa 95)
+- **Private-front-end ecosystem**: 1 tool named (Redlib) + implicit members
+
+### Notes
+- **38.4% done.** Batch 100 now 5 batches (25 recipes) away. Pattern-consolidation pass imminent. Updated consolidation plan:
+  1. `patterns/hub-of-credentials.md` — 3-tier + 8-tool CROWN-JEWEL Tier 1 + 8+ subtypes (financial, research, healthcare, LIFELOG, DBA-panel, transitive, aggregated-public-presence, workflow-orchestrator)
+  2. `patterns/immutability-of-secrets.md` — 30 tools
+  3. `patterns/network-service-legal-risk.md` — 7+ sub-families
+  4. `patterns/transparent-maintenance.md` — 25 tools
+  5. `patterns/commercial-tier-taxonomy.md` — 10+ tiers
+  6. `patterns/license-taxonomy.md`
+  7. `patterns/institutional-stewardship.md` — 5 sub-tiers (collective + company + foundation + community-steward-of-legacy-tool + sole-maintainer-with-commercial-Cloud-funding + transitional-from-sole-maintainer-to-team)
+  8. `patterns/stateless-tool-rarity.md` — 4-tool pattern
+  9. `patterns/regulatory-crown-jewel-sub-families.md` — 4 named sub-families + commerce-platform + post-Dobbs-reproductive + DV-threat-model
+  10. `patterns/backup-tool-recipe-template.md`
+  11. `patterns/network-recon-risk.md`
+  12. `patterns/retired-but-cataloged-status-class.md`
+  13. `patterns/web-exposed-shell-exec-gateway.md`
+  14. `patterns/ssrf-via-user-url.md` — 3-tool family NOW
+  15. `patterns/wellness-ed-dv-threat-models.md`
+  16. `patterns/private-front-end-ecosystem.md` — NEW
+  17. `patterns/data-collection-tool-regulatory-framework.md` — NEW
+  18. `patterns/rebrand-preservation.md` — NEW
+- Current batch shipped: **5 recipes, batch 95 complete, 489 cumulative, state file updated, log appended, push imminent.**
