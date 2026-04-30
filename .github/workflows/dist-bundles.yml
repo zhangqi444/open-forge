@@ -1,0 +1,34 @@
+name: dist-bundles-up-to-date
+
+# Fail PRs/commits whose dist/ bundles drift from canonical sources
+# (CLAUDE.md, SKILL.md, references/modules/credentials.md, references/modules/feedback.md).
+#
+# When this fails: run ./scripts/build-dist.sh all from the repo root, commit, push.
+# See CLAUDE.md § Processing incoming issues → 3. Author the patch for the policy.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Regenerate dist/ from canonical sources
+        run: ./scripts/build-dist.sh all
+
+      - name: Fail if dist/ drifted
+        run: |
+          if ! git diff --quiet dist/; then
+            echo "::error::dist/ bundles are out of date relative to CLAUDE.md / SKILL.md / references/modules/."
+            echo "::error::Run './scripts/build-dist.sh all' from the repo root, commit the changes, and push."
+            echo
+            echo "--- Diff (first 100 lines) ---"
+            git diff dist/ | head -100
+            exit 1
+          fi
+          echo "✓ dist/ bundles are up to date."
