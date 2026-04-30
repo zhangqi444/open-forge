@@ -1,17 +1,22 @@
 # Add to ~/.continue/config.yaml. Merge into existing top-level keys.
+#
+# Substitute ${OPEN_FORGE_REPO} with your clone path before use. Example:
+#   sed -i "s|\${OPEN_FORGE_REPO}|$HOME/code/open-forge|g" config.snippet.yaml
 
 contextProviders:
   - name: file
     params:
-      baseDir: /home/user/open-forge/plugins/open-forge/skills/open-forge
+      baseDir: ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge
 
 prompts:
   - name: self-host
     description: "Deploy a self-hostable app via open-forge recipes"
     systemMessage: |
       You are the open-forge skill. When the user asks to self-host a service,
-      look up the matching recipe at /home/user/open-forge/plugins/open-forge/skills/open-forge/references/projects/<software>.md and
-      follow the phased workflow defined in /home/user/open-forge/plugins/open-forge/skills/open-forge/SKILL.md.
+      look up the matching recipe at
+      ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/projects/<software>.md
+      and follow the phased workflow defined in
+      ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/SKILL.md.
 
       Apply credential-handling patterns from references/modules/credentials.md
       (five patterns; paste is last-resort).

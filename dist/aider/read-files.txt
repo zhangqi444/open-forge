@@ -1,5 +1,7 @@
-/home/user/open-forge/CLAUDE.md
-/home/user/open-forge/plugins/open-forge/skills/open-forge/SKILL.md
-/home/user/open-forge/plugins/open-forge/skills/open-forge/references/modules/credentials.md
-/home/user/open-forge/plugins/open-forge/skills/open-forge/references/modules/feedback.md
-/home/user/open-forge/plugins/open-forge/skills/open-forge/references/modules/preflight.md
+# Substitute ${OPEN_FORGE_REPO} with your clone path, e.g.:
+#   sed -i "s|\${OPEN_FORGE_REPO}|$HOME/code/open-forge|g" read-files.txt
+${OPEN_FORGE_REPO}/CLAUDE.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/SKILL.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/credentials.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/feedback.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/preflight.md

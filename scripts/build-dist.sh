@@ -164,25 +164,31 @@ EOF
   echo -e "\n\n---\n" >> "$DIST_DIR/aider/CONVENTIONS.md"
   cat "$REFS_DIR/modules/credentials.md" >> "$DIST_DIR/aider/CONVENTIONS.md"
 
-  # read-files.txt — list of files to --read
-  cat > "$DIST_DIR/aider/read-files.txt" <<EOF
-$REPO_ROOT/CLAUDE.md
-$SKILL_DIR/SKILL.md
-$REFS_DIR/modules/credentials.md
-$REFS_DIR/modules/feedback.md
-$REFS_DIR/modules/preflight.md
+  # read-files.txt — list of files to --read.
+  # Uses ${OPEN_FORGE_REPO} placeholder — users substitute with their actual clone path.
+  cat > "$DIST_DIR/aider/read-files.txt" <<'EOF'
+# Substitute ${OPEN_FORGE_REPO} with your clone path, e.g.:
+#   sed -i "s|\${OPEN_FORGE_REPO}|$HOME/code/open-forge|g" read-files.txt
+${OPEN_FORGE_REPO}/CLAUDE.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/SKILL.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/credentials.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/feedback.md
+${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/preflight.md
 EOF
 
-  # .aider.conf.yml — drop-in config
-  cat > "$DIST_DIR/aider/.aider.conf.yml" <<EOF
+  # .aider.conf.yml — drop-in config (uses ${OPEN_FORGE_REPO} placeholder)
+  cat > "$DIST_DIR/aider/.aider.conf.yml" <<'EOF'
 # Drop this file into your project root (or merge with existing config) to load
 # open-forge as default context for every Aider session in the project.
+#
+# Substitute ${OPEN_FORGE_REPO} with your clone path before use. Example:
+#   sed -i "s|\${OPEN_FORGE_REPO}|$HOME/code/open-forge|g" .aider.conf.yml
 
 read:
-  - $REPO_ROOT/CLAUDE.md
-  - $SKILL_DIR/SKILL.md
-  - $REFS_DIR/modules/credentials.md
-  - $REFS_DIR/modules/feedback.md
+  - ${OPEN_FORGE_REPO}/CLAUDE.md
+  - ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/SKILL.md
+  - ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/credentials.md
+  - ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/modules/feedback.md
 
 auto-commits: false   # open-forge state files at ~/.open-forge/ shouldn't be auto-committed
 EOF
@@ -196,22 +202,28 @@ build_continue() {
   echo "→ Building Continue.dev bundle…"
   mkdir -p "$DIST_DIR/continue"
 
-  # config.snippet.yaml — to merge into ~/.continue/config.yaml
-  cat > "$DIST_DIR/continue/config.snippet.yaml" <<EOF
+  # config.snippet.yaml — uses ${OPEN_FORGE_REPO} placeholder so the file is
+  # portable across machines (CI / local / users' clones).
+  cat > "$DIST_DIR/continue/config.snippet.yaml" <<'EOF'
 # Add to ~/.continue/config.yaml. Merge into existing top-level keys.
+#
+# Substitute ${OPEN_FORGE_REPO} with your clone path before use. Example:
+#   sed -i "s|\${OPEN_FORGE_REPO}|$HOME/code/open-forge|g" config.snippet.yaml
 
 contextProviders:
   - name: file
     params:
-      baseDir: $SKILL_DIR
+      baseDir: ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge
 
 prompts:
   - name: self-host
     description: "Deploy a self-hostable app via open-forge recipes"
     systemMessage: |
       You are the open-forge skill. When the user asks to self-host a service,
-      look up the matching recipe at $REFS_DIR/projects/<software>.md and
-      follow the phased workflow defined in $SKILL_DIR/SKILL.md.
+      look up the matching recipe at
+      ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/references/projects/<software>.md
+      and follow the phased workflow defined in
+      ${OPEN_FORGE_REPO}/plugins/open-forge/skills/open-forge/SKILL.md.
 
       Apply credential-handling patterns from references/modules/credentials.md
       (five patterns; paste is last-resort).
