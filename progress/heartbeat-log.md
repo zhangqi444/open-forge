@@ -2234,3 +2234,56 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Family counts continuing to grow; hub-of-credentials at 23 NOW CLEARLY NEEDS structured documentation — 3-tier split (Control-plane / Crown-jewel / LIGHT) + sub-families (financial / research / DBA-panel).
 - **New consolidating family: "enable-security-feature-at-bootstrap"** — encryption keys, master passwords, 2FA-enforcement, audit-logging, should all be enabled AT bootstrap before sensitive data is added. Worth codifying in a template.
 - Institutional-stewardship at 12 tools with clear sub-tier structure (collective / company / foundation). Family-doc content already half-written via recipe examples.
+
+## 2026-04-30 17:28 UTC — batch 91 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; no new issues.
+
+### Step 2 (selfh.st batch 91)
+- **vernemq** (3572★) — Apache-2 Erlang distributed MQTT broker. 20th immutability-of-secrets (cluster cookie) + 24th hub-of-credentials + 10th network-service-legal-risk (IoT safety/liability sub-family) + 13th institutional-stewardship (VerneMQ GmbH company-tier) + 5th default-creds-risk (MQTT anonymous-default) + **NEW: "IoT-safety legal risk"** subtype distinct from illegal-content legal-risk.
+- **linkstack** (3552★) — AGPL-3 PHP/Laravel Linktree alternative. 21st immutability-of-secrets (APP_KEY) + 25th hub-of-credentials (aggregated-public-presence subtype) + **NEW: "high-profile-target" phishing-impersonation framing** for creator/celebrity profile tools + pure-donation funding.
+- **wanderer** (3544★) — AGPL-3 Svelte+PocketBase+Meilisearch trail/GPS database. 22nd immutability-of-secrets (MEILI_MASTER_KEY) + 26th hub-of-credentials (LIGHT) + **NEW: "GPS-track location-data privacy"** framing (Strava-scandal-class) — home/work/schedule exposure + sole-maintainer-with-community + GDPR location-data + pure-donation funding.
+- **openspeedtest** (3543★) — GPL-3 HTML5 speedtest. **NO secrets, NO DB, NO auth needed = pleasant stateless rarity** + bandwidth-per-test planning + accuracy-vs-physical-link-speed framing + public-instance-abuse-vector + commercial embedded SDK tier.
+- **olivetin** (3539★) — AGPL-3 Go shell-command web UI. **"web-exposed shell-exec gateway"** fundamental-reality framing + command-injection template-arg gotcha + Docker-socket-root-equivalent + **NEW: "AI-autonomy-transparency signal"** (explicit "Level 1 of 5 assistance-only" badge — 1st tool) + CII Best Practices badge institutional signal + 27th hub-of-credentials (TRANSITIVE subtype).
+
+**Batch 91 lengths:** vernemq 183, linkstack 198, wanderer 177, openspeedtest 147, olivetin 182.
+**State:** 469 done / 2 skipped / 803 pending — **36.8% done.**
+
+### New precedents
+- **"IoT-safety legal risk"** subtype of network-service-legal-risk family (VerneMQ): distinct from illegal-content legal-risk (Bitmagnet, pyLoad, AzuraCast). IoT brokers expose SAFETY + liability concerns when hijacked — industrial control, medical devices, building automation. EU CRA + US CISA + UK PSTI regulatory frameworks. 1st tool in this sub-family. Worth noting for future IoT/automation tools.
+- **"High-profile-target phishing-impersonation"** framing (LinkStack): tools used by celebrities/influencers/organizations become targets for attackers who want to swap links to malicious destinations. Recipe convention: flag when a tool's users typically have high public visibility. Applicable to: LinkStack + other link-aggregators + profile pages + personal-websites-for-publishers. 1st tool.
+- **"GPS-track location-data privacy"** framing (wanderer): GPS tracks uniquely expose home/work/family/schedule patterns. Strava-scandal 2018 cited as canonical warning. Recipe convention for any GPS/location tool: home-masking, trim-first-last, default-to-private. Template applicable to: wanderer + future fitness-tracking tools + any location-data storage.
+- **"Stateless-tool rarity celebrated"** framing (OpenSpeedTest): no DB, no secrets, no auth-complexity = trivial to deploy, trivial to back up, trivial to secure. Recipe convention: flag this as positive when it applies; most modern tools are stateful/complex.
+- **"Web-exposed shell-exec gateway"** fundamental-reality framing (OliveTin): for tools that run arbitrary commands from web UI (OliveTin, web-terminals, CI/CD runners, Home Assistant shell-commands), the recipe must surface that their security = config-scoping + auth-in-front; they are INHERENTLY root-adjacent tools. Template for future shell-exec-via-web tools.
+- **"AI-autonomy-transparency signal"** (OliveTin "Level 1 of 5 assistance-only"): upstream's transparent declaration of AI-tool policy via standardized badge. 1st tool. Distinct from AzuraCast's "100% human-coded" contributor-policy (batch 87) — different scope: OliveTin allows AI assistance, AzuraCast allows none. Pattern worth noting; may become common post-2024.
+- **"Transitive hub-of-credentials"** subtype (OliveTin): tool itself holds few secrets but its access-to-other-systems makes it a transitive crown-jewel. Similar to Homarr batch 89 (control-plane-by-aggregation) but more narrowly scoped. Worth distinguishing: Homarr STORES API keys; OliveTin EXECUTES commands that reach other systems. Both end up crown-jewel-adjacent.
+- **"Sole-maintainer-with-community"** pattern recognized (wanderer Flomp, OliveTin James Read, Memories batch 88 pulsejet, feedbin batch 89 Ben Ubois): bus-factor-1 mitigated by AGPL/OSI-license + community + donations + forkable-codebase. Common-enough pattern to name as a sustainability class.
+- **"Pure-donation commercial-tier"** now 5 tools (SWAG 90 LSIO, LinkStack 91 Julian, wanderer 91 Flomp, OliveTin 91 James, pyLoad 88 community): no paid SaaS, no paid support, just donations via GitHub Sponsors / Liberapay / BMAC / Open Collective. Distinct from all other commercial-tier taxonomy entries (features/hosted/support-contracts/primary-SaaS). **6th commercial-tier entry added to taxonomy.**
+- **"Bandwidth-per-operation planning"** extension (OpenSpeedTest): similar to AzuraCast batch 87 bandwidth-per-listener. Per-test bandwidth matters for speedtest tools + streaming-media + video-serving + LFS-heavy-git. Worth generalizing to "bandwidth-per-unit-of-work" planning category.
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 22 tools** (+ VerneMQ cluster cookie, LinkStack APP_KEY, wanderer MEILI_MASTER_KEY)
+- **Hub-of-credentials crown-jewel: 27 tools** (+ VerneMQ Tier 2, LinkStack aggregated-public-presence subtype, wanderer LIGHT, OliveTin TRANSITIVE subtype) — **FAMILY-DOC MANDATORY AT BATCH 100**
+- **Network-service-legal-risk: 10 tools** (+ VerneMQ IoT-safety subtype — NEW)
+- **Institutional-stewardship: 13 tools** (+ VerneMQ GmbH)
+- **Default-creds-risk: 5 tools** (+ VerneMQ anonymous-default)
+- **Sole-maintainer-with-community sustainability class**: 4+ tools (pulsejet, Flomp, James Read, Ben Ubois)
+- **Pure-donation commercial-tier: 5 tools** (LSIO, Julian Prieber, Flomp, James Read, community-funded pyLoad)
+- **AI-autonomy-transparency signal: 1 tool** (OliveTin — new pattern)
+- **High-profile-target phishing-impersonation**: 1 tool (LinkStack — new)
+- **GPS-location-data privacy**: 1 tool (wanderer — new)
+- **IoT-safety legal-risk subtype**: 1 tool (VerneMQ — new)
+- **Web-exposed shell-exec gateway class**: 1 tool (OliveTin — new)
+
+### Notes
+- **36.8% done.** Batch 100 is 9 batches (45 recipes) away. Pattern-consolidation pass approaching. Structure of consolidation pass forming:
+  1. `patterns/hub-of-credentials.md` — 3-tier split + 6+ subtypes
+  2. `patterns/immutability-of-secrets.md` — template + examples
+  3. `patterns/network-service-legal-risk.md` — 3 subtypes (illegal-content + music-royalty + IoT-safety)
+  4. `patterns/transparent-maintenance.md` — 10 tools + classification
+  5. `patterns/commercial-tier-taxonomy.md` — 6-tier taxonomy
+  6. `patterns/license-taxonomy.md` — OSI + dual + FSL + permissive-family
+  7. `patterns/institutional-stewardship.md` — 3 sub-tiers (collective/company/foundation)
+  8. `patterns/author-preference-scope.md` — 3 distinct patterns (skip/scope-respect/redirect)
+- Current batch shipped: **5 recipes, batch 91 complete, 469 cumulative, state file updated, log appended, push imminent.**
