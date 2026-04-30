@@ -3522,3 +3522,62 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Scriberr's paused-but-honest status introduces new honest-maintenance category (different from abandoned)
 - KrakenD hits 3 simultaneous milestones (stateless-8 + zero-lock-in-6 + new CROWN-JEWEL sub-category)
 - Pattern-consolidation URGENT: 23 CROWN-JEWEL sub-categories, 101 hub-of-credentials, 95 transparent-maintenance
+
+## 2026-04-30 22:18 UTC — batch 110 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 110)
+- **yamtrack** (2603★) — Django unified media-tracker (movies/TV/anime/manga/games/books/comics/board-games; Jellyfin/Plex/Emby integration; Trakt/Simkl/MAL/AniList/Kitsu import; Apprise). **102nd hub-of-credentials Tier 2** — reading/viewing/watching-data sub-family extends. **18th AGPL-network-service-disclosure**. **NEW recipe conventions**: "many-integration-tokens-hub attack-surface" (1st — Yamtrack). **NEW positive-signals**: "broad-social-auth-provider-support" (1st formally — Yamtrack's 100+ providers) + "iCal-export-standard-interop" (1st formally) + "Apprise-multi-channel-notification" (1st formally). 88th institutional-stewardship + 96th transparent-maintenance.
+- **polaris** (2599★) — Rust music streaming server (100k+ songs; no premium tier; Windows/Linux/BSD). **103rd hub-of-credentials Tier 3**. **NEW positive-signals**: "read-only-library-mount-discipline" (1st formally — Polaris) + "explicit-no-premium-commitment" (1st formally) + "scalability-as-explicit-design-goal" (1st formally) + "BSD-support" (1st formally — uncommon) + "dual-mode-config" (1st formally). 89th institutional-stewardship + 97th transparent-maintenance.
+- **laudspeaker** (2590★) — Customer engagement platform (Braze/Customer.io-alternative; visual journey builder; multi-channel; A/B; Liquid). **104th hub-of-credentials CROWN-JEWEL Tier 1 — marketing-compliance-hub sub-category extended** (6+ tools now). **Commercial-parallel-with-OSS-core: 4 tools** (Dittofeed+Fasten+KrakenD+Laudspeaker) 🎯 **4-TOOL MILESTONE**. **Microservice-complexity-tax: 5 tools**. **NEW positive-signals**: "visual-no-code-workflow-builder" (1st — Laudspeaker) + "Liquid-templating-engine" (1st — Laudspeaker) + "A/B-testing-built-in". 90th institutional-stewardship + 98th transparent-maintenance.
+- **kite** (2589★) — Go+React modern Kubernetes dashboard (multi-cluster + OAuth + RBAC + audit + AI-agents; bilingual English/Chinese). **105th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "Kubernetes-multi-cluster-control-plane-UI"** (1st — Kite; distinct from Canine's infra-control-plane). **LLM-feature-sends-data-externally: 3 tools** (EventCatalog+Spliit+Kite) 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "multi-cluster-credential-concentration risk" (1st — Kite) + "AI-agent-on-privileged-cluster-tool" (1st — Kite) + "AI-agent-execution-on-cluster danger" (1st — Kite; critical for cluster-AI). **NEW positive-signals**: "bilingual-support" + "OAuth-to-RBAC-mapping-discipline" + "dual-audit-log-integrity". 91st institutional-stewardship + 99th transparent-maintenance. CROWN-JEWEL Tier 1: 27 tools / 24 sub-categories.
+- **mazanoke** (2574★) — In-browser local image optimizer/converter (PWA offline; client-side only; EXIF-strip; HEIC converter; family-friendly). **106th hub-of-credentials Tier 4/ZERO — NEW category "zero-credential-hub-tool"** (1st — MAZANOKE) + **NEW sub-family "zero-server-side-data-at-rest"** (1st — MAZANOKE). **Static-site-generated-no-runtime-vulnerabilities: 2 tools** (EventCatalog+MAZANOKE) 🎯 **2-TOOL MILESTONE**. **Zero-lock-in: 7 tools** (+MAZANOKE) 🎯 **7-TOOL MILESTONE**. **Stateless-tool-rarity: 9 tools** (+MAZANOKE) 🎯 **9-TOOL MILESTONE**. **NEW positive-signals**: "client-side-only-processing privacy-architecture" (1st — MAZANOKE) + "EXIF-stripping-privacy-default" (1st — MAZANOKE) + "self-host-for-family-and-friends" (1st formally — MAZANOKE; aligns with AGENTS.md family ethos) + "no-tracking-explicit-commitment" + "trust-your-deployment-not-vendor" (1st — MAZANOKE). 92nd institutional-stewardship + **100th transparent-maintenance 🎯 100-TOOL MILESTONE**.
+
+**Batch 110 lengths:** yamtrack 191, polaris 168, laudspeaker 183, kite 163, mazanoke 164.
+**State:** 564 done / 2 skipped / 708 pending — **44.3% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 100 tools** 🎯 **100-TOOL MILESTONE at MAZANOKE**
+- **Hub-of-credentials: 106 tools** (MAZANOKE introduces Tier 4/ZERO tier)
+- **CROWN-JEWEL Tier 1: 27 tools / 24 sub-categories** 🎯 (+Kite Kubernetes-multi-cluster-control-plane-UI)
+- **Commercial-parallel-with-OSS-core: 4 tools** 🎯 (Dittofeed+Fasten+KrakenD+Laudspeaker)
+- **Stateless-tool-rarity: 9 tools** 🎯 (+MAZANOKE)
+- **Zero-lock-in: 7 tools** 🎯 (+MAZANOKE)
+- **LLM-feature-sends-data-externally: 3 tools** 🎯 (EventCatalog+Spliit+Kite)
+- **Static-site-generated-no-runtime-vulnerabilities: 2 tools** 🎯 (EventCatalog+MAZANOKE)
+- **Institutional-stewardship: 92 tools**
+
+### New precedents this batch
+- **"Kubernetes-multi-cluster-control-plane-UI" CROWN-JEWEL Tier 1 sub-category** (Kite 1st)
+- **"zero-credential-hub-tool" Tier 4/ZERO tier** (MAZANOKE 1st; new tier in hub-of-credentials family)
+- **"zero-server-side-data-at-rest" sub-family** (MAZANOKE 1st)
+- **"many-integration-tokens-hub attack-surface" convention** (Yamtrack 1st)
+- **"broad-social-auth-provider-support" positive-signal** (Yamtrack 1st)
+- **"iCal-export-standard-interop" positive-signal** (Yamtrack 1st)
+- **"Apprise-multi-channel-notification" positive-signal** (Yamtrack 1st)
+- **"read-only-library-mount-discipline" positive-signal** (Polaris 1st)
+- **"explicit-no-premium-commitment" positive-signal** (Polaris 1st)
+- **"scalability-as-explicit-design-goal" positive-signal** (Polaris 1st)
+- **"BSD-support" positive-signal** (Polaris 1st)
+- **"dual-mode-config" positive-signal** (Polaris 1st)
+- **"visual-no-code-workflow-builder" positive-signal** (Laudspeaker 1st)
+- **"Liquid-templating-engine" positive-signal** (Laudspeaker 1st)
+- **"multi-cluster-credential-concentration risk" convention** (Kite 1st)
+- **"AI-agent-on-privileged-cluster-tool" convention** (Kite 1st)
+- **"AI-agent-execution-on-cluster danger" convention** (Kite 1st)
+- **"bilingual-support" positive-signal** (Kite)
+- **"client-side-only-processing privacy-architecture" positive-signal** (MAZANOKE 1st)
+- **"EXIF-stripping-privacy-default" positive-signal** (MAZANOKE 1st)
+- **"self-host-for-family-and-friends" positive-signal** (MAZANOKE 1st formally)
+- **"no-tracking-explicit-commitment" positive-signal** (MAZANOKE)
+- **"trust-your-deployment-not-vendor" positive-signal** (MAZANOKE 1st)
+
+### Notes
+- **🎯 DOUBLE-MILESTONE BATCH**: 100-TOOL-transparent-maintenance (MAZANOKE) + 4 new sub-category/tier precedents
+- 44.3% done
+- MAZANOKE introduces **Tier 4/ZERO** tier in hub-of-credentials classification (new tier entirely — for purely-client-side tools with no server-side data)
+- Kite's AI-agent-on-K8s opens important new risk-class (AI-with-privileged-execution)
+- Polaris's "explicit-no-premium-commitment" marks contrast with open-core tools elsewhere
+- Pattern-consolidation URGENT: 24 CROWN-JEWEL sub-categories, 106 hub-of-credentials, 100 transparent-maintenance
