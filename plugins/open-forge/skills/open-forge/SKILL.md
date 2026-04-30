@@ -186,6 +186,33 @@ Inputs split across three layers:
 
 Each recipe and adapter has its own **"Inputs to collect"** section listing exactly what it needs and at which phase. Collect just-in-time per phase, not all upfront. Use `AskUserQuestion` for structured choices.
 
+## Asking for credentials
+
+Whenever the skill needs sensitive input — API keys, DB passwords, OAuth client secrets, cloud creds, SSH key paths — load `references/modules/credentials.md` and offer the **five patterns** (priority order):
+
+| # | Pattern | What user gives |
+|---|---|---|
+| 1 | Local file path | path to file containing the secret (skill `cat`s it) |
+| 2 | Env var name | name of an env var the user pre-exported (skill reads `$<NAME>`) |
+| 3 | Cloud-CLI session | "I've already run `aws sso login` for profile `<name>`" |
+| 4 | Secrets-manager ref | `op://Personal/Resend/api-key`, `vault://...`, `bw://...` (skill calls matching CLI) |
+| 5 | Direct paste | **last resort** — skill surfaces risk, accepts after explicit yes, reminds to rotate at hardening |
+
+**Never silently accept a paste.** When the skill detects sensitive input is needed, it should:
+
+1. **Offer the five patterns** with the credential class noted (e.g. *"I need a Resend API key — pick how to provide it: file path, env var, secrets-manager ref, or paste (last resort)"*).
+2. **Validate** before using:
+   - File path → `test -r <path>` + check mode is `≤ 600` (offer `chmod 600` if wider).
+   - Env var → `test -n "$<NAME>"` (refuse if empty; if user `export`ed after Claude Code started, ask them to restart).
+   - Cloud-CLI → smoke-command (e.g. `aws sts get-caller-identity --profile <name>`).
+   - Secrets-manager → smoke-command (`op read --no-newline <ref>`, `vault kv get`, etc.).
+   - Paste → require explicit risk acknowledgement first.
+3. **Detect accidental pastes**: if the user was prompted for a path but pasted a string matching `re_*` / `sk-*` / `AKIA[0-9A-Z]{16}` / etc., stop and ask: *"That looks like the key itself, not a path. Did you mean to paste directly? (see risks)"*.
+4. **Never accept SSH key contents.** Always ask for the path; skill uses `ssh -i <path>`.
+5. **End-of-deploy rotation reminder** if the user pasted any secret during the deploy: surface during the `hardening` phase with a list of (credential, dashboard URL) pairs. Pasted secrets remain in session history; rotating now bounds the exposure.
+
+See [`references/modules/credentials.md`](references/modules/credentials.md) for the full pattern details, per-credential-class recommendations, and failure-mode handling.
+
 ## Verification after each phase
 
 | Phase | Verify with |
