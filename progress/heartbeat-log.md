@@ -1906,3 +1906,46 @@ Pattern observations across batches 68-74:
 - **Network-service-legal-risk class**: Scanopy (76), AnonAddy (79), Unbound (80), MicroBin (81), 13ft (83). **Five tools**. Template-level maturity: **legal risk section front-loaded + ethical alternatives section + author-stance-quote-if-available**.
 - **Institutional-trust-signal family extends to packaging ecosystems**: NLnet Labs + Codeberg e.V. + Deciso + Ghost Foundation + Mozilla-former + **LinuxServer.io team packaging-trust**. Six tools across batches 80-83.
 - **Crown-jewel threat-model family count**: Nexterm (81), myDrive (82), LinuxServer Webtop (83). Browser sessions / SSH keys / files. Three tools.
+
+## 2026-04-30 15:20 UTC — batch 84 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 84)
+- **synapse** (4112★) — AGPL-3/commercial Element Matrix homeserver. **Relicense-Apache→AGPL-2023 explicit** + server_name-IMMUTABLE critical + signing-key=crown-jewel + federation-is-feature-AND-complexity + media-store-unbounded-growth + ESS Community Helm/Pro/TI-M tiers + no-free-Element-support honest + Dendrite/Conduit alternatives.
+- **tdarr** (4079★) — proprietary-source-available distributed transcoder. **Replace-original destroys-sources warning** + HDR/Atmos preservation + NVENC consumer-card session-limits + hardware-transcoding-quality-vs-speed + 1M-file scale + Unmanic FOSS alternative + Server+Node architecture.
+- **dim** (4074★) — AGPL-3 Rust media manager. **Development-pace-slowing 2024-2025** transparent-status-assessment + libva hardware transcoding + SQLite single-user scope + Jellyfin strong-default-alternative recommendation + codec + HDR + subtitle + library-naming gotchas.
+- **xyops** (4071★) — BSD Node.js integrated scheduler+monitoring+alerting+ticketing. **Integrated = less-flexibility-than-best-of-breed** honest-tradeoff framing + no-telemetry-promise + no-feature-PRs-explicit + Cronicle-predecessor + Professional/Enterprise tiers + process-snapshot-on-alert differentiator.
+- **vikunja** (4071★) — AGPL-3 Go+Vue todo/project manager. v1→v2 single-container structural change + JWT_SECRET immutability (8th tool) + CalDAV-client-quality-varies + F-Droid privacy signal + Vikunja Cloud managed-tier + importers-best-effort fidelity note + Nextcloud/Planka/WeKan alternatives.
+
+**Batch 84 lengths:** synapse 206, tdarr 183, dim 145, xyops 164, vikunja 197.
+**State:** 434 done / 1 skipped / 839 pending (34.1%).
+
+### New precedents
+- **"Apache→AGPL relicense transparency + date"** governance-event framing (Synapse 2023 relicense): major OSS licensing events change downstream obligations. Recipe convention: name date + reason + who is affected + commercial-license path. Applies to anyone evaluating AGPL risks for Matrix-adjacent products.
+- **"No-free-support from upstream vendor"** honest-boundary framing (Synapse + Element): tools where commercial entity DOES NOT provide community support outside subscription. Operator needs to know BEFORE depending. Same class as xyops "no feature PRs" maintenance-mode transparency (this batch) but about support-model.
+- **"Server name immutable = plan identity FIRST"** critical-upfront-decision (Synapse): some identifiers can never be changed after bootstrap. Recipe convention: flag as UPFRONT decision in Inputs table. Same class as Forgejo SECRET_KEY immutability but bigger blast-radius (whole server identity).
+- **"Signing-key IS the server identity"** crown-jewel critical-secret explicit naming (Synapse): beyond "back up carefully" — the key literally IS the server's cryptographic identity. Losing it ≠ losing a secret; losing it = orphaning from federation. Extends crown-jewel family with federation-identity-specific variant.
+- **"Federation is feature AND operational complexity"** duality-honesty (Synapse): same for email (AnonAddy), Matrix, ActivityPub (Forgejo roadmap), XMPP. Name the complexity alongside the feature.
+- **"Media-store unbounded growth"** operational-budget warning (Synapse): federated tools fetch-and-cache content from other servers. Disk planning is a thing. Similar pattern: Tdarr transcode cache.
+- **"Replace-original-DESTROYS-sources"** catastrophic-default warning (Tdarr): tools with destructive defaults need FRONT-LOADED warnings + test-on-copy guidance + plugin-stack-review discipline. Similar risk profile to "open pastebin public" (MicroBin 81) but data-destruction rather than abuse.
+- **"NVENC consumer-card session-limits"** hardware-quirk operational-knowledge (Tdarr): specific Nvidia-driver limit on GeForce cards. Bypass-at-your-own-risk patch exists. Real operational knowledge worth preserving in recipe corpus.
+- **"Proprietary source-available + free-self-host + paid-features"** license-hybrid unusual-class (Tdarr): not OSS in OSI sense; not closed. "Free to use for self-hosting" with some features paid. Plan accordingly for compliance-cleared-stack checklists. **New license-class worth naming: "source-available-free-self-host"** vs OSS vs proprietary.
+- **"Development-pace-slowing transparent-status-assessment"** honest-evaluation recipe-convention (Dim): tools where upstream momentum has slowed deserve honest assessment + alternative-recommendation. Same class as Wakapi (81 maintenance-mode) + xyops (84 no-feature-PRs) but DIM's signal is not upstream-communicated — it's observed through pulse-data. Recipe responsibility: watch + call it.
+- **"Integrated = less-flexibility-than-best-of-breed"** tradeoff-framing (xyOps): honest about what combining tools gains + loses. Applies to any "one tool for X+Y+Z" suite (Nextcloud, Appwrite, Supabase, OPNsense, etc.). Recipe convention: explicit best-of-breed alternative list when claiming integrated-suite positioning.
+- **"No-telemetry-promise"** upstream-trust-signal (xyOps): explicitly not phoning home. Positive signal worth amplifying. Rare enough to celebrate.
+- **"Process snapshot at alert time"** design-feature differentiator (xyOps): one-click "what was running when it broke" = rare in OSS monitoring. Worth naming specific features that make a tool genuinely different from incumbents.
+- **"v1→v2 single-container consolidation"** structural-change migration warning (Vikunja): tools that converge multi-container → single-container (or vice versa) between majors = non-trivial re-deploy work. Same class as Lychee v7 layout change (batch 83).
+- **"Importers-best-effort fidelity"** migration-honesty (Vikunja): Todoist/Trello importers rarely perfect. Inspect data before deleting source. Applies to any tool with "import from competitor" feature.
+
+**Milestone:** 34.1% done. Batch 84 spans **infrastructure-grade chat** (Synapse) + **media-heavy** (Tdarr + Dim) + **ops-integrated** (xyOps) + **personal productivity** (Vikunja). Very different audiences + operational-concern profiles but all emphasized honest status-assessment.
+
+### Cross-cutting observations
+- **Immutability-of-secrets family count: 8 tools** explicitly cited. Time to consolidate into pattern doc. Canonical list so far: Statamic APP_KEY (77), Wakapi salt (81), Fider JWT_SECRET (82), Nexterm ENCRYPTION_KEY (81), Forgejo SECRET_KEY (82), Black Candy SECRET_KEY_BASE (83), Lychee APP_KEY (83), Vikunja JWT_SECRET (84). Plus: Synapse signing-key (84) is adjacent but different (federation-identity not session-secret).
+- **Network-service-legal-risk class: 5 tools**. Class mature. Pattern established.
+- **Maintenance-mode / development-pace transparency family**: Wakapi (81 "PRs closed"), xyops (84 "no feature PRs"), Dim (84 "slowing"). Three tools with different signal-strengths. Honest upstream communication is positive signal; observed-pace-drop requires recipe-author assessment. Recipe convention: name status + assess impact + recommend fallback.
+- **Commercial-tier taxonomy full list (5 types)**: feature-gate / managed-tier / productivity-layer / hardware / one-time-module-purchase. xyOps adds a ticket-SLA variant within feature-gate (Professional/Enterprise tiers gate air-gap-install + SLA). Mature taxonomy.
+- **License-class naming**: "source-available-free-self-host" (Tdarr) is distinct from OSS + proprietary. Worth explicit class for compliance checklists.
+- **Hub-of-credentials crown-jewel family**: Nexterm (81), myDrive (82), Webtop (83), xyOps (84) — 4 tools. Universal prescription: harden like bastion host.
+- **Institutional-stewardship family**: now 7 entities (NLnet Labs, Deciso, Mozilla→community, TryGhost Foundation, Codeberg e.V., LinuxServer.io, Element + Matrix Foundation). Synapse adds Element-for-Matrix governance. Wider ecosystem trust-signal.
