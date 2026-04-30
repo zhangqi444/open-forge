@@ -3734,3 +3734,51 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Astuto is 2nd skip-worthy-but-preserved recipe** (prior: BookWyrm-no-AI, some rebrand-migrations) — preserved to document "honest-discontinuation-notice" as stewardship pattern
 - ByteStash's "dev-tool-credentials-in-snippets-inevitable" has **retroactive applicability** to Grimoire (106), Silex (106), NoteDiscovery (112), and any note-taking tool
 - Pattern-consolidation URGENT: 31 CROWN-JEWEL sub-categories, 121 hub-of-credentials
+
+## 2026-04-30 23:42 UTC — batch 114 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 114)
+- **dockcheck** (2301★) — Bash CLI Docker-image update-checker + Apprise notifications (mag37; 4 funding venues; podcheck fork). **122nd hub-of-credentials CROWN-JEWEL Tier 1** (Docker-socket access; can mass-update). **Docker-socket-mount-privilege-escalation: 5 tools** 🎯 **5-TOOL MILESTONE**. **Apprise-multi-channel-notification: 2 tools** (Yamtrack+dockcheck) 🎯. **NEW recipe conventions**: "auto-update-without-pin-risk" (1st formally — dockcheck; universal) + "bash-4-plus-required-macOS-friction" (1st — dockcheck) + "Docker-Hub-pull-limit-awareness" (1st formally — dockcheck). **NEW positive-signals**: "image-backup-before-update" (1st formally — dockcheck) + "notify-only-mode-default-recommendation" (1st — dockcheck) + "Podman-companion-fork" (1st — dockcheck) + "multi-funding-venue-diversity" (1st — dockcheck; 4 venues rare) + "XMPP-notification-decentralized" (1st — dockcheck). **NEW institutional-stewardship sub-tier: "sole-maintainer-with-multi-funding-venues"** (1st — mag37). 108th institutional-stewardship + 115th transparent-maintenance.
+- **versitygw** (2301★) — Go S3-gateway (Versity Software; Apache-2; multi-platform binaries Linux/macOS/BSD × amd64/arm64; commercial enterprise support). **123rd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "S3-gateway + object-storage-credential-hub"** (1st — VersityGW; distinct from Parseable 113 consumer — VGW is provider). **CROWN-JEWEL Tier 1: 35 tools / 32 sub-categories**. **Go-Report-Card: 4 tools** 🎯 **4-TOOL MILESTONE**. **BSD-support: 2 tools** (Polaris+VersityGW) 🎯 **2-TOOL MILESTONE**. **Commercial-parallel-with-OSS-core: 9 tools** 🎯 **9-TOOL MILESTONE**. **NEW recipe conventions**: "dual-mode-data-consistency-risk" (1st — VersityGW) + "S3-virtual-host-style-DNS-requirement" (1st — VersityGW) + "S3-API-compatibility-partial-always" (1st — VersityGW). **NEW neutral-signal: "mailing-list-enterprise-communication"** (1st formally — VersityGW) + "Apache-2-permissive-license" (reinforces). 109th institutional-stewardship + 116th transparent-maintenance.
+- **chitchatter** (2263★) — WebRTC P2P ephemeral chat (Vite+Trystero; no-API-server-required; GPL-v2; jeremyckahn). **124th hub-of-credentials Tier 4/ZERO**. **Zero-credential-hub-tool Tier 4/ZERO: 2 tools** (MAZANOKE+Chitchatter) 🎯 **2-TOOL MILESTONE**. **Zero-server-side-data-at-rest: 2 tools** (MAZANOKE+Chitchatter) 🎯. **Stateless-tool-rarity: 12 tools** 🎯 **12-TOOL MILESTONE**. **NEW recipe conventions**: "URL-as-encryption-key-secure-sharing" (1st — Chitchatter) + "WebRTC-IP-leakage-to-peers" (1st — Chitchatter) + "ephemeral-does-not-mean-anonymous" (1st — Chitchatter) + "no-backend-depends-on-public-relays" (1st — Chitchatter) + "critical-upstream-library-dependency". **NEW positive-signals**: "Snyk-vulnerability-badge" (1st — Chitchatter) + "chain-of-secure-tools-recommendation" (1st — Chitchatter) + "iframe-embeddable" (1st — Chitchatter) + "GPL-v2-license". 110th institutional-stewardship + 117th transparent-maintenance.
+- **tunarr** (2249★) — Node live-TV-channel builder from Plex/Jellyfin/Emby/local (HDHR emulation + M3U; chrisbenincasa; zlib; Discord; PseudoTV-dizqueTV-successor). **125th hub-of-credentials Tier 2**. **NEW recipe conventions**: "network-device-emulation-discoverability" (1st — Tunarr) + "M3U-playlist-URL-auth-required" (1st — Tunarr) + "ffmpeg-transcoding-CPU-intensive" (1st — Tunarr). **NEW positive-signals**: "spiritual-successor-to-abandoned-OSS" (1st — Tunarr; reinforces Astuto fork-pattern) + "automatic-config-backups" (1st — Tunarr) + "zlib-license-uncommon-permissive" (1st — Tunarr; rare) + "visual-drag-drop-editor" (reinforces Laudspeaker). 111th institutional-stewardship + 118th transparent-maintenance.
+- **jellystat** (2237★) — Node+PG Jellyfin statistics app (CyferShepard). ⚠️ **AUTHOR REBUILDING — extended pause, major-bugs-only**. Recipe preserved with frozen-codebase-risk framing. **126th hub-of-credentials Tier 2**. **NEW institutional-stewardship sub-tier: "honest-rewrite-pause"** (1st — Jellystat; DISTINCT from Astuto's honest-discontinuation AND Scriberr's honest-life-pause). **Honest-maintainer-declaration: 3 tools** 🎯 **3-TOOL MILESTONE** — 3 distinct flavors: Scriberr honest-life-pause (109) + Astuto honest-discontinuation (113) + Jellystat honest-rewrite-pause (114). **NEW recipe conventions**: "frozen-codebase-during-rewrite-risk" (1st — Jellystat) + "admin-override-env-var-discipline" (1st — Jellystat) + "ecosystem-leader-under-rewrite" (1st — Jellystat). **NEW positive-signals**: "built-in-data-export-import" (1st formally — Jellystat) + "honest-code-quality-assessment" (1st — Jellystat; rare — author admits learning curve). 112th institutional-stewardship. **NOT counted toward transparent-maintenance** (frozen-for-rewrite).
+
+**Batch 114 lengths:** dockcheck 170, versitygw 169, chitchatter 181, tunarr 156, jellystat 176.
+**State:** 584 done / 2 skipped / 688 pending — **45.8% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 35 tools / 32 sub-categories** (+1 new: VersityGW S3-gateway)
+- **Docker-socket-mount-priv-esc: 5 tools** 🎯 **5-TOOL MILESTONE**
+- **Go-Report-Card: 4 tools** 🎯 **4-TOOL MILESTONE**
+- **Commercial-parallel-with-OSS-core: 9 tools** 🎯 **9-TOOL MILESTONE**
+- **Stateless-tool-rarity: 12 tools** 🎯 **12-TOOL MILESTONE**
+- **Honest-maintainer-declaration: 3 tools** 🎯 **3-TOOL MILESTONE** (3 distinct flavors!)
+- **Zero-credential-hub-tool: 2 tools** 🎯 (MAZANOKE+Chitchatter)
+- **Apprise-multi-channel-notification: 2 tools** 🎯
+- **BSD-support: 2 tools** 🎯
+- **Zero-server-side-data-at-rest: 2 tools** 🎯
+- **Institutional-stewardship: 112 tools**
+- **Transparent-maintenance: 118 tools**
+- **Hub-of-credentials: 126 tools**
+
+### New precedents this batch
+- **"S3-gateway + object-storage-credential-hub" CROWN-JEWEL Tier 1 sub-category** (VersityGW 1st)
+- **"honest-rewrite-pause" institutional-stewardship sub-tier** (Jellystat 1st — 3rd distinct honest-decl variant)
+- **"sole-maintainer-with-multi-funding-venues" sub-tier** (dockcheck/mag37 1st)
+- **Honest-maintainer-declaration-TAXONOMY** now has 3 distinct sub-categories:
+  - **honest-life-pause** (Scriberr 109; intent to return)
+  - **honest-discontinuation** (Astuto 113; permanent end)
+  - **honest-rewrite-pause** (Jellystat 114; technical rebuild; intent to return with V2)
+- **15+ new recipe conventions** and **10+ new positive-signals** (see per-tool notes above)
+
+### Notes
+- **🎯 MILESTONE-DENSE BATCH**: 5+ family milestones crossed; new CROWN-JEWEL sub-category; 3 distinct honest-declaration flavors now taxonomized
+- 45.8% done — **nearing 46% at 2308 pending-stars mid-point**
+- **Honest-declaration taxonomy is now 3-dimensional**: (why-paused × intent-to-return × permanence) — future batches may reveal 4th variant
+- dockcheck's 4-funding-venues (Ko-fi+LiberaPay+GitHub Sponsors+PayPal) is the widest funding-breadth we've documented
+- Chitchatter's "URL-as-encryption-key" architecture is a genuinely novel security model — zero-credentials-tool
+- Pattern-consolidation URGENT: 32 CROWN-JEWEL sub-categories, 126 hub-of-credentials, 118 transparent-maintenance
