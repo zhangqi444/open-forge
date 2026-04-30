@@ -1,8 +1,9 @@
 {
+  "notes": "GitHub PAT has metadata+contents write but NOT issues:write — commits with 'closes #N' trailers auto-close issues on merge/push, but API comments + state transitions via PATCH are blocked (403 'Resource not accessible by personal access token'). Commenting/closing needs a PAT with issues:write or must be done manually by the human. Commit message 'closes #25, #26, #27' handles auto-close on push to main.",
   "issues": [
-    { "number": 24, "status": "duplicate", "of": 25, "reason": "identical body to #25; closing as duplicate, addressed via #25" },
-    { "number": 25, "status": "addressed", "commit": "pending", "action": "added docs/windows-setup.md with WSL2 + Docker Desktop setup, verification, version requirements, troubleshooting; linked from README.md" },
-    { "number": 26, "status": "addressed", "commit": "pending", "action": "rewrote .claude-plugin/marketplace.json description (removed 'Ghost, more coming', replaced with neutral summary + representative apps)" },
-    { "number": 27, "status": "addressed", "commit": "pending", "action": "covered in docs/windows-setup.md troubleshooting section with stale-proxy detection (git config --get http.proxy) + bypass / unset instructions" }
+    { "number": 24, "status": "duplicate", "of": 25, "action_taken": "none — API cannot comment/close; human should close manually referencing #25", "reason": "identical body to #25" },
+    { "number": 25, "status": "addressed", "commit": "ce8accf", "action": "added docs/windows-setup.md (WSL2 install, Docker Desktop integration, version requirements, troubleshooting); linked from README.md. 'closes #25' in commit message." },
+    { "number": 26, "status": "addressed", "commit": "ce8accf", "action": "rewrote .claude-plugin/marketplace.json description. 'closes #26' in commit message." },
+    { "number": 27, "status": "addressed", "commit": "ce8accf", "action": "covered in docs/windows-setup.md troubleshooting: git config proxy detection + bypass / unset instructions. 'closes #27' in commit message." }
   ]
 }
