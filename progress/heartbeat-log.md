@@ -850,3 +850,21 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 50 lengths:** typebot 243, akaunting 255, checkmate 212, invoice-ninja 291, leantime 232.
 **State:** 264 done / 1 skipped / 1009 pending (20.7%). **50 batches complete 🎉**
+
+## 2026-04-30 07:05 UTC — batch 51 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 51)
+- **kanboard** (9565★) — **MAINTENANCE MODE warning front-loaded** (from upstream README). Default admin/admin warning. Plugin-trust caveat. Alternatives-to-more-active-tools guidance (Leantime, Plane, Wekan).
+- **mautic** (9513★) — OSS marketing automation. Email-reputation-is-everything front-loaded (SPF/DKIM/DMARC/warm-up). Dedicated tracking subdomain advice. Cron #1 operational issue warning. MySQL only. GDPR tooling documented. DPG verification noted.
+- **omnitools** (9394★) — client-side-only utility tool hub. ~28MB Docker. Pure SPA; zero server state. Positioned vs it-tools (dev-focused) and CyberChef (forensics-grade). WebAssembly big-first-load warning. Static hosting on Pages/Netlify covered.
+- **runtipi** (9366★) — personal homeserver app store. **"No guarantee of support/security" warning front-loaded** (from upstream). Host-install (not container) noted as deliberate. Port conflict warning for existing-nginx hosts. Compared to CasaOS, Umbrel, YunoHost positioning.
+- **heimdall** (9139★) — LinuxServer.io application dashboard. Mature-but-slow-development noted. Enhanced-Apps Docker-networking gotcha (use service names). Custom-background upload-max-filesize gotcha. Fallback fetched from readme.md (lowercase) since master has no README.md. Alternatives: Homepage (most active), Homer (YAML), Dashy.
+
+**Batch 51 lengths:** kanboard 201, mautic 257, omnitools 171, runtipi 193, heimdall 209.
+**State:** 269 done / 1 skipped / 1004 pending (21.1%).
+
+### New README-case-variant found
+- **Heimdall**: upstream uses `readme.md` (lowercase) on master, no `README.md`. Added to the Komodo-style case-variant fallback pattern. Updated in-memory playbook.
