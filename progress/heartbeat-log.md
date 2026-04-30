@@ -1778,3 +1778,44 @@ Pattern observations across batches 68-74:
 - **Network-services legal-abuse warnings** family: CFAA (Scanopy) + email spam infrastructure (AnonAddy) + DNS-amp-DDoS (Unbound). Tools that expose network services need loud legal framing.
 - **"Default permissions / default auth"** review required: Radicale (batch 79), WhoDB (batch 77), Kinto (batch 80) — three tools all ship permissive defaults. Pattern: state plainly + pre-deploy-review-checklist.
 - **Commercial-tier-funds-upstream** count climbs steadily; now >10 tools documented with this pattern. Worth explicit precedent in future project.
+
+## 2026-04-30 14:35 UTC — batch 81 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 81)
+- **cerbos** (4374★) — Apache-2 Go PDP + Cerbos Hub commercial SaaS. Policy-as-code YAML + CEL conditions + GitOps + sidecar-vs-service tradeoff + "Cerbos ≠ IdP" boundary clarification + PlanResources-needs-adapter gotcha + admin-API-DEV-only + OPA/SpiceDB/Casbin comparison matrix.
+- **papra** (4349★) — AGPL-3 TypeScript doc-archive. "Archival-not-collaboration" mindset framing + Paperless-ngx comparison honest + email-ingestion-requires-email-infra backreference AnonAddy batch 79 + OCR-accuracy-dep + privacy-of-backups family + exit-strategy-trivial-export.
+- **microbin** (4295★) — BSD-3 Rust pastebin. "Public pastebins = abuse magnets" legal/abuse class + URL-shortener-phishing-vector + file-upload-unbounded-disk + E2E-client-side-key-loss-is-permanent gotcha + postbox-mode clever pattern + PrivateBin/Wastebin alternatives.
+- **wakapi** (4287★) — GPL-3 Go WakaTime-backend. "PRs-currently-closed" maintenance-mode transparency + WakaTime-plugin-is-data-source clarification + per-user-API-keys + typing-level-privacy data-sensitivity + salt-immutability family + Docker-Secrets-supported + SQLite-solo/Postgres-team threshold.
+- **nexterm** (4285★) — MIT Node.js unified-remote-access. **ENCRYPTION_KEY = THE critical secret** + hub-of-credentials-crown-jewel security framing + browser-vs-native-latency-tradeoff + session-recordings-privacy-compliance + Proxmox-integration-blast-radius + AI-privacy-boundary continues + Guacamole/Teleport comparison matrix.
+
+**Batch 81 lengths:** cerbos 189, papra 163, microbin 167, wakapi 166, nexterm 168.
+**State:** 419 done / 1 skipped / 854 pending (32.9%).
+
+### New precedents
+- **"X ≠ IdP" boundary clarification** (Cerbos = PDP not IdP): separation of concerns made explicit. Applies to authz tools, reverse proxies, MFA tools. Naming "what-this-is-NOT" is service-boundary documentation discipline.
+- **"Cerbos Hub = OPTIONAL productivity layer, not gating"** commercial-tier-framing (Cerbos): not all commercial tiers gate features; some are just productivity. Clarify the commercial-tier role per tool. Extends commercial-tier-funds-upstream family with "which category of commercial tier" sub-classification: (a) feature-gate (Baserow Premium/Enterprise) (b) managed-tier (Rallly.co, my.microbin.eu) (c) productivity-layer (Cerbos Hub) (d) hardware (Deciso shop).
+- **"Client-side authz is defense-in-depth not security boundary"** (Cerbos Embedded PDP WASM): universal axiom applies. Already cited for SurveyJS (batch 78) client-side-validation + MicroBin E2E encryption. Growing axiom family.
+- **"Archival mindset vs collaboration mindset"** content-app positioning taxonomy (Papra vs Paperless-ngx vs Nextcloud): architectural-intent framing — tools built for retrieval-after-months vs active-collaboration have very different UX goals.
+- **"Public [X] = abuse magnet + law enforcement requests"** legal framing (MicroBin pastebin): extends "OPEN-RESOLVER = DNS-amp-crime" (Unbound batch 80) + email-spam-abuse (AnonAddy). Class: network-service-exposed-to-public = abuse. Recurring legal+operational warning.
+- **"URL shortener hosted on your domain = phishing-lookalike vector"** operational-security warning (MicroBin): brand-trust-weaponized-against-brand-owner. Worth calling out universally for any service with redirect features.
+- **"E2E client-side encryption = server CANNOT recover data = user-key-loss = data-gone-forever"** feature+footgun framing (MicroBin): common to PrivateBin, Cryptomator, Proton, etc. Make it explicit in every recipe where this applies.
+- **"Postbox mode"** design-pattern-naming (MicroBin `READONLY=false` + hide-listing): tools can be configured as "inbound-only" — useful pattern family (Papra document-requests roadmap, AnonAddy forwarded-inbox, etc.). Worth elevating.
+- **"PRs-currently-closed"** maintenance-mode honest-upstream-signal (Wakapi): tools can be in sustain-mode vs growth-mode. Prospective adopters should know; it changes the risk profile without changing OSS status. Clear upstream communication = positive signal even when slowing down.
+- **"Typing-level privacy"** data-sensitivity-graduation (Wakapi heartbeats = what-you-worked-on-when): privacy framework naming the granularity of data. Applies to most productivity tools (YourSpotify listening = mood, Homebox inventory = wealth, Papra docs = financial+medical).
+- **"Hub-of-credentials = crown-jewel target"** security-threat-model-escalation (Nexterm SSH/VNC/RDP): tools that aggregate access to multiple systems become higher-value targets than any individual system. Applies to password managers (Vaultwarden), SSH bastions (Teleport/Nexterm/Warpgate), control planes (Portainer/Dockge). Call out bastion-grade hardening requirements.
+- **"Browser-based remote access = latency tradeoff"** UX-honesty (Nexterm): tools that render native protocols through browsers are genuinely slower for heavy use than native clients. Don't hide the tradeoff.
+- **"Session recordings = labor-law-dependent in some jurisdictions"** compliance warning (Nexterm): recording employee sessions intersects with workplace surveillance laws (EU especially). Call out jurisdiction-dependence.
+- **"Proxmox-integration-blast-radius"** feature-vs-security tradeoff explicit (Nexterm): power-features can VM-create/destroy. Gate carefully.
+- **"SSH CA + no-passwords-stored"** hardening-alternative-pattern (Nexterm): for sensitive deploys, avoid storing credentials at all by using cert-based auth issued by Vault/Smallstep. Reduces blast-radius. Pattern applicable beyond Nexterm.
+
+**Milestone:** 32.9% done. Batch 81 includes **3 security-adjacent tools** (Cerbos authz + MicroBin paste + Nexterm remote-access) — heavy on hardening advice + threat-modeling precedents.
+
+### Cross-cutting observations
+- **Commercial-tier taxonomy refinement**: batches now suggest 4 distinct tier-types: (a) feature-gate (b) managed-tier (c) productivity-layer (d) hardware. Worth a section in a future consolidated doc.
+- **Client-side-security axiom count grows**: SurveyJS validation (78), MicroBin E2E (81), Cerbos embedded PDP (81) — three explicit cites. Future: reference this as canonical.
+- **Network-service-legal-abuse class**: Scanopy (76 CFAA), AnonAddy (79 email spam), Unbound (80 DNS amp), MicroBin (81 pastebin abuse). Four distinct abuse profiles. Emerging pattern.
+- **Critical-secret-as-crown-jewel pattern**: ENCRYPTION_KEY (Nexterm), APP_KEY (Laravel/Statamic), DKIM-private-key (AnonAddy), SALT (Wakapi). Different consequences per tool. Consistent treatment: generate-strong / store-separately / rotate-is-hard.
+- **AI-privacy-boundary family**: WhoDB (77), Baserow Kuma-related (78), ezBookkeeping (78), MiroTalk (80), Nexterm (81). Five+ tools. Firmly a recurring concern.
