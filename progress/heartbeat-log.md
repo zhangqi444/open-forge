@@ -1299,3 +1299,39 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Pre-commit hooks fight auto-committers"** gotcha (Weblate + pre-commit): when tools auto-commit, pre-commit reformatters conflict. Operational gotcha for git-integrated tools.
 
 **Milestone:** 27.8% done. Avg batch length 187 lines.
+
+## 2026-04-30 11:35 UTC — batch 69 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open (no `issues:write` scope on PAT).
+
+### Step 2 (selfh.st batch 69)
+- **glpi** (5826★) — ITIL ITSM + CMDB. **FOUR default accounts — change ALL** front-loaded. French project + Teclib' commercial. GPL-3.0.
+- **zoneminder** (5817★) — classic CCTV/NVR. **Retention strategy > backup strategy for video** framing. Modern-alternative (Frigate) honesty. GPL-2.0+.
+- **livebook** (5771★) — Elixir notebooks. **"Livebook = code executor; treat URL like SSH"** security framing. `.livemd` diff-friendly vs `.ipynb` JSON contrast. Apache-2.0.
+- **manifest** (5746★) — AI model router. **"BETA status"** warning + **"key concentration risk — ALL provider keys in one host"** risk framing. License check per-repo.
+- **organizr** (5738★) — homelab dashboard. **"Project in maintenance mode — evaluate modern alternatives"** activity-status honesty. Iframe `X-Frame-Options` + SameSite cookies gotcha. GPL-3.0.
+
+**Batch 69 lengths:** glpi 187, zoneminder 166, livebook 166, manifest 159, organizr 160.
+**State:** 359 done / 1 skipped / 914 pending (28.2%).
+
+### New precedents
+- **"Four default accounts — change ALL day 1"** concrete multi-credential callout (GLPI `glpi/tech/normal/post-only`): extends Zabbix's `Admin/zabbix` default-creds precedent to tools with multiple tiered default accounts. Enumerate every default.
+- **"Cron is critical — verify running after install"** operational gotcha (GLPI): for tools that rely on scheduled jobs for core features (SLAs, notifications), explicit verify-cron post-install step. Extends background-tasks observability pattern.
+- **"French-first project — docs/forum often French-first"** locale-transparency (GLPI): new pattern for non-English-primary projects. Tell users the language reality of community support.
+- **"Retention strategy > backup strategy for video/high-volume data"** (ZoneMinder): when data is both huge and replay-able (video, log aggregators), traditional backup is wrong mental model. New DR-philosophy precedent.
+- **"Building from source is discouraged — upstream says so"** explicit-upstream-guidance quote (ZoneMinder): when upstream README itself says "don't build from source," preserve and quote that guidance.
+- **"Motion detection = pixel-diff, not ML — evaluate Frigate for modern object detection"** honest-positioning vs newer alternative (ZoneMinder): for mature tools superseded by newer AI-capable alternatives, explicit recommendation to evaluate modern alternative. New "evaluate-the-successor" pattern.
+- **"Legal compliance (CCTV signage + GDPR + DPIA)"** (ZoneMinder EU): extends OpenSign legal-compliance pattern to surveillance footage. Point at regulatory realities.
+- **"This tool IS a code executor — treat URL like SSH: VPN + auth + TLS"** security-framing (Livebook): new explicit-attack-surface framing for REPL/notebook tools. Cleaner than "secure it" hand-waving.
+- **".livemd diff-friendly Markdown vs .ipynb JSON"** format-comparison (Livebook): for notebook tools, file-format choice affects git workflow. VCS-friendliness is a differentiator.
+- **"Outputs not saved by default — re-run to regenerate"** notebook-specific-gotcha (Livebook): prevents committing sensitive outputs + keeps files clean. Workflow-affecting default.
+- **"BETA status — pin versions + have fallback plan"** pre-1.0 production discipline (Manifest): extends Zerobyte pre-1.0 pattern to LLM-tooling space. Beta-tool operational discipline.
+- **"Key concentration risk — compromise of router = all provider keys exposed"** security-architecture risk (Manifest): new framing for API-gateway/router tools. Credentials-aggregation creates single-point-of-compromise.
+- **"Cost-tracking accuracy depends on provider response parsing — reconcile with invoices monthly"** auditability discipline (Manifest): don't trust the router's dashboard as authoritative for $$; reconcile against source of truth. New financial-compliance precedent for LLM tooling.
+- **"Manifest is a SPOF for AI traffic — HA or bypass escape hatch"** SPOF framing (Manifest): extends Cosmos single-point-of-failure DR framing to LLM routers.
+- **"Project in maintenance mode — evaluate modern alternatives [list]"** activity-status honesty (Organizr): when project development has slowed significantly, say so. Extends Photoview-era project-vitality transparency. Provides concrete alternatives list.
+- **"Iframe X-Frame-Options + SameSite cookies"** embedding-compatibility gotcha (Organizr): for dashboard/aggregator tools that iframe other apps, browser cookie + frame policies are real blockers. Concrete workarounds.
+- **"Use Authelia/Authentik/Keycloak for proper SSO; X as dashboard-only"** role-separation guidance (Organizr auth_request): when a tool has SSO features but better-dedicated tools exist, recommend separation of concerns.
+
+**Milestone:** 28.2% done. Avg batch length 166 lines.
