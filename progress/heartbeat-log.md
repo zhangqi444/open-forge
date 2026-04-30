@@ -1438,3 +1438,41 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Client ecosystem fragmentation vs dominant alternative"** (OpenCloud vs Nextcloud's client dominance): new precedent for acknowledging client-app ecosystem differences — a real lived-in-experience concern for users.
 
 **Milestone:** 29.4% done. Avg batch length 172 lines. Pattern observation: last 4 batches (69-72) heavy on **project-vitality + governance transparency** — maintenance mode, successor announcements, org moves, community-forks-after-acquisition. Users need this info explicitly.
+
+## 2026-04-30 12:35 UTC — batch 73 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open (unchanged).
+
+### Step 2 (selfh.st batch 73)
+- **taxhacker** (5321★) — AI accounting. Early-dev + BYOK + local-LLM fallback + author-looking-for-work bus-factor note. MIT.
+- **librum** (5281★) — native cross-platform e-reader + self-hostable sync server (two-repo architecture). GPL-3.0. 70k free public-domain books clarification.
+- **lidarr** (5270★) — *arr for music. Servarr ecosystem + Prowlarr-recommended + metadata-server-outage upstream notice. GPL-3.0.
+- **wetty** (5253★) — terminal in browser. SSH threat-model framing + `--force-ssh` recommendation + TLS-mandatory + no-password ssh-key warning quote. MIT.
+- **silverbullet** (5145★) — programmable PKM. Go-rewrite-from-Deno note + LLM-use-policy quoting + Lua power+footgun + Objects-not-a-DB scale caveat. MIT.
+
+**Batch 73 lengths:** taxhacker 155, librum 174, lidarr 163, wetty 160, silverbullet 156.
+**State:** 379 done / 1 skipped / 894 pending (29.7%).
+
+### New precedents
+- **"Author is looking for work" bus-factor signal** (TaxHacker README front-matter): when upstream README contains a job-hunt notice from the primary maintainer, surface it as a sustainability consideration — not as judgment, as transparency.
+- **"Tax data retention is legally required 5-10+ years"** compliance-driven backup imperative (TaxHacker): for verticals with legal retention requirements, name the timescale explicitly to drive immutable-offsite-backup planning.
+- **"AI extraction is probabilistic; always review before filing"** AI-in-finance honesty (TaxHacker): for AI-assist tools in high-stakes domains, explicitly state review-required-before-action. Extends batch 71 paperless-ai cloud-LLM privacy framing to accuracy framing.
+- **"Crypto tax = cost-basis complexity; pair with dedicated tools"** scope-honesty for financial tools (TaxHacker): differentiate extraction (what tool does) vs compliance (what tool doesn't do).
+- **"Two-repo architecture: client + server are separate projects"** architecture-transparency (Librum + Librum-Server): for split projects, explicitly call out both repos up front to prevent install confusion.
+- **"Mobile platforms coming soon ≠ available today"** roadmap honesty (Librum iOS/Android): distinguish aspirational features from shipped. Name the alternative that works today.
+- **"Donation-funded = sustainability depends on community support"** FOSS-economics transparency (Librum): distinguish team+donation-model projects (Librum, Lidarr) from bus-factor-1 single-dev (mox, Duplicacy, TaxHacker).
+- **"Metadata-server dependency: central service affects your operations"** external-service-dependency transparency (Lidarr): for tools that depend on centrally-hosted metadata, name the dependency + its outage implications + link to current status issue.
+- **"Indexers via Prowlarr = centralized indexer mgmt for *arr stack"** ecosystem-pattern recommendation (Lidarr): don't just describe Lidarr in isolation — show the recommended composition with sibling tools.
+- **"Shared download path for atomic moves"** operational footgun for media stacks (Lidarr + all *arr): specific-configuration-that-breaks-silently pattern. Matches Dockge/Docker-network naming precedents.
+- **"Treat SSH-over-web like SSH — TLS + MFA + IP-restrict"** terminal-gateway threat model (WeTTY): consolidated framing for all SSH-over-web tools. Extends batch 69 Livebook + batch 70 Webmin "URL = SSH" precedent.
+- **"No-password SSH key = upstream explicitly calls it insecure"** quoted-CLI-warning (WeTTY `--ssh-key` docstring): quote the tool's own CLI help warnings as hardening rationale. Strong citation.
+- **"Running as root changes behavior → run as non-root + `--force-ssh`"** secure-default recommendation (WeTTY): specific config combo that's the secure default.
+- **"Websocket upgrade headers required at reverse proxy"** proxy-integration operational detail (WeTTY + any WS app): concrete config requirement that trips up users.
+- **"Git-backed filesystem storage = free version history"** operational bonus (SilverBullet + any file-based tool): surface when the storage model gives you VCS for free.
+- **"Recent backend rewrite — older docs may be stale"** transition-period warning (SilverBullet Deno→Go): for tools mid-rewrite, name the transition + which sources are current.
+- **"LLM use policy published by upstream"** contribution-norm quoting (SilverBullet): projects that publish LLM policies signal thoughtful governance. Worth linking.
+- **"Power = footgun. Audit plugs from internet like shell scripts"** scripting-extensibility threat model (SilverBullet Space Lua): for user-scriptable tools, ship-your-own-code/install-others'-at-risk framing.
+- **"Objects + Queries are NOT a database"** scope-clarifying caveat (SilverBullet): prevents users from mistaking index-over-markdown for a real DB and hitting scale walls.
+
+**Milestone:** 29.7% — approaching 30% (next batch probably hits it). Average batch lengths stabilizing around 160-175 lines. Notable pattern this batch: **heavy threat-model framing** (3 of 5 recipes had explicit "treat this like SSH/shell" warnings) reflecting trend toward operator-hardening content over pure feature documentation.
