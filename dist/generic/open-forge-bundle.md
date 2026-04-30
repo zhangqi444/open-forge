@@ -325,6 +325,7 @@ If validation fails (upstream URL 404s, software is out of scope, methodology is
 - Cite the upstream URL at the top of every section per *Strict doc-verification policy*.
 - Flag community-maintained methods with the required ⚠️ blockquote.
 - Re-scan against the *Sanitization principles* strip-list — if any identifier slipped through user-supplied content, redact before drafting.
+- **If your patch touches `CLAUDE.md`, `plugins/open-forge/skills/open-forge/SKILL.md`, or any file under `plugins/open-forge/skills/open-forge/references/modules/`, regenerate the multi-platform distribution bundles**: `./scripts/build-dist.sh all`. Include the regenerated `dist/` files in the same PR. The bundles concatenate canonical sources for non-Claude-Code platforms (Codex / Cursor / Aider / Continue / generic); they drift if not regenerated, which silently breaks those platforms. CI enforces this — see `.github/workflows/dist-bundles.yml`.
 - Bump `plugin.json` `version` per *Versioning + publish flow*.
 - If multiple feedback issues for the same recipe are pending, batch them into a single PR.
 
@@ -420,6 +421,13 @@ open-forge/
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
+├── .github/
+│   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
+│   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / generic)
+├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
+├── scripts/
+│   └── build-dist.sh                      ← regenerates dist/ from canonical sources; run when CLAUDE.md / SKILL.md / modules change
 └── plugins/open-forge/
     ├── .claude-plugin/plugin.json         ← plugin manifest (version!)
     └── skills/open-forge/
@@ -428,11 +436,11 @@ open-forge/
         │   ├── projects/<name>.md         ← software layer
         │   ├── runtimes/<name>.md         ← runtime layer (docker.md, podman.md, native.md, kubernetes.md)
         │   ├── infra/<name>.md            ← infra layer (aws/, azure/, hetzner/, digitalocean/, gcp/, oracle/, paas/, hostinger.md, raspberry-pi.md, macos-vm.md, byo-vps.md, localhost.md)
-        │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring)
-        └── scripts/                       ← reused operational scripts; empty by default
+        │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring, credentials, feedback)
+        └── scripts/                       ← deployment-time operational scripts (per-recipe); empty by default
 ```
 
-`scripts/` stays empty unless something is reused 3+ times across deployments. Inline commands in recipes are clearer for one-off use.
+The skill-side `plugins/open-forge/skills/open-forge/scripts/` (deployment-time) stays empty unless something is reused 3+ times across deployments — inline commands in recipes are clearer for one-off use. Distinct from the top-level `scripts/` (build-time tooling for dist/ bundles).
 
 ## Versioning + publish flow
 
