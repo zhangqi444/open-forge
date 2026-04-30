@@ -2084,3 +2084,54 @@ Punt for now to maintain batch-velocity; flag for a mid-scale consolidation pass
 - **Author-preference-respect: 2 distinct patterns** (Dockhand skip vs AzuraCast document-with-acknowledgment)
 
 Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
+
+## 2026-04-30 16:45 UTC — batch 88 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open, PAT-scope-blocked.
+
+### Step 2 (selfh.st batch 88)
+- **ampache** (3793★) — AGPL-3 PHP music/video streaming server + Subsonic API compat. **7th transparent-maintenance** (INCREASED CONTRIBUTIONS honest signal) + 12th hub-of-credentials (LIGHT) + metadata-quality=experience-quality + Subsonic-API-ecosystem-inheritance (same pattern as yarr Fever API).
+- **piwigo** (3778★) — GPL-2 20+-year PHP photo gallery. Hosted-SaaS-of-OSS-product commercial pattern (piwigo.com) + photo-specific legal risks (GDPR, model releases, right-to-be-forgotten) + 13th hub-of-credentials (LIGHT) + i18n strength (60+ langs).
+- **octelium** (3766★) — Apache-2+AGPL-3 dual-licensed unified ZTNA platform. **12th hub-of-credentials + contender for most-extreme alongside Guacamole** (it IS the access-control-plane) + 5th permissive-license-ecosystem-asset (dual-license) + CEL+OPA learning curve + institutional-composition (OpenTelemetry+Kubernetes+CEL+OPA standards).
+- **memories** (3755★) — AGPL-3 Nextcloud-app photo manager. **"app-that-inherits-host-app-security"** framing (new pattern) + bus-factor-1-mitigated-by-AGPL + Nextcloud-prerequisite decision point + Immich as stronger alternative for non-Nextcloud users.
+- **pyload** (3753★) — AGPL-3 Python download manager. **4th default-creds-PUBLIC** (pyload/pyload) + **9th network-service-legal-risk** (hoster-site piracy association) + 14th hub-of-credentials (LIGHT, premium-hoster accounts) + plugin-as-RCE + provider-API-churn-reality (hoster plugins break with site changes).
+
+**Batch 88 lengths:** ampache 172, piwigo 184, octelium 176, memories 153, pyload 165.
+**State:** 454 done / 2 skipped / 818 pending — **35.6% done.**
+
+### New precedents
+- **"App-that-inherits-host-app-security"** framing (Memories inside Nextcloud): recipe convention for apps that are extensions/plugins of other apps — they inherit the host's security model rather than defining their own. Applies to: Nextcloud apps in general, WordPress plugins, Home Assistant integrations, etc. Recipe should flag the host-app prerequisite + explain that the HOST is the crown jewel.
+- **"Subsonic API ecosystem inheritance"** (Ampache): same as yarr's Fever API (batch 87). Pattern solidifies: tools that adopt a de-facto-standard API automatically inherit a mature client ecosystem. **Meta-pattern: "API-compat-as-ecosystem-strategy"** — valuable for tool authors to know, valuable for operators when evaluating alternatives.
+- **"Default-creds-PUBLIC family at 4 tools"** — Black Candy, PMS, Guacamole, pyLoad. Consistent scanner-knowledge warning template. **Flag for eventual pattern-consolidation doc.**
+- **"Hosted-SaaS-of-the-open-source-product"** commercial-tier taxonomy (Piwigo.com): distinct from "feature-gated Premium tier" (Rotki, Chartbrew). Piwigo offers the SAME OSS product as hosted convenience. Taxonomy entry distinct from:
+  - **feature-gated Premium** (Rotki, Chartbrew): OSS core + paid advanced features
+  - **hosted-SaaS-of-OSS** (Piwigo.com, AzuraCast commercial hosting offerings): OSS product + paid hosting convenience (same product both places)
+  - **open-core** (Nextcloud Enterprise, Grafana Enterprise): OSS core + proprietary enterprise-only features
+  - **services-around-OSS**: OSS product + paid support/consulting
+  - **dual-licensed**: AGPL + commercial (e.g., MongoDB pre-SSPL era, older Qt)
+- **"Kubernetes-as-prerequisite"** operational-complexity flag (Octelium): for tools that fundamentally run on/as Kubernetes, the recipe must surface that K8s ops knowledge is a prereq. Homelab users who don't know K8s will struggle. Same framing applicable to: Octelium + future Kubernetes-native tools.
+- **"Control-plane-tier / most-extreme crown-jewel"** framing (Octelium alongside Guacamole): some tools are the meta-tool that controls everything else. Deserve stronger security guidance than regular "important" tools. Pattern-family worth splitting into tier:
+  - **Tier 1 (control-plane / most-extreme)**: Octelium, Guacamole — compromising = compromising everything
+  - **Tier 2 (crown-jewel)**: password managers, secrets stores, hub-of-creds proper
+  - **Tier 3 (LIGHT crown-jewel)**: tools holding a few secrets (Bazarr provider creds, pyLoad hoster creds, Piwigo admin pw)
+- **"Provider-API-churn reality"** extended (pyLoad hoster plugins): same as Bazarr subtitle-provider flux (batch 86). Tools that integrate with external third-party services are fundamentally at mercy of those services' API stability. Recipe convention: flag the dependency + note active-community-as-lifeline.
+- **"Plugin-as-RCE"** consolidated warning (Shaarli 87 + Piwigo 88 + pyLoad 88 — all this batch/previous): mature warning template for PHP/Python/any-plugin-exec tool. Template text finalized: "plugins run as code in your server; install only from official repo + trusted community sources; malicious plugin = full server compromise."
+- **"Tool-historically-associated-with-piracy"** neutral-honest framing (pyLoad): some tools have strong associations with specific communities/uses. Honest recipe mentions the association without moralizing; puts legal responsibility on operator. Same class as Bitmagnet (BT indexer), 13ft (paywall bypass), but new in that pyLoad itself is neutral software — the ASSOCIATION is the legal-risk factor. Template applicable to: AnonAddy (email privacy), Unbound (DNS-over-HTTPS censorship bypass), etc.
+- **"Dual-license pattern"** positive flag (Octelium = Apache-2 + AGPL-3; IronCalc = MIT + Apache-2): 2 tools now. Dual-license = flexibility for embedding + still-strong-copyleft-for-derivatives. Rare + positive signal.
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 12 tools** (unchanged this batch)
+- **Hub-of-credentials crown-jewel: 14 tools** (+ Ampache LIGHT, Piwigo LIGHT, Octelium EXTREME, pyLoad LIGHT) — **consolidation NOW**
+- **Transparent-status / honest-maintenance: 7 tools** (+ Ampache INCREASED CONTRIBUTIONS)
+- **Network-service-legal-risk: 9 tools** (+ Ampache music-personal-streaming, + pyLoad hoster-piracy)
+- **Default-creds-PUBLIC: 4 tools** (+ pyLoad)
+- **Institutional-stewardship: 8 tools** (unchanged)
+- **Permissive-license-ecosystem-asset: 5 tools** (+ Octelium dual-license)
+- **Plugin-as-RCE: 5+ tools** (consolidated warning family — Shaarli, Piwigo, pyLoad explicitly this batch; adds to prior tools with plugin systems)
+- **Control-plane-tier (new tier split)**: Octelium, Guacamole — 2 tools
+
+### Notes
+- Pattern-consolidation pass at batch ~100 still on schedule (~12 batches away). Hub-of-credentials family at 14 now; split into 3 tiers (Control-plane / Crown-jewel / LIGHT) seems the right framing.
+- Permissive-license family at 5 tools — worth celebrating as recurring positive signal.
+- Transparent-maintenance at 7 — honest upstream project-health signaling has become a recognizable pattern across recipes.
