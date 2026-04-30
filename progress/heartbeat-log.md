@@ -3060,3 +3060,67 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Transparent-maintenance + institutional-stewardship both hit 50/60 milestones
 - New "MCP-server tools" category opens space for future memory/tool MCP servers
 - Consolidation work (40+ patterns/ docs) still deferred
+
+## 2026-04-30 20:30 UTC — batch 103 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 103)
+- **littlelink** (2936★) — Static HTML/CSS LinkTree alt (no DB). **8th stateless-tool-rarity** + **NEW sub-category "pure-static-site"** (distinct from Go-single-binary). **NEW positive-signal: "no-credentials-at-all"** (1st tool — LittleLink). **NEW positive-signal: "git-as-backup"**. **NEW positive-signal: "PageSpeed-100"** + "accessibility-first design". NOT in hub-of-credentials (rare). 54th institutional-stewardship (27th sole-maintainer-with-community) + 61st transparent-maintenance.
+- **gramps** (2930★) — Python/GTK genealogy desktop (2001 project). **68th hub-of-credentials — NEW sub-family "genealogy-personal-history-risk"**. **NEW recipe conventions**: "living-person-privacy-in-exports" (MANDATORY pre-publish filter) + "genealogical-discovery-ethics" + "plugin-system-trust-boundary" + "two-decade-OSS-project" positive-signal + "desktop-primary-tool with web-companion" + "open-standard-format-support" positive-signal + "hobbyist-and-professional-usability-span" positive-signal. **3rd tool in zero-lock-in pattern** (solidifying). **NEW institutional-stewardship sub-tier: "large-community-project with project-governance"** (1st — Gramps). 62nd transparent-maintenance.
+- **espocrm** (2908★) — GPL-3.0 PHP CRM. **69th hub-of-credentials — "customer-relationship-data-regulatory-risk" sub-family formalized at 2 tools** (EspoCRM + Peppermint). **NEW commercial-tier sub-category: "open-core-with-commercial-extensions"** (1st — EspoCRM). **NEW positive-signals**: "PHPStan-level-8-code-quality" + "extensive-docs-covering-admin-user-developer" + "decade-plus-OSS-project". **NEW recipe conventions**: "bidirectional-email-CRM-integration-GDPR-scope" + "aggressive-PHP-version-requirement" + "extension-marketplace-trust-boundary" + "self-hosted-bulk-email-deliverability". 55th institutional-stewardship + 63rd transparent-maintenance.
+- **picoshare** (2908★) — Go minimalist file-share + Litestream replication. **AGPL-3.0**. 70th hub-of-credentials Tier 2 + **Public-UGC-host-abuse-conduit-risk META-FAMILY now 6 tools** (+PicoShare). 45th immutability-of-secrets (PS_SHARED_SECRET). **NEW positive-signal: "Litestream-for-SQLite-replication"** (applies retroactively to any SQLite tool). **NEW positive-signal: "S3-API-as-portability-layer"**. **NEW positive-signal: "public-transparency-blog-for-OSS-project"** (mtlynch.io). **Prolific-sole-maintainer-with-coherent-toolset sub-tier now 2 tools** (qdm12/DDNS Updater 101 + mtlynch/PicoShare 103). 56th institutional-stewardship + 64th transparent-maintenance.
+- **papermerge** (2884★) — Python/Django document management (OCR+search+long-term-archive). 71st hub-of-credentials Tier 1-or-Tier 2 (document repository with long-term-retention). **HEALTHCARE-CROWN-JEWEL sub-family now 3 tools** (SparkyFitness 94 + Garmin-Grafana 98 + Papermerge-for-medical 103). **NEW category: "long-term-archive-tool"** (1st — Papermerge). **NEW recipe conventions**: "retention-vs-erasure-conflict" + "archival-format-awareness" + "multi-repo-project with meta-tracker" pattern. **NEW sub-tier: "founder-with-multichannel-community-engagement"** (1st — Papermerge; blog+YouTube+Reddit+Docker). 46th immutability-of-secrets (SECRET_KEY) + 57th institutional-stewardship + 65th transparent-maintenance.
+
+**Batch 103 lengths:** littlelink 177, gramps 214, espocrm 232, picoshare 184, papermerge 232.
+**State:** 529 done / 2 skipped / 743 pending — **41.5% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Stateless-tool-rarity: 8 tools** (+LittleLink — pure-static-site sub-category; pattern very solidified)
+- **Zero-lock-in pattern: 3 tools** (+Gramps — further solidifying)
+- **Public-UGC-host-abuse-conduit-risk META-FAMILY: 6 tools** (+PicoShare)
+- **HEALTHCARE-CROWN-JEWEL sub-family: 3 tools** (+Papermerge-for-medical-usage)
+- **Prolific-sole-maintainer-with-coherent-toolset: 2 tools** (mtlynch joins qdm12)
+- **Hub-of-credentials: 71 tools**
+- **Immutability-of-secrets: 46 tools**
+- **Transparent-maintenance: 65 tools**
+- **Institutional-stewardship: 57 tools** (with 10+ sub-tiers now)
+
+### New precedents this batch
+- **"pure-static-site" sub-category** of stateless-tool-rarity (LittleLink)
+- **"no-credentials-at-all" positive-signal** (LittleLink 1st — rare for self-host tools)
+- **"git-as-backup" pattern** (LittleLink)
+- **"PageSpeed-100" positive-signal** (LittleLink)
+- **"accessibility-first design" positive-signal** (LittleLink)
+- **"genealogy-personal-history-risk" sub-family** hub-of-credentials (Gramps)
+- **"living-person-privacy-in-exports" convention** (Gramps — CRITICAL)
+- **"genealogical-discovery-ethics" convention** (Gramps)
+- **"plugin-system-trust-boundary" convention** (Gramps)
+- **"two-decade-OSS-project" positive-signal** (Gramps)
+- **"desktop-primary-tool with web-companion" architecture note** (Gramps)
+- **"open-standard-format-support" positive-signal** (Gramps — GEDCOM)
+- **"hobbyist-and-professional-usability-span" positive-signal** (Gramps)
+- **"large-community-project with project-governance" sub-tier** institutional-stewardship (Gramps)
+- **"customer-relationship-data-regulatory-risk" sub-family** formalized (EspoCRM + Peppermint)
+- **"open-core-with-commercial-extensions" sub-category** commercial-tier-taxonomy (EspoCRM)
+- **"PHPStan-level-8-code-quality" positive-signal** (EspoCRM)
+- **"extensive-docs-covering-admin-user-developer" positive-signal** (EspoCRM)
+- **"decade-plus-OSS-project" positive-signal** (EspoCRM)
+- **"bidirectional-email-CRM-integration-GDPR-scope" convention** (EspoCRM)
+- **"aggressive-PHP-version-requirement" convention** (EspoCRM)
+- **"extension-marketplace-trust-boundary" convention** (EspoCRM)
+- **"self-hosted-bulk-email-deliverability" convention** (EspoCRM)
+- **"Litestream-for-SQLite-replication" positive-signal** (PicoShare — applies retroactively)
+- **"S3-API-as-portability-layer" positive-signal** (PicoShare)
+- **"public-transparency-blog-for-OSS-project" positive-signal** (PicoShare/mtlynch)
+- **"long-term-archive-tool" category** (Papermerge 1st)
+- **"retention-vs-erasure-conflict" convention** (Papermerge)
+- **"archival-format-awareness" convention** (Papermerge)
+- **"multi-repo-project with meta-tracker" pattern** (Papermerge)
+- **"founder-with-multichannel-community-engagement" sub-tier** (Papermerge)
+
+### Notes
+- 41.5% — batch 103 continuing steady pace
+- Pattern-family count continuing to grow; deferring pattern-consolidation
+- Particularly rich batch: LittleLink (stateless + no-credentials), Gramps (2-decade + project-governance), EspoCRM (decade + commercial-extensions), PicoShare (Litestream innovation), Papermerge (long-term-archive category)
