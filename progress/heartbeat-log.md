@@ -1864,3 +1864,45 @@ Pattern observations across batches 68-74:
 - **Crown-jewel threat-model family**: Nexterm (81), myDrive (82), plus password-managers (Vaultwarden-class) = growing family. Hardening-like-bastion is the universal prescription.
 - **AES-at-rest vs E2E distinction**: worth a standalone pattern. Tools that CLAIM encryption but generate previews server-side = at-rest-only. Not E2E. Make explicit.
 - **Email-as-infrastructure (SMTP required)**: Fider, FreeScout, AnonAddy, Kimai, Papra. Five+ tools. Accept SMTP as foundational infrastructure; recipes should reference a shared "self-hosted email or transactional-relay decision" pattern.
+
+## 2026-04-30 15:05 UTC — batch 83 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 83)
+- **black-candy** (4176★) — MIT Rails music streamer. Default-admin-creds-PUBLIC + SECRET_KEY_BASE immutability + own-your-music legal framing + mobile-apps-need-reachable-URL + Navidrome-Subsonic-API-ecosystem comparison + F-Droid distribution privacy signal.
+- **easy-appointments** (4164★) — GPL-3 PHP booking. **Timezone-bugs #1 source of scheduling issues** + SMTP-required-or-dead + no-payments-built-in + Google-OAuth-review-policies + Cal.com modern-alternative + 10-year-maturity + shared-hosting-works pattern.
+- **13ft-ladder** (4157★) — Python paywall-bypass. **LEGAL + ETHICAL FRONT-LOADED** — CFAA/DMCA/ToS framing + do-NOT-public + ethical-alternatives section + fifth tool in **network-service-legal-risk class** (Scanopy/Unbound/MicroBin/AnonAddy lineage) + explicit author-stance quotation.
+- **lychee** (4147★) — MIT Laravel photo manager + Supporter Edition commercial. v7-breaking-change-Docker-layout + APP_KEY immutability family (7th tool) + Queue-worker-NOT-optional + GPS-EXIF-location-leak warning + CII/OpenSSF-Scorecard positive code-quality signals + Immich/PhotoPrism comparison.
+- **linuxserver-webtop** (4142★) — LS.io multi-license desktop-in-browser. **Apt-installed-apps-don't-persist** #1 gotcha + LS.io-conventions (PUID/PGID/s6-overlay) + KasmVNC-modern-fork + shm_size-for-browsers + hub-of-desktop-sessions threat-model (Nexterm family) + seccomp:unconfined tradeoff + Kasm Workspaces commercial parent.
+
+**Batch 83 lengths:** black-candy 166, easy-appointments 152, 13ft-ladder 133, lychee 199, linuxserver-webtop 181.
+**State:** 429 done / 1 skipped / 844 pending (33.7%).
+
+### New precedents
+- **"Default admin credentials are PUBLIC (scanners know)"** security-habit framing (Black Candy `admin@admin.com/foobar`): tools that document default admin creds in README = attackers have pre-built scanner lists. Change-on-first-login is non-negotiable. Also relevant to other tools with documented defaults.
+- **"Own-your-music legal framing"** private-instance-only wording (Black Candy): hosting legal-your-own-files = fine; hosting pirated content publicly = copyright/DMCA liability. Analogous to `13ft` paywall bypass legal framing but with different mechanism (hosting vs fetching).
+- **"F-Droid distribution = privacy signal"** ecosystem trust-signal (Black Candy Android + AnonAddy Android past ref): F-Droid = no Google Play tracking. Worth noting for Android apps.
+- **"Timezone bugs are #1 scheduling-tool failure mode"** operational-wisdom explicit (Easy!Appointments): PHP + MySQL + app + provider timezones must all align. Recipe for pain. Test actively. Applies to any appointment/event/calendar tool.
+- **"Google OAuth review-policy changes"** third-party-dependency risk (Easy!Appointments Google Calendar + pattern): Google periodically tightens OAuth scope-review. Apps that use "sensitive" scopes now require verified-app review. Same risk applies to any tool doing Google Calendar / Gmail integration. Similar class to the Spotify-Developer-App dependency (YourSpotify batch 80) but with ongoing-policy-evolution risk.
+- **"No-payments-built-in vs commercial-tier-alternatives"** feature-scope-boundary naming (Easy!Appointments vs Cal.com vs Calendly): appointments tools that DON'T handle payments = explicitly scoped. Important for operators deciding "can I use this for paid services?".
+- **"LEGAL/ETHICAL risk SECTION for controversial tools"** (13ft-ladder): recipe convention for tools with unclear ToS/CFAA/DMCA posture → FRONT-LOADED caveat section + ethical-alternatives + author-stance quotation. Fifth tool in **network-service-legal-risk class** establishes the pattern firmly. Future controversial tools should follow this template.
+- **"Includes ethical alternatives"** companion-section (13ft-ladder): when a tool has ethical concerns, list the ethical alternatives (archive.today, Wayback, subscribe, library access). Honest recipe-writing.
+- **"v<N> breaking Docker layout change"** major-version-warning class (Lychee v7): when upstream explicitly flags "don't blindly update", recipe must preserve this prominence. Same class as Colanode config-model-change (batch 77) + Baserow GitLab→GitHub migration (batch 78).
+- **"CII Best Practices + OpenSSF Scorecard badges = code-quality signal"** positive ecosystem signal (Lychee): projects that participate in these = care about security posture. Worth elevating as a signal-class. Rare — most tools don't participate. Positive reputational signal.
+- **"GPS-EXIF-location-leak in shared photos"** privacy footgun (Lychee): sharing photos without stripping EXIF = leaking home GPS. Photo tools MUST address this. Applies to Immich, PhotoPrism, Nextcloud Photos etc.
+- **"LS.io-conventions as ecosystem signal"** trust-infrastructure (LinuxServer Webtop): the LinuxServer.io team's images have distinct conventions (PUID/PGID, s6-overlay, weekly rebuilds). Established team = positive bus-factor signal across 100+ images. Comparable to "institutional-grade governance" (NLnet Labs, Codeberg e.V.) pattern but for container-packaging ecosystem.
+- **"Apt-installed-apps-don't-persist"** container-boundary gotcha (LinuxServer Webtop): common "just install it in the container" intuition fails with rebuildable images. Either custom Dockerfile or persistent-user-home install. Worth calling out for any ephemeral-container dev-environment tool.
+- **"seccomp:unconfined security-tradeoff"** (LinuxServer Webtop for KDE): some desktop environments need relaxed seccomp. Flag as a security tradeoff not a recommendation.
+- **"Hub-of-desktop-sessions = crown-jewel"** extends crown-jewel threat-model family (LinuxServer Webtop after Nexterm): desktop-in-a-container holds browser sessions + auth tokens + keys + files. Nth tool in family; hardening-like-bastion is universal prescription.
+- **"shm_size for browsers"** Docker-default-insufficient-for-desktop-work (Webtop): the Docker default 64MB `/dev/shm` isn't enough for Chrome/Firefox. Practical tuning knowledge.
+
+**Milestone:** 33.7% done. Batch 83 has strong diversity — music, appointments, paywall-bypass (ethically-fraught), photos, desktop-in-browser — and adds the **legal-risk template** to our recipe-convention arsenal.
+
+### Cross-cutting observations
+- **Immutability-of-secrets family count**: Statamic APP_KEY, Wakapi salt, Fider JWT_SECRET, Nexterm ENCRYPTION_KEY, Forgejo SECRET_KEY, Black Candy SECRET_KEY_BASE, Lychee APP_KEY. **Seven tools** explicitly cited. Worth consolidated pattern doc.
+- **Queue-worker-NOT-optional family**: FreeScout (82), Lychee (83) — Laravel pattern. Both explicit. Any Laravel/Rails/Django app with queues shares this.
+- **Network-service-legal-risk class**: Scanopy (76), AnonAddy (79), Unbound (80), MicroBin (81), 13ft (83). **Five tools**. Template-level maturity: **legal risk section front-loaded + ethical alternatives section + author-stance-quote-if-available**.
+- **Institutional-trust-signal family extends to packaging ecosystems**: NLnet Labs + Codeberg e.V. + Deciso + Ghost Foundation + Mozilla-former + **LinuxServer.io team packaging-trust**. Six tools across batches 80-83.
+- **Crown-jewel threat-model family count**: Nexterm (81), myDrive (82), LinuxServer Webtop (83). Browser sessions / SSH keys / files. Three tools.
