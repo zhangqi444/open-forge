@@ -3581,3 +3581,73 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Kite's AI-agent-on-K8s opens important new risk-class (AI-with-privileged-execution)
 - Polaris's "explicit-no-premium-commitment" marks contrast with open-core tools elsewhere
 - Pattern-consolidation URGENT: 24 CROWN-JEWEL sub-categories, 106 hub-of-credentials, 100 transparent-maintenance
+
+## 2026-04-30 22:33 UTC — batch 111 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 111)
+- **pg-back-web** (2569★) — Go PostgreSQL-backup web UI (⚠️ REBRANDING to "UFO Backup" — expanding beyond PG). **107th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "database-credential-aggregator + backup-custodian"** (1st — PBW). **NEW recipe conventions**: "backup-custodian-threat-model" (1st — PBW) + "project-rebrand-migration-discipline" (extends Grimmory 105). **NEW positive-signal: "client-side-backup-encryption"** (1st formally). **Rebrand-preservation: 4 tools** (prior 3 + PBW→UFO) 🎯 **4-TOOL MILESTONE**. **Go-Report-Card: 3 tools** (Gokapi+Sablier+PBW). 93rd institutional-stewardship + 101st transparent-maintenance.
+- **dockstarter** (2555★) — Bash-based Docker deployment platform (100+ apps; menu-driven; Open Collective + Discord + 100+ contributors). **108th hub-of-credentials Tier 2 — NEW sub-family "meta-tool-generates-configs-with-credentials"** (1st — DockSTARTer). **Open-Collective-transparent-finances: 2 tools** (Silex+DockSTARTer) 🎯. **NEW recipe conventions**: "curl-pipe-bash installer supply-chain-risk" (1st formally — DockSTARTer) + "host-native-installer-tool". **NEW positive-signals**: "community-curated-app-catalog" (1st formally) + "stepping-stone-to-direct-editing" (1st — DockSTARTer; rare) + "multi-distro-support" + "Raspberry-Pi-first-class-support" (1st formally). 94th institutional-stewardship + 102nd transparent-maintenance.
+- **patchmon** (2552★) — Go enterprise patch-mgmt (multi-OS Linux/FreeBSD/Windows; outbound-only agents; single binary with embedded React; commercial cloud; AI-DECLARATION badge). **109th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "fleet-patch-management + CVE-inventory"** (1st — PatchMon). **19th AGPL-network-service-disclosure**. **Commercial-parallel-with-OSS-core: 5 tools** (+PatchMon) 🎯 **5-TOOL MILESTONE**. **Public-project-roadmap: 2 tools** (Defguard+PatchMon) 🎯. **NEW recipe conventions**: "CVE-inventory-is-double-edged" (1st — PatchMon). **NEW positive-signals**: "outbound-only-agent-architecture" (1st formally — PatchMon) + "single-binary-embedded-frontend" (1st formally) + "AI-DECLARATION-transparent-AI-use" (1st — PatchMon; EXCEPTIONAL transparency) + "AI-use-transparency-policy" (broader category encompassing both BookWyrm's no-AI + PatchMon's AI-assist-disclosed) + "multi-package-manager-support" (1st formally). **NEW institutional-stewardship sub-tier: "commercial-org-with-transparent-AI-practices"** (1st — PatchMon). 95th institutional-stewardship + 103rd transparent-maintenance. CROWN-JEWEL Tier 1: 29 tools / 26 sub-categories.
+- **lubelogger** (2514★) — ASP.NET vehicle maintenance tracker (LiteDB OR PG; Docker+Win+Helm; demo-20min-reset). **110th hub-of-credentials Tier 3**. **NEW recipe convention: "receipt-photo-PII-spillover"** (1st formally — LubeLogger; adjacent to Spliit 109). **NEW positive-signals**: "LiteDB-single-file-backup-simplicity" (1st formally) + "dual-database-backend-choice" (1st formally) + "multi-deployment-form-factor" (1st formally) + "community-Helm-chart". **Hourly-reset-demo-site: 2 tools** (Baby Buddy+LubeLogger) 🎯 **2-TOOL MILESTONE**. 96th institutional-stewardship + 104th transparent-maintenance.
+- **libredesk** (2459★) — Go OSS omnichannel customer-support desk (Zerodha Tech-backed; live-chat+email+more; SLA+automations+AI-assist; single binary). **111th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "customer-support-desk-data-hub"** (1st — Libredesk). **CROWN-JEWEL Tier 1: 30 tools / 27 sub-categories** 🎯 **30-TOOL MILESTONE**. **LLM-feature-sends-data-externally: 4 tools** (EventCatalog+Spliit+Kite+Libredesk) 🎯 **4-TOOL MILESTONE**. **NEW recipe conventions**: "embed-widget-on-customer-site trust-boundary" (1st — Libredesk) + "email-ingest-IMAP-creds-risk" (1st — Libredesk) + "customer-survey-compliance" + "omnichannel-session-continuity-complexity" + "macro-content-staleness-risk" (1st — Libredesk). **NEW positive-signals**: "commercial-company-with-strong-OSS-arm" (1st — Libredesk/Zerodha Tech; retroactive to listmonk) + "SLA-management" (1st formally — Libredesk). **NEW institutional-stewardship sub-tier: "commercial-company-with-OSS-arm"** (1st — Libredesk/Zerodha Tech). 97th institutional-stewardship + 105th transparent-maintenance.
+
+**Batch 111 lengths:** pg-back-web 169, dockstarter 163, patchmon 189, lubelogger 154, libredesk 201.
+**State:** 569 done / 2 skipped / 703 pending — **44.7% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 30 tools / 27 sub-categories** 🎯 **30-TOOL MILESTONE at Libredesk** (+3 new sub-categories in one batch!)
+- **Hub-of-credentials: 111 tools**
+- **Transparent-maintenance: 105 tools** (approaching 110)
+- **Commercial-parallel-with-OSS-core: 5 tools** 🎯 **5-TOOL MILESTONE at PatchMon**
+- **LLM-feature-sends-data-externally: 4 tools** 🎯 (Libredesk joins)
+- **Rebrand-preservation: 4 tools** 🎯 (+PBW→UFO)
+- **Open-Collective-transparent-finances: 2 tools** (Silex+DockSTARTer)
+- **Go-Report-Card: 3 tools**
+- **Hourly-reset-demo-site: 2 tools** (Baby Buddy+LubeLogger)
+- **Public-project-roadmap: 2 tools** (Defguard+PatchMon)
+- **Institutional-stewardship: 97 tools** (2 NEW sub-tiers: commercial-org-with-transparent-AI-practices [PatchMon] + commercial-company-with-OSS-arm [Zerodha Tech/Libredesk])
+
+### New precedents this batch
+- **"database-credential-aggregator + backup-custodian" CROWN-JEWEL Tier 1 sub-category** (PBW 1st)
+- **"fleet-patch-management + CVE-inventory" CROWN-JEWEL Tier 1 sub-category** (PatchMon 1st)
+- **"customer-support-desk-data-hub" CROWN-JEWEL Tier 1 sub-category** (Libredesk 1st)
+- **"meta-tool-generates-configs-with-credentials" sub-family** hub-of-credentials (DockSTARTer 1st)
+- **"commercial-org-with-transparent-AI-practices" institutional-stewardship sub-tier** (PatchMon 1st)
+- **"commercial-company-with-OSS-arm" institutional-stewardship sub-tier** (Libredesk/Zerodha Tech 1st)
+- **"backup-custodian-threat-model" convention** (PBW 1st)
+- **"project-rebrand-migration-discipline" convention** (PBW; extends Grimmory 105)
+- **"client-side-backup-encryption" positive-signal** (PBW 1st)
+- **"curl-pipe-bash installer supply-chain-risk" convention** (DockSTARTer 1st formally)
+- **"host-native-installer-tool" neutral-signal** (DockSTARTer)
+- **"community-curated-app-catalog" positive-signal** (DockSTARTer 1st formally)
+- **"stepping-stone-to-direct-editing" positive-signal** (DockSTARTer 1st — rare!)
+- **"multi-distro-support" positive-signal** (DockSTARTer)
+- **"Raspberry-Pi-first-class-support" positive-signal** (DockSTARTer 1st formally)
+- **"CVE-inventory-is-double-edged" convention** (PatchMon 1st)
+- **"outbound-only-agent-architecture" positive-signal** (PatchMon 1st formally)
+- **"single-binary-embedded-frontend" positive-signal** (PatchMon 1st formally)
+- **"AI-DECLARATION-transparent-AI-use" positive-signal** (PatchMon 1st — exceptional)
+- **"AI-use-transparency-policy" broad-category** (encompasses BookWyrm 108 no-AI + PatchMon AI-assist-disclosed; both honest-stances)
+- **"multi-package-manager-support" positive-signal** (PatchMon 1st formally)
+- **"receipt-photo-PII-spillover" convention** (LubeLogger 1st formally)
+- **"LiteDB-single-file-backup-simplicity" positive-signal** (LubeLogger 1st formally)
+- **"dual-database-backend-choice" positive-signal** (LubeLogger 1st formally)
+- **"multi-deployment-form-factor" positive-signal** (LubeLogger 1st formally)
+- **"community-Helm-chart" positive-signal** (LubeLogger)
+- **"embed-widget-on-customer-site trust-boundary" convention** (Libredesk 1st)
+- **"email-ingest-IMAP-creds-risk" convention** (Libredesk 1st)
+- **"customer-survey-compliance" convention** (Libredesk)
+- **"omnichannel-session-continuity-complexity" convention** (Libredesk)
+- **"macro-content-staleness-risk" convention** (Libredesk 1st)
+- **"commercial-company-with-strong-OSS-arm" positive-signal** (Libredesk/Zerodha Tech 1st; retroactively applies to listmonk, dungbeetle, kite-connect)
+- **"SLA-management" positive-signal** (Libredesk 1st formally)
+
+### Notes
+- **🎯 30-TOOL CROWN-JEWEL MILESTONE crossed at Libredesk**
+- 44.7% done — batch 111 exceptionally dense (3 NEW CROWN-JEWEL sub-categories; 2 NEW institutional-stewardship sub-tiers; 20+ conventions)
+- **PatchMon's AI-DECLARATION is the first formally-disclosed "AI-assist-accepted" tool** — mirrors BookWyrm's "no-AI" norm in opposite direction; both honest
+- **Zerodha Tech sub-tier** retroactively applies to listmonk (prior batches); pattern-consolidation should flag
+- Pattern-consolidation URGENT: 27 CROWN-JEWEL sub-categories, 111 hub-of-credentials, 105 transparent-maintenance
