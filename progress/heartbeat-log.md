@@ -1011,3 +1011,28 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Org-rename notices preserved**: Tinyauth — `tinyauthapp` is official; old paths may mislead.
 - **"Heavyweight self-host" warning for SaaS-first projects**: NewsBlur — projects designed primarily as SaaS have rough self-host stories. Tell users to consider Miniflux/FreshRSS for "just RSS" and hosted NewsBlur if they want its unique features.
 - **CLI-dominant recipe format**: miniserve — for pure-CLI tools, "Quick recipes" section with many one-liners works better than full install stanzas.
+
+## 2026-04-30 09:05 UTC — batch 59 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open.
+
+### Step 2 (selfh.st batch 59)
+- **workout-cool** (7210★) — modern OSS fitness coaching platform. Next.js + Postgres + Prisma. Hosted at workout.cool. Video-source caveat. MIT.
+- **mailu** (7179★) — Docker-first mail server. **"Email self-hosting is HARD" prereq block** front-loaded (static IP, reverse DNS, DNS control, port 25, IP reputation, SMTP relay). Full deliverability checklist (SPF/DKIM/DMARC/DANE/MTA-STS/PTR). Positioned vs Mailcow/Mail-in-a-Box/Stalwart/iRedMail. MIT.
+- **gitlab** (7162★) — all-in-one DevOps. **License nuance (CE MIT kernel vs EE free-tier proprietary)** front-loaded. **"Upgrade path matters — one-minor-at-a-time"** gotcha. `/etc/gitlab` + secrets.json backup separation imperative. Positioned vs Gitea/Forgejo/Sourcehut. CE=MIT, EE=proprietary.
+- **dolibarr** (7137★) — mature modular ERP+CRM. "Delete install/ after install/upgrade" imperative. Dolistore paid-module caveat. Country-specific accounting depth (strong EU, weaker US GAAP). Positioned vs Odoo/ERPNext. GPL-3.0+.
+- **hedgedoc** (7125★) — real-time collab markdown editor. **HedgeDoc 2.0 rewrite** warning front-loaded (pin 1.x). HackMD→CodiMD→HedgeDoc naming history preserved. Diagram + slide markdown extensions. AGPL-3.0.
+
+**Batch 59 lengths:** workout-cool 191, mailu 194, gitlab 234, dolibarr 227, hedgedoc 252.
+**State:** 309 done / 1 skipped / 964 pending (24.3%).
+
+### New precedents
+- **"HARD prerequisites" front-loaded block** for operations-heavy self-hosts: Mailu has a call-out block with "Before starting:" checklist of (1) IP/DNS requirements (2) reputation reality (3) ongoing-ops commitment (4) consider SMTP relay. Extends prior "don't-self-host-yet" and "heavyweight-self-host" patterns to "here's what you need to know BEFORE committing."
+- **Major-rewrite-warning**: HedgeDoc 2.0 rewrite. Extends "deprecated/rename" and "major-version-rewrite" precedents.
+- **CE/EE dual-license nuance preserved**: GitLab — distinguishes the FOSS kernel from the free-tier-of-proprietary edition. Different from SSPL/BSL/Elastic-2.0 precedents; this is "proprietary with free tier" model.
+- **Upgrade-path-matters warning**: GitLab — version skipping breaks. Extends earlier "migration assistant mandatory" precedents.
+- **Backup-secrets-SEPARATELY imperative**: GitLab — `gitlab-secrets.json` isn't in the app backup tarball. Distinct backup-gotcha pattern worth generalizing.
+- **Post-install hardening imperative**: Dolibarr — "delete install/" joins PrestaShop's hardening list as a common PHP-app pattern.
+
+**Milestone:** Now at **24.3%** — on track. Batch 59 slightly longer (avg 220 lines) due to density of warnings/context for complex projects (mail, DevOps, ERP).
