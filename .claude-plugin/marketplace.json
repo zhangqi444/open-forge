@@ -5,7 +5,7 @@
     {
       "name": "open-forge",
       "source": "./plugins/open-forge",
-      "description": "Automate self-hosting of open-source apps (Ghost, more coming) on cloud infrastructure (Lightsail, more coming) — provisioning, DNS, TLS, SMTP, inbound email."
+      "description": "Automate self-hosting of open-source apps on cloud or local infra — provisioning, Docker/Podman/native/Kubernetes, DNS, TLS, SMTP, inbound email. Hundreds of verified recipes (Ghost, OpenClaw, Ollama, Open WebUI, ComfyUI, Dify, LibreChat, AnythingLLM, Vaultwarden, Immich, and more)."
     }
   ]
 }

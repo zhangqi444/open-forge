@@ -45,6 +45,8 @@ In **Claude Code**:
 - [Continue.dev](docs/platforms/continue.md) — context provider + slash command
 - [Generic agents](docs/platforms/generic.md) — any LLM that can read files + run shell commands
 
+**On Windows?** See [`docs/windows-setup.md`](docs/windows-setup.md) for WSL2 + Docker Desktop setup and common Windows gotchas (stale Git proxy, line endings, WSL integration).
+
 Then say what you want to deploy:
 
 > *"Set up OpenClaw on my Raspberry Pi with the local Ollama provider."*
