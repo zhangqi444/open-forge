@@ -8,6 +8,8 @@ Auto-generated bundles for AI coding tools other than Claude Code. Each subdirec
 | `cursor/` | `.mdc` rule files with Cursor frontmatter | Cursor's `.cursor/rules/` |
 | `aider/` | `CONVENTIONS.md` + `read-files.txt` + `.aider.conf.yml` | Aider |
 | `continue/` | `config.snippet.yaml` | Continue.dev's `~/.continue/config.yaml` |
+| `openclaw/` | `SKILL.md` with OpenClaw frontmatter (name + description + metadata) | OpenClaw — drop into `~/.openclaw/workspace/skills/open-forge/` |
+| `hermes/` | `SKILL.md` with agentskills.io open-standard frontmatter | Hermes-Agent — drop into `~/.hermes/skills/open-forge/` |
 | `generic/` | `open-forge-bundle.md` (single-file concatenation) | Any LLM agent with tool use |
 
 ## Regenerate after upstream changes

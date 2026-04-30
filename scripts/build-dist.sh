@@ -9,6 +9,8 @@
 #   cursor     — .mdc rule files for .cursor/rules/
 #   aider      — CONVENTIONS.md + read-files.txt + .aider.conf.yml
 #   continue   — config snippet + per-recipe prompt files for Continue.dev
+#   openclaw   — SKILL.md for ~/.openclaw/workspace/skills/open-forge/
+#   hermes     — SKILL.md for ~/.hermes/skills/open-forge/
 #   generic    — single-file concatenated bundle for any tools-using LLM
 #   all        — run all of the above
 #
@@ -227,6 +229,66 @@ EOF
   echo "  ✓ dist/continue/config.snippet.yaml"
 }
 
+build_openclaw() {
+  echo "→ Building OpenClaw skill bundle…"
+  mkdir -p "$DIST_DIR/openclaw"
+
+  # OpenClaw skill SKILL.md — drop into ~/.openclaw/workspace/skills/open-forge/SKILL.md
+  cat > "$DIST_DIR/openclaw/SKILL.md" <<'EOF'
+---
+name: open-forge
+description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ~180 verified recipes plus live-derived fallback for the long tail."
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🛠️",
+        "requires": { "bins": ["bash", "curl", "ssh"] },
+        "agent_mode": true,
+        "credentials_paste_disabled": true,
+        "source": "https://github.com/zhangqi444/open-forge",
+        "docs": "https://deepwiki.com/zhangqi444/open-forge"
+      }
+  }
+---
+
+# open-forge — self-host any open-source app
+
+EOF
+  cat "$SKILL_DIR/SKILL.md" >> "$DIST_DIR/openclaw/SKILL.md"
+  echo -e "\n\n---\n\n# Credentials handling (agent-mode rules apply)\n" >> "$DIST_DIR/openclaw/SKILL.md"
+  cat "$REFS_DIR/modules/credentials.md" >> "$DIST_DIR/openclaw/SKILL.md"
+  echo -e "\n\n---\n\n# Post-deploy feedback flow\n" >> "$DIST_DIR/openclaw/SKILL.md"
+  cat "$REFS_DIR/modules/feedback.md" >> "$DIST_DIR/openclaw/SKILL.md"
+
+  echo "  ✓ dist/openclaw/SKILL.md ($(wc -l < "$DIST_DIR/openclaw/SKILL.md") lines)"
+}
+
+build_hermes() {
+  echo "→ Building Hermes-Agent skill bundle…"
+  mkdir -p "$DIST_DIR/hermes"
+
+  # Hermes uses agentskills.io 'open standard' frontmatter — simpler, no metadata block
+  cat > "$DIST_DIR/hermes/SKILL.md" <<'EOF'
+---
+name: open-forge
+description: Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ~180 verified recipes plus live-derived fallback for the long tail. Agent-mode rules apply (no chat-paste credentials, no group-channel deploys).
+---
+
+# open-forge — self-host any open-source app
+
+> **Agent-mode rules in effect.** Pattern 5 (direct credential paste) is disabled. Group-channel deploy conversations are refused. See § *Asking for credentials → Agent-mode rules* below.
+
+EOF
+  cat "$SKILL_DIR/SKILL.md" >> "$DIST_DIR/hermes/SKILL.md"
+  echo -e "\n\n---\n\n# Credentials handling (agent-mode rules apply)\n" >> "$DIST_DIR/hermes/SKILL.md"
+  cat "$REFS_DIR/modules/credentials.md" >> "$DIST_DIR/hermes/SKILL.md"
+  echo -e "\n\n---\n\n# Post-deploy feedback flow\n" >> "$DIST_DIR/hermes/SKILL.md"
+  cat "$REFS_DIR/modules/feedback.md" >> "$DIST_DIR/hermes/SKILL.md"
+
+  echo "  ✓ dist/hermes/SKILL.md ($(wc -l < "$DIST_DIR/hermes/SKILL.md") lines)"
+}
+
 build_generic() {
   echo "→ Building generic bundle…"
   mkdir -p "$DIST_DIR/generic"
@@ -261,12 +323,16 @@ case "$PLATFORM" in
   cursor)   build_cursor ;;
   aider)    build_aider ;;
   continue) build_continue ;;
+  openclaw) build_openclaw ;;
+  hermes)   build_hermes ;;
   generic)  build_generic ;;
   all)
     build_codex
     build_cursor
     build_aider
     build_continue
+    build_openclaw
+    build_hermes
     build_generic
     ;;
   *) usage ;;

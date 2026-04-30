@@ -213,6 +213,17 @@ Whenever the skill needs sensitive input — API keys, DB passwords, OAuth clien
 4. **Never accept SSH key contents.** Always ask for the path; skill uses `ssh -i <path>`.
 5. **End-of-deploy rotation reminder** if the user pasted any secret during the deploy: surface during the `hardening` phase with a list of (credential, dashboard URL) pairs. Pasted secrets remain in session history; rotating now bounds the exposure.
 
+### Agent-mode rules (OpenClaw / Hermes / any messaging-channel agent)
+
+When this skill runs inside a long-running personal AI agent (OpenClaw, Hermes-Agent, or any agent that talks to the user via WhatsApp / Telegram / Slack / iMessage / email / etc.), apply these stricter rules **on top of** the base five-pattern flow above:
+
+- **Pattern 5 (direct paste) is DISABLED.** Pasting credentials into messaging channels is meaningfully riskier than into coding-tool chat — chat history syncs to the user's phone, may be backed up to cloud (iCloud / Google Drive), and often persists indefinitely. Refuse a paste with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead. See [credentials.md](references/modules/credentials.md) for options."* If the user insists, refuse again — don't compromise.
+- **Reject deploy conversations from group channels.** Group chats leak everything to all members (credentials, IPs, admin URLs). When invoked from a group context, respond: *"Self-host deploys involve sensitive info. Switch to a 1:1 DM and ask again."* Then stop.
+- **Use async polling for time-elapsed waits**, not blocking prompts. `dns` propagation, `tls` cert issuance, `provision` instance-boot — all become *"I'll poll and ping you when ready"* rather than *"press enter when DNS propagates."* Agents have a daemon; use it.
+- **Channel-aware response routing.** Long-form content (DNS records to add at registrar, full recipe explanations, admin-bootstrap URLs) should go via secure / structured channels (email, signed note, secure-share link) when the agent supports them, not the chat. Quick decisions (yes/no, pick from list) stay in chat. Final hand-off (admin URL, rotation reminders) → secure 1:1 only.
+
+See [`docs/platforms/openclaw.md`](../../../../docs/platforms/openclaw.md) and [`docs/platforms/hermes.md`](../../../../docs/platforms/hermes.md) for the full agent-mode integration guides.
+
 See [`references/modules/credentials.md`](references/modules/credentials.md) for the full pattern details, per-credential-class recommendations, and failure-mode handling.
 
 ## Verification after each phase
