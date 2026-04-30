@@ -325,6 +325,7 @@ If validation fails (upstream URL 404s, software is out of scope, methodology is
 - Cite the upstream URL at the top of every section per *Strict doc-verification policy*.
 - Flag community-maintained methods with the required ⚠️ blockquote.
 - Re-scan against the *Sanitization principles* strip-list — if any identifier slipped through user-supplied content, redact before drafting.
+- **If your patch touches `CLAUDE.md`, `plugins/open-forge/skills/open-forge/SKILL.md`, or any file under `plugins/open-forge/skills/open-forge/references/modules/`, regenerate the multi-platform distribution bundles**: `./scripts/build-dist.sh all`. Include the regenerated `dist/` files in the same PR. The bundles concatenate canonical sources for non-Claude-Code platforms (Codex / Cursor / Aider / Continue / generic); they drift if not regenerated, which silently breaks those platforms. CI enforces this — see `.github/workflows/dist-bundles.yml`.
 - Bump `plugin.json` `version` per *Versioning + publish flow*.
 - If multiple feedback issues for the same recipe are pending, batch them into a single PR.
 
@@ -420,6 +421,13 @@ open-forge/
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
+├── .github/
+│   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
+│   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / generic)
+├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
+├── scripts/
+│   └── build-dist.sh                      ← regenerates dist/ from canonical sources; run when CLAUDE.md / SKILL.md / modules change
 └── plugins/open-forge/
     ├── .claude-plugin/plugin.json         ← plugin manifest (version!)
     └── skills/open-forge/
@@ -428,11 +436,11 @@ open-forge/
         │   ├── projects/<name>.md         ← software layer
         │   ├── runtimes/<name>.md         ← runtime layer (docker.md, podman.md, native.md, kubernetes.md)
         │   ├── infra/<name>.md            ← infra layer (aws/, azure/, hetzner/, digitalocean/, gcp/, oracle/, paas/, hostinger.md, raspberry-pi.md, macos-vm.md, byo-vps.md, localhost.md)
-        │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring)
-        └── scripts/                       ← reused operational scripts; empty by default
+        │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring, credentials, feedback)
+        └── scripts/                       ← deployment-time operational scripts (per-recipe); empty by default
 ```
 
-`scripts/` stays empty unless something is reused 3+ times across deployments. Inline commands in recipes are clearer for one-off use.
+The skill-side `plugins/open-forge/skills/open-forge/scripts/` (deployment-time) stays empty unless something is reused 3+ times across deployments — inline commands in recipes are clearer for one-off use. Distinct from the top-level `scripts/` (build-time tooling for dist/ bundles).
 
 ## Versioning + publish flow
 
@@ -692,6 +700,17 @@ Whenever the skill needs sensitive input — API keys, DB passwords, OAuth clien
 3. **Detect accidental pastes**: if the user was prompted for a path but pasted a string matching `re_*` / `sk-*` / `AKIA[0-9A-Z]{16}` / etc., stop and ask: *"That looks like the key itself, not a path. Did you mean to paste directly? (see risks)"*.
 4. **Never accept SSH key contents.** Always ask for the path; skill uses `ssh -i <path>`.
 5. **End-of-deploy rotation reminder** if the user pasted any secret during the deploy: surface during the `hardening` phase with a list of (credential, dashboard URL) pairs. Pasted secrets remain in session history; rotating now bounds the exposure.
+
+### Agent-mode rules (OpenClaw / Hermes / any messaging-channel agent)
+
+When this skill runs inside a long-running personal AI agent (OpenClaw, Hermes-Agent, or any agent that talks to the user via WhatsApp / Telegram / Slack / iMessage / email / etc.), apply these stricter rules **on top of** the base five-pattern flow above:
+
+- **Pattern 5 (direct paste) is DISABLED.** Pasting credentials into messaging channels is meaningfully riskier than into coding-tool chat — chat history syncs to the user's phone, may be backed up to cloud (iCloud / Google Drive), and often persists indefinitely. Refuse a paste with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead. See [credentials.md](references/modules/credentials.md) for options."* If the user insists, refuse again — don't compromise.
+- **Reject deploy conversations from group channels.** Group chats leak everything to all members (credentials, IPs, admin URLs). When invoked from a group context, respond: *"Self-host deploys involve sensitive info. Switch to a 1:1 DM and ask again."* Then stop.
+- **Use async polling for time-elapsed waits**, not blocking prompts. `dns` propagation, `tls` cert issuance, `provision` instance-boot — all become *"I'll poll and ping you when ready"* rather than *"press enter when DNS propagates."* Agents have a daemon; use it.
+- **Channel-aware response routing.** Long-form content (DNS records to add at registrar, full recipe explanations, admin-bootstrap URLs) should go via secure / structured channels (email, signed note, secure-share link) when the agent supports them, not the chat. Quick decisions (yes/no, pick from list) stay in chat. Final hand-off (admin URL, rotation reminders) → secure 1:1 only.
+
+See [`docs/platforms/openclaw.md`](../../../../docs/platforms/openclaw.md) and [`docs/platforms/hermes.md`](../../../../docs/platforms/hermes.md) for the full agent-mode integration guides.
 
 See [`references/modules/credentials.md`](references/modules/credentials.md) for the full pattern details, per-credential-class recommendations, and failure-mode handling.
 
@@ -984,9 +1003,19 @@ If the user picked patterns 1-4 for everything, no rotation reminder is needed (
 
 ---
 
+## Agent-mode rules (OpenClaw / Hermes / messaging-channel agents)
+
+When this skill runs inside a long-running personal AI agent (OpenClaw, Hermes-Agent, or any agent that talks via WhatsApp / Telegram / Slack / iMessage / email), the rules tighten:
+
+- **Pattern 5 (direct paste) is DISABLED.** Messaging channels persist chat history far longer than coding-tool sessions, sync to phones, often back up to cloud — pasting credentials there is meaningfully riskier. Refuse with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead."* If the user insists, refuse again. No exceptions.
+- **Reject deploy conversations from group channels** entirely. Group chats leak to all members. Respond once: *"Self-host deploys involve sensitive info — switch to a 1:1 DM."* Then stop until the user re-asks from a private channel.
+- **Final hand-off content** (admin bootstrap URLs, generated passwords, rotation reminders) → secure 1:1 channel only, never group / public / shared.
+
+The base five-pattern flow above still applies; agent-mode just removes Pattern 5 from the offered options and adds the group-channel guard.
+
 ## Failure modes
 
-- **User insists on pasting "to keep it simple."** Respect their consent after risk acknowledgement, but surface the rotation reminder twice (once mid-deploy, once at hardening).
+- **User insists on pasting "to keep it simple."** Respect their consent after risk acknowledgement, but surface the rotation reminder twice (once mid-deploy, once at hardening). **In agent mode, refuse instead** — don't accept paste regardless of insistence.
 - **User pastes by accident** (meant to paste a path, pasted the key itself). Detect via key-shape regex (`re_[A-Za-z0-9_]+`, `sk-ant-`, `AKIA[0-9A-Z]{16}`, etc.); if a paste looks like a key when the prompt expected a path, stop and ask: *"That looks like the key itself, not a path. Did you mean to paste the key directly? (if so, see risks above; if not, paste the path)."*
 - **Env var not present in Claude's shell.** User exported it after starting Claude Code. Ask them to restart Claude Code with the var set, or fall back to a different pattern.
 - **File mode is too permissive** (e.g. `0644`). Refuse to read; offer to run `chmod 600 <path>` first.

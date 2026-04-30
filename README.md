@@ -37,13 +37,19 @@ In **Claude Code**:
 /plugin install open-forge@open-forge
 ```
 
-**Other AI coding tools** — Codex (ChatGPT / CLI), Cursor, Aider, Continue.dev, or any tools-using LLM — see [`docs/platforms/`](docs/platforms/):
+**Other AI coding tools and agent platforms** — see [`docs/platforms/`](docs/platforms/):
 
-- [Codex](docs/platforms/codex.md) — system-prompt embedding or workspace files
-- [Cursor](docs/platforms/cursor.md) — `.cursor/rules/` bundle
-- [Aider](docs/platforms/aider.md) — `--read` files + `CONVENTIONS.md`
-- [Continue.dev](docs/platforms/continue.md) — context provider + slash command
-- [Generic agents](docs/platforms/generic.md) — any LLM that can read files + run shell commands
+| Platform | How |
+|---|---|
+| [Codex](docs/platforms/codex.md) (ChatGPT / CLI) | System-prompt embedding or workspace files |
+| [Cursor](docs/platforms/cursor.md) | `.cursor/rules/` bundle |
+| [Aider](docs/platforms/aider.md) | `--read` files + `CONVENTIONS.md` |
+| [Continue.dev](docs/platforms/continue.md) | Context provider + slash command |
+| [OpenClaw](docs/platforms/openclaw.md) (personal AI agent at openclaw.ai) | Workspace skill at `~/.openclaw/workspace/skills/open-forge/` |
+| [Hermes-Agent](docs/platforms/hermes.md) (Nous Research) | User skill at `~/.hermes/skills/open-forge/` |
+| [Generic agents](docs/platforms/generic.md) | Any LLM that can read files + run shell |
+
+**Agent-mode caveat:** When running inside an autonomous agent (OpenClaw / Hermes / messaging-channel agents), credential **paste is disabled** — the skill only accepts file paths, env vars, cloud-CLI sessions, or secrets-manager refs. Pasting credentials into messaging channels (WhatsApp / Telegram / etc.) is meaningfully riskier than into coding-tool chat. Group-channel deploy conversations are also refused.
 
 **On Windows?** See [`docs/windows-setup.md`](docs/windows-setup.md) for WSL2 + Docker Desktop setup and common Windows gotchas (stale Git proxy, line endings, WSL integration).
 

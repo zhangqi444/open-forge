@@ -1,7 +1,21 @@
 ---
-description: open-forge skill — self-host any open-source app on your own infrastructure
-alwaysApply: true
+name: open-forge
+description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ~180 verified recipes plus live-derived fallback for the long tail."
+metadata:
+  {
+    "openclaw":
+      {
+        "emoji": "🛠️",
+        "requires": { "bins": ["bash", "curl", "ssh"] },
+        "agent_mode": true,
+        "credentials_paste_disabled": true,
+        "source": "https://github.com/zhangqi444/open-forge",
+        "docs": "https://deepwiki.com/zhangqi444/open-forge"
+      }
+  }
 ---
+
+# open-forge — self-host any open-source app
 
 ---
 name: open-forge
@@ -303,3 +317,486 @@ A new project: add `references/projects/<name>.md` covering required services, c
 A new infra: add `references/infra/<name>.md` covering provisioning (create instance, static IP, SSH key), firewall defaults, user/paths conventions. Follow lightsail.md.
 
 Cross-cutting modules (new SMTP provider, new forwarder): add under `references/modules/`. Keep them project- and infra-agnostic.
+
+
+---
+
+# Credentials handling (agent-mode rules apply)
+
+---
+name: credentials
+description: How the skill asks for credentials safely — five patterns prioritized from "secret never enters chat" to "last-resort paste with explicit risk acknowledgement." Loaded by SKILL.md § Asking for credentials. Applies to API keys, SSH keys, DB passwords, OAuth client secrets, cloud account creds, anything sensitive.
+---
+
+# Credentials module — five patterns, prioritized
+
+Pasting raw credentials into Claude Code is risky:
+
+- The secret enters the session history (visible to other tools loaded in the same session, may persist in logs).
+- May be relayed via MCP servers depending on the user's setup.
+- Shows up in transcripts the user might later share for support.
+- Some terminals / IDEs persist input across restarts.
+
+The skill defaults to safer patterns. Direct chat paste is **last resort** and only after explicit risk acknowledgement.
+
+**Hard rule:** every time the skill needs a sensitive input, it offers the user the five patterns below — letting them pick — and surfaces the risk if they pick paste. Don't silently accept a paste; don't pretend Claude Code is a vault.
+
+---
+
+## The five patterns (priority order)
+
+### 1. Local file path (recommended for personal use)
+
+User stores the secret in a file under their home directory; tells the skill the path; skill reads via `cat`.
+
+**When to suggest first:** for one-off API keys (Resend, SendGrid, Mailgun, OpenAI, Anthropic, etc.) that the user already has in a `.env`, `.secrets`, or password-manager export.
+
+**Skill prompt:**
+
+> *"Path to a file containing the key (e.g. `~/.secrets/resend`)? I'll read it via `cat`."*
+
+**Skill execution:**
+
+```bash
+RESEND_KEY=$(cat ~/.secrets/resend)   # or however the user names it
+# Use $RESEND_KEY in subsequent commands; never echo it back to the user
+```
+
+**Properties:**
+
+- Secret never enters chat.
+- File survives across Claude Code sessions; user can use the same path next time.
+- User is responsible for the file's permissions (`chmod 600` recommended; mention if the file's mode is `644` or wider).
+
+---
+
+### 2. Environment variable name (recommended for shell users)
+
+User exports the secret as an env var **before** starting Claude Code (or in their shell `rc`); tells the skill the var name.
+
+**When to suggest first:** when the user already has secrets in a `.envrc` / `.bashrc` / `~/.config/fish/config.fish` they `source` regularly.
+
+**Skill prompt:**
+
+> *"Name of an env var holding the key (e.g. `RESEND_API_KEY`)? I'll read `$RESEND_API_KEY` from my shell."*
+
+**Skill execution:**
+
+```bash
+# Verify the var exists in Claude's shell
+test -n "$RESEND_API_KEY" || { echo "RESEND_API_KEY not set; export it before continuing"; exit 1; }
+# Use it
+curl ... -H "Authorization: Bearer $RESEND_API_KEY" ...
+```
+
+**Properties:**
+
+- Secret never enters chat.
+- Session-scoped if exported in the current shell only; persistent if in `rc` files.
+- The env var **must** exist in the shell Claude Code launched from. If the user `export`s after Claude Code starts, Claude won't see it (you'll need them to restart Claude Code or pass it inline).
+
+---
+
+### 3. Cloud-CLI session auth (default for AWS / GCP / Azure / GitHub)
+
+User authenticates the cloud CLI ahead of time (e.g. `aws sso login`, `gcloud auth application-default login`, `az login`, `gh auth login`); skill uses the resulting profile / session.
+
+**When to suggest first:** any time the credential is for a cloud account that ships its own CLI auth flow. Don't ask for raw cloud access keys if SSO / browser auth is available.
+
+| Provider | Pre-skill setup | What skill uses |
+|---|---|---|
+| AWS | `aws sso login --profile <name>` (or `aws configure` for static keys) | `aws --profile <name> ...` |
+| GCP | `gcloud auth application-default login` + `gcloud config set project <id>` | `gcloud` / `gsutil` / Terraform default-application-credentials |
+| Azure | `az login` | `az ...` (uses cached session) |
+| GitHub | `gh auth login` | `gh ...` (uses stored token, scoped) |
+| DigitalOcean | `doctl auth init` | `doctl ...` |
+| Hetzner | `hcloud context create` | `hcloud --context <name> ...` |
+| Cloudflare | `wrangler login` | `wrangler ...` |
+
+**Skill prompt:**
+
+> *"Have you run `aws sso login` for the profile you want to use? If yes, what's the profile name?"*
+
+**Properties:**
+
+- No secret material in chat or in any file the skill reads.
+- Auth is browser-mediated, MFA-friendly.
+- Sessions expire (good — bounded blast radius); skill handles re-auth gracefully if the session lapses mid-deploy.
+
+---
+
+### 4. Secrets-manager reference (advanced)
+
+User stores secrets in 1Password / Bitwarden / Vault / AWS Secrets Manager / GCP Secret Manager; gives the skill a CLI-resolvable reference; skill calls the secret-manager CLI to fetch only when needed.
+
+**When to suggest first:** when the user mentions they "have it in 1Password" or similar; or for users with proper secret-management practices.
+
+| Secret manager | Reference shape | Skill execution |
+|---|---|---|
+| 1Password | `op://Personal/Resend/api-key` | `op read 'op://Personal/Resend/api-key'` |
+| Bitwarden | item name + field | `bw get password '<item-name>'` |
+| HashiCorp Vault | `secret/data/<path>#<field>` | `vault kv get -field=<field> secret/<path>` |
+| AWS Secrets Manager | secret name + JSON key | `aws secretsmanager get-secret-value --secret-id <name> --query SecretString --output text \| jq -r .<key>` |
+| GCP Secret Manager | resource name | `gcloud secrets versions access latest --secret=<name>` |
+| `pass` (Linux) | path | `pass <path>` |
+
+**Skill prompt:**
+
+> *"1Password / Bitwarden / Vault reference? I'll fetch via the matching CLI when I need it."*
+
+**Properties:**
+
+- Secret never enters chat or any persistent file.
+- Resolved just-in-time; not cached in shell vars longer than necessary.
+- User must have the matching CLI installed + authenticated.
+
+---
+
+### 5. Direct chat paste (last resort — risk acknowledgement required)
+
+User types the secret directly into chat. Skill **must** surface the risks before accepting.
+
+**When this happens:** user explicitly says they want to paste, or none of patterns 1-4 work for their situation (e.g. they're trying out the skill with a one-shot key and don't want to set up file storage).
+
+**Required risk acknowledgement (paraphrase, don't elide):**
+
+> *"⚠️ If you paste the key here, it will live in this Claude Code session's history. It may also be visible to other tools loaded in the session and could appear in any transcripts you share later for support. After this deploy completes, I'll remind you to rotate the key in the provider's dashboard. Still want to paste? (yes / pick a safer path)"*
+
+**If user confirms:**
+
+- Accept the paste.
+- Use the value immediately; don't echo it back.
+- At the end of the deploy, surface a reminder: *"You pasted `<provider>` API key into chat earlier. Rotate it in `<provider's dashboard URL>` now that the deploy is complete."*
+
+**Properties:**
+
+- Convenient but contaminates session history.
+- The rotation reminder is mandatory — without it, the user may forget the key is exposed.
+
+---
+
+## Per-credential-class recommendations
+
+Different credential types pair best with different patterns. Surface the recommendation when the credential class is known.
+
+| Credential class | Default suggestion | Alternative |
+|---|---|---|
+| **API keys** (Resend, SendGrid, OpenAI, etc.) | Pattern 1 (file path) or 2 (env var) | Pattern 4 (secrets manager) |
+| **AWS / GCP / Azure / GH cloud auth** | Pattern 3 (CLI session) | Pattern 4 if user prefers explicit secret refs |
+| **SSH keys** (cloud instance auth) | The path itself is what skill needs (not the contents — never the contents). Pattern 1, but specifically the file is the key file (`~/.ssh/id_ed25519`); skill uses `ssh -i <path>` | n/a — never accept SSH key contents pasted into chat |
+| **DB passwords** | Pattern 1, 2, or 4 | Pattern 5 only if it's a one-shot generated password the user is about to throw away anyway |
+| **OAuth client secrets** | Pattern 4 (long-lived; should be vaulted) | Pattern 1 with `chmod 600` |
+| **Random secrets generated for the deploy** (`openssl rand -hex 32` etc.) | Generate inline; never echo to user; store in the state file or pass directly to the upstream tool | n/a |
+
+---
+
+## Skill prompt template
+
+When the skill reaches a phase that needs a credential, use this template:
+
+```
+[Phase: <smtp / provision / etc.>] I need <credential class>.
+
+Pick how to provide it:
+
+  1. **File path** — paste the path to a file containing the secret (e.g. `~/.secrets/resend`)
+  2. **Env var name** — paste the name of an env var I should read (e.g. `RESEND_API_KEY`)
+  3. **Cloud-CLI session** — say which profile / context if you've already done `<provider> login`
+  4. **Secrets-manager ref** — paste a `op://`, `vault://`, `bw://`, etc. reference
+  5. **Paste directly** — least safe; key enters chat history; you'll be reminded to rotate after
+
+Which? (default: 1 if you have a file, 2 if you exported an env var)
+```
+
+After the user picks, validate before proceeding:
+
+- File path → `test -r <path>` first; refuse if mode is wider than 600 (offer to `chmod 600`).
+- Env var → `test -n "$<NAME>"`; refuse if empty.
+- Cloud-CLI session → run a smoke command (`aws sts get-caller-identity --profile <name>`); refuse if it errors.
+- Secrets-manager ref → run a smoke command (`op read --no-newline <ref>` etc.); refuse if it errors or empty.
+- Paste → require the risk acknowledgement before accepting.
+
+---
+
+## End-of-deploy: rotation reminders
+
+If the user picked pattern 5 (direct paste) for any credential during the deploy, surface a rotation reminder during the `hardening` phase:
+
+```
+[Hardening] Rotation reminder — you pasted these keys into chat during this deploy:
+
+  • Resend API key (used in smtp phase)  → rotate at https://resend.com/api-keys
+  • <other-provider> key                 → rotate at <provider's dashboard URL>
+
+Pasted secrets remain in this Claude Code session's history. Rotating now means
+even if the session leaks later, the keys are already invalid.
+```
+
+If the user picked patterns 1-4 for everything, no rotation reminder is needed (the secrets never entered chat).
+
+---
+
+## Agent-mode rules (OpenClaw / Hermes / messaging-channel agents)
+
+When this skill runs inside a long-running personal AI agent (OpenClaw, Hermes-Agent, or any agent that talks via WhatsApp / Telegram / Slack / iMessage / email), the rules tighten:
+
+- **Pattern 5 (direct paste) is DISABLED.** Messaging channels persist chat history far longer than coding-tool sessions, sync to phones, often back up to cloud — pasting credentials there is meaningfully riskier. Refuse with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead."* If the user insists, refuse again. No exceptions.
+- **Reject deploy conversations from group channels** entirely. Group chats leak to all members. Respond once: *"Self-host deploys involve sensitive info — switch to a 1:1 DM."* Then stop until the user re-asks from a private channel.
+- **Final hand-off content** (admin bootstrap URLs, generated passwords, rotation reminders) → secure 1:1 channel only, never group / public / shared.
+
+The base five-pattern flow above still applies; agent-mode just removes Pattern 5 from the offered options and adds the group-channel guard.
+
+## Failure modes
+
+- **User insists on pasting "to keep it simple."** Respect their consent after risk acknowledgement, but surface the rotation reminder twice (once mid-deploy, once at hardening). **In agent mode, refuse instead** — don't accept paste regardless of insistence.
+- **User pastes by accident** (meant to paste a path, pasted the key itself). Detect via key-shape regex (`re_[A-Za-z0-9_]+`, `sk-ant-`, `AKIA[0-9A-Z]{16}`, etc.); if a paste looks like a key when the prompt expected a path, stop and ask: *"That looks like the key itself, not a path. Did you mean to paste the key directly? (if so, see risks above; if not, paste the path)."*
+- **Env var not present in Claude's shell.** User exported it after starting Claude Code. Ask them to restart Claude Code with the var set, or fall back to a different pattern.
+- **File mode is too permissive** (e.g. `0644`). Refuse to read; offer to run `chmod 600 <path>` first.
+- **Secrets-manager CLI not installed.** Detect via `command -v op` etc.; if missing, fall back to a different pattern, don't try to install a secret manager mid-deploy.
+- **CLI session expired mid-deploy.** Common with AWS SSO. Skill detects the expiry, says *"AWS session expired; please re-run `aws sso login --profile <name>` and tell me when ready."*, then resumes from the failed phase.
+
+
+---
+
+# Post-deploy feedback flow
+
+---
+name: feedback
+description: Post-deploy feedback module — sanitization rules + draft templates + submission paths for the three GitHub-issue input channels (recipe-feedback / software-nomination / method-proposal). Loaded by SKILL.md § Post-deploy feedback.
+---
+
+# Feedback module — drafting + submitting GitHub issues
+
+This module is loaded after a deploy completes (or is abandoned) when the user opts in to share what they learned. Implements the multi-step consent flow described in CLAUDE.md § *Sanitization principles* and SKILL.md § *Post-deploy feedback*.
+
+**Hard rule:** never post without showing the redacted draft + getting explicit "yes" from the user. The skill is the user's submitter; consent gates everything.
+
+---
+
+## Sanitization checklist
+
+Apply BEFORE drafting. Scan the deployment session — including chat transcript, any tool outputs Claude has in context, any state-file references — and replace identifiers per the table.
+
+### Strip-list (regex patterns + replacements)
+
+| Class | Detection | Replacement |
+|---|---|---|
+| **Domains** (apex, www, admin) | Anything matching the user's `${CANONICAL_HOST}` / `${APEX}` / `${ADMIN_DOMAIN}` collected during inputs, plus generic FQDNs in URL paths the user typed | `${CANONICAL_HOST}` / `${APEX}` / `${ADMIN_DOMAIN}` |
+| **Public IPv4** | `\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b` (excluding RFC-1918 ranges if you want to allow them as `${PRIVATE_IP}`) | `${PUBLIC_IP}` |
+| **Private IPv4** | `\b(10\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|192\.168\.)[0-9.]+\b` | `${PRIVATE_IP}` (or strip if it leaks network topology) |
+| **IPv6** | Standard IPv6 patterns | `${PUBLIC_IPV6}` / `${PRIVATE_IPV6}` |
+| **SSH key paths** | Anything matching `~/.ssh/[^ ]+`, `/home/[^/]+/\.ssh/[^ ]+`, `*.pem`, `*.priv`, `id_(rsa|ed25519|ecdsa)` | `${KEY_PATH}` |
+| **SSH key contents** | `-----BEGIN [A-Z ]+ KEY-----` blocks | `<REDACTED-SSH-KEY>` |
+| **Resend API key** | `re_[A-Za-z0-9_]+` | `<REDACTED-RESEND-KEY>` |
+| **SendGrid API key** | `SG\.[A-Za-z0-9._-]+` | `<REDACTED-SENDGRID-KEY>` |
+| **OpenAI API key** | `sk-[A-Za-z0-9]{20,}` | `<REDACTED-OPENAI-KEY>` |
+| **Anthropic API key** | `sk-ant-[A-Za-z0-9_-]{20,}` | `<REDACTED-ANTHROPIC-KEY>` |
+| **Slack tokens** | `xox[bp]-[A-Za-z0-9-]+` | `<REDACTED-SLACK-TOKEN>` |
+| **GitHub PAT** | `ghp_[A-Za-z0-9]{36}` / `github_pat_[A-Za-z0-9_]+` | `<REDACTED-GH-PAT>` |
+| **AWS access key ID** | `AKIA[0-9A-Z]{16}` | `<REDACTED-AWS-KEY>` |
+| **AWS secret key** | After `aws_secret_access_key`, 40-char base64 | `<REDACTED-AWS-SECRET>` |
+| **AWS account ID** | 12 consecutive digits in AWS context (ARN, account-id field) | `${AWS_ACCOUNT}` |
+| **AWS profile name** | Whatever the user collected as `aws_profile` during inputs | `${AWS_PROFILE}` |
+| **GCP service-account JSON** | `"type": "service_account"` blocks | `<REDACTED-GCP-SA>` |
+| **Generic Bearer token** | `Bearer [A-Za-z0-9._~+/=-]{20,}` | `<REDACTED-BEARER>` |
+| **Email addresses** | RFC-822 pattern; especially the LE email + SMTP from-address + any user identity email | `${EMAIL}` |
+| **State-file contents** | Anything from `~/.open-forge/deployments/<name>.yaml` raw | Reference by deployment name only, never paste contents |
+| **MySQL/Postgres password** | After `password=` / `--password ` / `IDENTIFIED BY ` | `<REDACTED-DB-PASSWORD>` |
+| **OAuth client secrets** | After `client_secret` / `CLIENT_SECRET` | `<REDACTED-CLIENT-SECRET>` |
+| **Random bytes from `openssl rand -hex N`** that the user generated as a secret | Long hex strings used as secrets | `<REDACTED-RANDOM-SECRET>` |
+
+### Manual review pass (after regex)
+
+After regex-based sanitization, do a final read-through looking for:
+
+- **Hostnames in URL paths** that contain the user's domain (sed/regex may have missed embedded URLs).
+- **Username conventions** that are personally identifiable (e.g. `qi-experiment` as an AWS profile).
+- **Stack-trace lines** containing absolute filesystem paths (`/home/<user>/...`).
+- **Anything pasted from the user's clipboard or env vars** that wasn't covered by the strip-list.
+
+If you can't confidently classify something as safe, **redact it** — the user's final review is a safety net, not the only line of defense.
+
+### What you may keep
+
+| Class | OK to keep | Why |
+|---|---|---|
+| Recipe filenames (`ghost.md`, `openclaw.md`) | ✅ | Public; needed for context |
+| Plugin version (`0.20.0`) | ✅ | Public; needed for triage |
+| Combo names (`Ghost-CLI on Ubuntu`, `DigitalOcean droplet`) | ✅ | Public; needed for context |
+| Generic error messages quoted from upstream tools | ⚠️ | OK if no identifiers; redact paths and IPs from stack traces |
+| `${VAR}` placeholders | ✅ | These are the redactions; they're fine |
+| Public repo URLs (upstream docs you're proposing to add) | ✅ | Public |
+
+---
+
+## Draft templates
+
+Each template renders into the matching `.github/ISSUE_TEMPLATE/*.yml` form. The structure mirrors the form fields so the user pastes the body and the form auto-validates the sanitization checkboxes.
+
+### Channel 1 — recipe feedback (default at end of deploy)
+
+```markdown
+**Recipe**: <recipe-filename>
+**Combo**: <infra adapter> / <runtime>
+**Plugin version**: <version-from-plugin.json>
+**Outcome**: <one-of: Deploy succeeded with notes / Deploy succeeded after retries / Deploy failed; recovered manually / Deploy failed; abandoned / Recipe was outdated>
+
+## What the recipe missed
+
+<Concrete description: what surprised you, what failed, what required manual intervention. Sanitized.>
+
+## Suggested edit (optional — diff format preferred)
+
+```diff
+@@ <section header from the recipe> @@
+- <line that was wrong / missing>
++ <line that should be there>
+```
+
+## Sanitization confirmation
+- [x] All domains, IP addresses, SSH key paths, API keys, AWS account IDs, and email addresses stripped from this issue body.
+- [x] I understand this issue is public and permanent. I grant a non-revocable license to use this content in the open-forge recipe.
+```
+
+### Channel 2 — software nomination (Tier 2 → Tier 1)
+
+```markdown
+**Software name**: <project>
+**Upstream repo**: <github URL>
+**Upstream install-method index**: <docs / repo path / wiki URL>
+**Intended deploy combo**: <infra> / <runtime>
+
+## Why Tier 1?
+
+<What's painful about this software's install that compounds across deploys?
+Per the demand-driven graduation criteria in CLAUDE.md, a Tier 1 recipe earns
+its keep when the captured tribal knowledge saves the next user real pain.>
+
+## In-scope check (per CLAUDE.md § Is this software in scope?)
+
+This software is: <one-of: deployable service / static-site generator / AI inference server / CI runner / storage backend / not sure>
+
+## Confirmation
+- [x] I have read the *Is this software in scope?* and *Demand-driven graduation criteria* sections in CLAUDE.md.
+- [x] This software has at least one upstream-documented install method or canonical install artifact in-repo.
+```
+
+### Channel 3 — method proposal
+
+```markdown
+**Recipe to extend**: <recipe-filename>
+**Method name**: <e.g. "Snap package", "Helm chart">
+**Upstream URL documenting this method**: <URL>
+**Source type**: <First-party — published by upstream / Community-maintained>
+
+## Canonical install command(s)
+
+```bash
+<paste verbatim from upstream>
+```
+
+## Why this method matters
+
+<When would a user pick this method over the existing options in the recipe?>
+
+## Confirmation
+- [x] I have verified the upstream URL above shows this install method on the current upstream version.
+- [x] No credentials, IPs, or other identifiers in this issue.
+```
+
+---
+
+## Submission paths (try in order)
+
+The skill never opens a browser silently or POSTs without explicit user confirmation. Three submission paths in priority order:
+
+### 1. `gh` CLI (preferred when available)
+
+```bash
+# Check if gh is authenticated for the right account
+gh auth status
+
+# If yes, submit
+gh issue create \
+  --repo zhangqi444/open-forge \
+  --title "<title from template>" \
+  --body-file /tmp/feedback-draft.md \
+  --label recipe-feedback,recipe:<name>
+```
+
+Strengths: works headlessly in chat; respects user's existing GitHub auth.
+
+Caveats: user must have `gh` installed + authenticated. If `gh auth status` errors, fall through to path 2.
+
+### 2. GitHub MCP server (if available)
+
+If `mcp__github__issue_write` is available in the tool list, use it:
+
+```
+mcp__github__issue_write({
+  method: "create",
+  owner: "zhangqi444",
+  repo: "open-forge",
+  title: "<title>",
+  body: "<full body>",
+  labels: ["recipe-feedback", "recipe:<name>"]
+})
+```
+
+Strengths: no `gh` install needed; uses the MCP server's auth.
+
+Caveats: only works if the MCP server is configured with appropriate scopes.
+
+### 3. Prefilled URL (always-available fallback)
+
+When neither `gh` nor the GitHub MCP works, generate a URL the user opens in a browser:
+
+```
+https://github.com/zhangqi444/open-forge/issues/new?template=recipe-feedback.yml&title=<URL-encoded-title>&body=<URL-encoded-body>
+```
+
+Print the URL in chat with the instruction:
+
+> *"I can't post for you in this environment. Open this URL in a browser, review one more time, and click Submit:*
+>
+> *<URL>*
+>
+> *The form has the same sanitization checkboxes from the template — they'll be checked based on what you've already confirmed in chat."*
+
+URL-encode the title + body. GitHub URL length limit is ~8 KB total; if the body is longer, truncate the body and put the rest in a `<details>` block (or warn the user to paste it manually).
+
+---
+
+## Liability + license boilerplate (paste at end of every issue body)
+
+Append this exact block as the final paragraph of every issue body before submission:
+
+```markdown
+---
+
+> By submitting this issue, I grant a non-revocable license to the open-forge project to use this content in recipes and documentation. The open-forge project bears no liability for my choice to share. I have reviewed the issue body for credentials and personal information per CLAUDE.md § *Sanitization principles*.
+```
+
+This is in addition to the checkboxes in the issue-template form — it's an extra paper trail in the issue body itself.
+
+---
+
+## When the deploy aborted before completion
+
+If the user wants to file feedback about a deploy that failed mid-phase (e.g. preflight passed, provisioning failed at the security-group step), the `Outcome` field should be *"Deploy failed; abandoned"* and the body should include:
+
+- Which phase failed.
+- What the error was (sanitized — strip stack traces of paths/IPs).
+- What workaround the user attempted (if any).
+- Whether the user wants the recipe edited to handle this case, or whether they think it was an upstream / cloud-account issue (out of recipe scope).
+
+These are often the highest-value feedback issues — they catch recipes that succeed in the maintainer's environment but fail in others.
+
+---
+
+## Failure modes to watch for
+
+- **User says "post it" too quickly.** Respect their consent, but flag any line you weren't 100% sure about: *"Posting now. One last thing — line 14 mentions a username `qi-experiment` that might be your AWS profile name. Was that intentional?"*
+- **Drafts that quote upstream error messages with embedded user data.** Common with Bitnami's `bncert-tool` output, AWS CLI errors quoting account IDs in ARNs.
+- **State-file leaks.** If the user asks Claude to read `~/.open-forge/deployments/<name>.yaml` while drafting, do **not** paste contents — reference by deployment name only.
+- **Multiple rapid yes-clicks.** If the user says "yes, yes, yes, post" to skip the review, slow down: re-show the draft once, get confirmation, then submit. Speed is not a user safety feature.
