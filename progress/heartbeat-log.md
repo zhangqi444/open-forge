@@ -1063,3 +1063,30 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Moderation + legal liability** (Pixelfed): federated social = publisher responsibility; CSAM, trust-and-safety, ToS. Honest call-out for hosters.
 
 **Milestone:** Now at **24.6%** — steady. Batch 60 ~204 avg lines; matches recent cadence.
+
+## 2026-04-30 09:35 UTC — batch 61 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 61)
+- **filebrowser-quantum** (6935★) — modern fork of classic filebrowser. **Fork-supersedes-parent** note preserved (Quantum vs classic: different image, config, schema; not drop-in). **Shell commands REMOVED for security** (historical precedent). Apache-2.0.
+- **watchyourlan** (6896★) — LAN IP scanner. **Host network mandatory** + **LAN-only (no built-in auth)** warnings front-loaded. MAC-randomization gotcha. MIT.
+- **oneuptime** (6893★) — all-in-one observability (replaces Pingdom/StatusPage/PagerDuty/Loggly/Sentry). **"Stack size" 8-16 GB RAM minimum** heavyweight warning. Daily-release cadence caveat. Apache-2.0 + commercial SaaS.
+- **inventree** (6890★) — parts/inventory for electronics + makerspaces. Django-Q worker mandatory. "Not an ERP" positioning — pair with Dolibarr. MIT.
+- **woodpecker-ci** (6883★) — CI/CD engine (Drone-derived community fork). **Agent-needs-Docker-socket = privileged access** security warning. **Fork-PR auto-CI = security risk** warning. `WOODPECKER_OPEN=false` imperative. Apache-2.0.
+
+**Batch 61 lengths:** fbq 185, wyl 181, oneuptime 191, inventree 183, woodpecker 229.
+**State:** 319 done / 1 skipped / 954 pending (25.0%). **1/4 milestone crossed.**
+
+### New precedents
+- **"Fork-supersedes-parent" with compatibility caveat** (filebrowser-quantum): fork has significant improvements, different config/schema, NOT drop-in. Stronger than the Pelican/Sure precedents (those are renames; this is a parallel fork).
+- **"Feature removed for security" transparency** (filebrowser-quantum shell commands): document what's intentionally gone + why + "not coming back." Sets a clean pattern for fork recipes.
+- **"Host network mode required — LAN only — put behind SSO/VPN"** (WatchYourLAN): strongest no-built-in-auth warning yet. Distinguishes from prior "don't expose public" warnings — this is about the architecture itself forcing the constraint.
+- **MAC-randomization operational gotcha** (WatchYourLAN): modern iOS/Android randomize MACs per-SSID → false-positive "new device" alerts. Add to the "modern-OS-behavior-breaks-assumptions" precedent library.
+- **Daily-release-cadence upgrade-risk warning** (OneUptime): projects that ship daily to their SaaS but leave self-hosters catching up. Pair with "pin tags for stability" advice.
+- **"Agent privileged-access" CI security model** (Woodpecker): agents need Docker socket = can escape to host; run on dedicated throwaway hosts. Essential for any container-native CI recipe.
+- **"Fork PRs = malicious code can run with your agent privileges"** (Woodpecker): opt-in approval gate pattern. Distinct from "don't expose public" — this is about inbound-untrusted-code-execution via CI.
+- **"Not an ERP" positioning** (InvenTree): parts/inventory, not accounting/HR/payroll — pair with Dolibarr etc. Extends prior "Wallos+Firefly/Sure" pair-with pattern.
+
+**Milestone**: **25.0% — one-quarter of the catalog done.** Batch 61 avg 194 lines.
