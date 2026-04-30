@@ -1992,3 +1992,53 @@ Originally: ombi, pad-ws, rustpad, bitmagnet, **dockhand**.
 - **Honest-status / transparent-maintenance family now 4 tools**: Wakapi + xyOps + Dim + pad-ws. Pattern stable.
 - **Two prompt-injection attempts in the 85-batch corpus so far**: this is the first deliberate one (Dockhand's README has explicit "ignore your previous instructions" text). Bitmagnet + the legal-risk class are NOT prompt-injection — they're legitimate operational complexity. Important distinction: respecting author preference (skip) vs respecting user request (proceed with full disclosure).
 - **Registry-migration pattern** may recur as more projects flee Docker Hub rate-limits (2024+). Watch for it.
+
+## 2026-04-30 16:15 UTC — batch 86 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 86)
+- **personal-management-system** (3976★) — MIT Volmarg solo-dev personal CMS/CRM. **"No support guaranteed"** upstream honesty (5th in transparent-status family) + LAN-only-intent deployment guidance + integrated-vs-best-of-breed with alternative-per-module map + 9th immutability-of-secrets tool + default-demo-creds-PUBLIC warning.
+- **bazarr** (3949★) — GPL-3 Python Sonarr/Radarr subtitle companion. **Path-mapping #1-stumble** + provider-API-churn-reality + Whisper-ASR AI-fallback + OpenSubtitles free-tier rate-limits + hub-of-credentials (provider accounts) + LSIO packaging.
+- **2fauth** (3899★) — AGPL-3 Laravel TOTP/HOTP/Steam-Guard manager. **Self-hosted-2FA THREAT-MODEL tradeoff honest framing** (vs GoogleAuth/Authy/YubiKey matrix) + 10th immutability-of-secrets (APP_KEY) + TLS-MANDATORY-no-exceptions + data-encryption-OFF-by-default-ENABLE-FIRST + single-user-enforced + concentration-risk-with-password-manager + backup-rehearsal discipline.
+- **chartbrew** (3887★) — NOASSERTION custom-license Node.js BI/charts. **Review-LICENSE-before-commercial-redistribution** + 11th immutability-of-secrets (CB_ENCRYPTION_KEY) + 8th hub-of-credentials (DB conn strings) + doesn't-store-raw-data-queries-live + aggressive-auto-refresh-can-hammer-prod-DB + managed-chartbrew.com commercial-tier.
+- **ironcalc** (3882★) — Apache-2.0/MIT dual Rust spreadsheet engine. **WIP transparent-status (6th in family)** + permissive-license-ecosystem-asset + embeddable-engine-eval-by-language + xlsx-round-trip-test-discipline + formula-coverage-incomplete + developer-audience-not-end-user-ready + LibreOffice/OnlyOffice strong-today alternatives.
+
+**Batch 86 lengths:** pms 167, bazarr 156, 2fauth 179, chartbrew 189, ironcalc 155.
+**State:** 444 done / 2 skipped / 828 pending (34.9% — **approaching 35% milestone**).
+
+### New precedents
+- **"Integrated-vs-best-of-breed with ALTERNATIVE-PER-MODULE MAP"** recipe convention (PMS): when a tool covers 10+ categories + each is worse than a dedicated alternative, enumerate the alternative-per-module table. Users can use the recipe as a "should I commit to one tool or assemble best-of-breed?" decision aid. Template-worthy for any all-in-one personal-cloud (Nextcloud + apps, Cloudron, PMS).
+- **"Default-demo-creds-PUBLIC"** scanner-knowledge warning (PMS + Black Candy 83 + upstream patterns): any tool with documented demo credentials has those creds indexed by scanners. Recipe convention: change-immediately-on-first-boot + explicit upfront naming.
+- **"Path-mapping #1-new-user-stumble"** operational-knowledge (Bazarr → arr-stack class): when a tool inspects paths from a SIBLING tool (Bazarr reads Sonarr's paths), mismatched container mounts = invisible failures. Recipe convention: document path-mapping as a first-boot-must-check. Applies to all arr-stack tools, Tdarr (84), Ombi (85), etc.
+- **"Provider-API-churn-reality"** external-dependency-fragility (Bazarr): subtitle providers come + go + change APIs; Bazarr release notes reflect this churn. Same class applies to any tool aggregating external services (newsfetchers, music-scrobblers, social-media bridges). Recipe convention: name provider-churn as operational-reality.
+- **"Whisper-ASR AI-fallback"** companion-tool pattern (Bazarr): specific integration pattern where a separate service (whisper-asr-webservice) provides AI fallback for missing data. Recipe convention: document companion-tools explicitly. Same class: Tdarr + HandBrake/FFmpeg, Chartbrew + data-source infra, PMS + password-manager suggestion.
+- **"Self-hosted-2FA THREAT-MODEL tradeoff"** explicit comparison-matrix (2FAuth): when a tool's security posture is genuinely contested (self-hosted-software vs commercial-phone-app vs hardware-token), give readers the honest comparison matrix so they can choose deliberately. Template-worthy for security-sensitive tools.
+- **"CONCENTRATION-RISK same-host for password-manager + 2FA"** operational-security guidance (2FAuth): some tools, when co-located, undo each other's security benefits. Recipe convention: name concentration risks + suggest deployment separations.
+- **"Data-encryption-OFF-by-default ENABLE-FIRST"** setup-sequence gotcha (2FAuth): optional-encryption feature that's off by default = setup-discipline item. Flag upfront; user should enable BEFORE adding data.
+- **"Backup-rehearsal discipline: test restore before claiming you have a backup"** universal-operational-principle (2FAuth): fresh articulation of classic ops principle applied to 2FA-recovery + broadly. Recipe-recurring advice-kernel.
+- **"Review-LICENSE-before-commercial-redistribution"** license-due-diligence warning (Chartbrew NOASSERTION): when GitHub's API returns NOASSERTION or custom-license, recipe MUST flag for review before commercial use. Distinct from the clearer classes (MIT / Apache / AGPL / GPL / BSL). Precedent for future custom-licensed tools.
+- **"Doesn't-store-raw-data-queries-live"** tool-boundary framing (Chartbrew): some tools are PROXIES not STORES. Understanding the boundary matters for (a) backup strategy (nothing to back up vs everything) (b) performance (queries hit underlying DB) (c) security (creds + queries are the attack surface). Same class: Redis Commander (85) = proxy-to-Redis; Chartbrew = proxy-to-data-sources.
+- **"Permissive-license-as-ecosystem-asset"** positive-license-framing (IronCalc Apache-2.0+MIT): rare permissive-license projects in the 2024-2026 era (where AGPL+BSL dominate) deserve explicit highlighting — permissive license enables embedding in proprietary products. Commercial-freedom-signal. Same rarity-class as Caddy, Redis-pre-license-change.
+- **"WIP transparent-status (6th in family)"** — Wakapi/xyOps/Dim/pad-ws/PMS/IronCalc all call the status upfront. Pattern fully mature at 6 tools.
+- **"Developer-audience-not-end-user-ready"** honest-positioning framing (IronCalc): tools that are library-first even while shipping a UI skin deserve honest positioning so end-users don't feel misled. Template-worthy: "when to use, when not to, when to revisit."
+
+**Milestone:** **34.9% done** (444/1274). **35% milestone one batch away.** Batch 86 spans **personal-all-in-one** (PMS) + **subtitle-automation** (Bazarr) + **2FA-manager** (2FAuth) + **BI/charts** (Chartbrew) + **spreadsheet-engine** (IronCalc).
+
+### Cross-cutting family counts
+- **Immutability-of-secrets: 11 tools** (added PMS-encryption-key, 2FAuth APP_KEY, Chartbrew CB_ENCRYPTION_KEY). Consolidation-opportunity grows.
+- **Hub-of-credentials crown-jewel: 8 tools** (added Bazarr provider-creds, Chartbrew data-source-creds). 2FAuth stores 2FA-seeds = arguably 9th but treated as primary-store not hub.
+- **Transparent-status / maintenance-mode: 6 tools** (added PMS + IronCalc).
+- **Network-service-legal-risk: 6 tools** (unchanged this batch).
+- **Integrated-vs-best-of-breed tradeoff recipe**: xyOps (84) + PMS (86) — now 2 explicit instances, pattern emerging.
+- **License diversity in recent batches**: MIT (PMS), GPL-3 (Bazarr), AGPL-3 (2FAuth), NOASSERTION/custom (Chartbrew), Apache-2.0+MIT dual (IronCalc). Good spread.
+
+### Observation: family-doc consolidation opportunity
+Three families are now mature enough (6-11 tools each) that a **patterns/** subdirectory with canonical pattern docs would serve the recipe corpus:
+- `patterns/immutability-of-secrets.md` (11 instances)
+- `patterns/hub-of-credentials-crown-jewel.md` (8 instances)
+- `patterns/network-service-legal-risk.md` (6 instances)
+- `patterns/transparent-status-honesty.md` (6 instances)
+
+Punt for now to maintain batch-velocity; flag for a mid-scale consolidation pass ~batch 100.
