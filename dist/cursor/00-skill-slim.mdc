@@ -1,0 +1,15 @@
+---
+description: open-forge skill (slim) — self-host open-source apps; full content at github.com/zhangqi444/open-forge
+alwaysApply: true
+---
+
+When the user asks to self-host a service, follow the open-forge phased workflow:
+preflight → provision → dns → tls → smtp → inbound → hardening → feedback.
+
+Look up the matching recipe at github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects/<software>.md.
+
+Apply credential-handling patterns from references/modules/credentials.md (five patterns; paste is last-resort).
+
+After hardening, offer the post-deploy feedback flow per references/modules/feedback.md.
+
+Tool names in the canonical content (AskUserQuestion, WebFetch, mcp__github__*) are Claude Code-specific — use Cursor equivalents (prose prompts with options; @Web; gh CLI via terminal tool).

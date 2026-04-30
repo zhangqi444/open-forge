@@ -30,12 +30,20 @@
 
 ## Install
 
-In Claude Code:
+In **Claude Code**:
 
 ```
 /plugin marketplace add zhangqi444/open-forge
 /plugin install open-forge@open-forge
 ```
+
+**Other AI coding tools** — Codex (ChatGPT / CLI), Cursor, Aider, Continue.dev, or any tools-using LLM — see [`docs/platforms/`](docs/platforms/):
+
+- [Codex](docs/platforms/codex.md) — system-prompt embedding or workspace files
+- [Cursor](docs/platforms/cursor.md) — `.cursor/rules/` bundle
+- [Aider](docs/platforms/aider.md) — `--read` files + `CONVENTIONS.md`
+- [Continue.dev](docs/platforms/continue.md) — context provider + slash command
+- [Generic agents](docs/platforms/generic.md) — any LLM that can read files + run shell commands
 
 Then say what you want to deploy:
 
