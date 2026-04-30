@@ -2536,3 +2536,77 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   17. `patterns/data-collection-tool-regulatory-framework.md` — NEW
   18. `patterns/rebrand-preservation.md` — NEW
 - Current batch shipped: **5 recipes, batch 95 complete, 489 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 18:50 UTC — batch 96 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 96)
+- **converse** (3245★) — MPL-2 XMPP web-client (client-only; pairs with Prosody/ejabberd). **5th stateless-tool-rarity** + 22nd institutional-stewardship (sole-founder-with-mature-community sub-tier) + 26th transparent-maintenance + 15th pure-donation/community-hybrid (OpenCollective+consulting). **NEW: "client-only/needs-server" recipe convention** (applicable also to Gajim, Element-client, IRC-clients). **NEW: "E2E-messaging-tools-invite-nation-state-attention"** operational-security framing. 2nd Weblate-translations tool this batch (pattern).
+- **kitchenowl** (3232★) — AGPL-3 Flutter grocery/recipe/meal/expense household app. 46th hub-of-credentials LIGHT + 31st immutability-of-secrets (JWT_SECRET_KEY) + 14th sole-maintainer-with-community (Tom Bursch) + 27th transparent-maintenance + F-Droid-available OSS-rigor-signal. Reinforces DV-threat-model (SparkyFitness 94, Ryot 95) + upstream-disclosed "still-in-development" status. No commercial-tier = sustainability-risk flag.
+- **speaches** (3221★) — MIT "Ollama for speech" OpenAI-API-compat STT+TTS+translation server (faster-whisper + piper + kokoro). **6th stateless-tool-rarity** (OpenSpeedTest 91, Moodist 93, dashdot 93, Redlib 95, Converse 96, Speaches 96) — pattern very-solidified. **NEW: "AI-model-serving-tool" category** (Ollama, LocalAI, vLLM, text-generation-webui, ComfyUI, Speaches) — common gotchas pattern. **NEW: "model-license-audit" recipe convention** (Whisper-OpenAI + Piper-MIT + Kokoro-MIT-unusual). **NEW: "open-access-GPU-attack"** risk framing. 28th transparent-maintenance. 23rd institutional-stewardship (sole-maintainer-emerging).
+- **dispatcharr** (3205★) — AGPL-3 IPTV-stream/EPG/VOD management; Python/Django+React; HDHomeRun emulation. 47th hub-of-credentials Tier 2 + 32nd immutability-of-secrets (Django SECRET_KEY) + **15th network-service-legal-risk** (**NEW: "IPTV-piracy-conduit-risk" sub-family** distinct from *arr-torrent-piracy — 7th sub-family) + 3rd web-exposed-shell-exec-gateway-adjacent (FFmpeg args; weaker variant than OliveTin/Dagu) + 24th institutional-stewardship (transitional-from-sole-maintainer-to-team — joins Kometa 95) + 29th transparent-maintenance. **NEW: "VPN-sidecar pattern"** recipe convention (Gluetun network_mode: "service:vpn" pattern widely applicable to *arr-family). Mentions fork-after-abandonment lineage (Threadfin ← xTeVe, reinforces Redlib 95 pattern).
+- **ergo** (3192★) — MIT Go IRC server (formerly Oragono, ancestor Ergonomadic). Integrated services+bouncer+IRCv3. 48th hub-of-credentials Tier 2 (bcrypt-hashed!) + **3rd rebrand-preservation pattern** (Ergonomadic→Oragono→Ergo; joins Lunar 92, Kometa 95) + **NEW: "zero-downtime-config-change / rehashable-config"** recipe convention (applicable to nginx, haproxy, mature-server-tools) + **NEW: "modern-cryptography-hygiene signal"** (bcrypt — transparent-maintenance sub-signal) + 25th institutional-stewardship (transitional-from-sole-maintainer-to-team — 3rd this cluster: Kometa 95 + Dispatcharr 96 + Ergo 96) + 15th sole-maintainer-with-community + 30th transparent-maintenance.
+
+**Batch 96 lengths:** converse 212, kitchenowl 173, speaches 195, dispatcharr 192, ergo 201.
+**State:** 494 done / 2 skipped / 778 pending — **38.8% done.**
+
+### New precedents
+- **"Client-only / needs-server" recipe convention** (Converse): tools that are CLIENTS and require a separately-deployed server. Recipe section: dedicated "Compatible servers" + "Converse is stateless; pair with Prosody/ejabberd". Applicable to: Converse, Gajim (XMPP client), Element (Matrix client), IRC clients, email clients, etc. Recipe convention: flag "client-only" in description + architecture-in-one-minute.
+- **"E2E-messaging-tools-invite-nation-state-attention"** operational-security framing (Converse): E2E-capable messaging (OMEMO/XMPP + Matrix + Signal-compat) tools may face nation-state adversaries. Recipe convention: include operational-security callout for affected tools. Applicable to: Converse (OMEMO), Matrix/Element/Synapse (future), Rocket.Chat, Session, Briar.
+- **"AI-model-serving-tool" category** (Speaches — 1st named; retroactively applies to LocalAI + Ollama + vLLM + ComfyUI + Automatic1111): common gotchas including model-license-inheritance, GPU-requirements, model-cache-sizing, OpenAI-compat-endpoints, public-exposure-GPU-abuse-risk, newer-project-velocity, etc. Recipe convention: category naming for cross-linking.
+- **"Model-license-audit" recipe convention** (Speaches): when a tool serves external AI models, explicitly audit model licenses. Examples: Whisper (OpenAI research license vs commercial-ambiguous), Piper voices (MIT typically), Kokoro (MIT — unusual generous), Llama (Meta license terms), most image-gen models (CreativeML-OpenRAIL-M). Applicable to: Speaches, LocalAI, Ollama, text-generation-webui, ComfyUI, Automatic1111.
+- **"Open-access-GPU-attack"** risk framing (Speaches): public-exposure of compute-heavy AI-serving tools invites abuse — drain your GPU cycles / cloud costs. Mitigation patterns standard. Applicable to: all AI-model-serving-tool category.
+- **"IPTV-piracy-conduit-risk" sub-family** of network-service-legal-risk (Dispatcharr): distinct from *arr-torrent-piracy (Readarr 93) — IPTV providers resell (legally or illegally) live streams; users' choice of provider determines legality. 7th sub-family of network-service-legal-risk. Applicable to: Dispatcharr, xTeVe, Threadfin, possibly TVHeadend + Jellyfin-IPTV-features.
+- **"VPN-sidecar pattern"** recipe convention (Dispatcharr): `network_mode: "service:vpn"` with Gluetun sidecar routes all egress through VPN. Common for *arr-family + IPTV tools + torrent clients. Applicable to: Dispatcharr, Sonarr/Radarr/Lidarr/Prowlarr, qBittorrent, Transmission, rtorrent, Deluge.
+- **"Zero-downtime-config-change / rehashable-config"** recipe convention (Ergo): when a tool supports config-reload without restart, highlight as operational-plus. Applicable to: Ergo (SIGUSR1), nginx (reload), haproxy, Prosody, ejabberd (subset), Postgres (partial), others.
+- **"Modern-cryptography-hygiene signal"** transparent-maintenance sub-signal (Ergo): explicit use of bcrypt / argon2 / modern KDFs in place of MD5/SHA1/plaintext = positive signal. Applicable to: new recipes should note when tools demonstrate sound cryptographic choices.
+- **Transitional-from-sole-maintainer-to-team institutional-stewardship sub-tier solidified at 3 tools** (Kometa 95, Dispatcharr 96, Ergo 96) — pattern now pattern-name-worthy + recipe-common.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 48 tools** (+ kitchenowl LIGHT, dispatcharr Tier 2, ergo Tier 2; speaches + converse contributed stateless-rarity instead)
+  - **CROWN-JEWEL Tier 1: 8 tools** (unchanged)
+  - **LIFELOG sub-family: 1 tool**
+  - **Regulatory sub-families: 4** (financial, research, healthcare, LIFELOG)
+- **Immutability-of-secrets: 32 tools** (+ kitchenowl, dispatcharr)
+- **Stateless-tool-rarity: 6 tools** (+ Converse, + Speaches) — **PATTERN FULLY SOLIDIFIED**; family-doc MANDATORY
+- **Transparent-maintenance: 30 tools** (+ 5)
+- **Institutional-stewardship: 25 tools** (+ converse, speaches, dispatcharr, ergo; + kitchenowl implicit sole-maintainer)
+- **Network-service-legal-risk: 15 tools** (+ Dispatcharr IPTV-piracy-conduit-risk — 7th sub-family)
+- **Sole-maintainer-with-commercial-Cloud-funding: 3 tools** (unchanged batch)
+- **Sole-maintainer-with-community: 15 tools** (+ Kitchenowl Tom Bursch, + Ergo slingamn)
+- **Pure-donation/community: 16 tools** (+ Converse OpenCollective-hybrid)
+- **Rebrand-preservation pattern: 3 tools** (Lunar 92, Kometa 95, Ergo 96)
+- **Transitional-from-sole-maintainer-to-team: 3 tools** (Kometa 95, Dispatcharr 96, Ergo 96) — sub-tier solidified
+- **Private-front-end ecosystem: 1 tool named** (unchanged)
+- **Web-exposed-shell-exec-gateway: 3 tools** (OliveTin 91, Dagu 94, Dispatcharr 96 — weaker variant)
+- **AI-model-serving-tool category: 1 tool named (Speaches)** — retroactively applies to LocalAI/Ollama/vLLM
+
+### Notes
+- **38.8% done.** Batch 100 is now 4 batches (20 recipes) away. Pattern-consolidation pass imminent. Updated consolidation plan now:
+  1. `patterns/hub-of-credentials.md` — 48 tools, 8-tool CROWN-JEWEL Tier 1 + 8+ subtypes
+  2. `patterns/immutability-of-secrets.md` — 32 tools
+  3. `patterns/network-service-legal-risk.md` — 7 sub-families now
+  4. `patterns/transparent-maintenance.md` — 30 tools + modern-crypto-hygiene signal
+  5. `patterns/commercial-tier-taxonomy.md`
+  6. `patterns/license-taxonomy.md`
+  7. `patterns/institutional-stewardship.md` — 5 sub-tiers (incl transitional-from-sole-maintainer + sole-maintainer-with-commercial-Cloud)
+  8. `patterns/stateless-tool-rarity.md` — 6-tool pattern — solidified
+  9. `patterns/regulatory-crown-jewel-sub-families.md` — 4 named sub-families
+  10. `patterns/backup-tool-recipe-template.md`
+  11. `patterns/network-recon-risk.md`
+  12. `patterns/retired-but-cataloged-status-class.md`
+  13. `patterns/web-exposed-shell-exec-gateway.md` — 3 tools
+  14. `patterns/ssrf-via-user-url.md`
+  15. `patterns/wellness-ed-dv-threat-models.md`
+  16. `patterns/private-front-end-ecosystem.md`
+  17. `patterns/data-collection-tool-regulatory-framework.md`
+  18. `patterns/rebrand-preservation.md` — 3 tools
+  19. `patterns/ai-model-serving-tool-category.md` — NEW
+  20. `patterns/vpn-sidecar-pattern.md` — NEW
+  21. `patterns/client-only-needs-server-convention.md` — NEW
+  22. `patterns/e2e-messaging-nation-state-threat-model.md` — NEW
+  23. `patterns/zero-downtime-config-reload.md` — NEW
+  24. `patterns/modern-cryptography-hygiene-signal.md` — NEW sub-signal under transparent-maintenance
+- Current batch shipped: **5 recipes, batch 96 complete, 494 cumulative, state file updated, log appended, push imminent.**
