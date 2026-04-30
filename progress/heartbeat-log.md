@@ -903,3 +903,23 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Dual-product brand disambiguation**: ownCloud Core 10.x vs oCIS vs Nextcloud fork — pattern applies to similarly-complex brands.
 - **Fork-supersedes-parent advice**: Pterodactyl → Pelican Panel; pattern for "recommend successor but document original."
 - **Legal-caveat for copyrighted-content tools**: RomM (ROMs) extends the precedent set by Piped (alt-YouTube), Invidious, etc.
+
+## 2026-04-30 07:50 UTC — batch 54 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 54)
+- **heyform** (8695★) — open-source form builder (Typeform-style). MongoDB not Postgres. GDPR/PII warning. Spam/CAPTCHA front-loaded. "Duo" founder-note preserved from README.
+- **tiddlywiki** (8589★) — **unique single-HTML-file wiki** architecture front-loaded. 20-year project. Dual-mode (single-file vs Node.js) explained. Save-in-browser-gotcha for Chrome/Safari. BSD-3-Clause. TiddlyWiki's README was HTML-encoded markup (TW auto-generated); fetched + parsed conceptually.
+- **solidtime** (8504★) — modern OSS time tracker. "AI-slop PRs banned" maintainer policy front-loaded. Postgres preferred over MySQL. No-invoicing-built-in caveat. Comparison to Kimai/Clockify/Toggl. AGPL-3.0.
+- **step-ca** (8444★) — private CA-as-a-Go-binary. "Back up ROOT + INTERMEDIATE keys" imperative front-loaded. ACMEv2/SSH CA/OIDC explained. Short-lived-cert philosophy. Homelab HTTPS use case. Vault + cert-manager positioning.
+- **fluxer** (8389★) — Discord-alternative chat. **"DON'T SELF-HOST YET"** warning front-loaded (direct from upstream). Recipe catalogs + pivots to Revolt/Matrix/Rocket.Chat/Mattermost alternatives today. Written as "come back when refactor ships." Respects upstream's explicit request.
+
+**Batch 54 lengths:** heyform 205, tiddlywiki 225, solidtime 224, step-ca 240, fluxer 157.
+**State:** 284 done / 1 skipped / 989 pending (22.3%).
+
+### New precedents
+- **"Don't self-host yet" project pattern**: Fluxer — honestly catalog but redirect to ready alternatives. Pattern for future pre-self-hosting projects.
+- **Unique-architecture front-loading**: TiddlyWiki's single-HTML-file model deserves its own upfront explainer, not buried.
+- **Maintainer-policy quotes preserved verbatim**: Solidtime's AI-slop-PR ban, Fluxer's self-host-wait message — both from upstream README, treated as authoritative.
