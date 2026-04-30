@@ -1145,3 +1145,36 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Moving-target-API-compatibility" caveat** (Spacebar mimicking Discord's API): honest about the maintenance treadmill for API-clones. Useful for federation/compat recipes.
 
 **Milestone:** Approaching 26%. Avg batch length 191 lines.
+
+## 2026-04-30 10:20 UTC — batch 64 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 64)
+- **clamav** (6558★) — ubiquitous OSS AV engine. **Infrastructure-building-block framing** up front. RAM-footprint gotcha (1-2 GB resident). GPL-2.0.
+- **haproxy** (6503★) — industry-standard software LB. **"Always test config before reload"** imperative. Stateless-LB no-backup-needed clarity. GPL-2.0+.
+- **evcc** (6494★) — EV charge controller. **PV-surplus-charging use case** front-loaded. Sponsor-token model disclosure. Hardware compatibility caveats. MIT.
+- **tautulli** (6460★) — Plex analytics. **Plex-token-sensitivity** gotcha. PlexPy rename history. GPL-3.0.
+- **meshcentral** (6455★) — web-based RMM. **"Agent trust tied to server certificate"** DR warning. Domain-permanence + NewAccounts-disable + 2FA-mandatory hardening. Apache-2.0.
+
+**Batch 64 lengths:** clamav 182, haproxy 223, evcc 181, tautulli 168, meshcentral 212.
+**State:** 334 done / 1 skipped / 939 pending (26.2%).
+
+### New precedents
+- **Infrastructure-building-block framing** (ClamAV): distinct from "product" — articulate that the tool is a component for pipelines, not an end-user app. Lists downstream integrations (SpamAssassin, Amavis, Rspamd, Nextcloud AV, S3 scanners).
+- **"Always test config before reload — ALWAYS"** imperative (HAProxy): for text-config services with reload risk. Extends the `init check before restart` pattern.
+- **Stateless-service "no backup needed"** clarity (HAProxy): not every tool has state. Be honest when `tar czf config.tgz` is the entire backup strategy.
+- **RAM-footprint-is-significant** warning (ClamAV 1-2 GB resident for sig DB): when RAM is dominated by domain-specific state, call it out explicitly ("don't deploy on 512 MB VPS").
+- **Hardware-compatibility-list imperative** (evcc): for tools that talk to physical devices, point directly at the supported-devices list; warn before purchase.
+- **Sponsor-token model disclosure** (evcc): open-source tools with feature-gated sponsor tokens — free for personal, paid for some cloud integrations. New license-nuance category separate from community/premium splits.
+- **"Safety: tool commands physical high-current charging"** warning (evcc): IoT/industrial-control tools have physical consequences; test in low-stakes modes first; preserve hardware-level safety (RCD/contactor).
+- **Token-sensitivity-equals-password** warning (Tautulli Plex token): when a tool holds a high-privilege credential, frame it as "password-level sensitive" explicitly.
+- **"Agent trust tied to server certificate"** DR warning (MeshCentral): RMM/agent-based tools have a PKI root of trust — losing it = reinstall all agents. Extends the bastion break-glass-DR precedent from Warpgate.
+- **Agent-pins-FQDN domain permanence** (MeshCentral): like Pixelfed federation identity, RMM agents pin the server domain; rename = mass reinstall.
+- **Agent auto-update cadence caveat** (MeshCentral active release churn): canary-test before mass rollout — complements Daily-release-cadence warning (OneUptime).
+- **Remote-management legal/compliance** (MeshCentral ECPA/GDPR consent-to-monitor): when the tool enables monitoring of user machines, call out notice/consent requirements. Extends session-recording ethics from Warpgate.
+- **"Formerly-known-as" rename clarity** (Tautulli/PlexPy): matches Spacebar/Fosscord — same-project different-name history belongs in intro, not buried.
+- **Observability-gold callout** (HAProxy logs): for tools with rich built-in logging, explicitly celebrate + point at Loki/ELK integration.
+
+**Milestone:** 26.2% done. Averaging 193 lines/recipe this batch.
