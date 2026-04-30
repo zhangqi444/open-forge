@@ -868,3 +868,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 ### New README-case-variant found
 - **Heimdall**: upstream uses `readme.md` (lowercase) on master, no `README.md`. Added to the Komodo-style case-variant fallback pattern. Updated in-memory playbook.
+
+## 2026-04-30 07:20 UTC — batch 52 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 52)
+- **miniflux** (9133★) — single-Go-binary RSS reader, Postgres-only. Reeder + Fever/Google Reader API integration highlighted. `hstore` extension gotcha. `BASE_URL` importance front-loaded.
+- **bigbluebutton** (9096★) — OSS virtual classroom. **Ubuntu-only + bbb-install.sh** front-loaded (major constraint). Public IP + reverse DNS + UDP 16384-32768 required. Scaling via Scalelite documented. Classroom-vs-Jitsi positioning.
+- **prestashop** (9047★) — PHP e-commerce. **Post-install hardening checklist** front-loaded (delete install/, rename admin/, perms). **Paid-module economy warning** (breaking changes between majors break paid modules). OSL-3.0 core + AFL-3.0 modules license-transparency. EU VAT MOSS/OSS nuance. Positioned vs WooCommerce/Shopware.
+- **grocy** (8991★) — "ERP for your household." Default admin/admin warning. Data-entry reality-check front-loaded. Barcode Buddy companion documented. Tandoor/Mealie positioning (recipes only). OpenFoodFacts coverage caveat.
+- **octoprint** (8972★) — 3D printer web UI. OctoPi image as recommended install path. **"Do NOT port-forward publicly"** security front-loaded. Klipper+Mainsail positioning (pick the right tool). One-printer-per-instance constraint. Pi Zero W OOM gotcha. AGPL-3.0 + Patreon support note.
+
+**Batch 52 lengths:** miniflux 194, bigbluebutton 204, prestashop 228, grocy 200, octoprint 198.
+**State:** 274 done / 1 skipped / 999 pending (21.5%).
