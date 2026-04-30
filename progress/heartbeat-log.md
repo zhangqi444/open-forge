@@ -620,3 +620,13 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **cachet** (15017★) — Status-page system mid-transition between 2.x (stable, Docker-supported) and 3.x (rewrite on Laravel 11, no Docker yet). Recipe documents both paths honestly: 2.x compose for the deployable-today route, 3.x manual install for new deploys. Front-loads: `:latest`/`main` warnings from upstream, default `APP_KEY=${APP_KEY:-null}` session-invalidation trap, PHP 7.x EOL on 2.x, scheduler cron + queue worker requirements. Linked migration guide.
 
 **State:** 179 done / 1 skipped / 1094 pending (14.1%). Entering the 14k-star band next.
+
+## 2026-04-30 — batch 34 (5 recipes)
+
+- **caprover** (14993★) — self-hosted PaaS (Heroku alternative) on Docker Swarm. Architecture section: caprover/caprover is itself a container managing Swarm via mounted docker.sock. Front-loads: default password `captain42`, snap-Docker unsupported, port mappings are hardcoded (80/443/3000), Cloudflare proxy-mode breaks LE, Swarm is in maintenance mode = long-term risk. `/captain/` as single point of state.
+- **openproject** (14946★) — Rails PM suite, 9-container compose. Uses `opf/openproject-docker-compose` (stable/17 branch) NOT the dev compose at the root of opf/openproject. Hocuspocus service for collab editing (new in 17.x). Front-loads: upstream default `p4ssw0rd`, `SECRET_KEY_BASE` stability, Postgres default is still 13 (new installs should bump to 17 BEFORE first boot), 4GB RAM minimum.
+- **gotify** (14916★) — minimal push-notifications server (Go). SQLite default, App tokens for send / Client tokens for receive. Front-loads: default admin pw `admin` if `GOTIFY_DEFAULTUSER_PASS` not set, WebSocket reverse-proxy headers, single-instance no HA, message history unbounded. Linked ntfy/Apprise/Pushover as alternatives.
+- **onedev** (14896★) — Java git+CI+kanban+packages+AI-MCP all-in-one. Upstream develops at code.onedev.io (GitHub is mirror). 2-container compose (onedev + postgres:14). Front-loads: default password `changeit` in TWO places, docker.sock mount = host pwn risk, SSH on non-standard 6611, license changed to MIT in 2022. Alternatives: Gitea+Woodpecker, Forgejo, GitLab CE.
+- **freshrss** (14876★) — PHP RSS aggregator. Tiny (runs on Pi 1). Supports SQLite/Postgres/MySQL/MariaDB. Front-loads: `/data/` must NOT be web-exposed (Docker image handles this; manual installs must block), `CRON_MIN` empty = no polling, XPath scrapers are brittle, Fever/GReader/Nextcloud-News APIs for mobile apps. Linked Miniflux/TTRSS/Commafeed as alternatives.
+
+**State:** 184 done / 1 skipped / 1089 pending (14.4%). Crossed into the 14k-star band. Next: `vert` (14692★), `peertube` (14656★), `seafile` (14629★), then below 14500.
