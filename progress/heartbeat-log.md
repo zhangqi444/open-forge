@@ -2887,3 +2887,60 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
     6. `patterns/regulatory-crown-jewel-sub-families.md` (5 sub-families)
   - Total 6-10 docs for batch 100 with a clear "incremental consolidation" plan for later batches to add more.
 - Current batch shipped: **5 recipes, batch 99 complete, 509 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 19:42 UTC — batch 100 (5 recipes) — MILESTONE
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 100) — **🎉 BATCH 100 MILESTONE**
+- **gladys-assistant** (3050★) — Privacy-first smart-home Node.js. **NEW: "home-control-risk" sub-category** of hub-of-credentials (1st tool). **NEW family: "docker-socket-mount-privilege-escalation"** (Gladys 1st named; retroactively: Portainer, Watchtower, Dokku, etc.). 54th hub-of-credentials + 46th transparent-maintenance + 39th institutional-stewardship (founder-with-commercial-tier-funded-development = Plus service). **NEW commercial-tier sub-category: "aligned-optional-paid-SaaS-for-convenience"** (vs. feature-gating).
+- **tianji** (3033★) — Node.js all-in-one analytics+uptime+server-status. **25th network-service-legal-risk — 15th sub-family "analytics-tool-GDPR-compliance"** (Umami/Plausible/Matomo inheritance). 55th hub-of-credentials + 38th immutability-of-secrets + 47th transparent-maintenance + 40th institutional-stewardship. **NEW recipe convention: "OSS-deployment-telemetry-tension"** (README-telemetry-pixel controversy). **MILESTONE: institutional-stewardship 40-tool milestone reached.**
+- **worklenz** (3027★) — AGPL-3.0 all-in-one project management. 56th hub-of-credentials + 39th immutability-of-secrets + 48th transparent-maintenance + 41st institutional-stewardship. **NEW recipe convention: "AGPL-network-service-disclosure" callout** (applies retroactively to Mattermost, Peppermint 99, etc.). **NEW recipe convention: "multi-tenant-isolation-audit-required" for agency-shaped tools**. **NEW sub-category: "client-confidential-project-data"** + "agency-financial-intel-risk".
+- **oxicloud** (3022★) — Rust self-hosted cloud. **NEW category: "Rust-self-hosted-cloud"** (1st tool). 57th hub-of-credentials + 49th transparent-maintenance + 42nd institutional-stewardship (23rd sole-maintainer-with-community). **NEW convention: "base-URL-immutability" sub-pattern** of immutability-of-secrets. **NEW convention: "standards-first-vendor-lock-mitigation" positive signal**. Public-UGC-host-abuse-conduit-risk META-FAMILY extended to 4 tools (Slash, Zipline, Opengist, +OxiCloud when open-registration). MIT vs Nextcloud-AGPL comparison noted.
+- **invoiceplane** (3021★) — PHP invoicing (FusionInvoice fork). **5th community-steward-of-legacy-tool** (Baikal 98 was 4th) + **NEW sub-tier: "post-commercial-fork community-steward"** (distinct from organic community-steward). 58th hub-of-credentials — **financial-records regulatory-crown-jewel sub-family (2nd tool)** (now formally 2 tools + named). **NEW recipe convention: "legal-record-immutability"** (1st tool named — applies to invoicing/accounting/audit-log tools). **NEW recipe convention: "EU e-invoicing regulatory-deadline callout"**. **NEW recipe convention: "PHP-legacy-framework security-posture-dependency"**. **TRANSPARENT-MAINTENANCE MILESTONE: 50 tools.**
+
+**Batch 100 lengths:** gladys-assistant 173, tianji 195, worklenz 193, oxicloud 173, invoiceplane 161.
+**State:** 514 done / 2 skipped / 758 pending — **40.3% done.**
+
+### 🎉 BATCH 100 MILESTONE — KEY STATS
+- **100 batches, 514 recipes done, 40.3% completion**
+- Patterns discovered: 50+ cross-cutting concerns + 14 sub-families + 5 regulatory-crown-jewel sub-families + 11 CROWN-JEWEL Tier 1 tools
+- All recipes adhere to: upstream-doc-based + specific-version-pinning + LICENSE-file-verification + risk-framing + alternatives-comparison
+
+### Family milestones THIS BATCH
+- **Transparent-maintenance: 50 tools** 🎯 (milestone)
+- **Institutional-stewardship: 43 tools** (40-tool milestone hit)
+- **Hub-of-credentials: 58 tools** + **CROWN-JEWEL Tier 1 still 11 tools** (no new Tier 1 this batch)
+- **Network-service-legal-risk: 25 tools / 15 sub-families**
+- **Community-steward-of-legacy-tool: 5 tools** (+ InvoicePlane)
+- **Public-UGC-host-abuse-conduit-risk meta-family: 4 tools** (+ OxiCloud conditional)
+
+### New precedents this batch
+- **"Home-control-risk" sub-category** of hub-of-credentials (Gladys — 1st named; Home Assistant, OpenHAB, Domoticz retroactively)
+- **"Docker-socket-mount-privilege-escalation" NEW family** (Gladys 1st; Portainer/Watchtower/Traefik retroactively) — host-root-equivalence callout
+- **"Aligned-optional-paid-SaaS-for-convenience" commercial-tier sub-category** (Gladys Plus — vs. feature-gating pattern)
+- **"OSS-deployment-telemetry-tension" convention** (Tianji)
+- **"Analytics-tool-GDPR-compliance" sub-family 15th** (network-service-legal-risk) — retroactively Umami/Plausible/Matomo
+- **"AGPL-network-service-disclosure" callout** (Worklenz)
+- **"Multi-tenant-isolation-audit-required" convention** for agency tools (Worklenz)
+- **"Client-confidential-project-data" + "agency-financial-intel-risk" sub-categories** (Worklenz)
+- **"Rust-self-hosted-cloud" category** (OxiCloud 1st)
+- **"Base-URL-immutability" sub-pattern** of immutability-of-secrets (OxiCloud)
+- **"Standards-first-vendor-lock-mitigation" positive signal** (OxiCloud)
+- **"Post-commercial-fork community-steward" sub-tier** (InvoicePlane)
+- **"Legal-record-immutability" convention** (InvoicePlane 1st — invoicing/accounting/audit-log tools)
+- **"EU e-invoicing regulatory-deadline" callout** (InvoicePlane)
+- **"PHP-legacy-framework security-posture-dependency" convention** (InvoicePlane)
+- **"Financial-records regulatory-crown-jewel sub-family"** formalized at 2 tools (InvoicePlane + prior implicit tools)
+
+### BATCH 100 pattern-consolidation WORK (deferred)
+- 40+ `patterns/` docs planned (listed in compact summary) but deferred to a dedicated-consolidation-session
+- Reasoning: doing consolidation mid-heartbeat with batch-work would bloat the commit + mix concerns
+- Plan: batch 101 will **either** continue standard 5-recipe batches **or** dedicate the session to the patterns/ consolidation work depending on user preference
+- For now, heartbeat log remains the authoritative ledger of cross-cutting patterns
+
+### Notes
+- **40.3% completion** — progress continuing steadily
+- Batch 100 shipped with 5 recipes (normal cadence); patterns-consolidation deferred for dedicated session
+- Quality + consistency holding; patterns + precedents compounding usefully
