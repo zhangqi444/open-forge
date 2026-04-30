@@ -3189,3 +3189,70 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **3 new CROWN-JEWEL Tier 1 additions** in one batch (YunoHost OS-as-PaaS; Steam Headless game-account; Canine infra-control-plane 3rd)
 - Transparent-maintenance 70 hit at Canine
 - YunoHost + Canine = both PaaS-flavored but vastly different (OS-level vs K8s-level)
+
+## 2026-04-30 20:58 UTC — batch 105 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 105)
+- **glauth** (2818★) — Go LDAP server; MIT; file/SQL/S3/proxy backends; transparent 2FA. **77th hub-of-credentials CROWN-JEWEL Tier 1 — "IdP-auth-service-central-directory" sub-category** (formalized). **Prolific-sole-maintainer-with-coherent-toolset: 3 tools** (+fusion/GLAuth; qdm12 + mtlynch + fusion). **NEW recipe conventions**: "LDAPS-mandatory" + "LDAP-proxy-as-2FA-retrofit" + "LDAP-single-point-of-failure". **NEW positive-signals**: "bcrypt-config-passwords" + "transparent-2FA-retrofit" + "S3-as-config-distribution" + "pluggable-backend-chaining" + "dev-branch-PR-gate". 63rd institutional-stewardship + 71st transparent-maintenance. CROWN-JEWEL Tier 1: 18 tools / 16 sub-categories.
+- **grimmory** (2812★) — Booklore-fork digital-library (PDF/EPUB/comics/audiobook); Kobo-sync + BookDrop + OIDC. **78th hub-of-credentials Tier 2 — NEW sub-family "reading-data-personal-history-risk"** (1st — Grimmory). **Community-fork-of-active-project sub-tier: 2 tools** (+Grimmory; Stoat 101 was 1st). **NEW recipe conventions**: "metadata-scraping-TOS-risk" + "copyrighted-content-hosting-risk" (formalized) + "DRM-content-incompatibility" + "vendor-reverse-engineered-sync-protocol-risk" + "watched-folder-write-permission-discipline" + "reading-annotations-intimate-personal-data". 64th institutional-stewardship + 72nd transparent-maintenance.
+- **wizarr** (2807★) — Media-server invite system (Plex/Jellyfin/Emby/etc). **79th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "media-server-orchestrator"** (1st — Wizarr; holds admin-tokens for ALL connected media servers). **NEW recipe conventions**: "invitation-link-URL-entropy-requirement" + "auto-expire-test-carefully" + "commercial-use-of-self-hosted-media TOS/copyright-risk" + "Plex-TOS-sharing-limits" + "project-relaunched-after-dormancy". 65th institutional-stewardship + 73rd transparent-maintenance. CROWN-JEWEL Tier 1: 19 tools / 17 sub-categories.
+- **ytdl-sub** (2795★) — yt-dlp automation for Plex/Jellyfin metadata. 80th hub-of-credentials Tier 2 (when cookies used). **NEW recipe conventions**: "yt-dlp-API-drift-risk" + "YouTube-TOS-download-restriction" + "browser-cookie-login-credential-risk" + "media-scraping-rate-limit". **NEW positive-signals**: "pylint-10-code-quality" (1st — ytdl-sub) + "metadata-scraping-format-adapter" + "SponsorBlock-integration". **Copyright-content-hosting-risk now 3 tools** (Grimmory + Wizarr-via-Plex + ytdl-sub-YouTube). **TB-scale-storage-requirement: 2 tools** (+ytdl-sub; Steam Headless 104 was 1st). 66th institutional-stewardship + 74th transparent-maintenance.
+- **convoy** (2794★) — Go webhook gateway (retries+rate-limit+static-IPs+HMAC-rolling). MPL-2.0. **81st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "event-pipeline-infrastructure"** (1st — Convoy). **NEW recipe conventions**: "fan-out-amplification-risk" + "webhook-payload-PII-retention" + "payment-webhook-reliability criticality" + "MPL-2.0-weak-copyleft". **NEW positive-signals**: "HMAC-rolling-secrets" (1st — Convoy) + "static-egress-IP-for-customer-firewalls" + "circuit-breaker-for-webhook-delivery". Microservice-complexity-tax applies. 67th institutional-stewardship + **75th transparent-maintenance 🎯 75-TOOL MILESTONE**. CROWN-JEWEL Tier 1: 20 tools / 18 sub-categories.
+
+**Batch 105 lengths:** glauth 191, grimmory 209, wizarr 176, ytdl-sub 193, convoy 217.
+**State:** 539 done / 2 skipped / 733 pending — **42.3% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 20 tools / 18 sub-categories** 🎯 **20-tool MILESTONE** (+GLAuth IdP-auth-service +Wizarr media-server-orchestrator +Convoy event-pipeline-infrastructure; 3 new Tier 1 sub-categories in one batch)
+- **Transparent-maintenance: 75 tools** 🎯 **75-MILESTONE at Convoy**
+- **Hub-of-credentials: 81 tools**
+- **Prolific-sole-maintainer-with-coherent-toolset: 3 tools** (+fusion/GLAuth)
+- **Community-fork-of-active-project: 2 tools** (+Grimmory)
+
+### New precedents this batch
+- **"IdP-auth-service-central-directory" CROWN-JEWEL Tier 1 sub-category** (GLAuth 1st formalized)
+- **"media-server-orchestrator" CROWN-JEWEL Tier 1 sub-category** (Wizarr 1st)
+- **"event-pipeline-infrastructure" CROWN-JEWEL Tier 1 sub-category** (Convoy 1st)
+- **"reading-data-personal-history-risk" hub-of-credentials sub-family** (Grimmory 1st)
+- **"LDAPS-mandatory" convention** (GLAuth)
+- **"LDAP-proxy-as-2FA-retrofit" convention** (GLAuth)
+- **"LDAP-single-point-of-failure" convention** (GLAuth)
+- **"bcrypt-config-passwords" positive-signal** (GLAuth)
+- **"transparent-2FA-retrofit" positive-signal** (GLAuth)
+- **"S3-as-config-distribution" positive-signal** (GLAuth)
+- **"pluggable-backend-chaining" positive-signal** (GLAuth)
+- **"dev-branch-PR-gate" positive-signal** (GLAuth)
+- **"metadata-scraping-TOS-risk" convention** (Grimmory)
+- **"copyrighted-content-hosting-risk" convention** formalized at 3 tools (Grimmory + Wizarr + ytdl-sub)
+- **"DRM-content-incompatibility" convention** (Grimmory)
+- **"vendor-reverse-engineered-sync-protocol-risk" convention** (Grimmory)
+- **"watched-folder-write-permission-discipline" convention** (Grimmory)
+- **"reading-annotations-intimate-personal-data" convention** (Grimmory)
+- **"invitation-link-URL-entropy-requirement" convention** (Wizarr)
+- **"auto-expire-test-carefully" convention** (Wizarr)
+- **"commercial-use-of-self-hosted-media TOS/copyright-risk" convention** (Wizarr)
+- **"Plex-TOS-sharing-limits" convention** (Wizarr)
+- **"project-relaunched-after-dormancy" convention** (Wizarr)
+- **"yt-dlp-API-drift-risk" convention** (ytdl-sub)
+- **"YouTube-TOS-download-restriction" convention** (ytdl-sub)
+- **"browser-cookie-login-credential-risk" convention** (ytdl-sub)
+- **"media-scraping-rate-limit" convention** (ytdl-sub)
+- **"pylint-10-code-quality" positive-signal** (ytdl-sub)
+- **"metadata-scraping-format-adapter" positive-signal** (ytdl-sub)
+- **"SponsorBlock-integration" positive-signal** (ytdl-sub)
+- **"HMAC-rolling-secrets" positive-signal** (Convoy)
+- **"static-egress-IP-for-customer-firewalls" positive-signal** (Convoy)
+- **"circuit-breaker-for-webhook-delivery" positive-signal** (Convoy)
+- **"fan-out-amplification-risk" convention** (Convoy)
+- **"webhook-payload-PII-retention" convention** (Convoy)
+- **"payment-webhook-reliability criticality" convention** (Convoy)
+- **"MPL-2.0-weak-copyleft" convention** (Convoy)
+
+### Notes
+- 42.3% — batch 105 exceptionally rich in CROWN-JEWEL additions
+- **3 new CROWN-JEWEL Tier 1 sub-categories in one batch** (18 total now; from 15 → 18)
+- Multiple 20-tool / 75-tool milestones hit simultaneously
+- Pattern-consolidation document urgently needed; 80+ hub-of-credentials; 75+ transparent-maintenance; 18 CROWN-JEWEL sub-categories — deferred to dedicated session per user preference
