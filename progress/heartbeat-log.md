@@ -1236,3 +1236,34 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **ComicInfo.xml / metadata-standard specification** (Komga): for media servers, document the metadata format + tooling (ComicTagger, Mylar3) that writes it.
 
 **Milestone:** 27.0% done. Averaging 179 lines/recipe.
+
+## 2026-04-30 11:05 UTC — batch 67 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 67)
+- **rundeck** (6108★) — runbook automation. **PagerDuty ownership (2020)** context. "Root-equivalent on infrastructure — lock down ACLs" warning. Apache-2.0 (Community) + commercial.
+- **cap-captcha** (6108★) — PoW CAPTCHA alternative. **"~250× smaller than hCaptcha"** positioning. "PoW is not bulletproof" arms-race honesty. Apache-2.0.
+- **wger** (6011★) — workout + nutrition tracker. Mature European OSS (2013). Public wger.de vs self-host trade-off. AGPL-3.0.
+- **openbao** (5926★) — **HashiCorp Vault fork after BSL relicensing (2023)**. Linux Foundation/OpenSSF governance. Unseal-key-loss-= data-loss imperative. MPL-2.0.
+- **cosmos-server** (5880★) — all-in-one self-host OS. **"Custom source-available license — read LICENSE"** warning front-loaded. Single-point-of-failure + port-80/443 conflict gotchas.
+
+**Batch 67 lengths:** rundeck 193, cap-captcha 189, wger 156, openbao 198, cosmos-server 176.
+**State:** 349 done / 1 skipped / 924 pending (27.4%).
+
+### New precedents
+- **"Fork-after-license-change" context framing** (OpenBao fork of Vault post-BSL 2023): distinct from "rename" or "acquisition" — this is explicitly about license-relicensing driving community fork. Pattern: call out the inciting event, the licensing change, and the governance shift (Linux Foundation/OpenSSF for OpenBao).
+- **"PagerDuty ownership (2020)"** acquisition-context precedent extension (Rundeck): different from Proton (SimpleLogin/Standard Notes) which kept OSS — PagerDuty actively sells commercial tier. Pattern: name acquirer + year + commercial-tier-implication.
+- **"Root-equivalent on infrastructure"** severity framing (Rundeck + SSH key storage): for tools that can execute arbitrary commands on fleets, lead with the trust-level framing. Stronger than "admin access" — paints scope.
+- **"250× smaller than competitor"** concrete numeric positioning (Cap vs hCaptcha): when a design benefit is quantifiable, use the number. Avoids vague "lightweight" hand-waving.
+- **"Arms race" anti-bot honesty** (Cap re headless browsers + residential proxies): transparency that no anti-bot is bulletproof. Companion to "development-status" honesty.
+- **"Public hosted instance vs self-host" trade-off articulation** (wger.de vs self-host): when upstream runs a generous free public instance, point out self-host is for privacy/offline/power-user — not everyone needs it. Extends the Standard Notes "don't need to self-host for privacy" precedent.
+- **"Unseal key loss = data loss"** imperative (OpenBao): same family as Databasus/Zerobyte/Backrest backup-password precedents — single-point-of-failure key material that must be offline-backed up. Articulated most strongly here because the key material literally decrypts the storage.
+- **"Custom source-available license — read LICENSE"** warning (Cosmos): new licensing category for "not OSI-approved but free for personal" — explicitly prompt users to read the LICENSE file for commercial-threshold clauses. Distinct from AGPL/MIT/BSL/SSPL precedents.
+- **"Single point of failure" architectural warning** (Cosmos: crashes → all apps unreachable): for integrated-everything tools, articulate the DR consequence. New operational-gotcha category.
+- **"Port conflict with existing reverse proxy"** operational gotcha (Cosmos wants 80+443): practical pitfall for tools that take over standard ports. Call out alternatives.
+- **"Initial root token → revoke after bootstrap"** security-hygiene imperative (OpenBao): temporary-credential lifecycle discipline for systems with provisional admin.
+- **"Audit log before first real use"** compliance precedent (OpenBao): enable audit trails *before* loading real data; otherwise you can't answer forensic questions about early access.
+
+**Milestone:** 27.4% done. Avg batch length 182 lines.
