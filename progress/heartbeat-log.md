@@ -3651,3 +3651,45 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **PatchMon's AI-DECLARATION is the first formally-disclosed "AI-assist-accepted" tool** — mirrors BookWyrm's "no-AI" norm in opposite direction; both honest
 - **Zerodha Tech sub-tier** retroactively applies to listmonk (prior batches); pattern-consolidation should flag
 - Pattern-consolidation URGENT: 27 CROWN-JEWEL sub-categories, 111 hub-of-credentials, 105 transparent-maintenance
+
+## 2026-04-30 22:53 UTC — batch 112 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 112)
+- **notediscovery** (2459★) — Lightweight Obsidian-like (Docker+PikaPods+HuggingFace-demo+Ko-fi). **112th hub-of-credentials Tier 2**. **Markdown-knowledge-base META-FAMILY: 5 tools** 🎯 **5-TOOL MILESTONE**. **Zero-lock-in: 8 tools** 🎯 **8-TOOL MILESTONE**. **Ko-Fi-funding: 2 tools** (Scriberr+NoteDiscovery) 🎯. **NEW positive-signals**: "PikaPods-one-click" (1st — NoteDiscovery) + "Hugging-Face-Spaces-demo" (1st — NoteDiscovery) + "plain-markdown-file-storage" (reinforces). **NEW recipe conventions**: "unclear-auth-policy-requires-reverse-proxy" (1st — NoteDiscovery) + "credentials-in-notes-spillover" (1st formally — applies to ALL note tools). 98th institutional-stewardship + 106th transparent-maintenance.
+- **docker-socket-proxy** (2440★) — HAProxy-based security-enhanced Docker-socket proxy (Tecnativa org; widely-adopted-homelab; stateless). **113th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "Docker-API-proxy-gatekeeper"** (1st — Tecnativa socket-proxy). **Docker-socket-mount-privilege-escalation: 4 tools** 🎯 **4-TOOL MILESTONE**. **Stateless-tool-rarity: 10 tools** 🎯 **10-TOOL MILESTONE**. **NEW recipe conventions**: "Docker-socket-is-host-root callout" (1st formally — universal). **NEW positive-signals**: "plain-HTTP-with-network-isolation-only" (1st — DSP) + "belt-and-suspenders-socket-mount :ro" (1st — DSP) + "Docker-internal-network-no-egress" (DSP 1st) + "commercial-consultancy-maintained-OSS-tool" (1st — Tecnativa) + "security-hardening-tool" (1st — DSP; rare category — tool that DECREASES attack surface). 99th institutional-stewardship + 107th transparent-maintenance. CROWN-JEWEL Tier 1: 31 tools / 28 sub-categories.
+- **immich-power-tools** (2425★) — Next.js unofficial Immich companion (bulk ops; varunraj sole; BMC). **114th hub-of-credentials Tier 2**. **NEW recipe conventions**: "unofficial-companion-tool-API-drift-risk" (1st — Immich Power Tools) + "bulk-destructive-operations-danger" (1st — Immich Power Tools) + "natural-language-search-may-involve-LLM" + "single-admin-companion-tool" + "facial-recognition-data-handling". **NEW positive-signal: "unofficial-ecosystem-tools-family"** (1st — IPT; immich-frame/kiosk/go siblings). **🎯 INSTITUTIONAL-STEWARDSHIP: 100 TOOLS MILESTONE AT IMMICH POWER TOOLS** — 100th tool. **BuyMeACoffee-funding positive-signal**. 100th institutional-stewardship + 108th transparent-maintenance.
+- **aliasvault** (2412★) — .NET E2E-encrypted password + email-alias manager with BUILT-IN email server (zero-3rd-party; web+extensions+iOS+Android; lanedirt; Discord+OC+Crowdin). **115th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "password-manager + email-server-combined"** (1st — AliasVault; PARTICULARLY CONCENTRATED risk — MFA-reset-intercept). **Commercial-parallel-with-OSS-core: 6 tools** 🎯 **6-TOOL MILESTONE**. **Open-Collective-transparent-finances: 3 tools** (Silex+DockSTARTer+AliasVault) 🎯. **NEW recipe conventions**: "self-hosted-email-deliverability-complexity" (1st — AV; universal) + "master-password-no-recovery" (1st formally — AV; universal for E2E tools) + "MFA-reset-email-attack-surface" (1st — AV; CRITICAL) + "anti-abuse-discipline-for-self-hosted-alias-service" (1st — AV). **NEW positive-signals**: "end-to-end-tests-in-CI" (1st formally — AV) + "native-mobile-apps-OSS-rarity" (reinforces) + "zero-knowledge-E2E-encrypted-vault" (reinforces). **NEW institutional-stewardship sub-tier: "single-creator-with-community-triple-infrastructure"** (1st — AliasVault; OC+Discord+Crowdin). 101st institutional-stewardship + 109th transparent-maintenance. CROWN-JEWEL Tier 1: 32 tools / 29 sub-categories.
+- **kyoo** (2409★) — React-Native media server (low-maintenance; anime-parsing; OIDC-built-in; Helm; v5-rewrite-in-progress with transparency). **116th hub-of-credentials Tier 2**. **Read-only-library-mount-discipline: 2 tools** (Polaris+Kyoo) 🎯 **2-TOOL MILESTONE**. **Hardware-dependent-tool (optional): 4 tools** 🎯. **NEW recipe convention: "major-version-rewrite-feature-regression"** (1st — Kyoo). **NEW positive-signals**: "no-plugin-system-as-security-design-choice" (1st — Kyoo) + "declared-quality-commitment" (1st — Kyoo; unusually assertive UX) + "feature-regression-transparency-during-rewrite" (1st — Kyoo) + "OIDC-built-in" (reinforces) + "honest-platform-declined-with-reason" (1st — Kyoo; Apple declined with dev-fee reason) + "shared-codebase-web-plus-mobile" + "Swagger-API-docs" (1st formally — Kyoo). 102nd institutional-stewardship + **110th transparent-maintenance 🎯 110-TOOL MILESTONE**.
+
+**Batch 112 lengths:** notediscovery 154, docker-socket-proxy 174, immich-power-tools 165, aliasvault 167, kyoo 158.
+**State:** 574 done / 2 skipped / 698 pending — **45.1% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 110 tools** 🎯 **110-TOOL MILESTONE at Kyoo**
+- **Institutional-stewardship: 102 tools** 🎯 **100-TOOL MILESTONE crossed at Immich Power Tools**
+- **CROWN-JEWEL Tier 1: 32 tools / 29 sub-categories** (+2 new sub-categories this batch!)
+- **Commercial-parallel-with-OSS-core: 6 tools** 🎯 **6-TOOL MILESTONE**
+- **Markdown-knowledge-base META-FAMILY: 5 tools** 🎯
+- **Zero-lock-in: 8 tools** 🎯
+- **Stateless-tool-rarity: 10 tools** 🎯 **10-TOOL MILESTONE**
+- **Docker-socket-mount-privilege-escalation: 4 tools** 🎯 **4-TOOL MILESTONE**
+- **Open-Collective-transparent-finances: 3 tools**
+- **Read-only-library-mount-discipline: 2 tools**
+- **Hub-of-credentials: 116 tools**
+
+### New precedents this batch
+- **"Docker-API-proxy-gatekeeper" CROWN-JEWEL Tier 1 sub-category** (DSP 1st)
+- **"password-manager + email-server-combined" CROWN-JEWEL Tier 1 sub-category** (AliasVault 1st; concentrated-MFA-reset-risk)
+- **"single-creator-with-community-triple-infrastructure" institutional-stewardship sub-tier** (AliasVault 1st)
+- **Many conventions**: Docker-socket-is-host-root (DSP 1st formally), self-hosted-email-deliverability-complexity (AV 1st), master-password-no-recovery (AV 1st formally), MFA-reset-email-attack-surface (AV 1st), anti-abuse-discipline-for-self-hosted-alias-service (AV 1st), unofficial-companion-tool-API-drift-risk (IPT 1st), bulk-destructive-operations-danger (IPT 1st), natural-language-search-may-involve-LLM (IPT), major-version-rewrite-feature-regression (Kyoo 1st), unclear-auth-policy-requires-reverse-proxy (ND 1st), credentials-in-notes-spillover (ND 1st; applies to ALL note tools)
+- **Many positive-signals**: PikaPods-one-click (ND 1st), Hugging-Face-Spaces-demo (ND 1st), plain-HTTP-with-network-isolation-only (DSP 1st), belt-and-suspenders-socket-mount-:ro (DSP 1st), Docker-internal-network-no-egress (DSP), commercial-consultancy-maintained-OSS-tool (DSP/Tecnativa 1st), security-hardening-tool (DSP 1st — rare), unofficial-ecosystem-tools-family (IPT 1st), end-to-end-tests-in-CI (AV 1st formally), no-plugin-system-as-security-design-choice (Kyoo 1st), declared-quality-commitment (Kyoo 1st), feature-regression-transparency-during-rewrite (Kyoo 1st), honest-platform-declined-with-reason (Kyoo 1st), shared-codebase-web-plus-mobile (Kyoo), Swagger-API-docs (Kyoo 1st formally), OIDC-built-in (reinforces)
+
+### Notes
+- **🎯 DOUBLE-MILESTONE BATCH**: 100-institutional-stewardship (IPT) + 110-transparent-maintenance (Kyoo)
+- 45.1% done — batch 112 dense with new CROWN-JEWEL sub-categories (2) + new inst-stewardship sub-tier + 11+ new conventions + 15+ new positive-signals
+- Docker Socket Proxy stands out: a **rare OSS tool that DECREASES attack surface** (vs tools that ADD surface by being installed)
+- AliasVault CROWN-JEWEL is unusual because it concentrates password + email (MFA-reset destination) in ONE tool — biggest blast radius we've tagged
+- Pattern-consolidation URGENT: 29 CROWN-JEWEL sub-categories, 116 hub-of-credentials, 110 transparent-maintenance, 102 institutional-stewardship
