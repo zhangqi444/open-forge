@@ -1335,3 +1335,39 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Use Authelia/Authentik/Keycloak for proper SSO; X as dashboard-only"** role-separation guidance (Organizr auth_request): when a tool has SSO features but better-dedicated tools exist, recommend separation of concerns.
 
 **Milestone:** 28.2% done. Avg batch length 166 lines.
+
+## 2026-04-30 11:50 UTC — batch 70 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open.
+
+### Step 2 (selfh.st batch 70)
+- **webmin** (5717★) — classic Perl sysadmin panel. **"Webmin runs as root with web access — treat it like SSH"** threat-model front-loaded. 2019 backdoor historical CVE honesty. BSD-like.
+- **scrypted** (5669★) — modern home video + HomeKit Secure Video bridge. **"Host networking required on Linux"** #1 gotcha front-loaded. Coral TPU $60 upgrade recommendation. Apache-2.0.
+- **goatcounter** (5660★) — privacy-friendly analytics. **"Unique visitors is approximate — intentional design"** honesty. Logfile-import historical coverage. EUPL-1.2.
+- **mox** (5657★) — modern all-in-one mail server (Go). **"Running your own mail is HARD even with mox"** deliverability honesty. PTR/ISP-port-25 prerequisites. MIT. Single-maintainer bus-factor note.
+- **duplicacy** (5651★) — lock-free dedup cloud backup. **"License unusual — CLI free personal, paid commercial; Web GUI always paid"** front-loaded. IEEE-published algorithm. Not OSI FOSS.
+
+**Batch 70 lengths:** webmin 153, scrypted 164, goatcounter 190, mox 186, duplicacy 189.
+**State:** 364 done / 1 skipped / 909 pending (28.6%).
+
+### New precedents
+- **"This tool runs as root with web access — treat like SSH"** threat-model framing (Webmin): extends Livebook's "tool IS code executor" precedent. For root-privileged web admin tools, articulate the concrete attack surface: never-public + 2FA + IP allowlist + TLS mandatory.
+- **"Historical CVE honesty with specific incident"** (Webmin 2019 backdoored-tarball): for projects with notable security-incident history, name the incident + year + link. Builds trust through transparency rather than hiding it.
+- **"~1M yearly installations" adoption-scale context** (Webmin): when upstream documents deployment scale, quote it. Helps buyers calibrate stability/support expectations.
+- **"Host networking REQUIRED — THE #1 gotcha"** protocol-level networking requirement (Scrypted HomeKit mDNS): when a specific Docker network mode is non-negotiable due to protocol design (mDNS/Bonjour/broadcast), front-load it as #1 gotcha.
+- **"$60 hardware upgrade transforms the experience"** concrete-accelerator recommendation (Scrypted Coral TPU): when optional hardware dramatically improves a tool, name the product + price + why. Practical buyer guidance.
+- **"iCloud+ subscription + HomeKit hub required"** platform-dependency disclosure (Scrypted HKSV): when a tool depends on a paid platform feature (Apple iCloud+), disclose. Don't let buyers discover it post-deploy.
+- **"Unique visitors is approximate — intentional design"** honesty-about-metric-fidelity (GoatCounter): when a tool's metric is deliberately fuzzy for privacy, say so. Don't let users expect GA-precision.
+- **"Running your own X is HARD — operational challenges independent of software"** operational-reality honesty (mox mail): for inherently complex operational domains (email, DNS, BGP), articulate that software quality doesn't solve the ops problem. Extends Pixelfed federation-is-hard precedent.
+- **"PTR record + rDNS match + unblocked port 25"** mail-specific deliverability prerequisites (mox): concrete prerequisites list for a domain-specific operational challenge.
+- **"Dedicated hostname for mail — don't share with web"** infrastructure-separation principle (mox): best-practice articulation for domain-specific concerns.
+- **"Bus-factor-1 / single-maintainer — plan migration path"** sustainability risk framing (mox, Duplicacy, GoatCounter): for single-maintainer projects, articulate the risk + recommend a migration plan as part of adoption. New sustainability-transparency category.
+- **"Not OSI-approved FOSS despite repo access"** license-category-transparency (Duplicacy): when source is visible but license is personal-free-commercial-paid, call it out explicitly. Extends Countly "AGPL with non-commercial terms" and Zerobyte "source-available" precedents.
+- **"IEEE-published algorithm"** academic-rigor credential (Duplicacy): when a project's core algorithm has peer-reviewed publication, quote it. Credibility signal.
+- **"Passphrase loss = data loss — write down + multi-location"** encryption-key discipline imperative (Duplicacy, extending OpenBao + Zerobyte + Backrest): now consolidated pattern across ALL encrypting backup/secrets tools.
+- **"Multi-destination from one command — 3-2-1 compliance"** architectural advantage framing (Duplicacy): when a tool natively supports multiple backends, call out 3-2-1 rule compliance explicitly.
+- **"Cross-machine dedup = cross-machine compromise surface"** security-architecture tradeoff articulation (Duplicacy): dedup saves space but amplifies compromise blast radius. Explicit tradeoff analysis.
+- **"Egress costs = 1 TB backup = $$ to restore"** financial-tradeoff in cloud backup (Duplicacy): for cloud-backup tools, restore economics matter. Extends cost-transparency pattern to egress specifically.
+
+**Milestone:** 28.6% done. Avg batch length 176 lines.
