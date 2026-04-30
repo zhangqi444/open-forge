@@ -2344,3 +2344,63 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   9. `patterns/financial-data-regulatory-crown-jewel.md` — NEW pattern-doc candidate (2 tools Bigcapital+Lunar + commerce sub-family)
   10. `patterns/backup-tool-recipe-template.md` — "test your restores + 3-2-1 + replication≠backup + silent-failure-monitoring"
 - Current batch shipped: **5 recipes, batch 92 complete, 474 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 17:58 UTC — batch 93 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 93)
+- **kaneo** (3462★) — MIT TypeScript minimal project management. 33rd hub-of-credentials LIGHT + 26th immutability-of-secrets (JWT_SECRET) + hosted-SaaS-of-OSS-product tier + 7th sole-maintainer-with-community + **NEW: "curl|sh install-supply-chain-risk"** recipe-convention flag (common pattern in many deploy tools: drim CLI, rustup, nixos, deno-install, bun-install) + **NEW: "project-management-moderate-sensitivity"** framing (task lists capture roadmaps + vuln details + HR notes).
+- **readarr** (3456★) — GPL-3 .NET book/audiobook *arr tool. **OFFICIALLY RETIRED BY UPSTREAM** — exemplary transparent-retirement announcement. **NEW: "RETIRED-BUT-CATALOGED" status class** (distinct from skipped/done) — 1st tool. 34th hub-of-credentials Tier 2 (historical) + 11th network-service-legal-risk (*arr piracy tooling) + **NEW: "honest-retirement sub-class of transparent-maintenance"** — acknowledge-failure + recommend-alternatives + keep-lights-dim. Recipe extensively documents migration paths to Calibre-Web / Kavita / AudioBookShelf / LazyLibrarian.
+- **moodist** (3449★) — MIT Astro+React ambient-sound SPA. 2nd stateless-tool-rarity (0 hub-of-credentials, 0 immutability-of-secrets) + 16th transparent-maintenance + 8th sole-maintainer-with-community + 2nd pure-donation-SaaS-variant (public instance + BMC) + **NEW: "wellness-claim-boundary-respect"** framing (stays in ambient-sound not therapeutic-medical) + **NEW: "audio-sample-licensing-audit"** gotcha (MIT covers code, samples need separate review).
+- **dashdot** (3429★) — MIT React+Node server dashboard. 3rd stateless-tool-rarity (0 creds, 0 secrets) + 17th transparent-maintenance + 9th sole-maintainer-with-community + 9th pure-donation + **NEW: "network-recon-risk" sub-family** (public exposure reveals infrastructure recon data — 1st tool) + privileged-container / host-mount escalation discussion.
+- **ddclient** (3409★) — GPL-2 Perl DDNS updater. **27-year-old infrastructure tool** (since 1999). 35th hub-of-credentials LIGHT (but compromise = DNS-hijack — "light" understates risk if token broad-scope) + 16th institutional-stewardship (community-steward-of-legacy-tool sub-tier) + **NEW: "age-as-maturity-signal"** framing + **NEW: "CGNAT-defeats-DDNS" operational reality** for rural/mobile ISPs + Cloudflare Tunnel / Tailscale as tunnel-alternative-to-DDNS.
+
+**Batch 93 lengths:** kaneo 178, readarr 154, moodist 149, dashdot 167, ddclient 149.
+**State:** 479 done / 2 skipped / 793 pending — **37.6% done.**
+
+### New precedents
+- **"RETIRED-BUT-CATALOGED" status class** (Readarr): distinct from "skipped" (never written) + "done" (live recipe). Recipe with prominent RETIRED banner + migration-advisory framing + historical context + alternative recommendations. 1st tool. Future candidates: any officially-retired project still in use (NextCloudPi, some abandoned-*arr-variants, etc.).
+- **"Honest-retirement sub-class of transparent-maintenance"** (Readarr): acknowledging failure-mode, recommending alternatives, keeping-the-lights-dim-during-transition. Distinguishes from silent-abandonment + deprecated-still-maintained. Exemplary upstream communication. 1st tool.
+- **"curl|sh install-supply-chain-risk"** recipe-convention flag (Kaneo's drim): `curl -fsSL https://... | sh` pattern is common (rustup, nixos-install, bun-install, deno-install, helm-install, Kaneo-drim) + widely debated. Recipe convention: flag this install pattern when upstream-recommended. Not a condemnation — note it exists + mention Docker alternative.
+- **"Project-management-moderate-sensitivity"** framing (Kaneo): PM tools capture roadmaps, vuln details, HR notes, client-work — not baseline-sensitivity. Apply auth + TLS + backup + access-control. Template for PM-tool recipes (Kaneo, Plane, Vikunja, Leantime, Focalboard, OpenProject, Taiga, etc.).
+- **Stateless-tool-rarity pattern**: now 3 tools (OpenSpeedTest 91, Moodist 93, dashdot 93). 0 hub-of-credentials, 0 immutability-of-secrets, 0 DB, trivial-upgrades. Worth documenting as a "pleasant rarity" recipe category. Apply to: static SPAs, HTML5 game clients, single-purpose monitoring dashboards, some utility tools.
+- **"Wellness-claim-boundary-respect"** framing (Moodist): ambient-sound tools often drift toward medical/therapy claims requiring regulatory-scrutiny. Moodist stays in "ambient sounds" framing → positive signal. Recipe convention: flag tools that make wellness/therapy/medical claims.
+- **"Audio-sample-licensing-audit"** gotcha (Moodist): MIT-licensed code may bundle differently-licensed audio samples. Recipe convention for media-asset-heavy tools: flag that code-license ≠ asset-license + recommend audit for commercial use.
+- **"Network-recon-risk" sub-family** (dashdot): publicly-exposed infrastructure dashboards reveal CPU model, OS version, uptime, disks, NICs = attacker recon data. Distinct from hub-of-credentials (no creds leaked) but still an exposure risk. 1st tool in this sub-family; applicable to: phpMyAdmin, naked-Node-Exporter, Apache-server-status, grafana-without-auth, info-disclosure-dashboards.
+- **"Age-as-maturity-signal"** framing (ddclient — 27 years old): old-tool-still-active = bugs found long ago + broad-protocol-coverage + mature-documentation. Positive recipe framing for legacy tools (ddclient, Bind, sendmail, OpenSSH, Postfix, Apache HTTPD, MySQL, PostgreSQL, etc.). Contrast with bus-factor/abandonment concerns. Template: "X-year-old tool with active maintenance = mature" not necessarily "stale".
+- **"CGNAT-defeats-DDNS" operational reality** (ddclient): residential-ISP-reality that DDNS can't overcome. Cloudflare Tunnel / Tailscale / VPS-tunnel as modern alternatives. Recipe convention for networking-infrastructure tools: discuss CGNAT + IPv4-exhaustion + tunnel-alternatives.
+- **"Community-steward-of-legacy-tool"** institutional-stewardship sub-tier (ddclient after Paul Burry): critical OSS infrastructure adopted by volunteer community after original author moves on. Distinct from collective (Deuxfleurs), company (LinkStackOrg, offen.software), foundation (ASF, PGDG). 4th institutional-stewardship sub-tier. Applicable to: ddclient, inadyn, many legacy Linux tools, various long-lived packages.
+- **"Hub-of-credentials LIGHT UNDERSTATES-RISK-IF-BROAD-SCOPE"** nuance (ddclient): storing few-credentials = LIGHT-tier baseline, but if those credentials are broad-scope-DNS-tokens with zone-level admin = high impact. Recipe convention: when LIGHT tier understates risk due to credential-scope, explicitly note the discrepancy + recommend least-privilege-token-scoping.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 35 tools** (+ Kaneo LIGHT, Readarr Tier 2 historical, dashdot/Moodist NOT in family, ddclient LIGHT) — **FAMILY-DOC MANDATORY AT BATCH 100**
+- **Immutability-of-secrets: 26 tools** (+ Kaneo JWT_SECRET)
+- **Transparent-maintenance: 17 tools** (+ Readarr honest-retirement, Moodist, dashdot)
+  - Now includes NEW sub-class: **honest-retirement** (Readarr 1st)
+- **Institutional-stewardship: 16 tools** (+ ddclient community-steward)
+  - **4 sub-tiers now**: collective + company + foundation + community-steward-of-legacy-tool
+- **Sole-maintainer-with-community: 9 tools** (+ Moodist remvze, dashdot MauriceNino)
+- **Pure-donation commercial-tier: 9 tools** (+ Moodist, dashdot; Kaneo has hosted-SaaS-of-OSS not pure-donation)
+- **Stateless-tool-rarity: 3 tools** (OpenSpeedTest 91, Moodist 93, dashdot 93) — NEW pattern-doc candidate
+- **Network-service-legal-risk: 11 tools** (+ Readarr *arr-piracy-tooling)
+- **RETIRED-BUT-CATALOGED status: 1 tool** (Readarr — new class)
+- **Network-recon-risk sub-family: 1 tool** (dashdot — new)
+- **Curl|sh install-supply-chain-risk flag: 1 tool noted** (Kaneo drim; reapplicable as pattern)
+
+### Notes
+- **37.6% done.** Batch 100 now 7 batches (35 recipes) away. Pattern-consolidation pass imminent. Updated consolidation plan:
+  1. `patterns/hub-of-credentials.md` — 3-tier + CROWN-JEWEL-Tier-1-sublist + 6+ subtypes + LIGHT-understates-risk-if-broad-scope nuance
+  2. `patterns/immutability-of-secrets.md` — 26-tool catalog
+  3. `patterns/network-service-legal-risk.md` — 3 subtypes (illegal-content + music-royalty + IoT-safety + *arr-piracy-tooling sub-family)
+  4. `patterns/transparent-maintenance.md` — 17 tools with honest-retirement + explicit-CVE-disclosure sub-classes
+  5. `patterns/commercial-tier-taxonomy.md` — 9-tier taxonomy (primary + feature-gated + hosted-SaaS-of-OSS + open-core + primary-SaaS-with-OSS-of-record + services-around-OSS + pure-donation + pure-donation-SaaS-variant + agency-mediated-services-around-OSS)
+  6. `patterns/license-taxonomy.md` — OSI + dual + FSL + permissive
+  7. `patterns/institutional-stewardship.md` — 4 sub-tiers (collective + company + foundation + community-steward-of-legacy-tool)
+  8. `patterns/stateless-tool-rarity.md` — NEW doc; 3-tool pattern
+  9. `patterns/regulatory-crown-jewel-sub-families.md` — financial + research + commerce-platform (emerging)
+  10. `patterns/backup-tool-recipe-template.md` — test-your-restores + 3-2-1 + replication≠backup + silent-failure-monitoring
+  11. `patterns/network-recon-risk.md` — new pattern
+  12. `patterns/retired-but-cataloged-status-class.md` — new pattern
+- Current batch shipped: **5 recipes, batch 93 complete, 479 cumulative, state file updated, log appended, push imminent.**
