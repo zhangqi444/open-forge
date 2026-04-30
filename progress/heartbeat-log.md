@@ -965,3 +965,26 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **SSPL-license transparency**: Graylog — extends BSL/Elastic-2.0/PolyForm pattern to another non-OSI license; flagged for re-hosters.
 - **"No built-in auth — reverse-proxy is mandatory"**: TeslaMate, extends earlier pattern (HTTPS-mandatory for WebRTC).
 - **Trademark-preservation-in-forks**: Sure's README reminds forkers not to use Maybe's name/logo; preserved for downstream.
+
+## 2026-04-30 08:35 UTC — batch 57 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 57)
+- **phpmyadmin** (7862★) — classic MySQL/MariaDB web UI. **"Do NOT expose publicly — 20-year brute-force target"** front-loaded. 2FA + VPN + rate-limit defense-in-depth. Positioned vs Adminer, CloudBeaver, DBeaver. GPL-2.0.
+- **tube-archivist** (7826★) — YouTube archiver via yt-dlp + Elasticsearch. **Legal/TOS gray-area** front-loaded (personal tolerated, republish = no). yt-dlp cat-and-mouse warning. ES RAM tuning, retention = disk savior. GPL-2.0.
+- **wallos** (7742★) — personal subscription tracker. Lightweight, delightfully simple, "complement to full PF tools" positioning. **"First-user-is-admin — register fast"** caveat. SQLite, PHP. AGPL-3.0.
+- **scrutiny** (7709★) — SMART drive health dashboard. Hub/spoke architecture front-loaded. Backblaze-informed thresholds highlighted. USB-SMART-caveat. Privileged-access requirement. MIT.
+- **pocket-id** (7661★) — **passkey-only OIDC provider**. HTTPS-mandatory + "register ≥2 passkeys" imperatives front-loaded. Trade-off with Keycloak/Authelia/Authentik explicitly positioned. MIT.
+
+**Batch 57 lengths:** phpmyadmin 230, tube-archivist 222, wallos 183, scrutiny 218, pocket-id 196.
+**State:** 299 done / 1 skipped / 974 pending (23.5%).
+
+### New precedents
+- **"20-year attack target" security warning**: phpMyAdmin has been an automated-scanner favorite forever. Explicit "do-not-expose-publicly + defense-in-depth checklist" pattern, extends earlier "reverse-proxy mandatory" precedent.
+- **Legal-gray-area warning for media tools**: Tube Archivist joins Piped/Invidious/RomM as projects where the software is fine but legal use = user responsibility. Fourth such project; now clearly a pattern.
+- **"Passkey = no fallback by design" education**: Pocket ID — trade-off is explicit, and "register multiple passkeys + document recovery" is imperative. New precedent for passkey-only products.
+- **"First user is admin — register quickly"**: Wallos. Extends prior SAM (self-assigned admin) warnings to a subscription tracker.
+
+**Milestones:** Crossed **23.5%** with a compact, lean set — 4 of 5 recipes under 220 lines. Consistent quality without bloat.
