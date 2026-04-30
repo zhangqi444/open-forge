@@ -3391,3 +3391,71 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Particularly notable: Fasten Health as pure-PHR CROWN-JEWEL + autobrr as tracker-credential CROWN-JEWEL
 - 3 new institutional-stewardship sub-tiers (one batch record)
 - Multiple milestones: 85-transparent-maintenance + 4-healthcare-CROWN-JEWEL
+
+## 2026-04-30 21:48 UTC — batch 108 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 108)
+- **bookwyrm** (2690★) — Python/Django ActivityPub book-social-network (Goodreads-alternative; federated). 92nd hub-of-credentials Tier 2 (extends Grimmory/reading-annotations pattern). **17th AGPL-network-service-disclosure**. **NEW recipe convention: "no-AI-code-contribution-norm"** (1st — BookWyrm). **NEW positive-signal: "small-scale-instance-design-intent"** (1st — BookWyrm). IMMUTABLE-domain-for-federated-services pattern extended. 78th institutional-stewardship + 86th transparent-maintenance.
+- **eventcatalog** (2684★) — Node/Astro architecture catalog (domains+services+events+schemas; 15+ generators; AI-discovery). 93rd hub-of-credentials Tier 3 (soft — arch-exposure risk). **NEW recipe conventions**: "internal-architecture-doc-exposure-risk" + "generator-credentials-in-build-pipeline" + "LLM-feature-sends-data-externally". **NEW positive-signals**: "static-site-generated-no-runtime-vulnerabilities" (1st — EventCatalog) + "all-contributors-recognition" (1st — EventCatalog) + "public-adoption-metric" + "broad-generator-ecosystem". **Markdown-file-based-knowledge-base META-FAMILY: 4 tools** (+EventCatalog) 🎯. 79th institutional-stewardship + 87th transparent-maintenance.
+- **defguard** (2683★) — Rust enterprise VPN + comprehensive access-control (MFA-on-WireGuard + IdP + LDAP/AD + YubiKey). **94th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "enterprise-VPN-with-IdP"** (1st — Defguard; concentrates VPN+identity+MFA+YubiKey+ACL in one tool). **NEW recipe conventions**: "VPN+IdP-combined-concentrated-risk" + "MFA-on-VPN-connection positive-signal" + "public-pentest-reports" (1st formally) + "public-SBOM-CVE-scan" (1st) + "public-ADRs" (1st formally) + "public-project-roadmap" (1st formally) + "LDAP-write-back-elevated-permissions" + "per-gateway-key-material-risk" + "multi-OS-firewall-management" + "secure-self-service-enrollment" + "hardware-key-provisioning". **NEW institutional-stewardship sub-tier: "commercial-org-with-public-security-practices"** (1st — DefGuard; exceptional transparency). 80th institutional-stewardship + 88th transparent-maintenance. CROWN-JEWEL Tier 1: 25 tools / 22 sub-categories.
+- **chibisafe** (2677★) — TypeScript file-uploader (dashboard-config + ShareX + S3 + invites + albums + snippets + URL-shortener). **95th hub-of-credentials Tier 2**. **Public-UGC-host-abuse-conduit-risk META-FAMILY: 8 tools** (+Chibisafe) 🎯 **8-TOOL MILESTONE**. **NEW recipe conventions**: "runtime-dashboard-config attack-surface" (1st — chibisafe) + "URL-shortener-abuse-vector" (1st — chibisafe) + "multi-function-tool-attack-surface-expansion" (1st — chibisafe). **NEW positive-signals**: "invite-only-as-default-defense" (1st formally) + "ShareX-upload-integration" + "multi-platform-upload-integration" + "chunked-uploads-for-reliability" (1st). **Major-version-breaking-migration: 2 tools** (Grimoire + chibisafe). 81st institutional-stewardship + 89th transparent-maintenance.
+- **open-web-analytics** (2662★) — PHP web-analytics (Google-Analytics-alternative with session-recordings + heatmaps + DOMStream). **96th hub-of-credentials Tier 2 — NEW sub-family "analytics/tracking-personal-data-risk"** (1st — OWA; includes session-recording + heatmaps = intimate UX data). **NEW recipe conventions**: "GDPR-analytics-compliance-requirements" (1st — OWA) + "session-recording-field-masking mandatory" (1st — OWA) + "PHP-version-update-discipline" + "multi-repo-project-version-compatibility". **NEW positive-signals**: "first-party-analytics-tracker" (1st formally) + "rare-OSS-feature" (1st — OWA for session-recording) + "long-standing-OSS-project" + "auxiliary-SDK-for-integration" + "pluggable-modules-for-extensibility". **Decade-plus-OSS: 4 tools** (Gramps+EspoCRM+Silex+OWA) 🎯 **4-TOOL MILESTONE**. 82nd institutional-stewardship + **90th transparent-maintenance 🎯 90-TOOL MILESTONE**.
+
+**Batch 108 lengths:** bookwyrm 176, eventcatalog 173, defguard 219, chibisafe 191, open-web-analytics 201.
+**State:** 554 done / 2 skipped / 718 pending — **43.5% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 90 tools** 🎯 **90-TOOL MILESTONE at OWA**
+- **CROWN-JEWEL Tier 1: 25 tools / 22 sub-categories** 🎯 (+Defguard enterprise-VPN-with-IdP)
+- **Public-UGC-abuse-conduit META-FAMILY: 8 tools** 🎯 **8-MILESTONE at chibisafe**
+- **Markdown-knowledge-base META-FAMILY: 4 tools** 🎯 (+EventCatalog as arch-docs variant)
+- **Decade-plus-OSS: 4 tools** 🎯 (+OWA)
+- **Hub-of-credentials: 96 tools**
+- **Institutional-stewardship: 82 tools** (1 NEW sub-tier: commercial-org-with-public-security-practices — DefGuard)
+- **17th AGPL-network-service-disclosure**
+
+### New precedents this batch
+- **"enterprise-VPN-with-IdP" CROWN-JEWEL Tier 1 sub-category** (Defguard 1st)
+- **"commercial-org-with-public-security-practices" institutional-stewardship sub-tier** (DefGuard 1st)
+- **"analytics/tracking-personal-data-risk" sub-family** hub-of-credentials (OWA 1st)
+- **"no-AI-code-contribution-norm" recipe convention** (BookWyrm 1st)
+- **"small-scale-instance-design-intent" positive-signal** (BookWyrm 1st)
+- **"internal-architecture-doc-exposure-risk" convention** (EventCatalog 1st)
+- **"generator-credentials-in-build-pipeline" convention** (EventCatalog 1st)
+- **"LLM-feature-sends-data-externally" convention** (EventCatalog 1st)
+- **"static-site-generated-no-runtime-vulnerabilities" positive-signal** (EventCatalog 1st)
+- **"all-contributors-recognition" positive-signal** (EventCatalog 1st)
+- **"VPN+IdP-combined-concentrated-risk" convention** (Defguard 1st)
+- **"MFA-on-VPN-connection" positive-signal** (Defguard 1st)
+- **"public-pentest-reports" positive-signal** (Defguard 1st formally)
+- **"public-SBOM-CVE-scan" positive-signal** (Defguard 1st)
+- **"public-ADRs" positive-signal** (Defguard 1st formally)
+- **"public-project-roadmap" positive-signal** (Defguard 1st formally)
+- **"LDAP-write-back-elevated-permissions" convention** (Defguard 1st)
+- **"per-gateway-key-material-risk" convention** (Defguard)
+- **"multi-OS-firewall-management" positive-signal** (Defguard)
+- **"secure-self-service-enrollment" positive-signal** (Defguard 1st)
+- **"hardware-key-provisioning" positive-signal** (Defguard 1st)
+- **"runtime-dashboard-config attack-surface" convention** (chibisafe 1st)
+- **"URL-shortener-abuse-vector" convention** (chibisafe 1st)
+- **"multi-function-tool-attack-surface-expansion" convention** (chibisafe 1st)
+- **"invite-only-as-default-defense" positive-signal** (chibisafe 1st formally)
+- **"ShareX-upload-integration" positive-signal** (chibisafe 1st)
+- **"multi-platform-upload-integration" positive-signal** (chibisafe 1st)
+- **"chunked-uploads-for-reliability" positive-signal** (chibisafe 1st)
+- **"GDPR-analytics-compliance-requirements" convention** (OWA 1st)
+- **"session-recording-field-masking mandatory" convention** (OWA 1st)
+- **"PHP-version-update-discipline" convention** (OWA)
+- **"multi-repo-project-version-compatibility" convention** (OWA)
+- **"first-party-analytics-tracker" positive-signal** (OWA 1st formally)
+- **"rare-OSS-feature" positive-signal** (OWA 1st)
+
+### Notes
+- 43.5% — batch 108 very dense (14+ new conventions/signals in Defguard alone)
+- Particularly notable: Defguard's exceptional transparency (public-pentests + SBOM + ADRs + roadmap) → 4 new positive-signals + 1 new sub-tier
+- OWA's session-recording raises GDPR considerations (distinct from standard analytics)
+- CROWN-JEWEL Tier 1 now 25 tools / 22 sub-categories
+- Pattern-consolidation still urgently-deferred; ledger authoritative
