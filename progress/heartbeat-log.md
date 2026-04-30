@@ -2610,3 +2610,96 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   23. `patterns/zero-downtime-config-reload.md` — NEW
   24. `patterns/modern-cryptography-hygiene-signal.md` — NEW sub-signal under transparent-maintenance
 - Current batch shipped: **5 recipes, batch 96 complete, 494 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 19:00 UTC — batch 97 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 97)
+- **mediamanager** (3188★) — unified *arr-stack-replacement; OAuth/OIDC built-in; Docker-first. 49th hub-of-credentials Tier 2 + 16th network-service-legal-risk (*arr-piracy-tooling inheritance) + **NEW: "sole-maintainer-with-visible-sponsor-support" institutional-stewardship sub-tier** (distinct from Cloud-funding + pure-donation; 1st explicit) + 16th sole-maintainer-with-community + 31st transparent-maintenance + **NEW: "new-unified-replacement-for-mature-stack" recipe convention** (applicable to Kaneo 93, Wanderer 91, this). **NEW: "LICENSE-file-verification-required" recipe convention** for recipes where README doesn't state license clearly.
+- **youtubedl-material** (3155★) — MIT Material-Design web UI on yt-dlp. 50th hub-of-credentials LIGHT (Tier 2 with YouTube cookies) + **17th network-service-legal-risk** (**NEW: "content-download-from-commercial-platform-risk" 8th sub-family**; distinct from front-end-proxy/IPTV/torrent) + 17th sole-maintainer-with-community + 17th pure-donation + 32nd transparent-maintenance + **NEW: "content-download-wrapper" tool category** + **NEW: "yt-dlp-dependent-tool" recipe-status convention** + **NEW: "forking-after-slowdown" pattern** (yt-dlp←youtube-dl; sub-variant of forking-after-upstream-archival Redlib 95).
+- **mixpost** (3146★) — MIT + Pro-tier Laravel social media scheduler. **51st hub-of-credentials — CROWN-JEWEL Tier 1 (9th tool NEW; marketing/brand sub-category)** — threat: post-hijack → reputation damage. 33rd immutability-of-secrets (APP_KEY) + **18th network-service-legal-risk** (**NEW: "commercial-social-platform-API-dependency" 9th sub-family** — Twitter/X API pricing crisis 2023 example). 27th institutional-stewardship (company — Inovector). Open-core commercial-tier (16th variant). 33rd transparent-maintenance.
+- **slskd** (3143★) — AGPL-3 Soulseek P2P daemon + web UI (unusual: designed-for-internet-exposure + token-auth). 52nd hub-of-credentials Tier 2 + **19th network-service-legal-risk** (**NEW: "P2P-file-sharing" 10th sub-family** — Soulseek-specific; distinct from all prior 9). VPN-sidecar-pattern reinforced (batch 96). 28th institutional-stewardship + 34th transparent-maintenance. Complementary to Nicotine+.
+- **slash** (3142★) — MIT + Go link shortener by yourselfhosted org (Memos team). 53rd hub-of-credentials LIGHT + **20th network-service-legal-risk** (**NEW: "URL-shortener-as-phishing-vector-risk" 11th sub-family** — domain-blocklisting threat). 29th institutional-stewardship (**NEW: "team-with-prior-successful-OSS-project" sub-tier** 1st explicit — yourselfhosted = Memos team) + 35th transparent-maintenance.
+
+**Batch 97 lengths:** mediamanager 152, youtubedl-material 185, mixpost 172, slskd 178, slash 155.
+**State:** 499 done / 2 skipped / 773 pending — **39.2% done.**
+
+### MAJOR PATTERN-DENSITY NOTE: Network-service-legal-risk exploded this batch
+- **Went from 15 → 20 tools + added 4 NEW sub-families**:
+  1. content-download-from-commercial-platform-risk (YDL-M)
+  2. commercial-social-platform-API-dependency (Mixpost)
+  3. P2P-file-sharing (slskd)
+  4. URL-shortener-as-phishing-vector-risk (Slash)
+- **Network-service-legal-risk sub-family total: 11** — THIS IS THE HIGHEST-COUNT sub-family system in any pattern-family. Family-doc at batch 100 mandatory with full 11-sub-family taxonomy.
+
+### New precedents
+- **"Sole-maintainer-with-visible-sponsor-support"** institutional-stewardship sub-tier (MediaManager — 1st explicit): GitHub Sponsors + BMC + visible sponsor wall but no commercial-Cloud tier. Distinct from:
+  - Sole-maintainer-with-commercial-Cloud-funding (Kaneo 93, LinkAce 95, Ryot 95 — 3 tools)
+  - Pure-donation (no visible backing)
+  - **Now 6 institutional-stewardship sub-tiers at catalog level.**
+- **"New-unified-replacement-for-mature-stack" recipe convention** (MediaManager vs *arr; Kaneo vs Jira; Wanderer vs AllTrails): newer tools positioning as replacements for mature incumbents. Recipe convention: acknowledge mature-incumbent + honest maturity-gap.
+- **"LICENSE-file-verification-required" recipe convention** (MediaManager): when README doesn't clearly state license, flag verification-requirement. Applicable to many tools with unclear licensing.
+- **"Content-download-wrapper" tool category** (YDL-M 1st named; retroactively MeTube, Tubearchivist, Pinchflat, Cobalt, JDownloader): web-UIs on yt-dlp/etc. Common gotchas: platform-ToS-risk + yt-dlp-stale-risk + disk-growth + public-exposure-DMCA.
+- **"yt-dlp-dependent-tool" recipe-status convention** (YDL-M): tools that wrap yt-dlp share common operational concerns.
+- **"Forking-after-slowdown" pattern** (yt-dlp ← youtube-dl): sub-variant of forking-after-upstream-archival (Redlib 95). Original project still-alive but slower; fork moves faster.
+- **CROWN-JEWEL Tier 1 NOW 9 TOOLS** (+Mixpost marketing/brand sub-category): Octelium, Guacamole, Homarr, pgAdmin, WGDashboard, Lunar, Dagu, GrowChief, **Mixpost**.
+- **"Team-with-prior-successful-OSS-project" institutional-stewardship sub-tier** (Slash from Memos team — 1st explicit): transitive-trust signal when a tool comes from a team with other successful projects.
+- **Network-service-legal-risk sub-families at 11 total**: illegal-content (Guacamole rare), music-royalty, IoT-safety, *arr-piracy-tooling, DVR-personal-use, ToS-violation, platform-front-end-proxy, IPTV-piracy-conduit, content-download-from-platform, commercial-API-dependency, P2P-file-sharing, URL-shortener-phishing-vector.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 53 tools** (+ mediamanager, youtubedl-material, mixpost, slskd, slash)
+  - **CROWN-JEWEL Tier 1: 9 tools** (+ Mixpost) — **MARKETING/BRAND SUB-CATEGORY added**
+  - **LIFELOG sub-family: 1 tool**
+  - **Regulatory sub-families: 4** (financial, research, healthcare, LIFELOG)
+- **Immutability-of-secrets: 33 tools** (+ mixpost APP_KEY)
+- **Stateless-tool-rarity: 6 tools** (unchanged)
+- **Transparent-maintenance: 35 tools** (+ 5)
+- **Institutional-stewardship: 29 tools** (+ mediamanager sub-tier-NEW, mixpost company, slskd, slash sub-tier-NEW, youtubedl-material)
+- **Network-service-legal-risk: 20 tools** (+ 4 **NEW sub-families**: content-download-from-commercial-platform, commercial-social-platform-API-dependency, P2P-file-sharing, URL-shortener-as-phishing-vector) — **11 sub-families total** — HIGHEST pattern-sub-family count
+- **Sole-maintainer-with-commercial-Cloud-funding: 3 tools** (unchanged)
+- **Sole-maintainer-with-community: 17 tools** (+ MediaManager, + YDL-M)
+- **Sole-maintainer-with-visible-sponsor-support: 1 tool** (MediaManager — NEW sub-tier)
+- **Pure-donation/community: 17 tools** (+ YDL-M)
+- **Team-with-prior-successful-OSS-project sub-tier: 1 tool** (Slash — NEW)
+- **Rebrand-preservation pattern: 3 tools** (unchanged)
+- **Transitional-from-sole-maintainer-to-team: 3 tools** (unchanged)
+- **Private-front-end ecosystem: 1 tool named**
+- **Content-download-wrapper category: 1 tool named (YDL-M)**
+- **AI-model-serving-tool category: 1 tool named (Speaches)**
+
+### Notes
+- **39.2% done.** Batch 100 is **3 batches / 15 recipes away**. Pattern-consolidation pass mandatory. With THIS batch's explosion, pattern-docs plan now expands to 25+:
+  1. `patterns/hub-of-credentials.md` — 53 tools, **9-tool CROWN-JEWEL Tier 1** + sub-categories
+  2. `patterns/immutability-of-secrets.md` — 33 tools
+  3. `patterns/network-service-legal-risk.md` — **20 tools + 11 sub-families** — HIGHEST-priority family-doc
+  4. `patterns/transparent-maintenance.md` — 35 tools
+  5. `patterns/commercial-tier-taxonomy.md`
+  6. `patterns/license-taxonomy.md`
+  7. `patterns/institutional-stewardship.md` — **6 sub-tiers now**
+  8. `patterns/stateless-tool-rarity.md`
+  9. `patterns/regulatory-crown-jewel-sub-families.md`
+  10. `patterns/backup-tool-recipe-template.md`
+  11. `patterns/network-recon-risk.md`
+  12. `patterns/retired-but-cataloged-status-class.md`
+  13. `patterns/web-exposed-shell-exec-gateway.md`
+  14. `patterns/ssrf-via-user-url.md`
+  15. `patterns/wellness-ed-dv-threat-models.md`
+  16. `patterns/private-front-end-ecosystem.md`
+  17. `patterns/data-collection-tool-regulatory-framework.md`
+  18. `patterns/rebrand-preservation.md`
+  19. `patterns/ai-model-serving-tool-category.md`
+  20. `patterns/vpn-sidecar-pattern.md`
+  21. `patterns/client-only-needs-server-convention.md`
+  22. `patterns/e2e-messaging-nation-state-threat-model.md`
+  23. `patterns/zero-downtime-config-reload.md`
+  24. `patterns/modern-cryptography-hygiene-signal.md`
+  25. `patterns/content-download-wrapper-category.md` — NEW
+  26. `patterns/yt-dlp-dependent-tool-convention.md` — NEW
+  27. `patterns/forking-after-upstream-slowdown.md` — NEW (Redlib+YDL-M)
+  28. `patterns/team-with-prior-successful-oss-project-sub-tier.md` — NEW
+  29. `patterns/sole-maintainer-with-visible-sponsor-support.md` — NEW sub-tier
+  30. `patterns/new-unified-replacement-for-mature-stack.md` — NEW
+  31. `patterns/license-file-verification-required.md` — NEW convention
+- Current batch shipped: **5 recipes, batch 97 complete, 499 cumulative, state file updated, log appended, push imminent.**
