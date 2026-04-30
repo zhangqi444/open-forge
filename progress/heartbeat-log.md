@@ -790,3 +790,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 46 lengths:** datasette 235, grist 226, esphome 248, simplex-chat 223, mosquitto 259.
 **State:** 244 done / 1 skipped / 1029 pending (19.2%).
+
+## 2026-04-30 06:05 UTC — batch 47 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 unchanged.
+
+### Step 2 (selfh.st batch 47)
+- **gatus** (10784★) — dev-oriented health dashboard; YAML config-as-code. Rich condition DSL (STATUS/RESPONSE_TIME/BODY/CERTIFICATE_EXPIRATION/DNS_RCODE). Breadth: HTTP/ICMP/TCP/DNS/SSH/WS/STARTTLS + 40+ alert providers. Positioned vs Uptime Kuma (Kuma wins on web-UI editing; Gatus on config-as-code + condition DSL). Alternatives: Uptime Kuma, Statping, Upptime (GitHub Actions), Prometheus+Blackbox, Healthchecks.
+- **kutt** (10724★) — URL shortener. Front-loaded spam/blacklist prevention: `DISALLOW_ANONYMOUS_LINKS=true`, `DISALLOW_REGISTRATION=true`, CAPTCHA. Noted `kutt.it` TLD suspension (Italian registrar) and `kutt.to` as the working domain. Alternatives: YOURLS, Shlink (strongest analytics), Polr, Dub. Choose-matrix.
+- **obsidian-livesync** (10557★) — community Obsidian plugin; recipe focuses on the **backend** (CouchDB / S3 / WebRTC P2P). CORS config is critical (without specific origins = mobile can't connect). CouchDB MUST be TLS for mobile. E2E passphrase loss = data loss. Fly.io is no longer free (noted). livesync-serverpeer/webpeer pseudo-peers for P2P. Alternatives: Obsidian Sync (paid), Syncthing, Remotely Save, git+mobile.
+- **linkding** (10522★) — minimal bookmark manager. Auto-archive via single-file-cli (local HTML) OR Wayback Machine. Positioned as "less bloat than Wallabag, more functional than Shiori." Archive feature uses headless Chromium (~500MB spike). Alternatives: Shiori, Hoarder/Karakeep, LinkWarden, Wallabag, Readeck.
+- **sonarqube** (10481★) — static code analysis platform. Requires host kernel tuning (`vm.max_map_count=524288`, `fs.file-max=131072`) — front-loaded as #1 gotcha. Default `admin`/`admin` → forced password change on first login. Postgres MANDATORY since 7.9 (SQLite/MySQL/Oracle/MSSQL removed). Editions comparison (CE vs Developer/Enterprise/Data Center — C/C++/Swift only in paid tiers; branch analysis + PR decoration paid-only). Alternatives: Semgrep, Qodana, DeepSource, CodeQL, Snyk Code.
+
+**Batch 47 lengths:** gatus 268, kutt 217, obsidian-livesync 244, linkding 197, sonarqube 225.
+**State:** 249 done / 1 skipped / 1024 pending (19.5%).
