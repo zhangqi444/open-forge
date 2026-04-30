@@ -2703,3 +2703,113 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   30. `patterns/new-unified-replacement-for-mature-stack.md` — NEW
   31. `patterns/license-file-verification-required.md` — NEW convention
 - Current batch shipped: **5 recipes, batch 97 complete, 499 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 19:25 UTC — batch 98 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 98)
+- **baikal** (3138★) — GPL-2 SabreDAV-based CalDAV/CardDAV server (mature, 15-year). 54th hub-of-credentials Tier 2 (calendar+contacts PII-density) + 30th institutional-stewardship (community-steward-of-legacy-tool — 4th in this sub-tier) + 36th transparent-maintenance + **NEW: "focus-is-feature" recipe convention framing**.
+- **garmin-grafana** (3134★) — GPL-3 unofficial Garmin scraper → InfluxDB → Grafana. **21st network-service-legal-risk** (**NEW: 12th sub-family "commercial-platform-unofficial-API-scraper-risk"** — applicable to fitbit-grafana, social-scrapers, HA-integrations) + **55th hub-of-credentials — HEALTHCARE-CROWN-JEWEL 2nd tool** (joining SparkyFitness 94; sub-family solidifying) + 32nd immutability-of-secrets + 37th transparent-maintenance + **NEW: "dependent-on-key-third-party-library" institutional-stewardship sub-tier** (Arpan + cyberjunky's python-garminconnect; effectively 2-person-dependency) + 30th institutional-stewardship. **NEW: "personal-data-from-commercial-wearable-to-self-host" category** (Garmin + Fitbit + Oura + Apple-Watch-via-HealthKit patterns).
+- **adventurelog** (3120★) — GPL-3 SvelteKit+Django travel logger. 46th hub-of-credentials Tier 2 (**NEW: location-history-is-LIFELOG-adjacent** — aggregation with Ryot/Garmin amplifies LIFELOG risk) + 34th immutability-of-secrets (SECRET_KEY Django) + 2nd sole-maintainer-with-visible-sponsor-support (joining MediaManager 97 — sub-tier solidified) + 38th transparent-maintenance + 31st institutional-stewardship. **NEW: "EXIF-scrubbing-on-upload" recipe convention** + **NEW: "map-tile-provider selection" recipe convention** (OSM vs Mapbox). DV-threat-model reinforced.
+- **zipline** (3109★) — Next.js/TypeScript file upload server (ShareX-compatible). 47th hub-of-credentials Tier 2 + 35th immutability-of-secrets (CORE_SECRET) + **22nd network-service-legal-risk** (**NEW: 13th sub-family "public-file-upload-host-illegal-content-conduit"** — CSAM-hosting criminal-regardless-of-intent) + 39th transparent-maintenance + 32nd institutional-stewardship (19th sole-maintainer-with-community). License not stated in README — reinforces LICENSE-file-verification-required convention.
+- **opengist** (3105★) — AGPL-3 Go Git-powered pastebin. 48th hub-of-credentials LIGHT + **23rd network-service-legal-risk** (**NEW: 14th sub-family "public-paste-host-illegal-content-conduit"**) + **NEW META-FAMILY PROPOSAL: "public-UGC-host-abuse-conduit-risk"** (Slash 97 URL-shortener + Zipline 98 file-host + Opengist 98 paste-host — 3 tools all face same risk pattern) + 40th transparent-maintenance + 33rd institutional-stewardship (20th sole-maintainer-with-community). **NEW: "accidental-secret-leak-risk" callout** for pastebin/snippets tools.
+
+**Batch 98 lengths:** baikal 166, garmin-grafana 189, adventurelog 188, zipline 193, opengist 180.
+**State:** 504 done / 2 skipped / 768 pending — **39.6% done.**
+
+### MAJOR PATTERN DEVELOPMENT — "public-UGC-host-abuse-conduit-risk" META-FAMILY emerging
+- **3 tools now manifest same pattern**:
+  1. **Slash 97** (link shortener — phishing-vector)
+  2. **Zipline 98** (file-host — CSAM/malware-conduit)
+  3. **Opengist 98** (paste-host — illegal-content-conduit)
+- **Pattern**: public user-generated-content host → spammers/scammers abuse → domain blocklisting + legal exposure + hosting-ToS-violation
+- **Recipe convention**: uniform mitigation checklist (invite-only, rate-limit, abuse-report, content-scanning)
+- **Family-doc at batch 100**: consider as meta-family OR consolidate into network-service-legal-risk with explicit 14-sub-family map
+- **Also continues the sub-family explosion trend**: network-service-legal-risk went from 11 → 14 sub-families in ONE batch
+
+### New precedents
+- **"Commercial-platform-unofficial-API-scraper-risk" sub-family** of network-service-legal-risk (Garmin-Grafana — 12th sub-family): tools using reverse-engineered commercial platform APIs (Garmin, Fitbit, social-media-scrapers, home-assistant-integrations). Distinct from commercial-API-dependency (Mixpost 97 — sanctioned OAuth APIs). Risk: platform-breakage-anytime + ToS-prohibition + account-ban.
+- **"Public-file-upload-host-illegal-content-conduit" sub-family** of network-service-legal-risk (Zipline — 13th sub-family): file-hosts face CSAM + malware + phishing + copyright-infringement abuse. CSAM specifically = criminal-regardless-of-intent (immediate FBI/NCMEC involvement). Distinct from URL-shortener (Slash 97 — 11th) + paste-host (14th).
+- **"Public-paste-host-illegal-content-conduit" sub-family** of network-service-legal-risk (Opengist — 14th sub-family).
+- **META-FAMILY: "public-UGC-host-abuse-conduit-risk"** (Slash+Zipline+Opengist — 3 tools): **3 sub-families 11+13+14 share common underlying pattern**. Family-doc should map sub-families → meta-family.
+- **"Focus-is-feature" recipe convention framing** (Baikal): narrow-scope tools that do one thing excellently are a positive signal in over-featured ecosystem. Applicable to: Baikal (CalDAV/CardDAV only), minimal-ircd, simple-single-purpose tools.
+- **"Dependent-on-key-third-party-library" institutional-stewardship sub-tier** (Garmin-Grafana — 1st explicit): tool effectively runs on 2-person core (wrapper-maintainer + library-maintainer). Applicable to: Garmin-Grafana + many other "wrapper on a critical lib" patterns.
+- **"Personal-data-from-commercial-wearable-to-self-host" category** (Garmin-Grafana — 1st named; retroactively Fitbit-grafana + similar patterns for Oura + Apple-Watch-HealthKit): emerging category of tools that liberate personal data from commercial platforms.
+- **"EXIF-scrubbing-on-upload" recipe convention** (AdventureLog): photo-sharing tools should strip EXIF to prevent location-leak. Applicable to: Zipline 98, Lychee, Chevereto, AdventureLog 98, PhotoPrism, Immich (verify behavior).
+- **"Map-tile-provider selection" recipe convention** (AdventureLog): OSM (free, respect-usage-policy) vs Mapbox (commercial, API-key). Applicable to: geo-viz tools in general.
+- **"Accidental-secret-leak-risk" callout** (Opengist): pastebin/snippet tools become secret-leak vectors. Applicable to: Opengist, PrivateBin, any-paste-host.
+- **"Location-history-is-LIFELOG-adjacent"** framing (AdventureLog): location-data aggregates with other lifelog data → amplifies LIFELOG-CROWN-JEWEL risk (Ryot 95). Combining AdventureLog + Ryot + Garmin-Grafana = true LIFELOG-scale compromise target.
+- **HEALTHCARE-CROWN-JEWEL sub-family now 2 tools** (SparkyFitness 94 + Garmin-Grafana 98) — sub-family solidifying at 2 tools.
+
+### Cross-cutting family counts (updated)
+- **Hub-of-credentials: 55 tools** (+ baikal, garmin-grafana HEALTHCARE-CROWN-JEWEL 2nd, adventurelog, zipline, opengist)
+  - **CROWN-JEWEL Tier 1: 9 tools** (unchanged)
+  - **HEALTHCARE-CROWN-JEWEL sub-family: 2 tools** (SparkyFitness + Garmin-Grafana)
+  - **LIFELOG sub-family: 1 tool** (+ implicit multi-tool aggregation)
+- **Immutability-of-secrets: 35 tools** (+ adventurelog SECRET_KEY, zipline CORE_SECRET)
+- **Stateless-tool-rarity: 6 tools** (unchanged)
+- **Transparent-maintenance: 40 tools** (+ 5; MILESTONE at 40)
+- **Institutional-stewardship: 33 tools** (+ 5; incl **NEW sub-tier "dependent-on-key-third-party-library"**)
+- **Network-service-legal-risk: 23 tools / 14 sub-families** (+ 3 NEW sub-families: commercial-platform-unofficial-API-scraper-risk, public-file-upload-host-illegal-content-conduit, public-paste-host-illegal-content-conduit) — **HIGHEST sub-family count pattern**
+- **Sole-maintainer-with-commercial-Cloud-funding: 3 tools** (unchanged)
+- **Sole-maintainer-with-community: 20 tools** (+ opengist; + adventurelog implicit)
+- **Sole-maintainer-with-visible-sponsor-support: 2 tools** (MediaManager 97 + AdventureLog 98 — sub-tier solidified)
+- **Community-steward-of-legacy-tool: 4 tools** (+ Baikal — ddclient 93 + 3 prior)
+- **Dependent-on-key-third-party-library: 1 tool** (Garmin-Grafana — NEW sub-tier)
+- **Pure-donation/community: 17 tools** (unchanged)
+- **Team-with-prior-successful-OSS-project sub-tier: 1 tool** (Slash)
+- **Rebrand-preservation pattern: 3 tools**
+- **Transitional-from-sole-maintainer-to-team: 3 tools**
+- **Private-front-end ecosystem: 1 tool named**
+- **AI-model-serving-tool category: 1 tool**
+- **Content-download-wrapper category: 1 tool**
+- **Personal-data-from-commercial-wearable-to-self-host category: 1 tool (Garmin-Grafana)** NEW
+- **Regulatory-crown-jewel sub-families: 4** (financial, research, healthcare 2-tools-now, LIFELOG)
+- **Public-UGC-host-abuse-conduit-risk meta-family: 3 tools** (Slash+Zipline+Opengist) NEW META-FAMILY
+
+### Notes
+- **39.6% done.** Batch 100 is **2 batches / 10 recipes away**. Pattern-consolidation pass mandatory at batch 100. With network-service-legal-risk now at 14 sub-families, consolidation is CRITICAL.
+- **Updated consolidation plan (36+ pattern-docs)**:
+  1. `patterns/hub-of-credentials.md` — 55 tools
+  2. `patterns/immutability-of-secrets.md` — 35 tools
+  3. `patterns/network-service-legal-risk.md` — 23 tools + 14 sub-families — **TOP PRIORITY; major pattern**
+  4. `patterns/transparent-maintenance.md` — 40 tools (40-milestone worth-acknowledging)
+  5. `patterns/commercial-tier-taxonomy.md`
+  6. `patterns/license-taxonomy.md`
+  7. `patterns/institutional-stewardship.md` — 33 tools, 7+ sub-tiers
+  8. `patterns/stateless-tool-rarity.md`
+  9. `patterns/regulatory-crown-jewel-sub-families.md`
+  10. `patterns/backup-tool-recipe-template.md`
+  11. `patterns/network-recon-risk.md`
+  12. `patterns/retired-but-cataloged-status-class.md`
+  13. `patterns/web-exposed-shell-exec-gateway.md`
+  14. `patterns/ssrf-via-user-url.md`
+  15. `patterns/wellness-ed-dv-threat-models.md`
+  16. `patterns/private-front-end-ecosystem.md`
+  17. `patterns/data-collection-tool-regulatory-framework.md`
+  18. `patterns/rebrand-preservation.md`
+  19. `patterns/ai-model-serving-tool-category.md`
+  20. `patterns/vpn-sidecar-pattern.md`
+  21. `patterns/client-only-needs-server-convention.md`
+  22. `patterns/e2e-messaging-nation-state-threat-model.md`
+  23. `patterns/zero-downtime-config-reload.md`
+  24. `patterns/modern-cryptography-hygiene-signal.md`
+  25. `patterns/content-download-wrapper-category.md`
+  26. `patterns/yt-dlp-dependent-tool-convention.md`
+  27. `patterns/forking-after-upstream-slowdown.md`
+  28. `patterns/team-with-prior-successful-oss-project-sub-tier.md`
+  29. `patterns/sole-maintainer-with-visible-sponsor-support.md`
+  30. `patterns/new-unified-replacement-for-mature-stack.md`
+  31. `patterns/license-file-verification-required.md`
+  32. `patterns/public-ugc-host-abuse-conduit-risk-meta-family.md` — NEW
+  33. `patterns/commercial-platform-unofficial-api-scraper-risk.md` — NEW
+  34. `patterns/personal-data-from-commercial-wearable-category.md` — NEW
+  35. `patterns/exif-scrubbing-on-upload-convention.md` — NEW
+  36. `patterns/map-tile-provider-selection.md` — NEW
+  37. `patterns/accidental-secret-leak-risk.md` — NEW
+  38. `patterns/dependent-on-key-third-party-library-sub-tier.md` — NEW
+  39. `patterns/location-history-is-lifelog-adjacent.md` — NEW
+  40. `patterns/focus-is-feature-framing.md` — NEW
+- Current batch shipped: **5 recipes, batch 98 complete, 504 cumulative, state file updated, log appended, push imminent.**
