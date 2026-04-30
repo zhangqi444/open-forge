@@ -1371,3 +1371,34 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Egress costs = 1 TB backup = $$ to restore"** financial-tradeoff in cloud backup (Duplicacy): for cloud-backup tools, restore economics matter. Extends cost-transparency pattern to egress specifically.
 
 **Milestone:** 28.6% done. Avg batch length 176 lines.
+
+## 2026-04-30 12:05 UTC — batch 71 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 still open.
+
+### Step 2 (selfh.st batch 71)
+- **paperless-ai** (5619★) — AI doc classifier for Paperless-ngx. **"Repo unmaintained — Paperless-ngx adding native AI"** upstream-quote front-loaded. License per repo; pin version.
+- **cronicle** (5609★) — multi-server scheduler. **Successor xyOps announced** — upstream-quote. Maintenance mode; bug fixes only. MIT. Single-maintainer transition.
+- **upsnap** (5579★) — WoL web app. **Verbatim anti-scam notice quoted** from README. Host-networking required + cross-VLAN WoL gotchas. MIT.
+- **speedtest-tracker** (5573★) — ISP speedtest tracker. **"Tests every 10 min = 100-400 GB/month bandwidth"** cost-transparency. Default creds + APP_KEY-loss warning. MIT.
+- **zammad** (5558★) — modern helpdesk. **Foundation-owned IP (separate from commercial GmbH)** governance highlight — rare + trust signal. ES-is-not-optional. AGPL-3.0.
+
+**Batch 71 lengths:** paperless-ai 151, cronicle 167, upsnap 166, speedtest-tracker 163, zammad 185.
+**State:** 369 done / 1 skipped / 904 pending (29.0%).
+
+### New precedents
+- **"Repo currently unmaintained — upstream-quote with rationale"** (paperless-ai rewrite + upstream native AI coming): extends batch 69 Organizr maintenance-mode pattern. When upstream explicitly pauses with stated reason, quote + link. Tell readers WHY (rewrite + parent project adding feature natively).
+- **"Successor announced — quote + link"** (Cronicle → xyOps): when the original author announces a spiritual successor, quote the announcement verbatim. Position both projects honestly: "existing fine; new uses successor".
+- **"Verbatim anti-scam notice from upstream README"** (UpSnap): quoting is valuable when (a) upstream explicitly asks, (b) scam variants exist. New "protect-the-user-from-scams" precedent for FOSS recipes.
+- **"Cross-VLAN WoL = router broadcast forwarding + security tradeoff"** networking-specific gotcha (UpSnap): for protocol-specific tools, explain the cross-network-segment considerations. Extends "host networking required" pattern with more detail on the protocol reason.
+- **"Bandwidth cost of scheduled monitoring"** (Speedtest Tracker 100-400 GB/month): when a tool makes repeated heavy network calls, quantify the cost. New "monitoring-tool cost-transparency" precedent. Extends Manifest cost-tracking + Duplicacy egress-cost patterns.
+- **"APP_KEY loss = re-config decrypt-dependent fields"** Laravel-specific DR (Speedtest Tracker): for Laravel apps, the APP_KEY matters beyond just sessions. Concrete DR item.
+- **"ISP-owned speedtest servers show artificial speeds"** domain-expertise honesty (Speedtest Tracker): when there's a well-known measurement bias in a tool's domain, surface it. Helps users interpret results correctly.
+- **"Foundation-owned IP — independent of commercial company"** (Zammad Foundation vs Zammad GmbH): when a project has explicit non-profit IP ownership separate from its commercial sponsor, highlight it. Rare + powerful license-stability signal. Distinct from "AGPL + commercial Pro" dual-licensing (previously discussed in Passbolt).
+- **"Elasticsearch is NOT optional in production"** dependency-mandatoriness (Zammad): for tools where a "sometimes-optional" looking dep is actually required, state it explicitly. Prevents "I'll skip ES, seems heavy" mistake.
+- **"IMAP polling = 1-5 min email-to-ticket latency"** protocol-specific latency disclosure (Zammad): concrete latency numbers help users set expectations.
+- **"Channel APIs are volatile — check current status"** (Zammad Twitter/X post-2023): for tools integrating with third-party APIs that have had turbulent histories, caveat dependence + point at current-status.
+- **"WhatsApp Business API costs per conversation"** platform-cost disclosure (Zammad WABA): extends iCloud+ / Apple HKSV precedent to Meta platform costs.
+
+**Milestone:** 29.0% done. Avg batch length 166 lines.
