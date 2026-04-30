@@ -9,6 +9,8 @@ description: Automate self-hosting of open-source apps on cloud infrastructure t
 
 Walk a user from "I have a cloud account and a domain" to "working app at `https://my.domain` with TLS and mail." Load the appropriate project recipe and infra adapter based on the user's stated intent; run phases sequentially; record state so the user can resume later.
 
+> **Platform note:** this skill is designed for Claude Code but the content is platform-agnostic. Tool names like `AskUserQuestion`, `WebFetch`, and `mcp__github__*` are Claude Code-specific — read them as *capabilities* (structured-choice prompt, URL fetch, GitHub API) and use whichever equivalent your platform exposes. See [`docs/platforms/`](../../../../docs/platforms/) in the repo for per-platform integration guides (Codex / Cursor / Aider / Continue / generic).
+
 ## Operating principle
 
 **Claude does the work; the user makes the choices.** open-forge replaces the traditional "read a README, copy-paste 30 lines of bash, debug for hours" experience with a guided chat where Claude executes everything via the user's local CLI tools (aws, ssh, jq, curl) and only stops to ask when input is genuinely required.
@@ -17,7 +19,7 @@ What this means in practice:
 
 - **Run, don't print.** When a recipe contains a bash block, *Claude executes it*. Announce it in one sentence first ("Opening port 22 in the Lightsail firewall now."), then run. Don't paste the block into chat for the user to run.
 - **Ask for choices and credentials only.** Things only the user can decide or provide: AWS profile name, domain choice, canonical www-vs-apex, SMTP API key, model provider preference. Everything else (which jq command to run, which sed pattern to apply, which IAM script URL to fetch) Claude figures out from the recipe.
-- **One question at a time when possible.** Use the `AskUserQuestion` tool for structured choices (multiple-choice, single-select). Reserve free-text questions for things like API keys and domain names. Avoid wall-of-questions forms.
+- **One question at a time when possible.** Use a structured-choice prompt for multiple-choice / single-select (Claude Code: `AskUserQuestion`; on other platforms, ask in prose with options listed). Reserve free-text questions for things like API keys and domain names. Avoid wall-of-questions forms.
 - **Auto-install with confirmation, not silently.** If `jq` or `aws` is missing, propose the install command, get one-line approval, then run it. Never `sudo apt-get install` without asking.
 - **The recipe files in `references/projects/` and `references/infra/` are guidance for Claude, not pages for the user to read.** Keep that lens when extending or refactoring.
 
@@ -82,7 +84,7 @@ Before provisioning, establish three things by asking (or inferring from the use
 2. **Where** to host? → loads `references/infra/<cloud>/<service>.md` or `references/infra/{byo-vps,localhost}.md`
 3. **How** to host? → loads the matching `references/runtimes/<runtime>.md` (skipped if the infra bundles the runtime, e.g. vendor blueprints)
 
-The **how** question is *dynamically generated* from (software, where) — each project lists its "Compatible combos" table in the project recipe, and the options shown are filtered by the user's where answer. If the user's initial prompt already names a clear infra ("deploy to Lightsail" → AWS), announce the inferred choice and continue — don't re-ask. Use `AskUserQuestion` only when genuinely ambiguous.
+The **how** question is *dynamically generated* from (software, where) — each project lists its "Compatible combos" table in the project recipe, and the options shown are filtered by the user's where answer. If the user's initial prompt already names a clear infra ("deploy to Lightsail" → AWS), announce the inferred choice and continue — don't re-ask. Ask a structured-choice question only when genuinely ambiguous.
 
 Then **immediately load `references/modules/preflight.md`** and run its steps. Preflight is combo-aware — it only installs / validates what the chosen tuple actually needs (AWS CLI only when infra ∈ AWS, Docker only when runtime = docker, nothing extra on localhost).
 
@@ -100,7 +102,7 @@ If no recipe matches, **don't refuse — fall back to Tier 2**:
 
 1. **Announce in one sentence**: *"This software isn't in our verified recipe set — I'll fetch upstream docs live and reuse the runtime / infra modules. Treat my output as best-effort, not authoritative."*
 2. **Fetch upstream the same way Tier 1 does**:
-   - `WebFetch` the upstream README first. If 403/404, fall back to `raw.githubusercontent.com/<org>/<repo>/<branch>/README.md`, or `git clone` the docs repo locally if the docs site is Cloudflare-protected.
+   - Fetch the upstream README first via the platform's URL-fetch capability (Claude Code: `WebFetch`; Cursor: `@Web`; Aider/generic: `curl` via shell). If 403/404, fall back to `raw.githubusercontent.com/<org>/<repo>/<branch>/README.md`, or `git clone` the docs repo locally if the docs site is Cloudflare-protected.
    - Locate the upstream install-method index (docs site, repo `docs/install/` tree, wiki).
    - Enumerate every method documented under that index. **Do not invent methods upstream doesn't ship** — if fetches fail, stop and tell the user, don't speculate.
    - Read canonical install artifacts in the repo (`Dockerfile`, `docker-compose.yml`, `helm/`, `flake.nix`, primary config example).
@@ -184,7 +186,7 @@ Inputs split across three layers:
 - **Infra-specific** — handled by the loaded infra adapter (e.g. `references/infra/lightsail.md`): bundle/blueprint choice, SSH key path defaults.
 - **Project-specific** — handled by the loaded project recipe (e.g. `references/projects/ghost.md`): domain, canonical preference, Let's Encrypt email, SMTP provider + API key, model provider, etc.
 
-Each recipe and adapter has its own **"Inputs to collect"** section listing exactly what it needs and at which phase. Collect just-in-time per phase, not all upfront. Use `AskUserQuestion` for structured choices.
+Each recipe and adapter has its own **"Inputs to collect"** section listing exactly what it needs and at which phase. Collect just-in-time per phase, not all upfront. Use a structured-choice prompt where the platform supports one (Claude Code: `AskUserQuestion`; otherwise prose with options listed).
 
 ## Asking for credentials
 
@@ -256,7 +258,7 @@ Load `references/modules/feedback.md` for the full sanitization rules + draft te
 6. **Confirm post?** — explicit "yes" required. If user edits the draft, re-show + re-confirm.
 7. **Submit via the first available path**:
    - `gh issue create --title "..." --body "..." --label recipe-feedback,recipe:<name>` if the user has `gh` authenticated.
-   - GitHub MCP `mcp__github__issue_write` if available.
+   - Platform-native GitHub integration if available (Claude Code: `mcp__github__issue_write`; Cursor / generic: GitHub MCP server if installed).
    - Fallback: print a prefilled URL (`https://github.com/zhangqi444/open-forge/issues/new?template=recipe-feedback.yml&title=...&body=...`) and ask the user to open + submit in browser.
 
 ### Sanitization is mandatory
