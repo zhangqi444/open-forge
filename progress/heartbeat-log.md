@@ -1819,3 +1819,48 @@ Pattern observations across batches 68-74:
 - **Network-service-legal-abuse class**: Scanopy (76 CFAA), AnonAddy (79 email spam), Unbound (80 DNS amp), MicroBin (81 pastebin abuse). Four distinct abuse profiles. Emerging pattern.
 - **Critical-secret-as-crown-jewel pattern**: ENCRYPTION_KEY (Nexterm), APP_KEY (Laravel/Statamic), DKIM-private-key (AnonAddy), SALT (Wakapi). Different consequences per tool. Consistent treatment: generate-strong / store-separately / rotate-is-hard.
 - **AI-privacy-boundary family**: WhoDB (77), Baserow Kuma-related (78), ezBookkeeping (78), MiroTalk (80), Nexterm (81). Five+ tools. Firmly a recurring concern.
+
+## 2026-04-30 14:50 UTC — batch 82 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 82)
+- **kubero** (4248★) — GPL-3 K8s-native PaaS. 12-factor-apps framing + Bitnami-deprecation-critical-warning + etcd-as-database tradeoff + review-apps-cost-explosion + K8s-as-hard-prereq honesty + Dokku/Coolify/CapRover non-K8s alternatives comparison.
+- **fider** (4247★) — AGPL-3 Go feedback portal. **TryGhost acquisition 2024** institutional-stewardship transition + SMTP-effectively-required + public-board-abuse + feedback-portal-politics + competitive-intel-exposure tradeoff + "Declined"-is-the-hard-status operational wisdom.
+- **freescout** (4223★) — AGPL-3 PHP/Laravel help-desk. Queue-worker-+cron-NOT-optional critical + OAuth-for-Gmail/O365-mandatory + shared-hosting-works unusual + paid-modules transparent open-core funding + APP_KEY immutability family + Zammad/Chatwoot/osTicket alternatives.
+- **mydrive** (4193★) — AGPL-3 Node+Mongo Drive clone. ENCRYPTION_KEY=crown-jewel + hub-of-personal-files-crown-jewel + AES-at-rest ≠ E2E-encryption distinction + solo-bus-factor + Nextcloud/Seafile/Cryptomator comparison + preview-generation-needs-cleartext boundary.
+- **forgejo** (4177★) — GPL-3+ Codeberg e.V. Gitea hard-fork. Gitea-vs-Forgejo governance+licensing choice + GPL-relicensing-as-future-proof + Codeberg-flagship-non-profit + federation-WIP-roadmap + Forgejo-Actions-near-GitHub-compat + immutability family + institutional-stewardship mitigation.
+
+**Batch 82 lengths:** kubero 172, fider 172, freescout 169, mydrive 191, forgejo 195.
+**State:** 424 done / 1 skipped / 849 pending (33.3%).
+
+### New precedents
+- **"Bitnami deprecation (Broadcom)"** supply-chain-ecosystem-event warning (Kubero): a major vendor pulling a public image repo = wide-ranging downstream breakage. Call out tools affected. Same category as Docker Hub rate limits but bigger one-time event.
+- **"etcd-as-database tradeoff"** architectural-pattern (Kubero): tools that use K8s CRDs as storage instead of external DB = elegant but etcd-sensitive. Pattern worth naming for K8s-native tools.
+- **"Review-apps-cost-explosion risk"** operational warning (Kubero): PR-driven ephemeral environments = infra-budget landmine. Requires TTL + quota discipline. Same-category as "billable-API-key runaway cost" (WhoDB batch 77) but for compute not API.
+- **"Institutional acquisition = institutional-stewardship boost"** positive-transition pattern (Fider → TryGhost 2024): acquisitions can IMPROVE bus-factor when acquirer is non-profit/mission-aligned. Extends "Mozilla-origin now community-stewarded" (Kinto batch 80) transition family — but with ACTIVE acquirer (positive variant).
+- **"SMTP-effectively-required for meaningful UX"** email-as-infrastructure (Fider + FreeScout): feedback + help-desk tools are dead without email. Same class as "TURN effectively mandatory" (MiroTalk batch 80) — tools with quantified-as-required dependencies.
+- **"Public-board abuse-magnet"** legal/abuse class extended (Fider): joins public-pastebin (MicroBin 81), public-DNS (Unbound 80), email-forwarding (AnonAddy 79). Network-service-exposed-to-public = abuse. Fifth tool in class.
+- **"Feedback-portal politics"** operational-wisdom non-technical (Fider): tools enable processes; processes still need human work. "Declined" status ships easier than "declined" communication. Worth calling out.
+- **"Competitive-intel exposure via public board"** business-vs-transparency tradeoff (Fider): feature-roadmap visibility to competitors. Operators should decide consciously.
+- **"Queue-worker + cron are NOT optional"** operational-critical-dependency (FreeScout + Laravel class): background-job infrastructure is essential. Document as systemd-daily-checklist items, not "nice to have". Class extends to any Laravel/Rails/Django app with queues.
+- **"OAuth-for-Gmail/O365-mandatory"** modern-email-auth reality (FreeScout + any IMAP-consuming tool): basic-auth IMAP is dying. OAuth setup = 30-60min investment per provider. Recurring pattern for help-desks, Papra email-ingest, AnonAddy, etc.
+- **"Shared-hosting-works"** unusual-scope statement (FreeScout): most recipes assume VPS+. FreeScout genuinely works on shared PHP hosting. Worth noting because rare + enables the lowest-cost path for small orgs.
+- **"Paid-modules transparent open-core"** funding-model taxonomy (FreeScout): one-time-purchase modules are a distinct commercial-tier variant vs feature-gate/managed-tier/productivity-layer/hardware (batches 80-81). **New commercial-tier subtype: "one-time module purchase"** (FreeScout, MiroTalk CodeCanyon batch 80). Taxonomy expansion.
+- **"Hub-of-personal-files = crown-jewel"** continues threat-model escalation (myDrive): password-manager + bastion + file-storage all share this pattern. Fourth+ tool in crown-jewel family (Nexterm 81, Vaultwarden category, etc.).
+- **"AES-at-rest ≠ E2E-encryption"** security-distinction-explicit (myDrive): at-rest encryption protects against disk-theft + DB-leaks; E2E protects against server-compromise. Different threat models. Users conflate; recipes should distinguish.
+- **"Preview-generation-needs-cleartext"** feature-vs-zero-knowledge boundary (myDrive): thumbnail generation means the server must decrypt. Zero-knowledge ≠ compatible with server-side previews. Worth the clarification for users hunting "encrypted file storage".
+- **"GPL-relicensing as future-proof"** governance-decision-explicit (Forgejo v9 MIT→GPL-3.0+): some projects relicense DELIBERATELY to prevent future proprietary relicensing. Worth naming as a values-choice.
+- **"Governance choice (MIT commercial-company vs GPL non-profit)"** dual-project-choice framing (Forgejo vs Gitea): not just features — values, sustainability, risk of future-corp-takeover. Expand on the Pi-hole-vs-AdGuard-Home kind of comparison.
+- **"Codeberg.org is flagship-non-profit instance"** ecosystem-signal (Forgejo): tools with a canonical non-commercial reference deployment = trust signal. Similar to NLnet Labs (batch 80 Unbound) institutional pattern.
+- **"Federation-WIP-roadmap (ActivityPub)"** cross-instance-collaboration emerging pattern (Forgejo): AP is becoming cross-tool-interop primitive. Worth tracking across tools (Mastodon, Lemmy, Peertube, Forgejo roadmap, possibly Ghost — same AP-adopters family).
+
+**Milestone:** 33.3% done (1/3 mark crossed). Batch 82 clusters around **team-collaboration tools** (feedback portal + help-desk) + **infrastructure-PaaS** (Kubero + Forgejo) + **file storage** (myDrive) — all with institutional-stewardship or bus-factor framing as throughlines.
+
+### Cross-cutting observations
+- **Commercial-tier taxonomy expanded to 5 types**: feature-gate / managed-tier / productivity-layer / hardware / one-time-module-purchase. Ready for consolidated reference doc.
+- **Institutional-stewardship pattern count**: NLnet Labs (Unbound), Deciso B.V. (OPNsense), Mozilla→community (Kinto), TryGhost Foundation (Fider), Codeberg e.V. (Forgejo). Five tools across batches 80-82. Strong positive signal for bus-factor mitigation.
+- **Crown-jewel threat-model family**: Nexterm (81), myDrive (82), plus password-managers (Vaultwarden-class) = growing family. Hardening-like-bastion is the universal prescription.
+- **AES-at-rest vs E2E distinction**: worth a standalone pattern. Tools that CLAIM encryption but generate previews server-side = at-rest-only. Not E2E. Make explicit.
+- **Email-as-infrastructure (SMTP required)**: Fider, FreeScout, AnonAddy, Kimai, Papra. Five+ tools. Accept SMTP as foundational infrastructure; recipes should reference a shared "self-hosted email or transactional-relay decision" pattern.
