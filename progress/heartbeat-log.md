@@ -690,3 +690,25 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **mailcow** (12633★) — 15-container mail suite. Dedicated "Hard requirements" section front-loaded (PTR, clean IP, port 25 unblocked, 6 GB RAM, dedicated VPS only). Full DNS checklist with MX/SPF/DKIM/DMARC/PTR/MTA-STS/TLSRPT. `./update.sh` + `./helper-scripts/backup_and_restore.sh` = canonical ops tools. Front-loads: mail hosting is hard, Port 25 blocked on AWS/GCP/Azure, IP-reputation baseline, don't use on Kubernetes. Alternatives: Mailu, Mail-in-a-Box, Poste.io, Stalwart, hosted (Migadu/Fastmail).
 
 **State:** 214 done / 1 skipped / 1059 pending (16.8%). Batch 40 lengths: coder 275, bentopdf 171, documenso 237, wallabag 213, mailcow 234.
+
+## 2026-04-30 04:10 UTC — issues sweep + batch 41 (5 recipes)
+
+### Step 0 (sync)
+- `git pull --rebase --autostash` — already up to date (an intervening branch `claude/go-setup-RLDJL` on origin, not merged).
+
+### Step 1 (GitHub issues) — ce8accf
+- **#24** (Windows/WSL2 setup): duplicate of #25 (byte-identical body). Marked duplicate in `progress/issues-log.json`; left open — the PAT lacks `issues:write`, can't comment/close via API (got `403 Resource not accessible`). Needs manual close by human.
+- **#25** (Windows/WSL2 setup): added `docs/windows-setup.md` (172 lines) — WSL2 + Docker Desktop Option A/B, verification, version requirements, troubleshooting. Linked from README.md. Commit message uses `closes #25`.
+- **#26** (marketplace description says "Ghost, more coming"): rewrote `.claude-plugin/marketplace.json` description to reflect current scope. `closes #26`.
+- **#27** (stale Git proxy on Windows): covered in `docs/windows-setup.md` troubleshooting — `git config --get http.proxy` detection + bypass (`git -c http.proxy=`) + unset. `closes #27`.
+- **PAT limitation recorded**: PAT has `metadata=read` + `contents=write` but not `issues=write`. `closes #N` magic in commit messages did NOT auto-close on push to default branch (only PRs trigger that). All 4 issues remain open on GitHub despite the fix being merged; human or a PAT with `issues:write` needs to close them. Documented in `progress/issues-log.json`.
+
+### Step 2 (selfh.st batch 41) — pending commit
+- **audiobookshelf** (12586★) — audiobook + podcast server, Node.js + SQLite. Emphasized the WebSocket reverse-proxy gotcha (biggest support issue), fixed `/audiobookshelf` subpath, Audible AAX decryption caveat, native mobile app beta status. Alternatives: Booksonic, Plex, Kavita, Jellyfin+Finamp.
+- **stalwart** (12540★) — modern Rust all-in-one mail (JMAP/IMAP/SMTP/CalDAV/CardDAV/WebDAV). Front-loaded "version is 0.x, expect breakage" + "no webmail included" + "Console logger for Docker (not File)" + "Use `STALWART_RECOVERY_ADMIN` env var to skip log-extracted temp password". Pluggable storage section (RocksDB/Postgres/S3/FDB). Compared to mailcow: ~150 MB RAM vs 6 GB, modern JMAP. Shared mail-hosting prerequisites (PTR, port 25, clean IP). Alternatives: mailcow, Mailu, Mail-in-a-Box, DIY Postfix+Dovecot+Rspamd, DMS.
+- **dozzle** (12485★) — Docker log viewer. Agent mode + Swarm mode. File-auth / OIDC / forward-proxy auth matrix. Guarded: mount socket read-only, don't enable actions unless auth is strong, logs aren't persisted (Docker's log driver is). Alternatives: Portainer, Yacht, LazyDocker, ctop, Grafana+Loki.
+- **termix** (12394★) — browser SSH + RDP/VNC/Telnet (via guacd 1.6.0) + tunnel mgr + file mgr + Docker mgmt. Front-loaded: centralized SSH access = high-value target (mandate 2FA + VPN/Tailscale + IP allow-list), keep guacd private, WebSocket required. Compared to Guacamole (heavier), Teleport (enterprise), Warpgate (pairs nicely). Native iOS + Android + desktop apps documented.
+- **stash** (12248★) — adult content organizer ("Jellyfin for adult"). Included NSFW/legal-notice line. Full `STASH_*` env + 6-volume breakdown (data/metadata/config/cache/blobs/generated). Front-loaded: v0.27 dropped Win7/8/Server 2008/2012, DLNA = host-network mode, scrapers drift, generated/ can be enormous, auth OFF by default (set a password!). Alternatives: Whisparr, MediaCMS.
+
+**Batch 41 lengths:** audiobookshelf 221, stalwart 240, dozzle 243, termix 214, stash 198.
+**State:** 219 done / 1 skipped / 1054 pending (17.2%).
