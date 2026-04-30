@@ -1036,3 +1036,30 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Post-install hardening imperative**: Dolibarr — "delete install/" joins PrestaShop's hardening list as a common PHP-app pattern.
 
 **Milestone:** Now at **24.3%** — on track. Batch 59 slightly longer (avg 220 lines) due to density of warnings/context for complex projects (mail, DevOps, ERP).
+
+## 2026-04-30 09:20 UTC — batch 60 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (already addressed in code; API close blocked).
+
+### Step 2 (selfh.st batch 60)
+- **sandstorm** (7022★) — security-hardened grain-per-document web-app runtime. **Project status block** front-loaded (largely unmaintained 2017-2020, app catalog frozen, Oasis SaaS shut down). Wildcard-DNS-mandatory. Apache-2.0.
+- **moodle** (7018★) — world's LMS. **Cron is mandatory** + **moodledata outside webroot** imperatives. LTS upgrade path rules. Horizon/queue-equivalent and performance-at-scale notes. GPL-3.0.
+- **pixelfed** (6953★) — federated photo-sharing. **Horizon workers mandatory for federation**. **Domain permanence + APP_KEY backup-critical** imperatives. Moderation + CSAM legal caveat preserved. AGPL-3.0.
+- **dbgate** (6937★) — cross-platform database admin UI. **"Don't expose public without auth — credentialed DB pipe"** warning. **Community vs Premium** license transparency section. Inline-edit + change-script-preview differentiator highlighted. GPL-3.0 (Community).
+- **roundcube** (6935★) — classic PHP webmail. **Delete installer/ after install** imperative (joins Dolibarr/PrestaShop pattern). SnappyMail + SOGo positioning. Roundcube Next was shelved history preserved. GPL-3.0 with plugin/skin exceptions.
+
+**Batch 60 lengths:** sandstorm 158, moodle 238, pixelfed 209, dbgate 191, roundcube 223.
+**State:** 314 done / 1 skipped / 959 pending (24.6%).
+
+### New precedents
+- **"Project status block" front-loaded** for legacy-but-alive projects (Sandstorm): maintenance status, frozen ecosystem, shutdown hosted variants, migration advice. Extends "deprecated/renamed" + "major-rewrite" precedents to "largely-unmaintained-but-not-dead" category — honest about project health.
+- **Cron-is-mandatory pattern expanded**: Moodle joins NewsBlur + Sure. Now 4+ projects with up-front scheduler warnings.
+- **Federation-domain-permanence imperative** (Pixelfed, reinforcing earlier Mastodon-class pattern): ActivityPub identity is tied to domain; rehoming destroys federation.
+- **Federation-identity-key backup-separately imperative** (Pixelfed APP_KEY + instance actor private key): extends GitLab's gitlab-secrets.json "back up separately" gotcha to federated-app domain.
+- **Database-admin-UI public-exposure warning** (DbGate): "credentialed pipe to your databases — require auth + VPN/Tailscale/SSO." Distinct from "web-app public-exposure" warnings; narrower + higher-stakes.
+- **Community-vs-Premium license-transparency section** (DbGate): clean precedent for dual-licensed projects — state clearly which features are under which license + who should pick which tier.
+- **"Delete installer/ post-install" PHP-app pattern** growing: Dolibarr (batch 59) + Roundcube (60) + PrestaShop earlier. Add to generalized "PHP post-install hardening checklist."
+- **Moderation + legal liability** (Pixelfed): federated social = publisher responsibility; CSAM, trust-and-safety, ToS. Honest call-out for hosters.
+
+**Milestone:** Now at **24.6%** — steady. Batch 60 ~204 avg lines; matches recent cadence.
