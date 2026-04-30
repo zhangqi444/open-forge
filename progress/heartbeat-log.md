@@ -1601,3 +1601,48 @@ Pattern observations across batches 68-74:
 - **"Triple-licensing: AGPL/Commercial/Cloud — be honest with your org's compliance capacity"** license-realism (Scanopy): help readers self-select the right tier instead of defaulting to OSS where they can't comply.
 
 **Milestone:** 30.9% done. Batch averages holding around 165-175 lines. Notable pattern in batch 76: **legal/regulatory framing** recurring beyond just healthcare (OpenEMR batch 74) — now covering network-scanning criminal-statute (Scanopy) and YouTube ToS + copyright (Pinchflat/MediaCMS).
+
+## 2026-04-30 13:40 UTC — batch 77 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope blocked).
+
+### Step 2 (selfh.st batch 77)
+- **linuxgsm** (4796★) — Bash CLI for 100+ game servers. MIT. Non-root enforcement + tmux-console convention + _default.cfg-vs-<game>.cfg editing rule + DDoS-reality + EULA-non-commercial-monetization warning + vs-Pterodactyl-for-multi-user.
+- **statamic** (4794★) — Laravel + Git flat-file CMS. MIT core + Pro commercial. APP_KEY immutability + flat-first = PR-review-for-content = 1-site = merge-risk-for-many-editors + Pro-license-revokes-features-on-non-pay.
+- **colanode** (4782★) — local-first Notion+Slack+DB. Apache-2.0. pgvector mandatory + config-model-changed-env-vars-no-longer-override + WebSockets-at-proxy + CRDT-is-not-human-resolution + beta-pricing-TBD.
+- **kan** (4770★) — Trello alternative. AGPL-3.0. BETTER_AUTH_SECRET immutability + NEXT_PUBLIC_BASE_URL must match + SMTP is magic-link prereq + close-signup after rollout + Railway partnership = upstream revenue.
+- **whodb** (4755★) — lightweight AI-powered DB manager. Apache-2.0 CE + Commercial EE. **NO-BUILT-IN-AUTH = forward-auth or VPN mandatory** + AI-sends-schema-to-third-party unless Ollama + MCP-server-exposes-DB-to-agents + billable-API-key-risk.
+
+**Batch 77 lengths:** linuxgsm 179, statamic 187, colanode 171, kan 184, whodb 160.
+**State:** 399 done / 1 skipped / 874 pending (31.3%).
+
+### New precedents
+- **Bash-script-based tools with 2012+ track record** (LinuxGSM): MIT + community-sustained + long-running = distinct bus-factor profile from solo-dev projects.
+- **"Monetization-forbidden-by-EULA" legal framing** (LinuxGSM + game EULAs): similar to YouTube-ToS (Pinchflat b76) + OpenEMR-HIPAA (b74) + Scanopy-CFAA (b76) — user assumes the EULA risk.
+- **tmux-console-convention** (LinuxGSM: `./gameserver console` + Ctrl-A D detach): tool-specific console-attach UX pattern worth naming.
+- **_default.cfg-vs-<tool>.cfg editing rule** (LinuxGSM): config-file-inheritance pattern — edit the non-default one; upstream overwrites defaults. Recurring pattern across many Unix-style tools.
+- **DDoS-reality for game servers** (LinuxGSM): specific mitigation stack (Cloudflare Spectrum / OVH GAME / dedicated providers). Worth naming since home-IP-hosting game servers = commonly-abused attack vector.
+- **Flat-first Git-native CMS = 1-site-only** (Statamic): merge-conflict scaling ceiling for multi-author content workflows. Architecture-shapes-organization observation.
+- **APP_KEY / session-secret immutability** extended to Laravel class (Statamic): encrypted DB columns + sessions break on key rotation. Same immutability class as JWT secrets. Pattern now cross-stack (Laravel/Node/Python).
+- **Commercial-license revocation disables features in production** (Statamic Pro): budget as permanent line item — license isn't perpetual.
+- **"Content-editor-accidentally-force-pushes"** specific failure mode (Statamic flat-first): workflow-threat-model for Git-native CMSes.
+- **pgvector-hard-requirement discoverable at startup** (Colanode): "standard Postgres doesn't work" upfront callout for tools using vector extensions.
+- **Config-model-changed documentation-vs-behavior-drift trap** (Colanode env-var → `env://` pointer shift): classic stale-docs operator trap. Read upstream README at install time, not earlier.
+- **CRDT-is-not-human-resolution** conceptual clarification (Colanode Yjs): CRDTs merge deterministically but don't capture semantic intent. Add human-review process when needed.
+- **Message-ops-use-CRDTs-but-files-don't** partial-feature-coverage honesty (Colanode).
+- **BETTER_AUTH_SECRET / NEXT_PUBLIC_BASE_URL immutability+alignment** (Kan): next.js-app env-var pair where both must be stable AND match each other.
+- **"Close open signup after rollout"** specific env-var + deployment-phase-discipline (`NEXT_PUBLIC_DISABLE_SIGN_UP=true`): transition-to-production checklist item.
+- **Separate S3 buckets: avatars public + attachments private** (Kan): fine-grained bucket-policy recommendation.
+- **Railway partnership revenue-share** (Kan): pattern extends ethical-managed-tier set (Elestio/Write.as/rallly.co/railway).
+- **"NO-BUILT-IN-AUTH = forward-auth-or-VPN mandatory"** trust-boundary articulation (WhoDB CE): tools that delegate auth to surrounding infra must be loud about it. Matches CloudBeaver threat-model (batch 76) but WhoDB is MORE permissive (not even WhoDB-user-login).
+- **AI-sends-schema-to-third-party unless local** (WhoDB NL→SQL via OpenAI/Anthropic vs Ollama): explicit privacy-boundary for AI-augmented tools — where does the query text go?
+- **MCP-server-exposes-DB-to-AI-agents** threat-model (WhoDB CLI MCP): Model Context Protocol servers = give AI agents live tool access. Read-only users + scoped access recommended.
+- **Billable-API-key-runaway-cost** (WhoDB AI providers): budget-alert-on-provider-dashboard as operational discipline.
+- **Stateless-session-DB-creds vs saved-connections UX tradeoff** (WhoDB vs CloudBeaver): privacy-preserving ≠ team-friendly. Pick per team-size + use-case.
+
+**Milestone:** 31.3% done. Notable thematic continuations:
+- **Immutability-of-secrets** family now spans 6+ tools: APP_KEY, BETTER_AUTH_SECRET, SECRET_KEY, JWT secrets, Better Auth, NEXT_PUBLIC_BASE_URL. "Set-once-never-change" + reverse-proxy-origin-must-match.
+- **AI-privacy-boundary** emerging: where does my data/query go? Local (Ollama) vs cloud (OpenAI/Anthropic). Privacy + cost + regulatory considerations.
+- **Managed-tier funds upstream** (Railway/Elestio/Write.as/rallly.co/Clidey-EE/Statamic-Pro): ethical-procurement signal continues.
+- **Auth-delegation transparency** (WhoDB CE has no auth; Mathesar DB-user highly privileged; CloudBeaver stores DB creds): be loud about which tool is the trust boundary.
