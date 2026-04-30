@@ -1178,3 +1178,31 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **Observability-gold callout** (HAProxy logs): for tools with rich built-in logging, explicitly celebrate + point at Loki/ELK integration.
 
 **Milestone:** 26.2% done. Averaging 193 lines/recipe this batch.
+
+## 2026-04-30 10:35 UTC — batch 65 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues still 4 open (#24-27).
+
+### Step 2 (selfh.st batch 65)
+- **prowlarr** (6434★) — \*arr indexer manager. **"Enable auth IMMEDIATELY — holds tracker passkeys"** warning. FlareSolverr pairing pattern. GPL-3.0.
+- **standard-notes** (6428★) — zero-knowledge E2E notes. **Proton AG acquisition (2024) context**. Self-host complexity honesty ("hosted version is E2E anyway — you don't need to self-host for privacy"). AGPL-3.0.
+- **photoview** (6407★) — read-only photo gallery. **Read-only source mount + "don't touch my photos"** positioning — distinct from Immich/PhotoPrism. GPL-3.0.
+- **netalertx** (6287★) — LAN intruder detection. **Pi.Alert → PiAlert → NetAlertX rename history**. **MAC randomization false-positives** (iOS 14+ / Android 10+) operational warning. GPL-3.0.
+- **zerobyte** (6256★) — Restic web UI for backup. **Pre-1.0 warning verbatim from upstream**. TrueNAS-`/var/lib`-ephemeral warning. "Don't expose publicly" upstream-quoted. MIT.
+
+**Batch 65 lengths:** prowlarr 170, standard-notes 174, photoview 186, netalertx 155, zerobyte 193.
+**State:** 339 done / 1 skipped / 934 pending (26.6%).
+
+### New precedents
+- **"Enable auth IMMEDIATELY — holds [sensitive creds]"** framing (Prowlarr/tracker passkeys): extends the token-equals-password warning (Tautulli) to the "sensitive DB contents" category. Pattern: enumerate what the DB contains to make the warning concrete.
+- **"You don't need to self-host for privacy" honesty** (Standard Notes): when hosted service is already E2E/zero-knowledge, point out that self-hosting adds ops-cost without privacy benefit. Counters the reflex "self-host = more private." Novel transparency precedent.
+- **"Read-only philosophy / don't-touch-my-data" positioning** (Photoview vs Immich/PhotoPrism): helps users choose between similar-looking tools by articulating the opposing design choice (read-only viewer vs upload-centric manager).
+- **Rename-history-chain** (NetAlertX: Pi.Alert → PiAlert → NetAlertX): longer than single-rename cases (Spacebar/Fosscord, Tautulli/PlexPy). Document full lineage for search discoverability.
+- **MAC-randomization false-positive operational warning** (NetAlertX, iOS 14+ / Android 10+ / Windows 10+): same OS-behavior-breaks-assumption family as Android Private DNS (Blocky) and Android 14 user CA (Requestly). Consolidating into cross-reference: modern-OS-privacy-defaults-break-LAN-tools.
+- **"Upstream warning verbatim quote"** block (Zerobyte pre-1.0): when upstream has a clear WARNING/NOTE in README, reproduce it verbatim + attribute. Same as TeslaMate + Moodle pattern; keep front-loaded.
+- **TrueNAS-specific `/var/lib` ephemerality warning** (Zerobyte): platform-specific pitfall worth front-loading when upstream calls it out. Extends to: platform-specific-path-gotchas as a category.
+- **"Don't point data volumes at network share" warning** (Zerobyte): specific operational gotcha for permission + perf; applies to many Docker-based tools.
+- **Meta-backup for backup tools** (Zerobyte): same discipline as Databasus — back up the backup tool's own state + document repo-password-recovery offline.
+
+**Milestone:** 26.6% done. Avg batch length ~176 lines (leaner — simpler tools this round). Pending 934.
