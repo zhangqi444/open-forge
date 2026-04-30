@@ -835,3 +835,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 49 lengths:** blinko 216, evershop 236, filepizza 193, healthchecks 255, piped 229.
 **State:** 259 done / 1 skipped / 1014 pending (20.3%) — **crossed 20%!**
+
+## 2026-04-30 06:50 UTC — batch 50 (5 recipes) — 🎉 50th batch
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 50)
+- **typebot** (9886★) — visual chatbot builder. **License caveat front-loaded: Fair Source License (FSL), NOT OSS.** Two-subdomain architecture required (builder + viewer). ENCRYPTION_SECRET shared between builder+viewer. NEXT_PUBLIC_* build-time bake-in warning. Alternatives: Botpress (pure OSS), Rasa, Chatwoot, Formbricks (if just forms).
+- **akaunting** (9766★) — Laravel accounting for SMBs. **License caveat front-loaded: BSL (Business Source License), NOT OSS.** Many App Store apps are paid (Double Entry, Bank Feeds, Multi-currency)—transparency. Accounting-data-backup-is-critical warning. Alternatives: Firefly III (personal), Invoice Ninja, Dolibarr, Odoo CE.
+- **checkmate** (9707★) — BlueWave uptime + infra monitor. MongoDB-backbone (not Postgres). Capture agent is optional for hardware metrics. Pairs-with-Healthchecks advice. Alternatives: Uptime Kuma, Gatus, Zabbix, Netdata.
+- **invoice-ninja** (9702★) — v5 Laravel + Flutter billing platform. **License caveat front-loaded: Elastic License 2.0, NOT OSS.** APP_KEY loss = data loss (upstream explicit). Pin tags, not v5-develop. Queue+cron mandatory. 40+ payment gateways. White-label $40/year. Alternatives: Akaunting, Crater (MIT), Dolibarr.
+- **leantime** (9590★) — ADHD/dyslexia/autism-aware PM tool. Unique neurodivergent-design angle documented. Kanban+Gantt+goals+canvases+wikis+timesheets all in free OSS core. MySQL/MariaDB only (no Postgres). AGPL-3.0. Alternatives: OpenProject, Taiga, Plane, Kanboard, Wekan.
+
+**Batch 50 lengths:** typebot 243, akaunting 255, checkmate 212, invoice-ninja 291, leantime 232.
+**State:** 264 done / 1 skipped / 1009 pending (20.7%). **50 batches complete 🎉**
