@@ -883,3 +883,23 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 52 lengths:** miniflux 194, bigbluebutton 204, prestashop 228, grocy 200, octoprint 198.
 **State:** 274 done / 1 skipped / 999 pending (21.5%).
+
+## 2026-04-30 07:35 UTC — batch 53 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 53)
+- **rss-bridge** (8906★) — feed generator for sites that don't have one. 500+ bridges. **Don't run publicly without auth** front-loaded. Legal-gray-zone disclaimer. Bridge-breakage frequency warning. Pin by date tag.
+- **dawarich** (8868★) — Google Timeline replacement. **Pre-1.0 + "do not update automatically"** warnings front-loaded (direct from upstream). Photon geocoding 80GB gotcha. Don't-delete-original-data precedent. Mobile-battery-drain caveat.
+- **pterodactyl** (8833★) — game server mgmt panel (Panel PHP + Wings Go). Pelican Panel successor/fork front-loaded for new deployments. Container-escape=host-root multi-tenant warning. Production: multi-node architecture. BisectHosting/Shockbyte industry note.
+- **owncloud** (8765★) — file sync/share. **Dual-product disambiguation front-loaded**: Core 10.x (this recipe) vs oCIS (Go rewrite) vs Nextcloud fork. "Don't pick Core 10.x for new deploys" guidance. Data-dir-outside-webroot security requirement. AGPL-3.0.
+- **romm** (8698★) — ROM manager + browser player (EmulatorJS). **Legal caveat front-loaded** (copyrighted ROMs). BIOS files same caveat. Platform-slug-matters gotcha. ScreenScraper registration recommendation for obscure consoles. Young-project warning.
+
+**Batch 53 lengths:** rss-bridge 209, dawarich 243, pterodactyl 229, owncloud 240, romm 248.
+**State:** 279 done / 1 skipped / 994 pending (21.9%).
+
+### New precedents
+- **Dual-product brand disambiguation**: ownCloud Core 10.x vs oCIS vs Nextcloud fork — pattern applies to similarly-complex brands.
+- **Fork-supersedes-parent advice**: Pterodactyl → Pelican Panel; pattern for "recommend successor but document original."
+- **Legal-caveat for copyrighted-content tools**: RomM (ROMs) extends the precedent set by Piped (alt-YouTube), Invidious, etc.
