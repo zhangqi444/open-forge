@@ -2287,3 +2287,60 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   7. `patterns/institutional-stewardship.md` — 3 sub-tiers (collective/company/foundation)
   8. `patterns/author-preference-scope.md` — 3 distinct patterns (skip/scope-respect/redirect)
 - Current batch shipped: **5 recipes, batch 91 complete, 469 cumulative, state file updated, log appended, push imminent.**
+
+## 2026-04-30 17:43 UTC — batch 92 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 92)
+- **docker-volume-backup** (3527★) — MPL-2 sub-25MB Go companion container. 23rd immutability-of-secrets (GPG passphrase) + 28th hub-of-credentials Tier 2 + 11th transparent-maintenance + 14th institutional-stewardship (offen.software company) + **NEW: "test-your-restores" universal backup-warning template** + reinforces replication≠backup (Garage 90) + 3-2-1 rule + ransomware defense framing.
+- **wgdashboard** (3515★) — Apache-2 Python+Vue WireGuard dashboard. 29th hub-of-credentials CROWN-JEWEL Tier 1 (network-boundary control-plane — 5th tool in crown-jewel-tier-1 joining Octelium/Guacamole/Homarr/pgAdmin) + 24th immutability-of-secrets (WG private keys) + **NEW EXAMPLE: "explicit-CVE-disclosure-in-README"** culture (12th transparent-maintenance) + merch-as-funding unique model + 6th pure-donation commercial-tier.
+- **commafeed** (3513★) — Apache-2 Quarkus+React RSS aggregator. 6th default-creds-risk (`admin:admin`) + 30th hub-of-credentials LIGHT + 3rd API-compat-as-ecosystem-strategy (Fever API joining Ampache batch 88 + yarr 87) + 5th sole-maintainer-with-community + 7th commercial-tier (pure-donation-SaaS variant — public instance free via donations + PikaPods revenue-share) + 13th transparent-maintenance + **NEW: "SSRF-via-feed-subscription"** risk framing for publicly-exposed multi-user feed readers.
+- **lunar** (3492★) — MIT Laravel+Filament headless e-commerce. 31st hub-of-credentials CROWN-JEWEL Tier 1 (payment + customer PII) + 2nd in financial-data-regulatory-crown-jewel sub-family (joining Bigcapital 90) + 25th immutability-of-secrets (APP_KEY + Stripe keys) + reinforces PCI-DSS scope-limitation via Stripe-Elements + 15th institutional-stewardship + **NEW: "commerce-platform-agency-commercial-tier"** (commercial services around OSS by agency network — 8th commercial-tier taxonomy entry, informal/agency-mediated).
+- **wud** (3490★) — MIT Node.js Docker-image-update notifier. 32nd hub-of-credentials LIGHT (registry creds) + 14th transparent-maintenance + 4th ecosystem-asset-of-integration-library (joining SWAG proxy-confs 90, Homarr integrations 89, Apprise-integrated tools) + 6th sole-maintainer-with-community + 7th pure-donation commercial-tier + **NEW: "watching-≠-updating-by-design"** framing (vs watchtower auto-pull risk) + "LATEST tag is a lie" production-hygiene + digest-vs-tag-change distinction.
+
+**Batch 92 lengths:** docker-volume-backup 198, wgdashboard 185, commafeed 174, lunar 182, wud 152.
+**State:** 474 done / 2 skipped / 798 pending — **37.2% done.**
+
+### New precedents
+- **"Test your restores. Seriously." universal backup-warning template** (docker-volume-backup): a backup that's never been restored is Schrödinger's backup. Quarterly restore drills verify GPG passphrase, archive readability, restore procedure, data completeness. Template applicable to ALL backup-tools we catalog (DVB, restic, Borg, Velero, Duplicati, ...). **Mandatory section for backup-tool recipes.**
+- **"Silent-backup-failure-is-the-classic-failure-mode"** framing (DVB): backups run, return 0, but actually skipped/empty/upload-failed. Monitor via success-notifications OR "no-success-in-25h → alert". New recipe convention for monitoring-sensitive tools.
+- **"Explicit-CVE-disclosure-in-README"** culture (WGDashboard v4.2.x → v4.3.2): upstream puts `!WARNING` banner in README about security advisory. **Rare + admirable** — most projects hide advisories in release notes. Recipe convention: flag when upstream practices this. 1st tool named; worth watching for more.
+- **"Merch-as-funding"** unique OSS-sustainability model (WGDashboard $17 shirts): first time encountering this pattern in catalog. Not commercial-tier-taxonomy-worthy (too small); sustainability-case-study worthy. Note for future encounters.
+- **"Pure-donation-SaaS variant"** commercial-tier (CommaFeed): public SaaS offered free, funded by donations + PikaPods revenue-share. Distinct from "pure-donation" (no SaaS) AND distinct from "primary-SaaS-with-OSS-of-record" (Feedbin batch 89 paid). **7th commercial-tier entry.**
+- **"SSRF-via-feed-subscription"** risk framing (CommaFeed): publicly-exposed multi-user RSS readers where users subscribe to arbitrary URLs = SSRF pivot into internal network. Recipe convention: flag SSRF risk for any tool that fetches user-supplied URLs server-side. Applicable to: RSS readers, link-preview tools, webhooks, image-proxy, URL-shortener expanders, OPML-importers, etc.
+- **"Commerce-platform-agency-commercial-tier"** (Lunar): OSS commerce platforms (Lunar, Medusa, Saleor, Vendure) create informal agency-networks providing paid build+host services. No formal upstream paid tier, but commercial services thrive around OSS. **8th commercial-tier entry; "agency-mediated services-around-OSS".**
+- **"Watching-≠-updating-by-design"** philosophical-design pattern (WUD vs watchtower): one tool's design decision (notify + require human action) represents different risk-tolerance philosophy from another (auto-pull + restart). Recipe convention: when alternatives exist with different risk-models, SURFACE the design-philosophy distinction.
+- **"LATEST tag is a lie"** production-hygiene warning (WUD): `latest` is "whatever was pushed last" — not "stable release". **Template for container-deployment recipes**: always recommend pinning specific versions.
+- **Commerce-platform crown-jewel sub-family forming**: Lunar (Laravel) + Medusa (Node) + Saleor (Python) + WooCommerce + Magento + Shopify-selfhost → e-commerce platforms are a distinct financial-data sub-family with PCI + customer-PII + fraud + tax. Adjacent to financial-accounting (Bigcapital) but different regulatory contour.
+
+### Cross-cutting family counts (updated)
+- **Immutability-of-secrets: 25 tools** (+ GPG passphrase, WG private keys, APP_KEY + Stripe keys)
+- **Hub-of-credentials crown-jewel: 32 tools** (+ DVB Tier 2, WGDashboard CROWN-JEWEL Tier 1 (5th in that tier), CommaFeed LIGHT, Lunar CROWN-JEWEL Tier 1 (6th), WUD LIGHT) — **FAMILY-DOC MANDATORY AT BATCH 100**
+  - **CROWN-JEWEL Tier 1 subtotal: 6 tools** (Octelium 88, Guacamole 87, Homarr-aggregation 89, pgAdmin 90, WGDashboard 92, Lunar 92)
+- **Transparent-maintenance: 14 tools** (+ DVB, WGDashboard explicit-CVE, CommaFeed, WUD)
+- **Institutional-stewardship: 15 tools** (+ offen.software, lunarphp org)
+- **Sole-maintainer-with-community: 6 tools** (+ Athou CommaFeed, getwud-team WUD)
+- **Pure-donation commercial-tier: 7 tools** (+ WGDashboard, WUD)
+- **Default-creds-risk: 6 tools** (+ CommaFeed admin:admin)
+- **API-compat-as-ecosystem-strategy: 3 tools** (Ampache Subsonic, yarr Fever, CommaFeed Fever)
+- **Financial-data-regulatory-crown-jewel sub-family: 2 tools** (Bigcapital, Lunar)
+- **Ecosystem-asset-of-integration-library: 4 tools** (SWAG proxy-confs, Homarr integrations, DVB shoutrrr integrations, WUD notification-channels)
+- **Commercial-tier taxonomy: 8 tiers** (+ pure-donation-SaaS-variant, agency-mediated-services-around-OSS)
+- **Explicit-CVE-disclosure-in-README: 1 tool** (WGDashboard — new)
+- **Watching-not-updating-by-design philosophy: 1 tool** (WUD — new)
+
+### Notes
+- **37.2% done.** Batch 100 now 8 batches (40 recipes) away. Pattern-consolidation pass approaching. Expanded consolidation scope:
+  1. `patterns/hub-of-credentials.md` — 3-tier + CROWN-JEWEL-Tier-1 sub-list (now 6 tools) + financial + research + DBA-panel + transitive + aggregated-public-presence subtypes
+  2. `patterns/immutability-of-secrets.md` — 25-tool examples
+  3. `patterns/network-service-legal-risk.md` — 3 subtypes
+  4. `patterns/transparent-maintenance.md` — 14 tools including explicit-CVE-disclosure exemplars
+  5. `patterns/commercial-tier-taxonomy.md` — 8-tier taxonomy
+  6. `patterns/license-taxonomy.md` — OSI + dual + FSL + permissive
+  7. `patterns/institutional-stewardship.md` — 3 sub-tiers
+  8. `patterns/author-preference-scope.md` — 3 patterns
+  9. `patterns/financial-data-regulatory-crown-jewel.md` — NEW pattern-doc candidate (2 tools Bigcapital+Lunar + commerce sub-family)
+  10. `patterns/backup-tool-recipe-template.md` — "test your restores + 3-2-1 + replication≠backup + silent-failure-monitoring"
+- Current batch shipped: **5 recipes, batch 92 complete, 474 cumulative, state file updated, log appended, push imminent.**
