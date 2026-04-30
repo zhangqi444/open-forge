@@ -1560,3 +1560,44 @@ Pattern observations across batches 68-74:
 - **"Heartbeat checks solve cron-job-silently-broke problem"** use-case articulation (Kener push-heartbeat): name the problem the feature solves, not just the feature.
 
 **Milestone:** 30.5% done. Last 4 batches (72-75) averaged 170-180 lines. Governance-transparency continues as a thematic thread (Mathesar 501(c)(3), OpenCloud forked-after-acquisition, Zammad foundation-vs-company).
+
+## 2026-04-30 13:20 UTC — batch 76 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-27 unchanged (PAT-scope blocked).
+
+### Step 2 (selfh.st batch 76)
+- **kanidm** (4884★) — Rust IdP. Passkey-first + TPM-protected offline auth + don't-skip-major-versions + comparison matrix (LLDAP/Authentik/Keycloak). MPL-2.0.
+- **pinchflat** (4869★) — YouTube archiver. SQLite-WAL-on-network-share trap + don't-run-as-root + YouTube-ToS + cookies-are-credentials. AGPL-3.0. Preserved upstream community-care note about zakkarry.
+- **mediacms** (4863★) — video CMS. Transcoding CPU/disk math + storage-blowup (3-5× per video) + copyright/DMCA + Elestio revenue-share ethical option. AGPL-3.0.
+- **cloudbeaver** (4834★) — web DB manager. Apache-2.0 Community + commercial Team/Enterprise + DB-credentials-at-rest + SSH-tunnels-over-direct-expose + security-patch-cadence awareness.
+- **scanopy** (4814★) — network auto-discovery. **UNAUTHORIZED-SCANNING LEGAL WARNING** + SNMPv3>v2c + rebrand-in-progress (NetVisor→Scanopy) + AGPL/Commercial/Cloud triple-licensing.
+
+**Batch 76 lengths:** kanidm 168, pinchflat 171, mediacms 166, cloudbeaver 152, scanopy 169.
+**State:** 394 done / 1 skipped / 879 pending (30.9%).
+
+### New precedents
+- **"Passkey-first design: fighting it = fighting the tool"** design-philosophy alignment (Kanidm): when a tool is opinionated about primary auth, don't work around it; embrace it.
+- **"Don't skip major versions on upgrade"** schema-migration discipline (Kanidm): explicit callout for tools with disciplined upgrade paths; skipping = data corruption risk.
+- **"Attested passkeys differentiate consumer vs high-security"** feature-tiering explanation (Kanidm): for security features with clear tiers, explain who needs which.
+- **"Read-only LDAP gateway = deliberate design choice"** design-constraint-as-feature (Kanidm): some limitations are intentional; explain the why.
+- **"LDAP vs forward-auth vs IdP — different roles, can combine"** tool-category clarification (Kanidm vs Authelia vs Keycloak): disambiguate overlapping categories.
+- **"Ethics + Code of Conduct explicit = rare, admirable, worth reading"** governance-signal (Kanidm rights-and-ethics doc): call out when projects publish ethics docs.
+- **"SQLite WAL on network share = specific trap + upstream-documented workaround"** (Pinchflat #137): concrete FS-layer gotcha with specific env-var resolution, with data-loss warning on switch.
+- **"Preserve upstream community-care notes"** empathy-preserving quoting (Pinchflat's zakkarry mention): when upstream README includes community-support callouts, preserve them with attribution.
+- **"YouTube fights scrapers — yt-dlp breakage is recurrent"** protocol-volatility reminder (Pinchflat, like isponsorblocktv batch 73): extends the "third-party protocol instability" pattern.
+- **"YouTube cookies are YOUR credentials — never commit/share"** secret-classification (Pinchflat): cookies.txt = authenticated session; treat as password.
+- **"IP rate-limiting — reduce worker concurrency"** specific-env-var knob (Pinchflat `YT_DLP_WORKER_CONCURRENCY`): concrete tuning lever for common pain point.
+- **"Transcoding = CPU/disk-time sink + storage blowup math"** (MediaCMS 3-5× original size): do the capacity math concretely.
+- **"Disable profiles you don't need"** defaults-vs-workload tuning (MediaCMS): sane-default doesn't mean you shouldn't tune for YOUR use.
+- **"CDN for HLS segments at scale"** scaling-architecture pattern (MediaCMS): name the standard scale-out approach for video delivery.
+- **"CloudBeaver stores DB credentials → workspace/ is sensitive"** data-at-rest-sensitivity (CloudBeaver): explicit call-out of what's in the backup file.
+- **"Access to web DB manager = access to every connected DB"** consolidated-trust-boundary (CloudBeaver + phpMyAdmin + pgAdmin class): treat as SSH jumpbox threat-model.
+- **"SSH tunnels preferred over direct DB ports"** connection-pattern recommendation (CloudBeaver): concrete security-hygiene pattern.
+- **"Security patch cadence is part of security hygiene"** CVE-cadence awareness (CloudBeaver): some tools require frequent upgrades specifically for CVE fixes.
+- **"UNAUTHORIZED NETWORK SCANNING = CRIMINAL STATUTE IN MOST JURISDICTIONS"** legal-framing front-loaded (Scanopy CFAA/UK CMA/EU): for tools that can scan networks, state the legal reality explicitly. Not legal advice; responsibility transparency.
+- **"SNMPv3 > v2c; default community strings `public`/`private` are famous"** protocol-hardening defaults (Scanopy): specific credentials-hygiene recommendation.
+- **"Rebrand-in-progress: legacy image names coexist"** transition-period operational note (Scanopy ← NetVisor): for tools mid-rename, name both image paths.
+- **"Triple-licensing: AGPL/Commercial/Cloud — be honest with your org's compliance capacity"** license-realism (Scanopy): help readers self-select the right tier instead of defaulting to OSS where they can't comply.
+
+**Milestone:** 30.9% done. Batch averages holding around 165-175 lines. Notable pattern in batch 76: **legal/regulatory framing** recurring beyond just healthcare (OpenEMR batch 74) — now covering network-scanning criminal-statute (Scanopy) and YouTube ToS + copyright (Pinchflat/MediaCMS).
