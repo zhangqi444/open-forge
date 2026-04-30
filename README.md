@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.1-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
-  <a href="https://deepwiki.com/zhangqi444/open-forge"><img src="https://img.shields.io/badge/docs-DeepWiki-22D3EE?style=flat-square&labelColor=0F172A" alt="DeepWiki" /></a>
+  <a href="https://deepwiki.com/zhangqi444/open-forge"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" /></a>
   <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/badge/verified%20recipes-180+-EA580C?style=flat-square&labelColor=0F172A" alt="Verified recipes" /></a>
   <a href="#install"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-D77756?style=flat-square&labelColor=0F172A" alt="Built for Claude Code" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=22D3EE" alt="MIT License" /></a>
