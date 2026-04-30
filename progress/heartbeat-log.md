@@ -3256,3 +3256,74 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **3 new CROWN-JEWEL Tier 1 sub-categories in one batch** (18 total now; from 15 → 18)
 - Multiple 20-tool / 75-tool milestones hit simultaneously
 - Pattern-consolidation document urgently needed; 80+ hub-of-credentials; 75+ transparent-maintenance; 18 CROWN-JEWEL sub-categories — deferred to dedicated session per user preference
+
+## 2026-04-30 21:18 UTC — batch 106 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 106)
+- **grimoire** (2791★) — SvelteKit bookmark manager (wizard-themed; v0.4 breaking migration). 82nd hub-of-credentials Tier 2 (consolidated sub-family "reading/browsing-data-personal-history-risk" now 2 tools w/Grimmory). **NEW recipe conventions**: "major-version-breaking-migration with migration-tool" + "pre-1.0-project-breaking-change-risk" + "URL-fetcher-SSRF-mitigation" + "periodic-refetch-load-budget" + "browser-extension-token-local-storage-risk". 68th institutional-stewardship + 76th transparent-maintenance.
+- **silex** (2757★) — AGPL visual static-site builder (2009; Silex Labs non-profit); GrapesJS; 11ty-compatible. 83rd hub-of-credentials Tier 3. **Zero-lock-in: 5 tools 🎯 5-MILESTONE** (+Silex). **NEW positive-signals**: "general-interest-non-profit" (1st — Silex) + "Open-Collective-transparent-finances" (1st — Silex) + "no-code-with-code-escape-hatch" (1st — Silex) + "pluggable-storage-backend". **NEW institutional-stewardship sub-tier: "general-interest-non-profit organization"** (1st — Silex Labs). "Decade-plus-OSS" extended to 3 tools (Gramps+EspoCRM+Silex). 15th AGPL-network-service-disclosure. 69th institutional-stewardship + 77th transparent-maintenance.
+- **flood** (2752★) — Node.js modern torrent UI (multi-client rTorrent/qBT/Transmission/Deluge). 84th hub-of-credentials Tier 2. **Copyright-content-hosting-risk META-FAMILY now 4 tools** (+Flood; Grimmory+Wizarr+ytdl-sub+Flood). **NEW recipe conventions**: "torrent-VPN-routing-mandatory" (Flood 1st formally) + "don't-expose-torrent-UI-publicly" + "client-API-version-matrix" + "inline-docs-instead-of-dedicated-docs" neutral-signal. **NEW positive-signals**: "Crowdin-community-translations" + "multi-client-integration-tests" + "upstream-tool-config-requirements documented" + "project-org-for-ecosystem-spread" + "community-docs-auxiliary". **NEW institutional-stewardship sub-tier: "sole-maintainer-with-ecosystem-org"** (1st — Flood). 70th institutional-stewardship + 78th transparent-maintenance.
+- **baby-buddy** (2747★) — Django baby-tracker (25+ languages; BSD-2; multi-caregiver). **85th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "child-data-tracking-tool"** (1st — Baby Buddy; COPPA/GDPR-K scope). **NEW META-FAMILY: "family-data-CROWN-JEWEL"** — 2 tools (Gramps + Baby Buddy). 49th immutability-of-secrets (SECRET_KEY). **NEW recipe conventions**: "COPPA/GDPR-K child-data protection" + "caregiver-access-revocation-discipline". **NEW positive-signals**: "permissive-BSD/MIT-license" + "dedicated-SECURITY.md-file" (1st — Baby Buddy) + "Codespaces-ready-dev-env" (1st — Baby Buddy) + "hourly-reset-demo-site" + "community-translations-wide-coverage". Default-creds-risk: 10 tools (+Baby Buddy demo/admin-admin). Long-term-personal-data-archive: 2 tools (+Baby Buddy; Papermerge 103 was 1st). "Large-community-project with project-governance" sub-tier: 2 tools (Gramps+Baby Buddy). 71st institutional-stewardship + 79th transparent-maintenance. CROWN-JEWEL Tier 1: 21 tools / 19 sub-categories.
+- **dittofeed** (2738★) — Customer-engagement platform (omni-channel: email/SMS/push/WhatsApp/Slack; Temporal+ClickHouse+Kafka stack; open-core). **86th hub-of-credentials CROWN-JEWEL Tier 1** — reinforces "marketing/brand" sub-category (now 5+ tools). **NEW commercial-tier sub-category: "open-core-with-licensed-closed-source-extensions"** (1st — Dittofeed; distinct from EspoCRM's open-extensions). **NEW recipe conventions**: "marketing-compliance-suppression-list" + "email-sending-reputation-warmup". **NEW positive-signals**: "Temporal-workflow-engine" + "ClickHouse-for-event-analytics" + "MJML-email-templates" + "vendor-compatible-ingestion-API". Microservice-complexity-tax: 4 tools. 72nd institutional-stewardship + **80th transparent-maintenance 🎯 80-TOOL MILESTONE**. CROWN-JEWEL Tier 1: 22 tools / 19 sub-categories.
+
+**Batch 106 lengths:** grimoire 171, silex 186, flood 179, baby-buddy 198, dittofeed 202.
+**State:** 544 done / 2 skipped / 728 pending — **42.7% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Transparent-maintenance: 80 tools** 🎯 **80-MILESTONE at Dittofeed**
+- **Zero-lock-in: 5 tools** 🎯 **5-MILESTONE at Silex**
+- **CROWN-JEWEL Tier 1: 22 tools / 19 sub-categories** (+Baby Buddy child-data-tracking-tool as new sub-category)
+- **Hub-of-credentials: 86 tools**
+- **Immutability-of-secrets: 49 tools** (+Baby Buddy SECRET_KEY)
+- **Institutional-stewardship: 72 tools** (2 NEW sub-tiers: "general-interest-non-profit organization" Silex Labs + "sole-maintainer-with-ecosystem-org" Flood)
+- **NEW META-FAMILY: "family-data-CROWN-JEWEL"** — 2 tools (Gramps + Baby Buddy)
+- **Copyright-content-hosting-risk: 4 tools** (+Flood)
+- **Default-creds-risk: 10 tools**
+
+### New precedents this batch
+- **"child-data-tracking-tool" CROWN-JEWEL Tier 1 sub-category** (Baby Buddy 1st)
+- **"family-data-CROWN-JEWEL" META-FAMILY** (2 tools)
+- **"open-core-with-licensed-closed-source-extensions" commercial-tier sub-category** (Dittofeed 1st)
+- **"general-interest-non-profit organization" institutional-stewardship sub-tier** (Silex Labs 1st)
+- **"sole-maintainer-with-ecosystem-org" institutional-stewardship sub-tier** (Flood 1st)
+- **"reading/browsing-data-personal-history-risk" consolidated sub-family** (2 tools: Grimmory + Grimoire)
+- **"major-version-breaking-migration with migration-tool" convention** (Grimoire)
+- **"pre-1.0-project-breaking-change-risk" convention** (Grimoire)
+- **"URL-fetcher-SSRF-mitigation" convention** (Grimoire 1st formally)
+- **"periodic-refetch-load-budget" convention** (Grimoire)
+- **"browser-extension-token-local-storage-risk" convention** (Grimoire)
+- **"general-interest-non-profit" positive-signal** (Silex 1st)
+- **"Open-Collective-transparent-finances" positive-signal** (Silex 1st)
+- **"no-code-with-code-escape-hatch" positive-signal** (Silex 1st)
+- **"pluggable-storage-backend" positive-signal** (Silex)
+- **"torrent-VPN-routing-mandatory" convention** (Flood 1st formally)
+- **"don't-expose-torrent-UI-publicly" convention** (Flood)
+- **"client-API-version-matrix" convention** (Flood)
+- **"inline-docs-instead-of-dedicated-docs" neutral-signal** (Flood)
+- **"Crowdin-community-translations" positive-signal** (Flood 1st)
+- **"multi-client-integration-tests" positive-signal** (Flood 1st)
+- **"upstream-tool-config-requirements documented" positive-signal** (Flood)
+- **"project-org-for-ecosystem-spread" positive-signal** (Flood)
+- **"community-docs-auxiliary" positive-signal** (Flood)
+- **"COPPA/GDPR-K child-data protection" convention** (Baby Buddy — MANDATORY)
+- **"caregiver-access-revocation-discipline" convention** (Baby Buddy)
+- **"permissive-BSD/MIT-license" positive-signal** (Baby Buddy)
+- **"dedicated-SECURITY.md-file" positive-signal** (Baby Buddy 1st formally)
+- **"Codespaces-ready-dev-env" positive-signal** (Baby Buddy 1st)
+- **"hourly-reset-demo-site" positive-signal** (Baby Buddy 1st)
+- **"community-translations-wide-coverage" positive-signal** (Baby Buddy 1st)
+- **"marketing-compliance-suppression-list" convention** (Dittofeed 1st formally)
+- **"email-sending-reputation-warmup" convention** (Dittofeed 1st)
+- **"Temporal-workflow-engine" positive-signal** (Dittofeed 1st)
+- **"ClickHouse-for-event-analytics" positive-signal** (Dittofeed 1st)
+- **"MJML-email-templates" positive-signal** (Dittofeed 1st)
+- **"vendor-compatible-ingestion-API" positive-signal** (Dittofeed)
+
+### Notes
+- 42.7% — batch 106 continues dense pattern-accretion
+- Multiple milestones (80-transparent-maintenance, 5-zero-lock-in)
+- Baby Buddy's CROWN-JEWEL sub-category (child-data) is particularly notable — first tool in a child-focused category
+- Pattern-consolidation still deferred; ledger is authoritative
