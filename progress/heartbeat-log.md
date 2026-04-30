@@ -2944,3 +2944,48 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **40.3% completion** — progress continuing steadily
 - Batch 100 shipped with 5 recipes (normal cadence); patterns-consolidation deferred for dedicated session
 - Quality + consistency holding; patterns + precedents compounding usefully
+
+## 2026-04-30 19:58 UTC — batch 101 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 PAT-scope-blocked; unchanged.
+
+### Step 2 (selfh.st batch 101)
+- **willow** (3019★) — ESP32-S3-BOX local voice assistant + Willow Inference Server. **59th hub-of-credentials — PHYSICAL-SECURITY-CROWN-JEWEL sub-family (2nd tool after Viseron 99)** with **NEW sub-category "always-on-microphone-risk"**. **2nd AI-model-serving-tool** (after Speaches 96; category reinforced). **NEW: "hardware-dependent tool" category** (rare in self-host). **NEW: "voice-LLM-prompt-injection-surface" convention**. 44th institutional-stewardship (commercial-backed-open-source via Tovera) + 51st transparent-maintenance.
+- **flatnotes** (3005★) — Python database-less markdown notes. **60th hub-of-credentials — 60-TOOL MILESTONE** (Tier 3). **40th immutability-of-secrets — 40-TOOL MILESTONE** (SECRET_KEY). **NEW: "zero-lock-in" positive-signal convention** (distinct from standards-first from OxiCloud 100). 4th sole-maintainer-with-visible-sponsor-support (sub-tier solidified at 4 tools: MediaManager/AdventureLog/Viseron/Flatnotes) + 45th institutional-stewardship + 52nd transparent-maintenance.
+- **kill-the-newsletter** (2995★) — Node.js email→Atom. **NEW: "micro-tool single-purpose" category**. **NEW: "SMTP-receiving-operational-complexity" callout**. **NEW: "ecosystem-from-shared-monorepo" note** (radically-straightforward monorepo; Courselore et al). 46th institutional-stewardship (24th sole-maintainer-with-community) + 53rd transparent-maintenance.
+- **stoat** (2995★) — Rust Discord-alternative; Revolt fork. **61st hub-of-credentials Tier 2 (possibly Tier 1 if hosting public)** with **NEW sub-category "chat-platform-abuse-risk"**. **41st immutability-of-secrets** (JWT_SECRET). **AGPL-3.0-or-later explicit** — reinforces "AGPL-network-service-disclosure" (Worklenz 100 precedent). **NEW sub-tier: "community-fork-of-active-project"** (institutional-stewardship; distinct from rebrand-preservation + forking-after-slowdown) — 1st tool. **NEW: "microservice-complexity-tax" convention**. **NEW sub-category in forking-after-slowdown: "multi-binary-microservice-fork"**. 47th institutional-stewardship + 54th transparent-maintenance.
+- **ddns-updater** (2991★) — Go DDNS daemon (qdm12 / Gluetun author). MIT explicit. 62nd hub-of-credentials Tier 2 (DNS API tokens). **NEW: "DNS-API-token-least-privilege" callout**. **NEW: "versioned-docs-with-matched-README" positive-signal** (rare + excellent). **NEW: "prolific-maintainer-ecosystem" positive-signal** (qdm12 = DDNS+Gluetun+caddy-scratch+srv-scan+more). **NEW: "multi-provider-API-drift-risk" convention** (tools depending on many 3rd-party APIs). **NEW sub-tier: "prolific-sole-maintainer-with-coherent-toolset"** (1st: DDNS Updater; retroactively Gluetun). 48th institutional-stewardship + 55th transparent-maintenance.
+
+**Batch 101 lengths:** willow 165, flatnotes 195, kill-the-newsletter 156, stoat 200, ddns-updater 189.
+**State:** 519 done / 2 skipped / 753 pending — **40.7% done.**
+
+### 🎯 MILESTONES this batch
+- **Hub-of-credentials: 62 tools** (Flatnotes hit 60-tool milestone)
+- **Immutability-of-secrets: 41 tools** (Flatnotes hit 40-tool milestone)
+- **Transparent-maintenance: 55 tools**
+- **Institutional-stewardship: 48 tools** (with 8-9+ sub-tiers)
+- **Sole-maintainer-with-visible-sponsor-support: 4 tools** (SOLIDIFIED at 4)
+
+### New precedents this batch
+- **"Always-on-microphone-risk" sub-category** of PHYSICAL-SECURITY-CROWN-JEWEL (Willow 1st)
+- **"Hardware-dependent tool" category** (Willow 1st — rare in self-host)
+- **"Voice-LLM-prompt-injection-surface" convention** (Willow)
+- **"Zero-lock-in" positive-signal** (Flatnotes 1st — markdown-flat-folder = no lock-in)
+- **"Micro-tool single-purpose" category** (Kill the Newsletter 1st)
+- **"SMTP-receiving-operational-complexity" callout** (Kill the Newsletter)
+- **"Ecosystem-from-shared-monorepo" note** (Kill the Newsletter — radically-straightforward monorepo)
+- **"Chat-platform-abuse-risk" sub-category** of hub-of-credentials (Stoat 1st)
+- **"Community-fork-of-active-project" sub-tier** of institutional-stewardship (Stoat 1st)
+- **"Microservice-complexity-tax" convention** (Stoat)
+- **"Multi-binary-microservice-fork" sub-category** in forking-after-slowdown
+- **"DNS-API-token-least-privilege" callout** (DDNS Updater 1st)
+- **"Versioned-docs-with-matched-README" positive-signal** (DDNS Updater 1st)
+- **"Prolific-maintainer-ecosystem" positive-signal** (DDNS Updater — qdm12 portfolio)
+- **"Multi-provider-API-drift-risk" convention** (DDNS Updater)
+- **"Prolific-sole-maintainer-with-coherent-toolset" sub-tier** (DDNS Updater 1st; retroactively Gluetun)
+
+### Notes
+- 40.7% — crossed 40% threshold solidly
+- Pattern-family complexity continuing to grow; consolidation deferred per batch 100 plan
+- AI-model-serving-tool category confirmed at 2 tools (Speaches 96, Willow's WIS 101)
