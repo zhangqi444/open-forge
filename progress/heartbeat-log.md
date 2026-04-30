@@ -923,3 +923,23 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 - **"Don't self-host yet" project pattern**: Fluxer — honestly catalog but redirect to ready alternatives. Pattern for future pre-self-hosting projects.
 - **Unique-architecture front-loading**: TiddlyWiki's single-HTML-file model deserves its own upfront explainer, not buried.
 - **Maintainer-policy quotes preserved verbatim**: Solidtime's AI-slop-PR ban, Fluxer's self-host-wait message — both from upstream README, treated as authoritative.
+
+## 2026-04-30 08:05 UTC — batch 55 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open (PAT lacks issues:write).
+
+### Step 2 (selfh.st batch 55)
+- **ghostfolio** (8283★) — OSS wealth/portfolio tracker. **"Not investment advice/tax software"** front-loaded. Yahoo rate-limits gotcha. TWR vs IRR distinction. AGPL-3.0. Alternatives: Portfolio Performance (desktop), Sharesight (tax), Actual/Firefly III (budgeting).
+- **tandoor-recipes** (8277★) — recipe manager + meal planner. URL import + OCR + aisle-based shopping. Ingredient-duplicate hygiene gotcha. Positioned vs Mealie (simpler) + Grocy (ERP). AGPL-3.0.
+- **privatebin** (8236★) — zero-knowledge pastebin. **URL fragment = decryption key** architecture front-loaded. "Lost URL = lost paste" design note. Burn-after-reading-vs-crawlers gotcha. Tor hidden service common pattern. Zlib/libpng license (unusual).
+- **papermark** (8197★) — OSS DocSend alternative. **External-SaaS-heavy warning** (Resend + Tinybird + Stripe dependency front-loaded). Fundraising-deck DNA contextualized. Analytics accuracy caveat. AGPL-3.0.
+- **technitium** (8166★) — full-featured self-hosted DNS (authoritative + recursive + DoT/DoH/DoQ). systemd-resolved :53 conflict gotcha. Open-resolver DDoS warning. Positioned vs Pi-hole/AdGuard Home/Unbound/BIND. GPL-3.0. .NET 8.
+
+**Batch 55 lengths:** ghostfolio 212, tandoor-recipes 217, privatebin 234, papermark 201, technitium 215.
+**State:** 289 done / 1 skipped / 984 pending (22.7%).
+
+### New precedents
+- **External-SaaS-dependency transparency**: Papermark (Resend/Tinybird/Stripe) — some OSS projects lean heavily on commercial cloud services; document honestly so self-hosters know what they're signing up for.
+- **Zero-knowledge architecture front-loading**: PrivateBin's URL-fragment-key model deserves upfront explanation, not buried.
+- **"Not tax/investment advice" disclaimers** for finance tools (Ghostfolio) — extends safety-critical front-loading to legal/compliance territory.
