@@ -745,3 +745,18 @@ Running totals: 154 done / 1 skipped / 1119 pending (1274 total).
 
 **Batch 43 lengths:** logto 197, planka 203, docuseal 219, adnanh-webhook 256, amnezia 165.
 **State:** 229 done / 1 skipped / 1044 pending (18.0%).
+
+## 2026-04-30 05:20 UTC — batch 44 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. Issues #24-#27 still open — unchanged (PAT lacks issues:write; code fixes already in ce8accf).
+
+### Step 2 (selfh.st batch 44)
+- **whoogle** (11491★) — Google search proxy. Upstream compose is hardened (cap_drop ALL, non-root, tmpfs-only). Positioned vs SearXNG (aggregator, heavier) and Kagi/DDG (SaaS). Flagged: Google breaks scrapers regularly, 429 rate limits, basic auth ≠ TLS. Farside integration note for `WHOOGLE_ALT_*` link rewriting.
+- **shiori** (11440★) — bookmark manager. Front-loaded: default credentials `shiori`/`gopher` (CHANGE IMMEDIATELY — well-known). SQLite default + optional Postgres/MySQL. Dev compose vs prod image distinction noted. Alternatives: Wallabag, Hoarder/Karakeep, LinkWarden, LinkDing, Readeck.
+- **homer** (11300★) — static dashboard. Key security gotcha front-loaded: API keys in config.yml are served to browsers = don't expose without auth. Smart cards poll from browser (CORS on target required). Positioned vs Homepage/Dashy (server-side widgets = no exposure), Heimdall/Organizr/Homarr/Flame.
+- **owncast** (11188★) — single-user Twitch-alike. Default creds `admin`/`abc123` front-loaded. RTMP cleartext warning. HLS 10-30s latency NOT low-latency. Bandwidth budget math (bitrate × viewers). Single-user only = deliberate design; each broadcaster = own install. Alternatives: PeerTube, Ant Media, nginx-rtmp, Mirotalk.
+- **misskey** (11133★) — feature-rich ActivityPub server. Front-loaded: `url` is PERMANENT federation identity. WebSocket required. First-user-is-admin. Don't run `develop` branch in prod. Object storage strongly recommended. Forks list (Sharkey, Firefish, Iceshrimp, CherryPick, Foundkey). Alternatives: Mastodon, Pleroma/Akkoma, GoToSocial, Pixelfed, Bluesky.
+
+**Batch 44 lengths:** whoogle 178, shiori 200, homer 185, owncast 182, misskey 189.
+**State:** 234 done / 1 skipped / 1039 pending (18.4%).
