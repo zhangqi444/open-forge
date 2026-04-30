@@ -20,6 +20,7 @@
 Claude already knows how to run `docker compose up`. What `open-forge` adds:
 
 - **Captured tribal knowledge.** ~180 recipes verified against upstream docs include the gotchas that aren't in any README — Bitnami's `bncert-tool` not supporting `--unattended`, Apache reverse-proxy needing `ProxyPreserveHost` after enabling HTTPS, MySQL on Ubuntu 22+ defaulting to socket-auth that Ghost rejects, and so on.
+- **Compounding by design.** Raw Claude Code starts from zero every session. `open-forge` accumulates — every successful (or failed) deploy can feed gotchas back into the catalog. The 1001st deploy is faster and safer than the first because the previous 1000 contributed.
 - **Resumable across sessions.** Every deployment writes a state file at `~/.open-forge/deployments/<name>.yaml`. If TLS fails at 11pm, resume from the `tls` phase tomorrow without re-running provisioning.
 - **Consistent across clouds.** The "install Docker on Ubuntu" step is written once and reused for Hetzner / DO / Lightsail Ubuntu / localhost. You can swap clouds without re-deriving the install.
 - **Source-attributed.** Every install method cites the exact upstream URL it derives from. When a recipe goes stale, the link is the recovery path; community-maintained methods are flagged with a warning blockquote.
@@ -50,7 +51,7 @@ The skill takes it from there — collects inputs, runs cloud CLI + SSH commands
 
 ## Verified recipes (~180)
 
-A curated catalog of self-hostable apps with verified install paths, captured gotchas, and ongoing maintenance via the [feedback loop](#feedback-loop-the-catalog-grows-from-your-deploys). A taste:
+A curated catalog of self-hostable apps. Each recipe cites its upstream sources at authorship; first-deploy verification — confirming the gotchas in the wild — happens via the [feedback loop](#feedback-loop) as users deploy. The catalog grows where it earns its keep — software whose gotchas compound across deploys. We deliberately don't try to catalog every self-hostable app; for everything else, the [live-derived fallback](#dont-see-your-software) handles the long tail. A taste:
 
 | Category | Examples |
 |---|---|
@@ -83,7 +84,7 @@ Verified support across **17 infra adapters** and **4 runtime modules** — writ
 
 | Cloud / location | Adapter |
 |---|---|
-| **AWS** | Lightsail (Ghost-Bitnami + OpenClaw blueprints + Ubuntu) · EC2 |
+| **AWS** | Lightsail (with vendor blueprints for Ghost, OpenClaw, etc.; or plain Ubuntu) · EC2 |
 | **Azure VM** | Bastion-hardened (no public IP) |
 | **Hetzner Cloud** | CX-line VM (`hcloud` CLI) |
 | **DigitalOcean** | Droplet (`doctl` CLI) |
@@ -112,15 +113,22 @@ The "how" question is **dynamically generated** from your software + cloud choic
 
 Each phase is **verifiable and resumable**. Claude completes, verifies, and records state before moving on.
 
-```
-preflight  →  provision  →  dns  →  tls  →  smtp  →  inbound  →  hardening  →  feedback
-```
-
-After `hardening`, the skill offers to file a sanitized GitHub issue with the deployment notes — see below.
+| Phase | What happens |
+|---|---|
+| `preflight` | Check CLI tools, validate accounts, confirm domain ownership; collect just-in-time inputs. |
+| `provision` | Create instance, allocate static IP, retrieve SSH key. |
+| `dns` | Print exact records to add at registrar; poll until resolved. |
+| `tls` | Obtain Let's Encrypt cert, fix reverse-proxy config, switch app URL to https. |
+| `smtp` | Configure outbound email provider; verify a test send. |
+| `inbound` | (Optional) Set up forwarding or mailbox. |
+| `hardening` | Rotate default admin creds; rotate any secrets pasted into chat. |
+| `feedback` | Offer to file a sanitized GitHub issue with deployment notes (you opt in). |
 
 ## Feedback loop (the catalog grows from your deploys)
 
-Catalog evolution happens through GitHub issues, not human pull requests. The skill drafts a sanitized issue at the end of every deploy; you review, approve, and post; AI sessions process the issues into recipe patches per the [strict doc-verification policy](CLAUDE.md#strict-doc-verification-policy-mandatory-before-writing-any-recipe).
+Catalog evolution happens through GitHub issues, not human pull requests. The skill drafts a sanitized issue at the end of every deploy; you review, approve, and post.
+
+Issues are processed by an **AI agent** that reads [`CLAUDE.md`](CLAUDE.md) as its runbook — same policy that governs the existing catalog. For every change the agent re-fetches upstream docs, applies the [strict doc-verification policy](CLAUDE.md#strict-doc-verification-policy-mandatory-before-writing-any-recipe), authors the patch, opens a PR, and bumps the version. No human needs to write code for the catalog to improve; you just deploy + click "share."
 
 Three input channels (all via [GitHub issue templates](.github/ISSUE_TEMPLATE/)):
 
@@ -134,9 +142,11 @@ The skill **never auto-posts** — you see the redacted draft, review it, and ex
 
 ## Contributing
 
-**Don't open PRs.** [File an issue](https://github.com/zhangqi444/open-forge/issues/new/choose) instead. The structured templates encode the strict-doc policy; AI sessions process the queue and author patches.
+**Don't open PRs.** [File an issue](https://github.com/zhangqi444/open-forge/issues/new/choose) instead — the structured templates encode the strict-doc policy, and the AI agent processes the queue and authors patches.
 
-If you're a maintainer working on the plugin itself, see [`CLAUDE.md`](CLAUDE.md) for the development conventions, the strict-doc-verification policy, the issue-processing workflow, and the architectural model.
+**Why issues, not PRs?** The agent re-verifies every change against upstream docs centrally — this keeps the catalog consistent with the [strict-doc policy](CLAUDE.md#strict-doc-verification-policy-mandatory-before-writing-any-recipe), avoids credentials leaking into commit history (the skill sanitizes drafts before posting), and turns "let me submit a PR with my fix" into "let me share what I learned" — much lower bar to contribute, much higher quality bar on what lands. See [CLAUDE.md § Issue-driven contribution model](CLAUDE.md#issue-driven-contribution-model) for the full reasoning.
+
+If you're a maintainer working on the plugin itself, see [`CLAUDE.md`](CLAUDE.md) for the development conventions and architectural model.
 
 ## How it works (for the curious)
 
