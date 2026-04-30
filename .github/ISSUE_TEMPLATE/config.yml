@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Use the open-forge skill
+    url: https://github.com/zhangqi444/open-forge#install
+    about: For deployment help, install the open-forge plugin and run the skill — it walks you through provisioning, DNS, TLS, and lifecycle in a guided chat. Issues are for catalogue feedback / nominations / method proposals (see templates above), not for deployment support.
+  - name: Read CLAUDE.md
+    url: https://github.com/zhangqi444/open-forge/blob/main/CLAUDE.md
+    about: How the project decides what's in scope, the strict-doc-verification policy, the issue-driven contribution model, and Tier 1 vs Tier 2.

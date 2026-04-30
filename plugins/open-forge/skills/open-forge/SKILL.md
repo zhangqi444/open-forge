@@ -198,6 +198,52 @@ Each recipe and adapter has its own **"Inputs to collect"** section listing exac
 
 Never mark a phase `done` without verification.
 
+## Post-deploy feedback (closes the catalogue evolution loop)
+
+After `hardening` (or after the user explicitly says "we're done", or after they abort mid-phase and want to share what they learned), offer to file a GitHub issue with the deployment notes. Per CLAUDE.md § *Issue-driven contribution model*, this is how the catalogue evolves — the bot or a future Claude session reads these issues and patches the recipes.
+
+Three flows the user can trigger from this prompt:
+
+1. **Recipe feedback** (default at end of deploy) — submit gotchas, suggested edits, or "the recipe was outdated". Claude self-summarizes from the session; the user reviews + opts in.
+2. **Software nomination** — when the user asked to deploy something not in the catalogue and Tier 2 worked, offer to nominate it for Tier 1.
+3. **Method proposal** — when the user discovered an upstream-supported install method the recipe doesn't cover.
+
+### The flow (multi-step consent — never auto-post)
+
+Load `references/modules/feedback.md` for the full sanitization rules + draft templates + submission paths. Summary:
+
+1. **Opt-in prompt**:
+   - Recipe feedback: *"Want to share what you learned with the open-forge project? I can draft a sanitized GitHub issue with the gotchas + suggested edits — you review, then post."*
+   - Software nomination (Tier 2 deploy): *"This software isn't in the Tier 1 catalogue yet. Want to nominate it? I'll draft an issue with the rationale + upstream URLs."*
+   - User must explicitly opt in (no auto-post).
+2. **Self-summarize the session**:
+   - Which recipe + combo was used, plugin version.
+   - Which phases ran, which retried, which failed.
+   - Where the user got prompted unexpectedly (gaps in the recipe).
+   - Any gotchas Claude observed (commands that failed, error messages, deviations from the documented path).
+3. **Draft the issue** in the format from `references/modules/feedback.md`:
+   - Specific recipe-edit suggestions (preferred: as a diff), not free-prose.
+   - All identifiers redacted per CLAUDE.md § *Sanitization principles*.
+4. **Show the redacted draft in chat — full text — before any submission attempt.**
+5. **Standing reminder**: *"GitHub issues are public and permanent. Once posted, this can't be unposted. Review every line; if anything looks identifiable to you, edit before posting. By submitting, you grant a non-revocable license to use this content in the recipe; the project bears no liability for your decision to share."*
+6. **Confirm post?** — explicit "yes" required. If user edits the draft, re-show + re-confirm.
+7. **Submit via the first available path**:
+   - `gh issue create --title "..." --body "..." --label recipe-feedback,recipe:<name>` if the user has `gh` authenticated.
+   - GitHub MCP `mcp__github__issue_write` if available.
+   - Fallback: print a prefilled URL (`https://github.com/zhangqi444/open-forge/issues/new?template=recipe-feedback.yml&title=...&body=...`) and ask the user to open + submit in browser.
+
+### Sanitization is mandatory
+
+Per CLAUDE.md § *Sanitization principles* — strip every domain, IP, SSH key path, API key, AWS account ID, email address, state-file content, and anything from the user's clipboard / env vars before showing the draft. Use the patterns + replacements documented in `references/modules/feedback.md`.
+
+If you find something in the draft that you can't confidently classify as safe, **redact it** rather than ship it. The user's review pass is a safety net, not the only line of defense.
+
+### When to skip
+
+- User says "no thanks" or doesn't reply → drop it, don't pester.
+- Deploy aborted very early (before any state was created) → no useful feedback to capture; skip.
+- Tier 2 deploy that obviously wasn't in scope (e.g. user tried to "self-host" a library) → don't nominate; politely explain it's out of scope per CLAUDE.md § *Is this software in scope?*.
+
 ## Common pitfalls across infras/projects
 
 - **Stale DNS**: browsers cache 301 responses with long max-age. After any HTTP↔HTTPS or apex↔www redirect change, suggest hard reload or incognito.

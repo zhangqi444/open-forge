@@ -1,0 +1,81 @@
+name: Method proposal (missing install method)
+description: Propose adding an upstream-supported install method that an existing recipe doesn't cover.
+title: "[method-proposal] <recipe>: add <method>"
+labels: ["method-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Strict-doc-policy applies.** The proposed method must be documented by upstream — either in the README, the project's docs site, the repo's `docs/install/` tree, or the wiki. Community-maintained methods are also acceptable but will be flagged with a community-maintained blockquote per CLAUDE.md.
+
+  - type: input
+    id: recipe
+    attributes:
+      label: Recipe to extend
+      description: Filename under `references/projects/`.
+      placeholder: ollama.md
+    validations:
+      required: true
+
+  - type: input
+    id: method_name
+    attributes:
+      label: Method name
+      description: Short name for the install method (e.g. "Helm chart", "Snap package", "Docker Desktop extension").
+      placeholder: Snap package
+    validations:
+      required: true
+
+  - type: input
+    id: upstream_url
+    attributes:
+      label: Upstream URL documenting this method
+      description: Direct link to the upstream doc / install file / README section that covers this method.
+      placeholder: https://github.com/ollama/ollama/blob/main/docs/snap.md
+    validations:
+      required: true
+
+  - type: dropdown
+    id: source_type
+    attributes:
+      label: Source type
+      options:
+        - First-party — published by upstream
+        - Community-maintained (will require ⚠️ blockquote per policy)
+    validations:
+      required: true
+
+  - type: textarea
+    id: canonical_commands
+    attributes:
+      label: Canonical install command(s)
+      description: |
+        Quote the upstream install instructions verbatim. The AI session that processes this issue will re-fetch the upstream URL and verify, but starting from your quote saves a round-trip.
+      placeholder: |
+        ```bash
+        sudo snap install ollama
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why this method matters
+      description: When would a user pick this method over the existing options in the recipe?
+      placeholder: |
+        Snap packages are the default on Ubuntu Server installs and auto-update.
+        For users who already use snap for everything, having ollama via snap
+        avoids juggling two package managers.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have verified the upstream URL above shows this install method on the current upstream version.
+          required: true
+        - label: I have not included any credentials, IP addresses, or other identifiers in this issue.
+          required: true
