@@ -17,14 +17,16 @@
 > A self-improving recipe catalog that gets better every time anyone deploys.
 
 ```
-> "Self-host Ghost on a Hetzner CX22 with a Resend SMTP relay."
+> "Self-host OpenClaw on AWS Lightsail with Bedrock pre-wired."
 
-  [open-forge] Loading verified recipe ghost.md (v0.20.0).
-  [open-forge] Combo: Hetzner Cloud CX × Docker.
-  [open-forge] I have everything I need except your domain and Resend API key.
+  [open-forge] Loading verified recipe openclaw.md (v0.20.1).
+  [open-forge] Combo: AWS Lightsail OpenClaw blueprint (vendor-bundled, Bedrock IAM included).
+  [open-forge] I'll need your AWS profile and the domain you want.
 
-  Domain you want to host Ghost on?
+  AWS profile name?
 ```
+
+> *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [~180 verified recipes](#coverage).)*
 
 ## Install
 
@@ -37,9 +39,11 @@ In Claude Code:
 
 Then say what you want to deploy:
 
-> *"Self-host Vaultwarden on my Raspberry Pi."*
+> *"Set up OpenClaw on my Raspberry Pi with the local Ollama provider."*
 >
-> *"Run Open WebUI + Ollama on my laptop, expose via Cloudflare Tunnel."*
+> *"Run OpenClaw on a Hetzner CX22 + Docker, paired with Open WebUI."*
+>
+> *"Self-host Vaultwarden on my laptop, expose via Cloudflare Tunnel."*
 >
 > *"Deploy Mastodon on a Hetzner VPS — I'll bring my own SMTP."*
 
@@ -62,7 +66,7 @@ Raw Claude Code starts from zero every session. `open-forge` *accumulates* — e
 4. **An AI agent processes the issue** — re-fetches upstream docs, applies the [strict doc-verification policy](CLAUDE.md), patches the recipe, opens a PR, bumps the version.
 5. **The next user gets the improved recipe.**
 
-That's why captured tribal knowledge already includes things like *"Bitnami's `bncert-tool` won't accept `--unattended`"*, *"MySQL on Ubuntu 22+ rejects socket-auth that Ghost needs"*, and *"Ghost-CLI's sudo username can't be `ghost`"* — none of which are in any upstream README.
+That's why captured tribal knowledge already includes things like *"OpenClaw's three installers (`install.sh`, `install-cli.sh`, `install.ps1`) don't share state — pick one and stick with it"*, *"the Lightsail OpenClaw blueprint runs the gateway as a systemd USER unit with `loginctl enable-linger` so it survives no-login sessions"*, *"on Windows, OpenClaw's `iwr | iex` failures are non-fatal to the shell — silent partial installs are common, always check the explicit success line"*, and *"Bitnami's `bncert-tool` won't accept `--unattended`"* — none of which are in any upstream README.
 
 ## Other reasons it's better than raw Claude Code
 
