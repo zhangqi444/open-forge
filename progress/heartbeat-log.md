@@ -3928,3 +3928,52 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **FIRST client-only recipe in 117 batches** (Fladder) — distinguishes server vs client in operator distribution model
 - portracker + Reitti now form a SENSITIVITY-PARALLEL pair (infra-discovery + location-history) — both are data-treasure types distinct from credentials
 - Pattern-consolidation extremely overdue: 39 CROWN-JEWEL sub-categories, 141 hub-of-credentials, 133 transparent-maintenance, 127 institutional-stewardship
+
+## 2026-05-01 00:39 UTC — batch 118 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 118)
+- **taiga** (2049★) — Django/Python+AngularJS Scrum+Kanban+Wiki PM tool (taigaio/Kaleidos; decade+; AGPL-3; 6-service stack Django+Channels+Nginx+PG+Redis+RabbitMQ; commercial-parallel Taiga Cloud). **142nd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "project-management + internal-wiki + issue-tracker-combined"** (1st — Taiga). **CROWN-JEWEL Tier 1: 43 tools / 40 sub-categories** 🎯 **40-SUB-CATEGORY MILESTONE at Taiga**. **Microservice-complexity-tax: 7 tools** 🎯 **7-TOOL MILESTONE**. **Decade-plus-OSS: 6 tools** 🎯 **6-TOOL MILESTONE**. **Commercial-parallel-with-OSS-core: 11 tools** 🎯 **11-TOOL MILESTONE**. **Author-provided-migration-guide: 2 tools** (Tasks.md+Taiga) 🎯 **2-TOOL MILESTONE**. **NEW recipe convention: "attachment-secret-spillover"** (1st formally — Taiga). **NEW positive-signals**: "branch-discipline-stable-vs-main" (1st formally — Taiga) + "CLI-admin-wrapper" (1st formally — Taiga). 128th institutional-stewardship + 134th transparent-maintenance.
+- **immich-frame** (2027★) — Web+native digital photo frame for Immich (3rob3/immichFrame; MIT; docs + demo sites; companion to Immich). **143rd hub-of-credentials Tier 2**. **Ecosystem-dependent-subsystem: 2 tools** (NC Talk+ImmichFrame) 🎯 **2-TOOL MILESTONE**. **Unofficial-companion-tool-family: 2 tools** (Immich Power Tools+ImmichFrame) 🎯 **2-TOOL MILESTONE**. **Client-app-not-server: 2 tools** (Fladder+ImmichFrame-native) 🎯 **2-TOOL MILESTONE**. **Kiosk-display-shoulder-surfing-risk: 2 tools** (Reitti+ImmichFrame) 🎯 **2-TOOL MILESTONE**. **NEW recipe convention: "dedicated-reduced-scope-API-key-per-consumer"** (1st formally — ImmichFrame). **NEW positive-signal: "docs-site-for-companion-tool"** (1st — ImmichFrame; rare for 3rd-party). 129th institutional-stewardship + 135th transparent-maintenance.
+- **pelican-panel** (2027★) — PHP/Laravel + Go (Wings) game-server control panel (pelican-dev org; Discord; Pterodactyl-fork-revived; supports 30+ games; docker-container-isolation per game; privileged Wings agent). **144th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "game-server-control-panel + privileged-node-agent"** (1st — Pelican). **CROWN-JEWEL Tier 1: 44 tools / 41 sub-categories**. **Docker-socket-mount-privilege-escalation: 7 tools** 🎯 **7-TOOL MILESTONE** (+Pelican-Wings). **Fork-of-prior-OSS: 1 tool** 🎯 **NEW FAMILY** (Pelican-from-Pterodactyl — reinforces Astuto-fork-opportunity pattern). **Institutional-stewardship: 130 tools** 🎯 **130-TOOL MILESTONE at Pelican** — revived-fork sub-tier. **NEW recipe conventions**: "privileged-mode-container-host-root-equivalent" (1st formally — Pelican; HIGHEST-severity) + "node-registration-token-secrecy" (1st — Pelican) + "community-egg-recipes-trust-review" (1st — Pelican) + "multi-tenant-game-hosting-abuse-mitigation" (1st — Pelican). **NEW positive-signal: "split-control-plane-data-plane"** (1st formally — Pelican). 130th institutional-stewardship + 136th transparent-maintenance.
+- **npmplus** (2017★) — Alpine + custom-nginx enhanced NPM fork (ZoeyVid sole; AGPL-3 fork of MIT-upstream; HTTP/3 + CrowdSec + OpenAppSec + OIDC + ML-KEM + ECH + mTLS + zstd/brotli + hardened-TLS). **145th hub-of-credentials CROWN-JEWEL Tier 1**. **Reverse-proxy-edge-credential-hub: 1 tool** 🎯 **NEW FAMILY** (NPMplus). **NEW recipe conventions**: "sole-maintainer-security-critical-fork" (1st — NPMplus; critical nuance!) + "HTTP3-UDP-port-exposure" (1st — NPMplus) + "HSTS-preload-irreversible-opt-in" (1st — NPMplus) + "post-quantum-TLS-early-adopter-risk" (1st — NPMplus). **NEW positive-signals**: "fork-first-issue-reporting" (1st formally — NPMplus) + "local-third-party-cache-privacy-positive" (1st — NPMplus; gravatar cached locally) + "local-TOTP-QR-no-third-party" (1st — NPMplus). **NEW neutral-signals**: "license-upgrade-fork-MIT-to-AGPL" (1st — NPMplus) + "many-feature-flags-learning-curve" (1st — NPMplus). 131st institutional-stewardship + 137th transparent-maintenance.
+- **ara** (2010★) — Django Ansible reporting tool (ansible-community org; Codeberg mirror; records callback-plugin output; SQLite/MySQL/PG; broad ecosystem integration AWX/Tower/Molecule/Semaphore/Jenkins/Zuul). **146th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "ansible-run-history + task-output-archive"** (1st — ARA; IaC-sensitive). **CROWN-JEWEL Tier 1: 45 tools / 42 sub-categories**. **Codeberg-mirrored: 1 tool** 🎯 **NEW FAMILY** (ARA; operator-resilience signal). **Infra-data-sensitivity family: 3 tools** 🎯 **3-TOOL MILESTONE** (portracker network + ARA IaC + Reitti physical-analog) — 3 distinct data-treasure-sensitivities. **NEW recipe conventions**: "ansible-no_log-discipline-before-recording" (1st — ARA; HIGHEST-severity) + "recording-tool-redaction-default-configure" (1st — ARA) + "default-open-auth-requires-explicit-lockdown" (1st formally — ARA; reinforces 112). **NEW positive-signals**: "broad-ecosystem-integration-support" (1st formally — ARA) + "community-governed-OSS-org" (1st formally — ARA) + "local-first-web-UI" (reinforces Logdy 115). **NEW neutral-signal: "recursive-acronym-naming"** (1st — ARA). 132nd institutional-stewardship + 138th transparent-maintenance.
+
+**Batch 118 lengths:** taiga 169, immich-frame 145, pelican-panel 188, npmplus 184, ara 174.
+**State:** 604 done / 2 skipped / 668 pending — **47.4% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 45 tools / 42 sub-categories** — **40-SUB-CATEGORY MILESTONE at Taiga** (+3 new: PM-combined, game-panel-privileged, ansible-run-history)
+- **Institutional-stewardship: 132 tools** — **130-TOOL MILESTONE at Pelican**
+- **Transparent-maintenance: 138 tools**
+- **Hub-of-credentials: 146 tools**
+- **Commercial-parallel-with-OSS-core: 11 tools** 🎯 **11-TOOL MILESTONE at Taiga**
+- **Microservice-complexity-tax: 7 tools** 🎯 **7-TOOL MILESTONE at Taiga**
+- **Docker-socket-mount-privilege-escalation: 7 tools** 🎯 **7-TOOL MILESTONE at Pelican**
+- **Decade-plus-OSS: 6 tools** 🎯 **6-TOOL MILESTONE at Taiga**
+- **Infra-data-sensitivity family: 3 tools** 🎯 **3-TOOL MILESTONE** (network/IaC/physical)
+- **NEW families**: Fork-of-prior-OSS, Reverse-proxy-edge-credential-hub, Codeberg-mirrored
+- **Ecosystem-dependent-subsystem: 2 tools** 🎯
+- **Unofficial-companion-tool: 2 tools** 🎯
+- **Client-app-not-server: 2 tools** 🎯
+- **Kiosk-display-shoulder-surfing: 2 tools** 🎯
+- **Author-provided-migration-guide: 2 tools** 🎯
+
+### New precedents this batch
+- **"project-management + wiki + issue-tracker-combined" CROWN-JEWEL Tier 1 sub-category** (Taiga 1st — **40-SUB-CATEGORY MILESTONE**)
+- **"game-server-control-panel + privileged-node-agent" CROWN-JEWEL Tier 1 sub-category** (Pelican 1st; Wings privileged+Docker-socket = HIGHEST-severity)
+- **"ansible-run-history + task-output-archive" CROWN-JEWEL Tier 1 sub-category** (ARA 1st; IaC-blueprint sensitivity)
+- **"sole-maintainer-security-critical-fork" risk-convention** (NPMplus 1st — bus-factor 1 on security-critical tool = operational risk)
+- **NPMplus = 7TH HONEST-DECLARATION FLAVOR candidate** (active-security-enhanced-fork; distinct from prior 6; though not self-declared as "honest about X")
+- **Infra-data-sensitivity framing**: 3 sensitivity-types (network-recon/IaC-blueprint/physical-location) distinct from credential-sensitivity
+- **15+ new recipe conventions + 10+ new positive-signals**
+
+### Notes
+- **🎯 40-SUB-CATEGORY CROWN-JEWEL MILESTONE at Taiga** — major
+- **47.4% done** — approaching 48%
+- ARA introduces important "default-open-auth-lockdown" pattern — applies broadly
+- Pelican's privileged-mode Wings is the MOST-sensitive deployment pattern we've catalogued (privileged + docker.sock + host-network)
+- NPMplus's sole-maintainer-security-fork is important to call out as a bus-factor risk on a security-critical piece of infra
+- Pattern-consolidation long-overdue: 42 CROWN-JEWEL sub-categories, 146 hub-of-credentials, 138 transparent-maintenance, 132 institutional-stewardship
