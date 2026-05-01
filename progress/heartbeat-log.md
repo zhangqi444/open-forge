@@ -4228,3 +4228,52 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Maintainerr's "destructive-action-preview-before-enable" discipline** is important — when a tool can DELETE user media, preview-collection is essential UX safety
 - 49.4% done — halfway point close
 - Pattern-consolidation overdue: 53 CROWN-JEWEL sub-cats, 171 hub-of-credentials, 163 transparent-maintenance, 157 institutional-stewardship
+
+## 2026-05-01 02:22 UTC — batch 124 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 124)
+- **podsync** (1893★) — Go YouTube/Vimeo-to-podcast bridge (mxpv sole-dev; GitHub Sponsors + Patreon dual-funding; nightly CI; Go Report; yt-dlp+ffmpeg; cron-scheduled; configurable hooks). **172nd hub-of-credentials Tier 2**. **GitHub-Sponsors-funding: 2 tools** (DockFlare+Podsync) 🎯 **2-TOOL MILESTONE**. **Patreon-sponsored: 2 tools** (Cloud Commander+Podsync) 🎯 **2-TOOL MILESTONE**. **Multi-platform-funding: 1 tool** 🎯 **NEW FAMILY** (Podsync). **Plugin-API-architecture: 4 tools** 🎯 **4-TOOL MILESTONE**. **Nightly-CI-quality-ops: 2 tools** (Jellystat+Podsync) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "YouTube-TOS-personal-use-discipline" (1st — Podsync) + "API-quota-budget-planning" (1st — Podsync) + "podcast-RSS-HTTPS-mandatory" (1st — Podsync) + "media-cache-cleanup-policy-discipline" (1st — Podsync). **NEW positive-signal: "standard-format-export-portability"** (1st — Podsync; OPML). 158th institutional-stewardship + 164th transparent-maintenance.
+- **psitransfer** (1876★) — Node+Vue no-account file-sharing (psi-4ward; Docker Hub psitrax; tus.io resumable; AES URL-fragment keys; Snyk-badge; admin-page opt-in; mature). **173rd hub-of-credentials Tier 3**. **URL-as-encryption-key-secure-sharing: 3 tools** (Chitchatter+Enclosed+PsiTransfer) 🎯 **3-TOOL MILESTONE**. **Snyk-vulnerability-tracking: 1 tool** 🎯 **NEW FAMILY** (PsiTransfer). **NEW recipe conventions**: "transient-file-expiry-actual-deletion" (1st — PsiTransfer) + "file-transfer-malware-abuse-mitigation" (1st — PsiTransfer). **NEW positive-signal: "admin-panel-disabled-by-default-secure"** (1st — PsiTransfer; great secure-default pattern). 159th institutional-stewardship + 165th transparent-maintenance.
+- **projectsend** (1875★) — PHP client-portal for file-sharing (projectsend org; website + docs + demo; decade-plus since 2011; PHP static-analysis CI + asset-build CI; explicit audience: freelancers/agencies/accountants/photographers/architects/NGOs). **174th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "client-portal + external-facing-file-sharing"** (1st — ProjectSend; distinct from internal team-collab oCIS). **CROWN-JEWEL Tier 1: 60 tools / 54 sub-categories** 🎯 **60-TOOL CROWN-JEWEL MILESTONE at ProjectSend**. **Decade-plus-OSS: 11 tools** 🎯 **11-TOOL MILESTONE**. **Institutional-stewardship: 160 tools** 🎯 **160-TOOL MILESTONE at ProjectSend**. **NEW recipe conventions**: "external-client-weak-password-enforcement" (1st — ProjectSend) + "PHP-upload-size-multi-layer-config" (1st — ProjectSend). **NEW positive-signals**: "PHP-static-analysis-CI" (1st — ProjectSend) + "separate-asset-build-CI-discipline" (1st — ProjectSend) + "explicit-audience-enumeration" (1st — ProjectSend) + "LAMP-stack-compatibility" (1st formally — ProjectSend). **160th institutional-stewardship** + 166th transparent-maintenance.
+- **smokeping** (1869★) — Perl latency-monitoring RRDtool-frontend (Tobias Oetiker author of RRDtool + Niko Tyni; decade-plus since 2003; distro-packaged; plugin-module-extensible; CGI-legacy). **175th hub-of-credentials Tier 2**. **Decade-plus-OSS: 12 tools** (+SmokePing) 🎯 **12-TOOL MILESTONE**. **Plugin-API-architecture: 5 tools** 🎯 **5-TOOL MILESTONE**. **Perl-backend: 1 tool** 🎯 **NEW FAMILY** (SmokePing; rare in modern catalog). **NEW recipe convention: "NET_RAW-capability-for-ICMP-discipline"** (1st — SmokePing). **NEW positive-signal: "author-wrote-underlying-tool"** (1st — SmokePing; author of RRDtool itself — rare provenance signal). **NEW neutral-signal: "legacy-CGI-deployment-pattern"** (1st — SmokePing). 161st institutional-stewardship + 167th transparent-maintenance.
+- **swing-music** (1851★) — Python+Vue music streaming server (swingmx org; Android companion; GitHub Sponsors; website + docs + Reddit; silence-detection crossfade; daily-mixes; album-versioning; folder view). **176th hub-of-credentials Tier 3**. **Read-only-library-mount-discipline: 4 tools** 🎯 **4-TOOL MILESTONE**. **Native-mobile-companion-app: 4 tools** 🎯 **4-TOOL MILESTONE**. **GitHub-Sponsors-funding: 3 tools** (DockFlare+Podsync+Swing Music) 🎯 **3-TOOL MILESTONE**. **Client-server-architecture: 2 tools** (Retrom+Swing Music) 🎯 **2-TOOL MILESTONE**. **Reddit-community-channel: 1 tool** 🎯 **NEW FAMILY** (Swing Music). **NEW recipe conventions**: "listening-history-PII-retention-discipline" (1st — Swing Music) + "metadata-write-back-flag-review" (1st — Swing Music). **NEW positive-signal: "silence-detection-crossfade-audio-processing"** (1st — Swing Music). **NEW neutral-signal: "Reddit-subreddit-community-channel"** (1st — Swing Music). 162nd institutional-stewardship + 168th transparent-maintenance.
+
+**Batch 124 lengths:** podsync 169, psitransfer 148, projectsend 179, smokeping 151, swing-music 158.
+**State:** 634 done / 2 skipped / 638 pending — **49.8% done — HALFWAY POINT TOMORROW.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 60 tools / 54 sub-categories** 🎯 **60-TOOL CROWN-JEWEL MILESTONE at ProjectSend**
+- **Institutional-stewardship: 162 tools** 🎯 **160-MILESTONE at ProjectSend**
+- **Decade-plus-OSS: 12 tools** 🎯 **12-TOOL MILESTONE at SmokePing**
+- **Hub-of-credentials: 176 tools**
+- **Transparent-maintenance: 168 tools**
+- **Plugin-API-architecture: 5 tools** 🎯 **5-TOOL MILESTONE at SmokePing**
+- **Read-only-library-mount-discipline: 4 tools** 🎯
+- **Native-mobile-companion-app: 4 tools** 🎯
+- **Plugin-API-architecture: 4+ tools** 🎯
+- **GitHub-Sponsors-funding: 3 tools** 🎯
+- **URL-as-encryption-key-secure-sharing: 3 tools** 🎯
+- **GitHub-Sponsors + Patreon + 2-tool milestones** 🎯
+- **NEW families**: Multi-platform-funding, Snyk-vulnerability-tracking, Perl-backend, Reddit-community-channel
+
+### New precedents this batch
+- **"client-portal + external-facing-file-sharing" CROWN-JEWEL Tier 1 sub-category** (ProjectSend 1st — distinct from oCIS internal-team-collab **60-TOOL MILESTONE**)
+- **"Perl-backend" family** (SmokePing 1st — rare in modern catalog)
+- **"Snyk-vulnerability-tracking" family** (PsiTransfer 1st — distinct security-hygiene badge from Codacy/SonarCloud/Qodana)
+- **"Multi-platform-funding" family** (Podsync 1st — GH Sponsors + Patreon simultaneously)
+- **"Reddit-community-channel" family** (Swing Music 1st — r/SwingMusicApp)
+- **"author-wrote-underlying-tool" positive-signal** (SmokePing 1st — Tobias Oetiker authored RRDtool which SmokePing uses)
+- **"admin-panel-disabled-by-default-secure" positive-signal** (PsiTransfer 1st — excellent secure-default pattern)
+- **15+ new recipe conventions + 10+ new positive-signals + 3 new neutral-signals**
+
+### Notes
+- **🎯 60-TOOL CROWN-JEWEL MILESTONE at ProjectSend** — major milestone
+- **🎯 160-TOOL INSTITUTIONAL-STEWARDSHIP MILESTONE at ProjectSend** — milestone double at ProjectSend
+- **🎯 12-TOOL DECADE-PLUS-OSS MILESTONE at SmokePing** — SmokePing is the catalog's oldest-author-pedigree tool (2003+ + RRDtool-author)
+- **Security-hygiene badge-constellation now 5 flavors**: Codacy (Cloud Commander, SerpBear), SonarCloud (oCIS), Qodana (Recyclarr), Snyk (PsiTransfer), All-Contributors (ShellHub, Manyfold). Diverse quality-discipline signals.
+- **PsiTransfer's URL-fragment-key + admin-panel-opt-in + tus.io-resumable trio** is a really clean secure-default example set worth highlighting
+- **49.8% done — halfway point tomorrow**
+- Pattern-consolidation overdue: 54 CROWN-JEWEL sub-cats, 176 hub-of-credentials, 168 transparent-maintenance, 162 institutional-stewardship
