@@ -4711,3 +4711,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Domain Locker (1314★) — domain-locker.md (TypeScript+Angular domain monitoring, WHOIS+SSL+DNS+uptime, Apprise)
 - Progress: done 719 / pending 553 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 09:30 UTC — batch 143
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 143 — skipped zaneops (duplicate of zane-ops) + 5 new recipes:
+  - Emoncms (1313★) — emoncms.md (PHP energy monitoring, MariaDB+Redis+MQTT, PHPFina, OpenEnergyMonitor)
+  - Sharry (1288★) — sharry.md (Scala JVM file sharing, tus resumable upload, alias pages, PostgreSQL)
+  - CoreControl (1287★) — corecontrol.md (Next.js+Go homelab dashboard, server inventory, uptime, network flowchart)
+  - Cup (1285★) — cup-updates.md (Go container update checker, web UI + JSON API, rate-limit-safe, 5 MB)
+  - Explo (1282★) — explo.md (Go music discovery, ListenBrainz recs, YouTube/Soulseek, Navidrome/Jellyfin playlists)
+- Progress: done 724 / pending 547 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

@@ -5769,9 +5769,10 @@
          "desc" : "Platform for deploying static sites, web apps, databases, and CRON jobs",
          "github" : "github.com/zane-ops/zane-ops",
          "name" : "ZaneOps",
+         "skip_reason" : "duplicate of zane-ops (already done)",
          "slug" : "zaneops",
          "stars" : 1318,
-         "status" : "pending"
+         "status" : "skipped"
       },
       {
          "desc" : "Central hub for tracking domain portfolios",
@@ -5787,7 +5788,7 @@
          "name" : "Emoncms",
          "slug" : "emoncms",
          "stars" : 1313,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple file sharing web app",
@@ -5795,7 +5796,7 @@
          "name" : "Sharry",
          "slug" : "sharry",
          "stars" : 1288,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Server infrastructure management dashboard",
@@ -5803,7 +5804,7 @@
          "name" : "CoreControl",
          "slug" : "corecontrol",
          "stars" : 1287,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Docker container updates made easy",
@@ -5811,7 +5812,7 @@
          "name" : "Cup",
          "slug" : "cup-updates",
          "stars" : 1285,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Music discovery for self-hosted music platforms",
@@ -5819,7 +5820,7 @@
          "name" : "Explo",
          "slug" : "explo",
          "stars" : 1282,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight real-time communication platform",
