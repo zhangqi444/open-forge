@@ -4802,3 +4802,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Beatbump (1131★) — beatbump.md (SvelteKit YouTube Music frontend; ⚠️ no longer developed)
 - Progress: done 754 / pending 517 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 11:15 UTC — batch 150
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 150 — 5 new recipes:
+  - Sync-in (1133★) — sync-in.md (Node.js file sync + collab editing, OIDC+LDAP+MFA, WebDAV, desktop+CLI, AGPL)
+  - Hoodik (1130★) — hoodik.md (Rust E2E encrypted cloud, RSA+AEGIS, encrypted search+notes, S3, Android, CC BY-NC)
+  - Meelo (1121★) — meelo.md (NestJS music server for collectors, music videos, B-sides, releases, MusicBrainz+LastFM)
+  - SuggestArr (1121★) — suggestarr.md (Python media recs, watch history→TMDb→Seer, AI recs+search beta, cron)
+  - FitTrackee (1114★) — fittrackee.md (Python+Flask+Vue workout tracker, PostGIS/OSM, GPX/FIT/TCX, FitoTrack)
+- Progress: done 759 / pending 512 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

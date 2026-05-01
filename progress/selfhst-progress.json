@@ -6052,7 +6052,7 @@
          "name" : "Sync-in",
          "slug" : "sync-in",
          "stars" : 1133,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight file manager with full ShareX support",
@@ -6076,7 +6076,7 @@
          "name" : "Hoodik",
          "slug" : "hoodik",
          "stars" : 1130,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Developer platform for workflow automation",
@@ -6092,7 +6092,7 @@
          "name" : "Meelo",
          "slug" : "meelo",
          "stars" : 1121,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Automated media recommendations and requests based on user activity",
@@ -6100,7 +6100,7 @@
          "name" : "SuggestArr",
          "slug" : "suggestarr",
          "stars" : 1121,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hosted outdoor activity tracker",
@@ -6108,7 +6108,7 @@
          "name" : "FitTrackee",
          "slug" : "fittrackee",
          "stars" : 1114,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Stupidly simple asset tracker",
