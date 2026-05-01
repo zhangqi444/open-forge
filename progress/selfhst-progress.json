@@ -6809,7 +6809,7 @@
          "desc" : "Real-time dashboard for analyzing Traefik logs"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "handbrake-web",
          "github" : "github.com/TheNickOfTime/handbrake-web",
          "name" : "HandBrake Web",
@@ -6821,13 +6821,13 @@
          "desc" : "One-time secret sharing platform",
          "stars" : 752,
          "slug" : "ots",
-         "status" : "pending",
+         "status" : "done",
          "name" : "OTS"
       },
       {
          "desc" : "Build multi-step forms and surveys with minimal code",
          "slug" : "forms-md",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/formsmd/formsmd",
          "name" : "Forms.md",
          "stars" : 752
@@ -6835,14 +6835,14 @@
       {
          "desc" : "Online collaborative genealogy application",
          "slug" : "webtrees",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/fisharebest/webtrees",
          "name" : "webtrees",
          "stars" : 748
       },
       {
          "slug" : "gamevault",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Phalcode/gamevault-app",
          "name" : "GameVault",
          "stars" : 747,
