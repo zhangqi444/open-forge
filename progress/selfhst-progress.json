@@ -5683,7 +5683,7 @@
          "name" : "Nextcloud Deck",
          "slug" : "nextcloud-deck",
          "stars" : 1377,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Sync media play states across Plex, Jellyfin, and Emby",
@@ -5707,7 +5707,7 @@
          "name" : "Gerbera",
          "slug" : "gerbera",
          "stars" : 1359,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Camera monitoring app with AI vision",
@@ -5715,7 +5715,7 @@
          "name" : "Unblink",
          "slug" : "unblink",
          "stars" : 1358,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Resume creation, generation, and version control",
@@ -5723,7 +5723,7 @@
          "name" : "YAMLResume",
          "slug" : "yamlresume",
          "stars" : 1353,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Docker Compose continuous deployment",
@@ -5731,7 +5731,7 @@
          "name" : "Doco-CD",
          "slug" : "doco-cd",
          "stars" : 1348,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hostable watch list for media content",
@@ -5739,7 +5739,7 @@
          "name" : "Watcharr",
          "slug" : "watcharr",
          "stars" : 1342,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hosted software that helps language learners acquire vocabulary through reading",

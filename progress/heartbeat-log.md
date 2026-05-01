@@ -4685,3 +4685,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Open DroneLog (1362★) — open-dronelog.md (Rust+DuckDB+React drone log analyzer, Docker+desktop)
 - Progress: done 709 / pending 563 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 08:45 UTC — batch 141
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 141 — fixed nextcloud-deck slug mismatch + 5 new recipes:
+  - Gerbera (1358★) — gerbera.md (C++ UPnP/DLNA media server, inotify, transcoding, Last.fm)
+  - Unblink (1356★) — unblink.md (Go+SolidJS AI camera monitor, VLM/Qwen3-VL, relay-node, NL search)
+  - YAMLResume (1352★) — yamlresume.md (TypeScript YAML→LaTeX→PDF resume builder, Docker+GH Action)
+  - Doco CD (1347★) — doco-cd.md (Go GitOps CD for Docker Compose+Swarm, webhooks, SOPS, distroless)
+  - Watcharr (1340★) — watcharr.md (Go+Svelte watch-tracker, Jellyfin/Plex/Emby sync, PWA, MIT)
+- Progress: done 715 / pending 557 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
