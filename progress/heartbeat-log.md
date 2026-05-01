@@ -3977,3 +3977,61 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Pelican's privileged-mode Wings is the MOST-sensitive deployment pattern we've catalogued (privileged + docker.sock + host-network)
 - NPMplus's sole-maintainer-security-fork is important to call out as a bus-factor risk on a security-critical piece of infra
 - Pattern-consolidation long-overdue: 42 CROWN-JEWEL sub-categories, 146 hub-of-credentials, 138 transparent-maintenance, 132 institutional-stewardship
+
+## 2026-05-01 00:54 UTC — batch 119 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 119)
+- **saltcorn** (2006★) — Node no-code DB app builder (saltcorn org; Open Collective; multi-tenant; PG/SQLite; live-plugin-manager; Craft.js+Blockly+CodeMirror; commercial hosted saltcorn.com). **147th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "no-code-builder + runtime-plugin-loader + multi-tenant"** (1st — Saltcorn). **CROWN-JEWEL Tier 1: 46 tools / 43 sub-categories**. **Plugin-API-architecture: 3 tools** (Wireflow+Reiverr+Saltcorn) 🎯 **3-TOOL MILESTONE**. **Open-Collective-transparent-finances: 4 tools** 🎯 **4-TOOL MILESTONE**. **Commercial-parallel-with-OSS-core: 12 tools** 🎯 **12-TOOL MILESTONE**. **Multi-tenant-architecture: 2 tools** (Keila+Saltcorn) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "runtime-plugin-loader-supply-chain-risk" (1st formally — Saltcorn; HIGH-severity) + "multi-tenant-isolation-discipline" (1st formally — Saltcorn) + "citizen-developer-permission-review" (1st — Saltcorn) + "wildcard-TLS-for-tenant-subdomains" (1st formally — Saltcorn). **NEW neutral-signal: "heavy-JS-UI-toolkit-stack"** (1st — Saltcorn). 133rd institutional-stewardship + 139th transparent-maintenance.
+- **cloud-commander** (2005★) — Node web file-manager + shell console + editor (coderaiser; v19+; decade-plus; Gitter; Codacy; Patreon). **148th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "web-file-manager + shell-console-combo"** (1st — Cloud Commander). **CROWN-JEWEL Tier 1: 47 tools / 44 sub-categories**. **Decade-plus-OSS: 7 tools** 🎯 **7-TOOL MILESTONE**. **Patreon-sponsored: 1 tool** 🎯 **NEW FAMILY** (Cloud Commander). **Gitter-legacy-community-channel: 2 tools** (Docspell+Cloud Commander) 🎯 **2-TOOL MILESTONE**. **Heroku-deploy-button: 2 tools** (Immich Power Tools+Cloud Commander) 🎯 **2-TOOL MILESTONE**. **Transparent-maintenance: 140 tools** 🎯 **140-TOOL MILESTONE at Cloud Commander**. **NEW recipe conventions**: "web-console-is-RCE-by-design" (1st — Cloud Commander; HIGHEST-severity) + "default-auth-disabled-forget-trap" (1st — Cloud Commander) + "root-path-scope-discipline" (1st — Cloud Commander) + "decade-plus-sole-maintainer-dev-tool" (1st — Cloud Commander; bus-factor reminder). **NEW positive-signal: "Codacy-code-quality-badge"** (1st — Cloud Commander). 134th institutional-stewardship + **140th transparent-maintenance**.
+- **mini-qr** (2004★) — Vue SPA QR generator+scanner (lyqht; GPL-v3; PWA; 30+ languages; WCAG-A; Gigazine-press-reviewed; CSV batch; 9+ data-types). **149th hub-of-credentials Tier 4/ZERO**. **Zero-credential-hub-tool Tier 4/ZERO: 4 tools** (MAZANOKE+Chitchatter+Logdy+Mini QR) 🎯 **4-TOOL MILESTONE**. **Stateless-tool-rarity: 14 tools** 🎯 **14-TOOL MILESTONE**. **PWA-installable: 3 tools** 🎯 **3-TOOL MILESTONE**. **NEW positive-signals**: "client-side-crypto-privacy-positive" (1st — Mini QR) + "WCAG-accessibility-compliance" (1st — Mini QR; rare in self-hosted tools) + "extensive-i18n-30-plus-languages" (1st — Mini QR) + "press-media-recognition" (1st — Mini QR; Gigazine) + "bulk-generation-CSV-import" (1st — Mini QR) + "rich-structured-data-types" (1st — Mini QR; 9+ types). 135th institutional-stewardship + 141st transparent-maintenance.
+- **vince** (2002★) — Go Plausible-compatible analytics single-binary (vinceanalytics org; automatic-TLS; GDPR/CCPA/PECR-compliant; zero-dep-single-binary). **150th hub-of-credentials Tier 3**. **150-TOOL HUB-OF-CREDENTIALS MILESTONE at Vince**. **Zero-dependency-single-binary: 2 tools** (Logdy+Vince) 🎯 **2-TOOL MILESTONE**. **Automatic-TLS-built-in: 2 tools** 🎯 **2-TOOL MILESTONE** (first formal-tracking). **Honest-declaration taxonomy now 7-dimensional** — Vince's "scope-limitation-honest-declaration" (lean-vs-Plausible, not feature-parity) is the 7th flavor. **Honest-maintainer-declaration: 7 tools** 🎯 **7-TOOL MILESTONE** — **7 distinct flavors** now: (1) honest-life-pause (2) honest-discontinuation (3) honest-rewrite-pause (4) honest-WIP-pre-1.0 (5) honest-active-rewrite-dual-branch (6) honest-closed-beta (7) **honest-scope-limitation** (Vince 1st). **NEW recipe convention: "public-dashboard-disclosure-review"** (1st — Vince). **NEW positive-signals**: "privacy-law-compliant-by-design" (1st formally — Vince) + "drop-in-replacement-for-OSS-tool" (1st formally — Vince; Plausible-script-compat) + "automatic-TLS-built-in" (1st formally — Vince) + "password-protected-share-link" (1st — Vince) + "scope-limitation-honest-declaration" (1st — Vince). 136th institutional-stewardship + 142nd transparent-maintenance.
+- **broadcastchannel** (1996★) — Next.js SSG that turns TG Channel into micro-blog (miantiao-me; CF Pages; zero-JS-client; RSS+RSS-JSON+sitemap; 20+ real-user deployments in README). **151st hub-of-credentials Tier 4/ZERO**. **Zero-credential-hub-tool Tier 4/ZERO: 5 tools** 🎯 **5-TOOL MILESTONE**. **Stateless-tool-rarity: 15 tools** 🎯 **15-TOOL MILESTONE**. **NEW recipe conventions**: "public-source-scrape-only" (1st — BroadcastChannel) + "upstream-scrape-fragility" (1st — BroadcastChannel) + "third-party-content-owner-dependency" (1st — BroadcastChannel; critical — TG-ban = blank-site). **NEW positive-signals**: "zero-JS-client-progressive-enhancement" (1st — BroadcastChannel) + "RSS-plus-RSS-JSON-feeds" (1st — BroadcastChannel) + "README-documented-real-user-deployments" (1st — BroadcastChannel; 20+ real sites!) + "multi-language-project-README" (1st formally — BroadcastChannel; EN+zh-CN). **NEW neutral-signal: "Cloudflare-Pages-optimized-deploy"** (1st — BroadcastChannel). 137th institutional-stewardship + 143rd transparent-maintenance.
+
+**Batch 119 lengths:** saltcorn 188, cloud-commander 147, mini-qr 152, vince 161, broadcastchannel 142.
+**State:** 609 done / 2 skipped / 663 pending — **47.8% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 47 tools / 44 sub-categories** (+2 new: no-code-builder + web-file-manager-shell)
+- **Hub-of-credentials: 151 tools** — **150-TOOL MILESTONE at Vince**
+- **Transparent-maintenance: 143 tools** — **140-TOOL MILESTONE at Cloud Commander**
+- **Honest-maintainer-declaration: 7 tools** 🎯 **7-TOOL MILESTONE — 7-flavor taxonomy**
+- **Stateless-tool-rarity: 15 tools** 🎯 **15-TOOL MILESTONE at BroadcastChannel**
+- **Commercial-parallel-with-OSS-core: 12 tools** 🎯 **12-TOOL MILESTONE at Saltcorn**
+- **Decade-plus-OSS: 7 tools** 🎯 **7-TOOL MILESTONE at Cloud Commander**
+- **Zero-credential-hub-tool Tier 4/ZERO: 5 tools** 🎯 **5-TOOL MILESTONE at BroadcastChannel**
+- **Open-Collective-transparent-finances: 4 tools** 🎯 **4-TOOL MILESTONE at Saltcorn**
+- **Plugin-API-architecture: 3 tools** 🎯 **3-TOOL MILESTONE**
+- **PWA-installable: 3 tools** 🎯
+- **Multi-tenant-architecture: 2 tools** 🎯
+- **Zero-dependency-single-binary: 2 tools** 🎯
+- **Automatic-TLS-built-in: 2 tools** 🎯
+- **Gitter-legacy + Heroku-deploy: 2 tools each** 🎯
+- **NEW family**: Patreon-sponsored
+
+### New precedents this batch
+- **"no-code-builder + runtime-plugin-loader + multi-tenant" CROWN-JEWEL Tier 1 sub-category** (Saltcorn 1st)
+- **"web-file-manager + shell-console-combo" CROWN-JEWEL Tier 1 sub-category** (Cloud Commander 1st — HIGHEST-severity via RCE-by-design console)
+- **7TH HONEST-DECLARATION FLAVOR**: "honest-scope-limitation" (Vince 1st — declares intentional feature-gap vs upstream)
+- **Honest-declaration taxonomy now 7-dimensional**:
+  1. honest-life-pause (Scriberr)
+  2. honest-discontinuation (Astuto)
+  3. honest-rewrite-pause (Jellystat)
+  4. honest-WIP-pre-1.0 (Stump)
+  5. honest-active-rewrite-dual-branch (Reiverr)
+  6. honest-closed-beta-with-production-parallel (Profilarr)
+  7. **honest-scope-limitation-vs-upstream (Vince — NEW)**
+- **"decade-plus-sole-maintainer-dev-tool" callout** (Cloud Commander 1st — bus-factor on tool used by many; distinct from NPMplus's "security-critical-fork" framing)
+- **15+ new recipe conventions + 15+ new positive-signals**
+
+### Notes
+- **🎯 Hub-of-credentials passed 150 tools** — major catalog-scale milestone
+- **Transparent-maintenance passed 140 tools**
+- **Honest-declaration taxonomy now 7-dimensional** — pattern family continues growing; next flavor might be "honest-internal-use-only" or "honest-legacy-maintenance-mode"
+- **BroadcastChannel's 20+ real-user-deployments in README** is a rare and valuable social-proof pattern
+- **Vince introduces "honest-scope-limitation"** — explicit statement that tool deliberately doesn't feature-match upstream; useful framing
+- **Cloud Commander's web-console = RCE-by-design** — operator-clarity matters
+- 47.8% done — closing in on 48%
+- Pattern-consolidation long-overdue: 44 CROWN-JEWEL sub-categories, 151 hub-of-credentials, 143 transparent-maintenance, 137 institutional-stewardship
