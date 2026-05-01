@@ -6148,7 +6148,7 @@
          "name" : "Gossa",
          "slug" : "gossa",
          "stars" : 1078,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Management interface for Docker containers",
@@ -6156,7 +6156,7 @@
          "name" : "DweebUI",
          "slug" : "dweebui",
          "stars" : 1061,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Network discovery, visualization, and monitoring",
@@ -6172,7 +6172,7 @@
          "name" : "Youtarr",
          "slug" : "youtarr",
          "stars" : 1039,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Task management and productivity platform",
@@ -6180,7 +6180,7 @@
          "name" : "TaskTrove",
          "slug" : "tasktrove",
          "stars" : 1036,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Private journaling app",

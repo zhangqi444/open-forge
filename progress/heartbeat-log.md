@@ -4828,3 +4828,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Zen Notes (1081★) — zen-notes.md (Go notes, SQLite+Markdown, BM25 search, tags, canvas, MCP, MIT)
 - Progress: done 764 / pending 507 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 11:45 UTC — batch 152
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 152 — 5 new recipes:
+  - Gossa (1076★) — gossa.md (Go minimal file server, <250 lines, drag-and-drop, video/PDF/PWA, MIT)
+  - DweebUI (1075★) — dweebui.md (Node.js Docker manager, multi-user, Portainer templates, Compose, beta)
+  - Atlas Network (1070★) — atlas-network.md (Go+FastAPI+React network scanner/visualizer, Docker+subnet, graph)
+  - Youtarr (1066★) — youtarr.md (Node.js YouTube channel downloader, NFO/posters, SponsorBlock, Plex/Jellyfin)
+  - TaskTrove (1063★) — tasktrove.md (Go GTD task manager, Inbox/Today/Someday, Org-Mode, CLI, MIT)
+- Progress: done 768 / pending 503 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
