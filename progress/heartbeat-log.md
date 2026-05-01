@@ -4985,3 +4985,8 @@ Commit: e21d5d5
 - Wrote 5 new recipes: cinephage, lunalytics, mydia, managarr, movary
 - Committed and pushed: 9d33d7d
 - Next pending: docktail (716*), nextcloud-notes (715*), fast-music-remover (714*)
+
+## 2026-05-01 20:00 UTC — Batch 170
+- Wrote 5 new recipes: docktail, nextcloud-notes, fast-music-remover, xibo, tiny-tiny-rss
+- Committed and pushed: b8f29f1
+- Next pending: novus-mail (708*), goaway (704*), shinobi (703*)
