@@ -4659,3 +4659,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - ExpenseOwl (1415★) — expenseowl.md (Go expense tracker, pie chart, PWA, CSV import/export)
 - Progress: done 700 / pending 572 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 08:15 UTC — batch 139
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 139 — 5 recipes added:
+  - Tugtainer (1412★) — tugtainer.md (Python+Angular Docker auto-updater, web UI, multi-host agents, dependency graph)
+  - Warracker (1411★) — warracker.md (Flask+Postgres warranty tracker, OIDC, Paperless-ngx, 20 languages, claims)
+  - Hook0 (1408★) — hook0.md (Rust webhooks-as-a-service server + UI, SSPL, fine-grained subscriptions, retry)
+  - An Otter Wiki (1404★) — otterwiki.md (Python git-backed Markdown wiki, dark mode, mermaid, MIT)
+  - Cryptgeon (1401★) — cryptgeon.md (Rust+Redis self-destructing secrets, client-side AES-256-GCM, CLI)
+- Progress: done 705 / pending 567 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

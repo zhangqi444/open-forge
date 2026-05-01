@@ -5627,7 +5627,7 @@
          "name" : "Tugtainer",
          "slug" : "tugtainer",
          "stars" : 1412,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Centralized platform for managing product warranties",
@@ -5635,7 +5635,7 @@
          "name" : "Warracker",
          "slug" : "warracker",
          "stars" : 1411,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Open source webhook server and UI",
@@ -5643,7 +5643,7 @@
          "name" : "Hook0",
          "slug" : "hook0",
          "stars" : 1408,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Collaborative content management stored in git",
@@ -5651,7 +5651,7 @@
          "name" : "Otter Wiki",
          "slug" : "an-otter-wiki",
          "stars" : 1404,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Open source note and file sharing service",
@@ -5659,7 +5659,7 @@
          "name" : "Cryptgeon",
          "slug" : "cryptgeon",
          "stars" : 1401,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Download and extractsmedia for *arr imports",
