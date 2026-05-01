@@ -6996,7 +6996,7 @@
          "desc" : "Automated audiobook management",
          "github" : "github.com/Listenarrs/Listenarr",
          "name" : "Listenarr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "listenarr",
          "stars" : 703
       },
@@ -7019,7 +7019,7 @@
       {
          "stars" : 700,
          "slug" : "home-assistant-time-machine",
-         "status" : "pending",
+         "status" : "done",
          "name" : "HA Time Machine",
          "github" : "github.com/saihgupr/HomeAssistantTimeMachine",
          "desc" : "Web-based time machine tool for Home Assistant configs"
@@ -7028,20 +7028,20 @@
          "desc" : "IPTV playlist filtering and editing",
          "stars" : 699,
          "name" : "m3u-editor",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "m3u-editor",
          "github" : "github.com/m3ue/m3u-editor"
       },
       {
          "desc" : "Intuitive service for organizing a homepage",
          "stars" : 696,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "mafl",
          "github" : "github.com/hywax/mafl",
          "name" : "Mafl"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/AkashRajpurohit/git-sync",
          "slug" : "git-sync",
          "name" : "Git-Sync",
