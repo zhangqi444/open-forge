@@ -4540,3 +4540,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **sabre/dav landing the 190-TOOL TRANSPARENT-MAINTENANCE MILESTONE** is symbolically fitting — it's the upstream for dozens of other transparent-maintained tools in the catalog.
 - **Runway**: 613 tools remaining / 5 per batch = ~123 batches to completion.
 - **Pattern-consolidation post-b130 now urgent** — 61 CROWN-JEWEL sub-cats is getting unwieldy for practical reference use.
+
+## 2026-05-01 04:12 UTC — batch 130
+
+- Step 0 sync: already up to date
+- Step 1 issues: all 4 open issues (#24 dup of #25, #25/#26/#27 addressed in ce8accf) have `closes #N` trailers; remain open because PAT lacks `issues:write` — nothing new to do this heartbeat
+- Step 2 selfh.st batch 130 — 5 apps added (highest-star pending):
+  - strava-statistics (1687 ⭐) — PHP/Symfony self-hosted Strava dashboard
+  - authgear (1675 ⭐) — OSS Auth0/Clerk/Firebase Auth alternative; Go + Postgres + Redis
+  - clipcascade (1672 ⭐) — E2E-encrypted multi-device clipboard sync; Java/Spring
+  - haptic (1671 ⭐) — local-first SvelteKit + PGlite markdown editor; desktop (Tauri/macOS) + web
+  - friendica (1666 ⭐) — Fediverse veteran (ActivityPub + Diaspora + OStatus); PHP/MySQL
+- Fixed malformed header in progress/selfhst-progress.json (stray "rows: 1274" prefix that was breaking JSON.parse)
+- Progress: 664/1274 done (52.1%), 608 pending, 2 skipped
