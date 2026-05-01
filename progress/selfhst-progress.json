@@ -6277,7 +6277,7 @@
          "name" : "Bar Assistant",
          "slug" : "bar-assistant",
          "stars" : 1015,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "User-friendly server configuration and management tool",
@@ -6285,7 +6285,7 @@
          "name" : "Squirrel Servers Manager",
          "slug" : "squirrel-servers-manager",
          "stars" : 1014,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Modern Material Design frontend for Invidious",
@@ -6293,7 +6293,7 @@
          "name" : "Materialious",
          "slug" : "materialious",
          "stars" : 1011,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Modern personal flight tracking system",
@@ -6301,7 +6301,7 @@
          "name" : "AirTrail",
          "slug" : "airtrail",
          "stars" : 1007,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Real-time recipe app for families and friends",
@@ -6309,7 +6309,7 @@
          "name" : "Norish",
          "slug" : "norish",
          "stars" : 998,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Video game manager",

@@ -4867,3 +4867,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - SnapOtter (1017★) — snapotter.md (single-container 47 image tools + local AI, pipelines, API, AGPLv3)
 - Progress: done 779 / pending 491 / skipped 4 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 12:30 UTC — batch 155
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 155 — 5 new recipes:
+  - Bar Assistant (1015★) — bar-assistant.md (PHP+Laravel cocktail manager, 500+ recipes, Meilisearch, MIT)
+  - Squirrel Servers Manager (1014★) — squirrel-servers-manager.md (Node.js multi-server Ansible+Docker+Prometheus manager, Apache-2.0)
+  - Materialious (1011★) — materialious.md (SvelteKit YouTube frontend, E2E encrypted accounts, SponsorBlock/RYD/DeArrow, apps)
+  - AirTrail (1007★) — airtrail.md (SvelteKit flight tracker, world map, multi-user, OAuth, 6 import formats)
+  - Norish (998★) — norish.md (Next.js household recipe manager, AI video/image import, OIDC, meal planning, MIT)
+- Progress: done 784 / pending 486 / skipped 4 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
