@@ -4737,3 +4737,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Tirreno (1256★) — tirreno.md (PHP fraud/threat detection framework, rule engine, SDKs, PostgreSQL)
 - Progress: done 729 / pending 542 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 10:00 UTC — batch 145
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 145 — 5 new recipes:
+  - PortNote (1253★) — portnote.md (Next.js+Go port documentation tool, conflict prevention, random port gen)
+  - XWiki (1241★) — xwiki.md (Java enterprise wiki platform, structured data, 900+ extensions, LGPL)
+  - Picsur (1224★) — picsur.md (NestJS image hosting, ShareX, EXIF strip; ⚠️ unmaintained)
+  - Rackula (1222★) — rackula.md (drag-and-drop rack visualizer, URL sharing, export PNG/PDF/SVG, MIT)
+  - Workout Tracker (1211★) — workout-tracker.md (Go GPX/TCX/FIT fitness tracker, heatmap, segments, Fitotrack+Fitbit)
+- Progress: done 734 / pending 537 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

@@ -5868,7 +5868,7 @@
          "name" : "PortNote",
          "slug" : "portnote",
          "stars" : 1253,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Light and powerful collaboration and documentation platform",
@@ -5876,7 +5876,7 @@
          "name" : "XWiki",
          "slug" : "xwiki",
          "stars" : 1241,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Image sharing service with built in conversion",
@@ -5884,7 +5884,7 @@
          "name" : "Picsur",
          "slug" : "picsur",
          "stars" : 1224,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Drag-and-drop server rack visualizer",
@@ -5892,7 +5892,7 @@
          "name" : "Rackula",
          "slug" : "rackula",
          "stars" : 1222,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Workout tracking web application geared towards running and other GPX-based activities",
@@ -5900,7 +5900,7 @@
          "name" : "Workout Tracker",
          "slug" : "workout-tracker",
          "stars" : 1211,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Full featured Z-Wave control panel UI and MQTT gateway",
