@@ -4084,3 +4084,47 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Coral = 50th CROWN-JEWEL** — perfect example of UGC-legal-exposure + newsroom-grade stewardship
 - 48.2% done
 - Pattern-consolidation long-overdue: 47 CROWN-JEWEL sub-categories, 156 hub-of-credentials, 148 transparent-maintenance, 142 institutional-stewardship
+
+## 2026-05-01 01:36 UTC — batch 121 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues back to 4 (#24-27). PR #38 from previous heartbeat resolved.
+
+### Step 2 (selfh.st batch 121)
+- **usertour** (1970★) — Node user-onboarding platform alternative to Appcues/Userpilot/Userflow/Userguiding/Chameleon (usertour org; Docker Compose; .env.example pattern; Discord + docs + blog + SaaS-parallel). **157th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "in-app-onboarding + embed-SDK-supply-chain"** (1st — Usertour). **CROWN-JEWEL Tier 1: 51 tools / 48 sub-categories**. **Commercial-parallel-with-OSS-core: 14 tools** 🎯 **14-TOOL MILESTONE**. **NEW recipe convention: "analytics-SDK-PII-data-processor-agreement"** (1st — Usertour). **NEW positive-signals**: "alternative-to-commercial-tools-explicit-list" (1st formally — Usertour) + "self-host-removes-SaaS-limits" (1st — Usertour) + "dotenv-example-explicit-copy" (1st — Usertour). 143rd institutional-stewardship + 149th transparent-maintenance.
+- **lasuite-meet** (1967★) — LiveKit-powered browser video-conf with recording+transcription+telephony+large-meeting (suitenumerique French DINUM; visio.numerique.gouv.fr production; Matrix-chat; CHANGELOG + roadmap-board). **158th hub-of-credentials CROWN-JEWEL Tier 1**. **Self-hosted-video-conf + chat-with-call-recording: 2 tools** (NC Talk+Meet) 🎯 **2-TOOL MILESTONE — MATURED sub-category**. **Government-backed-OSS: 1 tool** 🎯 **NEW FAMILY** (Meet). **Matrix-chat-community: 2 tools** (Ferron+Meet) 🎯 **2-TOOL MILESTONE**. **Transparent-maintenance: 150 tools** 🎯 **150-TOOL MILESTONE at Meet**. **NEW recipe conventions**: "E2E-encryption-roadmap-not-shipped" (1st — Meet) + "transcription-STT-data-processor-agreement" (1st — Meet). **NEW positive-signals**: "digital-sovereignty-positioning" (1st — Meet) + "scale-tested-large-meetings" (1st — Meet) + "PSTN-telephony-integration" (1st — Meet). **NEW neutral-signal: "upstream-media-server-dependency"** (1st — Meet). 144th institutional-stewardship + **150th transparent-maintenance**.
+- **voidauth** (1966★) — Simple SSO + user-mgmt for self-hosted apps; OIDC + ForwardAuth + passkeys + invitation + self-reg + email (voidauth org; voidauth.app website; CI; active releases). **159th hub-of-credentials CROWN-JEWEL Tier 1 — identity-provider pattern**. **CROWN-JEWEL Tier 1: 53 tools / 48 sub-categories**. **NEW recipe conventions**: "SSO-single-point-of-failure-plan" (1st — VoidAuth) + "passkey-device-loss-recovery-plan" (1st — VoidAuth) + "forward-auth-proxy-misconfig-bypass-risk" (1st — VoidAuth) + "self-registration-abuse-mitigation" (1st — VoidAuth) + "SMTP-for-password-reset-hardening" (1st — VoidAuth). **NEW positive-signals**: "passkey-WebAuthn-built-in" (1st formally — VoidAuth) + "invitation-based-user-creation-flow" (1st — VoidAuth). 145th institutional-stewardship + 151st transparent-maintenance.
+- **open-archiver** (1962★) — SvelteKit + PostgreSQL + Meilisearch + Redis email-archive platform (LogicLabs-OU; Google Workspace + M365 + PST + IMAP ingest; live demo with public creds; Discord + Bluesky; HIGHEST-severity due to domain-wide-delegation). **160th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "email-archive-aggregator + workspace-domain-delegation"** (1st — Open Archiver; HIGHEST-severity in this catalog — full workspace-read). **160-TOOL HUB-OF-CREDENTIALS MILESTONE at Open Archiver**. **CROWN-JEWEL Tier 1: 54 tools / 49 sub-categories**. **Multi-community-channel-presence: 2 tools** (Donetick+Open Archiver) 🎯 **2-TOOL MILESTONE**. **Fediverse-plus-X-presence: 2 tools** 🎯. **NEW recipe conventions**: "Google-Workspace-domain-wide-delegation-HIGHEST-severity" (1st — Open Archiver) + "M365-Graph-Mail.Read-HIGHEST-severity" (1st — Open Archiver) + "regulated-archive-legal-hold-discipline" (1st — Open Archiver) + "tamper-proof-implementation-verification" (1st — Open Archiver) + "petabyte-scale-storage-architecture-planning" (1st — Open Archiver). **NEW positive-signals**: "legacy-format-ingest-support" (1st — Open Archiver; PST) + "live-demo-with-public-credentials" (1st — Open Archiver). 146th institutional-stewardship + 152nd transparent-maintenance.
+- **dockflare** (1961★) — Python Cloudflare-Tunnel controller via Docker labels (ChrispyBacon-dev; GPL-3.0; Swiss-made; v3.1.1; reconcile-loop; remote agents; GitHub Sponsors; Docker Hub alplat/dockflare). **161st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "Cloudflare-tunnel-controller + DNS-ingress-automation"** (1st — DockFlare). **CROWN-JEWEL Tier 1: 55 tools / 50 sub-categories** 🎯 **50-SUB-CATEGORY CROWN-JEWEL MILESTONE at DockFlare**. **Docker-socket-mount-privilege-escalation: 8 tools** (+DockFlare RO) 🎯 **8-TOOL MILESTONE**. **GitHub-Sponsors-funding: 1 tool** 🎯 **NEW FAMILY** (DockFlare). **NEW recipe conventions**: "Cloudflare-API-token-minimal-scope-discipline" (1st — DockFlare) + "DNS-rewrite-compromise-blast-radius" (1st — DockFlare) + "remote-agent-token-scope-discipline" (1st — DockFlare). **NEW positive-signals**: "docker-socket-RO-variant-safer-than-RW" (1st — DockFlare) + "declarative-reconcile-loop-architecture" (1st — DockFlare) + "README-release-version-badge" (1st — DockFlare). **NEW neutral-signals**: "platform-vendor-lock-in" (1st — DockFlare) + "country-of-origin-branding" (1st — DockFlare; Swiss-made). 147th institutional-stewardship + 153rd transparent-maintenance.
+
+**Batch 121 lengths:** usertour 154, lasuite-meet 168, voidauth 171, open-archiver 181, dockflare 181.
+**State:** 619 done / 2 skipped / 653 pending — **48.6% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 55 tools / 50 sub-categories** 🎯 **50-SUB-CATEGORY MILESTONE at DockFlare** (+2 new sub-cats: email-archive+workspace-delegation, CF-tunnel-controller)
+- **Hub-of-credentials: 161 tools** — **160-MILESTONE at Open Archiver**
+- **Transparent-maintenance: 153 tools** — **150-MILESTONE at Meet**
+- **Institutional-stewardship: 147 tools**
+- **Commercial-parallel-with-OSS-core: 14 tools** 🎯
+- **Docker-socket-mount-privilege-escalation: 8 tools** 🎯
+- **Self-hosted-video-conf + call-recording: 2 tools** 🎯
+- **Multi-community-channel-presence: 2 tools** 🎯
+- **Matrix-chat-community: 2 tools** 🎯
+- **NEW families**: Government-backed-OSS, GitHub-Sponsors-funding
+
+### New precedents this batch
+- **"in-app-onboarding + embed-SDK-supply-chain-risk" CROWN-JEWEL Tier 1 sub-category** (Usertour 1st)
+- **"email-archive-aggregator + workspace-domain-delegation" CROWN-JEWEL Tier 1 sub-category** (Open Archiver 1st — HIGHEST-severity in catalog; domain-wide-delegation = god-mode on Workspace)
+- **"Cloudflare-tunnel-controller + DNS-ingress-automation" CROWN-JEWEL Tier 1 sub-category** (DockFlare 1st — **50-SUB-CATEGORY MILESTONE**)
+- **"Government-backed-OSS" family** (Meet 1st — French DINUM; distinct from private-sector OSS stewardship patterns)
+- **"GitHub-Sponsors-funding" family** (DockFlare 1st — distinct from Ko-Fi, Patreon, Open-Collective)
+- **20+ new recipe conventions + 15+ new positive-signals + 3 new neutral-signals**
+
+### Notes
+- **🎯 CROWN-JEWEL Tier 1 passed 50-SUB-CATEGORY MILESTONE at DockFlare** — pattern catalog is maturing; meaningful sub-category diversity
+- **🎯 Transparent-maintenance passed 150 tools at Meet** — another round-number catalog-scale milestone
+- **🎯 Hub-of-credentials passed 160 at Open Archiver** — continues pacing with ~2.8 hub-of-creds per batch
+- **Open Archiver = HIGHEST-severity hub-of-credentials discovered** — workspace-domain-delegation is god-mode on the entire org; caveats aplenty (SEC/HIPAA/FINRA compliance, tamper-proof verification, petabyte-scale)
+- **Meet is a notable positive example of government-backed-OSS** — French DINUM's La Suite numerique. Transparent roadmap, production-deployed, CHANGELOG — strong stewardship pattern
+- **DockFlare's RO docker-socket-mount is worth highlighting** — safer variant of the socket-mount pattern; many tools still mount RW even when RO suffices
+- **Pattern-consolidation now 50 CROWN-JEWEL sub-cats, 161 hub-of-credentials, 153 transparent-maintenance, 147 institutional-stewardship** — still deferred per preference but consolidation pass increasingly valuable
