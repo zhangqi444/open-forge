@@ -6317,7 +6317,7 @@
          "name" : "Gameyfin",
          "slug" : "gameyfin",
          "stars" : 997,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "RSS/Atom feed reader",
@@ -6325,7 +6325,7 @@
          "name" : "Nextcloud News",
          "slug" : "nextcloud-news",
          "stars" : 976,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Email application for Nextcloud",
@@ -6333,7 +6333,7 @@
          "name" : "Nextcloud Mail",
          "slug" : "nextcloud-mail",
          "stars" : 974,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Streamlined artists requests for Lidarr",
@@ -6341,7 +6341,7 @@
          "name" : "Aurral",
          "slug" : "aurral",
          "stars" : 973,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Administration platform for devices flashed with Tasmota",
@@ -6349,7 +6349,7 @@
          "name" : "TasmoAdmin",
          "slug" : "tasmoadmin",
          "stars" : 965,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Virtually mount NZB files for direct streaming",

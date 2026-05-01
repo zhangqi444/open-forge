@@ -4880,3 +4880,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Norish (998★) — norish.md (Next.js household recipe manager, AI video/image import, OIDC, meal planning, MIT)
 - Progress: done 784 / pending 486 / skipped 4 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 12:45 UTC — batch 156
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 156 — 5 new recipes:
+  - Gameyfin (997★) — gameyfin.md (Kotlin/Spring Boot game library manager, metadata, web UI, OIDC, AGPL-3.0)
+  - Nextcloud News (976★) — nextcloud-news.md (Nextcloud RSS/Atom aggregator app, API for mobile clients, AGPL-3.0)
+  - Nextcloud Mail (974★) — nextcloud-mail.md (Nextcloud IMAP webmail, S/MIME, AI features, Contacts/Calendar, AGPL-3.0)
+  - Aurral (973★) — aurral.md (Node.js Lidarr companion, MusicBrainz discovery, flows/playlists, Spotify import, MIT)
+  - TasmoAdmin (965★) — tasmoadmin.md (PHP Tasmota device manager, bulk OTA, auto-scan, HA addon, MIT)
+- Progress: done 789 / pending 481 / skipped 4 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
