@@ -4179,3 +4179,52 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **oCIS Apache-2 + EULA complexity** is a common enterprise-OSS pattern but rarely explicit; worth flagging upfront for commercial operators
 - **Notifuse joins Keila** as the second newsletter-CROWN-JEWEL — sub-category now "matured" with two exemplars + distinct tech stacks (Elixir/Phoenix vs Go/React)
 - Pattern-consolidation: 51 CROWN-JEWEL sub-cats, 166 hub-of-credentials, 158 transparent-maintenance, 152 institutional-stewardship — still deferred
+
+## 2026-05-01 02:10 UTC — batch 123 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still open (4 total).
+
+### Step 2 (selfh.st batch 123)
+- **serpbear** (1921★) — Node SEO rank-tracker via 3rd-party scrapers (towfiqi sole-dev; Codacy; docs-site + CHANGELOG; Docker Hub; Google Ads + GSC integrations; PWA; zero-cost deploy options Fly.io/mogenius; StandWithPalestine README banner). **167th hub-of-credentials Tier 2**. **PWA-installable: 4 tools** 🎯 **4-TOOL MILESTONE**. **Codacy-code-quality-badge: 2 tools** (Cloud Commander+SerpBear) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "third-party-API-cost-control-discipline" (1st — SerpBear) + "Google-SERP-scraping-TOS-awareness" (1st — SerpBear) + "GSC-service-account-property-scope-discipline" (1st — SerpBear). **NEW positive-signals**: "built-in-REST-API-for-reporting" (1st — SerpBear) + "free-tier-PaaS-deploy-option" (1st formally — SerpBear). **NEW neutral-signal: "README-political-banner"** (1st — SerpBear; StandWithPalestine). 153rd institutional-stewardship + 159th transparent-maintenance.
+- **retrom** (1916★) — Centralized emulation-focused game-library server with distributed clients (JMBeresford sole-dev; Discord; wiki + quick-start; client-releases-on-GitHub). **168th hub-of-credentials Tier 3**. **Client-server-architecture: 1 tool** 🎯 **NEW FAMILY** (Retrom). **Read-only-library-mount-discipline: 3 tools** 🎯 **3-TOOL MILESTONE** (+Retrom). **Transparent-maintenance: 160 tools** 🎯 **160-TOOL MILESTONE at Retrom**. **NEW recipe conventions**: "ROM-distribution-copyright-legal-exposure" (1st formally — Retrom; HIGH-severity) + "server-client-version-lockstep-discipline" (1st — Retrom) + "metadata-scraper-rate-limit-discipline" (1st — Retrom). **NEW neutral-signal: "per-client-emulator-config-discipline"** (1st — Retrom). 154th institutional-stewardship + **160th transparent-maintenance**.
+- **manyfold** (1914★) — Rails + Sidekiq 3D-model library manager for 3D printing (manyfold3d org; manyfold.app; try.manyfold.app demo; Matrix + Fediverse 3dp.chat + OpenCollective + all-contributors; good-first-issue + roadmap). **169th hub-of-credentials Tier 2**. **Rails-framework: 1 tool** 🎯 **NEW FAMILY** (Manyfold). **Sidekiq-background-jobs: 1 tool** 🎯 **NEW FAMILY** (Manyfold). **Multi-community-channel-presence: 3 tools** (Donetick+Open Archiver+Manyfold) 🎯 **3-TOOL MILESTONE**. **Matrix-chat-community: 3 tools** (Ferron+Meet+Manyfold) 🎯 **3-TOOL MILESTONE**. **Open-Collective-transparent-finances: 5 tools** 🎯 **5-TOOL MILESTONE**. **All-contributors-badge: 2 tools** (ShellHub+Manyfold) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "3D-model-license-metadata-discipline" (1st — Manyfold) + "large-binary-asset-storage-planning" (1st — Manyfold). **NEW positive-signals**: "Fediverse-native-org-presence" (1st formally — Manyfold; 3dp.chat) + "good-first-issue-label-welcoming" (1st — Manyfold). 155th institutional-stewardship + 161st transparent-maintenance.
+- **maintainerr** (1911★) — Node media-cleanup rule-engine (Maintainerr org; Discord; OpenCollective; Material-for-MkDocs docs; Plex+Jellyfin+Sonarr+Radarr+Seerr+Tautulli integrations; destructive-privilege). **170th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "automated-media-deletion-rules-engine"** (1st — Maintainerr; destructive-privilege-specific). **170-TOOL HUB-OF-CREDENTIALS MILESTONE at Maintainerr**. **CROWN-JEWEL Tier 1: 58 tools / 52 sub-categories**. **Media-stack-credential-aggregator: 4 tools** (Tunarr+Profilarr+Recyclarr+Maintainerr) 🎯 **4-TOOL MILESTONE**. **Open-Collective-transparent-finances: 6 tools** (+Maintainerr) 🎯 **6-TOOL MILESTONE**. **NEW recipe convention: "destructive-action-preview-before-enable-discipline"** (1st — Maintainerr; HIGH-severity). **NEW positive-signals**: "multi-media-server-rule-migration" (1st — Maintainerr) + "user-facing-deletion-preview-collection" (1st — Maintainerr). **NEW neutral-signals**: "Material-for-MkDocs-docs-framework" (1st — Maintainerr) + "badge-heavy-README-signal-density" (1st — Maintainerr). 156th institutional-stewardship + 162nd transparent-maintenance.
+- **endurain** (1897★) — Self-hosted fitness tracker (endurain-project org; **Codeberg-primary + GitHub explicitly archived**; Crowdin i18n; trademarked-name-policy; live-demo admin/admin daily-reset; Mastodon + Discord). **171st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "fitness-tracking + GPS-plus-biometric-data"** (1st — Endurain; location+health combined sensitivity). **CROWN-JEWEL Tier 1: 59 tools / 53 sub-categories**. **Infra-data-sensitivity family: 4 tools** (portracker+ARA+Reitti+Endurain) 🎯 **4-TOOL MILESTONE** — 4 distinct data-treasure-sensitivity types now: network-recon + IaC-blueprint + physical-location + biometric-GPS. **Codeberg-primary: 2 tools** (ARA-mirror + Endurain-fully-moved) 🎯 **2-TOOL MILESTONE**. **Community-translation-infrastructure: 3 tools** 🎯 **3-TOOL MILESTONE**. **Live-demo-with-public-credentials: 3 tools** (Open Archiver+Notifuse+Endurain) 🎯 **3-TOOL MILESTONE**. **Trademark-protected-name: 1 tool** 🎯 **NEW FAMILY** (Endurain). **NEW recipe conventions**: "fitness-GPS-home-location-redaction" (1st — Endurain) + "health-biometric-data-regulatory-classification" (1st — Endurain; HIPAA + GDPR-special-category) + "trademark-policy-for-OSS-name" (1st — Endurain). **NEW positive-signals**: "Codeberg-primary-GitHub-archived-explicit-direction" (1st — Endurain) + "repo-migration-explicit-git-remote-command" (1st — Endurain). 157th institutional-stewardship + 163rd transparent-maintenance.
+
+**Batch 123 lengths:** serpbear 157, retrom 143, manyfold 167, maintainerr 148, endurain 158.
+**State:** 629 done / 2 skipped / 643 pending — **49.4% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Hub-of-credentials: 171 tools** — **170-MILESTONE at Maintainerr**
+- **Transparent-maintenance: 163 tools** — **160-MILESTONE at Retrom**
+- **CROWN-JEWEL Tier 1: 59 tools / 53 sub-categories** (+2 new: destructive-media-deletion, fitness-GPS+biometric)
+- **Institutional-stewardship: 157 tools**
+- **Infra-data-sensitivity family: 4 tools** 🎯 **4-TOOL MILESTONE at Endurain** (4 distinct data-sensitivity types)
+- **Media-stack-credential-aggregator: 4 tools** 🎯
+- **PWA-installable: 4 tools** 🎯
+- **Open-Collective-transparent-finances: 6 tools** 🎯 **6-TOOL MILESTONE at Maintainerr**
+- **Read-only-library-mount-discipline: 3 tools** 🎯
+- **Multi-community-channel-presence: 3 tools** 🎯
+- **Matrix-chat-community: 3 tools** 🎯
+- **Community-translation-infrastructure: 3 tools** 🎯
+- **Live-demo-with-public-credentials: 3 tools** 🎯
+- **NEW families**: Client-server-architecture, Rails-framework, Sidekiq-background-jobs, Trademark-protected-name
+
+### New precedents this batch
+- **"automated-media-deletion-rules-engine" CROWN-JEWEL Tier 1 sub-category** (Maintainerr 1st — destructive-privilege-specific; bigger deal than aggregator-only)
+- **"fitness-tracking + GPS-plus-biometric-data" CROWN-JEWEL Tier 1 sub-category** (Endurain 1st — combines physical-security + health-data sensitivity)
+- **"Trademark-protected-name" family** (Endurain 1st — TRADEMARK.md policy for OSS forks)
+- **"Client-server-architecture" family** (Retrom 1st — distinct from client-only-app Fladder/ImmichFrame, distinct from server-only-service majority)
+- **4-TOOL MILESTONE on Infra-data-sensitivity family** — now 4 distinct data-treasure-sensitivity types (network/IaC/physical-location/biometric+GPS)
+- **Codeberg-primary taxonomy refined**: mirror-variant (ARA) vs fully-moved-GitHub-archived variant (Endurain); distinct stewardship signals
+- **15+ new recipe conventions + 10+ new positive-signals + 5+ new neutral-signals**
+
+### Notes
+- **🎯 171 hub-of-credentials tools** — steady pace; ~3-4 per batch
+- **🎯 Infra-data-sensitivity family matured to 4 types** — portracker (network-recon), ARA (IaC-blueprint), Reitti (physical-location), Endurain (biometric+GPS) — this is an interesting cross-cut of "data that's more sensitive than just PII"
+- **Endurain's trademark policy** is a rare OSS pattern worth highlighting — most OSS tools don't formalize name-protection
+- **Codeberg migration flavors**: Endurain moved entirely (GitHub archived); ARA mirrors only. Worth distinguishing in the taxonomy
+- **Maintainerr's "destructive-action-preview-before-enable" discipline** is important — when a tool can DELETE user media, preview-collection is essential UX safety
+- 49.4% done — halfway point close
+- Pattern-consolidation overdue: 53 CROWN-JEWEL sub-cats, 171 hub-of-credentials, 163 transparent-maintenance, 157 institutional-stewardship
