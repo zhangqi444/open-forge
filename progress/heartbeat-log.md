@@ -4854,3 +4854,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Erugo (1022★) — erugo.md (PHP+Laravel file sharing, reverse share tokens, OIDC, S3, MIT)
 - Progress: done 774 / pending 496 / skipped 4 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 12:15 UTC — batch 154
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 154 — skipped Panora (already done prev batch); 5 new recipes:
+  - Compose Craft (1021★) — compose-craft.md (Next.js visual Docker Compose editor, node graph, MongoDB, MIT)
+  - ExcaliDash (1021★) — excalidash.md (Node.js Excalidraw dashboard, collab, version history, OIDC, MIT)
+  - Multi-Scrobbler (1018★) — multi-scrobbler.md (Node.js 25+ sources → 8+ clients music scrobbler, MIT)
+  - PigeonPod (1017★) — pigeonpod.md (Java/Spring Boot YouTube+Bilibili RSS podcast generator, yt-dlp)
+  - SnapOtter (1017★) — snapotter.md (single-container 47 image tools + local AI, pipelines, API, AGPLv3)
+- Progress: done 779 / pending 491 / skipped 4 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

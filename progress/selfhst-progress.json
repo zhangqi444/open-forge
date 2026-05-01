@@ -6237,7 +6237,7 @@
          "name" : "Compose Craft",
          "slug" : "compose-craft",
          "stars" : 1021,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Dashboard and organizer for Excalidraw",
@@ -6245,7 +6245,7 @@
          "name" : "ExcaliDash",
          "slug" : "excalidash",
          "stars" : 1021,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Scrobble plays from multiple sources to multiple clients",
@@ -6253,7 +6253,7 @@
          "name" : "Multi-Scrobbler",
          "slug" : "multi-scrobbler",
          "stars" : 1018,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Turn YouTube channels into podcasts",
@@ -6261,7 +6261,7 @@
          "name" : "PigeonPod",
          "slug" : "pigeonpod",
          "stars" : 1017,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Image manipulator and converter",
@@ -6269,7 +6269,7 @@
          "name" : "SnapOtter",
          "slug" : "snapotter",
          "stars" : 1017,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "All-in-one solution for managing your home bar",
