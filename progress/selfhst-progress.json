@@ -6012,7 +6012,7 @@
          "name" : "FileSync",
          "slug" : "filesync",
          "stars" : 1166,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Store and access location data",
@@ -6028,7 +6028,7 @@
          "name" : "bewCloud",
          "slug" : "bewcloud",
          "stars" : 1158,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Minimal file upload and pastebin service",
@@ -6044,7 +6044,7 @@
          "name" : "ZTNET",
          "slug" : "ztnet",
          "stars" : 1141,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "File storage, sharing, collaboration, and sync",
@@ -6060,7 +6060,7 @@
          "name" : "xBackBone",
          "slug" : "xbackbone",
          "stars" : 1131,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Privacy-respecting alternative frontend for YouTube Music",
@@ -6068,7 +6068,7 @@
          "name" : "Beatbump",
          "slug" : "beatbump",
          "stars" : 1131,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight and secure cloud storage solution",

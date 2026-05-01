@@ -4789,3 +4789,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Rustypaste (1154★) — rustypaste.md (Rust pastebin/file upload, curl API, one-shot, URL shortening, no DB, MIT)
 - Progress: done 749 / pending 522 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 11:00 UTC — batch 149
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 149 — 5 new recipes:
+  - FileSync (1166★) — filesync.md (Node.js WebRTC file transfer, P2P+TURN relay, multi-recipient, no server storage)
+  - bewCloud (1158★) — bewcloud.md (Deno cloud storage, CalDAV/CardDAV via Radicale, desktop+mobile sync, MIT)
+  - ZTNet (1141★) — ztnet.md (Next.js ZeroTier controller UI, multi-user, orgs, REST API, TOTP, OIDC)
+  - XBackBone (1131★) — xbackbone.md (PHP ShareX backend, multi-storage S3/GCS/Azure/FTP, LDAP, AGPL)
+  - Beatbump (1131★) — beatbump.md (SvelteKit YouTube Music frontend; ⚠️ no longer developed)
+- Progress: done 754 / pending 517 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
