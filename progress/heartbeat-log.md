@@ -4035,3 +4035,52 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Cloud Commander's web-console = RCE-by-design** — operator-clarity matters
 - 47.8% done — closing in on 48%
 - Pattern-consolidation long-overdue: 44 CROWN-JEWEL sub-categories, 151 hub-of-credentials, 143 transparent-maintenance, 137 institutional-stewardship
+
+## 2026-05-01 01:07 UTC — batch 120 (5 recipes)
+
+### Step 0 / Step 1
+- Synced. New GitHub PR #38 opened by human (zhangqi444) — "Add AGENTS.md per agents.md convention". This is human's work on the repo, NOT a user-filed issue to address. Leave alone. Issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 120)
+- **shellhub** (1995★) — Go centralized SSH gateway with agent-architecture (shellhub-io org; commercial ShellHub Cloud; Gitter; 23+ all-contributors; MongoDB+Redis+API+SSH+gateway+UI multi-service). **152nd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "centralized-SSH-gateway + session-log-aggregator"** (1st — ShellHub; infrastructure-tier). **CROWN-JEWEL Tier 1: 48 tools / 45 sub-categories**. **Commercial-parallel-with-OSS-core: 13 tools** 🎯 **13-TOOL MILESTONE**. **Gitter-legacy-community-channel: 3 tools** (Docspell+Cloud Commander+ShellHub) 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "central-SSH-gateway-compromise-fleet-risk" (1st — ShellHub) + "session-recording-retention-policy" (1st — ShellHub) + "agent-based-architecture-patch-discipline" (1st — ShellHub). **NEW positive-signals**: "outbound-agent-connection-NAT-friendly" (1st — ShellHub) + "all-contributors-badge" (1st — ShellHub). 138th institutional-stewardship + 144th transparent-maintenance.
+- **movim** (1993★) — PHP federated blogging+chat (XMPP frontend; movim org; Prosody/Ejabberd XMPP-server required; Podman-quick-test; decade-plus OSS). **153rd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "federated-social-XMPP-frontend"** (1st — Movim). **CROWN-JEWEL Tier 1: 49 tools / 46 sub-categories**. **Decade-plus-OSS: 8 tools** 🎯 **8-TOOL MILESTONE**. **Podman-support: 1 tool** 🎯 **NEW FAMILY** (Movim). **NEW recipe convention: "XMPP-server-prerequisite-expertise-required"** (1st formally — Movim). **NEW positive-signals**: "Podman-alternative-container-runtime" (1st — Movim) + "test-only-setup-explicit-warning" (1st — Movim) + "standard-protocol-any-server-compat" (1st — Movim; XMPP-any-server). 139th institutional-stewardship + 145th transparent-maintenance.
+- **enclosed** (1985★) — Node E2E-encrypted note-sharing with zero-knowledge server (CorentinTh; demo + docs + CLI + MIT; Docker-selfhost). **154th hub-of-credentials Tier 4 (zero-knowledge-server; distinct from stateless)**. **Zero-knowledge-server: 1 tool** 🎯 **NEW FAMILY** (Enclosed). **URL-as-encryption-key-secure-sharing: 2 tools** (Chitchatter+Enclosed) 🎯 **2-TOOL MILESTONE**. **CLI-companion-for-automation: 2 tools** (Docspell+Enclosed) 🎯 **2-TOOL MILESTONE**. **Institutional-stewardship: 140 tools** 🎯 **140-TOOL MILESTONE at Enclosed**. **NEW recipe conventions**: "metadata-leak-even-with-E2E" (1st — Enclosed) + "E2E-file-upload-size-limit-discipline" (1st — Enclosed). **NEW positive-signals**: "read-once-self-destruct-semantics" (1st — Enclosed) + "public-demo-zero-knowledge-trust" (1st — Enclosed) + "defense-in-depth-password-plus-URL-key" (1st — Enclosed). 140th institutional-stewardship + 146th transparent-maintenance.
+- **voxmedia-coral** (1981★) — Node commenting platform for newsrooms (Coral Project/Vox Media; decade-plus; dogfooded-by-Vox; MongoDB+Redis; docs + guides sites). **155th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "public-comment-moderation-platform-newsroom"** (1st — Coral). **CROWN-JEWEL Tier 1: 50 tools / 47 sub-categories** 🎯 **50-TOOL CROWN-JEWEL MILESTONE at Coral**. **Decade-plus-OSS: 9 tools** 🎯 **9-TOOL MILESTONE**. **Public-UGC-abuse-conduit: 9 tools** 🎯 **9-TOOL MILESTONE**. **NEW recipe conventions**: "UGC-comment-platform-legal-exposure" (1st formally — Coral) + "human-moderation-team-staffing" (1st — Coral) + "embedded-tool-XSS-blast-radius" (1st — Coral). **NEW positive-signals**: "publisher-dogfooded-OSS" (1st — Coral; Vox Media) + "community-guides-companion-site" (1st — Coral). **NEW neutral-signal: "MongoDB-SSPL-licensing-awareness"** (1st — Coral). 141st institutional-stewardship + 147th transparent-maintenance.
+- **ferron** (1977★) — Rust web server with automatic-TLS + memory-safety + reverse-proxy + load-balancing + health-checks (ferronweb org; Matrix chat; X/Twitter; Docker Hub). **156th hub-of-credentials CROWN-JEWEL Tier 1**. **Reverse-proxy-edge-credential-hub: 2 tools** (NPMplus+Ferron) 🎯 **2-TOOL MILESTONE**. **Rust-built-high-throughput-tool: 4 tools** 🎯 **4-TOOL MILESTONE**. **Automatic-TLS-built-in: 3 tools** 🎯 **3-TOOL MILESTONE**. **Matrix-chat-community: 1 tool** 🎯 **NEW FAMILY** (Ferron; decentralized chat). **NEW positive-signals**: "modular-extension-architecture" (1st formally — Ferron) + "built-in-upstream-health-checks" (1st — Ferron) + "secure-defaults-declared" (1st formally — Ferron). 142nd institutional-stewardship + 148th transparent-maintenance.
+
+**Batch 120 lengths:** shellhub 163, movim 154, enclosed 147, voxmedia-coral 176, ferron 161.
+**State:** 614 done / 2 skipped / 658 pending — **48.2% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 50 tools / 47 sub-categories** 🎯 **50-TOOL CROWN-JEWEL MILESTONE at Coral** (+3 new sub-cats)
+- **Institutional-stewardship: 142 tools** — **140-TOOL MILESTONE at Enclosed**
+- **Transparent-maintenance: 148 tools**
+- **Hub-of-credentials: 156 tools**
+- **Commercial-parallel-with-OSS-core: 13 tools** 🎯
+- **Decade-plus-OSS: 9 tools** 🎯
+- **Public-UGC-abuse-conduit: 9 tools** 🎯
+- **Rust-built-high-throughput-tool: 4 tools** 🎯
+- **Automatic-TLS-built-in: 3 tools** 🎯
+- **Gitter-legacy-community-channel: 3 tools** 🎯
+- **Reverse-proxy-edge-credential-hub: 2 tools** 🎯
+- **URL-as-encryption-key-secure-sharing: 2 tools** 🎯
+- **CLI-companion-for-automation: 2 tools** 🎯
+- **NEW families**: Podman-support, Zero-knowledge-server, Matrix-chat-community
+
+### New precedents this batch
+- **"centralized-SSH-gateway + session-log-aggregator" CROWN-JEWEL Tier 1 sub-category** (ShellHub 1st)
+- **"federated-social-XMPP-frontend" CROWN-JEWEL Tier 1 sub-category** (Movim 1st)
+- **"public-comment-moderation-platform-newsroom" CROWN-JEWEL Tier 1 sub-category** (Coral 1st — **50-TOOL CROWN-JEWEL MILESTONE**)
+- **"Zero-knowledge-server" family** (Enclosed 1st — distinct from stateless; server DOES store data but can't decrypt)
+- **"Matrix-chat-community" family** (Ferron 1st — decentralized community channel; alternative to Gitter/Discord)
+- **"Podman-support" family** (Movim 1st — Docker-alternative)
+- **15+ new recipe conventions + 10+ new positive-signals**
+
+### Notes
+- **🎯 CROWN-JEWEL Tier 1 passed 50-TOOL MILESTONE at Coral** — MAJOR catalog-scale milestone
+- **Honest-declaration taxonomy unchanged at 7 flavors** (no new-flavor tools this batch)
+- **Enclosed's zero-knowledge-server** is distinct from Tier 4/ZERO stateless; server holds ciphertext but can't read it — worth formalizing as separate category
+- **PR #38 by human noted** — not an issue to address; continue normal batches
+- **Coral = 50th CROWN-JEWEL** — perfect example of UGC-legal-exposure + newsroom-grade stewardship
+- 48.2% done
+- Pattern-consolidation long-overdue: 47 CROWN-JEWEL sub-categories, 156 hub-of-credentials, 148 transparent-maintenance, 142 institutional-stewardship
