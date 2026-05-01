@@ -7092,7 +7092,7 @@
          "desc" : "Plex watchlist monitoring, routing, and notifications",
          "github" : "github.com/jamcalli/Pulsarr",
          "slug" : "pulsarr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Pulsarr",
          "stars" : 677
       },
@@ -7100,14 +7100,14 @@
          "name" : "Invoicerr",
          "slug" : "invoicerr",
          "github" : "github.com/invoicerr-app/invoicerr",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 676,
          "desc" : "Invoicing app for freelancers"
       },
       {
          "stars" : 675,
          "name" : "Nextcloud Tasks",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "nextcloud-tasks",
          "desc" : "Tasks app for Nextcloud",
          "github" : "github.com/nextcloud/tasks"
@@ -7122,7 +7122,7 @@
       },
       {
          "slug" : "atheos",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Atheos/Atheos",
          "name" : "Atheos",
          "stars" : 668,
@@ -7131,7 +7131,7 @@
       {
          "stars" : 664,
          "name" : "Feedbase",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "feedbase",
          "github" : "github.com/chroxify/feedbase",
          "desc" : "Collect feedback and communicate updates"
