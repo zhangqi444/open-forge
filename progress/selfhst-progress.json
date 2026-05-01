@@ -6851,7 +6851,7 @@
       {
          "stars" : 746,
          "slug" : "nutify",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/DartSteven/Nutify",
          "name" : "Nutify",
          "desc" : "Modern web-based UPS monitoring"
@@ -6859,14 +6859,14 @@
       {
          "name" : "Logchef",
          "github" : "github.com/mr-karan/logchef",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "logchef",
          "stars" : 745,
          "desc" : "Lightweight log analytics platform"
       },
       {
          "desc" : "Database backup and restore tool",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "portabase",
          "github" : "github.com/Portabase/portabase",
          "name" : "Portabase",
@@ -6876,12 +6876,12 @@
          "stars" : 740,
          "name" : "Budget Board",
          "slug" : "budget-board",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Manage monthly budgets and net worth",
          "github" : "github.com/teelur/budget-board"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "koito",
          "name" : "Koito",
          "stars" : 735,
