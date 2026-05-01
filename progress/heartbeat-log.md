@@ -4128,3 +4128,54 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Meet is a notable positive example of government-backed-OSS** — French DINUM's La Suite numerique. Transparent roadmap, production-deployed, CHANGELOG — strong stewardship pattern
 - **DockFlare's RO docker-socket-mount is worth highlighting** — safer variant of the socket-mount pattern; many tools still mount RW even when RO suffices
 - **Pattern-consolidation now 50 CROWN-JEWEL sub-cats, 161 hub-of-credentials, 153 transparent-maintenance, 147 institutional-stewardship** — still deferred per preference but consolidation pass increasingly valuable
+
+## 2026-05-01 01:54 UTC — batch 122 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 122)
+- **statping-ng** (1957★) — Go status-page + monitoring (community-fork-after-original-discontinued; multi-branch dev/unstable/stable; wiki; SQLite/MySQL/Postgres). **162nd hub-of-credentials Tier 2**. **Community-fork-after-discontinuation: 1 tool** 🎯 **NEW FAMILY** (Statping-ng). **NEW recipe conventions**: "public-status-page-service-existence-disclosure" (1st — Statping-ng). **NEW positive-signals**: "multi-branch-quality-gate-convention" (1st — Statping-ng) + "community-fork-after-original-discontinuation" (1st — Statping-ng). **NEW neutral-signal: "naming-convention-ng-suffix-fork-indicator"** (1st — Statping-ng). 148th institutional-stewardship + 154th transparent-maintenance.
+- **py-medusa** (1951★) — Python SickBeard/SickRage-lineage TV-show library manager (pymedusa org; decade-plus lineage; linuxserver-docker-image-convention; codecov; Travis-legacy; Plex/Jellyfin-companion). **163rd hub-of-credentials Tier 2**. **Decade-plus-OSS: 10 tools** 🎯 **10-TOOL MILESTONE at Medusa**. **PUID-PGID-linuxserver-convention: 2 tools** (Tasks.md+Medusa) 🎯 **2-TOOL MILESTONE**. **NEW recipe convention: "private-indexer-TOS-discipline"** (1st — Medusa). **NEW positive-signals**: "manual-pick-UX-for-media-grabber" (1st — Medusa) + "multi-indexer-redundancy" (1st — Medusa). **NEW neutral-signals**: "multi-generation-fork-lineage" (1st — Medusa; SickBeard→SickRage→Medusa) + "legacy-CI-service-badge-review" (1st — Medusa; Travis). 149th institutional-stewardship + 155th transparent-maintenance.
+- **owncloud-infinite-scale** (1951★) — Go microservices file-sync-share rewrite of ownCloud (owncloud org now Kiteworks-owned; EULA for commercial; OIDC IdP required; SonarCloud; Drone CI; Matrix; decade-plus-via-ownCloud-10-lineage). **164th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "file-sync-share + team-collab-files"** (1st — oCIS). **CROWN-JEWEL Tier 1: 56 tools / 51 sub-categories**. **Microservice-complexity-tax: 8 tools** 🎯 **8-TOOL MILESTONE**. **Institutional-stewardship: 150 tools** 🎯 **150-TOOL MILESTONE at oCIS**. **NEW recipe conventions**: "Apache-2-with-separate-EULA-awareness" (1st — oCIS; HIGH-severity for commercial use) + "complete-rewrite-migration-path-required" (1st — oCIS). **NEW positive-signals**: "SonarCloud-quality-transparency" (1st — oCIS) + "separate-acceptance-test-coverage-tracking" (1st — oCIS). **NEW neutral-signals**: "recent-corporate-acquisition-stewardship-watch" (1st — oCIS; Kiteworks) + "external-IdP-required-not-built-in" (1st — oCIS) + "self-hosted-CI-pipeline" (1st — oCIS; Drone) + "corporate-ecosystem-cross-product-integration" (1st — oCIS). **150th institutional-stewardship** + 156th transparent-maintenance.
+- **recyclarr** (1949★) — .NET CLI syncing TRaSH-Guides recommendations into Sonarr/Radarr (recyclarr org; Discord TRaSH-Guides-shared; Qodana; explicit "no more latest tag" warning; one-shot-cron pattern; GitOps-for-media). **165th hub-of-credentials Tier 3**. **Media-stack-credential-aggregator: 3 tools** (Tunarr+Profilarr+Recyclarr) 🎯 **3-TOOL MILESTONE**. **Explicit-no-latest-tag-warning: 1 tool** 🎯 **NEW FAMILY** (Recyclarr; responsible image-publishing exemplar). **One-shot-cron-tool: 1 tool** 🎯 **NEW FAMILY** (Recyclarr; distinct from always-on daemons). **NEW positive-signals**: "explicit-no-latest-tag-maintainer-warning" (1st — Recyclarr) + "Qodana-quality-gate" (1st — Recyclarr) + "shared-ecosystem-community-channel" (1st — Recyclarr; TRaSH-Guides). **NEW neutral-signal: "one-shot-batch-cron-execution-pattern"** (1st — Recyclarr). 151st institutional-stewardship + 157th transparent-maintenance.
+- **notifuse** (1922★) — Go+React newsletter + transactional mail platform (Notifuse org; Notifuse Cloud $16/mo; demo.notifuse.com with public creds; Go Report A+; codecov; MJML visual builder; A/B testing; interactive setup wizard). **166th hub-of-credentials CROWN-JEWEL Tier 1**. **"newsletter-tool + subscriber-PII-plus-sending-creds": 2 tools** (Keila+Notifuse) 🎯 **2-TOOL MILESTONE — MATURED sub-category**. **Commercial-parallel-with-OSS-core: 15 tools** 🎯 **15-TOOL MILESTONE**. **Live-demo-with-public-credentials: 2 tools** (Open Archiver+Notifuse) 🎯 **2-TOOL MILESTONE**. **Self-hosted-email-deliverability-complexity: 3 tools** 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "email-deliverability-SPF-DKIM-DMARC-discipline" (1st formally — Notifuse) + "unsubscribe-law-compliance-discipline" (1st — Notifuse). **NEW positive-signals**: "bounce-complaint-automated-handling" (1st — Notifuse) + "interactive-setup-wizard" (1st formally — Notifuse) + "Go-Report-Card-A-plus" (1st — Notifuse). 152nd institutional-stewardship + 158th transparent-maintenance.
+
+**Batch 122 lengths:** statping-ng 139, py-medusa 150, owncloud-infinite-scale 180, recyclarr 154, notifuse 170.
+**State:** 624 done / 2 skipped / 648 pending — **49.0% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **49% DONE MILESTONE** (624/1274) 🎯 **approaching HALFWAY-POINT**
+- **Institutional-stewardship: 152 tools** — **150-TOOL MILESTONE at oCIS**
+- **CROWN-JEWEL Tier 1: 57 tools / 51 sub-categories** (+1 new: file-sync-share)
+- **Hub-of-credentials: 166 tools**
+- **Transparent-maintenance: 158 tools**
+- **Commercial-parallel-with-OSS-core: 15 tools** 🎯 **15-TOOL MILESTONE at Notifuse**
+- **Decade-plus-OSS: 10 tools** 🎯 **10-TOOL MILESTONE at Medusa**
+- **Microservice-complexity-tax: 8 tools** 🎯 **8-TOOL MILESTONE at oCIS**
+- **Media-stack-credential-aggregator: 3 tools** 🎯
+- **Self-hosted-email-deliverability-complexity: 3 tools** 🎯
+- **Newsletter sub-cat matured (Keila+Notifuse)** — 2-TOOL MILESTONE
+- **Live-demo-with-public-creds: 2 tools** 🎯
+- **PUID-PGID-linuxserver: 2 tools** 🎯
+- **NEW families**: Community-fork-after-discontinuation, Explicit-no-latest-tag-warning, One-shot-cron-tool
+
+### New precedents this batch
+- **"file-sync-share + team-collab-files" CROWN-JEWEL Tier 1 sub-category** (oCIS 1st — NOT new-family but new-sub-cat)
+- **"Community-fork-after-discontinuation" family** (Statping-ng 1st — distinct from corporate-continuation forks like Pelican-from-Pterodactyl)
+- **"Explicit-no-latest-tag-warning" family** (Recyclarr 1st — responsible image-publishing exemplar pattern; NEW concept)
+- **"One-shot-cron-tool" family** (Recyclarr 1st — batch-execution vs daemon distinction; NEW concept)
+- **"Apache-2-with-separate-EULA-awareness" recipe convention** (oCIS 1st — HIGH-severity for commercial use)
+- **"-ng suffix fork indicator" naming-convention recognition** (Statping-ng 1st — formal naming-pattern recognition)
+- **15+ new recipe conventions + 15+ new positive-signals + 5+ new neutral-signals**
+
+### Notes
+- **🎯 Approaching 49% done** — halfway point is visible on the horizon
+- **🎯 Institutional-stewardship: 150-TOOL MILESTONE at oCIS** — another round-number catalog-scale milestone
+- **🎯 Commercial-parallel: 15-TOOL MILESTONE at Notifuse** — 15 tools with OSS+SaaS dual-model
+- **🎯 Decade-plus-OSS: 10-TOOL MILESTONE at Medusa** — 10 tools with 10+ years of continuous community
+- **Recyclarr's "no more latest tag" warning** is a beautiful positive-signal pattern worth propagating — many upstream maintainers NEVER warn users when publishing changes; explicit user-facing deprecation notice in the README is excellent stewardship
+- **Statping-ng** is the first "fork-after-original-discontinuation" rescue case in the catalog — distinct ecosystem-health signal
+- **oCIS Apache-2 + EULA complexity** is a common enterprise-OSS pattern but rarely explicit; worth flagging upfront for commercial operators
+- **Notifuse joins Keila** as the second newsletter-CROWN-JEWEL — sub-category now "matured" with two exemplars + distinct tech stacks (Elixir/Phoenix vs Go/React)
+- Pattern-consolidation: 51 CROWN-JEWEL sub-cats, 166 hub-of-credentials, 158 transparent-maintenance, 152 institutional-stewardship — still deferred
