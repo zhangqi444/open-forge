@@ -6971,7 +6971,7 @@
       {
          "desc" : "Disposable e-mail server with an easy configuration",
          "stars" : 708,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "novus-mail",
          "github" : "github.com/Zhoros/NortixMail",
          "name" : "Nortix Mail"
@@ -6979,7 +6979,7 @@
       {
          "desc" : "Lightweight DNS sinkhole for blocking unwanted domains",
          "stars" : 704,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/pommee/goaway",
          "slug" : "goaway",
          "name" : "GoAway"
@@ -6988,7 +6988,7 @@
          "desc" : "Open source video management software",
          "name" : "Shinobi",
          "slug" : "shinobi",
-         "status" : "pending",
+         "status" : "done",
          "github" : "gitlab.com/Shinobi-Systems/Shinobi",
          "stars" : 703
       },
@@ -7001,7 +7001,7 @@
          "stars" : 703
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "davis",
          "github" : "github.com/tchapi/davis",
          "name" : "Davis",
@@ -7011,7 +7011,7 @@
       {
          "name" : "Streamystats",
          "slug" : "streamystats",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 701,
          "github" : "github.com/fredrikburmester/streamystats",
          "desc" : "Statistics and analytics service for Jellyfin"
