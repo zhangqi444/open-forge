@@ -6731,7 +6731,7 @@
       {
          "desc" : "Simple and blazingly fast URL shortener",
          "name" : "Chhoto URL",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/SinTan1729/chhoto-url",
          "slug" : "chhoto-url",
          "stars" : 805
@@ -6739,7 +6739,7 @@
       {
          "slug" : "riven",
          "github" : "github.com/rivenmedia/riven",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Riven",
          "stars" : 782,
          "desc" : "Media streaming with various third-party integrations"
@@ -6748,7 +6748,7 @@
          "stars" : 779,
          "name" : "Wastebin",
          "github" : "github.com/matze/wastebin",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "wastebin",
          "desc" : "Minimal pastebin application"
       },
@@ -6757,14 +6757,14 @@
          "name" : "Signature PDF",
          "github" : "github.com/24eme/signaturepdf",
          "slug" : "signature-pdf",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 777
       },
       {
          "stars" : 774,
          "name" : "Astroluma",
          "slug" : "astroluma",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Sanjeet990/Astroluma",
          "desc" : "Feature-rich dashboard for managing tasks and services"
       },
