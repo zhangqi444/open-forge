@@ -7154,7 +7154,7 @@
       },
       {
          "name" : "OpenPanel",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "openpanel",
          "stars" : 657,
          "github" : "github.com/stefanpejcic/OpenPanel",
@@ -7179,7 +7179,7 @@
       {
          "stars" : 648,
          "name" : "GoMFT",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/StarFleetCPTN/GoMFT",
          "slug" : "gomft",
          "desc" : "Web-based file transfer application"
@@ -7187,7 +7187,7 @@
       {
          "stars" : 647,
          "name" : "NZBGet",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "nzbget",
          "github" : "github.com/nzbgetcom/nzbget",
          "desc" : "Fast, reliable, and feature-packed NZB downloader"
@@ -7196,7 +7196,7 @@
          "desc" : "Budgeting app with a focus on recurring expenses",
          "stars" : 644,
          "slug" : "monetr",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/monetr/monetr",
          "name" : "Monetr"
       },
@@ -7221,7 +7221,7 @@
          "name" : "HabitTrove",
          "github" : "github.com/dohsimpson/HabitTrove",
          "slug" : "habittrove",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 637
       },
       {
