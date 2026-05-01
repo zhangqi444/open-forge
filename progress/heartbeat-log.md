@@ -4388,3 +4388,56 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Community-channel taxonomy now covers: Discord, Matrix, IRC, Slack, Discourse, Reddit, Telegram, shared-ecosystem-community-channel** — close to complete.
 - **Docker-socket-mount-priv-esc at 9 tools** — approaching 10-MILESTONE next batch
 - Pattern-consolidation overdue: 57 CROWN-JEWEL sub-cats, 186 hub-of-credentials, 178 transparent-maintenance, 172 institutional-stewardship. Post-batch-130 consolidation pass worth scheduling.
+
+## 2026-05-01 03:10 UTC — batch 127 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 127)
+- **damselfly** (1759★) — .NET photo-management w/ AI face+object+color detection (Webreaper sole-dev; Picasa-inspired UX; 500K-image <1s perf; desktop-client companion; RAW support). **187th hub-of-credentials CROWN-JEWEL Tier 1**. **Photo-management + AI-face-recognition-over-family sub-cat MATURED: 2 tools** 🎯 **2-TOOL MILESTONE**. **Read-only-library-mount-discipline: 5 tools** 🎯 **5-MILESTONE at Damselfly**. **AI-model-serving-tool: 6 tools** 🎯 **6-MILESTONE at Damselfly**. **Desktop-client-companion-app: 1 tool** 🎯 **NEW FAMILY** (Damselfly — distinct from mobile-companion). **NEW recipe conventions**: "child-face-recognition-data-retention-HIGHEST-severity" (1st — Damselfly; HIGHEST-severity) + "face-recognition-model-bias-awareness" (1st — Damselfly). **NEW positive-signals**: "RAW-photo-format-support" (1st — Damselfly) + "explicit-UX-pedigree-citation" (1st — Damselfly; Picasa). 173rd institutional-stewardship + 179th transparent-maintenance.
+- **chronoframe** (1755★) — Nuxt/Vue personal photo gallery (HoshinoSuzumi; MIT; Discord; Product Hunt featured; HelloGitHub featured; dual-branch stable+nightly; bilingual EN+ZH; live demo at bh8.ga). **188th hub-of-credentials Tier 3**. **Transparent-maintenance: 180 tools** 🎯 **180-TOOL MILESTONE at ChronoFrame**. **Product-Hunt-featured: 1 tool** 🎯 **NEW FAMILY** (ChronoFrame). **HelloGitHub-featured: 1 tool** 🎯 **NEW FAMILY** (ChronoFrame). **NEW recipe conventions**: "EXIF-strip-home-geo-before-public-share" (1st — ChronoFrame; HIGH-severity for public galleries). **NEW positive-signals**: "stable-plus-nightly-dual-branch" (1st formally — ChronoFrame; reinforces Tracearr) + "bilingual-README-EN-ZH" (1st — ChronoFrame). **NEW neutral-signals**: "public-facing-gallery-default-threat-model" (1st — ChronoFrame) + "Product-Hunt-launch-featured" (1st — ChronoFrame) + "free-TLD-for-demo-site" (1st — ChronoFrame; bh8.ga). 174th institutional-stewardship + **180th transparent-maintenance**.
+- **beaver-habit-tracker** (1748★) — Python+NiceGUI habit tracker (daya0576; beaverhabits.com SaaS-parallel; Uptime Robot public monitoring; Unraid CA listed; Fly.io deploy; rich derivatives-ecosystem incl HabitDeck/Apple Shortcut/HomeAssistant/CalDAV/OpenClaw Skill). **189th hub-of-credentials Tier 3**. **Commercial-parallel-with-OSS-core: 18 tools** 🎯 **18-MILESTONE at Beaver Habit**. **Free-tier-PaaS-deploy-option: 2 tools** (Podsync+Beaver Habit) 🎯 **2-MILESTONE**. **Rich-community-derivatives: 1 tool** 🎯 **NEW FAMILY** (Beaver Habit — 5+ community integrations). **Public-uptime-monitoring: 1 tool** 🎯 **NEW FAMILY** (Beaver Habit). **Unraid-Community-Apps-listed: 1 tool** 🎯 **NEW FAMILY** (Beaver Habit). **NEW recipe convention: "behavioral-habit-log-PII-retention-discipline"** (1st — Beaver Habit). **NEW positive-signals**: "rich-community-derivatives-ecosystem" (1st — Beaver Habit) + "public-uptime-transparency-badge" (1st — Beaver Habit) + "Unraid-Community-Apps-listed" (1st — Beaver Habit). **NEW neutral-signal: "explicit-product-philosophy-design-choice"** (1st — Beaver Habit; "without Goals"). 175th institutional-stewardship + 181st transparent-maintenance.
+- **etesync** (1748★) — Python/Django E2E-encrypted PIM sync server — Etebase/EteSync 2.0 (etesync org; etebase.com; IRC+Matrix community; decade-plus; zero-knowledge architecture; server holds ciphertext only). **190th hub-of-credentials Tier 2** (E2E so tier downgraded from CROWN-JEWEL). **190-TOOL HUB-OF-CREDENTIALS MILESTONE at Etebase**. **True-E2E-encryption-at-rest: 4 tools** 🎯 **4-MILESTONE at Etebase** (Chitchatter+Enclosed+PsiTransfer+Etebase). **Multi-community-channel-presence: 6 tools** 🎯 **6-MILESTONE at Etebase**. **Matrix-chat-community: 4 tools** 🎯 **4-MILESTONE at Etebase**. **Decade-plus-OSS: 15 tools** 🎯 **15-MILESTONE at Etebase**. **IRC-community-channel: 1 tool** 🎯 **NEW FAMILY** (Etebase). **NEW recipe conventions**: "E2E-key-loss-no-recovery-by-design-discipline" (1st — Etebase; HIGHEST-severity) + "Django-SECRET_KEY-production-rotation-mandatory" (1st — Etebase). **NEW positive-signals**: "true-E2E-server-cannot-read-user-data" (1st formally — Etebase; highest-positive-signal) + "zero-knowledge-architecture-server" (1st — Etebase). **NEW neutral-signal: "Django-settings-py-direct-edit-pattern"** (1st — Etebase). 176th institutional-stewardship + 182nd transparent-maintenance.
+- **secureai-tools** (1733★) — Next.js+Ollama private-AI chat+docs-RAG platform (SecureAI-Tools org; Discord; Docker Compose <5min; local Ollama inference 100+ models; optional OpenAI backend; Paperless-ngx integration; family/coworker multi-user; YouTube demo videos). **191st hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "private-AI-chat + document-corpus-RAG"** (1st — SecureAI Tools; confessional-level PII + RAG corpus). **CROWN-JEWEL Tier 1: 65 tools / 58 sub-categories**. **AI-model-serving-tool: 7 tools** 🎯 **7-MILESTONE at SecureAI**. **Companion-tool-to-popular-selfhosted: 2 tools** (IPP+SecureAI) 🎯 **2-MILESTONE** (Paperless-ngx integration). **Ollama-local-inference: 1 tool** 🎯 **NEW FAMILY** (SecureAI). **Demo-video-in-README: 1 tool** 🎯 **NEW FAMILY** (SecureAI). **NEW recipe conventions**: "AI-chat-history-confessional-PII-retention-discipline" (1st — SecureAI; HIGH-severity) + "RAG-prompt-injection-leakage-risk" (1st — SecureAI) + "cloud-AI-backend-data-leaves-local-boundary" (1st — SecureAI). **NEW positive-signals**: "100-plus-AI-models-via-Ollama-library" (1st — SecureAI) + "family-or-team-multi-user-positioning" (1st — SecureAI) + "sub-5-min-quickstart-positioning" (1st — SecureAI) + "demo-video-embedded-in-README" (1st — SecureAI). 177th institutional-stewardship + 183rd transparent-maintenance.
+
+**Batch 127 lengths:** damselfly 157, chronoframe 147, beaver-habit-tracker 147, etesync 152, secureai-tools 174.
+**State:** 649 done / 2 skipped / 623 pending — **50.9% done.**
+
+### 🎯 MILESTONES this batch
+- **Hub-of-credentials: 191 tools** — **190-MILESTONE at Etebase**
+- **Transparent-maintenance: 183 tools** — **180-MILESTONE at ChronoFrame**
+- **CROWN-JEWEL Tier 1: 65 / 58** (+1 new sub-cat: private-AI-chat + document-corpus-RAG)
+- **Commercial-parallel-with-OSS-core: 18 tools** 🎯 **18-MILESTONE at Beaver Habit**
+- **Institutional-stewardship: 177 tools**
+- **Decade-plus-OSS: 15 tools** 🎯 **15-MILESTONE at Etebase**
+- **AI-model-serving-tool: 7 tools** 🎯 **7-MILESTONE at SecureAI**
+- **Multi-community-channel-presence: 6 tools** 🎯 **6-MILESTONE at Etebase**
+- **Read-only-library-mount-discipline: 5 tools** 🎯 **5-MILESTONE at Damselfly**
+- **True-E2E-encryption-at-rest: 4 tools** 🎯 **4-MILESTONE at Etebase**
+- **Matrix-chat-community: 4 tools** 🎯 **4-MILESTONE at Etebase**
+- **Companion-tool-to-popular-selfhosted: 2 tools** 🎯 **2-MILESTONE**
+- **Free-tier-PaaS-deploy-option: 2 tools** 🎯 **2-MILESTONE**
+- **Photo-management + AI-face sub-cat MATURED: 2 tools** 🎯 **2-MILESTONE at Damselfly**
+- **NEW families**: Desktop-client-companion-app, Product-Hunt-featured, HelloGitHub-featured, Rich-community-derivatives, Public-uptime-monitoring, Unraid-Community-Apps-listed, IRC-community-channel, Ollama-local-inference, Demo-video-in-README
+
+### New precedents this batch
+- **"private-AI-chat + document-corpus-RAG" CROWN-JEWEL Tier 1 sub-category** (SecureAI 1st — confessional-PII + RAG-corpus = very high-sensitivity class)
+- **Photo-management + AI-face-recognition sub-cat MATURED at 2 tools** at Damselfly — Damselfly joins Immich/PhotoPrism-class
+- **Etebase 190-TOOL HUB-OF-CREDENTIALS MILESTONE** (tier downgraded due to E2E — good illustration that E2E reduces server blast-radius)
+- **"child-face-recognition-data-retention-HIGHEST-severity" convention** (Damselfly 1st — distinct severity tier for kids' faces)
+- **"AI-chat-history-confessional-PII" convention** (SecureAI 1st — people confide in AI, data is sensitive)
+- **"RAG-prompt-injection-leakage-risk" convention** (SecureAI 1st — rare prompt-injection class specifically for RAG)
+- **"EXIF-strip-home-geo-before-public-share" convention** (ChronoFrame 1st — HIGH-severity for public-facing galleries)
+- **"true-E2E-server-cannot-read-user-data" positive-signal** (Etebase 1st formally — highest-positive-signal tier)
+- **"E2E-key-loss-no-recovery-by-design" convention** (Etebase 1st — feature-not-bug reminder for user-backup discipline)
+- **Community channel taxonomy now complete**: Discord, Matrix, IRC, Slack, Discourse, Reddit, Telegram, shared-ecosystem (8 families)
+- **15+ new recipe conventions + 15+ new positive-signals + 5 new neutral-signals**
+
+### Notes
+- **190-TOOL HUB-OF-CREDENTIALS at Etebase** — very nice symmetry that this milestone lands on an E2E tool (tier downgrade illustrates how E2E reduces blast-radius)
+- **65 CROWN-JEWEL sub-categories** — consolidation genuinely overdue; target post-b130
+- **Community-channel taxonomy complete** — 8 distinct channel types covered
+- **"private-AI-chat + document-corpus-RAG" is a genuinely new CROWN-JEWEL class** worth watching: Paperless-integration + chat-history + embeddings + optional-OpenAI backend = very-high composite sensitivity
+- **"true-E2E-server-cannot-read-user-data"** deserves highest-positive-signal recognition — it's the architectural answer to the question "what if the server gets owned"
+- **Damselfly's "child-face-recognition-HIGHEST-severity"** should propagate to any photo-management tool with AI-face recognition going forward
