@@ -4841,3 +4841,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - TaskTrove (1063★) — tasktrove.md (Go GTD task manager, Inbox/Today/Someday, Org-Mode, CLI, MIT)
 - Progress: done 768 / pending 503 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 12:00 UTC — batch 153
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 153 — fixed atlas-network slug; skipped Panora (OSS sunset); 5 new recipes:
+  - Journiv (1032★) — journiv.md (Node.js AI journaling, mood tracking, streaks, OIDC, MIT)
+  - Keeper (1029★) — keeper.md (TypeScript unified calendar aggregator, MCP server OAuth 2.1, MIT)
+  - CaddyManager (1027★) — caddymanager.md (Rust+React Caddy Admin API web UI, route management, MIT)
+  - Withoutbg (1026★) — withoutbg.md (Python remove.bg-compatible BG removal API, rembg+BRIA)
+  - Erugo (1022★) — erugo.md (PHP+Laravel file sharing, reverse share tokens, OIDC, S3, MIT)
+- Progress: done 774 / pending 496 / skipped 4 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

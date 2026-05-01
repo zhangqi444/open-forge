@@ -6164,7 +6164,7 @@
          "name" : "Atlas",
          "slug" : "atlas-network",
          "stars" : 1046,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Automated YouTube downloads and management",
@@ -6188,7 +6188,7 @@
          "name" : "Journiv",
          "slug" : "journiv",
          "stars" : 1032,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Calendar syncing and booking tool",
@@ -6196,15 +6196,16 @@
          "name" : "Keeper",
          "slug" : "keeper",
          "stars" : 1029,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "API endpoints for a catalogue of integrations for SaaS software",
          "github" : "github.com/panoratech/Panora",
          "name" : "Panora",
+         "skip_reason" : "OSS product sunset, now SaaS only at getpanora.com",
          "slug" : "panora",
          "stars" : 1027,
-         "status" : "pending"
+         "status" : "skipped"
       },
       {
          "desc" : "Web interface for managing Caddy",
@@ -6212,7 +6213,7 @@
          "name" : "CaddyManager",
          "slug" : "caddymanager",
          "stars" : 1027,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "AI-powered image background removal",
@@ -6220,7 +6221,7 @@
          "name" : "withoutbg",
          "slug" : "withoutbg",
          "stars" : 1026,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Easy-to-deploy file sharing app with a sleek interface",
@@ -6228,7 +6229,7 @@
          "name" : "Erugo",
          "slug" : "erugo",
          "stars" : 1022,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Interface for managing, editing, and sharing Docker Compose files",
