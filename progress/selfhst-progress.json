@@ -5908,7 +5908,7 @@
          "name" : "Z-Wave JS UI",
          "slug" : "z-wave-js-ui",
          "stars" : 1208,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Spotify track, playlist, and album downloader",
@@ -5916,7 +5916,7 @@
          "name" : "Spooty",
          "slug" : "spooty",
          "stars" : 1202,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Secure IMAP mail server",
@@ -5932,7 +5932,7 @@
          "name" : "yubal",
          "slug" : "yubal",
          "stars" : 1197,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Cron management web interface",
@@ -5940,7 +5940,7 @@
          "name" : "Cr*nMaster",
          "slug" : "cr-nmaster",
          "stars" : 1194,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Encrypted secret sharing for everyone",
@@ -5948,7 +5948,7 @@
          "name" : "Hemmelig",
          "slug" : "hemmelig",
          "stars" : 1191,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Download torrents directly from the CLI",

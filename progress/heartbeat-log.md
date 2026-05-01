@@ -4750,3 +4750,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Workout Tracker (1211★) — workout-tracker.md (Go GPX/TCX/FIT fitness tracker, heatmap, segments, Fitotrack+Fitbit)
 - Progress: done 734 / pending 537 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 10:15 UTC — batch 146
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 146 — 5 new recipes:
+  - Z-Wave JS UI (1208★) — zwave-js-ui.md (Node.js+Vue Z-Wave control panel + MQTT gateway, HA integration, MIT)
+  - Spooty (1202★) — spooty.md (NestJS Spotify→YouTube downloader, playlist subscriptions, formats, MIT)
+  - Yubal (1197★) — yubal.md (Python+yt-dlp YouTube Music downloader, organized library, LRC+ReplayGain, ext)
+  - CronMaster (1194★) — cronmaster.md (Next.js cron job manager, live logs, OIDC, scripts, privileged)
+  - Hemmelig (1191★) — hemmelig.md (Node.js/Fastify encrypted secret sharing, TweetNaCl client-side E2E, MIT)
+- Progress: done 739 / pending 532 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
