@@ -4594,3 +4594,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - BackupPC (1594★) — backuppc.md (Perl backup server, pool dedup, SMB+rsync+SSH, web UI)
 - Progress: done 675 / pending 597 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 06:30 UTC — batch 134
+
+- Step 0: git pull clean (already up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 134 — 5 recipes added:
+  - SnappyMail (1588★) — snappymail.md (PHP webmail, no-DB, RainLoop fork, AGPL)
+  - Lightweight Music Server (1587★) — lms.md (C++/Wt, Subsonic API, MusicBrainz, recommendations)
+  - Wiredoor (1586★) — wiredoor.md (WireGuard + NGINX ingress-as-a-service, Docker + Helm)
+  - Traggo (1570★) — traggo.md (tag-based time tracking, Go, calendar UI)
+  - Alexandrie (1567★) — alexandrie.md (Node.js knowledge base, MySQL + S3, OIDC, offline PWA)
+- Progress: done 680 / pending 592 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
