@@ -5347,7 +5347,7 @@
          "name" : "AdGuardHome Sync",
          "slug" : "adguardhome-sync",
          "stars" : 1660,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Tournament management platform",
@@ -5355,7 +5355,7 @@
          "name" : "Bracket",
          "slug" : "bracket",
          "stars" : 1651,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Real-time logging dashboard for Kubernetes",
@@ -5363,7 +5363,7 @@
          "name" : "Kubetail",
          "slug" : "kubetail",
          "stars" : 1651,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Server configuration and management with a focus on simplicity",
@@ -5371,7 +5371,7 @@
          "name" : "CloudPanel",
          "slug" : "cloudpanel",
          "stars" : 1651,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight tool for managing Linux VMs",
@@ -5379,7 +5379,7 @@
          "name" : "Flint",
          "slug" : "flint",
          "stars" : 1634,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Manage and control Docker containers from the terminal",

@@ -4568,3 +4568,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Progress: done 665 / pending 607 / skipped 2 / total 1274
 - Also fixed: stale "rows: 1274" prefix line in selfhst-progress.json
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 05:55 UTC — batch 132
+
+- Step 0: git pull --rebase — already up to date (batch 131 clean on main)
+- Step 1: 4 open GitHub issues (#24–27); all addressed in ce8accf; no new issues
+- Step 2: selfh.st batch 132 — 5 recipes (top-5 pending by stars):
+  - AdGuardHome Sync (1660★) — adguardhome-sync.md (Go binary + Docker; origin→replica AGH config sync)
+  - Bracket (1651★) — bracket.md (FastAPI + Next.js tournament manager; Docker + Postgres)
+  - Kubetail (1651★) — kubetail.md (K8s real-time log dashboard; CLI binary + Helm)
+  - CloudPanel (1651★) — cloudpanel.md (server control panel; bash installer; PHP/Node/Python)
+  - Flint (1634★) — flint.md (KVM management; single Go binary + embedded web UI)
+- Progress: done 670 / pending 602 / skipped 2 / total 1274
+- Build: OK
