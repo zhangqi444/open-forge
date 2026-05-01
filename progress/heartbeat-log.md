@@ -4930,3 +4930,23 @@ Apps: eigenfocus (922★), gravity (920★), tracktor (917★), chevereto (914�
 - ytptube: Web GUI for yt-dlp with scheduling, Apprise notifications, and built-in video player
 
 Build: pass (1270 lines). Total done: 811/1270. Pending: 459.
+
+## 2026-05-01 — Batch 161
+
+Apps: automad (890★), ontime (882★), gaseous (876★), solidinvoice (873★), weddingshare (870★), notesnook (869★), notifiarr (869★), faved (869★)
+- automad: PHP flat-file CMS and template engine; Docker single container (Nginx+PHP 8.3); no database
+- ontime: Browser-based event rundown/show-calling tool for live productions; Docker Compose; OSC integration
+- gaseous: .NET self-hosted ROM manager with in-browser emulation (EmulatorJS); MariaDB + Docker Compose; IGDB API key required
+- solidinvoice: PHP/Symfony open-source invoicing platform; MySQL + Docker Compose; quotes, invoices, recurring billing; MIT
+- weddingshare: Guest photo sharing gallery (rebranded to Memtly); note: original repo archived, use github.com/Memtly/Memtly.Community
+- notesnook: .NET sync server for Notesnook E2EE notes app; multi-service Docker Compose (MongoDB + MinIO + SSE + Identity); AGPL-3.0; self-hosting functional but unsupported
+- notifiarr: Go unified client for Notifiarr.com notification platform; *arr integration, Discord commands, TRaSH profile sync; MIT
+- faved: PHP/React bookmark manager; SQLite; Docker Compose; nested tags, PWA, browser bookmarklet; MIT
+Build: pass (1270 lines). Total done: 821/1272. Pending: 451.
+Commit: e21d5d5
+
+## 2026-05-01 17:02 UTC — Batch 162
+- Wrote 5 new recipes: recipesage, pinepods, fitbit-health-dashboard, posterizarr, castopod
+- Fixed duplicate status entries for gravity and hauk in selfhst-progress.json
+- Committed and pushed: 2911f03
+- Next pending: 8mb-local (845★), portall (839★), wygiwyh (838★), flow-like (838★), hister (833★)
