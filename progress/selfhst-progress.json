@@ -6772,14 +6772,14 @@
          "desc" : "Automated homelab setups using Docker",
          "stars" : 772,
          "github" : "github.com/SimpleHomelab/Deployrr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "deployrr",
          "name" : "Deployrr"
       },
       {
          "stars" : 771,
          "name" : "Fenrus",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "fenrus",
          "github" : "github.com/revenz/Fenrus",
          "desc" : "Personal home page for quick access to personal apps"
@@ -6787,14 +6787,14 @@
       {
          "stars" : 767,
          "github" : "github.com/kittendevv/Invio",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "invio",
          "name" : "Invio",
          "desc" : "Minimalist invoicing without the bloat"
       },
       {
          "name" : "Lingarr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "lingarr",
          "github" : "github.com/lingarr-translate/lingarr",
          "stars" : 763,
@@ -6802,7 +6802,7 @@
       },
       {
          "stars" : 757,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "traefik-log-dashboard",
          "name" : "Traefik Log Dashboard",
          "github" : "github.com/hhftechnology/traefik-log-dashboard",
