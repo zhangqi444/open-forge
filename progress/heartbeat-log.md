@@ -4672,3 +4672,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Cryptgeon (1401★) — cryptgeon.md (Rust+Redis self-destructing secrets, client-side AES-256-GCM, CLI)
 - Progress: done 705 / pending 567 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 08:30 UTC — batch 140
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 140 — 5 recipes added:
+  - Unpackerr (1397★) — unpackerr.md (Go daemon, extract archives for Starr apps, watch-folder mode)
+  - TRIP (1386★) — trip.md (Python/FastAPI POI + trip planner, OIDC, MIT)
+  - Nextcloud Deck (1377★) — nextcloud-deck.md (Nextcloud kanban app, mobile apps, AGPL)
+  - WatchState (1370★) — watchstate.md (PHP play-state sync Jellyfin+Plex+Emby, webhooks, MIT)
+  - Open DroneLog (1362★) — open-dronelog.md (Rust+DuckDB+React drone log analyzer, Docker+desktop)
+- Progress: done 709 / pending 563 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

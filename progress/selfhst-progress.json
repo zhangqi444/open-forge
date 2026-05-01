@@ -5667,7 +5667,7 @@
          "name" : "Unpackerr",
          "slug" : "unpackerr",
          "stars" : 1397,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Minimalist map tracker and trip planner",
@@ -5675,7 +5675,7 @@
          "name" : "TRIP",
          "slug" : "trip",
          "stars" : 1386,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Kanban-style project management app for Nextcloud",
@@ -5691,7 +5691,7 @@
          "name" : "WatchState",
          "slug" : "watchstate",
          "stars" : 1370,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Drone flight log analyzer and dashboard",
@@ -5699,7 +5699,7 @@
          "name" : "Open DroneLog",
          "slug" : "open-dronelog",
          "stars" : 1362,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "UPnP-based media server",
