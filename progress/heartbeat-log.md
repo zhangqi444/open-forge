@@ -4893,3 +4893,9 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - TasmoAdmin (965★) — tasmoadmin.md (PHP Tasmota device manager, bulk OTA, auto-scan, HA addon, MIT)
 - Progress: done 789 / pending 481 / skipped 4 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 13:45 UTC — Batch 157
+
+Apps: nzb-dav (962★), swetrix (960★), openbudgeteer (956★), fluidcalendar (955★), agregarr (952★)
+Status: 5 done | 794 total done | 476 pending
+Commit: TBD
