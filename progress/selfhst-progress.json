@@ -5539,7 +5539,7 @@
          "name" : "Global Threat Map",
          "slug" : "global-threat-map",
          "stars" : 1485,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Web slideshows for Immich",
@@ -5547,7 +5547,7 @@
          "name" : "Immich Kiosk",
          "slug" : "immich-kiosk",
          "stars" : 1472,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Complete file sharing solution",
@@ -5563,7 +5563,7 @@
          "name" : "HortusFox",
          "slug" : "hortusfox",
          "stars" : 1468,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hosted image sharing platform",
@@ -5571,7 +5571,7 @@
          "name" : "Slink",
          "slug" : "slink",
          "stars" : 1460,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Fast and lightweight messenger",
@@ -5579,7 +5579,7 @@
          "name" : "Databag",
          "slug" : "databag",
          "stars" : 1448,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Modern web interface for Borg Backup",

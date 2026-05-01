@@ -4633,3 +4633,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Transfer.zip (1470★) — transfer-zip.md (WebRTC P2P + stored file transfer, WeTransfer alt)
 - Progress: done 690 / pending 582 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 07:45 UTC — batch 137
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 137 — 5 recipes added:
+  - Global Threat Map (1485★) — globalthreatmap.md (Next.js OSINT situational-awareness map, Valyu+Mapbox)
+  - Immich Kiosk (1472★) — immich-kiosk.md (Go slideshow display for Immich, TV/photo-frame)
+  - HortusFox (1468★) — hortusfox.md (PHP+MariaDB plant management, tasks/inventory/calendar/chat)
+  - Slink (1460★) — slink.md (Symfony+SvelteKit image sharing, OIDC, ShareX, S3/SMB, AGPL)
+  - Databag (1448★) — databag.md (Go federated E2E messenger, Pi-Zero-capable, audio/video)
+- Progress: done 695 / pending 577 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
