@@ -4698,3 +4698,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Watcharr (1340★) — watcharr.md (Go+Svelte watch-tracker, Jellyfin/Plex/Emby sync, PWA, MIT)
 - Progress: done 715 / pending 557 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 09:00 UTC — batch 142
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 142 — 5 recipes added:
+  - LinguaCafe (1337★) — linguacafe.md (PHP+MySQL language-learning e-reader, 18 languages, Anki export, Jellyfin)
+  - EditMind (1333★) — edit-mind.md (Node.js AI video editing automation, captions/highlights/viral clips)
+  - Fireshare (1323★) — fireshare.md (Python+SQLite game clip sharing, SteamGridDB art, transcoding, MIT)
+  - Zane-Ops (1320★) — zane-ops.md (Python+Django PaaS on Docker Swarm, zero-downtime, metrics+logs, MIT)
+  - Domain Locker (1314★) — domain-locker.md (TypeScript+Angular domain monitoring, WHOIS+SSL+DNS+uptime, Apprise)
+- Progress: done 719 / pending 553 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

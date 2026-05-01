@@ -5747,7 +5747,7 @@
          "name" : "LinguaCafe",
          "slug" : "linguacafe",
          "stars" : 1331,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "AI-powered video indexing and search",
@@ -5755,7 +5755,7 @@
          "name" : "Edit Mind",
          "slug" : "edit-mind",
          "stars" : 1328,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Share your game clips, videos, or other media via unique links",
@@ -5763,7 +5763,7 @@
          "name" : "Fireshare",
          "slug" : "fireshare",
          "stars" : 1323,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Platform for deploying static sites, web apps, databases, and CRON jobs",
@@ -5779,7 +5779,7 @@
          "name" : "Domain Locker",
          "slug" : "domain-locker",
          "stars" : 1316,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Process, log, and visualize energy data",
