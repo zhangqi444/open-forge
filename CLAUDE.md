@@ -1,6 +1,8 @@
 # CLAUDE.md
 
-Instructions for any Claude Code session working *on* the open-forge plugin (not running it). Different audience from `plugins/open-forge/skills/open-forge/SKILL.md`, which is what an end-user's Claude reads to *use* the plugin.
+Instructions for any AI coding session working *on* the open-forge plugin (not running it). Different audience from `plugins/open-forge/skills/open-forge/SKILL.md`, which is what an end-user's agent reads to *use* the plugin.
+
+> **Also accessible as [`AGENTS.md`](AGENTS.md)** per the [agents.md](https://agents.md) convention. AGENTS.md is a thin landing page that points here; this file is the canonical reference. Tools that look for either filename find their way in.
 
 ## What is open-forge
 
@@ -407,6 +409,7 @@ The dominant path for first-run discipline is now **user-submitted feedback issu
 ```
 open-forge/
 ├── CLAUDE.md                              ← you are reading
+├── AGENTS.md                              ← agents.md-standard landing page; thin pointer to CLAUDE.md
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest

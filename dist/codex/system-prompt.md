@@ -16,7 +16,9 @@ After hardening, offer the post-deploy feedback flow per references/modules/feed
 
 # CLAUDE.md
 
-Instructions for any Claude Code session working *on* the open-forge plugin (not running it). Different audience from `plugins/open-forge/skills/open-forge/SKILL.md`, which is what an end-user's Claude reads to *use* the plugin.
+Instructions for any AI coding session working *on* the open-forge plugin (not running it). Different audience from `plugins/open-forge/skills/open-forge/SKILL.md`, which is what an end-user's agent reads to *use* the plugin.
+
+> **Also accessible as [`AGENTS.md`](AGENTS.md)** per the [agents.md](https://agents.md) convention. AGENTS.md is a thin landing page that points here; this file is the canonical reference. Tools that look for either filename find their way in.
 
 ## What is open-forge
 
@@ -330,7 +332,7 @@ If validation fails (upstream URL 404s, software is out of scope, methodology is
 - Cite the upstream URL at the top of every section per *Strict doc-verification policy*.
 - Flag community-maintained methods with the required ⚠️ blockquote.
 - Re-scan against the *Sanitization principles* strip-list — if any identifier slipped through user-supplied content, redact before drafting.
-- **If your patch touches `CLAUDE.md`, `plugins/open-forge/skills/open-forge/SKILL.md`, or any file under `plugins/open-forge/skills/open-forge/references/modules/`, regenerate the multi-platform distribution bundles**: `./scripts/build-dist.sh all`. Include the regenerated `dist/` files in the same PR. The bundles concatenate canonical sources for non-Claude-Code platforms (Codex / Cursor / Aider / Continue / generic); they drift if not regenerated, which silently breaks those platforms. CI enforces this — see `.github/workflows/dist-bundles.yml`.
+- **If your patch touches `CLAUDE.md`, `plugins/open-forge/skills/open-forge/SKILL.md`, or any file under `plugins/open-forge/skills/open-forge/references/`, regenerate the multi-platform distribution bundles**: `./scripts/build-dist.sh all`. Include the regenerated `dist/` files in the same PR. The bundles concatenate canonical sources for non-Claude-Code platforms (Codex / Cursor / Aider / Continue / generic); they drift if not regenerated, which silently breaks those platforms. CI enforces this — see `.github/workflows/dist-bundles.yml`.
 - Bump `plugin.json` `version` per *Versioning + publish flow*.
 - If multiple feedback issues for the same recipe are pending, batch them into a single PR.
 
@@ -423,6 +425,7 @@ The dominant path for first-run discipline is now **user-submitted feedback issu
 ```
 open-forge/
 ├── CLAUDE.md                              ← you are reading
+├── AGENTS.md                              ← agents.md-standard landing page; thin pointer to CLAUDE.md
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
