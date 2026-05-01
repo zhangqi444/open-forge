@@ -4332,3 +4332,59 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Mail-Archiver's "personal-vs-workspace scope tier distinction"** is useful conceptual framing — helps operators correctly size risk
 - **Pattern-consolidation increasingly overdue**: 56 CROWN-JEWEL sub-cats, 181 hub-of-credentials, 173 transparent-maintenance, 167 institutional-stewardship. Consolidation pass after batch 130 might be warranted.
 - **Runway remaining**: 633 tools — if ~5/batch continues, ~126 batches remaining
+
+## 2026-05-01 02:56 UTC — batch 126 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 126)
+- **tracearr** (1784★) — Next.js multi-backend Plex+Jellyfin+Emby monitoring w/ geolocation + anti-sharing detection (connorgallopo; nightly CI; Crowdin; Ko-Fi; Discord; docs.tracearr.com; GHCR). **182nd hub-of-credentials CROWN-JEWEL Tier 1**. **Media-stack-credential-aggregator sub-cat: 5 tools** 🎯 **5-TOOL MILESTONE at Tracearr** (MATURED). **Nightly-CI-quality-ops: 3 tools** 🎯 **3-MILESTONE at Tracearr**. **Community-translation-infrastructure: 4 tools** 🎯 **4-MILESTONE at Tracearr**. **Ko-Fi-funding: 4 tools** 🎯 **4-MILESTONE at Tracearr**. **NEW recipe conventions**: "single-backend-vs-multi-backend-tradeoff" (1st — Tracearr) + "viewer-IP-geolocation-PII-retention-discipline" (1st — Tracearr) + "anti-account-sharing-detection-human-tracking-ethics" (1st — Tracearr). **NEW positive-signal: "GHCR-primary-registry"** (1st formally — Tracearr). 168th institutional-stewardship + 174th transparent-maintenance.
+- **diyhue** (1784★) — Python Hue-Bridge emulator on RPi (diyhue org; Discourse forum + Slack community; multi-arch Docker arm+amd64; ZigBee/MiLight/Neopixel/ESP8266; no-cloud by design; decade-plus). **183rd hub-of-credentials Tier 2**. **Decade-plus-OSS: 13 tools** 🎯 **13-MILESTONE at diyHue**. **Multi-community-channel-presence: 5 tools** 🎯 **5-MILESTONE at diyHue** (now with Discourse+Slack). **Discourse-community-channel: 1 tool** 🎯 **NEW FAMILY** (diyHue). **Slack-community-channel: 1 tool** 🎯 **NEW FAMILY** (diyHue). **Resource-lightweight-RPi-friendly: 3 tools** 🎯 **3-MILESTONE at diyHue** (formally tracked). **Multi-arch-Docker-image: 3 tools** 🎯 **3-MILESTONE at diyHue**. **NEW positive-signals**: "custom-firmware-flashing-commodity-hardware" (1st — diyHue) + "no-cloud-by-design-explicit-positioning" (1st formally — diyHue) + "multi-protocol-IoT-bridge" (1st — diyHue). 169th institutional-stewardship + 175th transparent-maintenance.
+- **diskover** (1774★) — Python+PHP+Elasticsearch enterprise-grade file-indexer (diskoverdata commercial company; CE free forever; Jan-2026 v2.3.4 recent release; v1.X EOL warning; plugin API; cross-platform Linux/macOS/Win10; commercial-parallel enterprise tier). **184th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "file-system-metadata-index + storage-recon"** (1st — Diskover; metadata-only-at-scale distinct from oCIS file-content). **CROWN-JEWEL Tier 1: 64 tools / 57 sub-categories**. **Commercial-parallel-with-OSS-core: 17 tools** 🎯 **17-MILESTONE at Diskover**. **Decade-plus-OSS: 14 tools** 🎯 **14-MILESTONE at Diskover**. **Plugin-API-architecture: 6 tools** 🎯 **6-MILESTONE at Diskover**. **Institutional-stewardship: 170 tools** 🎯 **170-MILESTONE at Diskover**. **Elasticsearch-required-dependency: 4 tools** 🎯 **4-MILESTONE at Diskover**. **Cross-platform-server-tool: 2 tools** (Cloud Commander+Diskover) 🎯 **2-MILESTONE**. **Genuine-CE-unlimited-time: 1 tool** 🎯 **NEW FAMILY** (Diskover — CE is forever-free, not trial). **NEW positive-signals**: "explicit-EOL-major-version-warning" (1st — Diskover) + "recent-release-confirms-active-maintenance" (1st — Diskover). **170th institutional-stewardship** + 176th transparent-maintenance.
+- **immich-public-proxy** (1771★) — Node.js purpose-built public-proxy for Immich share-links (alangrainger; live demo at immich-demo.note.sx; Docker + Kubernetes docs; stateless; attack-surface-reduction exemplar). **185th hub-of-credentials Tier 3** (purpose-built proxy not aggregator). **Live-demo-with-public-credentials: 4 tools** 🎯 **4-MILESTONE at IPP**. **Kubernetes-native-install-docs: 4 tools** 🎯 **4-MILESTONE at IPP**. **Purpose-built-public-proxy-tool: 1 tool** 🎯 **NEW FAMILY** (IPP). **Companion-tool-to-popular-selfhosted: 1 tool** 🎯 **NEW FAMILY** (IPP — distinct from alternative-to). **NEW recipe conventions**: "proxy-API-key-scope-discipline" (1st — IPP). **NEW positive-signals**: "purpose-built-public-proxy-reduce-attack-surface" (1st — IPP; important architectural pattern) + "attack-surface-reduction-via-read-only-proxy" (1st — IPP). **NEW neutral-signal: "companion-tool-for-popular-selfhosted-app"** (1st — IPP). 171st institutional-stewardship + 177th transparent-maintenance.
+- **dockpeek** (1765★) — Python/Flask lightweight Docker dashboard w/ Traefik-label-scraping + multi-host (dockpeek org; GHCR + Docker Hub; Buy Me a Coffee funded; RO-socket recommended; zero-config). **186th hub-of-credentials Tier 2**. **Docker-socket-mount-privilege-escalation: 9 tools** 🎯 **9-MILESTONE at Dockpeek**. **Docker-dashboard-tool family: 7 tools** 🎯 **7-MILESTONE at Dockpeek** (Portainer+Dozzle+Yacht+Komodo+Homepage+Beszel+Dockpeek). **BuyMeACoffee-funding: 2 tools** (Mail-Archiver+Dockpeek) 🎯 **2-MILESTONE**. **NEW recipe convention: "Docker-over-TCP-mutual-TLS-mandatory"** (1st — Dockpeek; HIGH-severity). **NEW positive-signals**: "Traefik-label-scraping-auto-discovery" (1st — Dockpeek) + "image-update-check-functionality" (1st — Dockpeek) + "zero-config-default-easy-deploy" (1st — Dockpeek). 172nd institutional-stewardship + 178th transparent-maintenance.
+
+**Batch 126 lengths:** tracearr 150, diyhue 154, diskover 145, immich-public-proxy 136, dockpeek 146.
+**State:** 644 done / 2 skipped / 628 pending — **50.5% done.**
+
+### 🎯 MILESTONES this batch
+- **Institutional-stewardship: 172 tools** 🎯 **170-MILESTONE at Diskover**
+- **Commercial-parallel-with-OSS-core: 17 tools** 🎯 **17-MILESTONE at Diskover**
+- **Decade-plus-OSS: 14 tools** 🎯 **14-MILESTONE at Diskover**
+- **Hub-of-credentials: 186 tools**
+- **Transparent-maintenance: 178 tools**
+- **CROWN-JEWEL Tier 1: 64 / 57** (+1 new sub-cat: file-system-metadata-index + storage-recon)
+- **Docker-socket-mount-priv-esc: 9 tools** 🎯 **9-MILESTONE at Dockpeek**
+- **Docker-dashboard-tool family: 7 tools** 🎯 **7-MILESTONE at Dockpeek**
+- **Plugin-API-architecture: 6 tools** 🎯
+- **Media-stack-credential-aggregator: 5 tools** 🎯 **5-MILESTONE at Tracearr (MATURED)**
+- **Multi-community-channel-presence: 5 tools** 🎯 **5-MILESTONE at diyHue**
+- **Community-translation-infrastructure: 4 tools** 🎯
+- **Ko-Fi-funding: 4 tools** 🎯
+- **Live-demo-with-public-credentials: 4 tools** 🎯
+- **Kubernetes-native-install-docs: 4 tools** 🎯
+- **Elasticsearch-required-dependency: 4 tools** 🎯
+- **Nightly-CI-quality-ops: 3 tools** 🎯
+- **Multi-arch-Docker-image: 3 tools** 🎯
+- **Resource-lightweight-RPi-friendly: 3 tools** 🎯
+- **NEW families**: Discourse-community-channel, Slack-community-channel, Genuine-CE-unlimited-time, Purpose-built-public-proxy-tool, Companion-tool-to-popular-selfhosted
+
+### New precedents this batch
+- **"file-system-metadata-index + storage-recon" CROWN-JEWEL Tier 1 sub-category** (Diskover 1st — metadata-at-scale is reconnaissance-treasure distinct from file-content aggregators)
+- **"Media-stack-credential-aggregator" sub-cat MATURED at 5 tools** at Tracearr (triple-backend = triple-blast-radius)
+- **"Purpose-built-public-proxy" family** (IPP 1st — important attack-surface-reduction architectural pattern)
+- **"Companion-tool-to-popular-selfhosted" family** (IPP 1st — distinct from alternative-to)
+- **"Discourse-community-channel" + "Slack-community-channel" families** (diyHue 1st each — rounding out community-channel taxonomy)
+- **"Genuine-CE-unlimited-time" family** (Diskover 1st — distinct from freemium/trial; CE is forever-free with paid-tier advanced features)
+- **"Docker-over-TCP-mutual-TLS-mandatory" convention** (Dockpeek 1st — critical for multi-host Docker dashboards)
+- **15+ new recipe conventions + 15+ new positive-signals + 3 new neutral-signals**
+
+### Notes
+- **170-TOOL INSTITUTIONAL-STEWARDSHIP MILESTONE at Diskover** — major milestone
+- **Tracearr is a clean media-stack-credential-aggregator exemplar** — holds tokens for all 3 major media servers
+- **IPP's architectural pattern is genuinely important** — purpose-built-public-proxy vs exposing-entire-app is textbook attack-surface-reduction. Worth propagating to future recipes as a general principle.
+- **Diskover's "file-system-metadata-index" CROWN-JEWEL sub-cat is subtle but real** — an indexed listing of all paths/filenames at petabyte-scale = reconnaissance treasure even without file content.
+- **Community-channel taxonomy now covers: Discord, Matrix, IRC, Slack, Discourse, Reddit, Telegram, shared-ecosystem-community-channel** — close to complete.
+- **Docker-socket-mount-priv-esc at 9 tools** — approaching 10-MILESTONE next batch
+- Pattern-consolidation overdue: 57 CROWN-JEWEL sub-cats, 186 hub-of-credentials, 178 transparent-maintenance, 172 institutional-stewardship. Post-batch-130 consolidation pass worth scheduling.
