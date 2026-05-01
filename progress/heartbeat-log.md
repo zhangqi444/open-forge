@@ -5000,3 +5000,8 @@ Commit: e21d5d5
 - Wrote 5 new recipes: listenarr, home-assistant-time-machine, m3u-editor, mafl, git-sync
 - Committed and pushed: 3d82f48
 - Next pending: docker-registry-browser (686*), decypharr (685*), wol (683*)
+
+## 2026-05-01 20:45 UTC — Batch 173
+- Wrote 5 new recipes: docker-registry-browser, decypharr, wol, metadata-remote, jelu
+- Committed and pushed: bc87a71
+- Next pending: pulsarr (677*), invoicerr (676*), nextcloud-tasks (675*)
