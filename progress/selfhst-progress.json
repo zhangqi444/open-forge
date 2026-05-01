@@ -5980,7 +5980,7 @@
          "name" : "RunsOn",
          "slug" : "runson",
          "stars" : 1176,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Web-based IPTV player",
@@ -5988,7 +5988,7 @@
          "name" : "nodecast-tv",
          "slug" : "nodecast-tv",
          "stars" : 1174,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Platform for managing collections of any kind",
@@ -6004,7 +6004,7 @@
          "name" : "Marreta",
          "slug" : "marreta",
          "stars" : 1168,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Encrypted, real-time file sharing",
@@ -6020,7 +6020,7 @@
          "name" : "OwnTracks Recorder",
          "slug" : "owntracks-recorder",
          "stars" : 1159,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple web cloud storage solution",
@@ -6036,7 +6036,7 @@
          "name" : "Rustypaste",
          "slug" : "rustypaste",
          "stars" : 1154,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hosted ZeroTier network controller",

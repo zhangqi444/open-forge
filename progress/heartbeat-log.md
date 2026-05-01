@@ -4776,3 +4776,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Koillection (1172★) — koillection.md (PHP+Symfony collection manager, any physical item, scrapers, 11 langs, MIT)
 - Progress: done 744 / pending 527 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 10:45 UTC — batch 148
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 148 — 5 new recipes:
+  - RunsOn (1176★) — runs-on.md (AWS CloudFormation GitHub Actions runners, spot EC2, 7-15x cheaper, S3 cache)
+  - Nodecast TV (1174★) — nodecast-tv.md (Node.js IPTV player, Xtream+M3U, EPG, VOD+Series, HW transcode, OIDC)
+  - Marreta (1168★) — marreta.md (PHP8.4 paywall bypass, Selenium rendering, browser ext, Telegram bot, S3 cache)
+  - OwnTracks Recorder (1159★) — owntracks-recorder.md (C MQTT/HTTP location storage, live map, GeoJSON, ocat, MIT)
+  - Rustypaste (1154★) — rustypaste.md (Rust pastebin/file upload, curl API, one-shot, URL shortening, no DB, MIT)
+- Progress: done 749 / pending 522 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
