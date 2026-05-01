@@ -6693,21 +6693,21 @@
          "desc" : "Browser-based utility for file conversion and transcription",
          "stars" : 833,
          "slug" : "file-wizard",
-         "status" : "pending",
+         "status" : "done",
          "name" : "File Wizard"
       },
       {
          "name" : "Investbrain",
          "slug" : "investbrain",
          "github" : "github.com/investbrainapp/investbrain",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 831,
          "desc" : "Manage and track investment portfolio performance"
       },
       {
          "desc" : "Location tracking and analysis platform",
          "slug" : "geopulse",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/tess1o/geopulse",
          "name" : "GeoPulse",
          "stars" : 820
@@ -6716,7 +6716,7 @@
          "github" : "github.com/neodb-social/neodb",
          "desc" : "Federated tracking server",
          "name" : "NeoDB",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "neodb",
          "stars" : 814
       },
@@ -6726,7 +6726,7 @@
          "stars" : 812,
          "name" : "selfh.st/icons",
          "slug" : "selfh-st-icons",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple and blazingly fast URL shortener",
