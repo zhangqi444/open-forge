@@ -6492,9 +6492,8 @@
          "desc" : "DNS and DHCP server with ad-blocking",
          "stars" : 920,
          "github" : "github.com/BeryJu/gravity",
-         "status" : "pending",
-         "slug" : "gravity",
          "status" : "done",
+         "slug" : "gravity",
          "name" : "Gravity"
       },
       {
@@ -6523,7 +6522,6 @@
       },
       {
          "name" : "Hauk",
-         "status" : "pending",
          "github" : "github.com/bilde2910/Hauk",
          "slug" : "hauk",
          "status" : "done",
@@ -6614,12 +6612,12 @@
          "desc" : "Collaborative recipes, meals, and shopping lists",
          "stars" : 862,
          "name" : "RecipeSage",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "recipesage",
          "github" : "github.com/julianpoy/RecipeSage"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "pinepods",
          "name" : "PinePods",
          "stars" : 852,
@@ -6629,7 +6627,7 @@
       {
          "slug" : "fitbit-health-dashboard",
          "github" : "github.com/arpanghosh8453/fitbit-grafana",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Fitbit Health Dashboard",
          "stars" : 852,
          "desc" : "Script for FitBit data retrieval, storage, and visualization"
@@ -6639,14 +6637,14 @@
          "github" : "github.com/fscorrupt/posterizarr",
          "name" : "Posterizarr",
          "slug" : "posterizarr",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 849
       },
       {
          "desc" : "Opensource hosting platform for podcasters",
          "name" : "Castopod",
          "slug" : "castopod",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/ad-aures/castopod",
          "stars" : 845
       },
