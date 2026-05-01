@@ -4724,3 +4724,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Explo (1282★) — explo.md (Go music discovery, ListenBrainz recs, YouTube/Soulseek, Navidrome/Jellyfin playlists)
 - Progress: done 724 / pending 547 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 09:45 UTC — batch 144
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 144 — 5 new recipes:
+  - Sharkord (1280★) — sharkord.md (TypeScript+Bun Discord-like platform, Mediasoup SFU voice, alpha)
+  - Relaticle (1273★) — relaticle.md (PHP/Laravel 12 CRM, MCP server 30 tools, AI-native, AGPL)
+  - CookCLI (1265★) — cookcli.md (Rust Cooklang CLI + web server, shopping lists, meal planning)
+  - Lodestone (1259★) — lodestone.md (Rust game server management, Minecraft, playit.gg, macros)
+  - Tirreno (1256★) — tirreno.md (PHP fraud/threat detection framework, rule engine, SDKs, PostgreSQL)
+- Progress: done 729 / pending 542 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

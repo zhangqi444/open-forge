@@ -5828,7 +5828,7 @@
          "name" : "Sharkord",
          "slug" : "sharkord",
          "stars" : 1280,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Modern client relationship management",
@@ -5836,7 +5836,7 @@
          "name" : "Relaticle",
          "slug" : "relaticle",
          "stars" : 1273,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Create recipes and shopping lists using Cooklang",
@@ -5844,7 +5844,7 @@
          "name" : "CookCLI",
          "slug" : "cookcli",
          "stars" : 1265,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Hosting tool for Minecraft and other multiplayer games",
@@ -5852,7 +5852,7 @@
          "name" : "Lodestone",
          "slug" : "lodestone",
          "stars" : 1259,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Open source security framework",
@@ -5860,7 +5860,7 @@
          "name" : "tirreno",
          "slug" : "tirreno",
          "stars" : 1256,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Port tracking interface",
