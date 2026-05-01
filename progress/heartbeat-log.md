@@ -4553,3 +4553,18 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - friendica (1666 ⭐) — Fediverse veteran (ActivityPub + Diaspora + OStatus); PHP/MySQL
 - Fixed malformed header in progress/selfhst-progress.json (stray "rows: 1274" prefix that was breaking JSON.parse)
 - Progress: 664/1274 done (52.1%), 608 pending, 2 skipped
+
+## 2026-05-01 04:40 UTC — batch 130
+
+- Step 0: git pull --rebase clean (already up to date)
+- Step 1: 4 open GitHub issues (#24, #25, #26, #27); all previously addressed in commit ce8accf (progress/issues-log.json); PAT lacks issues:write so API comments/closes blocked. No new issues to action.
+- Step 2: selfh.st batch 130 — 5 recipes added (top-5 by stars among pending):
+  - Statistics for Strava (1687★) — strava-statistics.md
+  - Authgear (1675★) — authgear.md
+  - ClipCascade (1672★) — clipcascade.md
+  - Haptic (1671★) — haptic.md
+  - Friendica (1666★) — already done in prior batch, skipped
+  - **Replacement**: InvoiceShelf (1662★) — invoiceshelf.md
+- Progress: done 665 / pending 607 / skipped 2 / total 1274
+- Also fixed: stale "rows: 1274" prefix line in selfhst-progress.json
+- Build: ./scripts/build-dist.sh all — OK

@@ -5339,7 +5339,7 @@
          "name" : "InvoiceShelf",
          "slug" : "invoiceshelf",
          "stars" : 1662,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Sync AdGuard Home configs across instances",
