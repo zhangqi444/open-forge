@@ -6650,7 +6650,7 @@
       },
       {
          "stars" : 845,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/JMS1717/8mb.local",
          "slug" : "8mb-local",
          "name" : "8mb.local",
@@ -6660,7 +6660,7 @@
          "stars" : 839,
          "github" : "github.com/need4swede/Portall",
          "slug" : "portall",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Portall",
          "desc" : "Generate, track, and organize container ports across multiple hosts"
       },
@@ -6668,14 +6668,14 @@
          "desc" : "Opinionated and powerful finance tracker",
          "stars" : 838,
          "name" : "WYGIWYH",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "wygiwyh",
          "github" : "github.com/eitchtee/WYGIWYH"
       },
       {
          "desc" : "Visual workflow automation platform",
          "slug" : "flow-like",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/TM9657/flow-like",
          "name" : "Flow-Like",
          "stars" : 838
@@ -6685,7 +6685,7 @@
          "desc" : "Blazing fast, content-based search for visited websites",
          "name" : "Hister",
          "slug" : "hister",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 833
       },
       {
