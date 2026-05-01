@@ -6084,7 +6084,7 @@
          "name" : "AutoKitteh",
          "slug" : "autokitteh",
          "stars" : 1124,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Personal music server for collectors and music maniacs",
@@ -6116,7 +6116,7 @@
          "name" : "DumbAssets",
          "slug" : "dumbassets",
          "stars" : 1097,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight and simple identity provider",
@@ -6124,7 +6124,7 @@
          "name" : "Rauthy",
          "slug" : "rauthy",
          "stars" : 1095,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Modern uptime monitoring solution",
@@ -6132,7 +6132,7 @@
          "name" : "Peekaping",
          "slug" : "peekaping",
          "stars" : 1094,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple Markdown note-taking app",
@@ -6140,7 +6140,7 @@
          "name" : "Zen Notes",
          "slug" : "zen-notes",
          "stars" : 1081,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Fast and simple multi-media file server",

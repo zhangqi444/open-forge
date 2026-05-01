@@ -4815,3 +4815,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - FitTrackee (1114★) — fittrackee.md (Python+Flask+Vue workout tracker, PostGIS/OSM, GPX/FIT/TCX, FitoTrack)
 - Progress: done 759 / pending 512 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 11:30 UTC — batch 151
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 151 — 5 new recipes:
+  - AutoKitteh (1124★) — autokitteh.md (Go workflow automation, Temporal durable exec, 60+ integrations, Python, Apache 2.0)
+  - DumbAssets (1097★) — dumbassets.md (Node.js simple asset tracking, QR labels, CSV export, flat-file, MIT)
+  - Rauthy (1095★) — rauthy.md (Rust OIDC/OAuth2/PAM IdP, Passkeys, Hiqlite HA, security-audited, ~35MB RAM, Apache 2.0)
+  - Peekaping (1094★) — peekaping.md (Go uptime monitor, 17 monitor types, 20+ channels, Terraform provider, MIT, beta)
+  - Zen Notes (1081★) — zen-notes.md (Go notes, SQLite+Markdown, BM25 search, tags, canvas, MCP, MIT)
+- Progress: done 764 / pending 507 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
