@@ -6930,7 +6930,7 @@
       },
       {
          "stars" : 716,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/marvinvr/docktail",
          "slug" : "docktail",
          "name" : "DockTail",
@@ -6938,7 +6938,7 @@
       },
       {
          "slug" : "nextcloud-notes",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/nextcloud/notes",
          "name" : "Nextcloud Notes",
          "stars" : 715,
@@ -6948,14 +6948,14 @@
          "desc" : "Lightweight background music and noise remover",
          "stars" : 714,
          "slug" : "fast-music-remover",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/omeryusufyagci/fast-music-remover",
          "name" : "Fast Music Remover"
       },
       {
          "slug" : "xibo",
          "github" : "github.com/xibosignage/xibo",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Xibo",
          "stars" : 710,
          "desc" : "Open source digital signage platform"
@@ -6964,7 +6964,7 @@
          "name" : "Tiny Tiny RSS",
          "slug" : "tiny-tiny-rss",
          "github" : "github.com/tt-rss/tt-rss",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 710,
          "desc" : "Web-based news feed reader and aggregator"
       },
