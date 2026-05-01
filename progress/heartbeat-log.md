@@ -4441,3 +4441,48 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **"private-AI-chat + document-corpus-RAG" is a genuinely new CROWN-JEWEL class** worth watching: Paperless-integration + chat-history + embeddings + optional-OpenAI backend = very-high composite sensitivity
 - **"true-E2E-server-cannot-read-user-data"** deserves highest-positive-signal recognition — it's the architectural answer to the question "what if the server gets owned"
 - **Damselfly's "child-face-recognition-HIGHEST-severity"** should propagate to any photo-management tool with AI-face recognition going forward
+
+## 2026-05-01 03:26 UTC — batch 128 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 128)
+- **bugsink** (1718★) — Django-ish Sentry-SDK-compat error tracking platform (bugsink org; bugsink.com docs+website; one-liner Docker quickstart; CREATE_SUPERUSER env helper; 50+ char SECRET_KEY requirement). **192nd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "error-tracking + stack-trace-accidental-secret-disclosure"** (1st — Bugsink; stack-traces commonly contain env vars/tokens/PII). **CROWN-JEWEL Tier 1: 66 tools / 59 sub-categories**. **Commercial-parallel-with-OSS-core: 19 tools** 🎯 **19-MILESTONE at Bugsink**. **NEW recipe conventions**: "README-quickstart-placeholder-credentials-warning" (1st — Bugsink; admin:admin footgun) + "stack-trace-PII-variable-value-scrubbing-discipline" (1st — Bugsink; HIGH-severity) + "error-event-retention-volume-planning" (1st — Bugsink). **NEW positive-signal: "standard-SDK-compat-drop-in-migration"** (1st — Bugsink; change-one-URL migration elegance). 178th institutional-stewardship + 184th transparent-maintenance.
+- **loggifly** (1711★) — Python Docker-container-log monitor with keyword/regex alerting and auto-restart/stop (clemcer sole-dev; GitHub Pages docs; Apprise-style multi-channel; security-monitoring use-cases like failed Vaultwarden logins). **193rd hub-of-credentials Tier 2**. **Docker-socket-mount-privilege-escalation: 10 tools** 🎯 **🎯 10-TOOL MILESTONE at LoggiFly** — significant milestone, major recurring family. **GitHub-Pages-hosted-docs: 1 tool** 🎯 **NEW FAMILY** (LoggiFly). **NEW recipe conventions**: "regex-pattern-config-secret-inclusion-discipline" (1st — LoggiFly) + "notification-webhook-URL-secret-in-config" (1st — LoggiFly). **NEW positive-signal: "lightweight-alternative-to-full-observability-stack"** (1st — LoggiFly). **NEW neutral-signal: "GitHub-Pages-hosted-docs-site"** (1st — LoggiFly). 179th institutional-stewardship + 185th transparent-maintenance.
+- **timetagger** (1710★) — Async Python+uvicorn self-hosted time-tracker for freelancers (almarklein sole-dev; timetagger.app SaaS parallel; readthedocs; PyPI+Docker dual; separate CLI repo; 3rd-party VSCode extension; tags-not-projects philosophy). **194th hub-of-credentials Tier 2**. **Commercial-parallel-with-OSS-core: 20 tools** 🎯 **20-TOOL MILESTONE at TimeTagger** (significant). **Institutional-stewardship: 180 tools** 🎯 **180-TOOL INSTITUTIONAL-STEWARDSHIP MILESTONE at TimeTagger**. **Third-party-ecosystem-extension: 1 tool** 🎯 **NEW FAMILY** (TimeTagger — distinct from first-party derivatives). **Explicit-product-philosophy-design-choice: 2 tools** (Beaver Habit+TimeTagger) 🎯 **2-MILESTONE**. **NEW positive-signals**: "PyPI-plus-Docker-dual-distribution" (1st — TimeTagger) + "PDF-report-generation-output" (1st — TimeTagger) + "billable-time-log-tamper-evident-audit-trail" (1st — TimeTagger). **NEW neutral-signals**: "ReadTheDocs-hosted-docs" (1st — TimeTagger) + "async-Python-uvicorn-backend" (1st — TimeTagger). **180th institutional-stewardship** + 186th transparent-maintenance.
+- **litlyx** (1706★) — Node.js+MongoDB cookie-free web-analytics (Litlyx org; litlyx.com SaaS; docs.litlyx.com; Discord; 30-second install positioning; explicit GA4/PostHog/Mixpanel alternatives). **195th hub-of-credentials Tier 2**. **Commercial-parallel-with-OSS-core: 21 tools** 🎯 **21-MILESTONE at Litlyx**. **Alternative-to-commercial-tools-explicit-list: 3 tools** (Usertour+Bugsink+Litlyx) 🎯 **3-MILESTONE**. **NEW recipe conventions**: "cookie-free-marketing-does-not-equal-PII-free" (1st — Litlyx; important callout) + "self-host-JS-snippet-not-third-party-CDN" (1st — Litlyx; supply-chain-risk). **NEW positive-signals**: "single-script-tag-integration" (1st — Litlyx) + "cookie-free-GDPR-friendly-positioning" (1st — Litlyx). 181st institutional-stewardship + 187th transparent-maintenance.
+- **maloja** (1702★) — Python music-scrobble database (krateng sole-dev; triple-distribution GitHub+PyPI+Docker; author runs maloja.krateng.ch as public reference instance; associated-artists + multi-artist decomposition; keep-it-simple anti-gimmick philosophy). **196th hub-of-credentials Tier 3**. **Explicit-product-philosophy-design-choice: 3 tools** (Beaver Habit+TimeTagger+Maloja) 🎯 **3-MILESTONE at Maloja**. **NEW recipe convention: "proxy-scrobble-upstream-credential-discipline"** (1st — Maloja). **NEW positive-signals**: "analog-manual-event-entry-option" (1st — Maloja; vinyl/elevator) + "triple-distribution-GitHub-PyPI-Docker" (1st — Maloja) + "author-runs-public-instance-as-reference" (1st — Maloja; eats-own-dog-food). **NEW neutral-signal: "graph-topology-custom-data-model"** (1st — Maloja). 182nd institutional-stewardship + 188th transparent-maintenance.
+
+**Batch 128 lengths:** bugsink 144, loggifly 135, timetagger 149, litlyx 143, maloja 151.
+**State:** 654 done / 2 skipped / 618 pending — **51.3% done.**
+
+### 🎯 MILESTONES this batch
+- **Docker-socket-mount-privilege-escalation: 10 tools** 🎯🎯 **10-TOOL MILESTONE at LoggiFly** (major recurring family)
+- **Institutional-stewardship: 182 tools** 🎯 **180-MILESTONE at TimeTagger**
+- **Commercial-parallel-with-OSS-core: 21 tools** 🎯 **20-MILESTONE at TimeTagger + 21-at-Litlyx** (running away category)
+- **Hub-of-credentials: 196 tools** — on pace for 200 at next batch
+- **Transparent-maintenance: 188 tools**
+- **CROWN-JEWEL Tier 1: 66 / 59** (+1 new sub-cat: error-tracking + stack-trace)
+- **Alternative-to-commercial-tools-explicit-list: 3 tools** 🎯 **3-MILESTONE**
+- **Explicit-product-philosophy-design-choice: 3 tools** 🎯 **3-MILESTONE at Maloja**
+- **NEW families**: GitHub-Pages-hosted-docs, Third-party-ecosystem-extension
+
+### New precedents this batch
+- **"error-tracking + stack-trace-accidental-secret-disclosure" CROWN-JEWEL Tier 1 sub-category** (Bugsink 1st — stack traces are textbook accidental-secret-disclosure hotspot)
+- **Docker-socket-mount-priv-esc MILESTONE 10 tools** at LoggiFly — this pattern recurs broadly (DockFlare, Dockpeek, WUD, Diun, Autoheal, Shepherd, Watchtower-OSS etc. + LoggiFly)
+- **"stack-trace-PII-variable-value-scrubbing-discipline" convention** (Bugsink 1st — HIGH-severity; applies to ANY error-tracking tool recipe)
+- **"cookie-free-marketing-does-not-equal-PII-free" convention** (Litlyx 1st — important debunking-of-marketing-claim convention for privacy-positioned tools)
+- **"self-host-JS-snippet-not-third-party-CDN" convention** (Litlyx 1st — critical supply-chain hygiene for JS-snippet tools)
+- **"author-runs-public-instance-as-reference" positive-signal** (Maloja 1st — "eat your own dog food" proof-of-maintenance)
+- **"triple-distribution-GitHub-PyPI-Docker" positive-signal** (Maloja 1st — robust distribution discipline)
+- **10+ new recipe conventions + 10+ new positive-signals + 5 new neutral-signals**
+
+### Notes
+- **10-TOOL DOCKER-SOCKET-MILESTONE at LoggiFly** — major recurring family milestone. This pattern defines a substantial class of selfhosted-tool risk profiles.
+- **Commercial-parallel family at 21 tools** — clearly the dominant funding/sustainability pattern in the catalog
+- **Litlyx's "cookie-free ≠ PII-free" callout** is a useful privacy-marketing debunking convention — IP and referrer are still PII under GDPR even without cookies
+- **Bugsink's "stack-trace-PII" convention** should propagate to any error-tracking tool recipe — stack traces are a textbook accidental-secret-disclosure hotspot
+- **Hub-of-credentials at 196 tools** — 200-MILESTONE coming next batch
+- **At ~5 recipes/batch, remaining runway**: 618 tools / 5 = ~124 batches
+- **Pattern-consolidation critically overdue**: 59 CROWN-JEWEL sub-cats — scheduling for post-b130 is becoming urgent
