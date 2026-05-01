@@ -7052,7 +7052,7 @@
          "desc" : "Web interface for the Docker Registry HTTP API",
          "github" : "github.com/klausmeyer/docker-registry-browser",
          "slug" : "docker-registry-browser",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Docker Registry Browser",
          "stars" : 686
       },
@@ -7062,18 +7062,18 @@
          "stars" : 685,
          "name" : "Decypharr",
          "slug" : "decypharr",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple Wake-on-LAN web interface",
          "stars" : 683,
          "slug" : "wol",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Trugamr/wol",
          "name" : "wol"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "metadata-remote",
          "github" : "github.com/wow-signal-dev/metadata-remote",
          "name" : "Metadata Remote",
@@ -7085,7 +7085,7 @@
          "stars" : 678,
          "name" : "Jelu",
          "slug" : "jelu",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/bayang/jelu"
       },
       {
