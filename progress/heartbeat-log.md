@@ -3884,3 +3884,47 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **NC Talk is 40th CROWN-JEWEL** and demonstrates corporate-backed mature ecosystem-subsystem pattern
 - 46.6% done
 - Pattern-consolidation URGENT: 37 CROWN-JEWEL sub-categories, 136 hub-of-credentials, 128 transparent-maintenance, 122 institutional-stewardship
+
+## 2026-05-01 00:22 UTC — batch 117 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 117)
+- **portracker** (2101★) — Node real-time port-monitoring + discovery with Docker + TrueNAS collectors + P2P peer mesh (mostafa-wahied; Docker Hub; active v1.3). **137th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "infrastructure-discovery-map + host-reconnaissance-tool"** (1st — portracker; parallel to Reitti's physical-security-grade but for network-infra). **CROWN-JEWEL Tier 1: 41 tools / 38 sub-categories**. **Docker-socket-mount-privilege-escalation: 6 tools** (+portracker) 🎯 **6-TOOL MILESTONE**. **SQLite-single-file-backup-simplicity: 4 tools** 🎯 **4-TOOL MILESTONE**. **NEW recipe conventions**: "host-network-mode-port-visibility-tradeoff" (1st — portracker) + "peer-mesh-chain-of-trust" (1st — portracker). **NEW positive-signals**: "hierarchical-infra-topology-representation" (1st — portracker) + "versioned-screenshot-maintenance" (1st formally — portracker). 123rd institutional-stewardship + 129th transparent-maintenance.
+- **donetick** (2099★) — Go collaborative task/chore app (donetick org; Discord + subreddit; natural-language parser; adaptive-scheduling; assignee-rotation; S3-photo attachments). **138th hub-of-credentials Tier 2**. **JWT-secret-rotation-discipline: 2 tools** (ByteStash+Donetick) 🎯 **2-TOOL MILESTONE**. **Object-storage-native-architecture: 2 tools** (Parseable+Donetick) 🎯 **2-TOOL MILESTONE**. **Multi-community-channel-presence: 1 tool** 🎯 **NEW FAMILY** (Donetick Discord+Reddit). **NEW recipe conventions**: "user-uploaded-photos-PII-risk" (1st formally — Donetick) + "local-storage-WIP-use-S3" (1st — Donetick). **NEW positive-signals**: "natural-language-parser-vendor-independence" (1st formally — Donetick) + "algorithmic-fairness-chore-distribution" (1st — Donetick). **NEW neutral-signal: "behavioral-learning-system"** (1st formally — Donetick). 124th institutional-stewardship + **130th transparent-maintenance** 🎯 **130-TOOL MILESTONE at Donetick**.
+- **tasks-md** (2098★) — Node Markdown-file-based Kanban (BaldissaraMatheus; Docker Hub; v3-with-migration-guide; PWA; 3 themes). **139th hub-of-credentials Tier 3**. **File-system-as-data-model: 2 tools** (PiGallery2+Tasks.md) 🎯 **2-TOOL MILESTONE**. **Markdown-knowledge-base META-FAMILY: 6 tools** (+Tasks.md) 🎯 **6-TOOL MILESTONE**. **PUID-PGID-linuxserver-convention: 1 tool** 🎯 **NEW FAMILY** (Tasks.md). **NEW recipe conventions**: "major-version-migration-guide-required" (1st formally — Tasks.md) + "subpath-deploy-vs-PWA-tradeoff" (1st — Tasks.md). **NEW positive-signals**: "file-system-is-data-model" (1st formally — Tasks.md) + "Git-backed-plain-text-archive" (1st formally — Tasks.md) + "author-provided-migration-guide" (1st formally — Tasks.md) + "orphan-image-cleanup-schedule" (1st — Tasks.md). 125th institutional-stewardship + 131st transparent-maintenance.
+- **keila** (2078★) — Elixir/Phoenix newsletter tool (pentacent; GH Sponsors; Mastodon + Bluesky; hosted app.keila.io + self-host; multi-provider SES/Sendgrid/Mailgun/Postmark/SMTP). **140th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "newsletter-tool + subscriber-PII-plus-sending-creds"** (1st — Keila). **140-TOOL HUB-OF-CREDENTIALS MILESTONE at Keila**. **CROWN-JEWEL Tier 1: 42 tools / 39 sub-categories**. **Commercial-parallel-with-OSS-core: 10 tools** 🎯 **10-TOOL MILESTONE**. **Self-hosted-email-deliverability-complexity: 2 tools** (AliasVault+Keila) 🎯 **2-TOOL MILESTONE**. **Elixir/Phoenix-stack: 1 tool** 🎯 **NEW FAMILY** (Keila). **NEW recipe conventions**: "GDPR-subscriber-data-rights-discipline" (1st formally — Keila) + "multi-tenant-newsletter-abuse-mitigation" (1st — Keila) + "sending-provider-key-rotation-discipline" (1st formally — Keila). **NEW positive-signal: "fediverse-plus-bluesky-presence"** (1st — Keila; Mastodon+Bluesky rare). 126th institutional-stewardship + 132nd transparent-maintenance.
+- **fladder** (2063★) — Flutter cross-platform Jellyfin client (DonutWare org; Conventional Commits; GH Releases for 5 platforms; active). **141st hub-of-credentials Tier 2 (client-side)**. **NEW sub-category: "client-app-with-credential-storage-on-device"** (1st — Fladder; distinct client-side framing). **Client-app-not-server: 1 tool** 🎯 **NEW FAMILY** (Fladder — first client-only recipe in catalog). **Native-mobile-companion-app: 3 tools** (AliasVault+Docspell+Fladder) 🎯 **3-TOOL MILESTONE**. **NEW recipe conventions**: "offline-content-device-loss-risk" (1st — Fladder) + "iOS-sideload-friction" (1st — Fladder). **NEW positive-signals**: "Conventional-Commits-badge" (1st — Fladder) + "multi-server-multi-profile-client" (1st — Fladder) + "server-plugin-consumed-by-client" (1st — Fladder). **NEW neutral-signals**: "client-app-recipe-for-operator-distribution" (1st — Fladder) + "Flutter-cross-platform-UX-tradeoff" (1st — Fladder) + "GitHub-releases-only-distribution" (1st — Fladder). 127th institutional-stewardship + 133rd transparent-maintenance.
+
+**Batch 117 lengths:** portracker 147, donetick 157, tasks-md 162, keila 170, fladder 157.
+**State:** 599 done / 2 skipped / 673 pending — **47.0% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **Hub-of-credentials: 141 tools** — **140-TOOL MILESTONE at Keila**
+- **Transparent-maintenance: 133 tools** — **130-TOOL MILESTONE at Donetick**
+- **CROWN-JEWEL Tier 1: 42 tools / 39 sub-categories** (+3 new: infra-discovery, newsletter-subscriber-PII, client-side-creds)
+- **Commercial-parallel-with-OSS-core: 10 tools** 🎯 **10-TOOL MILESTONE at Keila**
+- **Docker-socket-mount-privilege-escalation: 6 tools** 🎯 **6-TOOL MILESTONE**
+- **Markdown-knowledge-base META-FAMILY: 6 tools** 🎯 **6-TOOL MILESTONE at Tasks.md**
+- **SQLite-single-file-backup-simplicity: 4 tools** 🎯 **4-TOOL MILESTONE**
+- **Native-mobile-companion-app: 3 tools** 🎯 **3-TOOL MILESTONE**
+- **File-system-as-data-model: 2 tools** 🎯
+- **JWT-secret-rotation-discipline: 2 tools** 🎯
+- **Object-storage-native-architecture: 2 tools** 🎯
+- **Self-hosted-email-deliverability-complexity: 2 tools** 🎯
+- **NEW families**: Multi-community-channel-presence, PUID-PGID-linuxserver-convention, Elixir/Phoenix-stack, Client-app-not-server
+
+### New precedents this batch
+- **"infrastructure-discovery-map" CROWN-JEWEL Tier 1 sub-category** (portracker 1st; pairs with Reitti's physical-security-data for infra-sensitivity)
+- **"newsletter-tool + subscriber-PII + sending-creds" CROWN-JEWEL Tier 1 sub-category** (Keila 1st; GDPR + deliverability)
+- **"client-app-with-credential-storage-on-device" sub-category** (Fladder 1st — FIRST CLIENT-APP RECIPE in catalog)
+- **FIRST client-only recipe (Fladder)** — operators distribute but don't host
+- **15+ new recipe conventions + 12+ new positive-signals**
+
+### Notes
+- 47.0% done — **passed 47% at 2063★ cumulative**
+- **140 hub-of-credentials** is now a decade-level milestone in the catalog
+- **FIRST client-only recipe in 117 batches** (Fladder) — distinguishes server vs client in operator distribution model
+- portracker + Reitti now form a SENSITIVITY-PARALLEL pair (infra-discovery + location-history) — both are data-treasure types distinct from credentials
+- Pattern-consolidation extremely overdue: 39 CROWN-JEWEL sub-categories, 141 hub-of-credentials, 133 transparent-maintenance, 127 institutional-stewardship
