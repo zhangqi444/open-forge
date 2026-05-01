@@ -4990,3 +4990,8 @@ Commit: e21d5d5
 - Wrote 5 new recipes: docktail, nextcloud-notes, fast-music-remover, xibo, tiny-tiny-rss
 - Committed and pushed: b8f29f1
 - Next pending: novus-mail (708*), goaway (704*), shinobi (703*)
+
+## 2026-05-01 20:15 UTC — Batch 171
+- Wrote 5 new recipes: novus-mail, goaway, shinobi, streamystats, davis
+- Committed and pushed: 3327733
+- Next pending: listenarr (703*), home-assistant-time-machine (700*), m3u-editor (699*)
