@@ -6484,7 +6484,7 @@
          "desc" : "Project management, time tracking, and focus application",
          "github" : "github.com/Eigenfocus/eigenfocus",
          "slug" : "eigenfocus",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Eigenfocus",
          "stars" : 922
       },
@@ -6500,14 +6500,14 @@
          "stars" : 917,
          "github" : "github.com/javedh-dev/tracktor",
          "slug" : "tracktor",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Tracktor",
          "desc" : "Comprehensive vehicle management"
       },
       {
          "slug" : "chevereto",
          "github" : "github.com/chevereto/chevereto",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Chevereto",
          "stars" : 914,
          "desc" : "Image hosting and sharing software"
@@ -6516,7 +6516,7 @@
          "name" : "NextExplorer",
          "slug" : "nextexplorer",
          "github" : "github.com/nxzai/NextExplorer",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 911,
          "desc" : "Modern web-based file explorer"
       },
@@ -6532,7 +6532,7 @@
          "name" : "Anchor",
          "slug" : "anchor-notes",
          "github" : "github.com/ZhFahim/anchor",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 903,
          "desc" : "Offline-first note-taking app"
       },
@@ -6540,7 +6540,7 @@
          "name" : "YTPTube",
          "slug" : "ytptube",
          "github" : "github.com/arabcoders/ytptube",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 900,
          "desc" : "Web-based GUI for yt-dlp"
       },

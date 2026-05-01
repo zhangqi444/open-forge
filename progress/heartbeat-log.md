@@ -4915,3 +4915,18 @@ Apps: rachoon (942★), readeck (939★), docassemble (936★), kapowarr (936★
 - retroassembly: React/Node.js retro game web cabinet; 30+ consoles via libretro WASM; MIT
 - nps-enhanced: Go NAT traversal + reverse proxy server+client; web UI; fork of ehang-io/nps; GPL-3.0
 Done: 805 / 1274
+
+## 2026-05-01 — Batch 160
+
+Apps: eigenfocus (922★), gravity (920★), tracktor (917★), chevereto (914★), nextexplorer (911★), hauk (904★), anchor-notes (903★), ytptube (900★)
+
+- eigenfocus: Ruby on Rails self-hosted project management with Focus Space and time tracking
+- gravity: Minimalist RSS reader and news aggregator
+- tracktor: Self-hosted project/task tracker
+- chevereto: PHP image/video sharing platform (AGPL-3.0 free + commercial Pro)
+- nextexplorer: Node.js/SvelteKit file explorer with OIDC, ripgrep search, media previews
+- hauk: PHP + Memcached real-time location sharing with Android companion app
+- anchor-notes: Offline-first Node.js note-taking with OIDC SSO and note sharing
+- ytptube: Web GUI for yt-dlp with scheduling, Apprise notifications, and built-in video player
+
+Build: pass (1270 lines). Total done: 811/1270. Pending: 459.
