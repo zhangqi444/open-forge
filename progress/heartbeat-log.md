@@ -4620,3 +4620,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Pinkary (1540★) — pinkary.md (Laravel link-in-bio + social, SQLite, Livewire)
 - Progress: done 685 / pending 587 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 07:30 UTC — batch 136
+
+- Step 0: git pull clean; recovered empty selfhst-progress.json again (applied fix: write-to-temp + mv to prevent truncation)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 136 — 5 recipes added:
+  - Semaphore CI/CD (1508★) — semaphore.md (K8s-native CI/CD, Community + Enterprise, Apache 2.0)
+  - qBit Manage (1500★) — qbit-manage.md (Python qBittorrent automation — tags/cats/share limits/RecycleBin)
+  - BirdNET-Analyzer (1496★) — birdnet-analyzer.md (Cornell AI bird ID from audio, 6512 species)
+  - Cypht (1485★) — cypht.md (PHP multi-account webmail + RSS reader, no-DB, JMAP/EWS)
+  - Transfer.zip (1470★) — transfer-zip.md (WebRTC P2P + stored file transfer, WeTransfer alt)
+- Progress: done 690 / pending 582 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
