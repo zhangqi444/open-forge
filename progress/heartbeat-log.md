@@ -4905,3 +4905,13 @@ Commit: TBD
 Apps: ganymede (950★), atomic-crm (948★), filerise (947★), many-notes (945★), hometube (945★)
 Status: 5 done | 799 total done | 471 pending
 Commit: TBD
+
+## Batch 159 — 2026-05-01
+Apps: rachoon (942★), readeck (939★), docassemble (936★), kapowarr (936★), retroassembly (929★), nps-enhanced (924★)
+- rachoon: Go self-hosted recipe discovery and meal planning app; PostgreSQL + Redis; AGPL-3.0
+- readeck: Go read-later / web archive app; SQLite default; MIT
+- docassemble: Python/Flask guided interview + document automation; PostgreSQL + Redis + RabbitMQ; AGPL-3.0
+- kapowarr: Python comic/manga collection manager; SQLite; GPL-3.0
+- retroassembly: React/Node.js retro game web cabinet; 30+ consoles via libretro WASM; MIT
+- nps-enhanced: Go NAT traversal + reverse proxy server+client; web UI; fork of ehang-io/nps; GPL-3.0
+Done: 805 / 1274
