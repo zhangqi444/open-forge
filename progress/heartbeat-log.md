@@ -3830,3 +3830,57 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - Cleanuparr's "destructive-automation-config-discipline" applies broadly (dockcheck 114, any auto-update tool)
 - Logdy's "zero-dependency-single-binary" sets a high-water-mark for simplicity
 - Pattern-consolidation URGENT: 34 CROWN-JEWEL sub-categories, 131 hub-of-credentials, 123 transparent-maintenance, 117 institutional-stewardship
+
+## 2026-05-01 00:08 UTC — batch 116 (5 recipes)
+
+### Step 0 / Step 1
+- Synced; issues #24-27 unchanged.
+
+### Step 2 (selfh.st batch 116)
+- **reitti** (2158★) — JVM PostGIS location-tracking + analysis (dedicatedcode; visits/trips/significant-places; multi-user family map; kiosk live-mode; GPX+Google-Takeout+GeoJSON import). **132nd hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "location-history + movement-pattern-aggregator"** (1st — Reitti; HIGHEST personal-sensitivity short of banking). **CROWN-JEWEL Tier 1: 38 tools / 35 sub-categories**. **NEW recipe conventions**: "location-data-is-physical-security-data" (1st formally — Reitti; HIGHEST-severity) + "kiosk-display-shoulder-surfing-risk" (1st — Reitti) + "family-surveillance-consent-discipline" (1st — Reitti) + "per-user-ingestion-token-rotation" + "OSM-tile-usage-policy-compliance" (1st formally — Reitti). **NEW positive-signal: "big-tech-escape-import"** (1st formally — Reitti). **NEW neutral-signal: "non-English-project-name-etymology"** (1st — Reitti; Finnish "route"). 118th institutional-stewardship + 124th transparent-maintenance.
+- **reiverr** (2132★) — SvelteKit TMDB + Jellyfin + torrent-stream UI + Sonarr/Radarr (aleksilassila; Discord; GHCR). **⚠️ V2 = TV-first rewrite, EARLY-STAGE; V1 preserved for web-stable**. **133rd hub-of-credentials Tier 2**. **Honest-maintainer-declaration: 5 tools** 🎯 **5-TOOL MILESTONE** — **5 distinct flavors** now: (1) Scriberr honest-life-pause (2) Astuto honest-discontinuation (3) Jellystat honest-rewrite-pause (4) Stump honest-WIP-pre-1.0 (5) **Reiverr honest-active-rewrite-dual-branch**. **NEW institutional-stewardship sub-tier: "dual-branch-during-rewrite"** (1st — Reiverr; distinct from Profilarr which follows). **Plugin-API-architecture: 2 tools** (Wireflow+Reiverr) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "plugin-API-supply-chain-risk" (reinforces Wireflow) + "torrent-streaming-legal-exposure" (1st — Reiverr). **NEW positive-signals**: "dual-branch-stability-handoff" (1st — Reiverr) + "TV-first-10-foot-UI" (1st — Reiverr) + "public-taskboard-roadmap" (1st — Reiverr). 119th institutional-stewardship + 125th transparent-maintenance.
+- **zot** (2120★) — Go OCI-native image registry (Project Zot community org; Apache-2; 7-badge security-hygiene: CII+OpenSSF+FOSSA+CodeQL+codecov+OCI-conformance+nightly-CI; production-ready-declared). **134th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "container-registry + supply-chain-artifact-host"** (1st — Zot). **CROWN-JEWEL Tier 1: 39 tools / 36 sub-categories**. **Institutional-stewardship: 120 tools** 🎯 **120-TOOL MILESTONE at Zot — highest-security-signaling sub-tier** (NEW). **Security-hygiene-badge-constellation: 1 tool** 🎯 **NEW FAMILY** (Zot 7-badge). **Apache-2-permissive-license: 2 tools** (VersityGW+Zot) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "supply-chain-poisoning-via-registry" (1st formally — Zot) + "image-signature-verification-discipline" (1st — Zot) + "registry-GC-retention-policy" (1st — Zot). **NEW positive-signals**: "OCI-conformance-tested" (1st — Zot) + "security-hygiene-badge-constellation" (1st — Zot; 7-badge) + "vendor-neutral-positioning" (1st formally — Zot) + "nightly-CI-quality-ops" (1st formally — Zot) + "declared-production-ready" (1st — Zot; contrast honest-WIP). 120th institutional-stewardship + 126th transparent-maintenance.
+- **profilarr** (2108★) — SvelteKit + Python Sonarr/Radarr profile + custom-format sync tool (Dictionarry-Hub org; AGPL-3; Discord; website). **⚠️ V2 closed-beta (Discord invite); V1 production-stable**. **135th hub-of-credentials CROWN-JEWEL Tier 1** — media-stack WRITE-authority on profile configs (FLEET-wide damage if bad push). **Honest-maintainer-declaration: 6 tools** 🎯 **6-TOOL MILESTONE** — **6 distinct flavors** now: ...(6) **Profilarr honest-closed-beta-V2-with-production-V1**. **Project-centric-GitHub-org: 2 tools** (Cleanuparr+Profilarr) 🎯 **2-TOOL MILESTONE**. **Media-stack-credential-aggregator family: 2 tools** (Cleanuparr delete + Profilarr config-write) 🎯 **2-TOOL MILESTONE**. **NEW recipe conventions**: "fleet-write-config-needs-PR-discipline" (1st formally — Profilarr) + "community-curated-configs-review-before-import" (1st — Profilarr; Dictionarry). **NEW positive-signal: "GitOps-for-media-stack"** (1st formally — Profilarr). **NEW neutral-signal: "closed-beta-via-Discord-invite"** (1st — Profilarr). 121st institutional-stewardship + 127th transparent-maintenance.
+- **nextcloud-talk** (spreed) (2103★) — Nextcloud PHP+Vue video/audio/chat app (Nextcloud GmbH; AGPL-3; REUSE-compliant; WebRTC; federated; Matterbridge integration). **136th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "self-hosted-video-conf + chat-with-call-recording"** (1st — NC Talk). **CROWN-JEWEL Tier 1: 40 tools / 37 sub-categories** 🎯 **40-TOOL CROWN-JEWEL MILESTONE at NC Talk**. **Decade-plus-OSS: 5 tools** (+NC Talk) 🎯 **5-TOOL MILESTONE**. **Ecosystem-dependent-subsystem: 1 tool** 🎯 **NEW FAMILY** (NC Talk requires Nextcloud base). **NEW recipe conventions**: "WebRTC-HTTPS-mandatory" (1st formally — NC Talk) + "coTURN-required-for-WebRTC-NAT" (1st formally — NC Talk) + "scale-threshold-sidecar-discipline" (1st — NC Talk; HPB requirement) + "federated-protocol-cross-org-data-exposure" (1st formally — NC Talk) + "Matterbridge-multiplier-credential-discipline" (1st — NC Talk) + "call-recording-consent-law-discipline" (1st — NC Talk). **NEW positive-signal: "REUSE-compliant-SPDX-machine-readable"** (1st — NC Talk; rare). 122nd institutional-stewardship + 128th transparent-maintenance.
+
+**Batch 116 lengths:** reitti 170, reiverr 159, zot 169, profilarr 160, nextcloud-talk 164.
+**State:** 594 done / 2 skipped / 678 pending — **46.6% done.**
+
+### 🎯 MILESTONES / notable this batch
+- **CROWN-JEWEL Tier 1: 40 tools / 37 sub-categories** 🎯 **40-TOOL CROWN-JEWEL MILESTONE at NC Talk** (+3 new: location-history, container-registry, video-conf)
+- **Institutional-stewardship: 122 tools** — passed **120-TOOL MILESTONE at Zot**
+- **Honest-maintainer-declaration: 6 tools** 🎯 **6-TOOL MILESTONE — 6 distinct flavors taxonomized**
+- **Transparent-maintenance: 128 tools**
+- **Hub-of-credentials: 136 tools**
+- **Decade-plus-OSS: 5 tools** 🎯 **5-TOOL MILESTONE** (+NC Talk)
+- **Security-hygiene-badge-constellation: 1 tool** 🎯 **NEW FAMILY** (Zot 7-badge)
+- **Ecosystem-dependent-subsystem: 1 tool** 🎯 **NEW FAMILY** (NC Talk)
+- **Apache-2-permissive-license: 2 tools** 🎯
+- **Plugin-API-architecture: 2 tools** 🎯
+- **Media-stack-credential-aggregator: 2 tools** 🎯
+- **Project-centric-GitHub-org: 2 tools** 🎯
+
+### New precedents this batch
+- **"location-history + movement-pattern-aggregator" CROWN-JEWEL Tier 1 sub-category** (Reitti 1st; physical-security-grade sensitivity)
+- **"container-registry + supply-chain-artifact-host" CROWN-JEWEL Tier 1 sub-category** (Zot 1st; infra-tier)
+- **"self-hosted-video-conf + chat-with-call-recording" CROWN-JEWEL Tier 1 sub-category** (NC Talk 1st)
+- **"dual-branch-during-rewrite" institutional-stewardship sub-tier** (Reiverr 1st; Profilarr 2nd)
+- **"highest-security-signaling" institutional-stewardship sub-tier** (Zot 1st — 7-badge reference-grade)
+- **6-flavor Honest-maintainer-declaration taxonomy** — all distinct stewardship patterns:
+  - (1) honest-life-pause (Scriberr)
+  - (2) honest-discontinuation (Astuto)
+  - (3) honest-rewrite-pause (Jellystat)
+  - (4) honest-WIP-pre-1.0 (Stump)
+  - (5) honest-active-rewrite-dual-branch (Reiverr)
+  - (6) honest-closed-beta-with-production-parallel (Profilarr)
+- **15+ new recipe conventions** (incl. physical-security-sensitivity + supply-chain-poisoning + WebRTC-HTTPS + federated-cross-org)
+- **10+ new positive-signals** (incl. REUSE-compliant + OCI-conformance + security-hygiene-badge-constellation)
+
+### Notes
+- **🎯 40-TOOL CROWN-JEWEL MILESTONE at NC Talk** — major
+- **Honest-declaration taxonomy now 6-dimensional** — appears to be the most-discoverable pattern-family in the entire catalog
+- **Reitti introduces "location-data-is-physical-security-data"** — a tier of sensitivity beyond credentials (stalking/burglary vectors)
+- **Zot's 7-badge security-signaling** may become a reference-point for evaluating infra-tier OSS
+- **NC Talk is 40th CROWN-JEWEL** and demonstrates corporate-backed mature ecosystem-subsystem pattern
+- 46.6% done
+- Pattern-consolidation URGENT: 37 CROWN-JEWEL sub-categories, 136 hub-of-credentials, 128 transparent-maintenance, 122 institutional-stewardship
