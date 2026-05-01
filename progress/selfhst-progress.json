@@ -5587,7 +5587,7 @@
          "name" : "Borg UI",
          "slug" : "borg-ui",
          "stars" : 1430,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Deploy, manage, and scale infrastructure",
@@ -5595,7 +5595,7 @@
          "name" : "Nixopus",
          "slug" : "nixopus",
          "stars" : 1427,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Learn new languages through reading",
@@ -5603,7 +5603,7 @@
          "name" : "Lute",
          "slug" : "lute",
          "stars" : 1424,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Tiny dashboard for network UPS tools",
@@ -5611,7 +5611,7 @@
          "name" : "PeaNUT",
          "slug" : "peanut",
          "stars" : 1419,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple expense tracking system",
@@ -5619,7 +5619,7 @@
          "name" : "ExpenseOwl",
          "slug" : "expenseowl",
          "stars" : 1415,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Automated Docker container backups",

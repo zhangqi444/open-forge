@@ -4646,3 +4646,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Databag (1448★) — databag.md (Go federated E2E messenger, Pi-Zero-capable, audio/video)
 - Progress: done 695 / pending 577 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 08:00 UTC — batch 138
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 138 — 5 recipes added (🎉 700 done milestone!):
+  - Borg UI (1430★) — borg-ui.md (Docker web UI for BorgBackup, schedules, Apprise, SSH remotes)
+  - Nixopus (1427★) — nixopus.md (AI-agent deployment platform, shell installer, multi-server)
+  - Lute v3 (1424★) — lute.md (Python/Flask language learning through reading, pip/Docker)
+  - PeaNUT (1419★) — peanut.md (Next.js NUT UPS dashboard, InfluxDB/Prometheus, Homepage widgets)
+  - ExpenseOwl (1415★) — expenseowl.md (Go expense tracker, pie chart, PWA, CSV import/export)
+- Progress: done 700 / pending 572 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
