@@ -4899,3 +4899,9 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 Apps: nzb-dav (962★), swetrix (960★), openbudgeteer (956★), fluidcalendar (955★), agregarr (952★)
 Status: 5 done | 794 total done | 476 pending
 Commit: TBD
+
+## 2026-05-01 14:00 UTC — Batch 158
+
+Apps: ganymede (950★), atomic-crm (948★), filerise (947★), many-notes (945★), hometube (945★)
+Status: 5 done | 799 total done | 471 pending
+Commit: TBD
