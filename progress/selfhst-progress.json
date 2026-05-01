@@ -7116,7 +7116,7 @@
          "stars" : 672,
          "slug" : "mayan-edms",
          "github" : "gitlab.com/mayan-edms/mayan-edms",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Mayan EDMS",
          "desc" : "Advanced enterprise document management system"
       },
@@ -7139,7 +7139,7 @@
       {
          "name" : "RSSBox",
          "slug" : "rssbox",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 662,
          "github" : "github.com/versun/RSSBox",
          "desc" : "RSS translation tool for subscribing to RSS feeds"
@@ -7147,7 +7147,7 @@
       {
          "name" : "Meme Search",
          "slug" : "meme-search",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/neonwatty/meme-search",
          "stars" : 658,
          "desc" : "Meme search engine built with Python and Ruby"
@@ -7163,7 +7163,7 @@
       {
          "name" : "Note Mark",
          "slug" : "note-mark",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/enchant97/note-mark",
          "stars" : 655,
          "desc" : "Minimal web-based Markdown notes app"
@@ -7172,7 +7172,7 @@
          "stars" : 651,
          "github" : "github.com/markbeep/AudioBookRequest",
          "slug" : "audiobookrequest",
-         "status" : "pending",
+         "status" : "done",
          "name" : "AudioBookRequest",
          "desc" : "Audiobook request management"
       },
