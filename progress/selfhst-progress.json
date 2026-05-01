@@ -6890,7 +6890,7 @@
       },
       {
          "stars" : 732,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/MoldyTaint/Cinephage",
          "slug" : "cinephage",
          "name" : "Cinephage",
@@ -6900,7 +6900,7 @@
          "stars" : 726,
          "name" : "Lunalytics",
          "slug" : "lunalytics",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/KSJaay/Lunalytics",
          "desc" : "Open source uptime monitoring tool"
       },
@@ -6909,7 +6909,7 @@
          "desc" : "TUI and CLI tool for managing *arr apps",
          "stars" : 725,
          "name" : "Managarr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "managarr"
       },
       {
@@ -6918,12 +6918,12 @@
          "name" : "Mydia",
          "github" : "github.com/getmydia/mydia",
          "slug" : "mydia",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "stars" : 718,
          "slug" : "movary",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/leepeuker/movary",
          "name" : "Movary",
          "desc" : "Track, rate, and explore movie watch histories"
