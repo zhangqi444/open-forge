@@ -4581,3 +4581,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Flint (1634★) — flint.md (KVM management; single Go binary + embedded web UI)
 - Progress: done 670 / pending 602 / skipped 2 / total 1274
 - Build: OK
+
+## 2026-05-01 06:00 UTC — batch 133
+
+- Step 0: git pull --rebase clean (already up to date; batches 130–132 already on main)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 133 — 5 recipes added:
+  - oxker (1633★) — oxker.md (Rust Docker TUI, ratatui/Bollard)
+  - SoulSync (1633★) — soulsync.md (music discovery + multi-source download automation)
+  - Briefing (1616★) — briefing.md (WebRTC P2P group video chat, zero-server-data, AGPL)
+  - Bichon (1603★) — bichon.md (Rust email archiver, IMAP sync, FTS, REST API)
+  - BackupPC (1594★) — backuppc.md (Perl backup server, pool dedup, SMB+rsync+SSH, web UI)
+- Progress: done 675 / pending 597 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK

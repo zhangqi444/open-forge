@@ -5387,7 +5387,7 @@
          "name" : "Oxker",
          "slug" : "oxker",
          "stars" : 1633,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Automated music discovery and collection manager",
@@ -5395,7 +5395,7 @@
          "name" : "SoulSync",
          "slug" : "soulsync",
          "stars" : 1633,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Secure direct video group chat",
@@ -5403,7 +5403,7 @@
          "name" : "Briefing",
          "slug" : "briefing",
          "stars" : 1616,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Lightweight e-mail archiver",
@@ -5411,7 +5411,7 @@
          "name" : "Bichon",
          "slug" : "bichon",
          "stars" : 1603,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "High-performance backups to a server",
@@ -5419,7 +5419,7 @@
          "name" : "BackupPC",
          "slug" : "backuppc",
          "stars" : 1594,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple, modern, and fast web-based mail client",
