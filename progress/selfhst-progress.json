@@ -5924,7 +5924,7 @@
          "name" : "Dovecot",
          "slug" : "dovecot",
          "stars" : 1197,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "YouTube Music album downloader with metadata tagging",
@@ -5956,7 +5956,7 @@
          "name" : "torrra",
          "slug" : "torrra",
          "stars" : 1184,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Enterprise content management system",
@@ -5964,7 +5964,7 @@
          "name" : "TYPO3",
          "slug" : "typo3",
          "stars" : 1183,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Multi-user IRC client in the browser",
@@ -5972,7 +5972,7 @@
          "name" : "Convos",
          "slug" : "convos",
          "stars" : 1177,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Self-hosted runner for GitHub Actions via AWS",
@@ -5996,7 +5996,7 @@
          "name" : "Koillection",
          "slug" : "koillection",
          "stars" : 1172,
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Tool for analyzing, cleaning, and tidying up web URLs",

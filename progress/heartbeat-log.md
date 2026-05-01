@@ -4763,3 +4763,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Hemmelig (1191★) — hemmelig.md (Node.js/Fastify encrypted secret sharing, TweetNaCl client-side E2E, MIT)
 - Progress: done 739 / pending 532 / skipped 3 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 10:30 UTC — batch 147
+
+- Step 0: git pull clean (up to date)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 147 — 5 new recipes:
+  - Dovecot (1197★) — dovecot.md (C IMAP/POP3 mail server, Maildir, Sieve, LMTP, LDAP/SQL auth, MIT/LGPL)
+  - Torrra (1184★) — torrra.md (Python+Textual CLI/TUI torrent search, Jackett/Prowlarr, libtorrent, MIT)
+  - TYPO3 (1183★) — typo3.md (PHP enterprise CMS framework, multi-site/lang, TypoScript, 60k+ extensions, GPL)
+  - Convos (1177★) — convos.md (Perl+Svelte always-on IRC web client, persistent, multi-user, video/audio)
+  - Koillection (1172★) — koillection.md (PHP+Symfony collection manager, any physical item, scrapers, 11 langs, MIT)
+- Progress: done 744 / pending 527 / skipped 3 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
