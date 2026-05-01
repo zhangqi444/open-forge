@@ -6494,6 +6494,7 @@
          "github" : "github.com/BeryJu/gravity",
          "status" : "pending",
          "slug" : "gravity",
+         "status" : "done",
          "name" : "Gravity"
       },
       {
@@ -6525,6 +6526,7 @@
          "status" : "pending",
          "github" : "github.com/bilde2910/Hauk",
          "slug" : "hauk",
+         "status" : "done",
          "stars" : 904,
          "desc" : "Open source real-time location sharing"
       },
@@ -6546,7 +6548,7 @@
       },
       {
          "desc" : "Flat-file content management system and template engine",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "automad",
          "github" : "github.com/marcantondahmen/automad",
          "name" : "Automad",
@@ -6554,7 +6556,7 @@
       },
       {
          "stars" : 882,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "ontime",
          "name" : "Ontime",
          "github" : "github.com/cpvalente/ontime",
@@ -6564,7 +6566,7 @@
          "github" : "github.com/gaseous-project/gaseous-server",
          "desc" : "ROM file and metadata manager with a web-based emulator",
          "slug" : "gaseous",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Gaseous",
          "stars" : 876
       },
@@ -6573,14 +6575,14 @@
          "stars" : 873,
          "slug" : "solidinvoice",
          "github" : "github.com/SolidInvoice/SolidInvoice",
-         "status" : "pending",
+         "status" : "done",
          "name" : "SolidInvoice"
       },
       {
          "desc" : "A gallery for guests to view and drop photos from the big day",
          "stars" : 872,
          "name" : "WeddingShare",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Cirx08/WeddingShare",
          "slug" : "weddingshare"
       },
@@ -6588,7 +6590,7 @@
          "stars" : 870,
          "github" : "github.com/streetwriters/notesnook-sync-server",
          "slug" : "notesnook",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Notesnook",
          "desc" : "Open source and encrypted notes"
       },
@@ -6596,13 +6598,13 @@
          "desc" : "Monitoring and notifications via Discord",
          "github" : "github.com/Notifiarr/notifiarr",
          "stars" : 869,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "notifiarr",
          "name" : "Notifiarr"
       },
       {
          "slug" : "faved",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Faved",
          "stars" : 869,
          "github" : "github.com/denho/faved",
