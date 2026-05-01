@@ -4607,3 +4607,16 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
   - Alexandrie (1567★) — alexandrie.md (Node.js knowledge base, MySQL + S3, OIDC, offline PWA)
 - Progress: done 680 / pending 592 / skipped 2 / total 1274
 - Build: ./scripts/build-dist.sh all — OK
+
+## 2026-05-01 07:00 UTC — batch 135
+
+- Step 0: git pull clean; fixed empty selfhst-progress.json (recovered from git + re-applied batch 134 marks)
+- Step 1: 4 open GitHub issues (#24–#27); all previously addressed; no new issues.
+- Step 2: selfh.st batch 135 — 5 recipes added:
+  - Lowcoder (1565★) — lowcoder.md (low-code platform, Node.js + MongoDB + Redis, native embed, WebSocket)
+  - Openreads (1553★) — openreads.md (Flutter mobile book tracker, local-first, F-Droid)
+  - Music Assistant (1546★) — music-assistant.md (Python, streaming → smart speakers, HA add-on)
+  - Timeful (1543★) — timeful.md (Go group scheduling, calendar integrations, self-hosted When2meet)
+  - Pinkary (1540★) — pinkary.md (Laravel link-in-bio + social, SQLite, Livewire)
+- Progress: done 685 / pending 587 / skipped 2 / total 1274
+- Build: ./scripts/build-dist.sh all — OK
