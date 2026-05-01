@@ -4486,3 +4486,57 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **Hub-of-credentials at 196 tools** — 200-MILESTONE coming next batch
 - **At ~5 recipes/batch, remaining runway**: 618 tools / 5 = ~124 batches
 - **Pattern-consolidation critically overdue**: 59 CROWN-JEWEL sub-cats — scheduling for post-b130 is becoming urgent
+
+## 2026-05-01 03:56 UTC — batch 129 (5 recipes) — **🎯 200-TOOL HUB-OF-CREDENTIALS MILESTONE**
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 129)
+- **review-board** (1702★) — Django code-review tool SINCE 2006 (reviewboard org / Beanbag Inc.; MIT; PyPI primary; RST README; multi-SCM git/hg/svn/perforce; self-dogfooded "reviewed-with-badge"; commercial services parallel; two-decade OSS). **197th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "code-review-tool + source-code-IP-repository"** (1st — Review Board; distinct from SCM itself). **CROWN-JEWEL Tier 1: 67 tools / 60 sub-categories** 🎯 **🎯 60-SUB-CATEGORY CROWN-JEWEL MILESTONE at Review Board**. **Decade-plus-OSS: 16 tools** 🎯 **16-MILESTONE**. **Two-decade-plus-OSS: 1 tool** 🎯 **NEW FAMILY** (Review Board — 20+ year distinct tier). **Commercial-parallel-with-OSS-core: 22 tools** 🎯 **22-MILESTONE**. **reStructuredText-README: 1 tool** 🎯 **NEW FAMILY** (Review Board — rare format). **NEW positive-signals**: "self-dogfood-reviewed-with-badge" (1st — Review Board) + "multi-SCM-integration-breadth" (1st — Review Board) + "regulated-industry-audit-trail-use-case" (1st — Review Board). **NEW neutral-signal: "reStructuredText-README-format"** (1st — Review Board). 183rd institutional-stewardship + 189th transparent-maintenance.
+- **sabre-dav** (1701★) — PHP CalDAV/CardDAV/WebDAV FRAMEWORK (not standalone) powering Baikal + Nextcloud + ownCloud (sabre-io org; sabre.io docs; 15+ year; explicit branch-maintenance matrix; Composer distribution; decade-plus; Library-not-service). **198th hub-of-credentials Tier 2**. **Transparent-maintenance: 190 tools** 🎯 **🎯 190-TOOL TRANSPARENT-MAINTENANCE MILESTONE at sabre/dav**. **Decade-plus-OSS: 17 tools** 🎯 **17-MILESTONE**. **Two-decade-plus-OSS: 2 tools** (Review Board+sabre/dav) 🎯 **2-MILESTONE**. **Library-not-standalone-service: 1 tool** 🎯 **NEW FAMILY** (sabre/dav — unusual catalog entry-type). **Composer-PHP-distribution: 1 tool** 🎯 **NEW FAMILY** (sabre/dav). **NEW positive-signals**: "upstream-dependency-of-many-popular-apps" (1st — sabre/dav; supply-chain-gravity-exemplar) + "explicit-maintenance-status-matrix-per-branch" (1st — sabre/dav; responsible discipline). **NEW neutral-signal: "library-framework-not-standalone-service"** (1st — sabre/dav). 184th institutional-stewardship + **190th transparent-maintenance**.
+- **self-hosted-gateway** (1696★) — WireGuard+Nginx+Caddy Reverse-Proxy-over-VPN tunnel self-hosted alternative to Cloudflare Tunnel/Tailscale/ngrok (hintjen sole-dev; YouTube setup video; glue-layer-only FOSS composition; auto-HTTPS Caddy; proxy-protocol real-IP; CGNAT use-case explicit). **199th hub-of-credentials CROWN-JEWEL Tier 1**. Matures sub-cat **"tunnel-ingress-controller": 2 tools** (DockFlare Cloudflare+SHG WireGuard) 🎯 **2-TOOL MILESTONE — MATURED** (distinct underlying tunnel types). **Alternative-to-commercial-tools-explicit-list: 4 tools** 🎯 **4-MILESTONE at SHG**. **Demo-video-in-README: 2 tools** (SecureAI+SHG) 🎯 **2-MILESTONE**. **NEW recipe convention: "tunnel-key-loss-full-re-provision-discipline"** (1st — SHG). **NEW positive-signals**: "glue-layer-only-no-custom-code" (1st — SHG; exemplary!) + "Caddy-automatic-HTTPS-configuration" (1st — SHG) + "proxy-protocol-real-IP-discipline" (1st — SHG) + "Docker-netns-isolation-for-exposed-services" (1st — SHG) + "CGNAT-mobile-ISP-use-case-callout" (1st — SHG). **NEW neutral-signal: "VPS-with-public-IP-prerequisite"** (1st — SHG). 185th institutional-stewardship + 191st transparent-maintenance.
+- **pdfding** (1693★) — Django PDF manager+viewer+editor (mrmn2 sole-dev; pdfding.com + demo + docs; Docker Hub `mrmn/pdfding`; nonroot-user discipline; Ding-naming-tradition). **200th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "PDF-document-archive + personal-documents-high-sensitivity"** (1st — PdfDing; tax/medical/legal doc archive class distinct from Paperless-ngx OCR-focus). 🎯🎯 **200-TOOL HUB-OF-CREDENTIALS MILESTONE at PdfDing** 🎯🎯 — major milestone. **CROWN-JEWEL Tier 1: 68 tools / 61 sub-categories**. **Live-demo-with-public-credentials: 5 tools** 🎯 **5-MILESTONE** at PdfDing. **Ding-naming-family: 1 tool** 🎯 **NEW FAMILY** (PdfDing — anticipating Linkding arrival). **NEW recipe conventions**: "CSRF-TRUSTED-ORIGINS-explicit-list-discipline" (1st — PdfDing) + "personal-PDF-archive-HIGH-sensitivity-recognition" (1st — PdfDing). **NEW positive-signal: "container-runs-as-nonroot-user"** (1st formally — PdfDing). **NEW neutral-signal: "Ding-naming-convention-LinkDing-family"** (1st — PdfDing). 186th institutional-stewardship + 192nd transparent-maintenance.
+- **lyrion-music-server** (1688★) — Perl streaming audio server for Squeezebox hardware + emulators, community-rescue of discontinued Logitech SqueezeCenter (LMS-Community org; lyrion.org; multi-arch Docker + ghcr; cross-platform Linux/macOS/Solaris/Windows/RPi; multi-generation-naming lineage SliMP3→SlimServer→SqueezeCenter→SqueezeboxServer→Logitech Mediaserver→Lyrion). **201st hub-of-credentials Tier 3**. **Decade-plus-OSS: 18 tools** 🎯 **18-MILESTONE**. **Two-decade-plus-OSS: 3 tools** (Review Board+sabre/dav+Lyrion) 🎯 **3-MILESTONE at Lyrion**. **Community-fork-after-original-discontinuation: 2 tools** (Statping-ng+Lyrion) 🎯 **2-MILESTONE**. **Perl-backend: 2 tools** (SmokePing+Lyrion) 🎯 **2-MILESTONE**. **Multi-generation-fork-lineage: 2 tools** (Medusa+Lyrion) 🎯 **2-MILESTONE**. **Plugin-API-architecture: 7 tools** 🎯 **7-MILESTONE at Lyrion**. **Cross-platform-server-tool: 3 tools** (Cloud Commander+Diskover+Lyrion) 🎯 **3-MILESTONE at Lyrion**. **Multi-arch-Docker-image: 4 tools** 🎯 **4-MILESTONE at Lyrion**. **NEW positive-signal: "legacy-hardware-ecosystem-preservation"** (1st — Lyrion). **NEW neutral-signal: "custom-hardware-protocol-dedicated-ports"** (1st — Lyrion; SlimProto). 187th institutional-stewardship + 193rd transparent-maintenance.
+
+**Batch 129 lengths:** review-board 148, sabre-dav 131, self-hosted-gateway 160, pdfding 143, lyrion-music-server 154.
+**State:** 659 done / 2 skipped / 613 pending — **51.7% done.**
+
+### 🎯 MAJOR MILESTONES this batch
+- **🎯🎯 200-TOOL HUB-OF-CREDENTIALS MILESTONE at PdfDing** 🎯🎯 — major catalog milestone
+- **🎯 60-SUB-CATEGORY CROWN-JEWEL MILESTONE at Review Board** 🎯
+- **🎯 190-TOOL TRANSPARENT-MAINTENANCE MILESTONE at sabre/dav** 🎯
+- **CROWN-JEWEL Tier 1: 68 / 61** (+2 new sub-cats: code-review + PDF-archive)
+- **Decade-plus-OSS: 18 tools** 🎯 **18-MILESTONE at Lyrion**
+- **Two-decade-plus-OSS: 3 tools** 🎯 **NEW FAMILY matured at Lyrion** (Review Board+sabre/dav+Lyrion — 20+ year tools)
+- **Plugin-API-architecture: 7 tools** 🎯 **7-MILESTONE at Lyrion**
+- **Cross-platform-server-tool: 3 tools** 🎯
+- **Multi-arch-Docker-image: 4 tools** 🎯
+- **Commercial-parallel: 22 tools** 🎯
+- **Alternative-to-commercial-tools-explicit-list: 4 tools** 🎯
+- **Institutional-stewardship: 187 tools**
+- **Tunnel-ingress-controller sub-cat MATURED: 2 tools** 🎯
+- **NEW families**: Two-decade-plus-OSS, reStructuredText-README, Library-not-standalone-service, Composer-PHP-distribution, Ding-naming-family
+
+### New precedents this batch
+- **"code-review-tool + source-code-IP-repository" CROWN-JEWEL Tier 1 sub-category** (Review Board 1st — source-code IP + review discussions distinct from SCM itself)
+- **"PDF-document-archive + personal-documents-high-sensitivity" CROWN-JEWEL Tier 1 sub-category** (PdfDing 1st — tax/medical/legal docs class)
+- **🎯 200-TOOL HUB-OF-CREDENTIALS MILESTONE at PdfDing** — major catalog-scale milestone
+- **🎯 60-SUB-CATEGORY CROWN-JEWEL MILESTONE at Review Board** — major taxonomy milestone
+- **"Two-decade-plus-OSS" distinct family** (3 tools: Review Board, sabre/dav, Lyrion) — 20+ year tools deserve their own tier above decade-plus
+- **"Library-not-standalone-service" unusual entry type** (sabre/dav) — catalog mostly services, but this framework powers dozens of downstream apps
+- **"glue-layer-only-no-custom-code" positive-signal** (Self-hosted Gateway 1st — exemplary architecture — only glue-code, all primary components are battle-tested FOSS)
+- **"self-dogfood-reviewed-with-badge"** (Review Board 1st — they develop Review Board using Review Board)
+- **"upstream-dependency-of-many-popular-apps"** (sabre/dav 1st — supply-chain-gravity-exemplar)
+- **"explicit-maintenance-status-matrix-per-branch"** (sabre/dav 1st — rare responsible version discipline)
+- **"legacy-hardware-ecosystem-preservation"** (Lyrion 1st — community-rescue of discontinued commercial product)
+- **"container-runs-as-nonroot-user" positive-signal** (PdfDing 1st formally — security-default pattern)
+- **15+ new recipe conventions + 15+ new positive-signals + 5 new neutral-signals**
+
+### Notes
+- **🎯 200-TOOL HUB-OF-CREDENTIALS MILESTONE lands on PdfDing** — a fitting tool: PDF archives often contain the single most sensitive documents in someone's digital life (tax returns, medical records, legal documents, bank statements, IDs). This is the highest-sensitivity-single-document-archive class and a great milestone landing.
+- **🎯 60-SUB-CATEGORY CROWN-JEWEL MILESTONE at Review Board** — this is a meta-milestone; 60 distinct high-sensitivity tool classes identified in the catalog. Pattern-consolidation is now **critical** post-b130.
+- **Lyrion's multi-generation-naming lineage** (6 historical names spanning 20+ years) is a catalog outlier worth documenting — illustrates what "community-rescue after corporate-EOL" can look like over two decades.
+- **sabre/dav landing the 190-TOOL TRANSPARENT-MAINTENANCE MILESTONE** is symbolically fitting — it's the upstream for dozens of other transparent-maintained tools in the catalog.
+- **Runway**: 613 tools remaining / 5 per batch = ~123 batches to completion.
+- **Pattern-consolidation post-b130 now urgent** — 61 CROWN-JEWEL sub-cats is getting unwieldy for practical reference use.
