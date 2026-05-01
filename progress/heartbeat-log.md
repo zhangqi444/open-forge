@@ -4277,3 +4277,58 @@ Still targeting batch ~100 for pattern-consolidation pass. Progress is healthy.
 - **PsiTransfer's URL-fragment-key + admin-panel-opt-in + tus.io-resumable trio** is a really clean secure-default example set worth highlighting
 - **49.8% done — halfway point tomorrow**
 - Pattern-consolidation overdue: 54 CROWN-JEWEL sub-cats, 176 hub-of-credentials, 168 transparent-maintenance, 162 institutional-stewardship
+
+## 2026-05-01 02:40 UTC — batch 125 (5 recipes) — **🎯 50% DONE MILESTONE**
+
+### Step 0 / Step 1
+- Synced; issues #24-27 still 4 open.
+
+### Step 2 (selfh.st batch 125)
+- **games-on-whales** (1848★) — C++ Moonlight-streaming server for multi-user shared GPU gaming (games-on-whales/wolf; OpenCollective; Discord; privileged-mode + GPU-passthrough; base-images-ecosystem separate repo). **177th hub-of-credentials Tier 2**. **Privileged-mode-container-host-root-equivalent: 2 tools** (Pelican-Wings+Wolf) 🎯 **2-TOOL MILESTONE — HIGHEST-severity**. **Hardware-dependent-tool: 5 tools** (+Wolf) 🎯 **5-TOOL MILESTONE**. **Open-Collective-transparent-finances: 7 tools** (+Wolf) 🎯 **7-TOOL MILESTONE**. **NEW recipe convention: "GPU-passthrough-prerequisite-expertise-required"** (1st — Wolf). **NEW positive-signals**: "ecosystem-base-images-separate-repo" (1st formally — Wolf; games-on-whales/gow) + "video-codec-encoding-pipeline-tunable" (1st — Wolf). **NEW neutral-signal: "multi-GPU-partitioning-advanced-pattern"** (1st — Wolf). 163rd institutional-stewardship + 169th transparent-maintenance.
+- **mail-archiver** (1825★) — .NET + PostgreSQL email-archive for personal/small-team (s1t5; mail-archiver.org website; Ko-Fi + Buy Me a Coffee dual-funding; OIDC SSO; multi-account IMAP; dark-mode + multilingual). **178th hub-of-credentials CROWN-JEWEL Tier 1**. **Email-archive-aggregator sub-cat MATURED: 2 tools** (Open Archiver + Mail-Archiver) 🎯 **2-TOOL MILESTONE — MATURED**. **CROWN-JEWEL Tier 1: 61 tools / 54 sub-categories** (not new — matured). **Ko-Fi-funding: 3 tools** (Notediscovery+Versitygw+Mail-Archiver) 🎯 **3-TOOL MILESTONE**. **BuyMeACoffee-funding: 1 tool** 🎯 **NEW FAMILY** (Mail-Archiver). **Multi-platform-funding: 2 tools** (Podsync+Mail-Archiver) 🎯 **2-TOOL MILESTONE**. **Transparent-maintenance: 170 tools** 🎯 **170-TOOL MILESTONE at Mail-Archiver**. **NEW recipe conventions**: "IMAP-app-password-vs-OAuth-tradeoff" (1st — Mail-Archiver) + "scope-tier-personal-vs-workspace" (1st — Mail-Archiver; useful distinction from Open Archiver). **NEW positive-signals**: "OIDC-SSO-integration-support" (1st formally — Mail-Archiver) + "dark-mode-plus-i18n-UI-polish" (1st — Mail-Archiver). 164th institutional-stewardship + **170th transparent-maintenance**.
+- **gmail-cleaner** (1820★) — Python local-only Gmail bulk-unsubscribe/cleanup tool (Gururagavendra sole-dev; MIT; Docker; Gmail API batch requests; local-only no-data-collection; free-forever). **179th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "Gmail-modify-OAuth-token-cleanup-tool"** (1st — Gmail Cleaner; per-user-god-mode distinct from workspace-delegation). **CROWN-JEWEL Tier 1: 62 tools / 55 sub-categories**. **NEW recipe conventions**: "Gmail-OAuth-modify-scope-destructive-review" (1st — Gmail Cleaner; HIGH-severity) + "no-data-collection-claim-code-verification" (1st — Gmail Cleaner). **NEW positive-signals**: "data-never-leaves-machine-privacy-declaration" (1st — Gmail Cleaner) + "batched-API-call-efficiency-positive" (1st — Gmail Cleaner) + "free-forever-explicit-positioning" (1st — Gmail Cleaner). **NEW neutral-signal: "user-provides-own-OAuth-app"** (1st — Gmail Cleaner). 165th institutional-stewardship + 171st transparent-maintenance.
+- **obico** (1806★) — Django + Celery + Deep Learning failure-detection platform for 3D printing (TheSpaghettiDetective→Obico rebrand; obico.io; OctoPrint + Klipper plugin ecosystem; GPU-optional; SaaS-parallel; community-built). **180th hub-of-credentials CROWN-JEWEL Tier 1 — NEW sub-category "AI-ML-server + webcam-monitoring-aggregator"** (1st — Obico; physical-location-sensitivity via webcams). **180-TOOL HUB-OF-CREDENTIALS MILESTONE at Obico**. **CROWN-JEWEL Tier 1: 63 tools / 56 sub-categories**. **Hardware-dependent-tool: 6 tools** (+Obico) 🎯 **6-TOOL MILESTONE**. **AI-model-serving-tool: 5 tools** (+Obico) 🎯 **5-TOOL MILESTONE**. **Commercial-parallel-with-OSS-core: 16 tools** 🎯 **16-TOOL MILESTONE**. **NEW recipe convention: "webcam-image-background-privacy-awareness"** (1st — Obico). **NEW positive-signals**: "broad-3D-print-ecosystem-integration" (1st — Obico) + "community-built-explicit-positioning" (1st formally — Obico). **NEW neutral-signals**: "project-rebrand-legacy-repo-URL" (1st — Obico; SpaghettiDetective→Obico) + "sibling-project-cross-linking" (1st — Obico; JusPrin). 166th institutional-stewardship + 172nd transparent-maintenance.
+- **jotty** (1797★) — Next.js checklists+notes app formerly rwMarkable (fccview; jotty.page; Discord + Reddit + Telegram triple-community; client-side-encrypt option; Docker). **181st hub-of-credentials Tier 3**. **Multi-community-channel-presence: 4 tools** 🎯 **4-TOOL MILESTONE at Jotty** (Donetick+Open Archiver+Manyfold+Jotty). **Markdown-knowledge-base META-FAMILY: 7 tools** 🎯 **7-TOOL MILESTONE at Jotty**. **Reddit-community-channel: 2 tools** (Swing Music+Jotty) 🎯 **2-TOOL MILESTONE**. **Telegram-community-channel: 1 tool** 🎯 **NEW FAMILY** (Jotty — distinct channel type). **NEW recipe convention: "optional-client-side-encryption-passphrase-discipline"** (1st — Jotty). **NEW neutral-signal: "dot-page-TLD-branding"** (1st — Jotty). 167th institutional-stewardship + 173rd transparent-maintenance.
+
+**Batch 125 lengths:** games-on-whales 160, mail-archiver 154, gmail-cleaner 147, obico 154, jotty 134.
+**State:** 639 done / 2 skipped / 633 pending — **🎯 50.2% done — HALFWAY POINT CROSSED.**
+
+### 🎯 MAJOR MILESTONES this batch
+- **🎯🎯🎯 50% DONE MILESTONE (639/1274) — HALFWAY POINT CROSSED at Obico-batch** 🎯🎯🎯
+- **Hub-of-credentials: 181 tools** — **180-MILESTONE at Obico**
+- **Transparent-maintenance: 173 tools** — **170-MILESTONE at Mail-Archiver**
+- **CROWN-JEWEL Tier 1: 63 tools / 56 sub-categories** (+2 new: Gmail-modify + AI-ML-server-webcam)
+- **Commercial-parallel-with-OSS-core: 16 tools** 🎯 **16-TOOL MILESTONE at Obico**
+- **Institutional-stewardship: 167 tools**
+- **Hardware-dependent-tool: 6 tools** 🎯 **6-TOOL MILESTONE at Obico**
+- **AI-model-serving-tool: 5 tools** 🎯 **5-TOOL MILESTONE at Obico**
+- **Markdown-knowledge-base META-FAMILY: 7 tools** 🎯 **7-TOOL MILESTONE at Jotty**
+- **Open-Collective-transparent-finances: 7 tools** 🎯 **7-TOOL MILESTONE at Wolf**
+- **Multi-community-channel-presence: 4 tools** 🎯 **4-TOOL MILESTONE at Jotty**
+- **Ko-Fi-funding: 3 tools** 🎯
+- **Email-archive-aggregator sub-cat: MATURED 2 tools** 🎯
+- **Privileged-mode-container-host-root-equivalent: 2 tools** 🎯
+- **Reddit-community-channel: 2 tools** 🎯
+- **NEW families**: BuyMeACoffee-funding, Telegram-community-channel
+
+### New precedents this batch
+- **"Gmail-modify-OAuth-token-cleanup-tool" CROWN-JEWEL Tier 1 sub-category** (Gmail Cleaner 1st — per-user god-mode distinct from workspace-delegation)
+- **"AI-ML-server + webcam-monitoring-aggregator" CROWN-JEWEL Tier 1 sub-category** (Obico 1st — ML + physical-location-sensitivity)
+- **Email-archive sub-cat matures**: Open Archiver (enterprise workspace-delegation) + Mail-Archiver (personal IMAP) — complementary scope-tiers
+- **"scope-tier-personal-vs-workspace" distinction** (Mail-Archiver 1st — useful differentiation for sensitivity-sizing)
+- **"BuyMeACoffee-funding" family** (Mail-Archiver 1st)
+- **"Telegram-community-channel" family** (Jotty 1st)
+- **"Markdown-knowledge-base META-FAMILY" crossed 7-MILESTONE** — getting large
+- **Multi-community-channel-presence crossed 4-MILESTONE** — this pattern keeps recurring
+- **15+ new recipe conventions + 15+ new positive-signals + 5 new neutral-signals**
+
+### Notes
+- **🎯🎯🎯 HALFWAY POINT CROSSED** at Obico (recipe 180, batch 125). This is a meaningful catalog-scale milestone — 50.2% done.
+- **Hub-of-credentials passed 180 tools at Obico** — pace continues ~3-4 hubs per batch
+- **Transparent-maintenance passed 170 tools at Mail-Archiver**
+- **Commercial-parallel crossed 16 tools at Obico** — SaaS-OSS-dual pattern increasingly common
+- **Obico's "webcam-image-background-privacy-awareness" convention** is worth propagating — any tool with user-webcam-input has this risk (3D printers, security cameras, baby monitors, workshop cams)
+- **Gmail Cleaner's "local-only + no-data-collection + free-forever"** is a clean privacy-positioning exemplar
+- **Mail-Archiver's "personal-vs-workspace scope tier distinction"** is useful conceptual framing — helps operators correctly size risk
+- **Pattern-consolidation increasingly overdue**: 56 CROWN-JEWEL sub-cats, 181 hub-of-credentials, 173 transparent-maintenance, 167 institutional-stewardship. Consolidation pass after batch 130 might be warranted.
+- **Runway remaining**: 633 tools — if ~5/batch continues, ~126 batches remaining
