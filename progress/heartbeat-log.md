@@ -5138,3 +5138,15 @@ Status: 364 apps still pending.
 - starbase-80: minimal Docker homepage; config.json + icons volume; no auth built-in
 - immich-drop: zero-login Immich upload collector; IMMICH_BASE_URL must end with /api; chunked uploads optional
 - booklogr: book library tracker; BL_API_ENDPOINT must be externally reachable URL; active dev warning
+
+## 2026-05-02 03:30 UTC — Batch 184 + 185
+
+**Batch 184** (commit bb1dd13): gotosocial (518★), kuvasz (513★), planarally (502★), pyshelf (526★), viniplay — recipes committed from prior session's untracked files.
+
+**Batch 185** (commit eace90b): fli-so (507★), nextcloud-social (499★), quetre (497★), frames (496★), flashpaper (493★).
+
+Notes:
+- nextcloud-social is a Nextcloud plugin (not standalone Docker); recipe reflects install-via-app-store pattern
+- frames requires pgvector Postgres image (not plain postgres)
+- flashpaper: disable web server access logging (upstream security recommendation)
+- quetre: no official Docker image; builds from source or use community images
