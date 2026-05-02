@@ -5110,3 +5110,17 @@ Status: 364 apps still pending.
 - manage-my-damn-life: CalDAV task/calendar frontend; beta; Nextcloud+Baikal tested; basic auth only
 - dumbdrop: dead-simple file drop; no DB; optional PIN; TRUST_PROXY off by default for security
 - wishlist: shareable gift wishlist; ORIGIN var required; no subpath support; Nginx buffer gotcha
+
+## 2026-05-02 02:15 UTC — Batch 182
+
+**Apps processed (5):** postmarks (542★), wiki-go (542★), soulbeet (540★), vocard (540★), gocron (538★)
+**Commit:** c6302cf
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- postmarks: single-user Fediverse-connected bookmarking site; PUBLIC_BASE_URL required; builds from source
+- wiki-go: databaseless flat-file wiki (Go); allow_insecure_cookies required for HTTP-only setups
+- soulbeet: Soulseek+beets+Navidrome music pipeline; volume path alignment between containers is critical
+- vocard: Discord music bot; requires Lavalink v4+; change default Lavalink password youshallnotpass
+- gocron: YAML-configured cron job scheduler with web UI; terminal allowlist for safety; software packages need container recreate
