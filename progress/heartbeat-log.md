@@ -5020,3 +5020,15 @@ Commit: e21d5d5
 - Wrote 5 new recipes: openpanel, gomft, nzbget, monetr, habittrove
 - Committed and pushed: 55ede90
 - Next pending: koffan (644*), jellyswarrm (640*), reaparr (636*)
+
+## 2026-05-02 00:00 UTC — Batch 177
+
+**Apps:** koffan (644★), jellyswarrm (640★), reaparr (636★), readmeabook (633★), drop (632★)
+
+- koffan: Lightweight Go-based collaborative shopping list app; real-time WebSocket sync, SQLite, PWA
+- jellyswarrm: Reverse proxy combining multiple Jellyfin servers; early dev but core features working
+- reaparr: Plex downloader for cross-server content acquisition; minimal upstream README — docs at reaparr.rocks
+- readmeabook: Audiobook automation (Radarr/Sonarr equivalent) for Plex/Audiobookshelf; bundled Postgres+Redis
+- drop: Self-hosted DRM-free game distribution platform (GameVault/Steam alternative); minimal README, docs at droposs.org
+
+Pending after batch 177: 369 apps
