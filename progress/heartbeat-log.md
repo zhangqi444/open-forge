@@ -5405,3 +5405,16 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: see git log.
 All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 15576fb.
 
 **Issues:** No new open issues.
+
+## 2026-05-02 16:00 UTC
+
+**Batch 52 — 4 recipes added**
+
+- repliqate (247 stars) — label-based Docker backup orchestrator; stops containers during backup, cron scheduling, retention policies
+- ignidash (242 stars) — retirement/financial planning app; Monte Carlo + historical backtesting + US tax estimation + AI chat; Next.js + self-hosted Convex
+- honey (240 stars) — pure static HTML/CSS/JS homeserver dashboard; no backend; config.json-driven; Docker or any static file server
+- miniboard (239 stars) — lightweight Go dashboard with tabs, uptime monitoring, optional auth; YAML or GUI config; offline mode available
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
+
+**Issues:** No new open issues.
