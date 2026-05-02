@@ -5555,3 +5555,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - filerun (0★): File management/sharing; CLOSED SOURCE freemium; PHP+MySQL+Docker
   - dovel (0★): Simple mail server; CUSTOM LICENSE; limited docs
 - Pending apps remaining: ~116
+
+## 2026-05-02r (21:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues (still 5 open, same as before)
+- Step 2: batch 65 — 5 recipes written and committed (d43de2d)
+  - leed (232★): Minimal PHP RSS aggregator; LAMP + cron; AGPL-3.0; OPML import/export
+  - minne (224★): Rust PKM with graph DB (SurrealDB); AI-assisted connections; AGPL-3.0
+  - comic-library-utilities (221★): CBZ/CBR bulk management toolset; Docker; Komga companion
+  - receipt-wrangler (214★): Receipt manager with OCR+AI; Docker; AGPL-3.0
+  - medialytics (212★): Client-side Plex library stats viewer; static HTML; TOKEN SECURITY warning
+- Pending apps remaining: ~111 (some implicit pending entries without status field)

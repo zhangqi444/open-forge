@@ -8749,6 +8749,8 @@
          "name" : "Leed",
          "github" : "github.com/LeedRSS/Leed",
          "desc" : "Free and minimal RSS aggregator"
+      ,
+         "status" : "done"
       },
       {
          "github" : "github.com/VityaSchel/lufin",
@@ -8821,6 +8823,8 @@
          "slug" : "comic-library-utilities",
          "github" : "github.com/allaboutduncan/clu-comics",
          "desc" : "Toolset for managing large comic libraries"
+      ,
+         "status" : "done"
       },
       {
          "stars" : 221,
@@ -8848,7 +8852,7 @@
       },
       {
          "stars" : 214,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Receipt-Wrangler/receipt-wrangler",
          "slug" : "receipt-wrangler",
          "name" : "Receipt Wrangler",
@@ -8856,11 +8860,13 @@
       },
       {
          "stars" : 212,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "medialytics",
          "github" : "github.com/Drewpeifer/medialytics",
          "name" : "Medialytics",
          "desc" : "Plex media server statistics"
+      ,
+         "status" : "done"
       },
       {
          "desc" : "Basic control panel for Docker, Systemd, VMs, and everything else",
