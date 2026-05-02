@@ -5301,3 +5301,7 @@ Skipped (2):
 ## 2026-05-02 — Batch 41
 Added 7 recipes: seelf, glitchtip, patchpanda, ghostboard, ferrishare, foldergram, i-librarian
 All marked done in selfhst-progress.json.
+
+## 2026-05-02 — Batch 42
+Added 5 recipes: subscription-manager, dollardollar-bill-y-all, dashlit, dockwatch, lurker
+Skipped: none

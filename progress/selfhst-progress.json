@@ -8341,14 +8341,14 @@
          "stars" : 330,
          "name" : "Subscription Manager",
          "github" : "github.com/dh1011/subscription-manager",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "subscription-manager",
          "desc" : "Track subscriptions and manage expenses"
       },
       {
          "name" : "DollarDollar Bill Y'all",
          "github" : "github.com/harung1993/dollardollar",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "dollardollar-bill-y-all",
          "stars" : 329,
          "desc" : "Expense tracking and bill-splitting application"
@@ -8356,7 +8356,7 @@
       {
          "name" : "DashLit",
          "slug" : "dashlit",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 329,
          "desc" : "Simple server startpage",
          "github" : "github.com/codewec/dashlit"
@@ -8364,7 +8364,7 @@
       {
          "name" : "Dockwatch",
          "slug" : "dockwatch",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Notifiarr/dockwatch",
          "stars" : 327,
          "desc" : "Simple UI for managing container updates and notifications"
@@ -8372,7 +8372,7 @@
       {
          "stars" : 327,
          "slug" : "lurker",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/oppiliappan/lurker",
          "name" : "lurker",
          "desc" : "Read-only Reddit frontend with mobile support"
