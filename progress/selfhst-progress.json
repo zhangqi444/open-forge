@@ -7949,7 +7949,7 @@
          "stars" : 428,
          "name" : "Ktistec",
          "slug" : "ktistec",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/toddsundsted/ktistec",
          "desc" : "Single-user ActivityPub server"
       },
@@ -7966,11 +7966,11 @@
          "stars" : 426,
          "slug" : "owlistic",
          "github" : "github.com/owlistic-notes/owlistic",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Owlistic"
       },
       {
-         "status" : "pending",
+         "status" : "skipped",
          "slug" : "contao",
          "name" : "Contao",
          "stars" : 425,
@@ -7981,7 +7981,7 @@
          "stars" : 425,
          "name" : "Figranium",
          "slug" : "figranium",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Browser automation and extraction tool",
          "github" : "github.com/figranium/figranium"
       },
@@ -7995,7 +7995,7 @@
       },
       {
          "name" : "Invoice Builder",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "invoice-builder",
          "github" : "github.com/piratuks/invoice-builder",
          "stars" : 423,
