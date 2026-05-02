@@ -5161,3 +5161,24 @@ Notes:
 - 4ga-boards: change `notpassword`/`notsecretkey` defaults; WebSocket proxy passthrough needed for real-time
 - dockerizalo: mounts host Docker socket (full Docker access); no built-in HTTPS — needs existing reverse proxy
 - wapy-dev: cron Alpine sidecar required for payment reminders; lock registration after setup
+
+## 2026-05-02 04:30 UTC
+
+**Batch 28** — selfhst.st app recipes
+
+Added 4 new recipes:
+- `wingfit` — minimalist fitness tracker (Docker Compose, FastAPI/Python, CC BY-NC-SA)
+- `middleware-manager` — Traefik/Pangolin middleware UI (Docker, Go+React, Pangolin & standalone modes)
+- `traefik-kop` — Docker→Redis→Traefik multi-host discovery agent
+- `vaultls` — mTLS/TLS certificate management platform (Rust+Vue, OIDC support)
+
+Skipped:
+- `rahoot` — GitHub repo returns 403 (access blocked)
+
+Commit: `1e5d195`
+
+**Open issues (still open; PAT lacks issues:write)**
+- #24, #25 — Duplicate Windows/WSL2 quickstart guides — both addressed in commit `ce8accf`; manual close needed
+- #26 — Docs consistency: marketplace description — addressed in `ce8accf`; manual close needed
+- #27 — Windows onboarding: stale Git proxy — addressed in `ce8accf`; manual close needed
+
