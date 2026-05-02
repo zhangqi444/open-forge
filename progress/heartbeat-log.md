@@ -5082,3 +5082,17 @@ Status: 364 apps still pending.
 - poznote: note-taking platform; single SQLite container; MCP server sidecar; must sync .env.template on upgrades
 - glass-keep: Google Keep alternative with glassmorphism UI; local Llama 3.2 AI assistant; default admin/admin — change immediately
 - dynacat: dashboard (Glance fork); YAML config; single binary <20MB; no auth built-in
+
+## 2026-05-02 01:45 UTC — Batch 180
+
+**Apps processed (5):** crosswatch (568★), cert-warden (567★), sup3rS3cretMes5age (564★), vykar (563★), mybibliotheca (562★)
+**Commit:** 3b90c20
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- crosswatch: media watch-state sync across Plex/Jellyfin/Emby/Trakt/AniList etc.; single container, web UI config
+- cert-warden: centralized ACME cert manager (formerly LeGo CertHub); consumers fetch certs via API keys
+- sup3rS3cretMes5age: self-destructing one-time secret messages; Vault-backed; dev mode uses in-memory Vault
+- vykar: Rust backup tool; encrypted+deduplicated; own format (not Borg/Restic compatible); pre-production warning
+- mybibliotheca: Goodreads alternative; KuzuDB graph DB; WORKERS=1 mandatory; currently unmaintained
