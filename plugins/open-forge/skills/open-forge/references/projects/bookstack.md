@@ -7,7 +7,7 @@ description: Self-hosted wiki / documentation platform organized as books → ch
 
 BookStack is a PHP/Laravel app for storing internal documentation in a book-like hierarchy (shelves → books → chapters → pages). Rich WYSIWYG + markdown editors, diagrams.net + Drawio integration, comments, search, multi-factor auth, LDAP/SAML/OIDC SSO. MIT-licensed.
 
-- Upstream repo: <https://github.com/BookStackApp/BookStack> (mirror at <https://codeberg.org/bookstack/bookstack>)
+- Upstream repo: <https://codeberg.org/bookstack/bookstack> (**primary — GitHub is archived mirror**)
 - Install docs: <https://www.bookstackapp.com/docs/admin/installation/>
 - Official project does NOT publish a Docker image or compose file directly — the community-standard image is **`lscr.io/linuxserver/bookstack`** (LinuxServer.io). BookStack documentation also recommends this image.
 
@@ -108,7 +108,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 
 ## Upgrade
 
-1. Read release notes: <https://github.com/BookStackApp/BookStack/releases> — watch for breaking Laravel migrations.
+1. Read release notes: <https://codeberg.org/bookstack/bookstack/releases> — watch for breaking Laravel migrations.
 2. Bump the `lscr.io/linuxserver/bookstack` tag.
 3. `docker compose pull && docker compose up -d`.
 4. The entrypoint runs `php artisan migrate` on boot. Back up before major jumps (e.g. v24 → v25).
@@ -132,7 +132,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 - Docs: <https://www.bookstackapp.com/docs>
 - Install guide (all methods): <https://www.bookstackapp.com/docs/admin/installation/>
 - Docker README (linuxserver): <https://github.com/linuxserver/docker-bookstack>
-- Upstream `.env.example`: <https://github.com/BookStackApp/BookStack/blob/development/.env.example.complete>
-- Releases: <https://github.com/BookStackApp/BookStack/releases>
-- Codeberg mirror: <https://codeberg.org/bookstack/bookstack>
+- Upstream `.env.example`: <https://codeberg.org/bookstack/bookstack/raw/branch/development/.env.example.complete>
+- Releases: <https://codeberg.org/bookstack/bookstack/releases>
+- GitHub mirror (archived): <https://github.com/BookStackApp/BookStack>
 - Community discussions: <https://community.bookstackapp.com/>
