@@ -9539,7 +9539,7 @@
          "name" : "SpendSpentSpent",
          "slug" : "spendspentspent",
          "github" : "github.com/lamarios/SpendSpentSpent",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 72
       },
       {
@@ -9640,7 +9640,7 @@
       },
       {
          "slug" : "civitai-data-manager",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Civitai Data Manager",
          "stars" : 58,
          "desc" : "Civitai model metadata backups and management",
@@ -9649,7 +9649,7 @@
       {
          "desc" : "Generate text from a given audio source using only your browser",
          "slug" : "zipcaptions",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/jptrsn/zip-captions",
          "name" : "ZipCaptions",
          "stars" : 57
@@ -9681,7 +9681,7 @@
       {
          "name" : "WagmiOS",
          "slug" : "wagmios",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 53,
          "desc" : "Container deployment and management with AI integration",
          "github" : "github.com/mentholmike/wagmios"
@@ -9691,7 +9691,7 @@
          "desc" : "Monitor, download, and sync online music",
          "name" : "Music Service",
          "slug" : "music-service",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 52
       },
       {

@@ -5496,3 +5496,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - shared-moments (93★): Couples/family/friends memory app; photos, milestones, reminders, AI
   - pixelfin (77★): Jellyfin artwork gallery inspector; shows missing/low-res image types
 - Pending apps remaining: ~145
+
+## 2026-05-02m (20:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 60 — 5 recipes written and committed (aeee93a)
+  - spendspentspent (72★): Quick expense tracker; 3-pane UI, location tagging, recurring entries
+  - civitai-data-manager (58★): CLI tool to back up Civitai model metadata locally; HTML browser
+  - zipcaptions (57★): Browser-based speech-to-text captions; privacy-first, no data leaves browser
+  - wagmios (53★): Docker homelab manager for OpenClaw agents; scoped API keys, marketplace
+  - music-service (52★): YouTube playlist → MP3 → WebDAV sync; yt-dlp + MySQL + Redis
+- Pending apps remaining: ~140
