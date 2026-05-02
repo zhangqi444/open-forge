@@ -5044,3 +5044,11 @@ Apps added (5):
 
 Build: dist bundles rebuilt (all).
 Status: 364 apps still pending.
+
+## 2026-05-02 — Batch 177
+- Apps: chirpy (601★), typemill (593★), transmute (592★), onwatch (590★), configarr (589★)
+- Rahoot (Ralex91/Rahoot, 599★) skipped — GitHub API returns 403 (repo inaccessible)
+- Substituted configarr (589★) as 5th app
+- Recipes written to plugins/open-forge/skills/open-forge/references/projects/
+- Progress: 911 done, 359 pending
+- Dist rebuilt successfully

@@ -7293,7 +7293,7 @@
          "stars" : 601,
          "slug" : "chirpy",
          "github" : "github.com/devrsi0n/chirpy",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Chirpy"
       },
       {
@@ -7308,7 +7308,7 @@
          "desc" : "Lightweight, flat-file CMS for publishers",
          "github" : "github.com/typemill/typemill",
          "name" : "Typemill",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "typemill",
          "stars" : 593
       },
@@ -7317,11 +7317,11 @@
          "github" : "github.com/transmute-app/transmute",
          "stars" : 592,
          "name" : "Transmute",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "transmute"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "onwatch",
          "name" : "onWatch",
          "stars" : 590,
@@ -7333,7 +7333,7 @@
          "stars" : 589,
          "github" : "github.com/raydak-labs/configarr",
          "slug" : "configarr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Configarr"
       },
       {
