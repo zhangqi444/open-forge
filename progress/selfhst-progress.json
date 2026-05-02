@@ -7734,12 +7734,12 @@
          "name" : "Mantrae",
          "github" : "github.com/MizuchiLabs/mantrae",
          "slug" : "mantrae",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 480
       },
       {
          "desc" : "Generate RSS feeds for popular social aggregation websites",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/johnwarne/upvote-rss",
          "slug" : "upvote-rss",
          "name" : "Upvote RSS",
@@ -7748,14 +7748,14 @@
       {
          "name" : "Octo-Fiesta",
          "slug" : "octo-fiesta",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/V1ck3s/octo-fiesta",
          "stars" : 477,
          "desc" : "Subsonic proxy for integrating streaming providers as music sources"
       },
       {
          "name" : "VoucherVault",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "vouchervault",
          "stars" : 475,
          "github" : "github.com/l4rm4nd/VoucherVault",
@@ -7773,7 +7773,7 @@
          "stars" : 472,
          "github" : "github.com/SamTV12345/PodFetch",
          "slug" : "podfetch",
-         "status" : "pending",
+         "status" : "done",
          "name" : "PodFetch",
          "desc" : "Sleek and efficient podcast downloader"
       },
