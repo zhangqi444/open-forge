@@ -7421,14 +7421,14 @@
          "desc" : "Sync media watch statuses across platforms",
          "github" : "github.com/cenodude/CrossWatch",
          "slug" : "crosswatch",
-         "status" : "pending",
+         "status" : "done",
          "name" : "CrossWatch",
          "stars" : 568
       },
       {
          "stars" : 567,
          "name" : "Cert Warden",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "cert-warden",
          "github" : "github.com/gregtwallace/certwarden",
          "desc" : "Centralized certificate management"
@@ -7437,14 +7437,14 @@
          "stars" : 564,
          "slug" : "sup3rS3cretMes5age",
          "github" : "github.com/algolia/sup3rS3cretMes5age",
-         "status" : "pending",
+         "status" : "done",
          "name" : "sup3r S3cret Mes5age",
          "desc" : "Simple, secure self-destructing message service"
       },
       {
          "name" : "Vykar",
          "slug" : "vykar",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 563,
          "desc" : "Fast, encrypted, deduplicated backups",
          "github" : "github.com/borgbase/vykar"
@@ -7453,7 +7453,7 @@
          "desc" : "Personal library and reading tracker",
          "stars" : 562,
          "name" : "MyBibliotheca",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "mybibliotecha",
          "github" : "github.com/pickles4evaaaa/mybibliotheca"
       },
