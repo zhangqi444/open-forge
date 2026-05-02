@@ -5338,3 +5338,31 @@ Recipes written (8):
 Skipped (0)
 
 Commit: ece75f7
+
+## 2026-05-02 12:20 UTC — Batch 45
+
+Recipes written (7):
+- sprout-track — Plant tracking and care reminder app
+- logforge — Log management/aggregation tool
+- petio — Plex request management companion app
+- specifically-clementines — Recipe/meal planning app
+- seerrbridge — Overseerr/Jellyseerr to Debrid bridge
+- spacepad — Collaborative notepad/whiteboard
+- ticky — Ticket/issue tracking self-hosted app
+
+Skipped (0)
+
+Commit: 2193a34
+
+## 2026-05-02 13:30 UTC
+
+**Batch 48 — 4 recipes added**
+
+- unifi-voucher-site (280 ⭐) — UniFi guest WiFi voucher manager; Docker Compose, single container, Integration API Key auth
+- shipshipship (280 ⭐) — Changelog + roadmap platform; Go/SQLite/SvelteKit, emoji reactions, newsletter, custom themes
+- poeticmetric (271 ⭐) — Privacy-first analytics (no cookies, GDPR/CCPA/PECR); recipe references upstream self-hosting docs
+- trala (264 ⭐) — Traefik service dashboard; auto-discovers routers from Traefik API, no DB
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: c4a6d4a. Push succeeded (bypassed branch protection).
+
+**Issues:** All open issues (#24, #25, #26, #27, #40) already handled in prior heartbeats. No new issues found.
