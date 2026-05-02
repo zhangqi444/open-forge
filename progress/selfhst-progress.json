@@ -8064,14 +8064,14 @@
          "status" : "done",
          "stars" : 408
       },
-      {
+{
          "desc" : "Web and CLI-based cron job management",
          "stars" : 404,
          "name" : "Crontab Guru",
-         "status" : "pending",
+         "status" : "skipped",
+         "skip_reason" : "cronitor-cli is a CLI monitoring agent, not a self-hosted web app",
          "slug" : "crontab-guru",
          "github" : "github.com/cronitorio/cronitor-cli"
-         "status" : "skipped", "skip_reason" : "cronitor-cli is a CLI monitoring agent, not a self-hosted web app",
       },
       {
          "desc" : "Federated content aggregator and microblogging platform",
@@ -8192,7 +8192,7 @@
          "stars" : 366,
          "desc" : "Monitor and auto-purchase domains when they become available",
          "github" : "github.com/maelgangloff/domain-watchdog"
-      },
+      , "status" : "done"},
       {
          "name" : "Sonobarr",
          "slug" : "sonobarr",
@@ -8208,7 +8208,7 @@
          "slug" : "feeds-fun",
          "name" : "Feeds Fun",
          "stars" : 363
-      },
+      , "status" : "done"},
       {
          "slug" : "loops",
          "status" : "done",
@@ -8240,7 +8240,7 @@
          "stars" : 357,
          "github" : "github.com/Chaphasilor/jellyfin-rewind",
          "desc" : "A year-in-review app for Jellyfin music listeners"
-      },
+      , "status" : "done"},
       {
          "desc" : "Generic static HTML pages from a collection of feeds",
          "stars" : 355,
