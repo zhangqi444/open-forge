@@ -9050,7 +9050,7 @@
          "desc" : "Easy and privacy-first web analytics",
          "github" : "github.com/explodingcamera/liwan",
          "slug" : "liwan",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Liwan",
          "stars" : 174
       },
@@ -9113,14 +9113,14 @@
       {
          "slug" : "unraid-guardian",
          "github" : "github.com/stephondoestech/unraid-config-guardian",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Unraid Guardian",
          "stars" : 167,
          "desc" : "Disaster recovery generator for Unraid"
       },
       {
          "slug" : "meshping",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Svedrin/meshping",
          "name" : "Meshping",
          "stars" : 163,
@@ -9202,7 +9202,7 @@
          "desc" : "Lightweight note-taking app",
          "slug" : "nanote",
          "github" : "github.com/omarmir/nanote",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Nanote",
          "stars" : 153
       },
@@ -9216,7 +9216,7 @@
       },
       {
          "slug" : "medassist",
-         "status" : "pending",
+         "status" : "done",
          "name" : "MedAssist",
          "stars" : 152,
          "desc" : "Daily medication reminders and management",
