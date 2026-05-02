@@ -7381,12 +7381,12 @@
          "desc" : "E-mail API for developers",
          "stars" : 572,
          "name" : "Hyvor Relay",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/hyvor/relay",
          "slug" : "hyvor-relay"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "budgetbee",
          "name" : "BudgetBee",
          "stars" : 570,
@@ -7398,12 +7398,12 @@
          "github" : "github.com/timothepoznanski/poznote",
          "name" : "Poznote",
          "slug" : "poznote",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 570
       },
       {
          "slug" : "glass-keep",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/nikunjsingh93/react-glass-keep",
          "name" : "Glass Keep",
          "stars" : 570,
@@ -7414,7 +7414,7 @@
          "name" : "Dynacat",
          "slug" : "dynacat",
          "github" : "github.com/Panonim/dynacat",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Glance fork with dynamic widget updates"
       },
       {
