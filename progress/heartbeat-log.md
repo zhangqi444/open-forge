@@ -5566,3 +5566,10 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - receipt-wrangler (214★): Receipt manager with OCR+AI; Docker; AGPL-3.0
   - medialytics (212★): Client-side Plex library stats viewer; static HTML; TOKEN SECURITY warning
 - Pending apps remaining: ~111 (some implicit pending entries without status field)
+
+## 2026-05-02s (22:00 UTC)
+- Step 0: repo already up to date (new branch origin/claude/go-setup-RLDJL visible)
+- Step 1: issues — 2 new issues (#42, #43)
+  - #42: Self-Host Weekly 2026-05-01 batch nomination (23 apps) — SKIPPED per CLAUDE.md; newsletter-only source doesn't meet 3+ feedback threshold for Tier 1
+  - #43: Staleness TODOs + bookstack Codeberg fix — ADDRESSED (893af55); cherry-picked staleness TODOs for 6 recipes from branch, tightened bookstack gotcha
+- Step 2: selfhst batch — skipped this heartbeat (issue work took priority)
