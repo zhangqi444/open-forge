@@ -8744,13 +8744,11 @@
       },
       {
          "stars" : 232,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "leed",
          "name" : "Leed",
          "github" : "github.com/LeedRSS/Leed",
          "desc" : "Free and minimal RSS aggregator"
-      ,
-         "status" : "done"
       },
       {
          "github" : "github.com/VityaSchel/lufin",
@@ -8823,8 +8821,6 @@
          "slug" : "comic-library-utilities",
          "github" : "github.com/allaboutduncan/clu-comics",
          "desc" : "Toolset for managing large comic libraries"
-      ,
-         "status" : "done"
       },
       {
          "stars" : 221,
@@ -8865,8 +8861,6 @@
          "github" : "github.com/Drewpeifer/medialytics",
          "name" : "Medialytics",
          "desc" : "Plex media server statistics"
-      ,
-         "status" : "done"
       },
       {
          "desc" : "Basic control panel for Docker, Systemd, VMs, and everything else",
@@ -8887,7 +8881,7 @@
       {
          "desc" : "Photo, chat, and sharing community server",
          "github" : "github.com/circled-me/server",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "circled-me",
          "name" : "circled.me",
          "stars" : 209
@@ -8927,13 +8921,13 @@
       {
          "desc" : "No-code apps and tables",
          "stars" : 203,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "nextcloud-tables",
          "github" : "github.com/nextcloud/tables",
          "name" : "Nextcloud Tables"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/dimkr/tootik",
          "slug" : "tootik",
          "name" : "Tootik",
@@ -8957,7 +8951,7 @@
          "desc" : "Automate media searches across the *arr stack"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "ackify",
          "github" : "github.com/kOlapsis/ackify",
          "name" : "Ackify",
@@ -8967,7 +8961,7 @@
       {
          "desc" : "Collaborative wishlists for gifts and presents",
          "name" : "Poenskelisten",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/aunefyren/poenskelisten",
          "slug" : "poenskelisten",
          "stars" : 190
@@ -10048,7 +10042,7 @@
          "github" : "",
          "desc" : "Complete solution for running apps on your own server",
          "slug" : "cloudron",
-         "status" : "done",
+         "status" : "pending",
          "name" : "Cloudron",
          "stars" : 0
       },
@@ -10057,7 +10051,7 @@
          "desc" : "Your personal media on any device",
          "name" : "Emby",
          "slug" : "emby",
-         "status" : "done",
+         "status" : "pending",
          "stars" : 0
       },
       {
@@ -10089,7 +10083,7 @@
          "name" : "FileRun",
          "github" : "filerun.com/",
          "slug" : "filerun",
-         "status" : "done",
+         "status" : "pending",
          "stars" : 0
       },
       {
@@ -10127,7 +10121,7 @@
       {
          "slug" : "dovel",
          "github" : "dovel.email/server/index.html",
-         "status" : "done",
+         "status" : "pending",
          "name" : "Dovel",
          "stars" : 0,
          "desc" : "Simple and easy-to-use mail server"
