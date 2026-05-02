@@ -7661,7 +7661,7 @@
          "stars" : 493,
          "name" : "WikiDocs",
          "slug" : "wikidocs",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Database-less Markdown flat-file wiki engine",
          "github" : "github.com/Zavy86/WikiDocs"
       },
@@ -7670,7 +7670,7 @@
          "stars" : 490,
          "slug" : "ocular",
          "github" : "github.com/simonwep/ocular",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Ocular"
       },
       {
@@ -7678,13 +7678,13 @@
          "github" : "github.com/RARgames/4gaBoards",
          "stars" : 488,
          "slug" : "4ga-boards",
-         "status" : "pending",
+         "status" : "done",
          "name" : "4ga Boards"
       },
       {
          "name" : "Dockerizalo",
          "slug" : "dockerizalo",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 488,
          "github" : "github.com/undernightcore/dockerizalo",
          "desc" : "Simple container deployment and management platform "
@@ -7694,7 +7694,7 @@
          "name" : "Wapy.dev",
          "slug" : "wapy-dev",
          "github" : "github.com/meceware/wapy.dev",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Subscription management platform"
       },
       {
