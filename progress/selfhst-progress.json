@@ -7206,14 +7206,14 @@
          "name" : "Koffan",
          "github" : "github.com/PanSalut/Koffan",
          "slug" : "koffan",
-         "status" : "pending"
+         "status": "done"
       },
       {
          "stars" : 640,
          "name" : "Jellyswarrm",
          "github" : "github.com/LLukas22/Jellyswarrm",
          "slug" : "jellyswarrm",
-         "status" : "pending",
+         "status": "done",
          "desc" : "Combine multiple Jellyfin servers into one library"
       },
       {
@@ -7229,14 +7229,14 @@
          "desc" : "Cross-platform Plex media downloader",
          "name" : "Reaparr",
          "slug" : "reaparr",
-         "status" : "pending",
+         "status": "done",
          "stars" : 636
       },
       {
          "desc" : "Audiobook discovery, requests, and downloads",
          "github" : "github.com/kikootwo/ReadMeABook",
          "slug" : "readmeabook",
-         "status" : "pending",
+         "status": "done",
          "name" : "ReadMeABook",
          "stars" : 633
       },
@@ -7244,7 +7244,7 @@
          "stars" : 632,
          "slug" : "drop",
          "github" : "github.com/Drop-OSS/drop",
-         "status" : "pending",
+         "status": "done",
          "name" : "Drop",
          "desc" : "Flexible game distribution platform"
       },
