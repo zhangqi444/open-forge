@@ -5225,3 +5225,18 @@ Commit: `5a00e2e`
 
 ### Commit
 - fe9b00c — 9 files, 818 insertions
+
+## 2026-05-02 06:00 UTC — Batch 32
+
+### Recipes added
+- **lab-dash** (447★) — AnthonyGress/lab-dash — homelab homepage/dashboard, service shortcuts, system info, health checks, AES-256 encrypted config, admin auth, PWA
+- **gathio** (446★) — lowercasename/gathio — federated privacy-first event hosting, ActivityPub/fediverse, no attendee accounts needed, MongoDB, configurable email notifications
+- **crowdsec-manager** (446★) — hhftechnology/crowdsec_manager — CrowdSec web UI; decisions, alerts, allowlists, hub, logs, backups, Traefik integration; Pangolin and Independent modes; mobile app
+- **dumbpad** (445★) — DumbWareio/DumbPad — stupidly simple web notepad, auto-save, markdown, fuzzy search, optional PIN, PWA, GPL-3.0
+- **its-mytabs** (444★) — louislam/its-mytabs — self-hosted guitar/bass tab viewer/player (Songsterr-like), .gp/.gpx/.musicxml, audio+YouTube sync, MIDI synth, MIT
+
+### Notes
+- Also fixed selfhst-progress.json for batch 31 slugs (exercise-diary, teemii, nimtable, prunemate, hollo) — their status hadn't been updated due to quoting mismatch in earlier sed calls
+
+### Commit
+- 036b96e — 9 files, 749 insertions
