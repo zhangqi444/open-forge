@@ -7877,7 +7877,7 @@
          "name" : "Gathio",
          "github" : "github.com/lowercasename/gathio",
          "slug" : "gathio",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 446,
          "desc" : "Simple, privacy-first event hosting"
       },
@@ -7885,7 +7885,7 @@
          "stars" : 446,
          "slug" : "crowdsec-manager",
          "github" : "github.com/hhftechnology/crowdsec_manager",
-         "status" : "pending",
+         "status" : "done",
          "name" : "CrowdSec Manager",
          "desc" : "Web-based management interface for CrowdSec"
       },
@@ -7893,14 +7893,14 @@
          "name" : "DumbPad",
          "slug" : "dumbpad",
          "github" : "github.com/DumbWareio/DumbPad",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 445,
          "desc" : "Stupidly simple modern notepad"
       },
       {
          "stars" : 444,
          "name" : "It's MyTabs",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/louislam/its-mytabs",
          "slug" : "its-mytabs",
          "desc" : "Guitar tab viewer and player"
@@ -7909,7 +7909,7 @@
          "name" : "Snac",
          "slug" : "snac",
          "github" : "codeberg.org/grunfink/snac2",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 437,
          "desc" : "Simple, minimalistic ActivityPub instance"
       },
@@ -7917,7 +7917,7 @@
          "desc" : "Cross-platform Minecraft server manager",
          "stars" : 436,
          "name" : "auto-mcs",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "auto-mcs",
          "github" : "github.com/macarooni-man/auto-mcs"
       },
@@ -7926,7 +7926,7 @@
          "name" : "Syncloud",
          "slug" : "syncloud",
          "github" : "github.com/syncloud/platform",
-         "status" : "pending",
+         "status" : "skipped",
          "stars" : 433
       },
       {
@@ -7934,14 +7934,14 @@
          "github" : "github.com/nextcloud/richdocuments",
          "name" : "Nextcloud Office",
          "slug" : "nextcloud-office",
-         "status" : "pending",
+         "status" : "skipped",
          "stars" : 433
       },
       {
          "desc" : "Audio and subtitle track changer for Plex",
          "stars" : 433,
          "name" : "PASTA",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/cglatot/pasta",
          "slug" : "pasta"
       },
@@ -7957,7 +7957,7 @@
          "desc" : "Open source pastebin tool",
          "github" : "github.com/interaapps/pastefy",
          "stars" : 426,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "pastefy",
          "name" : "Pastefy"
       },
@@ -7988,7 +7988,7 @@
       {
          "name" : "MediKeep",
          "slug" : "medikeep",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 424,
          "github" : "github.com/afairgiant/MediKeep",
          "desc" : "Personal health record keeper"
