@@ -5322,3 +5322,19 @@ Skipped (1):
 - positive-intentions-chat (313 stars) — Browser-only P2P experimental app; no server component, not production-ready
 
 Commit: f0bdaeb
+
+## 2026-05-02 12:00 UTC — Batch 44
+
+Recipes written (8):
+- biblioreads (303 stars) — Privacy-focused Goodreads alternative frontend; Next.js; read-only scraper
+- fail2ban-report (302 stars) — Multi-server Fail2Ban log dashboard with UFW blocklist management
+- gitsave (~300 stars) — Git repository backup scheduler with web UI; Docker-based
+- luna (~300 stars) — Self-hosted calendar frontend; aggregates CalDAV/iCal/Google Calendar
+- moocup (~298 stars) — Visual screenshot editor; static/Docker deployment
+- plex-rewind (~297 stars) — Plex statistics dashboard (Spotify Wrapped-style); Docker Compose
+- send-visee (~296 stars) — Encrypted file sharing (Firefox Send fork, timvisee); Docker
+- storyden (~295 stars) — Modern community platform; Docker single-container or full Compose stack
+
+Skipped (0)
+
+Commit: ece75f7

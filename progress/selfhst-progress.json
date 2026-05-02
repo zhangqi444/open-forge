@@ -8517,7 +8517,7 @@
          "name" : "Sprout Track",
          "github" : "github.com/Oak-and-Sprout/sprout-track",
          "slug" : "sprout-track",
-         "status" : "pending",
+         "status": "done",
          "stars" : 292,
          "desc" : "Track baby diapers, feedings, naps, pumping, and other activities"
       },
@@ -8526,7 +8526,7 @@
          "desc" : "Service monitoring dashboard for Docker containers",
          "stars" : 290,
          "slug" : "logforge",
-         "status" : "pending",
+         "status": "done",
          "name" : "LogForge"
       },
       {
@@ -8534,12 +8534,10 @@
          "name" : "Petio",
          "slug" : "petio",
          "github" : "github.com/petio-team/petio",
-         "status" : "pending",
+         "status": "done",
          "stars" : 288
       },
-      {
-         "name" : "Specifically Clementines",
-         "status" : "pending",
+      {"status": "done",
          "slug" : "specifically-clementines",
          "github" : "github.com/davideshay/groceries",
          "stars" : 287,
@@ -8551,18 +8549,17 @@
          "name" : "SeerrBridge",
          "github" : "github.com/Woahai321/SeerrBridge",
          "slug" : "seerrbridge",
-         "status" : "pending"
+         "status": "done"
       },
       {
          "desc" : "Simple meeting room occupancy display",
          "github" : "github.com/magweter/spacepad",
          "name" : "Spacepad",
          "slug" : "spacepad",
-         "status" : "pending",
+         "status": "done",
          "stars" : 287
       },
-      {
-         "status" : "pending",
+      {"status": "done",
          "github" : "github.com/dkorecko/Ticky",
          "slug" : "ticky",
          "name" : "Ticky",
