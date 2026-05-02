@@ -9328,7 +9328,7 @@
       },
       {
          "slug" : "omnipoly",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/kWeglinski/OmniPoly",
          "name" : "OmniPoly",
          "stars" : 112,
@@ -9378,7 +9378,7 @@
          "name" : "Mergeable",
          "slug" : "mergeable",
          "github" : "github.com/pvcnt/mergeable",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 107,
          "desc" : "Better inbox for GitHub pull requests"
       },
@@ -9403,7 +9403,7 @@
          "name" : "Thrifty",
          "github" : "github.com/tiehfood/thrifty",
          "slug" : "thrifty",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 97
       },
       {
@@ -9434,7 +9434,7 @@
          "desc" : "A website designed for couples to capture and preserve their special moments",
          "github" : "github.com/tech-kev/SharedMoments",
          "slug" : "shared-moments",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Shared Moments",
          "stars" : 93
       },
@@ -9522,7 +9522,7 @@
          "desc" : "Create HTML galleries from Jellyfin photo libraries",
          "name" : "Pixelfin",
          "slug" : "pixelfin",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/nothing2obvi/pixelfin",
          "stars" : 77
       },

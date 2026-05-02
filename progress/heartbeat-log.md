@@ -5485,3 +5485,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - music-grabber (119★): Single-track music downloader, YouTube/SoundCloud/Soulseek, GitLab
   - bookhaven (115★): EPUB library manager with browser reader, OPDS, OIDC, RBAC
 - Pending apps remaining: ~150
+
+## 2026-05-02l (20:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 59 — 5 recipes written and committed (1c9308c)
+  - omnipoly (112★): Frontend for LibreTranslate + LanguageTool + Ollama; modular feature visibility
+  - mergeable (107★): GitHub PR inbox organizer; browser-only SPA, no GitHub App needed
+  - thrifty (97★): Monthly income/expense tracker; SvelteKit + Go + SQLite + Traefik
+  - shared-moments (93★): Couples/family/friends memory app; photos, milestones, reminders, AI
+  - pixelfin (77★): Jellyfin artwork gallery inspector; shows missing/low-res image types
+- Pending apps remaining: ~145
