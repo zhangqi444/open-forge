@@ -7766,7 +7766,7 @@
          "desc" : "Encrypted daily diary and journaling app",
          "name" : "DailyTXT",
          "slug" : "dailytxt",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 472
       },
       {
@@ -7780,7 +7780,7 @@
       {
          "github" : "github.com/bunkeriot/BunkerM",
          "desc" : "All-in-one Mosquitto (MQTT) broker with web UI",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "bunkerm",
          "name" : "BunkerM",
          "stars" : 472
@@ -7790,21 +7790,21 @@
          "github" : "github.com/HabiRabbu/Musicseerr",
          "stars" : 470,
          "slug" : "musicseerr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Musicseerr"
       },
       {
          "stars" : 467,
          "name" : "Velld",
          "slug" : "velld",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Database backup management and automation",
          "github" : "github.com/dendianugerah/velld"
       },
       {
          "desc" : "Powerful webhook testing tool",
          "github" : "github.com/tarampampam/webhook-tester",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "webhook-tester",
          "name" : "WebHook Tester",
          "stars" : 459
