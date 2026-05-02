@@ -5260,3 +5260,18 @@ Completed batch 33 (continuing from previous turn):
 - **contao** — marked skipped (monorepo dev tool, not for Docker deployment)
 
 Pending count continues to decrease.
+
+## 2026-05-02 08:15 UTC — Batch 38
+
+Recipes written (5):
+- mbin (400 stars) — federated ActivityPub content aggregator, PHP/Symfony stack
+- lazylibrarian (376 stars) — author/ebook manager, LinuxServer.io Docker image
+- oikos (376 stars) — self-hosted family planner (tasks, calendar, budget, meals, documents)
+- anonymousoverflow (369 stars) — privacy frontend for StackOverflow
+- frigate-notify (369 stars) — notification bridge for Frigate NVR
+
+Skipped (2):
+- jellyplist (375 stars) — archived project (Spotify API removed crucial features)
+- nextcloud-forms (371 stars) — Nextcloud plugin, not standalone self-hosted app
+
+Also fixed selfhst-progress.json JSON bug: mbin had duplicate "status" keys (pending + done); resolved to "done".

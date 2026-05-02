@@ -7298,7 +7298,6 @@
       },
       {
          "name" : "Rahoot",
-         "status" : "pending",
          "slug" : "rahoot",
          "stars" : 599,
          "github" : "github.com/Ralex91/Rahoot",
@@ -8076,12 +8075,11 @@
       },
       {
          "desc" : "Federated content aggregator and microblogging platform",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/MbinOrg/mbin",
          "slug" : "mbin",
          "name" : "Mbin",
          "stars" : 400
-         "status" : "done",
       },
       {
          "stars" : 400,
@@ -8142,7 +8140,7 @@
       {
          "name" : "LazyLibrarian",
          "slug" : "lazylibrarian",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 376,
          "github" : "gitlab.com/LazyLibrarian/LazyLibrarian",
          "desc" : "Follow authors and manage ebook collections"
@@ -8150,14 +8148,14 @@
       {
          "name" : "Oikos",
          "slug" : "oikos",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 376,
          "desc" : "Family planner for small households",
          "github" : "github.com/ulsklyc/oikos"
       },
       {
          "stars" : 375,
-         "status" : "pending",
+         "status" : "skipped", "skip_reason" : "project archived - Spotify API removed crucial features",
          "slug" : "jellyplist",
          "github" : "github.com/kamilkosek/jellyplist",
          "name" : "Jellyplist",
@@ -8167,7 +8165,7 @@
          "desc" : "Simple form and survey app for Nextcloud",
          "github" : "github.com/nextcloud/forms",
          "slug" : "nextcloud-forms",
-         "status" : "pending",
+         "status" : "skipped", "skip_reason" : "Nextcloud plugin, not standalone self-hosted app",
          "name" : "Nextcloud Forms",
          "stars" : 371
       },
@@ -8176,14 +8174,14 @@
          "name" : "Anonymous Overflow",
          "github" : "github.com/httpjamesm/AnonymousOverflow",
          "slug" : "anonymousoverflow",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 369
       },
       {
          "name" : "Frigate-Notify",
          "slug" : "frigate-notify",
          "github" : "github.com/0x2142/frigate-notify",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 369,
          "desc" : "Event notifications for a standalone Frigate NVR instance"
       },
