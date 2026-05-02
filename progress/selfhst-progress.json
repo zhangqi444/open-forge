@@ -8286,7 +8286,7 @@
          "desc" : "Lightweight self-hosted deployment platform written in Go",
          "stars" : 343,
          "slug" : "seelf",
-         "status" : "pending",
+         "status" : "done",
          "name" : "seelf"
       },
       {
@@ -8294,12 +8294,12 @@
          "github" : "gitlab.com/glitchtip/glitchtip-backend",
          "name" : "GlitchTip",
          "slug" : "glitchtip",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 341
       },
       {
          "slug" : "patchpanda",
-         "status" : "pending",
+         "status" : "done",
          "name" : "PatchPanda",
          "stars" : 340,
          "github" : "github.com/dkorecko/PatchPanda",
@@ -8308,7 +8308,7 @@
       {
          "github" : "github.com/jon6fingrs/ghostboard",
          "desc" : "Real-time synchronized text sharing",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "ghostboard",
          "name" : "Ghostboard",
          "stars" : 338
@@ -8319,20 +8319,20 @@
          "name" : "FerriShare",
          "slug" : "ferrishare",
          "github" : "github.com/TobiasMarschner/ferrishare",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "github" : "github.com/foldergram/foldergram",
          "desc" : "Instagram-inspired photo and video gallery",
          "stars" : 335,
          "slug" : "foldergram",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Foldergram"
       },
       {
          "name" : "I, Librarian",
          "slug" : "i-librarian",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/mkucej/i-librarian-free",
          "stars" : 331,
          "desc" : "PDF and office document organization and management"

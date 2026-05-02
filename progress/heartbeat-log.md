@@ -5297,3 +5297,7 @@ Recipes written (5):
 Skipped (2):
 - foundry-virtual-tabletop (360 stars) — GitHub repo is issue tracker only, no source code
 - redict (347 stars) — Redis OSS fork; infrastructure component, not a self-hosted web app
+
+## 2026-05-02 — Batch 41
+Added 7 recipes: seelf, glitchtip, patchpanda, ghostboard, ferrishare, foldergram, i-librarian
+All marked done in selfhst-progress.json.
