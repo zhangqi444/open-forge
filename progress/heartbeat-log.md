@@ -5150,3 +5150,14 @@ Notes:
 - frames requires pgvector Postgres image (not plain postgres)
 - flashpaper: disable web server access logging (upstream security recommendation)
 - quetre: no official Docker image; builds from source or use community images
+
+## 2026-05-02 03:45 UTC — Batch 186
+
+**Batch 186** (commit 107e944): wikidocs (493★), ocular (490★), 4ga-boards (488★), dockerizalo (488★), wapy-dev (487★).
+
+Notes:
+- wikidocs: flat-file PHP wiki — run setup.php before first use; PUID/PGID must match bind-mount owner
+- ocular: single-image budgeting app; GENESIS_CREATE_USERS uses `username!:password` syntax; HTTPS required outside localhost
+- 4ga-boards: change `notpassword`/`notsecretkey` defaults; WebSocket proxy passthrough needed for real-time
+- dockerizalo: mounts host Docker socket (full Docker access); no built-in HTTPS — needs existing reverse proxy
+- wapy-dev: cron Alpine sidecar required for payment reminders; lock registration after setup
