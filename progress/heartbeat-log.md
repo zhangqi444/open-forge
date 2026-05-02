@@ -5210,3 +5210,18 @@ Added 5 new recipes:
 - `webhook-tester` — Self-hosted webhook.site alternative; unique URLs, customizable responses, real-time WebSockets, ngrok tunneling, memory/fs/Redis storage; Go+scratch image
 
 Commit: `5a00e2e`
+
+## 2026-05-02 05:45 UTC — Batch 31
+
+### Recipes added
+- **exercise-diary** (459★) — aceberg/ExerciseDiary — minimalist workout diary, GitHub-style year heatmap, Go/SQLite, bcrypt auth, Bootswatch themes
+- **teemii** (457★) — dokkaner/teemii — self-hosted manga manager/reader, CBZ/CBR, metadata from AniList/MAL/MangaDex, Kitsu/AniList scrobbling, two containers
+- **nimtable** (457★) — nimtable/nimtable — Apache Iceberg catalog explorer, REST/Glue/Hive/Polaris/S3 Tables, SQL browser, compaction via Spark/RisingWave, three containers + PostgreSQL
+- **prunemate** (455★) — anoniemerd/PruneMate — scheduled Docker resource cleanup, web UI, prune preview, multi-host via docker-socket-proxy, notifications, Python/Flask, AGPLv3
+- **hollo** (455★) — fedify-dev/hollo — single-user headless ActivityPub microblogging, Mastodon-compatible API, fediverse, PostgreSQL + S3/MinIO
+
+### Skipped
+- **operational** (458★) — operational-co/operational.co — empty/inaccessible GitHub repo (no README or compose found)
+
+### Commit
+- fe9b00c — 9 files, 818 insertions
