@@ -8045,7 +8045,7 @@
          "name" : "Christmas Community",
          "slug" : "christmas-community",
          "github" : "github.com/Wingysam/Christmas-Community",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 410,
          "desc" : "Christmas lists for families"
       },
@@ -8053,7 +8053,7 @@
          "name" : "Sosse",
          "slug" : "sosse",
          "github" : "github.com/biolds/sosse",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 409,
          "desc" : "Selenium search engine for crawling and archiving"
       },
@@ -8062,7 +8062,7 @@
          "name" : "Docking Station",
          "github" : "github.com/LooLzzz/docking-station",
          "slug" : "docking-station",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 408
       },
       {
@@ -8083,7 +8083,7 @@
       },
       {
          "stars" : 400,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "ideon",
          "name" : "Ideon",
          "desc" : "Visual workspace for projects",
@@ -8093,7 +8093,7 @@
          "github" : "github.com/LANCommander/LANCommander",
          "desc" : "Open source video game distribution platform",
          "slug" : "lancommander",
-         "status" : "pending",
+         "status" : "done",
          "name" : "LANCommander",
          "stars" : 395
       },
