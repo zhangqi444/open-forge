@@ -4,6 +4,11 @@
     { "number": 24, "status": "duplicate", "of": 25, "action_taken": "none — API cannot comment/close; human should close manually referencing #25", "reason": "identical body to #25" },
     { "number": 25, "status": "addressed", "commit": "ce8accf", "action": "added docs/windows-setup.md (WSL2 install, Docker Desktop integration, version requirements, troubleshooting); linked from README.md. 'closes #25' in commit message." },
     { "number": 26, "status": "addressed", "commit": "ce8accf", "action": "rewrote .claude-plugin/marketplace.json description. 'closes #26' in commit message." },
-    { "number": 27, "status": "addressed", "commit": "ce8accf", "action": "covered in docs/windows-setup.md troubleshooting: git config proxy detection + bypass / unset instructions. 'closes #27' in commit message." }
+    { "number": 27, "status": "addressed", "commit": "ce8accf", "action": "covered in docs/windows-setup.md troubleshooting: git config proxy detection + bypass / unset instructions. 'closes #27' in commit message." },
+    { "number": 40, "status": "addressed", "commit": "fa240b4", "action": "created dist/hermes/references/modules/credentials.md and dist/openclaw/references/modules/credentials.md (copied from canonical source); updated scripts/build-dist.sh so future builds copy credentials.md alongside SKILL.md. 'closes #40' in commit message." },
+    { "number": 41, "status": "addressed", "commit": "1a528e3", "action": "flipped bookstack.md: Codeberg is now primary upstream, GitHub listed as archived mirror. Updated line 10 (intro), upgrade step, .env.example link, releases link, and Links section. Closes #41 via commit message." }
+  ,
+    { "number": 42, "status": "skipped", "reason": "newsletter-only source (Self-Host Weekly 2026-05-01); 23 candidates logged but do not meet 3+ feedback threshold for Tier 1 promotion per CLAUDE.md graduation criteria; deferred for demand aggregation" },
+    { "number": 43, "status": "addressed", "commit": "893af55", "action": "cherry-picked staleness TODOs for 6 recipes (dashy, ddns-updater, defguard, pangolin, technitium, zulip) + tightened bookstack gotcha wording from Self-Host Weekly 2026-05-01. Closes #43." }
   ]
 }

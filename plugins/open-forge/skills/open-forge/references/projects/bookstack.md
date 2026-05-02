@@ -7,7 +7,7 @@ description: Self-hosted wiki / documentation platform organized as books → ch
 
 BookStack is a PHP/Laravel app for storing internal documentation in a book-like hierarchy (shelves → books → chapters → pages). Rich WYSIWYG + markdown editors, diagrams.net + Drawio integration, comments, search, multi-factor auth, LDAP/SAML/OIDC SSO. MIT-licensed.
 
-- Upstream repo: <https://codeberg.org/bookstack/bookstack> (**primary** as of 2026; GitHub mirror at <https://github.com/BookStackApp/BookStack>)
+- Upstream repo: <https://codeberg.org/bookstack/bookstack> (**primary — GitHub is archived mirror**)
 - Install docs: <https://www.bookstackapp.com/docs/admin/installation/>
 - Official project does NOT publish a Docker image or compose file directly — the community-standard image is **`lscr.io/linuxserver/bookstack`** (LinuxServer.io). BookStack documentation also recommends this image.
 
@@ -132,7 +132,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 - Docs: <https://www.bookstackapp.com/docs>
 - Install guide (all methods): <https://www.bookstackapp.com/docs/admin/installation/>
 - Docker README (linuxserver): <https://github.com/linuxserver/docker-bookstack>
-- Upstream `.env.example`: <https://codeberg.org/bookstack/bookstack/src/branch/development/.env.example.complete>
+- Upstream `.env.example`: <https://codeberg.org/bookstack/bookstack/raw/branch/development/.env.example.complete>
 - Releases: <https://codeberg.org/bookstack/bookstack/releases>
 - GitHub mirror (archived): <https://github.com/BookStackApp/BookStack>
 - Community discussions: <https://community.bookstackapp.com/>

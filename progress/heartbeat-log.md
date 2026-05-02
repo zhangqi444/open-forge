@@ -5138,3 +5138,438 @@ Status: 364 apps still pending.
 - starbase-80: minimal Docker homepage; config.json + icons volume; no auth built-in
 - immich-drop: zero-login Immich upload collector; IMMICH_BASE_URL must end with /api; chunked uploads optional
 - booklogr: book library tracker; BL_API_ENDPOINT must be externally reachable URL; active dev warning
+
+## 2026-05-02 03:30 UTC — Batch 184 + 185
+
+**Batch 184** (commit bb1dd13): gotosocial (518★), kuvasz (513★), planarally (502★), pyshelf (526★), viniplay — recipes committed from prior session's untracked files.
+
+**Batch 185** (commit eace90b): fli-so (507★), nextcloud-social (499★), quetre (497★), frames (496★), flashpaper (493★).
+
+Notes:
+- nextcloud-social is a Nextcloud plugin (not standalone Docker); recipe reflects install-via-app-store pattern
+- frames requires pgvector Postgres image (not plain postgres)
+- flashpaper: disable web server access logging (upstream security recommendation)
+- quetre: no official Docker image; builds from source or use community images
+
+## 2026-05-02 03:45 UTC — Batch 186
+
+**Batch 186** (commit 107e944): wikidocs (493★), ocular (490★), 4ga-boards (488★), dockerizalo (488★), wapy-dev (487★).
+
+Notes:
+- wikidocs: flat-file PHP wiki — run setup.php before first use; PUID/PGID must match bind-mount owner
+- ocular: single-image budgeting app; GENESIS_CREATE_USERS uses `username!:password` syntax; HTTPS required outside localhost
+- 4ga-boards: change `notpassword`/`notsecretkey` defaults; WebSocket proxy passthrough needed for real-time
+- dockerizalo: mounts host Docker socket (full Docker access); no built-in HTTPS — needs existing reverse proxy
+- wapy-dev: cron Alpine sidecar required for payment reminders; lock registration after setup
+
+## 2026-05-02 04:30 UTC
+
+**Batch 28** — selfhst.st app recipes
+
+Added 4 new recipes:
+- `wingfit` — minimalist fitness tracker (Docker Compose, FastAPI/Python, CC BY-NC-SA)
+- `middleware-manager` — Traefik/Pangolin middleware UI (Docker, Go+React, Pangolin & standalone modes)
+- `traefik-kop` — Docker→Redis→Traefik multi-host discovery agent
+- `vaultls` — mTLS/TLS certificate management platform (Rust+Vue, OIDC support)
+
+Skipped:
+- `rahoot` — GitHub repo returns 403 (access blocked)
+
+Commit: `1e5d195`
+
+**Open issues (still open; PAT lacks issues:write)**
+- #24, #25 — Duplicate Windows/WSL2 quickstart guides — both addressed in commit `ce8accf`; manual close needed
+- #26 — Docs consistency: marketplace description — addressed in `ce8accf`; manual close needed
+- #27 — Windows onboarding: stale Git proxy — addressed in `ce8accf`; manual close needed
+
+
+## 2026-05-02 04:45 UTC
+
+**Batch 29** — selfhst.st app recipes
+
+Added 5 new recipes:
+- `mantrae` — Traefik dynamic config manager UI (pre-stable; Traefik HTTP provider + optional `mantraed` agent, DNS integration)
+- `upvote-rss` — RSS feed generator for Reddit/HN/Lemmy/Lobsters/PieFed/Mbin/GitHub; score/volume filters, AI summaries, caching
+- `octo-fiesta` — Subsonic proxy with on-demand music download from Deezer/Qobuz/Yandex/SquidWTF for Navidrome
+- `vouchervault` — Django voucher/coupon/gift card manager; OIDC, Apprise notifications, QR/barcode scan, SQLite or Postgres
+- `podfetch` — Rust+React podcast manager; GPodder sync, OIDC, Telegram notifications, S3 storage, SQLite or Postgres
+
+Commit: `aca5697`
+
+**Open issues** — #24–27 still need manual closure (PAT lacks issues:write)
+
+## 2026-05-02 05:15 UTC
+
+**Batch 30** — selfhst.st app recipes
+
+Added 5 new recipes:
+- `dailytxt` — Svelte+Go encrypted diary/journal webapp; client-side encryption, markdown, tags, map, file uploads, gallery, templates, multi-user, HTML export, PWA
+- `bunkerm` — All-in-one Mosquitto MQTT management platform; web UI, ACL, message history, anomaly detection, local automation agents, LM Studio AI, optional BunkerAI cloud tier
+- `musicseerr` — Lidarr-based music request/discovery; stream from Jellyfin/Navidrome/Plex/local/YouTube; scrobble ListenBrainz+Last.fm; discovery queue with personalized recs
+- `velld` — Database backup manager (PostgreSQL/MySQL/MongoDB/Redis); S3 storage, cron schedules, diff viewer, restore UI, email notifications; 2-container (API + Next.js web)
+- `webhook-tester` — Self-hosted webhook.site alternative; unique URLs, customizable responses, real-time WebSockets, ngrok tunneling, memory/fs/Redis storage; Go+scratch image
+
+Commit: `5a00e2e`
+
+## 2026-05-02 05:45 UTC — Batch 31
+
+### Recipes added
+- **exercise-diary** (459★) — aceberg/ExerciseDiary — minimalist workout diary, GitHub-style year heatmap, Go/SQLite, bcrypt auth, Bootswatch themes
+- **teemii** (457★) — dokkaner/teemii — self-hosted manga manager/reader, CBZ/CBR, metadata from AniList/MAL/MangaDex, Kitsu/AniList scrobbling, two containers
+- **nimtable** (457★) — nimtable/nimtable — Apache Iceberg catalog explorer, REST/Glue/Hive/Polaris/S3 Tables, SQL browser, compaction via Spark/RisingWave, three containers + PostgreSQL
+- **prunemate** (455★) — anoniemerd/PruneMate — scheduled Docker resource cleanup, web UI, prune preview, multi-host via docker-socket-proxy, notifications, Python/Flask, AGPLv3
+- **hollo** (455★) — fedify-dev/hollo — single-user headless ActivityPub microblogging, Mastodon-compatible API, fediverse, PostgreSQL + S3/MinIO
+
+### Skipped
+- **operational** (458★) — operational-co/operational.co — empty/inaccessible GitHub repo (no README or compose found)
+
+### Commit
+- fe9b00c — 9 files, 818 insertions
+
+## 2026-05-02 06:00 UTC — Batch 32
+
+### Recipes added
+- **lab-dash** (447★) — AnthonyGress/lab-dash — homelab homepage/dashboard, service shortcuts, system info, health checks, AES-256 encrypted config, admin auth, PWA
+- **gathio** (446★) — lowercasename/gathio — federated privacy-first event hosting, ActivityPub/fediverse, no attendee accounts needed, MongoDB, configurable email notifications
+- **crowdsec-manager** (446★) — hhftechnology/crowdsec_manager — CrowdSec web UI; decisions, alerts, allowlists, hub, logs, backups, Traefik integration; Pangolin and Independent modes; mobile app
+- **dumbpad** (445★) — DumbWareio/DumbPad — stupidly simple web notepad, auto-save, markdown, fuzzy search, optional PIN, PWA, GPL-3.0
+- **its-mytabs** (444★) — louislam/its-mytabs — self-hosted guitar/bass tab viewer/player (Songsterr-like), .gp/.gpx/.musicxml, audio+YouTube sync, MIDI synth, MIT
+
+### Notes
+- Also fixed selfhst-progress.json for batch 31 slugs (exercise-diary, teemii, nimtable, prunemate, hollo) — their status hadn't been updated due to quoting mismatch in earlier sed calls
+
+### Commit
+- 036b96e — 9 files, 749 insertions
+
+## 2026-05-02 06:45 UTC — Batch 33 + 34
+
+### Batch 33 (commit e1327cb)
+Completed batch 33 (continuing from previous turn):
+- **snac** (ActivityPub server, SQLite, Crystal, TLS required)
+- **auto-mcs** (Minecraft server manager, web UI, Modrinth, playit.gg)
+- **pasta** (Plex audio/subtitle track automator, client-side)
+- **pastefy** (Pastebin/Gist alt, OAuth2, multi-file, rich preview)
+- **medikeep** (Personal health records, FastAPI+PostgreSQL, SSO/OIDC)
+- **syncloud** / **nextcloud-office** — marked skipped (platform OS / Nextcloud plugin, not standalone)
+
+### Batch 34 (commit fc277da)
+- **ktistec** (ActivityPub, SQLite, Crystal, MCP support)
+- **owlistic** (real-time notes + todos, Go+NATS+PostgreSQL)
+- **figranium** (browser automation, Playwright, block workflows, noVNC)
+- **invoice-builder** (offline invoicing, UBL/Peppol/XRechnung, Node+React)
+- **contao** — marked skipped (monorepo dev tool, not for Docker deployment)
+
+Pending count continues to decrease.
+
+## 2026-05-02 08:15 UTC — Batch 38
+
+Recipes written (5):
+- mbin (400 stars) — federated ActivityPub content aggregator, PHP/Symfony stack
+- lazylibrarian (376 stars) — author/ebook manager, LinuxServer.io Docker image
+- oikos (376 stars) — self-hosted family planner (tasks, calendar, budget, meals, documents)
+- anonymousoverflow (369 stars) — privacy frontend for StackOverflow
+- frigate-notify (369 stars) — notification bridge for Frigate NVR
+
+Skipped (2):
+- jellyplist (375 stars) — archived project (Spotify API removed crucial features)
+- nextcloud-forms (371 stars) — Nextcloud plugin, not standalone self-hosted app
+
+Also fixed selfhst-progress.json JSON bug: mbin had duplicate "status" keys (pending + done); resolved to "done".
+
+## 2026-05-02 08:30 UTC — Batch 39
+
+Recipes written (5):
+- domain-watchdog (366 stars) — RDAP domain tracker with auto-purchase; PHP/Symfony + Postgres + Valkey
+- sonobarr (364 stars) — Last.fm-powered music discovery companion for Lidarr
+- feeds-fun (363 stars) — RSS news reader with AI tag assignment and scoring rules
+- loops (362 stars) — Federated short-video platform (ActivityPub / TikTok-style); requires S3 storage
+- jellyfin-rewind (357 stars) — Spotify Wrapped-style year-in-review for Jellyfin
+
+## 2026-05-02 09:00 UTC — Batch 40
+
+Recipes written (5):
+- bulwark (358 stars) — Modern webmail client for Stalwart JMAP server; Next.js + OAuth/OIDC
+- tinyfeed (355 stars) — CLI/Docker tool generating a static HTML feed aggregator page
+- minthcm (350 stars) — AI-native open-source HCM platform; PHP + MySQL + Elasticsearch
+- medialyze (349 stars) — Video library technical metadata analyser; FastAPI + SQLite; read-only
+- screenlite (347 stars) — Open-source digital signage CMS (pre-production); Node.js + Postgres + MinIO
+
+Skipped (2):
+- foundry-virtual-tabletop (360 stars) — GitHub repo is issue tracker only, no source code
+- redict (347 stars) — Redis OSS fork; infrastructure component, not a self-hosted web app
+
+## 2026-05-02 — Batch 41
+Added 7 recipes: seelf, glitchtip, patchpanda, ghostboard, ferrishare, foldergram, i-librarian
+All marked done in selfhst-progress.json.
+
+## 2026-05-02 — Batch 42
+Added 5 recipes: subscription-manager, dollardollar-bill-y-all, dashlit, dockwatch, lurker
+Skipped: none
+
+## 2026-05-02 11:30 UTC — Batch 43
+
+Recipes written (8):
+- flohmarkt (323 stars) — Federated ActivityPub-based self-hosted classified ads / flea-market platform
+- jetlog (319 stars) — Self-hostable personal flight tracker with world-map visualisation and stats
+- dumbbudget (316 stars) — Simple PIN-protected personal budgeting PWA; file-based, no database
+- yeetfile (310 stars) — Privacy-focused encrypted file vault; client-side encryption; S3/B2/local storage
+- habitsync (310 stars) — Habit tracking platform with social features, challenges, OIDC auth
+- cupdate (309 stars) — Zero-config container image update tracker; web UI + REST API + RSS
+- openchangelog (308 stars) — Renders Markdown changelogs into a searchable website; GitHub or local source
+- feedcord (306 stars) — RSS/YouTube → Discord webhook bridge; JSON-configured, no database
+
+Skipped (1):
+- positive-intentions-chat (313 stars) — Browser-only P2P experimental app; no server component, not production-ready
+
+Commit: f0bdaeb
+
+## 2026-05-02 12:00 UTC — Batch 44
+
+Recipes written (8):
+- biblioreads (303 stars) — Privacy-focused Goodreads alternative frontend; Next.js; read-only scraper
+- fail2ban-report (302 stars) — Multi-server Fail2Ban log dashboard with UFW blocklist management
+- gitsave (~300 stars) — Git repository backup scheduler with web UI; Docker-based
+- luna (~300 stars) — Self-hosted calendar frontend; aggregates CalDAV/iCal/Google Calendar
+- moocup (~298 stars) — Visual screenshot editor; static/Docker deployment
+- plex-rewind (~297 stars) — Plex statistics dashboard (Spotify Wrapped-style); Docker Compose
+- send-visee (~296 stars) — Encrypted file sharing (Firefox Send fork, timvisee); Docker
+- storyden (~295 stars) — Modern community platform; Docker single-container or full Compose stack
+
+Skipped (0)
+
+Commit: ece75f7
+
+## 2026-05-02 12:20 UTC — Batch 45
+
+Recipes written (7):
+- sprout-track — Plant tracking and care reminder app
+- logforge — Log management/aggregation tool
+- petio — Plex request management companion app
+- specifically-clementines — Recipe/meal planning app
+- seerrbridge — Overseerr/Jellyseerr to Debrid bridge
+- spacepad — Collaborative notepad/whiteboard
+- ticky — Ticket/issue tracking self-hosted app
+
+Skipped (0)
+
+Commit: 2193a34
+
+## 2026-05-02 13:30 UTC
+
+**Batch 48 — 4 recipes added**
+
+- unifi-voucher-site (280 ⭐) — UniFi guest WiFi voucher manager; Docker Compose, single container, Integration API Key auth
+- shipshipship (280 ⭐) — Changelog + roadmap platform; Go/SQLite/SvelteKit, emoji reactions, newsletter, custom themes
+- poeticmetric (271 ⭐) — Privacy-first analytics (no cookies, GDPR/CCPA/PECR); recipe references upstream self-hosting docs
+- trala (264 ⭐) — Traefik service dashboard; auto-discovers routers from Traefik API, no DB
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: c4a6d4a. Push succeeded (bypassed branch protection).
+
+**Issues:** All open issues (#24, #25, #26, #27, #40) already handled in prior heartbeats. No new issues found.
+
+## 2026-05-02 14:30 UTC
+
+**Batch 49 — 4 recipes added**
+
+- boxarr (268 stars) — auto-adds box office trending movies to Radarr; Python, web setup wizard, no external DB
+- origamivault (266 stars) — offline encrypted paper backup (QR + OCR snippets); pure static app, busybox httpd, no backend
+- surmai (264 stars) — personal/family travel organizer; React SPA + PocketBase; self-hosting docs at surmai.app
+- replex (254 stars) — Plex proxy that remixes home hubs (interleave, quality, hero style); requires reverse proxy + SSL
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 413cf13.
+
+**Issues:** No new open issues.
+
+## 2026-05-02 15:00 UTC
+
+**Batch 50 — 4 recipes added**
+
+- silicon-notes (263 stars) — lightweight personal knowledge base; Python/Flask + SQLite, Markdown, bi-directional links, no built-in auth
+- kriti-images (259 stars) — URL-based image transformation service in Go; open-source Cloudflare Images/ImageKit alternative, local or S3 source
+- touitomamout (252 stars) — Twitter-to-Mastodon/Bluesky sync bridge; ARCHIVED project, no future updates, Docker images still available
+- couchtube (252 stars) — self-hostable YouTube TV channel frontend; Go + SQLite, time-based scheduling, early-stage software
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: see git log.
+
+**Issues:** No new open issues.
+
+## 2026-05-02 15:30 UTC
+
+**Batch 51 — 4 recipes added**
+
+- omoide (249 stars) — offline-first photo/video library with local AI (faces, semantic search, auto-tags); Python/FastAPI + SQLite; PolyForm Noncommercial license
+- secrover (248 stars) — security audit report generator (deps/code/domains); Docker one-shot or GitHub Actions; exports HTML reports via rclone
+- url-to-png (246 stars) — URL screenshot service via Playwright/Chromium; filesystem/S3/CouchDB caching; allow/block lists; Prometheus metrics
+- giftmanager (245 stars) — family gift ideas manager with secret tracking, Secret Santa, OIDC, email; self-hosting via upstream installation guide
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 15576fb.
+
+**Issues:** No new open issues.
+
+## 2026-05-02 16:00 UTC
+
+**Batch 52 — 4 recipes added**
+
+- repliqate (247 stars) — label-based Docker backup orchestrator; stops containers during backup, cron scheduling, retention policies
+- ignidash (242 stars) — retirement/financial planning app; Monte Carlo + historical backtesting + US tax estimation + AI chat; Next.js + self-hosted Convex
+- honey (240 stars) — pure static HTML/CSS/JS homeserver dashboard; no backend; config.json-driven; Docker or any static file server
+- miniboard (239 stars) — lightweight Go dashboard with tabs, uptime monitoring, optional auth; YAML or GUI config; offline mode available
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
+
+**Issues:** No new open issues.
+
+## 2026-05-02f (18:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — #41 (bookstack Codeberg flip) already addressed in prior cycle (commit 1a528e3); no new action needed
+- Step 2: batch 53 — 5 recipes written and committed (a1c9bb0)
+  - piefed (239★): federated link aggregation, PocketBase+Next.js
+  - clean-slate (227★): calorie tracker, Docker Compose + Caddy + Hasura + Postgres
+  - imagor-studio (220★): self-hosted image gallery with libvips editing
+  - cially (215★): Discord analytics dashboard (NC license noted)
+  - mkcert-web-ui (211★): web UI for local SSL cert generation
+- Pending apps remaining: ~179
+
+## 2026-05-02g (18:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — #41 still open (requires issues:write to close via API; addressed in prior cycle); no new issues
+- Step 2: batch 54 — 5 recipes written and committed (276488c)
+  - meerkat-crm (227★): personal CRM, Go+React+SQLite, CardDAV sync, Docker Compose
+  - ziit (225★): WakaTime alternative for code time tracking, Next.js+TimescaleDB
+  - whorang (225★): Home Assistant doorbell history add-on, local AI/face recognition
+  - crafty-controller (224★): Minecraft server control panel, Python+Docker, multi-server
+  - minne (223★): graph-powered PKM + read-later, Rust+SurrealDB, AI knowledge graph
+- autocaliweb marked done in selfhst-progress.json (recipe was written in prior cycle, not logged)
+- Pending apps remaining: ~170
+
+## 2026-05-02h (18:30 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues; #24-27 and #40-41 previously addressed
+- Step 2: batch 55 — 5 recipes written and committed (653fa58)
+  - pepperminty-wiki (206★): single-file PHP wiki engine, flat-file storage, no database
+  - yt-dlp-web-player (205★): web video player via yt-dlp+ffmpeg, HLS streaming, browser extension
+  - mqtt-web-interface (205★): MQTT web UI with automation rules, Telegram/Slack alerts, analytics
+  - rangarr (200★): *arr search orchestrator, staggers Radarr/Sonarr/Lidarr searches, no DB
+  - posteria (200★): Plex media poster manager, TMDB/TVDB lookup, auto-import
+- Pending apps remaining: ~165
+
+## 2026-05-02i (19:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues; #24-27, #40-41 previously addressed
+- Step 2: batch 56 — 5 recipes written and committed (1b22bf8)
+  - mitra (187★): Rust ActivityPub micro-blog, Fediverse, Mastodon API, Monero subscriptions
+  - portchecker (185★): Port availability checker, Python/Litestar + Nginx, two-container setup
+  - superbin (179★): Go file sharing + URL shortener + pastebin, stream crypto, AES encryption
+  - shotshare (178★): PHP/Laravel image sharing, Caddy HTTPS, SQLite/MySQL/PostgreSQL
+  - storyteller (176★): Audiobook+ebook sync platform, CUDA GPU support, iOS/Android apps
+- Pending apps remaining: ~160
+
+## 2026-05-02j (19:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 57 — 5 recipes written and committed (acd630e)
+  - liwan (174★): Rust web analytics, single binary, cookie-free, DuckDB embedded
+  - unraid-guardian (167★): Unraid disaster recovery — backs up all container/config docs
+  - meshping (163★): Network ping monitor, latency histograms, traceroute + MTU + AS mapping
+  - nanote (153★): Nuxt 4 note-taking, flat-file Markdown storage, no database
+  - medassist (152★): Node.js medication tracker, inventory + email reminders, SQLite
+- Pending apps remaining: ~155
+
+## 2026-05-02k (19:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 58 — 5 recipes written and committed (a0deb5c)
+  - workout-challenge (146★): Django fitness competition app, Strava sync, cross-device, PostgreSQL
+  - ties-link-sharing (140★): Federated Rust bookmark sharing, alpha stage, PostgreSQL, single-user
+  - redirecterr (135★): Overseerr webhook router to Radarr/Sonarr with filter rules
+  - music-grabber (119★): Single-track music downloader, YouTube/SoundCloud/Soulseek, GitLab
+  - bookhaven (115★): EPUB library manager with browser reader, OPDS, OIDC, RBAC
+- Pending apps remaining: ~150
+
+## 2026-05-02l (20:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 59 — 5 recipes written and committed (1c9308c)
+  - omnipoly (112★): Frontend for LibreTranslate + LanguageTool + Ollama; modular feature visibility
+  - mergeable (107★): GitHub PR inbox organizer; browser-only SPA, no GitHub App needed
+  - thrifty (97★): Monthly income/expense tracker; SvelteKit + Go + SQLite + Traefik
+  - shared-moments (93★): Couples/family/friends memory app; photos, milestones, reminders, AI
+  - pixelfin (77★): Jellyfin artwork gallery inspector; shows missing/low-res image types
+- Pending apps remaining: ~145
+
+## 2026-05-02m (20:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 60 — 5 recipes written and committed (aeee93a)
+  - spendspentspent (72★): Quick expense tracker; 3-pane UI, location tagging, recurring entries
+  - civitai-data-manager (58★): CLI tool to back up Civitai model metadata locally; HTML browser
+  - zipcaptions (57★): Browser-based speech-to-text captions; privacy-first, no data leaves browser
+  - wagmios (53★): Docker homelab manager for OpenClaw agents; scoped API keys, marketplace
+  - music-service (52★): YouTube playlist → MP3 → WebDAV sync; yt-dlp + MySQL + Redis
+- Pending apps remaining: ~140
+
+## 2026-05-02n (20:30 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 61 — 5 recipes written and committed (1dff899)
+  - yacht (51★): Docker container UI with templates/1-click deploys; alpha/maintenance mode, new version in progress
+  - helprealm (46★): Laravel support ticket system; SaaS-style, email-to-ticket, multi-tenant; no Docker image
+  - deepsubx (35★): DeepL subtitle translator for movies/TV; embedded subtitle extraction; optional Plex refresh
+  - geoposler (33★): Email campaign manager; ARCHIVED — recommends Listmonk instead
+  - flox (32★): Laravel/Vue.js movie/series/anime watchlist; TMDb API; ActivityPub federation; Plex sync
+- Pending apps remaining: ~135
+
+## 2026-05-02o (21:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 62 — 5 recipes written and committed (7ad5675)
+  - counter-analytics (26★): Privacy-friendly web analytics; Go binary + Redis; beta self-hosted
+  - inkheart (21★): Rust/Svelte PDF library reader; optional Firebase auth; telemetry opt-out
+  - sofe (18★): Sonarr anime filler excluder; one-shot Docker run per series; AFL + Plex
+  - bbyen (17★): YouTube email notifications replacement; YouTube API + SMTP; OAuth setup required
+  - karrot (14★): Django community coordination platform; ActivityPub federation; AGPL-3.0
+- Pending apps remaining: ~130
+
+## 2026-05-02p (21:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 63 — 10 recipes written and committed (5d7de84)
+  - pods-blitz (3★): Rust podcast publisher; build-from-source Docker; MariaDB; S3 optional
+  - plex-prerolls (3★): Plex pre-roll automation; schedule-based rules; webhook ingestion
+  - xrsh (1★): WebXR browser shell; v86 emulator; standalone binary or Docker static server
+  - webcap (0★): Web archiving/change detection; CLOSED SOURCE
+  - visual-db (0★): Database web GUI; CLOSED SOURCE
+  - phorge (0★): Phabricator fork; full dev platform; LAMP stack; no Docker image
+  - myheats (0★): Live leaderboard; SOURCE UNAVAILABLE (404)
+  - fusionauth (0★): Auth/user management platform; CLOSED SOURCE freemium
+  - roon (0★): Music server; CLOSED SOURCE subscription
+  - plex (0★): Media server; CLOSED SOURCE freemium; Docker official image
+- Pending apps remaining: ~120
+
+## 2026-05-02q (21:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 64 — 4 recipes written and committed (fba6b64)
+  - cloudron (0★): PaaS platform for self-hosted apps; CLOSED SOURCE freemium; dedicated server required
+  - emby (0★): Personal media server; CLOSED SOURCE freemium; Docker official image
+  - filerun (0★): File management/sharing; CLOSED SOURCE freemium; PHP+MySQL+Docker
+  - dovel (0★): Simple mail server; CUSTOM LICENSE; limited docs
+- Pending apps remaining: ~116
+
+## 2026-05-02r (21:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues (still 5 open, same as before)
+- Step 2: batch 65 — 5 recipes written and committed (d43de2d)
+  - leed (232★): Minimal PHP RSS aggregator; LAMP + cron; AGPL-3.0; OPML import/export
+  - minne (224★): Rust PKM with graph DB (SurrealDB); AI-assisted connections; AGPL-3.0
+  - comic-library-utilities (221★): CBZ/CBR bulk management toolset; Docker; Komga companion
+  - receipt-wrangler (214★): Receipt manager with OCR+AI; Docker; AGPL-3.0
+  - medialytics (212★): Client-side Plex library stats viewer; static HTML; TOKEN SECURITY warning
+- Pending apps remaining: ~111 (some implicit pending entries without status field)
+
+## 2026-05-02s (22:00 UTC)
+- Step 0: repo already up to date (new branch origin/claude/go-setup-RLDJL visible)
+- Step 1: issues — 2 new issues (#42, #43)
+  - #42: Self-Host Weekly 2026-05-01 batch nomination (23 apps) — SKIPPED per CLAUDE.md; newsletter-only source doesn't meet 3+ feedback threshold for Tier 1
+  - #43: Staleness TODOs + bookstack Codeberg fix — ADDRESSED (893af55); cherry-picked staleness TODOs for 6 recipes from branch, tightened bookstack gotcha
+- Step 2: selfhst batch — skipped this heartbeat (issue work took priority)

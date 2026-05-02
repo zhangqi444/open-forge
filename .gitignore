@@ -10,3 +10,4 @@ __pycache__/
 # Claude Code local state — share only settings.json
 .claude/*
 !.claude/settings.json
+progress/
