@@ -5474,3 +5474,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - nanote (153★): Nuxt 4 note-taking, flat-file Markdown storage, no database
   - medassist (152★): Node.js medication tracker, inventory + email reminders, SQLite
 - Pending apps remaining: ~155
+
+## 2026-05-02k (19:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 58 — 5 recipes written and committed (a0deb5c)
+  - workout-challenge (146★): Django fitness competition app, Strava sync, cross-device, PostgreSQL
+  - ties-link-sharing (140★): Federated Rust bookmark sharing, alpha stage, PostgreSQL, single-user
+  - redirecterr (135★): Overseerr webhook router to Radarr/Sonarr with filter rules
+  - music-grabber (119★): Single-track music downloader, YouTube/SoundCloud/Soulseek, GitLab
+  - bookhaven (115★): EPUB library manager with browser reader, OPDS, OIDC, RBAC
+- Pending apps remaining: ~150
