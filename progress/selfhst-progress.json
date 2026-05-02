@@ -7578,7 +7578,7 @@
          "stars" : 527
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/th3r00t/pyShelf",
          "slug" : "pyshelf",
          "name" : "pyShelf",
@@ -7589,7 +7589,7 @@
          "stars" : 518,
          "name" : "GoToSocial",
          "slug" : "gotosocial",
-         "status" : "pending",
+         "status" : "done",
          "github" : "codeberg.org/superseriousbusiness/gotosocial",
          "desc" : "Fast, fun, small ActivityPub server"
       },
@@ -7598,7 +7598,7 @@
          "github" : "github.com/Kruptein/PlanarAlly",
          "name" : "PlanarAlly",
          "slug" : "planarally",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 515
       },
       {
@@ -7606,7 +7606,7 @@
          "name" : "Kuvasz",
          "github" : "github.com/kuvasz-uptime/kuvasz",
          "slug" : "kuvasz",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 513
       },
       {
@@ -7622,7 +7622,7 @@
          "github" : "github.com/ardoviniandrea/ViniPlay",
          "stars" : 502,
          "name" : "ViniPlay",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "viniplay"
       },
       {
