@@ -8446,7 +8446,7 @@
          "github" : "github.com/SubleXBle/Fail2Ban-Report",
          "stars" : 308,
          "slug" : "fail2ban-report",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Fail2Ban-Report"
       },
       {
@@ -8460,7 +8460,7 @@
       {
          "github" : "github.com/TimWitzdam/GitSave",
          "slug" : "gitsave",
-         "status" : "pending",
+         "status" : "done",
          "name" : "GitSave",
          "stars" : 305,
          "desc" : "Easily back up git repositories on a schedule"
@@ -8471,12 +8471,12 @@
          "name" : "Storyden",
          "slug" : "storyden",
          "github" : "github.com/Southclaws/storyden",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Goodreads frontend focused on privacy",
          "stars" : 303,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "biblioreads",
          "github" : "github.com/nesaku/BiblioReads",
          "name" : "BiblioReads"
@@ -8485,7 +8485,7 @@
          "github" : "gitlab.com/timvisee/send",
          "desc" : "Simple, private file sharing",
          "name" : "Send",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "send-visee",
          "stars" : 301
       },
@@ -8495,20 +8495,20 @@
          "name" : "Luna",
          "slug" : "luna",
          "github" : "github.com/Opisek/luna",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Present Plex user statistics and habits in a beautiful and organized manner",
          "name" : "Plex Rewind",
          "slug" : "plex-rewind",
          "github" : "github.com/RaunoT/plex-rewind",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 293
       },
       {
          "stars" : 293,
          "slug" : "moocup",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Moocup",
          "desc" : "Visual editor for stunning screenshots",
          "github" : "github.com/jellydeck/moocup"

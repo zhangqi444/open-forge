@@ -5305,3 +5305,20 @@ All marked done in selfhst-progress.json.
 ## 2026-05-02 — Batch 42
 Added 5 recipes: subscription-manager, dollardollar-bill-y-all, dashlit, dockwatch, lurker
 Skipped: none
+
+## 2026-05-02 11:30 UTC — Batch 43
+
+Recipes written (8):
+- flohmarkt (323 stars) — Federated ActivityPub-based self-hosted classified ads / flea-market platform
+- jetlog (319 stars) — Self-hostable personal flight tracker with world-map visualisation and stats
+- dumbbudget (316 stars) — Simple PIN-protected personal budgeting PWA; file-based, no database
+- yeetfile (310 stars) — Privacy-focused encrypted file vault; client-side encryption; S3/B2/local storage
+- habitsync (310 stars) — Habit tracking platform with social features, challenges, OIDC auth
+- cupdate (309 stars) — Zero-config container image update tracker; web UI + REST API + RSS
+- openchangelog (308 stars) — Renders Markdown changelogs into a searchable website; GitHub or local source
+- feedcord (306 stars) — RSS/YouTube → Discord webhook bridge; JSON-configured, no database
+
+Skipped (1):
+- positive-intentions-chat (313 stars) — Browser-only P2P experimental app; no server component, not production-ready
+
+Commit: f0bdaeb
