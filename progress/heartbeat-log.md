@@ -5429,3 +5429,15 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - cially (215★): Discord analytics dashboard (NC license noted)
   - mkcert-web-ui (211★): web UI for local SSL cert generation
 - Pending apps remaining: ~179
+
+## 2026-05-02g (18:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — #41 still open (requires issues:write to close via API; addressed in prior cycle); no new issues
+- Step 2: batch 54 — 5 recipes written and committed (276488c)
+  - meerkat-crm (227★): personal CRM, Go+React+SQLite, CardDAV sync, Docker Compose
+  - ziit (225★): WakaTime alternative for code time tracking, Next.js+TimescaleDB
+  - whorang (225★): Home Assistant doorbell history add-on, local AI/face recognition
+  - crafty-controller (224★): Minecraft server control panel, Python+Docker, multi-server
+  - minne (223★): graph-powered PKM + read-later, Rust+SurrealDB, AI knowledge graph
+- autocaliweb marked done in selfhst-progress.json (recipe was written in prior cycle, not logged)
+- Pending apps remaining: ~170
