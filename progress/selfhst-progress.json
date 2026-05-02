@@ -7541,7 +7541,7 @@
          "stars" : 535,
          "slug" : "owntracks-frontend",
          "github" : "github.com/owntracks/frontend",
-         "status" : "pending",
+         "status" : "done",
          "name" : "OwnTracks Frontend",
          "desc" : "Advanced interface for the OwnTracks ecosystem"
       },
@@ -7550,7 +7550,7 @@
          "github" : "github.com/WardPearce/paaster",
          "name" : "Paaster",
          "slug" : "paaster",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 533
       },
       {
@@ -7558,14 +7558,14 @@
          "stars" : 531,
          "github" : "github.com/notclickable-jordan/starbase-80",
          "slug" : "starbase-80",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Starbase 80"
       },
       {
          "name" : "Immich Drop",
          "github" : "github.com/Nasogaa/immich-drop",
          "slug" : "immich-drop",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 528,
          "desc" : "Tiny, zero-login web app for collecting media for Immich"
       },
@@ -7573,7 +7573,7 @@
          "github" : "github.com/Mozzo1000/booklogr",
          "desc" : "Self-hosted service for tracking personal libraries",
          "slug" : "booklogr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "BookLogr",
          "stars" : 527
       },
