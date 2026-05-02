@@ -8003,7 +8003,7 @@
       },
       {
          "stars" : 420,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/RoastSlav/quickdrop",
          "slug" : "quickdrop",
          "name" : "QuickDrop",
@@ -8013,7 +8013,7 @@
          "name" : "Snikket",
          "github" : "github.com/snikket-im/snikket-server",
          "slug" : "snikket",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 419,
          "desc" : "Open source personal messaging service"
       },
@@ -8021,7 +8021,7 @@
          "desc" : "Self-tracking platform for various life metrics",
          "stars" : 419,
          "slug" : "perfice",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/p0lloc/perfice",
          "name" : "Perfice"
       },
@@ -8029,13 +8029,13 @@
          "stars" : 415,
          "name" : "SheetAble",
          "github" : "github.com/SheetAble/SheetAble",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "sheetable",
          "desc" : "Self-hosted music sheet organizing software"
       },
       {
          "name" : "Subtrackr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "subtrackr",
          "stars" : 414,
          "github" : "github.com/bscott/subtrackr",
