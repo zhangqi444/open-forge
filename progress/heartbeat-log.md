@@ -5124,3 +5124,17 @@ Status: 364 apps still pending.
 - soulbeet: Soulseek+beets+Navidrome music pipeline; volume path alignment between containers is critical
 - vocard: Discord music bot; requires Lavalink v4+; change default Lavalink password youshallnotpass
 - gocron: YAML-configured cron job scheduler with web UI; terminal allowlist for safety; software packages need container recreate
+
+## 2026-05-02 02:30 UTC — Batch 183
+
+**Apps processed (5):** owntracks-frontend (535★), paaster (533★), starbase-80 (531★), immich-drop (528★), booklogr (527★)
+**Commit:** f67386d
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- owntracks-frontend: Vue.js UI for OwnTracks Recorder; frontend only, needs running Recorder
+- paaster: E2E-encrypted pastebin; requires S3/MinIO + MongoDB; decryption key is in URL fragment
+- starbase-80: minimal Docker homepage; config.json + icons volume; no auth built-in
+- immich-drop: zero-login Immich upload collector; IMMICH_BASE_URL must end with /api; chunked uploads optional
+- booklogr: book library tracker; BL_API_ENDPOINT must be externally reachable URL; active dev warning
