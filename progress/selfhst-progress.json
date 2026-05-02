@@ -7302,8 +7302,9 @@
          "slug" : "rahoot",
          "stars" : 599,
          "github" : "github.com/Ralex91/Rahoot",
-         "desc" : "Game-based learning platform"
-      },
+         "desc" : "Game-based learning platform",
+         "status" : "skipped", "skip_reason" : "repo returns 403 - inaccessible"
+            },
       {
          "desc" : "Lightweight, flat-file CMS for publishers",
          "github" : "github.com/typemill/typemill",
@@ -7339,16 +7340,16 @@
       {
          "desc" : "Powerful maintenance management system",
          "github" : "github.com/Grashjs/cmms",
-         "stars" : 588,
+         "status" : "done", "stars" : 588,
          "slug" : "atlas-cmms",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Atlas CMMS"
       },
       {
          "desc" : "Doman and internet asset manager",
          "name" : "DomainMOD",
          "slug" : "domainmod",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/domainmod/domainmod",
          "stars" : 587
       },
@@ -7357,7 +7358,7 @@
          "name" : "Argus",
          "github" : "github.com/release-argus/Argus",
          "slug" : "argus",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 585
       },
       {
@@ -7365,7 +7366,7 @@
          "stars" : 577,
          "slug" : "youlag",
          "github" : "github.com/civilblur/youlag",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Youlag"
       },
       {
@@ -7373,7 +7374,7 @@
          "name" : "Photofield",
          "github" : "github.com/SmilyOrg/photofield",
          "slug" : "photofield",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 576
       },
       {
