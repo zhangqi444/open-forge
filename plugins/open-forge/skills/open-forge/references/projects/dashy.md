@@ -80,6 +80,10 @@ Back up the entire `user-data/` directory — that's your dashboard.
 - **Widgets that poll external services** (ping, status) hit those services from *inside* the Dashy container. Services reachable only on your host network need the container on `network_mode: host` or appropriate egress rules.
 - **Rebuilding from UI is destructive** to any `conf.yml` edits made outside Docker — keep a copy in version control.
 
+## TODO — verify on subsequent deployments
+
+- **Dashy v4.0.0 (2026-05-01) — re-verify before next deploy.** Per Self-Host Weekly 2026-05-01: Docker image rewritten (~80% smaller), responsive masonry layout, built-in YAML editor, simplified settings, canonical URLs, per-page config. Image tag, env vars, and config-file schema may have changed since this recipe was last validated against v3.x. Re-fetch upstream README + release notes for v4.0.0 before deploying; flag any deltas as recipe edits.
+
 ## Links
 
 - Docs: <https://dashy.to/docs/>

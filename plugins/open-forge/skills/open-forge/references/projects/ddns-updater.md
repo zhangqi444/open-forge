@@ -175,6 +175,10 @@ cp ddns-data/config.json ddns-updater-config-$(date +%F).json
   - **Choose Cloudflare Tunnel if:** you're Cloudflare-native + want zero-exposure.
 - **PROJECT HEALTH**: active + qdm12-maintained + versioned docs + 50+ providers + multi-distribution + wide-use in homelab community. EXCELLENT signals for a widely-deployed infra tool.
 
+## TODO — verify on subsequent deployments
+
+- **DDNS Updater v2.10.0 (2026-05-01) — verify provider list before next deploy.** Per Self-Host Weekly 2026-05-01: support added for **Scaleway, ipv64, Vercel, Hetzner, Spaceship**. Recipe's "supported providers" list may be stale; re-check upstream README + add a row to the provider table for any of these the user picks. No install-command change expected (single Docker image, config-file-driven).
+
 ## Links
 
 - Repo: <https://github.com/qdm12/ddns-updater>

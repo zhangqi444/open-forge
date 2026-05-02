@@ -123,7 +123,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 - **MariaDB 11.x recommended** (MySQL 8 also works). MariaDB 10.5 and below are unsupported in recent BookStack versions.
 - **No upstream Docker image.** Community-maintained linuxserver image is the de facto standard; if it stops being maintained, upstream's install guide (Ubuntu script) is the fallback.
 - **Email is off by default.** Self-service password reset and invites silently fail until SMTP is configured in `.env`.
-- **Codeberg is the primary git host** as of early 2025 — GitHub is a mirror. Issues and PRs happen on Codeberg (<https://codeberg.org/bookstack/bookstack>).
+- **Codeberg is the primary git host** (full migration completed 2026-04). GitHub is now an archived mirror. Issues and PRs happen on Codeberg (<https://codeberg.org/bookstack/bookstack>).
 - **`QUEUE_CONNECTION=database`** is recommended — without it, long tasks (PDF exports, large imports) run synchronously and time out.
 - **APP_KEY rotation invalidates all sessions and encrypted fields.** Generate once, store forever.
 
