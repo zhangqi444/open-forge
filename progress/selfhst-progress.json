@@ -8681,7 +8681,7 @@
       {
          "name" : "Repliqate",
          "slug" : "repliqate",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 247,
          "desc" : "Modular backup solution for Docker environments",
          "github" : "github.com/lminlone/repliqate"
@@ -8704,7 +8704,7 @@
       },
       {
          "slug" : "ignidash",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/schelskedevco/ignidash",
          "name" : "Ignidash",
          "stars" : 242,
@@ -8712,7 +8712,7 @@
       },
       {
          "github" : "github.com/dani3l0/honey",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "honey",
          "name" : "Honey",
          "stars" : 240,
@@ -8730,7 +8730,7 @@
          "stars" : 239,
          "name" : "miniboard",
          "slug" : "miniboard",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/aceberg/miniboard",
          "desc" : "Lightweight dashboard with tabs, uptime monitoring, and notifications"
       },
