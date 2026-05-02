@@ -5545,3 +5545,13 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - roon (0★): Music server; CLOSED SOURCE subscription
   - plex (0★): Media server; CLOSED SOURCE freemium; Docker official image
 - Pending apps remaining: ~120
+
+## 2026-05-02q (21:45 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 64 — 4 recipes written and committed (fba6b64)
+  - cloudron (0★): PaaS platform for self-hosted apps; CLOSED SOURCE freemium; dedicated server required
+  - emby (0★): Personal media server; CLOSED SOURCE freemium; Docker official image
+  - filerun (0★): File management/sharing; CLOSED SOURCE freemium; PHP+MySQL+Docker
+  - dovel (0★): Simple mail server; CUSTOM LICENSE; limited docs
+- Pending apps remaining: ~116

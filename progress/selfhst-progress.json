@@ -10042,7 +10042,7 @@
          "github" : "",
          "desc" : "Complete solution for running apps on your own server",
          "slug" : "cloudron",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Cloudron",
          "stars" : 0
       },
@@ -10051,7 +10051,7 @@
          "desc" : "Your personal media on any device",
          "name" : "Emby",
          "slug" : "emby",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 0
       },
       {
@@ -10083,7 +10083,7 @@
          "name" : "FileRun",
          "github" : "filerun.com/",
          "slug" : "filerun",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 0
       },
       {
@@ -10121,7 +10121,7 @@
       {
          "slug" : "dovel",
          "github" : "dovel.email/server/index.html",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Dovel",
          "stars" : 0,
          "desc" : "Simple and easy-to-use mail server"
