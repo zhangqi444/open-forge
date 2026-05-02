@@ -1,10 +1,13 @@
 # Minne
 
-**What it is:** A graph-powered personal knowledge management system and read-later app. Inspired by the Zettelkasten method — captures URLs, text, PDFs, audio, and images, then uses AI to automatically build a knowledge graph with connections between concepts.
+**What it is:** A graph-powered personal knowledge management (PKM) system and save-for-later app. Inspired by the Zettelkasten method, Minne uses a SurrealDB graph database to automatically create connections between notes/entities. Features AI-assisted relationship discovery, full-text + vector search, a conversational chat interface to query your knowledge base, multi-format ingestion (text, URLs, PDFs, audio, images), a visual D3 graph explorer, and a scratchpad for quick capture.
 
 **Official URL:** https://github.com/perstarkse/minne
+**Container:** Build from source (no public registry image)
 **License:** AGPL-3.0
-**Stack:** Rust (backend, SSR) + SurrealDB
+**Stack:** Rust (server-side rendering) + SurrealDB (RocksDB backend); Docker Compose
+
+> **Note:** No pre-built Docker Hub image — must build from source.
 
 ---
 
@@ -12,66 +15,84 @@
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any Linux VPS / bare metal | Docker Compose | Recommended; SurrealDB bundled |
-| Homelab | Docker Compose | arm64 supported |
+| Any Linux VPS | Docker Compose (build) | Clone repo and `docker compose up -d` |
 
 ---
 
 ## Inputs to Collect
 
-### Pre-deployment
-- `SURREALDB_ADDRESS` — WebSocket address of SurrealDB (e.g. `ws://db:8000`)
-- `SURREALDB_USERNAME` / `SURREALDB_PASSWORD` — database credentials
-- `SURREALDB_DATABASE` — database name (e.g. `minne_db`)
-- `OPENAI_API_KEY` — **required**; used for AI entity extraction and chat
-- `OPENAI_BASE_URL` — optional; override to use Ollama or other OpenAI-compatible APIs
-- `JWT_SECRET` — random string for auth token signing
-
-### Runtime
-- Content ingestion: URLs, plain text, PDFs, audio, images
-- AI model selection for structured outputs (must support structured outputs)
+### Pre-deployment (environment variables)
+- `SURREALDB_USERNAME` — SurrealDB admin username (default: `root_user`)
+- `SURREALDB_PASSWORD` — SurrealDB admin password (default: `root_password` — **change this**)
+- `SURREALDB_DATABASE` — database name (default: `test` — rename for production)
+- `SURREALDB_NAMESPACE` — namespace (default: `test` — rename for production)
+- `OPENAI_API_KEY` — OpenAI API key (or any OpenAI-compatible endpoint) for AI features
+- `HTTP_PORT` — app port (default: `3000`)
+- `RERANKING_ENABLED` — `true`/`false`; improves search quality; requires compatible model
 
 ---
 
 ## Software-Layer Concerns
 
-**Config:** Via `config.yaml` or environment variables (env vars take precedence).
-
-**Database:** SurrealDB — a multi-model DB used as the graph backend. Included in the Docker Compose setup.
-
-**Default port:** `3000`
-
-**Quick start:**
+**Installation:**
 ```bash
 git clone https://github.com/perstarkse/minne.git
 cd minne
-# Edit docker-compose.yml: add OPENAI_API_KEY
+# Edit docker-compose.yml to set passwords and API key
 docker compose up -d
-# Access at http://localhost:3000
 ```
 
-**Optional reranking:** Set `RERANKING_ENABLED=true` to enable FastEmbed cross-encoder reranking of search results. Downloads ~1.1 GB model on first start; adds CPU overhead. Disabled by default.
+**Docker Compose (from repo):**
+```yaml
+services:
+  minne:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      SURREALDB_ADDRESS: "ws://surrealdb:8000"
+      SURREALDB_USERNAME: "root_user"
+      SURREALDB_PASSWORD: "change-me"
+      SURREALDB_DATABASE: "minne"
+      SURREALDB_NAMESPACE: "production"
+      OPENAI_API_KEY: "sk-your-key"
+      HTTP_PORT: 3000
+      RERANKING_ENABLED: false
+    depends_on:
+      - surrealdb
 
-**Data persistence:** SurrealDB data dir mounted as volume — back this up regularly.
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    volumes:
+      - ./database:/database
+    command: >
+      start --log info
+      --user root_user --pass root_password
+      rocksdb:./database/database.db
+```
+
+**AI configuration:** Minne works with any OpenAI-compatible API that supports structured outputs. Set `OPENAI_API_KEY` and optionally configure an alternative base URL for local models (LM Studio, Ollama, etc.).
+
+**Demo:** https://minne.stark.pub (read-only demo)
 
 **Upgrade procedure:**
-1. `docker compose pull`
-2. `docker compose up -d`
-3. Check release notes for migration steps: https://github.com/perstarkse/minne/releases
+```bash
+git pull
+docker compose up -d --build
+```
 
 ---
 
 ## Gotchas
 
-- **OpenAI API key is required** even for local use — or configure `OPENAI_BASE_URL` to point at a local Ollama instance running a model that supports structured outputs (e.g. `llama3.1`, `qwen2.5`)
-- **Structured outputs required** — not all models support this; check compatibility before using with Ollama
-- **AGPL-3.0 license** — if you modify and deploy, you must share source changes
-- **Reranking downloads ~1.1 GB** on first enable — plan disk space accordingly
-- Single-user focused; multi-user support is limited
-- SurrealDB is not a typical SQL DB — direct DB queries require SurrealQL
+- **Build from source** — no public Docker image; Docker build required on first run
+- **`sleep 10` in startup command** — app waits 10 seconds for SurrealDB to initialize; normal behavior
+- **Change default credentials** — `root_user`/`root_password` must be changed before exposing to the internet
+- **AI key required for AI features** — without an `OPENAI_API_KEY`, AI-assisted entity extraction and chat won't function; basic note capture still works
+- **AGPL-3.0** — modifications must be open-sourced if distributed
 
 ---
 
 ## Links
 - GitHub: https://github.com/perstarkse/minne
-- Live demo: https://minne.stark.pub (read-only)
+- Demo: https://minne.stark.pub

@@ -9986,14 +9986,14 @@
          "desc" : "Fast and reliable podcast publishing",
          "github" : "codeberg.org/pods-blitz/pods-blitz",
          "slug" : "pods-blitz",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Pods-Blitz",
          "stars" : 3
       },
       {
          "name" : "Plex Prerolls",
          "slug" : "plex-prerolls",
-         "status" : "pending",
+         "status" : "done",
          "github" : "codeberg.org/nwithan8/plex-prerolls",
          "stars" : 3,
          "desc" : "Script for automating and managing Plex pre-rolls"
@@ -10010,13 +10010,13 @@
          "name" : "XRSH",
          "github" : "forgejo.isvery.ninja/xrsh/xrsh",
          "slug" : "xrsh",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 1,
          "desc" : "XR-friendly shells in the browser"
       },
       {
          "slug" : "fusionauth",
-         "status" : "pending",
+         "status" : "done",
          "name" : "FusionAuth",
          "stars" : 0,
          "desc" : "Authentication and user management",
@@ -10056,7 +10056,7 @@
       },
       {
          "slug" : "roon",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Roon",
          "stars" : 0,
          "desc" : "Music listening and management platform",
@@ -10073,7 +10073,7 @@
       {
          "name" : "Plex",
          "slug" : "plex",
-         "status" : "pending",
+         "status" : "done",
          "github" : "www.plex.tv/",
          "stars" : 0,
          "desc" : "Stream media collections from anywhere"
@@ -10099,14 +10099,14 @@
          "name" : "Phorge",
          "github" : "we.phorge.it/source/phorge",
          "slug" : "phorge",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 0
       },
       {
          "name" : "MyHeats",
          "github" : "code.in0rdr.ch/myheats/",
          "slug" : "myheats",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 0,
          "desc" : "Live-leaderboard with simple and elegant scoring"
       },
@@ -10186,7 +10186,7 @@
          "desc" : "Web interface for databases",
          "github" : "",
          "slug" : "visual-db",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Visual DB",
          "stars" : 0
       },
@@ -10194,7 +10194,7 @@
          "desc" : "Web archiving and change detection",
          "name" : "Webcap",
          "slug" : "webcap",
-         "status" : "pending",
+         "status" : "done",
          "github" : "",
          "stars" : 0
       }
