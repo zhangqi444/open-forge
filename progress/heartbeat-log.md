@@ -5096,3 +5096,17 @@ Status: 364 apps still pending.
 - sup3rS3cretMes5age: self-destructing one-time secret messages; Vault-backed; dev mode uses in-memory Vault
 - vykar: Rust backup tool; encrypted+deduplicated; own format (not Borg/Restic compatible); pre-production warning
 - mybibliotheca: Goodreads alternative; KuzuDB graph DB; WORKERS=1 mandatory; currently unmaintained
+
+## 2026-05-02 02:00 UTC — Batch 181
+
+**Apps processed (5):** ftpgrab (558★), lidify (555★), manage-my-damn-life (549★), dumbdrop (548★), wishlist/cmintey-wishlist (543★)
+**Commit:** 0ed8f81
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- ftpgrab: FTP/SFTP periodic file puller; bbolt DB tracks downloaded files; multi-arch
+- lidify: Lidarr artist discovery via Last.fm (Spotify removed Nov 2024 — API changes)
+- manage-my-damn-life: CalDAV task/calendar frontend; beta; Nextcloud+Baikal tested; basic auth only
+- dumbdrop: dead-simple file drop; no DB; optional PIN; TRUST_PROXY off by default for security
+- wishlist: shareable gift wishlist; ORIGIN var required; no subpath support; Nginx buffer gotcha
