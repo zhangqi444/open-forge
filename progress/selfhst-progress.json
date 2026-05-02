@@ -8219,7 +8219,7 @@
       },
       {
          "name" : "Foundry Virtual Tabletop",
-         "status" : "pending",
+         "status" : "skipped",
          "slug" : "foundry-virtual-tabletop",
          "stars" : 360,
          "desc" : "Modern roleplaying platform",
@@ -8231,7 +8231,7 @@
          "name" : "Bulwark",
          "slug" : "bulwark",
          "github" : "github.com/bulwarkmail/webmail",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "name" : "Jellyfin Rewind",
@@ -8244,14 +8244,14 @@
       {
          "desc" : "Generic static HTML pages from a collection of feeds",
          "stars" : 355,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "tinyfeed",
          "github" : "github.com/TheBigRoomXXL/tinyfeed",
          "name" : "tinyfeed"
       },
       {
          "slug" : "minthcm",
-         "status" : "pending",
+         "status" : "done",
          "name" : "MintHCM",
          "stars" : 350,
          "github" : "github.com/minthcm/minthcm",
@@ -8260,7 +8260,7 @@
       {
          "name" : "Medialyze",
          "github" : "github.com/frederikemmer/MediaLyze",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "medialyze",
          "stars" : 349,
          "desc" : "Media library analysis for large collections"
@@ -8269,7 +8269,7 @@
          "desc" : "Distributed key/value store and independent fork of Redis",
          "github" : "codeberg.org/redict/redict",
          "slug" : "redict",
-         "status" : "pending",
+         "status" : "skipped",
          "name" : "Redict",
          "stars" : 347
       },
@@ -8278,7 +8278,7 @@
          "desc" : "Digital signage solution",
          "stars" : 347,
          "slug" : "screenlite",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Screenlite"
       },
       {

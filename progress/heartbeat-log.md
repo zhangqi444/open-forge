@@ -5284,3 +5284,16 @@ Recipes written (5):
 - feeds-fun (363 stars) — RSS news reader with AI tag assignment and scoring rules
 - loops (362 stars) — Federated short-video platform (ActivityPub / TikTok-style); requires S3 storage
 - jellyfin-rewind (357 stars) — Spotify Wrapped-style year-in-review for Jellyfin
+
+## 2026-05-02 09:00 UTC — Batch 40
+
+Recipes written (5):
+- bulwark (358 stars) — Modern webmail client for Stalwart JMAP server; Next.js + OAuth/OIDC
+- tinyfeed (355 stars) — CLI/Docker tool generating a static HTML feed aggregator page
+- minthcm (350 stars) — AI-native open-source HCM platform; PHP + MySQL + Elasticsearch
+- medialyze (349 stars) — Video library technical metadata analyser; FastAPI + SQLite; read-only
+- screenlite (347 stars) — Open-source digital signage CMS (pre-production); Node.js + Postgres + MinIO
+
+Skipped (2):
+- foundry-virtual-tabletop (360 stars) — GitHub repo is issue tracker only, no source code
+- redict (347 stars) — Redis OSS fork; infrastructure component, not a self-hosted web app
