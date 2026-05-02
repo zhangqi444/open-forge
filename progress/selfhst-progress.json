@@ -7612,7 +7612,7 @@
       {
          "stars" : 507,
          "name" : "Fli.so",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "fli-so",
          "github" : "github.com/thisuxhq/fli.so",
          "desc" : "Lightning-fast URL shortener with a clean interface"
@@ -7630,11 +7630,11 @@
          "github" : "github.com/nextcloud/social",
          "name" : "Nextcloud Social",
          "slug" : "nextcloud-social",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 499
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "quetre",
          "name" : "Quetre",
          "stars" : 497,
@@ -7647,11 +7647,11 @@
          "name" : "Frames",
          "github" : "github.com/eleven-am/frames",
          "slug" : "frames",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "stars" : 493,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/AndrewPaglusch/FlashPaper",
          "slug" : "flashpaper",
          "name" : "FlashPaper",
