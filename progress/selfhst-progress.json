@@ -9833,7 +9833,7 @@
       {
          "desc" : "Web analytics made simple and privacy-friendly",
          "slug" : "counter-analytics",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/ihucos/counter.dev-selfhost",
          "name" : "Counter",
          "stars" : 26
@@ -9849,7 +9849,7 @@
       {
          "slug" : "inkheart",
          "github" : "gitlab.com/Nystik/inkheart",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Inkheart",
          "stars" : 21,
          "desc" : "PDF library indexer and reader"
@@ -9880,7 +9880,7 @@
       },
       {
          "slug" : "sofe",
-         "status" : "pending",
+         "status" : "done",
          "name" : "SoFE",
          "stars" : 18,
          "desc" : "Monitor non-filler episodes in Sonarr and generate Plex collections",
@@ -9898,7 +9898,7 @@
          "desc" : "YouTube subscription e-mail notifications",
          "github" : "github.com/MarcelRobitaille/bbyen",
          "slug" : "bbyen",
-         "status" : "pending",
+         "status" : "done",
          "name" : "BBYEN",
          "stars" : 17
       },
@@ -9913,7 +9913,7 @@
       {
          "desc" : "Activity planning tool for grassroots initiatives",
          "slug" : "karrot",
-         "status" : "pending",
+         "status" : "done",
          "github" : "codeberg.org/karrot/karrot-backend",
          "name" : "Karrot",
          "stars" : 14

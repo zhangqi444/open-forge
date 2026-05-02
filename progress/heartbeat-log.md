@@ -5518,3 +5518,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - geoposler (33★): Email campaign manager; ARCHIVED — recommends Listmonk instead
   - flox (32★): Laravel/Vue.js movie/series/anime watchlist; TMDb API; ActivityPub federation; Plex sync
 - Pending apps remaining: ~135
+
+## 2026-05-02o (21:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 62 — 5 recipes written and committed (7ad5675)
+  - counter-analytics (26★): Privacy-friendly web analytics; Go binary + Redis; beta self-hosted
+  - inkheart (21★): Rust/Svelte PDF library reader; optional Firebase auth; telemetry opt-out
+  - sofe (18★): Sonarr anime filler excluder; one-shot Docker run per series; AFL + Plex
+  - bbyen (17★): YouTube email notifications replacement; YouTube API + SMTP; OAuth setup required
+  - karrot (14★): Django community coordination platform; ActivityPub federation; AGPL-3.0
+- Pending apps remaining: ~130
