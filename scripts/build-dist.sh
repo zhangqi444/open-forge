@@ -277,6 +277,10 @@ EOF
   echo -e "\n\n---\n\n# Post-deploy feedback flow\n" >> "$DIST_DIR/openclaw/SKILL.md"
   cat "$REFS_DIR/modules/feedback.md" >> "$DIST_DIR/openclaw/SKILL.md"
 
+  # Also copy credentials.md so relative links in SKILL.md resolve
+  mkdir -p "$DIST_DIR/openclaw/references/modules"
+  cp "$REFS_DIR/modules/credentials.md" "$DIST_DIR/openclaw/references/modules/credentials.md"
+
   echo "  ✓ dist/openclaw/SKILL.md ($(wc -l < "$DIST_DIR/openclaw/SKILL.md") lines)"
 }
 
@@ -301,6 +305,10 @@ EOF
   cat "$REFS_DIR/modules/credentials.md" >> "$DIST_DIR/hermes/SKILL.md"
   echo -e "\n\n---\n\n# Post-deploy feedback flow\n" >> "$DIST_DIR/hermes/SKILL.md"
   cat "$REFS_DIR/modules/feedback.md" >> "$DIST_DIR/hermes/SKILL.md"
+
+  # Also copy credentials.md so relative links in SKILL.md resolve
+  mkdir -p "$DIST_DIR/hermes/references/modules"
+  cp "$REFS_DIR/modules/credentials.md" "$DIST_DIR/hermes/references/modules/credentials.md"
 
   echo "  ✓ dist/hermes/SKILL.md ($(wc -l < "$DIST_DIR/hermes/SKILL.md") lines)"
 }
