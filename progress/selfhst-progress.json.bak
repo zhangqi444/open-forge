@@ -9243,14 +9243,14 @@
          "name" : "Workout Challenge",
          "slug" : "workout-challenge",
          "github" : "github.com/vanalmsick/workout_challenge",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 146
       },
       {
          "desc" : "Federated bookmark and link sharing",
          "github" : "github.com/raffomania/ties",
          "slug" : "ties-link-sharing",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Ties",
          "stars" : 140
       },
@@ -9274,7 +9274,7 @@
          "desc" : "Filter and redirect Overseerr requests",
          "slug" : "redirecterr",
          "github" : "github.com/varthe/Redirecterr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Redirecterr",
          "stars" : 135
       },
@@ -9305,7 +9305,7 @@
       {
          "name" : "Music Grabber",
          "slug" : "music-grabber",
-         "status" : "pending",
+         "status" : "done",
          "github" : "gitlab.com/g33kphr33k/musicgrabber",
          "stars" : 119,
          "desc" : "Music acquisition service for single tracks"
@@ -9322,7 +9322,7 @@
          "desc" : "Browser-based ePub reader",
          "github" : "github.com/HrBingR/BookHaven",
          "slug" : "bookhaven",
-         "status" : "pending",
+         "status" : "done",
          "name" : "BookHaven",
          "stars" : 115
       },
