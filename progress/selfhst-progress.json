@@ -7459,14 +7459,14 @@
       },
       {
          "desc" : "Easily grab files periodically from a remote server",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/crazy-max/ftpgrab",
          "slug" : "ftpgrab",
          "name" : "FTPGrab",
          "stars" : 558
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "lidify",
          "name" : "Lidify",
          "stars" : 555,
@@ -7478,7 +7478,7 @@
          "desc" : "A self-hosted frontend for managing your CalDAV tasks and calendars",
          "name" : "Manage My Damn Life",
          "slug" : "manage-my-damn-life",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 549
       },
       {
@@ -7487,12 +7487,12 @@
          "name" : "DumbDrop",
          "github" : "github.com/DumbWareio/DumbDrop",
          "slug" : "dumbdrop",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "name" : "Wishlist",
          "slug" : "cmintey-wishlist",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/cmintey/wishlist",
          "stars" : 543,
          "desc" : "Self-hosted wishlists for family and friends"
