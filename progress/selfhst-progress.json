@@ -8978,7 +8978,7 @@
          "desc" : "Federated micro-blogging platform",
          "github" : "codeberg.org/silverpill/mitra",
          "slug" : "mitra",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Mitra",
          "stars" : 187
       },
@@ -8986,7 +8986,7 @@
          "desc" : "Port status queries for provided hostnames or IP addresses",
          "github" : "github.com/dsgnr/portchecker.io",
          "slug" : "portchecker",
-         "status" : "pending",
+         "status" : "done",
          "name" : "PortChecker",
          "stars" : 185
       },
@@ -9010,7 +9010,7 @@
          "name" : "SuperBin",
          "slug" : "superbin",
          "github" : "github.com/Zhoros/SuperBin",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 179,
          "desc" : "File sharing, URL shortening, and pastebin all-in-one"
       },
@@ -9024,7 +9024,7 @@
       },
       {
          "slug" : "shotshare",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/mdshack/shotshare",
          "name" : "ShotShare",
          "stars" : 178,
@@ -9040,7 +9040,7 @@
       },
       {
          "slug" : "storyteller",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Storyteller",
          "stars" : 176,
          "github" : "gitlab.com/storyteller-platform/storyteller",
