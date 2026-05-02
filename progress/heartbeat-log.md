@@ -5068,3 +5068,17 @@ Status: 364 apps still pending.
 - youlag is a FreshRSS extension (not standalone); requires FreshRSS ≥ 1.28.0
 - photofield is a high-performance single-binary photo gallery; read-only photo mounts recommended
 - 359 apps remain pending in selfhst-progress.json (some without explicit status field)
+
+## 2026-05-02 01:30 UTC — Batch 179
+
+**Apps processed (5):** hyvor-relay (572★), budgetbee (570★), poznote (570★), glass-keep (569★), dynacat (569★)
+**Commit:** bd13ebe
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- hyvor-relay: self-hosted email API (SES/Mailgun/SendGrid alternative); PHP+Symfony+Go+SvelteKit+PostgreSQL; AGPL-3.0
+- budgetbee: personal finance manager; 4-container stack (nginx+api+web+mysql); multi-user, multi-currency
+- poznote: note-taking platform; single SQLite container; MCP server sidecar; must sync .env.template on upgrades
+- glass-keep: Google Keep alternative with glassmorphism UI; local Llama 3.2 AI assistant; default admin/admin — change immediately
+- dynacat: dashboard (Glance fork); YAML config; single binary <20MB; no auth built-in
