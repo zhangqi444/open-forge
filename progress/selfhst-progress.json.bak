@@ -8738,7 +8738,7 @@
          "stars" : 233,
          "name" : "Autocaliweb",
          "slug" : "autocaliweb",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/gelbphoenix/autocaliweb",
          "desc" : "Clean web interface for Calibre"
       },

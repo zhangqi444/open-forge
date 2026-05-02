@@ -5441,3 +5441,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - minne (223★): graph-powered PKM + read-later, Rust+SurrealDB, AI knowledge graph
 - autocaliweb marked done in selfhst-progress.json (recipe was written in prior cycle, not logged)
 - Pending apps remaining: ~170
+
+## 2026-05-02h (18:30 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues; #24-27 and #40-41 previously addressed
+- Step 2: batch 55 — 5 recipes written and committed (653fa58)
+  - pepperminty-wiki (206★): single-file PHP wiki engine, flat-file storage, no database
+  - yt-dlp-web-player (205★): web video player via yt-dlp+ffmpeg, HLS streaming, browser extension
+  - mqtt-web-interface (205★): MQTT web UI with automation rules, Telegram/Slack alerts, analytics
+  - rangarr (200★): *arr search orchestrator, staggers Radarr/Sonarr/Lidarr searches, no DB
+  - posteria (200★): Plex media poster manager, TMDB/TVDB lookup, auto-import
+- Pending apps remaining: ~165
