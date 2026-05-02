@@ -7502,14 +7502,14 @@
          "name" : "Postmarks",
          "slug" : "postmarks",
          "github" : "github.com/ckolderup/postmarks",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Single-user bookmarking for the Fediverse"
       },
       {
          "desc" : "Modern flat-file wiki platform",
          "stars" : 542,
          "github" : "github.com/leomoon-studios/wiki-go",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "wiki-go",
          "name" : "Wiki-Go"
       },
@@ -7518,13 +7518,13 @@
          "stars" : 542,
          "name" : "Soulbeet",
          "slug" : "soulbeet",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/terry90/soulbeet"
       },
       {
          "stars" : 540,
          "name" : "Vocard",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "vocard",
          "desc" : "Highly customizable Discord music bot",
          "github" : "github.com/ChocoMeow/Vocard"
@@ -7533,7 +7533,7 @@
          "stars" : 538,
          "name" : "GoCron",
          "slug" : "gocron",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/flohoss/gocron",
          "desc" : "Go-based task scheduler with a GUI"
       },
