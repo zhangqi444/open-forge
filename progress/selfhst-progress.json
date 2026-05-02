@@ -8569,7 +8569,7 @@
       {
          "stars" : 280,
          "github" : "github.com/glenndehaan/unifi-voucher-site",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "unifi-voucher-site",
          "name" : "UniFi Voucher Site",
          "desc" : "Generate and manage UniFi network guest vouchers"
@@ -8578,7 +8578,7 @@
          "github" : "github.com/GauthierNelkinsky/ShipShipShip",
          "desc" : "Lightweight changelog and roadmap platform",
          "slug" : "shipshipship",
-         "status" : "pending",
+         "status" : "done",
          "name" : "ShipShipShip",
          "stars" : 280
       },
@@ -8587,7 +8587,7 @@
          "stars" : 271,
          "name" : "PoeticMetric",
          "github" : "github.com/th0th/poeticmetric",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "poeticmetric"
       },
       {
@@ -8619,7 +8619,7 @@
          "stars" : 264,
          "slug" : "trala",
          "github" : "github.com/dannybouwers/trala",
-         "status" : "pending",
+         "status" : "done",
          "name" : "TraLa"
       },
       {
