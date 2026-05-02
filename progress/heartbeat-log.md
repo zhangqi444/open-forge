@@ -5182,3 +5182,18 @@ Commit: `1e5d195`
 - #26 — Docs consistency: marketplace description — addressed in `ce8accf`; manual close needed
 - #27 — Windows onboarding: stale Git proxy — addressed in `ce8accf`; manual close needed
 
+
+## 2026-05-02 04:45 UTC
+
+**Batch 29** — selfhst.st app recipes
+
+Added 5 new recipes:
+- `mantrae` — Traefik dynamic config manager UI (pre-stable; Traefik HTTP provider + optional `mantraed` agent, DNS integration)
+- `upvote-rss` — RSS feed generator for Reddit/HN/Lemmy/Lobsters/PieFed/Mbin/GitHub; score/volume filters, AI summaries, caching
+- `octo-fiesta` — Subsonic proxy with on-demand music download from Deezer/Qobuz/Yandex/SquidWTF for Navidrome
+- `vouchervault` — Django voucher/coupon/gift card manager; OIDC, Apprise notifications, QR/barcode scan, SQLite or Postgres
+- `podfetch` — Rust+React podcast manager; GPodder sync, OIDC, Telegram notifications, S3 storage, SQLite or Postgres
+
+Commit: `aca5697`
+
+**Open issues** — #24–27 still need manual closure (PAT lacks issues:write)
