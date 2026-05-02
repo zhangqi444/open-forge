@@ -7813,7 +7813,7 @@
          "desc" : "Workout diary with GitHub-style yearly visualization",
          "stars" : 459,
          "slug" : "exercise-diary",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/aceberg/ExerciseDiary",
          "name" : "Exercise Diary"
       },
@@ -7828,7 +7828,7 @@
       {
          "desc" : "Web interface for Apache Iceberg",
          "name" : "Nimtable",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "nimtable",
          "github" : "github.com/nimtable/nimtable",
          "stars" : 457
@@ -7836,7 +7836,7 @@
       {
          "name" : "Teemii",
          "slug" : "teemii",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/dokkaner/teemii",
          "stars" : 457,
          "desc" : "Self-hosted manga reader and manager with extensible agent-based metadata retrieval"
@@ -7846,13 +7846,13 @@
          "github" : "github.com/fedify-dev/hollo",
          "name" : "Hollo",
          "slug" : "hollo",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 455
       },
       {
          "stars" : 455,
          "name" : "PruneMate",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "prunemate",
          "github" : "github.com/anoniemerd/PruneMate",
          "desc" : "Docker image and resource cleanup helper"
@@ -7862,7 +7862,7 @@
          "stars" : 449,
          "name" : "Operately",
          "slug" : "operately",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/operately/operately"
       },
       {
@@ -7870,7 +7870,7 @@
          "github" : "github.com/AnthonyGress/lab-dash",
          "stars" : 447,
          "slug" : "lab-dash",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Lab Dash"
       },
       {
