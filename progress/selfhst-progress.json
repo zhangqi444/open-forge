@@ -7701,14 +7701,14 @@
          "stars" : 486,
          "slug" : "wingfit",
          "github" : "github.com/itskovacs/wingfit",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Wingfit",
          "desc" : "Minimal fitness app for workout tracking"
       },
       {
          "slug" : "middleware-manager",
          "github" : "github.com/hhftechnology/middleware-manager",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Middleware Manager",
          "stars" : 485,
          "desc" : "Traefik middleware, router, and server manager"
@@ -7718,12 +7718,12 @@
          "name" : "traefik-kop",
          "slug" : "traefik-kop",
          "github" : "github.com/jittering/traefik-kop",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 484
       },
       {
          "desc" : "mTLS certificate manager",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "vaultls",
          "github" : "github.com/7ritn/VaulTLS",
          "name" : "VaulTLS",
