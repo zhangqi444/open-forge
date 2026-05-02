@@ -8719,7 +8719,7 @@
          "desc" : "A nice and sweet place for your self-hosted services"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "github" : "codeberg.org/rimu/pyfedi",
          "slug" : "piefed",
          "name" : "PieFed",
@@ -8753,7 +8753,7 @@
       {
          "github" : "github.com/VityaSchel/lufin",
          "slug" : "lufin",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Lufin",
          "stars" : 229,
          "desc" : "Modern file sharing service"
@@ -8761,7 +8761,7 @@
       {
          "github" : "github.com/successible/cleanslate",
          "desc" : "Calorie tracking without judgement",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "clean-slate",
          "name" : "Clean Slate",
          "stars" : 227
@@ -8825,7 +8825,7 @@
       {
          "stars" : 221,
          "name" : "Jellysweep",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "jellysweep",
          "github" : "github.com/jon4hz/jellysweep",
          "desc" : "Smart cleanup tool for Jellyfin media servers"
@@ -8833,13 +8833,13 @@
       {
          "desc" : "Image gallery and live editing web app",
          "github" : "github.com/cshum/imagor-studio",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "imagor-studio",
          "name" : "Imagor Studio",
          "stars" : 220
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "cially",
          "name" : "Cially",
          "stars" : 215,
@@ -8866,14 +8866,14 @@
          "desc" : "Basic control panel for Docker, Systemd, VMs, and everything else",
          "github" : "github.com/aceberg/AnyAppStart",
          "slug" : "anyappstart",
-         "status" : "pending",
+         "status" : "done",
          "name" : "AnyAppStart",
          "stars" : 212
       },
       {
          "desc" : "Modern web interface for mkcert",
          "name" : "mkcert Web UI",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "mkcert-web-ui",
          "github" : "github.com/jeffcaldwellca/mkcertWeb",
          "stars" : 211
