@@ -5197,3 +5197,16 @@ Added 5 new recipes:
 Commit: `aca5697`
 
 **Open issues** — #24–27 still need manual closure (PAT lacks issues:write)
+
+## 2026-05-02 05:15 UTC
+
+**Batch 30** — selfhst.st app recipes
+
+Added 5 new recipes:
+- `dailytxt` — Svelte+Go encrypted diary/journal webapp; client-side encryption, markdown, tags, map, file uploads, gallery, templates, multi-user, HTML export, PWA
+- `bunkerm` — All-in-one Mosquitto MQTT management platform; web UI, ACL, message history, anomaly detection, local automation agents, LM Studio AI, optional BunkerAI cloud tier
+- `musicseerr` — Lidarr-based music request/discovery; stream from Jellyfin/Navidrome/Plex/local/YouTube; scrobble ListenBrainz+Last.fm; discovery queue with personalized recs
+- `velld` — Database backup manager (PostgreSQL/MySQL/MongoDB/Redis); S3 storage, cron schedules, diff viewer, restore UI, email notifications; 2-container (API + Next.js web)
+- `webhook-tester` — Self-hosted webhook.site alternative; unique URLs, customizable responses, real-time WebSockets, ngrok tunneling, memory/fs/Redis storage; Go+scratch image
+
+Commit: `5a00e2e`
