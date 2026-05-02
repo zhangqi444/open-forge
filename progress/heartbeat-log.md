@@ -5418,3 +5418,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 15576fb.
 All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
 
 **Issues:** No new open issues.
+
+## 2026-05-02f (18:00 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — #41 (bookstack Codeberg flip) already addressed in prior cycle (commit 1a528e3); no new action needed
+- Step 2: batch 53 — 5 recipes written and committed (a1c9bb0)
+  - piefed (239★): federated link aggregation, PocketBase+Next.js
+  - clean-slate (227★): calorie tracker, Docker Compose + Caddy + Hasura + Postgres
+  - imagor-studio (220★): self-hosted image gallery with libvips editing
+  - cially (215★): Discord analytics dashboard (NC license noted)
+  - mkcert-web-ui (211★): web UI for local SSL cert generation
+- Pending apps remaining: ~179
