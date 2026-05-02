@@ -8889,7 +8889,7 @@
       {
          "slug" : "pepperminty-wiki",
          "github" : "github.com/sbrl/Pepperminty-Wiki",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Pepperminty Wiki",
          "stars" : 206,
          "desc" : "Complete wiki engine contained in a single file"
@@ -8897,7 +8897,7 @@
       {
          "name" : "MQTT Web Interface",
          "slug" : "mqtt-web-interface",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/terdia/mqttui",
          "stars" : 205,
          "desc" : "Lightweight web interface for MQTT visualization"
@@ -8906,7 +8906,7 @@
          "name" : "YT-DLP Web Player",
          "slug" : "yt-dlp-web-player",
          "github" : "github.com/Matszwe02/ytdlp_web_player",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 205,
          "desc" : "Web video player powered by yt-dlp"
       },
@@ -8938,7 +8938,7 @@
          "name" : "Posteria",
          "github" : "github.com/jeremehancock/Posteria",
          "slug" : "posteria",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 200,
          "desc" : "Web-based media poster management system"
       },
@@ -8946,7 +8946,7 @@
          "name" : "Rangarr",
          "github" : "github.com/JudoChinX/rangarr",
          "slug" : "rangarr",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 200,
          "desc" : "Automate media searches across the *arr stack"
       },
