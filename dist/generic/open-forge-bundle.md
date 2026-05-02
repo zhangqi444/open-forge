@@ -579,6 +579,17 @@ The **how** question is *dynamically generated* from (software, where) — each 
 
 Then **immediately load `references/modules/preflight.md`** and run its steps. Preflight is combo-aware — it only installs / validates what the chosen tuple actually needs (AWS CLI only when infra ∈ AWS, Docker only when runtime = docker, nothing extra on localhost).
 
+### Goal-shaped requests → curated bundles
+
+If the user describes a *goal* rather than a single piece of software (e.g. *"set up an AI homelab"*, *"I want a privacy stack for my home network"*), check [`references/bundles/`](references/bundles/) for a matching curated bundle before falling through to single-software routing. Bundles are recipe-of-recipes that pair commonly-co-deployed apps with cross-software wiring already worked out.
+
+| Bundle | Goal | Constituent recipes |
+|---|---|---|
+| `bundles/ai-homelab.md` | Private LLM + chat UI + RAG workspace + pair-programming | Ollama · Open WebUI · AnythingLLM · Aider |
+| `bundles/privacy-stack.md` | Network-wide ad blocking + password vault + mesh VPN | Pi-hole · Vaultwarden · Headscale · wg-easy |
+
+Single-software requests still go through the standard 3-question selection. Bundles are an *additional* entry point for goal-shaped intents.
+
 ## Tier 1 vs Tier 2 routing
 
 open-forge ships a finite catalogue of verified recipes (Tier 1) plus a documented fallback for the long tail (Tier 2). When the user names a piece of software, decide which tier you're in **before** loading anything.
