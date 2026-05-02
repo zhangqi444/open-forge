@@ -36,6 +36,38 @@ usage() {
 
 PLATFORM="$1"
 
+# After concatenating canonical sources into a bundle, the SKILL.md / CLAUDE.md /
+# module prose still references "references/modules/credentials.md" and
+# "references/modules/feedback.md" (sometimes prefixed with the full skill path).
+# Those paths exist for the Claude Code plugin install but break when content is
+# inlined into a single-file bundle (the file isn't shipped alongside). Rewrite
+# them to point at the in-bundle sections instead. Reported in issue #40.
+#
+# Excludes dist/README.md (which legitimately documents the source paths).
+fix_bundle_refs() {
+  local file="$1"
+  local cred_link='the *Credentials handling* section below'
+  local fb_link='the *Post-deploy feedback flow* section below'
+  sed -E -i.bak \
+    -e "s|\\[[^]]+\\]\\((plugins/open-forge/skills/open-forge/)?references/modules/credentials\\.md\\)|${cred_link}|g" \
+    -e "s|\\[[^]]+\\]\\((plugins/open-forge/skills/open-forge/)?references/modules/feedback\\.md\\)|${fb_link}|g" \
+    -e "s|\`(plugins/open-forge/skills/open-forge/)?references/modules/credentials\\.md\`|${cred_link}|g" \
+    -e "s|\`(plugins/open-forge/skills/open-forge/)?references/modules/feedback\\.md\`|${fb_link}|g" \
+    -e "s|(plugins/open-forge/skills/open-forge/)?references/modules/credentials\\.md|${cred_link}|g" \
+    -e "s|(plugins/open-forge/skills/open-forge/)?references/modules/feedback\\.md|${fb_link}|g" \
+    "$file"
+  rm -f "${file}.bak"
+}
+
+fix_all_bundle_refs_in() {
+  local dir="$1"
+  # Process only generated bundle files; skip dist/README.md (legitimate use).
+  find "$dir" -type f \( -name '*.md' -o -name '*.mdc' \) -not -name 'README.md' -print0 \
+    | while IFS= read -r -d '' f; do
+        fix_bundle_refs "$f"
+      done
+}
+
 build_codex() {
   echo "→ Building Codex bundle…"
   mkdir -p "$DIST_DIR/codex"
@@ -361,6 +393,10 @@ case "$PLATFORM" in
     ;;
   *) usage ;;
 esac
+
+# Post-process: fix in-bundle references that would 404 when the bundle is
+# installed without the surrounding plugin file tree (issue #40).
+fix_all_bundle_refs_in "$DIST_DIR"
 
 echo
 echo "Done. Bundles in: $DIST_DIR/"

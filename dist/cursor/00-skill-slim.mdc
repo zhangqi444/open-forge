@@ -8,8 +8,8 @@ preflight → provision → dns → tls → smtp → inbound → hardening → f
 
 Look up the matching recipe at github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects/<software>.md.
 
-Apply credential-handling patterns from references/modules/credentials.md (five patterns; paste is last-resort).
+Apply credential-handling patterns from the *Credentials handling* section below (five patterns; paste is last-resort).
 
-After hardening, offer the post-deploy feedback flow per references/modules/feedback.md.
+After hardening, offer the post-deploy feedback flow per the *Post-deploy feedback flow* section below.
 
 Tool names in the canonical content (AskUserQuestion, WebFetch, mcp__github__*) are Claude Code-specific — use Cursor equivalents (prose prompts with options; @Web; gh CLI via terminal tool).
