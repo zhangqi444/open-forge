@@ -5366,3 +5366,16 @@ Commit: 2193a34
 All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: c4a6d4a. Push succeeded (bypassed branch protection).
 
 **Issues:** All open issues (#24, #25, #26, #27, #40) already handled in prior heartbeats. No new issues found.
+
+## 2026-05-02 14:30 UTC
+
+**Batch 49 — 4 recipes added**
+
+- boxarr (268 stars) — auto-adds box office trending movies to Radarr; Python, web setup wizard, no external DB
+- origamivault (266 stars) — offline encrypted paper backup (QR + OCR snippets); pure static app, busybox httpd, no backend
+- surmai (264 stars) — personal/family travel organizer; React SPA + PocketBase; self-hosting docs at surmai.app
+- replex (254 stars) — Plex proxy that remixes home hubs (interleave, quality, hero style); requires reverse proxy + SSL
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 413cf13.
+
+**Issues:** No new open issues.
