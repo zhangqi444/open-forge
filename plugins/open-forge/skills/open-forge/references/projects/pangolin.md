@@ -101,6 +101,10 @@ Each remote site runs a `newt` container or binary and dials the central Pangoli
 - **CrowdSec is off by default.** Worth enabling for any internet-exposed deployment, but it adds a container and its own upgrade surface.
 - **First-run wizard grants admin without email verification.** Do not boot the server with public DNS pointed before you're ready to claim the first-admin account.
 
+## TODO — verify on subsequent deployments
+
+- **Pangolin v1.18.0 (2026-05-01) — verify new feature surface before next deploy.** Per Self-Host Weekly 2026-05-01: HTTPS and multi-site routing for private resources, **uptime tracking, standalone health checks, alert rules, wildcard resources**. Install/Compose unchanged but several new feature panels in the UI; recipe's "First-time setup" walkthrough may want to mention uptime tracking + alert-rule configuration. No URL or install-command change expected.
+
 ## Links
 
 - Docs: <https://docs.pangolin.net/>

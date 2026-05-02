@@ -206,6 +206,10 @@ sudo tar czf defguard-config-$(date +%F).tgz defguard-config/
   - **Choose Defguard if:** enterprise + MFA-on-VPN + LDAP/AD + YubiKey + security-transparent.
 - **PROJECT HEALTH**: active + Rust + enterprise-focus + public-security-practices + CI + docs. **EXCEPTIONAL** for transparency.
 
+## TODO — verify on subsequent deployments
+
+- **Defguard v2.0.0 (2026-05-01) — re-verify before next deploy.** Per Self-Host Weekly 2026-05-01: redesigned interface, **simplified deployment approach**, built-in SSL termination, static IP assignments, LDAP auto-enrollment. The deployment-approach simplification likely changes Docker Compose / install commands; built-in SSL means upstream now handles TLS internally (may obsolete the recipe's reverse-proxy section). Re-fetch upstream README + v2 migration guide before deploying.
+
 ## Links
 
 - Repo: <https://github.com/DefGuard/defguard>

@@ -230,6 +230,10 @@ Release notes: <https://zulip.readthedocs.io/en/stable/overview/changelog.html>.
 - **Self-hosted push notifications**: register at <https://push.zulipchat.com/> for the free service. Self-hosted that skips registration = no mobile push.
 - **Python version**: standard installer pins Python 3.10+ (as of Zulip 12). Older distros unsupported.
 
+## TODO — verify on subsequent deployments
+
+- **Zulip v12.0 (2026-05-01) — re-verify before next deploy.** Per Self-Host Weekly 2026-05-01: end-to-end encrypted mobile notifications, media preview sizes, redesigned recent conversations view, new alt text image syntax, new video call provider options. Server install commands likely unchanged (Zulip's installer.py + recipe's `puppet apply` flow are stable across major versions), but config schema + `/etc/zulip/settings.py` keys for the new features may need additions. Re-fetch upstream's v12 release notes + settings reference before deploying.
+
 ## Links
 
 - Upstream repo: <https://github.com/zulip/zulip>

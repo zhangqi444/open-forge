@@ -198,6 +198,10 @@ Technitium also has a built-in "Backup / Restore" under Settings that exports a 
   - **Choose Pi-hole if:** you want the biggest community + best-documented ad-blocking setup.
   - **Choose AdGuard Home if:** you want the simplest modern experience.
 
+## TODO — verify on subsequent deployments
+
+- **Technitium v15.0.0 (2026-05-01) — re-verify before next deploy.** Per Self-Host Weekly 2026-05-01: single sign-on via OIDC, **upgrade to .NET 10**, live updates for query logs, **updated install scripts to run as non-root systemd service**. The .NET 10 jump and the non-root systemd-unit change likely affect both the install command and the systemd unit file shipped in this recipe. Re-fetch upstream install docs + the new install script before deploying.
+
 ## Links
 
 - Repo: <https://github.com/TechnitiumSoftware/DnsServer>
