@@ -7,7 +7,7 @@ description: Self-hosted wiki / documentation platform organized as books → ch
 
 BookStack is a PHP/Laravel app for storing internal documentation in a book-like hierarchy (shelves → books → chapters → pages). Rich WYSIWYG + markdown editors, diagrams.net + Drawio integration, comments, search, multi-factor auth, LDAP/SAML/OIDC SSO. MIT-licensed.
 
-- Upstream repo: <https://github.com/BookStackApp/BookStack> (mirror at <https://codeberg.org/bookstack/bookstack>)
+- Upstream repo: <https://codeberg.org/bookstack/bookstack> (**primary** as of 2026; GitHub mirror at <https://github.com/BookStackApp/BookStack>)
 - Install docs: <https://www.bookstackapp.com/docs/admin/installation/>
 - Official project does NOT publish a Docker image or compose file directly — the community-standard image is **`lscr.io/linuxserver/bookstack`** (LinuxServer.io). BookStack documentation also recommends this image.
 
@@ -108,7 +108,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 
 ## Upgrade
 
-1. Read release notes: <https://github.com/BookStackApp/BookStack/releases> — watch for breaking Laravel migrations.
+1. Read release notes: <https://codeberg.org/bookstack/bookstack/releases> — watch for breaking Laravel migrations.
 2. Bump the `lscr.io/linuxserver/bookstack` tag.
 3. `docker compose pull && docker compose up -d`.
 4. The entrypoint runs `php artisan migrate` on boot. Back up before major jumps (e.g. v24 → v25).
@@ -123,7 +123,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 - **MariaDB 11.x recommended** (MySQL 8 also works). MariaDB 10.5 and below are unsupported in recent BookStack versions.
 - **No upstream Docker image.** Community-maintained linuxserver image is the de facto standard; if it stops being maintained, upstream's install guide (Ubuntu script) is the fallback.
 - **Email is off by default.** Self-service password reset and invites silently fail until SMTP is configured in `.env`.
-- **Codeberg is the primary git host** as of early 2025 — GitHub is a mirror. Issues and PRs happen on Codeberg (<https://codeberg.org/bookstack/bookstack>).
+- **Codeberg is the primary git host** (full migration completed 2026-04). GitHub is now an archived mirror. Issues and PRs happen on Codeberg (<https://codeberg.org/bookstack/bookstack>).
 - **`QUEUE_CONNECTION=database`** is recommended — without it, long tasks (PDF exports, large imports) run synchronously and time out.
 - **APP_KEY rotation invalidates all sessions and encrypted fields.** Generate once, store forever.
 
@@ -132,7 +132,7 @@ Keep `APP_KEY` in your secret store — needed to decrypt tokens and session dat
 - Docs: <https://www.bookstackapp.com/docs>
 - Install guide (all methods): <https://www.bookstackapp.com/docs/admin/installation/>
 - Docker README (linuxserver): <https://github.com/linuxserver/docker-bookstack>
-- Upstream `.env.example`: <https://github.com/BookStackApp/BookStack/blob/development/.env.example.complete>
-- Releases: <https://github.com/BookStackApp/BookStack/releases>
-- Codeberg mirror: <https://codeberg.org/bookstack/bookstack>
+- Upstream `.env.example`: <https://codeberg.org/bookstack/bookstack/src/branch/development/.env.example.complete>
+- Releases: <https://codeberg.org/bookstack/bookstack/releases>
+- GitHub mirror (archived): <https://github.com/BookStackApp/BookStack>
 - Community discussions: <https://community.bookstackapp.com/>
