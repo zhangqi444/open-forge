@@ -5379,3 +5379,16 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: c4a6d4a. Push 
 All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 413cf13.
 
 **Issues:** No new open issues.
+
+## 2026-05-02 15:00 UTC
+
+**Batch 50 — 4 recipes added**
+
+- silicon-notes (263 stars) — lightweight personal knowledge base; Python/Flask + SQLite, Markdown, bi-directional links, no built-in auth
+- kriti-images (259 stars) — URL-based image transformation service in Go; open-source Cloudflare Images/ImageKit alternative, local or S3 source
+- touitomamout (252 stars) — Twitter-to-Mastodon/Bluesky sync bridge; ARCHIVED project, no future updates, Docker images still available
+- couchtube (252 stars) — self-hostable YouTube TV channel frontend; Go + SQLite, time-based scheduling, early-stage software
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: see git log.
+
+**Issues:** No new open issues.
