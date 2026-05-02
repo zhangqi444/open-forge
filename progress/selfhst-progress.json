@@ -8381,7 +8381,7 @@
          "desc" : "Federated decentralized marketplace",
          "stars" : 323,
          "name" : "Flohmarkt",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "flohmarkt",
          "github" : "codeberg.org/flohmarkt/flohmarkt"
       },
@@ -8389,7 +8389,7 @@
          "github" : "github.com/pbogre/jetlog",
          "desc" : "Personal flight tracker and viewer",
          "name" : "Jetlog",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "jetlog",
          "stars" : 319
       },
@@ -8397,7 +8397,7 @@
          "desc" : "Stupidly simple personal budget",
          "stars" : 316,
          "name" : "DumbBudget",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/DumbWareio/DumbBudget",
          "slug" : "dumbbudget"
       },
@@ -8405,7 +8405,7 @@
          "name" : "positive-intentions Chat",
          "slug" : "positive-intentions-chat",
          "github" : "github.com/positive-intentions/chat",
-         "status" : "pending",
+         "status" : "skipped",
          "stars" : 313,
          "desc" : "Decentralized chat in the browser"
       },
@@ -8414,7 +8414,7 @@
          "name" : "YeetFile",
          "slug" : "yeetfile",
          "github" : "github.com/benbusby/yeetfile",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Encrypted file sharing vault service"
       },
       {
@@ -8422,13 +8422,13 @@
          "desc" : "Powerful habit tracking app with social features",
          "name" : "HabitSync",
          "slug" : "habitsync",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 310
       },
       {
          "slug" : "cupdate",
          "github" : "github.com/AlexGustafsson/cupdate",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Cupdate",
          "stars" : 309,
          "desc" : "Zero-config service for keeping container images up-to-date"
@@ -8436,7 +8436,7 @@
       {
          "github" : "github.com/JonasHiltl/openchangelog",
          "desc" : "Easy to configure and self-hostable changelog website",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "openchangelog",
          "name" : "Openchangelog",
          "stars" : 308
@@ -8452,7 +8452,7 @@
       {
          "desc" : "RSS reader with Discord integration",
          "stars" : 306,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "feedcord",
          "github" : "github.com/Qolors/FeedCord",
          "name" : "FeedCord"
