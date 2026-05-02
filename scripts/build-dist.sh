@@ -23,6 +23,10 @@ SKILL_DIR="$REPO_ROOT/plugins/open-forge/skills/open-forge"
 REFS_DIR="$SKILL_DIR/references"
 DIST_DIR="$REPO_ROOT/dist"
 
+# Live recipe count — embedded in generated descriptions so they don't go stale
+# as the catalog grows. Counts .md files under references/projects/.
+RECIPE_COUNT=$(find "$REFS_DIR/projects" -maxdepth 1 -name '*.md' | wc -l | tr -d ' ')
+
 usage() {
   grep '^#' "$0" | grep -v '^#!' | sed 's/^# \{0,1\}//'
   exit 1
@@ -246,10 +250,10 @@ build_openclaw() {
   mkdir -p "$DIST_DIR/openclaw"
 
   # OpenClaw skill SKILL.md — drop into ~/.openclaw/workspace/skills/open-forge/SKILL.md
-  cat > "$DIST_DIR/openclaw/SKILL.md" <<'EOF'
+  cat > "$DIST_DIR/openclaw/SKILL.md" <<EOF
 ---
 name: open-forge
-description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ~180 verified recipes plus live-derived fallback for the long tail."
+description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ${RECIPE_COUNT}+ verified recipes plus live-derived fallback for the long tail."
 metadata:
   {
     "openclaw":
@@ -281,10 +285,10 @@ build_hermes() {
   mkdir -p "$DIST_DIR/hermes"
 
   # Hermes uses agentskills.io 'open standard' frontmatter — simpler, no metadata block
-  cat > "$DIST_DIR/hermes/SKILL.md" <<'EOF'
+  cat > "$DIST_DIR/hermes/SKILL.md" <<EOF
 ---
 name: open-forge
-description: Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ~180 verified recipes plus live-derived fallback for the long tail. Agent-mode rules apply (no chat-paste credentials, no group-channel deploys).
+description: Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. ${RECIPE_COUNT}+ verified recipes plus live-derived fallback for the long tail. Agent-mode rules apply (no chat-paste credentials, no group-channel deploys).
 ---
 
 # open-forge — self-host any open-source app
@@ -311,7 +315,7 @@ build_generic() {
 
 This is a concatenation of the canonical open-forge skill content. Feed it as a system prompt or a long-context document to any LLM agent that supports tool use. The agent acts as a deployment runbook for self-hostable open-source apps.
 
-For per-recipe content (~180 individual recipes under references/projects/), browse:
+For per-recipe content (${RECIPE_COUNT}+ individual recipes under references/projects/), browse:
   https://deepwiki.com/zhangqi444/open-forge
 
 Tool names like AskUserQuestion, WebFetch, mcp__github__* are Claude Code-specific — read as capabilities (structured-choice prompt; URL fetch; GitHub API) and use your platform's equivalents.

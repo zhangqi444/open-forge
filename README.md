@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.1-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
   <a href="https://deepwiki.com/zhangqi444/open-forge"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" /></a>
-  <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/badge/verified%20recipes-180+-EA580C?style=flat-square&labelColor=0F172A" alt="Verified recipes" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/github/directory-file-count/zhangqi444/open-forge/plugins/open-forge/skills/open-forge/references/projects?type=file&extension=md&style=flat-square&labelColor=0F172A&color=EA580C&label=verified%20recipes" alt="Verified recipes" /></a>
   <a href="#install"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-D77756?style=flat-square&labelColor=0F172A" alt="Built for Claude Code" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=22D3EE" alt="MIT License" /></a>
   <a href="https://github.com/zhangqi444/open-forge/stargazers"><img src="https://img.shields.io/github/stars/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=FACC15" alt="GitHub stars" /></a>
@@ -26,7 +26,7 @@
   AWS profile name?
 ```
 
-> *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [~180 verified recipes](#coverage).)*
+> *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [950+ verified recipes](#coverage).)*
 
 ## Install
 
@@ -92,7 +92,7 @@ That's why captured tribal knowledge already includes things like *"OpenClaw's t
 
 ## Coverage
 
-- **Software**: ~180 verified recipes for popular self-hostable apps — AI stack (Ollama · vLLM · Open WebUI · …), publishing (Ghost · WordPress · …), productivity (Nextcloud · Joplin · …), photos & media (Immich · Jellyfin · …), monitoring, security, networking, communication, automation. Plus **live-derived fallback** for anything else with public docs (best-effort; you'll see a banner before it starts).
+- **Software**: 950+ verified recipes for popular self-hostable apps — AI stack (Ollama · vLLM · Open WebUI · …), publishing (Ghost · WordPress · …), productivity (Nextcloud · Joplin · …), photos & media (Immich · Jellyfin · …), monitoring, security, networking, communication, automation. Plus **live-derived fallback** for anything else with public docs (best-effort; you'll see a banner before it starts).
 - **Where**: any cloud VM (AWS · Azure · GCP · Hetzner · DigitalOcean · Oracle Always-Free ARM · Hostinger), your own machine, Raspberry Pi, macOS VM (Lume), any Kubernetes cluster (EKS · GKE · AKS · DOKS · k3s · kind), or PaaS (Fly.io · Render · Railway · Northflank · exe.dev).
 - **How**: Docker · Podman · Native · Kubernetes (Kustomize-first; Helm where upstream ships one).
 
