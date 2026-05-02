@@ -97,6 +97,17 @@ The **how** question is *dynamically generated* from (software, where) — each 
 
 Then **immediately load `references/modules/preflight.md`** and run its steps. Preflight is combo-aware — it only installs / validates what the chosen tuple actually needs (AWS CLI only when infra ∈ AWS, Docker only when runtime = docker, nothing extra on localhost).
 
+### Goal-shaped requests → curated bundles
+
+If the user describes a *goal* rather than a single piece of software (e.g. *"set up an AI homelab"*, *"I want a privacy stack for my home network"*), check [`references/bundles/`](references/bundles/) for a matching curated bundle before falling through to single-software routing. Bundles are recipe-of-recipes that pair commonly-co-deployed apps with cross-software wiring already worked out.
+
+| Bundle | Goal | Constituent recipes |
+|---|---|---|
+| `bundles/ai-homelab.md` | Private LLM + chat UI + RAG workspace + pair-programming | Ollama · Open WebUI · AnythingLLM · Aider |
+| `bundles/privacy-stack.md` | Network-wide ad blocking + password vault + mesh VPN | Pi-hole · Vaultwarden · Headscale · wg-easy |
+
+Single-software requests still go through the standard 3-question selection. Bundles are an *additional* entry point for goal-shaped intents.
+
 ## Tier 1 vs Tier 2 routing
 
 open-forge ships a finite catalogue of verified recipes (Tier 1) plus a documented fallback for the long tail (Tier 2). When the user names a piece of software, decide which tier you're in **before** loading anything.
@@ -199,7 +210,7 @@ Each recipe and adapter has its own **"Inputs to collect"** section listing exac
 
 ## Asking for credentials
 
-Whenever the skill needs sensitive input — API keys, DB passwords, OAuth client secrets, cloud creds, SSH key paths — load `references/modules/credentials.md` and offer the **five patterns** (priority order):
+Whenever the skill needs sensitive input — API keys, DB passwords, OAuth client secrets, cloud creds, SSH key paths — load the *Credentials handling* section below and offer the **five patterns** (priority order):
 
 | # | Pattern | What user gives |
 |---|---|---|
@@ -226,14 +237,14 @@ Whenever the skill needs sensitive input — API keys, DB passwords, OAuth clien
 
 When this skill runs inside a long-running personal AI agent (OpenClaw, Hermes-Agent, or any agent that talks to the user via WhatsApp / Telegram / Slack / iMessage / email / etc.), apply these stricter rules **on top of** the base five-pattern flow above:
 
-- **Pattern 5 (direct paste) is DISABLED.** Pasting credentials into messaging channels is meaningfully riskier than into coding-tool chat — chat history syncs to the user's phone, may be backed up to cloud (iCloud / Google Drive), and often persists indefinitely. Refuse a paste with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead. See [credentials.md](references/modules/credentials.md) for options."* If the user insists, refuse again — don't compromise.
+- **Pattern 5 (direct paste) is DISABLED.** Pasting credentials into messaging channels is meaningfully riskier than into coding-tool chat — chat history syncs to the user's phone, may be backed up to cloud (iCloud / Google Drive), and often persists indefinitely. Refuse a paste with: *"I can't accept credentials pasted into a messaging channel. Use a file path, env var, cloud-CLI session, or secrets-manager reference instead. See the *Credentials handling* section below for options."* If the user insists, refuse again — don't compromise.
 - **Reject deploy conversations from group channels.** Group chats leak everything to all members (credentials, IPs, admin URLs). When invoked from a group context, respond: *"Self-host deploys involve sensitive info. Switch to a 1:1 DM and ask again."* Then stop.
 - **Use async polling for time-elapsed waits**, not blocking prompts. `dns` propagation, `tls` cert issuance, `provision` instance-boot — all become *"I'll poll and ping you when ready"* rather than *"press enter when DNS propagates."* Agents have a daemon; use it.
 - **Channel-aware response routing.** Long-form content (DNS records to add at registrar, full recipe explanations, admin-bootstrap URLs) should go via secure / structured channels (email, signed note, secure-share link) when the agent supports them, not the chat. Quick decisions (yes/no, pick from list) stay in chat. Final hand-off (admin URL, rotation reminders) → secure 1:1 only.
 
 See [`docs/platforms/openclaw.md`](../../../../docs/platforms/openclaw.md) and [`docs/platforms/hermes.md`](../../../../docs/platforms/hermes.md) for the full agent-mode integration guides.
 
-See [`references/modules/credentials.md`](references/modules/credentials.md) for the full pattern details, per-credential-class recommendations, and failure-mode handling.
+See the *Credentials handling* section below for the full pattern details, per-credential-class recommendations, and failure-mode handling.
 
 ## Verification after each phase
 
@@ -259,7 +270,7 @@ Three flows the user can trigger from this prompt:
 
 ### The flow (multi-step consent — never auto-post)
 
-Load `references/modules/feedback.md` for the full sanitization rules + draft templates + submission paths. Summary:
+Load the *Post-deploy feedback flow* section below for the full sanitization rules + draft templates + submission paths. Summary:
 
 1. **Opt-in prompt**:
    - Recipe feedback: *"Want to share what you learned with the open-forge project? I can draft a sanitized GitHub issue with the gotchas + suggested edits — you review, then post."*
@@ -270,7 +281,7 @@ Load `references/modules/feedback.md` for the full sanitization rules + draft te
    - Which phases ran, which retried, which failed.
    - Where the user got prompted unexpectedly (gaps in the recipe).
    - Any gotchas Claude observed (commands that failed, error messages, deviations from the documented path).
-3. **Draft the issue** in the format from `references/modules/feedback.md`:
+3. **Draft the issue** in the format from the *Post-deploy feedback flow* section below:
    - Specific recipe-edit suggestions (preferred: as a diff), not free-prose.
    - All identifiers redacted per CLAUDE.md § *Sanitization principles*.
 4. **Show the redacted draft in chat — full text — before any submission attempt.**
@@ -283,7 +294,7 @@ Load `references/modules/feedback.md` for the full sanitization rules + draft te
 
 ### Sanitization is mandatory
 
-Per CLAUDE.md § *Sanitization principles* — strip every domain, IP, SSH key path, API key, AWS account ID, email address, state-file content, and anything from the user's clipboard / env vars before showing the draft. Use the patterns + replacements documented in `references/modules/feedback.md`.
+Per CLAUDE.md § *Sanitization principles* — strip every domain, IP, SSH key path, API key, AWS account ID, email address, state-file content, and anything from the user's clipboard / env vars before showing the draft. Use the patterns + replacements documented in the *Post-deploy feedback flow* section below.
 
 If you find something in the draft that you can't confidently classify as safe, **redact it** rather than ship it. The user's review pass is a safety net, not the only line of defense.
 
