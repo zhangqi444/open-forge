@@ -8667,7 +8667,7 @@
          "name" : "Omoide",
          "slug" : "omoide",
          "github" : "github.com/EinAeffchen/Omoide",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 249
       },
       {
@@ -8675,7 +8675,7 @@
          "stars" : 248,
          "slug" : "secrover",
          "github" : "github.com/Secrover/Secrover",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Secrover"
       },
       {
@@ -8690,7 +8690,7 @@
          "desc" : "URL to PNG generator over HTTP",
          "github" : "github.com/jasonraimondi/url-to-png",
          "stars" : 246,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "url-to-png",
          "name" : "URL-to-PNG"
       },
@@ -8698,7 +8698,7 @@
          "desc" : "Gift idea manager for families",
          "stars" : 245,
          "name" : "GiftManager",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "giftmanager",
          "github" : "github.com/icbestCA/giftmanager"
       },
