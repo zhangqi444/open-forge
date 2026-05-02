@@ -7822,7 +7822,7 @@
          "stars" : 458,
          "name" : "Operational",
          "slug" : "operational",
-         "status" : "pending",
+         "status" : "skipped",
          "github" : "github.com/operational-co/operational.co"
       },
       {
