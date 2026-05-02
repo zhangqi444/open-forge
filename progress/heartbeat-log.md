@@ -5507,3 +5507,14 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - wagmios (53★): Docker homelab manager for OpenClaw agents; scoped API keys, marketplace
   - music-service (52★): YouTube playlist → MP3 → WebDAV sync; yt-dlp + MySQL + Redis
 - Pending apps remaining: ~140
+
+## 2026-05-02n (20:30 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 61 — 5 recipes written and committed (1dff899)
+  - yacht (51★): Docker container UI with templates/1-click deploys; alpha/maintenance mode, new version in progress
+  - helprealm (46★): Laravel support ticket system; SaaS-style, email-to-ticket, multi-tenant; no Docker image
+  - deepsubx (35★): DeepL subtitle translator for movies/TV; embedded subtitle extraction; optional Plex refresh
+  - geoposler (33★): Email campaign manager; ARCHIVED — recommends Listmonk instead
+  - flox (32★): Laravel/Vue.js movie/series/anime watchlist; TMDb API; ActivityPub federation; Plex sync
+- Pending apps remaining: ~135

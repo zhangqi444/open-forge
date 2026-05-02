@@ -9698,7 +9698,7 @@
          "name" : "Yacht",
          "github" : "github.com/SelfhostedPro/Yacht",
          "slug" : "yacht",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 51,
          "desc" : "Web interface for managing docker containers with templating and 1-click deployments"
       },
@@ -9720,7 +9720,7 @@
       },
       {
          "slug" : "helprealm",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/danielbrendel/dnyHelpRealm",
          "name" : "HelpRealm",
          "stars" : 46,
@@ -9787,7 +9787,7 @@
          "desc" : "Use DeepL API to translate media subtitles",
          "name" : "DeepSubX",
          "slug" : "deepsubx",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 35
       },
       {
@@ -9803,14 +9803,14 @@
          "name" : "Geoposler",
          "github" : "github.com/garanda21/geoposler",
          "slug" : "geoposler",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 33
       },
       {
          "desc" : "Self-hosted movie, series, and anime watch list",
          "github" : "github.com/Simounet/flox",
          "slug" : "flox",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Flox",
          "stars" : 32
       },
