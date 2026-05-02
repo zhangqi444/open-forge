@@ -5052,3 +5052,19 @@ Status: 364 apps still pending.
 - Recipes written to plugins/open-forge/skills/open-forge/references/projects/
 - Progress: 911 done, 359 pending
 - Dist rebuilt successfully
+
+## 2026-05-02 01:15 UTC — Batch 178
+
+**Apps processed (5):** atlas-cmms (588★), domainmod (587★), argus (585★), youlag (577★), photofield (576★)
+**Skipped (1):** rahoot (599★) — GitHub repo returns 403 (inaccessible/private)
+**Commit:** 5c297af
+**Dist rebuilt:** yes
+**Status:** pushed to main
+
+**Notes:**
+- rahoot marked `skipped` in progress JSON — repo at github.com/Ralex91/Rahoot returns HTTP 403
+- atlas-cmms uses 4-container stack: postgres + backend + frontend + minio
+- argus is a release-monitoring tool (single binary or Docker); config via YAML
+- youlag is a FreshRSS extension (not standalone); requires FreshRSS ≥ 1.28.0
+- photofield is a high-performance single-binary photo gallery; read-only photo mounts recommended
+- 359 apps remain pending in selfhst-progress.json (some without explicit status field)
