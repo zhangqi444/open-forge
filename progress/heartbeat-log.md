@@ -5240,3 +5240,23 @@ Commit: `5a00e2e`
 
 ### Commit
 - 036b96e — 9 files, 749 insertions
+
+## 2026-05-02 06:45 UTC — Batch 33 + 34
+
+### Batch 33 (commit e1327cb)
+Completed batch 33 (continuing from previous turn):
+- **snac** (ActivityPub server, SQLite, Crystal, TLS required)
+- **auto-mcs** (Minecraft server manager, web UI, Modrinth, playit.gg)
+- **pasta** (Plex audio/subtitle track automator, client-side)
+- **pastefy** (Pastebin/Gist alt, OAuth2, multi-file, rich preview)
+- **medikeep** (Personal health records, FastAPI+PostgreSQL, SSO/OIDC)
+- **syncloud** / **nextcloud-office** — marked skipped (platform OS / Nextcloud plugin, not standalone)
+
+### Batch 34 (commit fc277da)
+- **ktistec** (ActivityPub, SQLite, Crystal, MCP support)
+- **owlistic** (real-time notes + todos, Go+NATS+PostgreSQL)
+- **figranium** (browser automation, Playwright, block workflows, noVNC)
+- **invoice-builder** (offline invoicing, UBL/Peppol/XRechnung, Node+React)
+- **contao** — marked skipped (monorepo dev tool, not for Docker deployment)
+
+Pending count continues to decrease.
