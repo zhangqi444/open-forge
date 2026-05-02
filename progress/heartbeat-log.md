@@ -5529,3 +5529,19 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - bbyen (17★): YouTube email notifications replacement; YouTube API + SMTP; OAuth setup required
   - karrot (14★): Django community coordination platform; ActivityPub federation; AGPL-3.0
 - Pending apps remaining: ~130
+
+## 2026-05-02p (21:15 UTC)
+- Step 0: repo already up to date
+- Step 1: issues — no new issues
+- Step 2: batch 63 — 10 recipes written and committed (5d7de84)
+  - pods-blitz (3★): Rust podcast publisher; build-from-source Docker; MariaDB; S3 optional
+  - plex-prerolls (3★): Plex pre-roll automation; schedule-based rules; webhook ingestion
+  - xrsh (1★): WebXR browser shell; v86 emulator; standalone binary or Docker static server
+  - webcap (0★): Web archiving/change detection; CLOSED SOURCE
+  - visual-db (0★): Database web GUI; CLOSED SOURCE
+  - phorge (0★): Phabricator fork; full dev platform; LAMP stack; no Docker image
+  - myheats (0★): Live leaderboard; SOURCE UNAVAILABLE (404)
+  - fusionauth (0★): Auth/user management platform; CLOSED SOURCE freemium
+  - roon (0★): Music server; CLOSED SOURCE subscription
+  - plex (0★): Media server; CLOSED SOURCE freemium; Docker official image
+- Pending apps remaining: ~120
