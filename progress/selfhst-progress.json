@@ -7251,14 +7251,14 @@
       {
          "desc" : "Collaboration platform for VFX and animation",
          "name" : "Kitsu",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "kitsu",
          "github" : "github.com/cgwire/kitsu",
          "stars" : 626
       },
       {
          "desc" : "Docker Compose file simplification",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/RA341/dockman",
          "slug" : "dockman",
          "name" : "Dockman",
@@ -7268,7 +7268,7 @@
          "name" : "Medama",
          "slug" : "medama",
          "github" : "github.com/medama-io/medama",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 611,
          "desc" : "Lightweight and privacy-focused web analytics"
       },
@@ -7276,14 +7276,14 @@
          "desc" : "Effortless authentication built for flexibility and control",
          "stars" : 606,
          "name" : "Melody Auth",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "melody-auth",
          "github" : "github.com/ValueMelody/melody-auth"
       },
       {
          "stars" : 602,
          "slug" : "kanba",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Kanba",
          "github" : "github.com/Kanba-co/kanba",
          "desc" : "Project management and collaboration"

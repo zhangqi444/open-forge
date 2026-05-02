@@ -5032,3 +5032,15 @@ Commit: e21d5d5
 - drop: Self-hosted DRM-free game distribution platform (GameVault/Steam alternative); minimal README, docs at droposs.org
 
 Pending after batch 177: 369 apps
+
+## 2026-05-02 00:30 UTC — Batch 177
+
+Apps added (5):
+- kitsu (626★) — Animation/VFX/game studio production tracking; requires Zou backend
+- dockman (612★) — Docker Compose file manager web UI; triple-path stacks mount
+- medama (611★) — Cookie-free privacy analytics; single binary, no external deps
+- melody-auth (606★) — Self-hostable OAuth2/auth server; Node.js+PG+Redis or Cloudflare Workers
+- kanba (602★) — Lightweight Trello alternative; Next.js + Supabase backend
+
+Build: dist bundles rebuilt (all).
+Status: 364 apps still pending.
