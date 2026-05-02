@@ -8625,7 +8625,7 @@
       {
          "stars" : 263,
          "slug" : "silicon-notes",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Silicon Notes",
          "github" : "github.com/cu/silicon",
          "desc" : "Web-based personal knowledge base with few frills"
@@ -8633,7 +8633,7 @@
       {
          "slug" : "kriti-images",
          "github" : "github.com/kritihq/kriti-images",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Kriti Images",
          "stars" : 259,
          "desc" : "Image transformation service for real-time processing"
@@ -8651,11 +8651,11 @@
          "name" : "Touitomamout",
          "github" : "github.com/louisgrasset/touitomamout",
          "slug" : "touitomamout",
-         "status" : "pending",
+         "status" : "done",
          "stars" : 252
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "couchtube",
          "name" : "CouchTube",
          "stars" : 252,
