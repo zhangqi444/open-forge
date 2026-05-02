@@ -5392,3 +5392,16 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 413cf13.
 All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: see git log.
 
 **Issues:** No new open issues.
+
+## 2026-05-02 15:30 UTC
+
+**Batch 51 — 4 recipes added**
+
+- omoide (249 stars) — offline-first photo/video library with local AI (faces, semantic search, auto-tags); Python/FastAPI + SQLite; PolyForm Noncommercial license
+- secrover (248 stars) — security audit report generator (deps/code/domains); Docker one-shot or GitHub Actions; exports HTML reports via rclone
+- url-to-png (246 stars) — URL screenshot service via Playwright/Chromium; filesystem/S3/CouchDB caching; allow/block lists; Prometheus metrics
+- giftmanager (245 stars) — family gift ideas manager with secret tracking, Secret Santa, OIDC, email; self-hosting via upstream installation guide
+
+All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 15576fb.
+
+**Issues:** No new open issues.
