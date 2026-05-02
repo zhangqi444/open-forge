@@ -5275,3 +5275,12 @@ Skipped (2):
 - nextcloud-forms (371 stars) — Nextcloud plugin, not standalone self-hosted app
 
 Also fixed selfhst-progress.json JSON bug: mbin had duplicate "status" keys (pending + done); resolved to "done".
+
+## 2026-05-02 08:30 UTC — Batch 39
+
+Recipes written (5):
+- domain-watchdog (366 stars) — RDAP domain tracker with auto-purchase; PHP/Symfony + Postgres + Valkey
+- sonobarr (364 stars) — Last.fm-powered music discovery companion for Lidarr
+- feeds-fun (363 stars) — RSS news reader with AI tag assignment and scoring rules
+- loops (362 stars) — Federated short-video platform (ActivityPub / TikTok-style); requires S3 storage
+- jellyfin-rewind (357 stars) — Spotify Wrapped-style year-in-review for Jellyfin

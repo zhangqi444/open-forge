@@ -8186,7 +8186,7 @@
          "desc" : "Event notifications for a standalone Frigate NVR instance"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "domain-watchdog",
          "name" : "Domain Watchdog",
          "stars" : 366,
@@ -8196,7 +8196,7 @@
       {
          "name" : "Sonobarr",
          "slug" : "sonobarr",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Dodelidoo-Labs/sonobarr",
          "stars" : 364,
          "desc" : "Music discovery for Lidarr users via Last.fm"
@@ -8204,14 +8204,14 @@
       {
          "desc" : "News reader with tags and AI",
          "github" : "github.com/Tiendil/feeds.fun",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "feeds-fun",
          "name" : "Feeds Fun",
          "stars" : 363
       },
       {
          "slug" : "loops",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Loops",
          "stars" : 362,
          "desc" : "Federated short video sharing platform",
@@ -8235,7 +8235,7 @@
       },
       {
          "name" : "Jellyfin Rewind",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "jellyfin-rewind",
          "stars" : 357,
          "github" : "github.com/Chaphasilor/jellyfin-rewind",
