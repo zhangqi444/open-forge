@@ -8072,6 +8072,7 @@
          "status" : "pending",
          "slug" : "crontab-guru",
          "github" : "github.com/cronitorio/cronitor-cli"
+         "status" : "skipped", "skip_reason" : "cronitor-cli is a CLI monitoring agent, not a self-hosted web app",
       },
       {
          "desc" : "Federated content aggregator and microblogging platform",
@@ -8080,6 +8081,7 @@
          "slug" : "mbin",
          "name" : "Mbin",
          "stars" : 400
+         "status" : "done",
       },
       {
          "stars" : 400,
@@ -8101,7 +8103,7 @@
          "stars" : 394,
          "name" : "Scraparr",
          "slug" : "scraparr",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/thecfu/scraparr",
          "desc" : "Prometheus exporter for *arr apps"
       },
@@ -8110,21 +8112,21 @@
          "stars" : 392,
          "name" : "Scratch Map",
          "github" : "github.com/ad3m3r5/scratch-map",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "scratch-map"
       },
       {
          "stars" : 387,
          "name" : "Dashwise",
          "slug" : "dashwise",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/andreasmolnardev/dashwise",
          "desc" : "All-in-one homelab dashboard"
       },
       {
          "desc" : "Download and manage trailers for media libraries",
          "github" : "github.com/nandyalu/trailarr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "trailarr",
          "name" : "Trailarr",
          "stars" : 382
@@ -8134,7 +8136,7 @@
          "desc" : "Small toolbox for common tasks on the internet",
          "stars" : 381,
          "slug" : "anchr",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Anchr"
       },
       {
