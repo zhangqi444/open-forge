@@ -181,7 +181,7 @@ Native: follow your OS's package manager's update path; systemd service restarts
 - **Global Discovery + Relay = upstream Syncthing servers.** If you'd rather not phone home, run your own `stdiscosrv` + `strelaysrv` (binaries ship in the same repo). Most self-hosters leave the defaults on.
 - **Power loss during sync.** Syncthing is resilient — it uses block-level hashing and resumes — but a folder marked "staggered-versioning" preserves old versions and can eat disk.
 - **Docker Desktop on macOS/Windows ≠ host networking.** Host networking doesn't work in Docker Desktop's VM. Either run Syncthing natively on Mac/Windows (easy) or accept that the container is limited to global discovery.
-- **`:latest` tag is fine but moves.** Pin a version (`syncthing/syncthing:1.27.0`) for reproducibility.
+- **`:latest` tag is fine but moves.** Pin a version (`syncthing/syncthing:2.0.16`) for reproducibility.
 
 ## TODO — verify on subsequent deployments
 

@@ -44,7 +44,7 @@ docker run -d \
   -p 4888:4888 \
   -v tamariappdata:/app/appdata \
   --name tamari \
-  alexbates/tamari:1.4
+  alexbates/tamari:1.5
 ```
 Or pull `ghcr.io/alexbates/tamari:latest` / `alexbates/tamari:latest`.
 
@@ -60,7 +60,7 @@ docker run -d \
   -p 4888:4888 \
   -v tamariappdata:/app/appdata \
   --name tamari \
-  alexbates/tamari:1.4
+  alexbates/tamari:1.5
 ```
 
 ### Data Directories
@@ -86,7 +86,7 @@ gunicorn -b 0.0.0.0:4888 -w 4 app:app
 
 ## Upgrade Procedure
 
-1. Pull the new image: `docker pull alexbates/tamari:1.4` (replace with latest tag)
+1. Pull the new image: `docker pull alexbates/tamari:1.5` (replace with latest tag)
 2. Stop: `docker stop tamari && docker rm tamari`
 3. Run with the same volume and new image tag
 4. Database migrations run automatically on startup
