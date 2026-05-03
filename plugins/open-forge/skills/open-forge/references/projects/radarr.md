@@ -47,7 +47,7 @@ Typically deployed together with: **Sonarr** (TV), **Prowlarr** (indexers), **Ba
 ```yaml
 services:
   radarr:
-    image: lscr.io/linuxserver/radarr:5.10.4-develop-ls165   # pin; or 5.10.4 stable
+    image: lscr.io/linuxserver/radarr:6.1.1.10360-ls301   # pin; check https://github.com/linuxserver/docker-radarr/releases
     container_name: radarr
     restart: unless-stopped
     environment:
@@ -142,7 +142,7 @@ SQLite corrupts if copied mid-write — prefer Radarr's built-in **System → Ba
 - **Default SQLite is fine up to ~5000 movies.** Larger libraries benefit from WAL mode + periodic VACUUM.
 - **Queue stuck on "waiting"?** Usually a download-client connection issue or a category mismatch. Check Settings → Download Clients → Test.
 - **URL base** for reverse-proxy setups: Settings → General → URL Base = `/radarr`, then nginx `location /radarr/ { proxy_pass http://radarr:7878; }`.
-- **v4 is stable, v5 is on `develop` branch.** When v5 promotes to stable, the migration is automatic on first boot; can't downgrade.
+- **v6 is the current stable branch** (v5 promoted to stable, then v6 followed). Migration from prior versions is automatic on first boot; can't downgrade.
 - **Radarr doesn't actually download anything.** It tells the download client to grab a release. Download progress = check your client, not Radarr.
 - **Alternatives worth knowing:**
   - **Sonarr** — TV shows (same ecosystem)
