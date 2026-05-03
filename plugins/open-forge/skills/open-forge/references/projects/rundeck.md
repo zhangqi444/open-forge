@@ -77,7 +77,7 @@ Features:
 ```yaml
 services:
   rundeck:
-    image: rundeck/rundeck:5.7                         # pin in prod
+    image: rundeck/rundeck:5.20.0                         # pin in prod
     container_name: rundeck
     restart: unless-stopped
     ports:
