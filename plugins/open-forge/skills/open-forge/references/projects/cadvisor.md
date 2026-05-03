@@ -30,14 +30,14 @@ cAdvisor runs as a single container (or binary) that reads `/sys`, `/proc`, `/va
 | Privileged mode    | yes                                | Security  | cAdvisor needs privileged/device access for some metrics                  |
 | `/dev/kmsg` device | mapped                             | Runtime   | Needed for OOM event metrics                                              |
 | Prometheus scrape  | job config                         | Observability | Prometheus scrapes `http://cadvisor:8080/metrics`                     |
-| Version            | `v0.55.1` (latest at time of writing) | Install | Pin; releases: <https://github.com/google/cadvisor/releases>             |
+| Version            | `v0.56.2` (latest at time of writing) | Install | Pin; releases: <https://github.com/google/cadvisor/releases>             |
 
 ## Install via `docker run` (upstream's quick-start)
 
 Upstream's canonical invocation (adapted; check the latest at <https://github.com/google/cadvisor/releases>):
 
 ```sh
-VERSION=v0.55.1
+VERSION=v0.56.2
 docker run -d \
   --name=cadvisor \
   --restart=unless-stopped \
@@ -59,7 +59,7 @@ Browse `http://<host>:8080/` for the UI or `http://<host>:8080/metrics` for Prom
 ```yaml
 services:
   cadvisor:
-    image: ghcr.io/google/cadvisor:v0.55.1
+    image: ghcr.io/google/cadvisor:v0.56.2
     container_name: cadvisor
     restart: unless-stopped
     ports:
