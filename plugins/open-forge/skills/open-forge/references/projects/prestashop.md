@@ -67,7 +67,7 @@ Core features:
 ```yaml
 services:
   prestashop:
-    image: prestashop/prestashop:8.1.x-apache   # pin; check Docker Hub
+    image: prestashop/prestashop:9.1.1-apache   # pin; check Docker Hub
     container_name: prestashop
     restart: unless-stopped
     depends_on:
