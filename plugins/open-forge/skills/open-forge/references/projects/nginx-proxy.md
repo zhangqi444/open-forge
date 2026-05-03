@@ -72,7 +72,7 @@ volumes:
 
 ```yaml
   acme-companion:
-    image: nginxproxy/acme-companion:2.5
+    image: nginxproxy/acme-companion:2.6.3
     container_name: acme-companion
     volumes_from:
       - nginx-proxy
