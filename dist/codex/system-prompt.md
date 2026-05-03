@@ -396,6 +396,32 @@ Where to declare companion tooling:
 - **In `plugins/open-forge/.mcp.json`**, register MCPs the recipes depend on heavily so they install transparently with the plugin. Reserve this for read-only docs/state MCPs; never wrap deployment commands.
 - **For dev work on open-forge itself** (CI, settings audit, plugin packaging): use whatever skills help your local workflow (`gh-fix-ci`, `claude-settings-audit`) — these don't need to ship with the plugin.
 
+### Recommended companion: `garrytan/gstack`
+
+[`garrytan/gstack`](https://github.com/garrytan/gstack) is a Claude Code skill bundle (Garry Tan, MIT) that ships ~30 SDLC slash commands for AI-assisted engineering: `/office-hours` (product interrogation before coding), `/plan-eng-review` (architecture review), `/review` (code review for production bugs), `/qa` (test + regression-suite generation), `/ship` (sync + test + audit + push PR), `/cso` (OWASP Top 10 + STRIDE security audit), `/learn` (persistent project learnings), `/retro` (engineering retrospective), and others.
+
+**Install** (one-shot in any Claude Code session):
+
+```bash
+git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack \
+  && cd ~/.claude/skills/gstack && ./setup
+```
+
+**How its commands map to open-forge work**:
+
+| gstack command | When to use on open-forge |
+|---|---|
+| `/office-hours` | Before authoring a new module (backups, monitoring) or a bundle — interrogate the design before writing code. |
+| `/plan-eng-review` | Before merging a major architectural addition (e.g. multi-platform support, agent-platform support) — catches the kind of cross-cutting issues that slipped past on PR #44 (in-bundle reference paths). |
+| `/review` | On any PR that touches `references/projects/*.md`, `SKILL.md`, or `CLAUDE.md` — production-bug-flavored code review. |
+| `/qa` | After authoring a new recipe — would force first-run-discipline-style verification before claiming Tier 1. |
+| `/ship` | The PR-creation flow this session has been doing manually (sync main → regenerate dist → push → open PR with structured body). |
+| `/cso` | Periodic security audit — credential handling module is the obvious target. |
+| `/learn` | Capture session-level learnings (e.g. *"the bot polls newsletters — check origin/main before authoring duplicate work"*) into a persistent store the next AI session can read. |
+| `/document-release` | Update README + CLAUDE.md + ARCHITECTURE.md to match shipped code — ran manually as PR #45 did. |
+
+Optional but recommended for AI sessions and maintainers working on this repo. Not required — the catalog has been maintained without it. But the workflow patterns it encodes line up cleanly with how PR-authoring actually happens here.
+
 When a recipe is exercised end-to-end and a companion skill/MCP proved necessary — or a captured doc was added to `references/` — record it in the recipe's *Compatible runtimes* or a new *Companion tooling* note alongside upstream doc links. Same first-run discipline applies.
 
 ## Recipe structure (must-have sections)
