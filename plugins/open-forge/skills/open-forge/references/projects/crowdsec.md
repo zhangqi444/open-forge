@@ -88,7 +88,7 @@ sudo cscli alerts list
 ```yaml
 services:
   crowdsec:
-    image: crowdsecurity/crowdsec:v1.6.11   # pin; don't use :latest
+    image: crowdsecurity/crowdsec:v1.7.7   # pin; don't use :latest
     container_name: crowdsec
     restart: unless-stopped
     environment:

@@ -85,7 +85,7 @@ Clone the repo and follow the `docker-compose.yml` there. Outline:
 ```yaml
 services:
   cryptpad:
-    image: cryptpad/cryptpad:version-2025.x    # pin specific version
+    image: cryptpad/cryptpad:2026.2.2    # pin specific version
     container_name: cryptpad
     restart: unless-stopped
     environment:

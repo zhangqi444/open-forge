@@ -37,7 +37,7 @@
 ### Docker image
 Use a pinned released version — **`latest` tracks `main` and may be unstable**:
 ```
-ghcr.io/alexgustafsson/cupdate:0.24.2
+ghcr.io/alexgustafsson/cupdate:0.24.5
 ```
 Check [releases](https://github.com/AlexGustafsson/cupdate/releases) for the current stable tag.
 
@@ -45,7 +45,7 @@ Check [releases](https://github.com/AlexGustafsson/cupdate/releases) for the cur
 ```yaml
 services:
   cupdate:
-    image: ghcr.io/alexgustafsson/cupdate:0.24.2
+    image: ghcr.io/alexgustafsson/cupdate:0.24.5
     ports:
       - 8080:8080
     environment:
