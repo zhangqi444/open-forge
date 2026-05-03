@@ -72,7 +72,7 @@ volumes:
 
 services:
   server:
-    image: docker.io/semaphoreui/semaphore:v2.16.15    # pin; ${SEMAPHORE_VERSION:-latest} default is risky
+    image: docker.io/semaphoreui/semaphore:v2.17.39    # pin; ${SEMAPHORE_VERSION:-latest} default is risky
     restart: always
     environment:
       SEMAPHORE_ADMIN_NAME: Admin
@@ -94,7 +94,7 @@ Browse `http://<host>:3000`, log in as `admin` / your password.
 ```yaml
 services:
   server:
-    image: docker.io/semaphoreui/semaphore:v2.16.15
+    image: docker.io/semaphoreui/semaphore:v2.17.39
     restart: always
     environment:
       SEMAPHORE_DB_DIALECT: postgres
