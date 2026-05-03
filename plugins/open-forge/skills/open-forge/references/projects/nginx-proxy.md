@@ -28,7 +28,7 @@ description: Automated Docker reverse proxy — watches the Docker socket and au
 | Exposed ports          | 80/tcp (+ 443/tcp for TLS)                 | Network   | Hostside ports for the proxy container                                   |
 | DNS                    | `A <host> → your VM IP`                    | DNS       | Plus any subdomains you plan to `VIRTUAL_HOST` against                   |
 | TLS strategy           | acme-companion / own certs / none          | TLS       | For LE, deploy `acme-companion` alongside                                 |
-| Image pin              | `nginxproxy/nginx-proxy:1.10`              | Install   | **Never use `:latest` or `:alpine` in production** — per upstream README |
+| Image pin              | `nginxproxy/nginx-proxy:1.10.1`              | Install   | **Never use `:latest` or `:alpine` in production** — per upstream README |
 | Shared network         | bridge network                             | Runtime   | Proxied containers must share a docker network with nginx-proxy          |
 
 ## Install via Docker Compose (single-container, most common)
@@ -38,7 +38,7 @@ Upstream's minimal compose (at <https://github.com/nginx-proxy/nginx-proxy/blob/
 ```yaml
 services:
   nginx-proxy:
-    image: nginxproxy/nginx-proxy:1.10   # pin; see releases for latest
+    image: nginxproxy/nginx-proxy:1.10.1   # pin; see releases for latest
     container_name: nginx-proxy
     ports:
       - "80:80"
@@ -72,7 +72,7 @@ volumes:
 
 ```yaml
   acme-companion:
-    image: nginxproxy/acme-companion:2.5
+    image: nginxproxy/acme-companion:2.6.3
     container_name: acme-companion
     volumes_from:
       - nginx-proxy

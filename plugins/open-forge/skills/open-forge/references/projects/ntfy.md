@@ -58,7 +58,7 @@ Self-host when you want:
 # compose.yaml
 services:
   ntfy:
-    image: binwiederhier/ntfy:latest       # pin a version in prod, e.g. :v2.13.0
+    image: binwiederhier/ntfy:latest       # pin a version in prod, e.g. :v2.22.0
     container_name: ntfy
     restart: unless-stopped
     command: serve

@@ -73,7 +73,7 @@ Features:
 # Simplified — see DOCKER_README.md for current official compose bundle
 services:
   openemr:
-    image: openemr/openemr:7.0.3                         # pin exact version
+    image: openemr/openemr:8.1.1                         # pin exact version
     restart: unless-stopped
     ports:
       - "443:443"

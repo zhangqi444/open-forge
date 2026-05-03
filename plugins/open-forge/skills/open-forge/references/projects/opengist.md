@@ -67,7 +67,7 @@ Features (from upstream README):
 ```yaml
 services:
   opengist:
-    image: ghcr.io/thomiceli/opengist:1.12    # **pin version** (use latest stable from releases)
+    image: ghcr.io/thomiceli/opengist:1.12.2    # **pin version** (use latest stable from releases)
     container_name: opengist
     restart: unless-stopped
     ports:

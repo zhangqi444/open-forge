@@ -59,7 +59,7 @@ services:
       - ./data/minio:/data
 
   weaviate:   # optional: semantic search
-    image: cr.weaviate.io/semitechnologies/weaviate:1.33.3
+    image: cr.weaviate.io/semitechnologies/weaviate:1.37.2
     volumes:
       - ./data/weaviate:/var/lib/weaviate
 ```

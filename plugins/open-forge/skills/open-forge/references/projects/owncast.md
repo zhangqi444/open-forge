@@ -66,7 +66,7 @@ docker run -d --name owncast \
   -p 1935:1935 \
   -v $(pwd)/data:/app/data \
   --restart unless-stopped \
-  owncast/owncast:0.2.3    # pin; check Docker Hub
+  owncast/owncast:0.2.5    # pin; check Docker Hub
 ```
 
 Admin: <http://owncast.example.com/admin> (default login **admin / abc123**).
@@ -76,7 +76,7 @@ Admin: <http://owncast.example.com/admin> (default login **admin / abc123**).
 ```yaml
 services:
   owncast:
-    image: owncast/owncast:0.2.3
+    image: owncast/owncast:0.2.5
     container_name: owncast
     restart: unless-stopped
     ports:

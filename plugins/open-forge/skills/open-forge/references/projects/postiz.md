@@ -26,11 +26,11 @@ Postiz is NOT a single container. The stack contains:
 | `postiz` | `ghcr.io/gitroomhq/postiz-app` | Main app (NextJS frontend + NestJS backend) |
 | `postiz-postgres` | `postgres:17-alpine` | App DB (via Prisma) |
 | `postiz-redis` | `redis:7.2` | Cache + rate limits |
-| `temporal` | `temporalio/auto-setup:1.28.1` | Workflow engine (for scheduled posts, retries) |
+| `temporal` | `temporalio/auto-setup:1.31.0` | Workflow engine (for scheduled posts, retries) |
 | `temporal-postgresql` | `postgres:16` | Temporal's own DB (separate from app DB) |
 | `temporal-elasticsearch` | `elasticsearch:7.17.27` | Temporal's visibility / search |
 | `temporal-admin-tools` | `temporalio/admin-tools` | tctl / temporal CLI |
-| `temporal-ui` | `temporalio/ui:2.34.0` | Web UI for Temporal (port 8080) |
+| `temporal-ui` | `temporalio/ui:2.49.1` | Web UI for Temporal (port 8080) |
 | `spotlight` (optional) | `ghcr.io/getsentry/spotlight` | Dev-only Sentry-like error viewer |
 
 Minimum tested resources: 2 vCPU / 2 GB RAM VM (per upstream). ES alone has a 256MB Xms/Xmx limit in the default compose — be aware ES is the memory-heaviest component.
@@ -159,7 +159,7 @@ services:
     volumes: [/var/lib/elasticsearch/data]
 
   temporal:
-    image: temporalio/auto-setup:1.28.1
+    image: temporalio/auto-setup:1.31.0
     ports: ["7233:7233"]
     depends_on: [temporal-postgresql, temporal-elasticsearch]
     environment:
@@ -178,7 +178,7 @@ services:
     networks: [temporal-network]
 
   temporal-ui:
-    image: temporalio/ui:2.34.0
+    image: temporalio/ui:2.49.1
     environment:
       - TEMPORAL_ADDRESS=temporal:7233
       - TEMPORAL_CORS_ORIGINS=http://127.0.0.1:3000

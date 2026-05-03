@@ -69,7 +69,7 @@ Features:
 ```yaml
 services:
   thelounge:
-    image: ghcr.io/thelounge/thelounge:4.4.4         # pin
+    image: ghcr.io/thelounge/thelounge:4.4.3         # pin
     container_name: thelounge
     restart: unless-stopped
     ports:

@@ -84,7 +84,7 @@ Multi-container, resource-significant:
 ```yaml
 services:
   tubearchivist:
-    image: bbilly1/tubearchivist:v0.5   # pin a specific version
+    image: bbilly1/tubearchivist:v0.5.10   # pin a specific version
     restart: unless-stopped
     depends_on:
       archivist-es: { condition: service_healthy }
