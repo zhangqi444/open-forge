@@ -74,13 +74,13 @@ services:
       - SELENIUM_HOST=selenium-hub:4444
 
   selenium-hub:
-    image: selenium/hub:4.27.0-20241204
+    image: selenium/hub:4.43.0-20260404
     environment:
       - GRID_MAX_SESSION=10
       - GRID_BROWSER_TIMEOUT=10
 
   selenium-chromium:
-    image: selenium/node-chromium:4.27.0-20241204
+    image: selenium/node-chromium:4.43.0-20260404
     shm_size: 2gb
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
@@ -89,7 +89,7 @@ services:
       - SE_NODE_MAX_SESSIONS=10
 
   selenium-firefox:
-    image: selenium/node-firefox:4.27.0-20241204
+    image: selenium/node-firefox:4.43.0-20260404
     shm_size: 2gb
     environment:
       - SE_EVENT_BUS_HOST=selenium-hub
