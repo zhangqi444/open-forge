@@ -8817,7 +8817,7 @@
       {
          "stars" : 221,
          "name" : "Comic Library Utilities",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "comic-library-utilities",
          "github" : "github.com/allaboutduncan/clu-comics",
          "desc" : "Toolset for managing large comic libraries"
@@ -9016,7 +9016,7 @@
       },
       {
          "name" : "Refeed",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/michaelkremenetsky/Refeed",
          "slug" : "refeed",
          "stars" : 178,
@@ -9034,7 +9034,7 @@
          "desc" : "eBook management and reading platform",
          "stars" : 177,
          "name" : "BookHeaven",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "bookheaven",
          "github" : "github.com/BookHeaven/BookHeaven.Server"
       },
@@ -9058,7 +9058,7 @@
          "github" : "github.com/DumbWareio/DumbKan",
          "desc" : "Stupidly simple Kanban boards",
          "stars" : 174,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "dumbkan",
          "name" : "DumbKan"
       },
@@ -9067,7 +9067,7 @@
          "name" : "Sortarr",
          "slug" : "sortarr",
          "github" : "github.com/Jaredharper1/Sortarr",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Sonarr and Radarr library insights"
       },
       {
@@ -9076,20 +9076,20 @@
          "stars" : 171,
          "name" : "DumbDo",
          "slug" : "dumbdo",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Security and management app for Plex",
          "github" : "github.com/HydroshieldMKII/Guardian",
          "stars" : 171,
          "slug" : "guardian-plex",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Guardian"
       },
       {
          "stars" : 170,
          "name" : "eddrit",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/corenting/eddrit",
          "slug" : "eddrit",
          "desc" : "Lightweight alternative frontend for Reddit"
@@ -9098,7 +9098,7 @@
          "github" : "github.com/hamzasaleem2/sticky",
          "desc" : "Digital sticky note application for organizing thoughts, ideas, and tasks",
          "name" : "Sticky",
-         "status" : "pending",
+         "status" : "skipped", "skip_reason" : "project archived - moved to proprietary SaaS product (sticky.today)",
          "slug" : "sticky",
          "stars" : 168
       },
@@ -9108,7 +9108,7 @@
          "name" : "Private Captcha",
          "slug" : "private-captcha",
          "github" : "github.com/PrivateCaptcha/PrivateCaptcha",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "slug" : "unraid-guardian",
@@ -9131,21 +9131,21 @@
          "github" : "github.com/aaronpk/Meetable",
          "stars" : 163,
          "slug" : "meetable",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Meetable"
       },
       {
          "desc" : "Modern, customizable lofi music player",
          "stars" : 163,
          "slug" : "nextbeats",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/btahir/next-beats",
          "name" : "NextBeats"
       },
       {
          "stars" : 163,
          "name" : "Drivebase",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "drivebase",
          "github" : "github.com/drivebase/drivebase",
          "desc" : "Cloud-agnostic file management platform"
@@ -9155,7 +9155,7 @@
          "stars" : 161,
          "github" : "github.com/orthdron/subatic",
          "slug" : "subatic",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Subatic"
       },
       {
@@ -9164,13 +9164,13 @@
          "name" : "Iso",
          "slug" : "iso",
          "github" : "github.com/Coyenn/iso",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "stars" : 159,
          "name" : "Overr-Syncerr",
          "slug" : "over-syncerr",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Webhook handler for subtitle management",
          "github" : "github.com/gssariev/overr-syncerr"
       },
@@ -9179,14 +9179,14 @@
          "github" : "github.com/nosduco/nforwardauth",
          "stars" : 157,
          "name" : "nforwardauth",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "nforwardauth"
       },
       {
          "stars" : 156,
          "name" : "Mobilizon",
          "slug" : "mobilizon",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Federated organization and mobilization platform",
          "github" : "framagit.org/kaihuri/mobilizon"
       },
@@ -9195,7 +9195,7 @@
          "name" : "Self-Hosted Metrics",
          "slug" : "self-hosted-metrics",
          "github" : "github.com/kOlapsis/shm",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Agnostic telemetry for self-hosted software"
       },
       {
@@ -9207,7 +9207,7 @@
          "stars" : 153
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "priviblur",
          "name" : "Priviblur",
          "stars" : 152,
@@ -9224,7 +9224,7 @@
       },
       {
          "stars" : 149,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "vanilla-cookbook",
          "name" : "Vanilla Cookbook",
          "github" : "github.com/jt196/vanilla-cookbook",
@@ -9232,7 +9232,7 @@
       },
       {
          "name" : "Amurex",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "amurex",
          "stars" : 146,
          "github" : "github.com/thepersonalaicompany/amurex-backend",
@@ -9258,7 +9258,7 @@
          "stars" : 136,
          "name" : "Mantium",
          "slug" : "mantium",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/diogovalentte/mantium",
          "desc" : "Manga tracking dashboard from multiple sources"
       },
@@ -9267,7 +9267,7 @@
          "stars" : 136,
          "slug" : "karakeep-homedash",
          "github" : "github.com/CodeJawn/karakeep-homedash",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Karakeep HomeDash"
       },
       {
@@ -9279,7 +9279,7 @@
          "stars" : 135
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "betula",
          "github" : "github.com/bouncepaw/betula",
          "name" : "Betula",
@@ -9288,7 +9288,7 @@
       },
       {
          "name" : "Tamari",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "tamari",
          "github" : "github.com/alexbates/Tamari",
          "stars" : 128,
@@ -9300,7 +9300,7 @@
          "name" : "docker-staticmaps",
          "slug" : "docker-staticmaps",
          "github" : "github.com/dietrichmax/docker-staticmaps",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "name" : "Music Grabber",
@@ -9313,7 +9313,7 @@
       {
          "desc" : "Live blogging platform for professionals",
          "stars" : 115,
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/liveblog/liveblog",
          "slug" : "live-blog",
          "name" : "Live Blog"
@@ -9340,11 +9340,11 @@
          "name" : "Piglet",
          "github" : "github.com/k3nd0x/piglet",
          "slug" : "piglet",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "name" : "SparkyBudget",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "sparkybudget",
          "stars" : 110,
          "github" : "github.com/CodeWithCJ/SparkyBudget",
@@ -9353,13 +9353,13 @@
       {
          "desc" : "iFrames designed for Homarr dashboards",
          "stars" : 110,
-         "status" : "pending",
+         "status" : "done",
          "slug" : "homarr-iframes",
          "github" : "github.com/diogovalentte/homarr-iframes",
          "name" : "Homarr iFrames"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "feedlynx",
          "name" : "Feedlynx",
          "stars" : 109,
@@ -9367,7 +9367,7 @@
          "desc" : "Generate RSS feeds for links collected via browser extension"
       },
       {
-         "status" : "pending",
+         "status" : "done",
          "slug" : "davical",
          "name" : "DAViCal",
          "stars" : 107,
@@ -9387,7 +9387,7 @@
          "github" : "github.com/nickshanks347/monitarr",
          "stars" : 101,
          "name" : "Monitarr",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "monitarr"
       },
       {
@@ -9396,7 +9396,7 @@
          "stars" : 100,
          "name" : "Comentario",
          "slug" : "comentario",
-         "status" : "pending"
+         "status" : "done"
       },
       {
          "desc" : "Simple monthly income and expense tracker",
@@ -9410,14 +9410,14 @@
          "stars" : 97,
          "name" : "eziwiki",
          "slug" : "eziwiki",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/i3months/eziwiki",
          "desc" : "Lightweight wiki and documentation generator"
       },
       {
          "stars" : 96,
          "slug" : "openuem",
-         "status" : "pending",
+         "status" : "done",
          "name" : "OpenUEM",
          "github" : "github.com/open-uem/openuem-console",
          "desc" : "Unified endpoint and IT asset manager"
@@ -9425,7 +9425,7 @@
       {
          "stars" : 95,
          "name" : "Stormkit",
-         "status" : "pending",
+         "status" : "skipped",
          "slug" : "stormkit",
          "desc" : "Infrastructure provider for Jamstack applications",
          "github" : "github.com/stormkit-io/app-stormkit-io"
@@ -9441,7 +9441,7 @@
       {
          "stars" : 93,
          "slug" : "calorific",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/xdpirate/calorific",
          "name" : "Calorific",
          "desc" : "Simple self-hosted calorie tracking"
@@ -9451,21 +9451,21 @@
          "stars" : 93,
          "name" : "AuthPortal",
          "slug" : "authportal",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/modom-ofn/auth-portal"
       },
       {
          "stars" : 92,
          "name" : "Atria",
          "github" : "github.com/thesubtleties/atria",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "atria",
          "desc" : "Professional event management and networking"
       },
       {
          "stars" : 89,
          "slug" : "plikshare",
-         "status" : "pending",
+         "status" : "done",
          "name" : "PlikShare",
          "github" : "github.com/damian-krychowski/plikshare",
          "desc" : "Self-hosted file sharing solution"
@@ -9474,7 +9474,7 @@
          "desc" : "Secure password generator with customizable options",
          "name" : "PWgen",
          "github" : "github.com/jocxfin/pwgen",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "pwgen",
          "stars" : 87
       },
@@ -9482,14 +9482,14 @@
          "desc" : "Community-driven Matrix homeserver",
          "stars" : 87,
          "name" : "Continuwuity",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "continuwuity",
          "github" : "forgejo.ellis.link/continuwuation/continuwuity"
       },
       {
          "stars" : 85,
          "name" : "Dribdat",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "dribdat",
          "github" : "github.com/dribdat/dribdat",
          "desc" : "Self-hosted challenge boards for sweeter hackathons"

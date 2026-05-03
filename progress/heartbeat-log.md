@@ -5573,3 +5573,91 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
   - #42: Self-Host Weekly 2026-05-01 batch nomination (23 apps) — SKIPPED per CLAUDE.md; newsletter-only source doesn't meet 3+ feedback threshold for Tier 1
   - #43: Staleness TODOs + bookstack Codeberg fix — ADDRESSED (893af55); cherry-picked staleness TODOs for 6 recipes from branch, tightened bookstack gotcha
 - Step 2: selfhst batch — skipped this heartbeat (issue work took priority)
+
+## 2026-05-03 00:00 UTC
+
+**Batch 67** — completed unfinished batch from prior session.
+- Found 5 recipe files already written but uncommitted: container-hub, dumbwhois, eonvelope, letterfeed, markopolis
+- Updated selfhst-progress.json: container-hub, dumbwhois, eonvelope, markopolis → done (letterfeed was already done)
+- Ran build-dist.sh (success)
+- Committed and pushed: 8c363a5
+
+**GitHub issues:** #42 already logged as skipped (newsletter-only nominations, no Tier 1 code change). No new open issues.
+
+## 2026-05-03 00:30 UTC
+
+**Batch 68** — 5 new recipes added.
+- comic-library-utilities (221 ★) — comic library management web app
+- refeed (178 ★) — open-source RSS reader with Supabase backend
+- bookheaven (177 ★) — ebook library server with OPDS + KOReader sync
+- dumbkan (174 ★) — lightweight vanilla JS Kanban board
+- eddrit (170 ★) — lightweight alternative Reddit frontend
+- Updated selfhst-progress.json for all 5
+- Committed and pushed: 6993767
+
+**GitHub issues:** #42 only (newsletter nominations, no action needed).
+
+## 2026-05-03 00:45 UTC
+
+**Issue #45** — cherry-picked v0.23.1 commit (f8cbe68) onto main.
+- ARCHITECTURE.md added (~200 lines, system overview diagram + pipeline doc)
+- Cross-doc refresh: README/AGENTS.md/CLAUDE.md counts 950+ → 1,100+, curated bundles links
+- plugin.json bumped 0.23.0 → 0.23.1
+- Build clean, pushed as 9f1f056. Closes #45.
+
+**selfh.st batch:** No new batch this heartbeat (last was batch 67 at 00:00 UTC, ~45 min ago).
+
+  - Also: batch 68 — meetable, nextbeats, drivebase, subatic, iso; sticky skipped (archived/SaaS). Pushed 2870c9c.
+
+## 2026-05-03 01:00 UTC
+
+**Batch 68** — 5 new recipes added.
+- over-syncerr (159★), nforwardauth (157★), mobilizon (156★), self-hosted-metrics (155★), priviblur (152★)
+- Updated selfhst-progress.json: all 5 → done (priviblur was already done)
+- Ran build-dist.sh (success; bundle now 1295 lines)
+- Committed and pushed: 2e4e9d4
+
+**GitHub issues:** #45 (ARCHITECTURE.md) already addressed in prior session. #42 (nominations) logged as skipped. No new actionable issues.
+
+## 2026-05-03 01:30 UTC
+
+**Fixed progress JSON:** nforwardauth and priviblur were still showing "pending" (duplicate entries with status before slug); corrected both via sed.
+
+**Batch 69** — 5 new recipes added.
+- vanilla-cookbook (149★), amurex (146★), mantium (136★), karakeep-homedash (136★), betula (131★)
+- Updated selfhst-progress.json: all 5 → done
+- Ran build-dist.sh (success)
+- Committed and pushed: 9f3551a
+
+**GitHub issues:** #45 and #42 previously handled. No new open issues.
+
+## 2026-05-03 02:04 UTC
+
+**Batch 70** — 5 new recipes added.
+- tamari (128★), docker-staticmaps (122★), live-blog (115★), piglet (111★), sparkybudget (110★)
+- Updated selfhst-progress.json: all 5 → done
+- Ran build-dist.sh (success)
+- Committed and pushed: 050b5d5
+
+**GitHub issues:** #45 and #42 previously handled. No new open issues.
+
+## 2026-05-03 02:19 UTC
+
+**Batch 71** — 5 new recipes added.
+- homarr-iframes (110★), feedlynx (109★), monitarr (101★), comentario (100★), eziwiki (97★)
+- Updated selfhst-progress.json: all 5 → done
+- Ran build-dist.sh (success)
+- Committed and pushed: cc517e0
+
+**GitHub issues:** #45 and #42 previously handled. No new open issues.
+
+## 2026-05-03 02:34 UTC
+
+**Batch 72** — 4 new recipes + 1 skipped.
+- davical (107★), calorific (93★), authportal (93★), atria (92★)
+- stormkit (95★) skipped: repo archived; frontend-only, backend not open-source
+- Updated selfhst-progress.json: 4 → done, stormkit → skipped
+- Ran build-dist.sh (success)
+- Committed and pushed: b9f8404
+
+**GitHub issues:** #45 and #42 previously handled. No new open issues.
