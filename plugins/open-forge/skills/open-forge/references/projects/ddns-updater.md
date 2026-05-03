@@ -13,7 +13,7 @@ Use cases: (a) **home server behind dynamic IP** — ISP rotates public IP; DDNS
 
 Features (per upstream README):
 
-- **50+ DNS providers**: Aliyun, AllInkl, ChangeIP, Cloudflare, DigitalOcean, DuckDNS, Dreamhost, DynDNS, Gandi, GoDaddy, Google (Domains), He.net (Hurricane Electric), Hetzner, Infomaniak, Ionos, Linode, Namecheap, NoIP, OVH, Porkbun, Route53 (AWS), Selfhost.de, Strato, Yandex, Zoneedit, many more
+- **50+ DNS providers**: Aliyun, AllInkl, ChangeIP, Cloudflare, DigitalOcean, DuckDNS, Dreamhost, DynDNS, Gandi, GoDaddy, Google (Domains), He.net (Hurricane Electric), Hetzner, Infomaniak, Ionos, IPv64, Linode, Namecheap, NoIP, OVH, Porkbun, Route53 (AWS), Scaleway, Selfhost.de, Spaceship, Strato, Yandex, Zoneedit, many more
 - **A + AAAA** record support
 - **Zero-dependency binaries** (static Go)
 - **Tiny Docker image** (~5MB from scratch)
@@ -175,9 +175,6 @@ cp ddns-data/config.json ddns-updater-config-$(date +%F).json
   - **Choose Cloudflare Tunnel if:** you're Cloudflare-native + want zero-exposure.
 - **PROJECT HEALTH**: active + qdm12-maintained + versioned docs + 50+ providers + multi-distribution + wide-use in homelab community. EXCELLENT signals for a widely-deployed infra tool.
 
-## TODO — verify on subsequent deployments
-
-- **DDNS Updater v2.10.0 (2026-05-01) — verify provider list before next deploy.** Per Self-Host Weekly 2026-05-01: support added for **Scaleway, ipv64, Vercel, Hetzner, Spaceship**. Recipe's "supported providers" list may be stale; re-check upstream README + add a row to the provider table for any of these the user picks. No install-command change expected (single Docker image, config-file-driven).
 
 ## Links
 
