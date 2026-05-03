@@ -464,7 +464,7 @@ open-forge/
 │   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
 ├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic)
 ├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
-├── progress/                              ← bot's run log: heartbeat-log.md + selfhst-progress.json + issues-log.json (bot-owned)
+├── progress/                              ← bot's state files: selfhst-progress.json + selfhst-software.json + issues-log.json (bot-owned)
 ├── assets/                                ← icon.svg + social-preview.svg
 ├── scripts/
 │   └── build-dist.sh                      ← regenerates dist/ from canonical sources; run when CLAUDE.md / SKILL.md / modules change

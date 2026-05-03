@@ -46,7 +46,7 @@ The catalog grows continuously — at the time of this writing, the catalog has 
 
 | Actor | What they do | Files they touch |
 |---|---|---|
-| **The bot** (scheduled AI session) | Polls public newsletters (selfh.st, others) + GitHub issues. Triages by template type. Verifies against upstream per strict-doc-policy. Authors patches in batches. Bumps `plugin.json` version. Updates `progress/heartbeat-log.md` and `progress/selfhst-progress.json`. | `references/projects/*.md`, `progress/*`, `plugin.json`, occasional `dist/` regen |
+| **The bot** (scheduled AI session) | Polls public newsletters (selfh.st, others) + GitHub issues. Triages by template type. Verifies against upstream per strict-doc-policy. Authors patches in batches. Bumps `plugin.json` version. Updates `progress/selfhst-progress.json` + `progress/issues-log.json`. | `references/projects/*.md`, `progress/*`, `plugin.json`, occasional `dist/` regen |
 | **Maintainer (zhangqi444)** | Strategic decisions, PR merges, repo-settings (About / topics / website / social preview), high-judgment edits | Repo settings (web UI), occasional manual PRs |
 | **AI sessions like Claude Code / Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic** | Maintainer-prompted: file issues, author specific PRs, audit catalog quality, generate distribution bundles for non-Claude-Code platforms | Anything except repo settings |
 | **End users** | File issues via the three templates: recipe-feedback / software-nomination / method-proposal. The skill drafts these automatically with sanitization at the end of each deploy. | GitHub issue templates only — no direct repo write access |
@@ -108,7 +108,9 @@ End users do **not** open PRs. Per CLAUDE.md § *Issue-driven contribution model
 | Where | What | Owned by |
 |---|---|---|
 | **GitHub issues** | The input queue. Three templates encode the structured signals. State tracked via labels. | End users (drafts) + bot/maintainer (triage) |
-| **`progress/heartbeat-log.md`** + **`progress/selfhst-progress.json`** + **`progress/issues-log.json`** | Bot's run log. What batches ran, what was processed, what's pending. | Bot |
+| **`progress/selfhst-progress.json`** | Per-app processing status — which selfh.st apps have been cataloged, which are pending or skipped. | Bot |
+| **`progress/selfhst-software.json`** | Cached source data fetched from selfh.st — app list with star counts. Rebuilt as needed. | Bot |
+| **`progress/issues-log.json`** | Per-issue triage history — issue number, status (addressed/skipped/waiting), commit ref, action taken. | Bot |
 | **`plugins/open-forge/skills/open-forge/references/projects/*.md`** | The catalog itself. ~1,100+ Tier 1 verified recipes. | Bot (mostly) + maintainer (strategic recipes like ghost.md) |
 | **`plugins/open-forge/skills/open-forge/references/{infra,runtimes,modules}/`** | Reusable orchestration layers — infra adapters, runtime modules, cross-cutting modules (preflight, dns, tls, smtp, inbound, tunnels, credentials, feedback, backups) | Maintainer mostly; bot adds modules when first-deploy-discipline surfaces gaps |
 | **`plugins/open-forge/skills/open-forge/references/bundles/*.md`** | Curated multi-software deployment bundles (AI homelab, privacy stack). Recipe-of-recipes that orchestrate existing Tier 1 recipes for goal-shaped requests. | Maintainer-direct authoring (per CLAUDE.md graduation criteria, bundles aren't speculative authoring — they pair existing recipes) |
