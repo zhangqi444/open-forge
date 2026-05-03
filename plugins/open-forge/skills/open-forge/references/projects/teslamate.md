@@ -67,7 +67,7 @@ Upstream provides a canonical compose; the outline:
 ```yaml
 services:
   teslamate:
-    image: teslamate/teslamate:1.31                # pin specific version
+    image: teslamate/teslamate:3.0.0                # pin specific version
     restart: unless-stopped
     depends_on: [db, mosquitto]
     environment:
@@ -96,7 +96,7 @@ services:
       - teslamate-db:/var/lib/postgresql/data
 
   grafana:
-    image: teslamate/grafana:1.31                   # custom image with dashboards pre-provisioned
+    image: teslamate/grafana:3.0.0                   # custom image with dashboards pre-provisioned
     restart: unless-stopped
     depends_on: [db]
     environment:
