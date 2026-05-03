@@ -92,7 +92,7 @@ docker run -p 8001:8001 \
 ```yaml
 services:
   datasette:
-    image: datasetteproject/datasette:0.65.1    # pin
+    image: datasetteproject/datasette:0.65.2    # pin
     container_name: datasette
     restart: unless-stopped
     command: >

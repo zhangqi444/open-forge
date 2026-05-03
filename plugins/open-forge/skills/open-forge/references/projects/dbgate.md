@@ -73,7 +73,7 @@ Features:
 ```yaml
 services:
   dbgate:
-    image: dbgate/dbgate:5                       # pin major
+    image: dbgate/dbgate:7                       # pin major
     container_name: dbgate
     restart: unless-stopped
     environment:
