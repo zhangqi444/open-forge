@@ -64,11 +64,11 @@ Features:
 ```yaml
 services:
   guacd:
-    image: guacamole/guacd:1.5.5           # **pin; check latest stable**
+    image: guacamole/guacd:1.6.0           # **pin; check latest stable**
     restart: unless-stopped
 
   guacamole:
-    image: guacamole/guacamole:1.5.5       # **pin same major**
+    image: guacamole/guacamole:1.6.0       # **pin same major**
     restart: unless-stopped
     depends_on: [guacd, db]
     environment:
@@ -93,7 +93,7 @@ services:
 
 Generate `initdb.sql` once:
 ```sh
-docker run --rm guacamole/guacamole:1.5.5 /opt/guacamole/bin/initdb.sh --postgresql > initdb.sql
+docker run --rm guacamole/guacamole:1.6.0 /opt/guacamole/bin/initdb.sh --postgresql > initdb.sql
 ```
 
 Then `docker compose up -d` → browse `http://host:8080/guacamole` → default creds `guacadmin` / `guacadmin` → **change immediately**.

@@ -96,7 +96,7 @@ services:
       - opensearch-data:/usr/share/opensearch/data
 
   graylog:
-    image: graylog/graylog:6.1                     # pin to a specific version
+    image: graylog/graylog:6.3                     # pin to a specific version
     restart: unless-stopped
     depends_on: [mongodb, opensearch]
     environment:
