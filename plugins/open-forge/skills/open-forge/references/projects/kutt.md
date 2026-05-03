@@ -65,7 +65,7 @@ Key features:
 ```yaml
 services:
   kutt:
-    image: kutt/kutt:3.x.x     # pin; check Docker Hub
+    image: kutt/kutt:v3.2.3     # pin; check Docker Hub
     container_name: kutt
     restart: unless-stopped
     depends_on:

@@ -70,7 +70,7 @@ Features:
 ```yaml
 services:
   komga:
-    image: gotson/komga:1.20                          # pin
+    image: gotson/komga:1.24.4                          # pin
     container_name: komga
     restart: unless-stopped
     ports:
