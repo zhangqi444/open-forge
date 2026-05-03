@@ -8803,7 +8803,7 @@
          "github" : "github.com/DumbWareio/DumbWhoIs",
          "stars" : 224,
          "slug" : "dumbwhois",
-         "status" : "pending",
+         "status" : "done",
          "name" : "DumbWhoIs"
       },
       {
@@ -8913,7 +8913,7 @@
       {
          "stars" : 205,
          "slug" : "eonvelope",
-         "status" : "pending",
+         "status" : "done",
          "github" : "github.com/Dacid99/Eonvelope",
          "name" : "Eonvelope",
          "desc" : "Self-hostable e-mail archive"
@@ -8970,7 +8970,7 @@
          "stars" : 189,
          "name" : "LetterFeed",
          "github" : "github.com/LeonMusCoden/LetterFeed",
-         "status" : "pending",
+         "status" : "done",
          "slug" : "letterfeed",
          "desc" : "Transform e-mail into RSS feeds"
       },
@@ -8995,7 +8995,7 @@
          "stars" : 182,
          "slug" : "container-hub",
          "github" : "github.com/eznix86/docker-registry-ui",
-         "status" : "pending",
+         "status" : "done",
          "name" : "Container Hub"
       },
       {
@@ -9003,7 +9003,7 @@
          "name" : "Markopolis",
          "slug" : "markopolis",
          "github" : "github.com/rishikanthc/markopolis",
-         "status" : "pending",
+         "status" : "done",
          "desc" : "Web app and API server for Markdown files"
       },
       {
