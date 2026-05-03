@@ -2,7 +2,7 @@
 
 How open-forge actually works as a system — the actors, the data flow, where state lives, what keeps quality up. Different audience from [CLAUDE.md](CLAUDE.md) (which is the *policy* — strict-doc rules, sanitization principles, processing workflow): ARCHITECTURE is *system shape*.
 
-> **Pointers**: For policy details (what's in scope, how to verify against upstream, sanitization rules) see [CLAUDE.md](CLAUDE.md). For end-user usage see [README.md](README.md). For the skill content the end-user's agent reads see [SKILL.md](plugins/open-forge/skills/open-forge/SKILL.md).
+> **Pointers**: For project intent (why / who / success / non-goals) see [BRD.md](BRD.md). For policy details (what's in scope, how to verify against upstream, sanitization rules) see [CLAUDE.md](CLAUDE.md). For end-user usage see [README.md](README.md). For the skill content the end-user's agent reads see [SKILL.md](plugins/open-forge/skills/open-forge/SKILL.md).
 
 ## System overview
 

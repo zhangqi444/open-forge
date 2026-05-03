@@ -73,6 +73,9 @@ Cross-platform behavior changes (e.g. credential handling) live in `references/m
 
 ## Reference
 
-For everything not covered above, **read [CLAUDE.md](CLAUDE.md)** — the canonical reference for *policy* (what's in scope, strict-doc rules, sanitization, processing workflow) — and **[ARCHITECTURE.md](ARCHITECTURE.md)** for *system shape* (actors, data flow, state stores, quality gates, cadence).
+For everything not covered above:
+- **[BRD.md](BRD.md)** — *intent*: why the project exists, who it's for, success criteria, what we're explicitly not building.
+- **[CLAUDE.md](CLAUDE.md)** — *policy*: what's in scope, strict-doc rules, sanitization, processing workflow.
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** — *system shape*: actors, data flow, state stores, quality gates, cadence.
 
 User-facing project documentation lives in [README.md](README.md). End-user-skill content lives in [plugins/open-forge/skills/open-forge/SKILL.md](plugins/open-forge/skills/open-forge/SKILL.md).
