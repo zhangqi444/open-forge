@@ -1,11 +1,9 @@
 # Comic Library Utilities (CLU)
 
-**What it is:** A web-based toolset for managing large comic book libraries (CBZ/CBR files). Bulk convert, rename, move, enhance, and rebuild comic archives — all via a browser UI without needing direct server access. Integrates with Komga, GetComics.org, Metron, and ComicVine for metadata and downloads. Includes folder monitoring with auto-rename/convert, a pull list for weekly new releases, reading insights/stats, and optional local GCD database support.
+> Self-hosted web app for managing large comic book libraries — bulk convert, rename, move, and enhance CBZ/CBR files; download comics from GetComics.org; update metadata via Metron and ComicVine; folder monitoring with auto-processing; reading insights and timeline. Designed as a standalone companion to Komga (or as a standalone tool).
 
-**Official URL:** https://clucomics.org
-**Container:** `allaboutduncan/comic-utils-web:latest`
-**License:** See repo
-**Stack:** Python/Docker; single container
+**Official URL:** https://github.com/allaboutduncan/clu-comics  
+**Docs:** https://clucomics.org
 
 ---
 
@@ -13,36 +11,98 @@
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any Linux VPS / homelab | Docker Compose | Single container; maps to comic library on host |
-| Windows / macOS | Docker Desktop | Same compose file |
+| Any Linux VPS/VM/NAS | Docker | Primary supported method |
+| Any Linux VPS/VM/NAS | Docker Compose | Recommended for production |
+| Unraid | Docker | PUID=99 / PGID=100 typical |
+| Windows/WSL | Docker | Set PUID/PGID to match Windows user |
 
 ---
 
 ## Inputs to Collect
 
-### Pre-deployment (volumes)
-- `/path/to/local/config` → `/config` — persistent config/settings directory
-- `/path/to/local/cache` → `/cache` — DB and thumbnail cache
-- `/path/to/your/library` → `/data` — your main comic library (first/primary library)
-- Additional libraries → `/data2`, `/data3`, etc. (add more volume mounts as needed)
+### Phase: Pre-Deploy
+| Input | Description | Example |
+|-------|-------------|---------|
+| `LIBRARY_PATH` | Host path to your primary comic library | `/e/Comics` |
+| `CONFIG_PATH` | Host path for persistent config storage | `./config` |
+| `CACHE_PATH` | Host path for DB and thumbnail cache | `./cache` |
+| `PUID` | User ID for file permissions | `99` (Unraid) or your UID |
+| `PGID` | Group ID for file permissions | `100` (Unraid) or your GID |
+| `UMASK` | File creation mask | `022` |
+| `MONITOR` | Enable folder monitoring | `yes` or `no` |
+
+### Phase: Optional Auth
+| Input | Description | Example |
+|-------|-------------|---------|
+| `CLU_USERNAME` | Basic auth username | `admin` |
+| `CLU_PASSWORD` | Basic auth password | strong password |
+
+### Phase: Additional Libraries (optional)
+| Input | Description | Example |
+|-------|-------------|---------|
+| `MANGA_PATH` | Host path to manga library | `/e/Manga` |
+| `DOWNLOADS_PATH` | Host path for folder monitoring downloads | `/f/Downloads` |
 
 ---
 
 ## Software-Layer Concerns
 
-**Docker Compose:**
+### Config & Data Directories
+| Path (container) | Purpose |
+|------------------|---------|
+| `/config` | Persistent app settings — **must be mounted** |
+| `/cache` | SQLite database + thumbnail cache |
+| `/data` | Primary comic library (map your main library here) |
+| `/downloads` | Folder monitoring watch directory (optional) |
+
+> **First install:** After starting, visit the Config page, verify settings, then click **Restart App**.
+
+### Key Environment Variables
+```
+FLASK_ENV=production
+PUID=99
+PGID=100
+UMASK=022
+MONITOR=yes
+# Optional basic auth:
+CLU_USERNAME=admin
+CLU_PASSWORD=changeme
+```
+
+### Ports
+| Container | Purpose |
+|-----------|---------|
+| `5577` | Web UI |
+
+### Multiple Libraries
+- Map your primary library to `/data`
+- Map additional libraries to custom paths (e.g., `/manga`, `/magazines`)
+- Configure additional library paths inside the app Settings
+
+---
+
+## Docker Compose Example
+
 ```yaml
 services:
-  comic-utils:
+  clu:
     image: allaboutduncan/comic-utils-web:latest
     container_name: clu
     restart: always
     ports:
       - "5577:5577"
     volumes:
-      - /path/to/local/config:/config
-      - /path/to/local/cache:/cache
-      - /path/to/your/comics:/data      # main library
+      - ./config:/config
+      - ./cache:/cache
+      - /path/to/Comics:/data
+      - /path/to/Manga:/manga
+      - /path/to/Downloads:/downloads
+    environment:
+      - FLASK_ENV=production
+      - MONITOR=yes
+      - PUID=99
+      - PGID=100
+      - UMASK=022
     logging:
       driver: "json-file"
       options:
@@ -50,30 +110,29 @@ services:
         max-file: "3"
 ```
 
-**Default port:** `5577`
+---
 
-**Multiple libraries:** Add additional volume mounts (`/data2`, `/data3`, etc.) for multiple comic directories.
+## Upgrade Procedure
 
-**Full documentation:** https://clucomics.org — install steps and all feature docs have moved to the official site.
-
-**Upgrade procedure:**
-```bash
-docker compose pull
-docker compose up -d
-```
+1. Pull the latest image: `docker pull allaboutduncan/comic-utils-web:latest`
+2. Stop and remove the container: `docker compose down`
+3. Start with new image: `docker compose up -d`
+4. Verify logs: `docker compose logs -f`
 
 ---
 
 ## Gotchas
 
-- **Designed for large libraries** — originally built while migrating a 70,000+ comic collection; performs well at scale but bulk operations take time
-- **Komga integration** — works great alongside Komga (the comic server); CLU handles management while Komga handles reading
-- **GetComics.org downloads** — the download feature depends on the availability of GetComics.org; verify the site is accessible in your region
-- **Metron/ComicVine API keys** — metadata update features require API keys from Metron and/or ComicVine; obtain before use
+- **`/config` volume is required** — without it, settings are lost on container restarts/updates
+- **PUID/PGID must match the owner of your library files** — mismatched IDs cause permission errors when the app tries to rename or modify comics
+- **Folder monitoring** requires the `/downloads` volume mount and `MONITOR=yes`; auto-converts and moves files based on configured rules
+- **GetComics.org downloads** are a built-in feature — check legality for your jurisdiction before use
+- **No built-in HTTPS** — proxy with Nginx/Caddy/Traefik for remote access
+- **Optional local GCD database** — adds offline metadata lookups; see docs for setup
 
 ---
 
 ## Links
 - GitHub: https://github.com/allaboutduncan/clu-comics
-- Documentation: https://clucomics.org
-- Docker Hub: https://hub.docker.com/r/allaboutduncan/comic-utils-web
+- Full docs: https://clucomics.org
+- Discord: https://discord.gg/ndDhpvrgBa
