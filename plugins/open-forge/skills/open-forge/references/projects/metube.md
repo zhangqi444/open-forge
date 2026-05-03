@@ -50,7 +50,7 @@ Minimal (from upstream README):
 ```yaml
 services:
   metube:
-    image: ghcr.io/alexta69/metube:2025-10-26    # pin; upstream uses date-based tags
+    image: ghcr.io/alexta69/metube:2026.04.28    # pin; upstream uses date-based tags
     container_name: metube
     restart: unless-stopped
     ports:
@@ -72,7 +72,7 @@ Browse `http://<host>:8081`.
 ```yaml
 services:
   metube:
-    image: ghcr.io/alexta69/metube:2025-10-26
+    image: ghcr.io/alexta69/metube:2026.04.28
     restart: unless-stopped
     ports: ["8081:8081"]
     volumes:
@@ -108,7 +108,7 @@ Then mount `cookies.txt` into the container + point `YTDL_OPTIONS`.
 ```yaml
 services:
   metube:
-    image: ghcr.io/alexta69/metube:2025-10-26
+    image: ghcr.io/alexta69/metube:2026.04.28
     restart: unless-stopped
     environment:
       - URL_PREFIX=/metube/        # for path-prefixed proxy
