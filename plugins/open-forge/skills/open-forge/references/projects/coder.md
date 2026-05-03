@@ -92,7 +92,7 @@ Behind Caddy / nginx for TLS + the wildcard subdomain.
 ```yaml
 services:
   coder:
-    image: ghcr.io/coder/coder:v2.26.2    # pin; NOT :latest in prod
+    image: ghcr.io/coder/coder:v2.31.11    # pin; NOT :latest in prod
     container_name: coder
     restart: unless-stopped
     environment:
