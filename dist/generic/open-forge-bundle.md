@@ -16,6 +16,8 @@ Instructions for any AI coding session working *on* the open-forge plugin (not r
 > **Also accessible as [`AGENTS.md`](AGENTS.md)** per the [agents.md](https://agents.md) convention. AGENTS.md is a thin landing page that points here; this file is the canonical reference. Tools that look for either filename find their way in.
 >
 > **For *system shape* (actors, data flow, state stores, quality gates, cadence) see [`ARCHITECTURE.md`](ARCHITECTURE.md).** This file is the *policy* (what's in scope, strict-doc rules, sanitization principles, processing workflow); ARCHITECTURE.md is how the policy is operationalized as a maintenance system.
+>
+> **For *intent* — why the project exists, who it's for, what success looks like, what we're explicitly not building — see [`BRD.md`](BRD.md).** When a strategic decision feels off (or when a recipe-authoring choice has policy ambiguity), check BRD.md before re-litigating.
 
 ## What is open-forge
 
@@ -457,10 +459,11 @@ The dominant path for first-run discipline is now **user-submitted feedback issu
 open-forge/
 ├── CLAUDE.md                              ← you are reading
 ├── AGENTS.md                              ← agents.md-standard landing page; thin pointer to CLAUDE.md
+├── ARCHITECTURE.md                        ← system shape (actors, data flow, state stores, quality gates) — complement to this file
+├── BRD.md                                 ← project intent (why / who / success / non-goals) — strategic clarity
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
-├── ARCHITECTURE.md                        ← system shape (actors, data flow, state stores, quality gates) — complement to this file
 ├── .github/
 │   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
 │   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
