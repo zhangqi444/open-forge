@@ -7,7 +7,7 @@ description: "Self-hosted secure ephemeral sharing of passwords, text, files, UR
 
 Password Pusher is **"a secure self-destructing link for passwords/secrets/files"** — you push a secret (password, text, file, URL) to your Password Pusher instance and get a one-time link. Recipient clicks, views once (or N times), then it's gone. Encrypted at rest. Full audit log. Official hosted service at pwpush.com + self-hostable. Solves the "how do I send this password over chat?" problem (answer: you don't; you push it).
 
-Built + maintained by **Peter Giacomo Lombardo (pglombardo)** + community + commercial backing (pwpush.com Pro tier). License: check repo (typically BSD-Anti-Malware). Active; v2.0 recently released; docs at docs.pwpush.com; official CLI + Chrome extension; 31 languages; Docker/K8s/Helm deployments; MFA-required option.
+Built + maintained by **Peter Giacomo Lombardo (pglombardo)** + community + commercial backing (pwpush.com Pro tier). License: check repo (typically BSD-Anti-Malware). Active; v2.6 stable; docs at docs.pwpush.com; official CLI + Chrome extension; 31 languages; Docker/K8s/Helm deployments; MFA-required option.
 
 Use cases: (a) **onboarding new hire** — send SSO/VPN/Wi-Fi creds without emailing them (b) **password resets** — helpdesk sends new password via expiring link (c) **MSP client credential handoff** — hand off server passwords to clients securely (d) **contractor access grants** — time-limited API key sharing (e) **secure file delivery** — PII documents to accountant/lawyer (f) **journalist source communication** — one-time tip files (g) **family password sharing** — streaming service / Wi-Fi with auto-expire (h) **security audit reports** — deliver pentest findings without persistent attack-surface.
 
@@ -68,7 +68,7 @@ Features (per README):
 ```yaml
 services:
   pwpush:
-    image: pglombardo/pwpush:v2.0.0        # **pin version — v2.0 breaking changes from v1**
+    image: pglombardo/pwpush:v2.6.3        # **pin version — v2.0 breaking changes from v1**
     ports: ["5100:5100"]
     environment:
       DATABASE_URL: "postgresql://pwpush:${DB_PASSWORD}@db:5432/pwpush"
