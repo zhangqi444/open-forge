@@ -92,7 +92,7 @@ docker run -d \
 ```yaml
 services:
   headscale:
-    image: ghcr.io/juanfont/headscale:v0.27.0
+    image: ghcr.io/juanfont/headscale:v0.28.0
     restart: unless-stopped
     container_name: headscale
     read_only: true

@@ -68,7 +68,7 @@ Hosted at **<https://healthchecks.io>** (20 checks free; paid tiers for more). S
 ```yaml
 services:
   healthchecks:
-    image: healthchecks/healthchecks:3.x     # pin; check Docker Hub
+    image: healthchecks/healthchecks:4.x     # pin; check Docker Hub
     container_name: healthchecks
     restart: unless-stopped
     depends_on:
@@ -98,7 +98,7 @@ services:
       - hc-static:/opt/healthchecks/static-collected
 
   sendalerts:
-    image: healthchecks/healthchecks:3.x
+    image: healthchecks/healthchecks:4.x
     container_name: hc-sendalerts
     restart: unless-stopped
     depends_on:
