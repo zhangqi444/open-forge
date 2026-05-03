@@ -85,7 +85,7 @@ networks:
 
 services:
   authelia:
-    image: authelia/authelia:latest               # pin in prod e.g. 4.38
+    image: authelia/authelia:latest               # pin in prod e.g. 4.39
     container_name: authelia
     volumes:
       - ./authelia:/config

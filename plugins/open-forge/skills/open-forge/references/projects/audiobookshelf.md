@@ -56,7 +56,7 @@ Trade-offs:
 ```yaml
 services:
   audiobookshelf:
-    image: ghcr.io/advplyr/audiobookshelf:2.27.0    # pin; avoid :latest
+    image: ghcr.io/advplyr/audiobookshelf:2.34.0    # pin; avoid :latest
     container_name: audiobookshelf
     restart: unless-stopped
     ports:
