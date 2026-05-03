@@ -467,11 +467,14 @@ open-forge/
 ├── ARCHITECTURE.md                        ← system shape (actors, data flow, state stores, quality gates) — complement to this file
 ├── BRD.md                                 ← project intent (why / who / success / non-goals) — strategic clarity
 ├── README.md                              ← user-facing, lives on GitHub
+├── CHANGELOG.md                           ← user-visible changes per version (Keep-a-Changelog format; required on every version bump)
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
 ├── .github/
 │   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
-│   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+│   └── workflows/
+│       ├── dist-bundles.yml             ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+│       └── release.yml                  ← auto-creates GitHub Release on plugin.json version bump
 ├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic)
 ├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
 ├── progress/                              ← bot's state files: selfhst-progress.json + selfhst-software.json + issues-log.json (bot-owned) + sources.md (maintainer-curated source queue)
@@ -504,9 +507,11 @@ For the **system architecture** (how the catalog grows, who maintains what, how 
 
 Publish flow (typical path: AI session processing an issue per *Issue-driven contribution model*):
 
-1. Commit the change with version bump if applicable. Author per *Author convention*.
-2. Push to `github.com/zhangqi444/open-forge` — typically as a PR opened against `main` (branch name per *Processing incoming issues*).
-3. After merge, end users run `/plugin marketplace update zhangqi444/open-forge` then re-install.
+1. Add a `CHANGELOG.md` entry in user-visible terms (Keep-a-Changelog format) under `## [Unreleased]` → move to `## [<version>]` on bump.
+2. Bump `plugin.json` `version`.
+3. Commit and push to `main` (typically as a PR).
+4. `.github/workflows/release.yml` auto-creates a GitHub Release tagged `v<version>` with notes pulled from the matching `CHANGELOG.md` section.
+5. Users run `/plugin marketplace update` in their Claude Code session to pick up the new version.
 
 Maintainer manual edits follow the same flow but skip the issue-tracking labels.
 

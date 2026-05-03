@@ -53,6 +53,16 @@ In **Claude Code**:
 
 **On Windows?** See [`docs/windows-setup.md`](docs/windows-setup.md) for WSL2 + Docker Desktop setup and common Windows gotchas (stale Git proxy, line endings, WSL integration).
 
+## Updates
+
+To know when a new version ships:
+
+- 📋 [CHANGELOG.md](CHANGELOG.md) — user-visible changes per version
+- 📡 [Releases atom feed](https://github.com/zhangqi444/open-forge/releases.atom) — subscribe in any feed reader (Feedbin, Inoreader, NetNewsWire)
+- 🌟 [GitHub Watch → Custom → Releases](https://github.com/zhangqi444/open-forge/subscription) — email notification on each release
+
+To apply an update in Claude Code: `/plugin marketplace update zhangqi444/open-forge`
+
 Then say what you want to deploy:
 
 > *"Set up OpenClaw on my Raspberry Pi with the local Ollama provider."*
