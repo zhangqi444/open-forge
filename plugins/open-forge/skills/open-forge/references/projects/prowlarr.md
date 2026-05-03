@@ -65,7 +65,7 @@ Features:
 ```yaml
 services:
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:1.19           # pin
+    image: lscr.io/linuxserver/prowlarr:2           # pin
     container_name: prowlarr
     restart: unless-stopped
     environment:
