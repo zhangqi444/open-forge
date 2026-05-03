@@ -54,7 +54,7 @@ This recipe covers all three, with v3 Core as the primary.
 | `influxdb:3-core` / `influxdb:3.x.y-core` | **v3 Core** (recommended) |
 | `influxdb:3-enterprise` | v3 Enterprise (paid) |
 | `influxdb:2` / `influxdb:2.x.y` | v2.x |
-| `influxdb:1.11` | v1.11 (latest v1) |
+| `influxdb:1.12` | v1.12 (latest v1 series) |
 
 ## Inputs to collect
 
@@ -126,7 +126,7 @@ curl 'http://localhost:8181/api/v3/query_influxql?db=mydb&q=SELECT+mean(value)+F
 # compose.yaml
 services:
   influxdb2:
-    image: influxdb:2.7                          # pin exact version
+    image: influxdb:2.7.12                          # pin exact version
     container_name: influxdb2
     restart: unless-stopped
     ports:
@@ -163,7 +163,7 @@ docker exec -it influxdb2 influx setup \
 ```yaml
 services:
   influxdb1:
-    image: influxdb:1.11
+    image: influxdb:1.12
     container_name: influxdb1
     restart: unless-stopped
     ports:
@@ -281,7 +281,7 @@ docker run --rm \
   -v ./influxdb1-data:/var/lib/influxdb:ro \
   -v ./influxdb2-data:/var/lib/influxdb2 \
   -v ./influxdb2-config:/etc/influxdb2 \
-  influxdb:2.7 influxd upgrade \
+  influxdb:2.7.12 influxd upgrade \
     --v1-dir /var/lib/influxdb \
     --engine-path /var/lib/influxdb2/engine \
     --bolt-path /var/lib/influxdb2/influxd.bolt \
