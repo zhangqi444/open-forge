@@ -84,7 +84,7 @@ services:
     volumes:
       - ./db:/var/lib/mysql
   glpi:
-    image: diouxx/glpi:10.0.15                         # pin exact version in prod
+    image: diouxx/glpi:latest   # GLPI v11 now stable; pin specific tag once diouxx image tracks v11
     depends_on:
       - glpi-db
     environment:

@@ -48,7 +48,7 @@ networks:
 
 services:
   server:
-    image: gitea/gitea:1.22   # pin minor — don't use :latest
+    image: gitea/gitea:1.26   # pin minor — don't use :latest
     container_name: gitea
     environment:
       - USER_UID=1000
