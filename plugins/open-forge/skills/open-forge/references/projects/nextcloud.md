@@ -99,7 +99,7 @@ services:
     restart: always
 
   app:
-    image: nextcloud:30-apache      # pin major.minor
+    image: nextcloud:33-apache      # pin major.minor
     restart: always
     ports:
       - '8080:80'
@@ -121,7 +121,7 @@ services:
       - redis
 
   cron:
-    image: nextcloud:30-apache
+    image: nextcloud:33-apache
     restart: always
     volumes:
       - ./html:/var/www/html
@@ -302,7 +302,7 @@ Nextcloud refuses to skip major versions. `28 → 30` requires going through `29
 - **Background jobs matter.** Without the `cron` container (or systemd timer on bare metal), file indexing, share notifications, and app-store updates silently don't run. Symptom: "file I uploaded isn't showing up in the mobile app for 20 minutes." Fix: ensure cron.
 - **`trusted_domains` blocks requests for unknown hosts.** Symptom: "Access through untrusted domain" error. Fix: add to `trusted_domains` via `occ` or `config.php`.
 - **Major version upgrades are one-at-a-time.** v28 → v30 via v29. Nextcloud refuses the jump otherwise. Read release notes — occasional apps get deprecated and need reinstalling.
-- **`latest` tag on `nextcloud/docker` is scary.** Points at the newest major version. Auto-updaters can leapfrog you across a major boundary and break. Pin `nextcloud:30-apache` or similar.
+- **`latest` tag on `nextcloud/docker` is scary.** Points at the newest major version. Auto-updaters can leapfrog you across a major boundary and break. Pin `nextcloud:33-apache` or similar.
 - **`NEXTCLOUD_ADMIN_USER` / `NEXTCLOUD_ADMIN_PASSWORD` only work on FIRST boot.** After the setup wizard runs once, they do nothing. To reset admin password: `occ user:resetpassword admin`.
 - **Preview generation is CPU-heavy.** The `OC\Preview\Generator` job runs in cron. For big libraries, install the `preview_generator` app + run `occ preview:pre-generate` in batches to avoid bogging down the cron container.
 - **ONLY add trusted proxies for LANs you actually control.** If you add `0.0.0.0/0` to `trusted_proxies`, attackers can spoof `X-Forwarded-For` and bypass IP rate limits + audit logs.

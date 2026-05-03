@@ -24,7 +24,7 @@ Neko is a WebRTC-based virtual browser / remote desktop server. It runs a headle
 
 | Input                                    | Example                              | Phase   | Notes                                                                            |
 | ---------------------------------------- | ------------------------------------ | ------- | -------------------------------------------------------------------------------- |
-| Flavor / image                           | `ghcr.io/m1k1o/neko/firefox:3.0.4`   | Runtime | Pick a browser or desktop image; pin a version — avoid `:latest` in production    |
+| Flavor / image                           | `ghcr.io/m1k1o/neko/firefox:3.1.0`   | Runtime | Pick a browser or desktop image; pin a version — avoid `:latest` in production    |
 | Web port                                 | `8080`                               | Runtime | HTTP signalling + web UI; put behind TLS-terminating reverse proxy               |
 | WebRTC UDP range                         | `52000-52100/udp`                    | Network | Must be reachable by clients; **don't** put behind NAT without NAT1to1 config    |
 | `NEKO_NAT1TO1`                           | public IPv4 of the host              | Runtime | Required if the host is behind NAT (most VPS configs)                            |
@@ -40,7 +40,7 @@ Upstream's canonical compose (at <https://github.com/m1k1o/neko/blob/master/dock
 ```yaml
 services:
   neko:
-    image: ghcr.io/m1k1o/neko/firefox:3.0.4   # pin; tags at ghcr.io
+    image: ghcr.io/m1k1o/neko/firefox:3.1.0   # pin; tags at ghcr.io
     restart: unless-stopped
     shm_size: 2gb
     ports:
@@ -63,7 +63,7 @@ services:
 Use `.nvidia` image variants and add the NVIDIA runtime:
 
 ```yaml
-    image: ghcr.io/m1k1o/neko/chromium.nvidia:3.0.4
+    image: ghcr.io/m1k1o/neko/chromium.nvidia:3.1.0
     runtime: nvidia
     environment:
       NVIDIA_VISIBLE_DEVICES: all

@@ -43,7 +43,7 @@ Upstream's canonical minimal compose (<https://github.com/navidrome/navidrome/bl
 services:
   navidrome:
     container_name: navidrome
-    image: deluan/navidrome:0.55.2      # pin; https://github.com/navidrome/navidrome/releases
+    image: deluan/navidrome:0.61.2      # pin; https://github.com/navidrome/navidrome/releases
     restart: unless-stopped
     read_only: true
     user: "1000:1000"                   # match host owner of music + data dirs
