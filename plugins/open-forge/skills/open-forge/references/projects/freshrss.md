@@ -113,7 +113,7 @@ From <https://github.com/FreshRSS/FreshRSS/blob/edge/Docker/README.md>:
 Example production pinning:
 
 ```yaml
-image: freshrss/freshrss:1.27.1-alpine
+image: freshrss/freshrss:1.28.1-alpine
 ```
 
 ## External database

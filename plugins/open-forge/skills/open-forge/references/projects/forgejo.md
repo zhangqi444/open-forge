@@ -70,7 +70,7 @@ Use cases: (a) self-host all your repos (b) run a community code-forge like Code
 ```yaml
 services:
   forgejo:
-    image: codeberg.org/forgejo/forgejo:9                # pin major version
+    image: codeberg.org/forgejo/forgejo:15                # pin major version
     restart: always
     environment:
       USER_UID: 1000

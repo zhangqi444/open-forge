@@ -104,7 +104,7 @@ cd frappe_docker
 
 # 1. Create .env from template
 cp example.env .env
-# Edit .env — set DB_PASSWORD, ERPNEXT_VERSION (pin a version, e.g. v15.10.0), SITES (domain list), etc.
+# Edit .env — set DB_PASSWORD, ERPNEXT_VERSION (pin a version, e.g. v16.16.0), SITES (domain list), etc.
 
 # 2. Compose stack = base + chosen overrides
 docker compose \
@@ -160,7 +160,7 @@ docker compose --project-name erpnext exec backend bench install-app hrms
 helm repo add frappe https://helm.erpnext.com
 helm repo update
 helm install erpnext frappe/erpnext \
-  --set image.tag=v15.10.0 \
+  --set image.tag=v16.16.0 \
   --set mariadb.enabled=true \
   --set persistence.worker.enabled=true \
   ...
@@ -204,7 +204,7 @@ docker compose --project-name erpnext exec backend bench --site all backup --wit
 #    Major version bumps (e.g. v14 → v15) have breaking changes; read carefully.
 
 # 3. Bump ERPNEXT_VERSION in .env
-sed -i 's/^ERPNEXT_VERSION=.*/ERPNEXT_VERSION=v15.20.0/' .env
+sed -i 's/^ERPNEXT_VERSION=.*/ERPNEXT_VERSION=v16.16.0/' .env
 
 # 4. Pull + restart
 docker compose --project-name erpnext pull
