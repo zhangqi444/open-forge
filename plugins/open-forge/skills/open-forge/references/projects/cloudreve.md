@@ -35,7 +35,7 @@ Local disk, Remote Cloudreve node (multi-node / federation), OneDrive (personal 
 Image tags:
 
 - `cloudreve/cloudreve:v4` — major version 4.x (current)
-- `cloudreve/cloudreve:v4.2` — minor pin (recommended for production)
+- `cloudreve/cloudreve:v4.15` — minor pin (recommended for production)
 - `cloudreve/cloudreve:latest` — avoid for production (jumps on majors)
 
 Pro edition: `cloudreve.azurecr.io/...` (private registry; license key required).

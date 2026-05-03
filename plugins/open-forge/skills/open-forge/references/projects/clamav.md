@@ -78,7 +78,7 @@ clamdscan /tmp/eicar.txt
 ```yaml
 services:
   clamav:
-    image: clamav/clamav:1.3                      # pin
+    image: clamav/clamav:1.5                      # pin
     container_name: clamav
     restart: unless-stopped
     ports:

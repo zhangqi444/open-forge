@@ -69,7 +69,7 @@ This is the upstream-recommended path for most users:
 # docker-compose.yml
 services:
   cloudflared:
-    image: cloudflare/cloudflared:2025.10.0    # pin; NEVER :latest in prod
+    image: cloudflare/cloudflared:2026.3.0    # pin; NEVER :latest in prod
     container_name: cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate run
@@ -121,7 +121,7 @@ Then compose:
 ```yaml
 services:
   cloudflared:
-    image: cloudflare/cloudflared:2025.10.0
+    image: cloudflare/cloudflared:2026.3.0
     restart: unless-stopped
     command: tunnel --config /etc/cloudflared/config.yml run home
     volumes:
