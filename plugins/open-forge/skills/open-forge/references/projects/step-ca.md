@@ -105,7 +105,7 @@ WantedBy=multi-user.target
 ```yaml
 services:
   step-ca:
-    image: smallstep/step-ca:0.27.x      # pin; check Docker Hub
+    image: smallstep/step-ca:0.30.2      # pin; https://github.com/smallstep/certificates/releases
     container_name: step-ca
     restart: unless-stopped
     ports:
