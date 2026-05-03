@@ -5661,3 +5661,9 @@ All 4 marked done in selfhst-progress.json. Dist rebuilt. Commit: 441ef45.
 - Committed and pushed: b9f8404
 
 **GitHub issues:** #45 and #42 previously handled. No new open issues.
+
+## 2026-05-03 03:49 UTC
+- Batch 2: wrote recipes for openuem (96★), plikshare (89★), pwgen (87★), continuwuity (87★), dribdat (85★)
+- Marked all 5 as done in selfhst-progress.json
+- Built dist bundles, committed and pushed (b88d588)
+- GitHub issues: only #42 open, already logged as skipped (no code change needed)
