@@ -19,6 +19,8 @@ After hardening, offer the post-deploy feedback flow per the *Post-deploy feedba
 Instructions for any AI coding session working *on* the open-forge plugin (not running it). Different audience from `plugins/open-forge/skills/open-forge/SKILL.md`, which is what an end-user's agent reads to *use* the plugin.
 
 > **Also accessible as [`AGENTS.md`](AGENTS.md)** per the [agents.md](https://agents.md) convention. AGENTS.md is a thin landing page that points here; this file is the canonical reference. Tools that look for either filename find their way in.
+>
+> **For *system shape* (actors, data flow, state stores, quality gates, cadence) see [`ARCHITECTURE.md`](ARCHITECTURE.md).** This file is the *policy* (what's in scope, strict-doc rules, sanitization principles, processing workflow); ARCHITECTURE.md is how the policy is operationalized as a maintenance system.
 
 ## What is open-forge
 
@@ -65,6 +67,12 @@ references/
 ```
 
 `localhost.md` is a first-class infra — for many projects (especially OpenClaw), running locally is the default upstream path. Same conversational UX as a cloud deploy; differences are: no SSH (Claude runs commands directly), no provisioning, public reach via tunnel (`references/modules/tunnels.md`).
+
+### A fourth orchestration layer — bundles
+
+Above software / infra / runtime sits an optional **bundle** layer (`references/bundles/`). A bundle is a *recipe-of-recipes* — it pairs commonly-co-deployed software for goal-shaped user requests (*"set up an AI homelab"*) and ships the cross-software wiring (env vars / DNS / ports between constituents). Bundles don't replace single-recipe routing; they're an additional entry point for goal-shaped intents.
+
+Per *Tier 2 → Tier 1 graduation criteria* below, bundles aren't speculative authoring — they orchestrate **existing Tier 1 recipes** only. If a constituent recipe gets demoted, the bundle goes with it. New bundles get added when 3+ users (or one repeat user) ask for the same combination. Current bundles: `bundles/ai-homelab.md` (Ollama + Open WebUI + AnythingLLM + Aider) and `bundles/privacy-stack.md` (Pi-hole + Vaultwarden + Headscale OR wg-easy).
 
 ## Is this software in scope?
 
@@ -429,11 +437,14 @@ open-forge/
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
+├── ARCHITECTURE.md                        ← system shape (actors, data flow, state stores, quality gates) — complement to this file
 ├── .github/
 │   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
 │   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
-├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / generic)
+├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic)
 ├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
+├── progress/                              ← bot's run log: heartbeat-log.md + selfhst-progress.json + issues-log.json (bot-owned)
+├── assets/                                ← icon.svg + social-preview.svg
 ├── scripts/
 │   └── build-dist.sh                      ← regenerates dist/ from canonical sources; run when CLAUDE.md / SKILL.md / modules change
 └── plugins/open-forge/
@@ -441,14 +452,17 @@ open-forge/
     └── skills/open-forge/
         ├── SKILL.md                       ← end-user-Claude entrypoint
         ├── references/
-        │   ├── projects/<name>.md         ← software layer
+        │   ├── projects/<name>.md         ← software layer (1,100+ Tier 1 verified recipes)
         │   ├── runtimes/<name>.md         ← runtime layer (docker.md, podman.md, native.md, kubernetes.md)
         │   ├── infra/<name>.md            ← infra layer (aws/, azure/, hetzner/, digitalocean/, gcp/, oracle/, paas/, hostinger.md, raspberry-pi.md, macos-vm.md, byo-vps.md, localhost.md)
-        │   └── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, backups, monitoring, credentials, feedback)
+        │   ├── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, credentials, feedback, backups, monitoring)
+        │   └── bundles/<name>.md          ← curated multi-software bundles (recipe-of-recipes; ai-homelab, privacy-stack)
         └── scripts/                       ← deployment-time operational scripts (per-recipe); empty by default
 ```
 
 The skill-side `plugins/open-forge/skills/open-forge/scripts/` (deployment-time) stays empty unless something is reused 3+ times across deployments — inline commands in recipes are clearer for one-off use. Distinct from the top-level `scripts/` (build-time tooling for dist/ bundles).
+
+For the **system architecture** (how the catalog grows, who maintains what, how an issue becomes a recipe edit, where state lives), see [`ARCHITECTURE.md`](ARCHITECTURE.md). This file is *policy*; ARCHITECTURE.md is *system shape*.
 
 ## Versioning + publish flow
 
