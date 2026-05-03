@@ -466,12 +466,15 @@ open-forge/
 ├── AGENTS.md                              ← agents.md-standard landing page; thin pointer to CLAUDE.md
 ├── ARCHITECTURE.md                        ← system shape (actors, data flow, state stores, quality gates) — complement to this file
 ├── BRD.md                                 ← project intent (why / who / success / non-goals) — strategic clarity
+├── CHANGELOG.md                           ← user-visible changes per version (Keep-a-Changelog format)
 ├── README.md                              ← user-facing, lives on GitHub
 ├── LICENSE                                ← MIT
 ├── .claude-plugin/marketplace.json        ← marketplace manifest
 ├── .github/
 │   ├── ISSUE_TEMPLATE/                    ← three issue channels (recipe-feedback, software-nomination, method-proposal)
-│   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+│   └── workflows/
+│       ├── dist-bundles.yml               ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
+│       └── release.yml                    ← auto-create GitHub Release on plugin.json version bump
 ├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic)
 ├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
 ├── progress/                              ← bot's state files: selfhst-progress.json + selfhst-software.json + issues-log.json (bot-owned) + sources.md (maintainer-curated source queue)
@@ -502,11 +505,13 @@ For the **system architecture** (how the catalog grows, who maintains what, how 
 - **Bump on**: skill description change, new project/runtime/infra, major recipe rewrite, anything that changes user-visible behavior.
 - **Don't bump on**: typo fixes, internal comment cleanups, lint-only changes.
 
-Publish flow (typical path: AI session processing an issue per *Issue-driven contribution model*):
+When you bump the version:
 
-1. Commit the change with version bump if applicable. Author per *Author convention*.
-2. Push to `github.com/zhangqi444/open-forge` — typically as a PR opened against `main` (branch name per *Processing incoming issues*).
-3. After merge, end users run `/plugin marketplace update zhangqi444/open-forge` then re-install.
+1. Add a matching entry to [`CHANGELOG.md`](CHANGELOG.md) at the top, in user-visible terms (what improves for someone running the skill — not commit-message terms). Follow the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) convention: group by `Added` / `Changed` / `Deprecated` / `Removed` / `Fixed` / `Security`. Append the version → release-tag link at the bottom of the file.
+2. Commit the change with version bump applicable. Author per *Author convention*.
+3. Push to `github.com/zhangqi444/open-forge` — typically as a PR opened against `main` (branch name per *Processing incoming issues*).
+4. After merge, [`.github/workflows/release.yml`](.github/workflows/release.yml) auto-creates a GitHub Release tagged `v<version>` with notes pulled from CHANGELOG.md. End users on the Releases atom feed see it land.
+5. End users run `/plugin marketplace update zhangqi444/open-forge` to pull the new version (manual; the marketplace is pull-based).
 
 Maintainer manual edits follow the same flow but skip the issue-tracking labels.
 

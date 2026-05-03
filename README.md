@@ -110,7 +110,17 @@ Or just ask Claude — *"self-host X on Y"* — and it'll match.
 
 An AI agent reads [`CLAUDE.md`](CLAUDE.md) as its runbook, re-verifies every change against upstream docs, and patches the catalog. Why issues, not PRs? Central verification keeps the catalog consistent, and the skill sanitizes drafts before posting so credentials don't leak into commit history.
 
-For how the catalog is maintained as a system (actors, data flow, state stores, quality gates), see [`ARCHITECTURE.md`](ARCHITECTURE.md). For policy details (3-axis model, strict-doc-verification policy, two-tier coverage, sanitization rules), see [`CLAUDE.md`](CLAUDE.md).
+For how the catalog is maintained as a system (actors, data flow, state stores, quality gates), see [`ARCHITECTURE.md`](ARCHITECTURE.md). For policy details (3-axis model, strict-doc-verification policy, two-tier coverage, sanitization rules), see [`CLAUDE.md`](CLAUDE.md). For project intent (why / who / success / non-goals), see [`BRD.md`](BRD.md).
+
+## Updates
+
+After a new version lands, run `/plugin marketplace update zhangqi444/open-forge` in Claude Code to pull it. The marketplace is pull-based — there's no auto-update.
+
+To know **when** a new version ships:
+
+- 📋 [CHANGELOG.md](CHANGELOG.md) — user-visible changes per version
+- 📡 [Releases atom feed](https://github.com/zhangqi444/open-forge/releases.atom) — subscribable in any feed reader
+- 🌟 [Watch this repo](https://github.com/zhangqi444/open-forge) → *Custom* → *Releases* — GitHub email notifications on each release
 
 ## License
 
