@@ -36,7 +36,7 @@ Upstream ships this minimal `compose.yml` (verbatim at <https://github.com/Lissy
 services:
   dashy:
     container_name: Dashy
-    image: lissy93/dashy:3.1.1   # pin; avoid :latest for production
+    image: lissy93/dashy:4.0.1   # pin; avoid :latest for production
     ports:
       - 4000:8080
     volumes:

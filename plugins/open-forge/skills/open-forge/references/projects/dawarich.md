@@ -81,7 +81,7 @@ Minimal compose skeleton:
 ```yaml
 services:
   dawarich_app:
-    image: freikin/dawarich:0.x.y          # pin specific version; check releases
+    image: freikin/dawarich:1.7.4          # pin specific version; check releases
     container_name: dawarich_app
     restart: unless-stopped
     depends_on:

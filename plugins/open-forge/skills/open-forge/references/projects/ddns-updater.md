@@ -76,7 +76,7 @@ docker run -d \
   -v $(pwd)/ddns-data:/updater/data \
   --name ddns-updater \
   --restart unless-stopped \
-  qmcgaw/ddns-updater:v2.8.0     # **pin version — versioned docs recommend**
+  qmcgaw/ddns-updater:v2.10.0     # **pin version — versioned docs recommend**
 ```
 
 ## First boot
