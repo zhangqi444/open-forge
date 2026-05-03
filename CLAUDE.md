@@ -300,6 +300,8 @@ Issue-processing sessions must re-scan PR diffs against the same strip-list befo
 
 When an AI coding session is asked to process incoming issues (whether by a maintainer prompt, a scheduled job, or a webhook), apply this workflow:
 
+> **Catalog-growth sources** beyond GitHub issues — public lists / feeds the bot pulls from in priority order — are documented in [`progress/sources.md`](progress/sources.md). The current queue is **selfh.st** (in progress) → **awesome-selfhosted-data** (queued) → **Self-Host Weekly newsletter** (continuous) → **GitHub issues** (continuous). When the active source completes or a new source is added, update `progress/sources.md` to reflect the change.
+
 ### 1. Triage
 
 For each open issue without an `applied` / `out-of-scope` / `needs-info` label:
@@ -453,7 +455,7 @@ open-forge/
 │   └── workflows/dist-bundles.yml         ← CI: fail PRs whose dist/ bundles are stale vs canonical sources
 ├── docs/platforms/                        ← per-platform usage guides (Codex / Cursor / Aider / Continue / OpenClaw / Hermes / generic)
 ├── dist/                                  ← regenerated multi-platform distribution bundles (see scripts/build-dist.sh)
-├── progress/                              ← bot's state files: selfhst-progress.json + selfhst-software.json + issues-log.json (bot-owned)
+├── progress/                              ← bot's state files: selfhst-progress.json + selfhst-software.json + issues-log.json (bot-owned) + sources.md (maintainer-curated source queue)
 ├── assets/                                ← icon.svg + social-preview.svg
 ├── scripts/
 │   └── build-dist.sh                      ← regenerates dist/ from canonical sources; run when CLAUDE.md / SKILL.md / modules change

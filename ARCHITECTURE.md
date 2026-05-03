@@ -111,6 +111,7 @@ End users do **not** open PRs. Per CLAUDE.md § *Issue-driven contribution model
 | **`progress/selfhst-progress.json`** | Per-app processing status — which selfh.st apps have been cataloged, which are pending or skipped. | Bot |
 | **`progress/selfhst-software.json`** | Cached source data fetched from selfh.st — app list with star counts. Rebuilt as needed. | Bot |
 | **`progress/issues-log.json`** | Per-issue triage history — issue number, status (addressed/skipped/waiting), commit ref, action taken. | Bot |
+| **`progress/sources.md`** | Catalog-growth source queue — which external lists / feeds the bot pulls from and in what order (selfh.st in progress, awesome-selfhosted-data queued, Self-Host Weekly newsletter continuous, GitHub issues continuous). Maintainer-curated; the bot reads it on each run to decide which source to pull from next. | Maintainer (curates queue) + bot (reads on each run) |
 | **`plugins/open-forge/skills/open-forge/references/projects/*.md`** | The catalog itself. ~1,100+ Tier 1 verified recipes. | Bot (mostly) + maintainer (strategic recipes like ghost.md) |
 | **`plugins/open-forge/skills/open-forge/references/{infra,runtimes,modules}/`** | Reusable orchestration layers — infra adapters, runtime modules, cross-cutting modules (preflight, dns, tls, smtp, inbound, tunnels, credentials, feedback, backups) | Maintainer mostly; bot adds modules when first-deploy-discipline surfaces gaps |
 | **`plugins/open-forge/skills/open-forge/references/bundles/*.md`** | Curated multi-software deployment bundles (AI homelab, privacy stack). Recipe-of-recipes that orchestrate existing Tier 1 recipes for goal-shaped requests. | Maintainer-direct authoring (per CLAUDE.md graduation criteria, bundles aren't speculative authoring — they pair existing recipes) |
@@ -138,9 +139,10 @@ What keeps the catalog from rotting:
 Observed from the commit log (2026-04 to 2026-05):
 
 - **Bot batches** — the bot ships small batches (3-5 recipes per commit), tagged `batch <N>` in the commit message. Catalog grew from ~180 to 1,100+ recipes over the observation window.
-- **AI-session PRs** (this Claude Code session) — periodic batches authored on demand: catalog audits, architectural additions (issue-driven contribution model, multi-platform support, agent-platform support, backups module, bundles), bug fixes (#40 broken in-bundle links).
+- **Source queue** — bot pulls from external sources in priority order (see [`progress/sources.md`](../progress/sources.md)): currently working through selfh.st (1,274 apps, ~92% done); next source queued is awesome-selfhosted-data; Self-Host Weekly newsletter + GitHub issues processed continuously alongside.
+- **AI-session PRs** (this Claude Code session) — periodic batches authored on demand: catalog audits, architectural additions (issue-driven contribution model, multi-platform support, agent-platform support, backups module, monitoring module, bundles), bug fixes (#40 broken in-bundle links).
 - **End-user issues** — sparse but valuable; recent issues #24-27 (Windows setup gotchas), #40 (broken links), #41 (BookStack URL).
-- **Version bumps** — driven by user-visible changes. Recent: `0.17.1 → 0.17.2 → 0.19.x → 0.20.x → 0.21.0 (multi-platform) → 0.22.0 (agent platforms) → 0.23.0 (backups + bundles)`.
+- **Version bumps** — driven by user-visible changes. Recent: `0.17.1 → 0.17.2 → 0.19.x → 0.20.x → 0.21.0 (multi-platform) → 0.22.0 (agent platforms) → 0.23.0 (backups + bundles) → 0.24.0 (monitoring + gstack pointer)`.
 
 ## Three layers, one orchestration layer above
 
