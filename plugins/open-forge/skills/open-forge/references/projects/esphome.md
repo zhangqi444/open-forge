@@ -100,7 +100,7 @@ docker run -d --name esphome \
   --net=host \
   -v "$(pwd)/config":/config \
   -e TZ=UTC \
-  esphome/esphome:2024.x.x     # pin; check Docker Hub
+  esphome/esphome:2026.4.3     # pin; check Docker Hub
 ```
 
 **`--net=host` recommended** for mDNS discovery + ability to flash via USB passthrough when running on same host. Without it, you can still flash over-the-air but won't discover devices on the local subnet automatically.
@@ -112,7 +112,7 @@ Browse `http://<host>:6052`.
 ```yaml
 services:
   esphome:
-    image: esphome/esphome:2024.x.x
+    image: esphome/esphome:2026.4.3
     container_name: esphome
     restart: unless-stopped
     network_mode: host          # or bridge + port 6052
