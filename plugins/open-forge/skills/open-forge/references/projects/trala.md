@@ -71,7 +71,7 @@ networks:
 ```yaml
 services:
   traefik:
-    image: traefik:v3.0
+    image: traefik:v3.6
     restart: unless-stopped
     networks:
       - traefik-net
