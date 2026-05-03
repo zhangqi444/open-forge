@@ -61,7 +61,7 @@ services:
       interval: 10s
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.0    # pin a specific version
+    image: quay.io/keycloak/keycloak:26.6    # pin a specific version
     restart: unless-stopped
     command: start --optimized       # see "start vs start-dev" below
     environment:

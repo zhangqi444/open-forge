@@ -74,7 +74,7 @@ docker run -d --name kanboard \
   -v /opt/kanboard/data:/var/www/app/data \
   -v /opt/kanboard/plugins:/var/www/app/plugins \
   -v /opt/kanboard/ssl:/etc/nginx/ssl \
-  kanboard/kanboard:v1.2.x    # pin; check Docker Hub
+  kanboard/kanboard:v1.2.52    # pin; check Docker Hub
 ```
 
 Browse `http://<host>:8080` → default creds **`admin` / `admin`**.
@@ -84,7 +84,7 @@ Browse `http://<host>:8080` → default creds **`admin` / `admin`**.
 ```yaml
 services:
   kanboard:
-    image: kanboard/kanboard:v1.2.x
+    image: kanboard/kanboard:v1.2.52
     container_name: kanboard
     restart: unless-stopped
     ports:

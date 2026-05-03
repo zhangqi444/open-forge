@@ -63,7 +63,7 @@ Core strengths:
 ```yaml
 services:
   kavita:
-    image: jvmilazz0/kavita:0.8.x    # pin specific tag; check Docker Hub
+    image: jvmilazz0/kavita:0.9.x    # pin specific tag; check Docker Hub
     container_name: kavita
     restart: unless-stopped
     ports:
