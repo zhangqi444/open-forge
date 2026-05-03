@@ -74,7 +74,7 @@ Module highlights (all toggle-able in admin):
 ```yaml
 services:
   dolibarr:
-    image: dolibarr/dolibarr:19                  # pin specific major
+    image: dolibarr/dolibarr:23                  # pin specific major
     container_name: dolibarr
     restart: unless-stopped
     depends_on: [db]

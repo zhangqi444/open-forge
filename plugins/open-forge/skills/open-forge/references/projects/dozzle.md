@@ -52,7 +52,7 @@ docker run --name dozzle -d \
   --volume=/var/run/docker.sock:/var/run/docker.sock:ro \
   -v dozzle_data:/data \
   -p 8080:8080 \
-  amir20/dozzle:v8.14.0    # pin; avoid :latest
+  amir20/dozzle:v10.5.1    # pin; avoid :latest
 ```
 
 Compose:
@@ -60,7 +60,7 @@ Compose:
 ```yaml
 services:
   dozzle:
-    image: amir20/dozzle:v8.14.0
+    image: amir20/dozzle:v10.5.1
     container_name: dozzle
     restart: unless-stopped
     ports:
@@ -88,7 +88,7 @@ docker service create --name dozzle \
   --mode global \
   --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
   -p 8080:8080 \
-  amir20/dozzle:v8.14.0
+  amir20/dozzle:v10.5.1
 ```
 
 ## Multi-host (agents)
@@ -99,7 +99,7 @@ On each remote Docker host, run an agent:
 docker run -d --name dozzle-agent \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   -p 7007:7007 \
-  amir20/dozzle:v8.14.0 agent
+  amir20/dozzle:v10.5.1 agent
 ```
 
 On the central UI host, set `DOZZLE_REMOTE_AGENT`:
@@ -107,7 +107,7 @@ On the central UI host, set `DOZZLE_REMOTE_AGENT`:
 ```yaml
 services:
   dozzle:
-    image: amir20/dozzle:v8.14.0
+    image: amir20/dozzle:v10.5.1
     environment:
       DOZZLE_REMOTE_AGENT: "host1.internal:7007,host2.internal:7007"
     volumes:
@@ -158,14 +158,14 @@ Rootful:
 
 ```sh
 podman run --volume=/run/podman/podman.sock:/var/run/docker.sock \
-  -d -p 8080:8080 docker.io/amir20/dozzle:v8.14.0
+  -d -p 8080:8080 docker.io/amir20/dozzle:v10.5.1
 ```
 
 Rootless:
 
 ```sh
 podman run --volume=/run/user/1000/podman/podman.sock:/var/run/docker.sock \
-  -d -p 8080:8080 docker.io/amir20/dozzle:v8.14.0
+  -d -p 8080:8080 docker.io/amir20/dozzle:v10.5.1
 ```
 
 For the "hosts" tab to work correctly under Podman, create a file named `engine-id` under `/var/lib/docker/` containing a UUID:
