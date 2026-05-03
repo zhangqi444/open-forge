@@ -62,7 +62,7 @@ Features (from upstream README + sabre.io docs):
 ```yaml
 services:
   baikal:
-    image: ckulka/baikal:0.10.1-nginx    # **pin specific version**; note: community image
+    image: ckulka/baikal:0.11.1-nginx    # **pin specific version**; note: community image
     container_name: baikal
     restart: unless-stopped
     ports: ["8081:80"]

@@ -52,7 +52,7 @@ The hub is a Go binary wrapping PocketBase; all state (registered systems, histo
 # compose.yml
 services:
   beszel:
-    image: henrygd/beszel:0.14.0    # pin; see https://github.com/henrygd/beszel/releases
+    image: henrygd/beszel:0.18.7    # pin; see https://github.com/henrygd/beszel/releases
     container_name: beszel
     restart: unless-stopped
     ports:
@@ -79,7 +79,7 @@ Browse `http://<host>:8090`:
 # on each monitored host
 services:
   beszel-agent:
-    image: henrygd/beszel-agent:0.14.0    # match hub major.minor
+    image: henrygd/beszel-agent:0.18.7    # match hub major.minor
     container_name: beszel-agent
     restart: unless-stopped
     network_mode: host
