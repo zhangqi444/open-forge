@@ -67,7 +67,7 @@ Features:
 ```yaml
 services:
   blocky:
-    image: spx01/blocky:v0.24                   # pin version
+    image: spx01/blocky:v0.29.0                 # pin version
     container_name: blocky
     restart: unless-stopped
     ports:

@@ -38,7 +38,7 @@ Adapted from <https://github.com/linuxserver/docker-bookstack#docker-compose-rec
 ```yaml
 services:
   bookstack:
-    image: lscr.io/linuxserver/bookstack:25.02.4   # pin; track releases at the link below
+    image: lscr.io/linuxserver/bookstack:26.03.4   # pin; track releases at the link below
     container_name: bookstack
     environment:
       - PUID=1000
