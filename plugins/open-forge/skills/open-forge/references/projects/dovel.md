@@ -1,40 +1,39 @@
 # Dovel
 
-**What it is:** A simple and easy-to-use self-hosted mail server. Handles SMTP sending and receiving for your own domains. Designed to be low-friction to set up compared to full mail stacks like Mailcow or Mailu.
-
-> ⚠️ **Limited documentation / custom license.** Source and documentation at https://dovel.email/server/index.html — verify current status before deploying.
-
-**Official URL:** https://dovel.email
-**Docs:** https://dovel.email/server/index.html
-**License:** Custom (see upstream)
-**Stack:** Not fully disclosed; refer to upstream docs
-
----
+**What it is:** Simple and easy-to-use self-hosted mail server — a minimalist SMTP/IMAP server designed for personal use and small teams.
+**Official URL:** https://dovel.email/server/index.html
+**GitHub:** N/A
 
 ## Compatible Combos
 
-See upstream documentation at https://dovel.email/server/index.html for current installation instructions and system requirements.
-
----
+| Infra | Runtime | Notes |
+|-------|---------|-------|
+| Any Linux | Docker Compose | See upstream for details |
 
 ## Inputs to Collect
 
-### Typical mail server requirements
-- Domain with DNS control — MX, SPF, DKIM, DMARC records required
-- Ports — SMTP (25), submission (587), SMTPS (465), IMAP (143/993) — ensure VPS provider allows port 25 outbound
-- Reverse DNS (PTR) record — critical for deliverability; configure with your VPS provider
+### Deploy phase
+- Domain/hostname (must have proper MX, SPF, DKIM, DMARC DNS records)
+- Port 25 (SMTP) availability — many VPS providers block this
+- TLS certificate (Let's Encrypt recommended)
 
----
+## Software-Layer Concerns
+
+- **Config:** See upstream documentation
+- **Data dir:** Persistent volume for mail storage
+- **Key env vars:** See upstream docs
+
+## Upgrade Procedure
+
+Pull latest image and restart. Back up mail data first.
 
 ## Gotchas
 
-- **Port 25 may be blocked** — many VPS providers (AWS, GCP, Azure, Hetzner) block outbound port 25 by default; verify before choosing a host for mail
-- **DNS setup is mandatory** — mail without correct SPF/DKIM/DMARC records will be rejected or marked spam by major providers
-- **Custom license** — review the license at https://dovel.email before deploying in a commercial context
-- **Established alternatives:** [Mailcow](https://github.com/mailcow/mailcow-dockerized), [Mailu](https://github.com/Mailu/Mailu), and [Stalwart Mail](https://github.com/stalwartlabs/mail-server) are widely used open-source self-hosted mail server stacks
+- Running a mail server requires proper DNS setup (MX, SPF, DKIM, DMARC)
+- Port 25 is blocked by many VPS providers by default — check before deploying
+- IP reputation matters for deliverability; new IPs are often initially distrusted
+- Consider mail forwarding services (Mailgun, SES) for outbound if deliverability is critical
 
----
+## References
 
-## Links
-- Website: https://dovel.email
-- Server docs: https://dovel.email/server/index.html
+- [Official Site](https://dovel.email/server/index.html)

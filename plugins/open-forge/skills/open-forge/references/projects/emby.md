@@ -1,87 +1,44 @@
 # Emby
 
-**What it is:** A personal media server — organize and stream your movies, TV shows, music, and photos to any device. Features automatic metadata scraping, transcoding, parental controls, Live TV/DVR support, multi-user management, and a polished web/app interface. A freemium alternative to Plex with Emby Premiere for premium features.
-
-> **Freemium / closed source.** Emby Server is free but proprietary. Premium features (hardware transcoding, offline sync, etc.) require Emby Premiere.
-
+**What it is:** Personal media server for streaming your movies, TV, music, and photos to any device — similar to Plex or Jellyfin.
 **Official URL:** https://emby.media
-**Container:** `emby/embyserver`
-**License:** Proprietary; free + Emby Premiere subscription
-**Stack:** Proprietary; Docker; native `.deb`/`.rpm` packages
-
----
+**GitHub:** N/A (partially open source; core is proprietary)
 
 ## Compatible Combos
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any Linux VPS / bare metal | Docker Compose | Recommended |
-| NAS (Synology, QNAP, etc.) | Native package | Vendor package centers |
-| Linux | `.deb` / `.rpm` | Direct native install |
-| Windows / macOS | Native installer | GUI installer available |
-
----
+| Any Linux | Docker Compose | Official image available |
+| Linux/macOS/Windows | Native installer | .deb/.rpm/msi packages |
+| NAS (Synology, QNAP) | Docker | Supported |
 
 ## Inputs to Collect
 
-### Pre-deployment
-- `UID` / `GID` — user/group for file permissions (match media file owner)
-- `TZ` — timezone
-- Media paths — host directories for movies, TV, music
-- Config path — persistent Emby data/config directory
-
----
+### Deploy phase
+- Port (default: 8096 HTTP, 8920 HTTPS)
+- Media library paths (mount as volumes)
+- Optional: GPU device for hardware transcoding (/dev/dri)
+- Emby account (for Emby Connect remote access)
 
 ## Software-Layer Concerns
 
-**Docker Compose:**
-```yaml
-services:
-  emby:
-    image: emby/embyserver:latest
-    container_name: emby
-    environment:
-      - UID=1000
-      - GID=1000
-      - TZ=America/New_York
-    volumes:
-      - /path/to/emby/config:/config
-      - /path/to/media:/mnt/media
-    ports:
-      - "8096:8096"     # HTTP web UI
-      - "8920:8920"     # HTTPS (optional)
-    restart: unless-stopped
-```
+- **Config:** Web UI at http://host:8096
+- **Data dir:** /config (database, metadata cache)
+- **Key env vars:** TZ, UID, GID
 
-**Hardware transcoding (Emby Premiere required):**
-```yaml
-    devices:
-      - /dev/dri:/dev/dri   # Intel Quick Sync / AMD VA-API
-```
+## Upgrade Procedure
 
-**Default port:** `8096` (HTTP), `8920` (HTTPS)
-
-**First run:** Visit `http://your-server:8096` to complete the setup wizard — create admin account, add media libraries.
-
-**Upgrade procedure:**
-```bash
-docker compose pull
-docker compose up -d
-```
-
----
+Pull latest Docker image and restart. Emby auto-notifies of updates in the UI.
 
 ## Gotchas
 
-- **Closed source** — Emby is proprietary; the server code is not auditable or modifiable
-- **Emby Premiere for key features** — hardware transcoding, mobile sync, Live TV, Emby Theater, and parental controls for remote users require Emby Premiere (~$4.99/month or $119 lifetime)
-- **Transcoding is CPU-intensive** — software transcoding on a VPS may struggle with 4K content; hardware transcoding (Premiere) is recommended for high-resolution streams
-- **Emby vs Jellyfin** — Jellyfin is a fully open-source fork of the older Emby codebase and is a popular free alternative
+- Emby Premiere subscription required for some features (hardware transcoding, mobile downloads)
+- Jellyfin is the fully-open-source fork if you prefer no subscription
+- Hardware transcoding requires GPU passthrough to container
+- Large metadata cache — allocate sufficient disk for /config
 
----
+## References
 
-## Links
-- Website: https://emby.media
-- Downloads: https://emby.media/download.html
-- Docker Hub: https://hub.docker.com/r/emby/embyserver
-- Open-source alternative: https://github.com/jellyfin/jellyfin
+- [Official Site](https://emby.media)
+- [Docker Hub](https://hub.docker.com/r/emby/embyserver)
+- [Docs](https://support.emby.media)
