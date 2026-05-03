@@ -105,7 +105,7 @@ docker run -d --name mosquitto \
   -v /opt/mosquitto/config:/mosquitto/config \
   -v /opt/mosquitto/data:/mosquitto/data \
   -v /opt/mosquitto/log:/mosquitto/log \
-  eclipse-mosquitto:2.0.x    # pin
+  eclipse-mosquitto:2.0   # pin to minor series; latest is 2.8.x
 ```
 
 ## Install via Docker Compose
@@ -113,7 +113,7 @@ docker run -d --name mosquitto \
 ```yaml
 services:
   mosquitto:
-    image: eclipse-mosquitto:2.0.x
+    image: eclipse-mosquitto:2.0
     container_name: mosquitto
     restart: unless-stopped
     ports:
