@@ -10,4 +10,8 @@ __pycache__/
 # Claude Code local state — share only settings.json
 .claude/*
 !.claude/settings.json
-progress/
+progress/*
+!progress/selfhst-progress.json
+!progress/selfhst-software.json
+!progress/issues-log.json
+!progress/sources.md
