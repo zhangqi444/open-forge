@@ -57,7 +57,7 @@ Upstream's production path — image: `casbin/casdoor:<version>` (not the `docke
 ```yaml
 services:
   casdoor:
-    image: casbin/casdoor:v1.745.0     # pin to a release
+    image: casbin/casdoor:v3.49.0     # pin to a release
     container_name: casdoor
     restart: unless-stopped
     ports:

@@ -83,7 +83,7 @@ containers:
     - name: CERBOS_URL
       value: "http://localhost:3592"
 - name: cerbos
-  image: ghcr.io/cerbos/cerbos:0.40.0                # pin version
+  image: ghcr.io/cerbos/cerbos:0.52.0                # pin version
   args: ["server"]
   ports:
     - containerPort: 3592
