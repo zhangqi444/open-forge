@@ -65,7 +65,7 @@ Both are excellent. AdGuard Home wins on out-of-box encrypted DNS + per-client r
 # compose.yaml
 services:
   adguardhome:
-    image: adguard/adguardhome:latest    # pin to a specific tag in prod, e.g. v0.107.60
+    image: adguard/adguardhome:latest    # pin to a specific tag in prod, e.g. v0.107.74
     container_name: adguardhome
     restart: unless-stopped
     network_mode: host                   # simplest — binds port 53 on the host directly
