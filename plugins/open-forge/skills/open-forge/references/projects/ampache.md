@@ -7,7 +7,7 @@ description: "Web-based audio/video streaming server + personal music library + 
 
 Ampache is **"your personal Spotify — streaming the music you actually own"** — a PHP web application that scans your music + video library, extracts metadata from tags, and serves streams to any device via web UI or a huge ecosystem of Subsonic-API-compatible mobile/desktop apps. One of the oldest still-active self-hosted music servers (active since ~2001); ecosystem of mature mobile clients (DSub, Ultrasonic, Substreamer, Symfonium, play:Sub, etc.).
 
-Built + maintained by **Ampache org** (community; active re-engagement per 2025 README "INCREASED CONTRIBUTIONS" notice; Ampache 8 in development). **AGPL-3.0**. Stable release: release6; Ampache 7 on PHP 8.4 released; Ampache 8 planned.
+Built + maintained by **Ampache org** (community; active re-engagement per 2025 README "INCREASED CONTRIBUTIONS" notice; Ampache 8 in development). **AGPL-3.0**. Stable release: Ampache 7 (current, PHP 8.4+; latest 7.9.3); Ampache 8 in development.
 
 Use cases: (a) **self-hosted music streaming** for personal library (b) **audio book server** (c) **podcast library** self-host (d) **family music sharing** — multiple users each with their library access (e) **Subsonic-API-compatible backend** to use alongside existing mobile clients (f) **DJ library management** + preview streaming.
 
@@ -50,7 +50,7 @@ Features:
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | Docker             | **`ampache/ampache`** (multi-arch)                              | **Simplest path**                                                               |
 | Bare-metal         | Apache/nginx + PHP + MariaDB                                              | Traditional LAMP install                                                                   |
-| Release tarball    | Download `release6` or release7 tarball → extract → web server                 | Classic path                                                                               |
+| Release tarball    | Download `7.9.3` tarball (current) or `release6` (legacy) → extract → web server                 | Classic path                                                                               |
 | FreeBSD / OpenBSD  | Supported; extra PHP modules required (see README)                                      | Non-Linux environments                                                                                 |
 
 ## Inputs to collect
@@ -80,7 +80,7 @@ services:
       - ./ampache-db:/var/lib/mysql
 
   ampache:
-    image: ampache/ampache:release6    # **pin tag** — release6 / release7 / etc.
+    image: ampache/ampache:7    # **pin tag** — 7 (current stable), release6 (legacy), or specific version e.g. 7.9.3
     restart: unless-stopped
     depends_on: [ampache-db]
     volumes:
