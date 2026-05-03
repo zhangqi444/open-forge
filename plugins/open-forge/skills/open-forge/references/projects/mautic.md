@@ -69,7 +69,7 @@ Core features:
 ```yaml
 services:
   mautic:
-    image: mautic/mautic:5-apache          # pin specific tag in prod
+    image: mautic/mautic:7-apache          # pin specific tag in prod
     container_name: mautic-web
     restart: unless-stopped
     depends_on:
@@ -90,7 +90,7 @@ services:
       - mautic-media:/var/www/html/docroot/media
 
   mautic-cron:
-    image: mautic/mautic:5-apache
+    image: mautic/mautic:7-apache
     container_name: mautic-cron
     restart: unless-stopped
     depends_on: [db, mautic]
@@ -106,7 +106,7 @@ services:
       - mautic-media:/var/www/html/docroot/media
 
   mautic-worker:
-    image: mautic/mautic:5-apache
+    image: mautic/mautic:7-apache
     container_name: mautic-worker
     restart: unless-stopped
     depends_on: [db, mautic]
