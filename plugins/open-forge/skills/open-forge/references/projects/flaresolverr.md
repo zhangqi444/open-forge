@@ -57,7 +57,7 @@ From <https://github.com/FlareSolverr/FlareSolverr/blob/master/docker-compose.ym
 ```yaml
 services:
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:v3.4.4    # pin; NEVER :latest for arr stack
+    image: ghcr.io/flaresolverr/flaresolverr:v3.4.6    # pin; NEVER :latest for arr stack
     container_name: flaresolverr
     restart: unless-stopped
     environment:

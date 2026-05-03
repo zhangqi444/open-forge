@@ -45,7 +45,7 @@ codeberg.org/flohmarkt/flohmarkt:latest
 ```yaml
 services:
   database:
-    image: docker.io/library/couchdb:3.3
+    image: docker.io/library/couchdb:3.5.1
     environment:
       - COUCHDB_USER=${FLOHMARKT_DB_USER}
       - COUCHDB_PASSWORD=${FLOHMARKT_DB_PASSWORD}
