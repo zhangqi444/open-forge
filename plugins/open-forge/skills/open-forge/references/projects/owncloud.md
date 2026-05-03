@@ -99,7 +99,7 @@ sudo -u www-data php occ maintenance:install --database mysql --database-name ow
 ```yaml
 services:
   owncloud:
-    image: owncloud/server:10.14           # pin; check Docker Hub / owncloud site
+    image: owncloud/server:10.16.1           # pin; check Docker Hub / owncloud site
     container_name: owncloud
     restart: unless-stopped
     depends_on: [mariadb, redis]
