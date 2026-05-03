@@ -69,7 +69,7 @@ Upstream's `docker-compose.example.yml` — abbreviated:
 ```yaml
 services:
   photoview:
-    image: viktorstrate/photoview:2.5             # pin
+    image: viktorstrate/photoview:2.4.0             # pin
     container_name: photoview
     restart: unless-stopped
     ports:

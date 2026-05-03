@@ -74,7 +74,7 @@ docker run -d --name phpmyadmin \
   -e PMA_ABSOLUTE_URI=https://dbadmin.example.com/ \
   -e UPLOAD_LIMIT=300M \
   -p 8080:80 \
-  phpmyadmin:5.2   # pin a specific version
+  phpmyadmin:5.2.3   # pin a specific version
 ```
 
 For multi-DB-host picker: `-e PMA_HOSTS=db1,db2,db3` instead of `PMA_HOST`.
@@ -95,7 +95,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   phpmyadmin:
-    image: phpmyadmin:5.2                       # pin specific version
+    image: phpmyadmin:5.2.3                       # pin specific version
     restart: unless-stopped
     depends_on: [mysql]
     environment:
