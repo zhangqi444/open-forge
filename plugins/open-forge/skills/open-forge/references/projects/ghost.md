@@ -775,7 +775,7 @@ For users who want a quick bare Ghost container (no Caddy / ActivityPub / Tinybi
 
 | Field | Value |
 |---|---|
-| Image tag | `ghost:<major>` (e.g. `ghost:5-alpine`). Verify the latest major + variant on Docker Hub at deploy time — the docker-library catalogue drifts independently of Ghost upstream's release cadence. |
+| Image tag | `ghost:<major>` (e.g. `ghost:6-alpine`). Verify the latest major + variant on Docker Hub at deploy time — the docker-library catalogue drifts independently of Ghost upstream's release cadence. |
 | DB | The community compose example pairs Ghost with `mysql:8.0`. SQLite also works for single-container hobby use. |
 | TLS | **Not included** — the community image exposes plain HTTP on `:2368`. Bring your own reverse proxy (Caddy / Traefik / nginx) for TLS. |
 | Default port | Container `:2368` mapped to host `:8080` in the upstream example. |
@@ -786,7 +786,7 @@ For users who want a quick bare Ghost container (no Caddy / ActivityPub / Tinybi
 # compose.yaml — based on the docker-library/ghost README; verify before use
 services:
   ghost:
-    image: ghost:5-alpine
+    image: ghost:6-alpine
     restart: always
     ports:
       - "8080:2368"
@@ -824,7 +824,7 @@ docker compose up -d
 
 - **TLS is not handled.** Unlike the Docker preview (which ships Caddy), this image expects you to terminate TLS upstream. For production, put it behind Traefik / Caddy / nginx with Let's Encrypt yourself.
 - **No ActivityPub or Tinybird Analytics.** Those services are part of the `TryGhost/ghost-docker` tooling, not this image. For Web Analytics / self-hosted ActivityPub, use the Docker Compose (preview) method.
-- **Tag layout drifts independently of Ghost upstream.** `ghost:5`, `ghost:5-alpine`, `ghost:latest` may not always track the newest Ghost release the day it's published — check the image's [supported tags](https://hub.docker.com/_/ghost) before pinning.
+- **Tag layout drifts independently of Ghost upstream.** `ghost:6`, `ghost:6-alpine`, `ghost:latest` may not always track the newest Ghost release the day it's published — check the image's [supported tags](https://hub.docker.com/_/ghost) before pinning.
 - **Migration to the Docker preview.** There's no upstream migration script from this community image to `ghost-docker` — the migration assistant in `ghost-docker/scripts/migrate.sh` only handles Ghost-CLI installs. Manual approach: dump the MySQL DB + content volume from the community stack, restore into the preview stack.
 
 ---
