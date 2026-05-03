@@ -62,7 +62,7 @@ From upstream's [`apps/docs/content/self-hosting/manage/configure/docker-compose
 ```yaml
 services:
   zitadel:
-    image: ghcr.io/zitadel/zitadel:v2.72.0   # pin! never :latest in prod
+    image: ghcr.io/zitadel/zitadel:v4.14.0   # pin! never :latest in prod
     restart: always
     command: >
       start-from-init
