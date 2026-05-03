@@ -80,7 +80,7 @@ services:
       - docker-volume-backup.stop-during-backup=true      # **critical for integrity**
 
   backup:
-    image: offen/docker-volume-backup:v2.43.0              # **pin version** per upstream advice
+    image: offen/docker-volume-backup:v2.48.0              # **pin version** per upstream advice
     restart: always
     environment:
       - BACKUP_FILENAME=backup-%Y-%m-%dT%H-%M-%S.tar.gz

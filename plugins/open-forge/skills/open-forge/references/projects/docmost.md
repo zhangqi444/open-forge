@@ -38,7 +38,7 @@ Upstream's `docker-compose.yml` (at <https://github.com/docmost/docmost/blob/mai
 ```yaml
 services:
   docmost:
-    image: docmost/docmost:0.13.0   # pin a release; avoid :latest in production
+    image: docmost/docmost:0.80.2   # pin a release; avoid :latest in production
     depends_on:
       - db
       - redis

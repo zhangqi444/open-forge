@@ -54,7 +54,7 @@ Features (per README):
 ```yaml
 services:
   dockerproxy:
-    image: tecnativa/docker-socket-proxy:0.2        # **pin version**
+    image: tecnativa/docker-socket-proxy:0.4        # **pin version**
     environment:
       CONTAINERS: 1
       SERVICES: 1
