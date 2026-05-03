@@ -59,7 +59,7 @@ Upstream [docker-compose.yml](https://github.com/plankanban/planka/blob/master/d
 ```yaml
 services:
   planka:
-    image: ghcr.io/plankanban/planka:1.27.2     # pin; check releases
+    image: ghcr.io/plankanban/planka:2.1.1     # pin; v2.x is a major rewrite — check upgrade notes before bumping from v1
     container_name: planka
     restart: on-failure
     ports:
