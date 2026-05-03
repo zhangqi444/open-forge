@@ -70,7 +70,7 @@ Crucial: **one printer per OctoPrint instance**. For multi-printer shops, run mu
 ```yaml
 services:
   octoprint:
-    image: octoprint/octoprint:1.10.x   # pin to minor; check Docker Hub
+    image: octoprint/octoprint:1.11.x   # pin to minor; check Docker Hub
     container_name: octoprint
     restart: unless-stopped
     ports:
