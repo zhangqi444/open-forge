@@ -67,7 +67,7 @@ Upstream provides a canonical compose file. Outline:
 ```yaml
 services:
   ghostfolio:
-    image: ghostfolio/ghostfolio:2.x           # pin specific version
+    image: ghostfolio/ghostfolio:3.x           # pin specific version
     container_name: ghostfolio
     restart: unless-stopped
     depends_on:

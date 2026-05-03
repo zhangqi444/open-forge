@@ -54,7 +54,7 @@ Simplest; bundles everything:
 ```yaml
 services:
   wallabag:
-    image: wallabag/wallabag:2.6.11     # pin
+    image: wallabag/wallabag:2.6.14     # pin
     container_name: wallabag
     restart: unless-stopped
     ports:
@@ -82,7 +82,7 @@ Default admin: `wallabag` / `wallabag` — **CHANGE IMMEDIATELY**.
 ```yaml
 services:
   wallabag:
-    image: wallabag/wallabag:2.6.11
+    image: wallabag/wallabag:2.6.14
     restart: unless-stopped
     ports:
       - "80:80"

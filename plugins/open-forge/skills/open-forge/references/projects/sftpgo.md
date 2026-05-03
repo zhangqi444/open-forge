@@ -80,7 +80,7 @@ Community edition is **fully production-ready** for standard file-transfer needs
 ```yaml
 services:
   sftpgo:
-    image: drakkan/sftpgo:v2.6.6-alpine    # pin; check releases
+    image: drakkan/sftpgo:v2.7.1-alpine    # pin; check releases
     container_name: sftpgo
     restart: unless-stopped
     ports:
