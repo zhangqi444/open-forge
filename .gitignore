@@ -10,8 +10,7 @@ __pycache__/
 # Claude Code local state — share only settings.json
 .claude/*
 !.claude/settings.json
-progress/*
-!progress/selfhst-progress.json
-!progress/selfhst-software.json
-!progress/issues-log.json
-!progress/sources.md
+
+# Agent progress state — JSON/logs are ephemeral, sources.md is version-controlled
+progress/*.json
+progress/heartbeat-log.md
