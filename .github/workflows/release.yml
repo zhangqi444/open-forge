@@ -1,0 +1,88 @@
+name: release-on-version-bump
+
+# Auto-create a GitHub Release whenever plugin.json's version bumps on main.
+#
+# Why: the Claude Code marketplace is pull-based — users have to run
+# /plugin marketplace update to pick up changes. A GitHub Release gives them a
+# subscribable atom feed (releases.atom) plus an entry on the Releases page so
+# they know when a meaningful update has shipped.
+#
+# Tag format: v<version> (e.g. v0.24.0)
+# Release notes: pulled from CHANGELOG.md's matching section if present;
+# otherwise generated from commit log since previous tag.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/open-forge/.claude-plugin/plugin.json'
+
+permissions:
+  contents: write   # needed to create tags + releases
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # need full history for changelog generation
+
+      - name: Read current plugin.json version
+        id: version
+        run: |
+          VERSION=$(jq -r '.version' plugins/open-forge/.claude-plugin/plugin.json)
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if tag already exists
+        id: tag_check
+        run: |
+          if git rev-parse "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.version.outputs.tag }} already exists; skipping release."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Extract release notes from CHANGELOG.md
+        if: steps.tag_check.outputs.skip == 'false'
+        id: notes
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          # Pull the section between "## [<version>]" and the next "## [" header.
+          NOTES=$(awk -v v="$VERSION" '
+            $0 ~ "^## \\[" v "\\]" { found=1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md)
+
+          if [[ -z "$NOTES" || "$NOTES" =~ ^[[:space:]]*$ ]]; then
+            # Fallback: commit log since previous tag.
+            PREV_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+            if [[ -n "$PREV_TAG" ]]; then
+              NOTES=$(git log --pretty=format:'- %s' "${PREV_TAG}..HEAD" -- plugins/open-forge/skills/open-forge plugins/open-forge/.claude-plugin SKILL.md CLAUDE.md ARCHITECTURE.md README.md BRD.md AGENTS.md scripts/build-dist.sh)
+            else
+              NOTES="Initial release."
+            fi
+          fi
+
+          {
+            echo "notes<<EOF"
+            echo "$NOTES"
+            echo
+            echo "---"
+            echo
+            echo "Run \`/plugin marketplace update zhangqi444/open-forge\` in Claude Code to pick up this version. Full changelog: [CHANGELOG.md](https://github.com/zhangqi444/open-forge/blob/main/CHANGELOG.md)."
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        if: steps.tag_check.outputs.skip == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          body: ${{ steps.notes.outputs.notes }}
+          draft: false
+          prerelease: false
