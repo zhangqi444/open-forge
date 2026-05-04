@@ -1,136 +1,178 @@
 ---
-name: kroki
-description: Recipe for Kroki — self-hosted unified diagram rendering API supporting 30+ diagram types (PlantUML, Mermaid, Graphviz, D2, Ditaa, and more).
+name: kroki-project
+description: Kroki recipe for open-forge. Unified diagram-as-code HTTP API that converts plain-text diagram descriptions into images. Covers the gateway container (yuzutech/kroki) plus optional companion containers for extended diagram types (mermaid, bpmn, excalidraw, diagramsnet), Docker Compose setup, environment configuration, upgrade procedure, and gotchas. Stateless service — no database required. Upstream: https://github.com/yuzutech/kroki.
 ---
 
 # Kroki
 
-Unified diagram-as-code rendering server. Accepts diagram source text and returns rendered images (SVG, PNG, PDF). Supports 30+ diagram types including PlantUML, Mermaid, Graphviz, D2, Ditaa, BlockDiag, C4 (via PlantUML), Excalidraw, and more — all via a single HTTP API. Deploy once, use from any tool that supports Kroki (draw.io, GitLab, Confluence plugins, etc.). Upstream: <https://github.com/yuzutech/kroki>. Docs: <https://docs.kroki.io>. Hosted: <https://kroki.io>. License: MIT.
+Unified diagram-as-code HTTP gateway that converts plain-text diagram descriptions into SVG/PNG/PDF images. Supports 20+ diagram types including PlantUML, Mermaid, Graphviz, BPMN, Excalidraw, D2, Ditaa, C4 and more. Upstream: <https://github.com/yuzutech/kroki>. Official docs: <https://docs.kroki.io/>.
+
+Kroki is stateless — no database, no persistent storage required. A single gateway container handles most diagram types; optional companion containers extend coverage for Mermaid, BPMN, Excalidraw, and diagrams.net (draw.io). The gateway communicates with companion containers over HTTP.
 
 ## Compatible install methods
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker (core image) | <https://hub.docker.com/r/yuzutech/kroki> | Yes | Basic rendering (PlantUML, Graphviz, Mermaid, D2, etc.) |
-| Docker Compose (full) | <https://docs.kroki.io/kroki/setup/install/#_with_docker_compose> | Yes | All diagram types including BlockDiag, Excalidraw, Diagrams.net |
-| Hosted service | <https://kroki.io> | Yes (managed) | No self-hosting needed |
+| Docker (gateway only) | <https://docs.kroki.io/kroki/setup/install/> | ✅ | Most diagram types in one container. Simplest setup. |
+| Docker Compose (gateway + companions) | <https://docs.kroki.io/kroki/setup/install/#docker-compose> | ✅ | Full diagram-type coverage including Mermaid, BPMN, Excalidraw, diagrams.net. |
+| Run from source (Gradle) | <https://github.com/yuzutech/kroki#build-and-install> | ✅ | Development on the Kroki codebase itself. Not for production. |
+| Kubernetes (community) | Community | ⚠️ Community-maintained | Cluster deployments — no official Helm chart; see community contributions. |
 
 ## Inputs to collect
 
-| Phase | Prompt | Format | Applicability |
+| Phase | Prompt | Tool / format | Applicability |
 |---|---|---|---|
-| infra | Port for Kroki API? | Port (default 8000) | All |
-| software | Which diagram types needed beyond core? | blockdiag / excalidraw / diagramsnet | Optional companion containers |
+| preflight | "Gateway only, or include companion containers for Mermaid / BPMN / Excalidraw / diagrams.net?" | `AskUserQuestion`: `Gateway only` / `Full (gateway + all companions)` / `Custom (select companions)` | Drives which Compose services to include. |
+| network | "Expose Kroki on which host port?" (default `8000`) | Free-text | Kroki listens on `8000` inside the container. |
+| access | "Should Kroki be publicly accessible or only on localhost / internal network?" | `AskUserQuestion`: `Localhost only` / `Behind reverse proxy` / `Public (no auth)` | Kroki has no built-in auth — if public-facing, a reverse proxy with rate-limiting / auth is strongly recommended. |
+| dns | "Domain / base URL for reverse proxy?" | Free-text | Required if placing Kroki behind a proxy. |
+| safe_mode | "Enable unsafe mode for PlantUML includes / remote resources?" | `AskUserQuestion`: `No (secure, default)` / `Yes (unsafe — internal only)` | Required for PlantUML !include directives. |
 
 ## Software-layer concerns
 
-### Docker run (core — most diagram types)
+### Docker images
+
+| Container | Image | Purpose |
+|---|---|---|
+| Gateway | `yuzutech/kroki` | Core HTTP API — handles most diagram types natively |
+| Mermaid | `yuzutech/kroki-mermaid` | Mermaid diagrams (requires Chromium headless) |
+| BPMN | `yuzutech/kroki-bpmn` | BPMN diagrams |
+| Excalidraw | `yuzutech/kroki-excalidraw` | Excalidraw diagrams |
+| diagrams.net | `yuzutech/kroki-diagramsnet` | draw.io / diagrams.net diagrams |
+
+All images published on Docker Hub: <https://hub.docker.com/u/yuzutech>.
+
+### Environment variables (gateway)
+
+| Variable | Default | Description |
+|---|---|---|
+| `KROKI_MERMAID_HOST` | unset | Hostname of the mermaid companion container |
+| `KROKI_BPMN_HOST` | unset | Hostname of the bpmn companion container |
+| `KROKI_EXCALIDRAW_HOST` | unset | Hostname of the excalidraw companion container |
+| `KROKI_DIAGRAMSNET_HOST` | unset | Hostname of the diagramsnet companion container |
+| `KROKI_MAX_URI_LENGTH` | JVM default ~8192 | Max URL length in bytes for GET requests |
+| `KROKI_SAFE_MODE` | `secure` | Safety mode: `unsafe` allows includes/fetching remote resources |
+
+> KROKI_SAFE_MODE=unsafe is needed for PlantUML !include directives. Only enable on internal/trusted deployments.
+
+### Ports
+
+- Gateway listens on port `8000` inside the container.
+- Companion containers each listen on port `8002` inside their containers.
+
+### Data directory
+
+Kroki is stateless — no persistent data directory required.
+
+### Docker Compose (gateway + all companions)
+
+Based on the upstream install docs at <https://docs.kroki.io/kroki/setup/install/>:
+
+```yaml
+# compose.yaml
+services:
+  kroki:
+    image: yuzutech/kroki
+    depends_on:
+      - mermaid
+      - bpmn
+      - excalidraw
+      - diagramsnet
+    environment:
+      - KROKI_MERMAID_HOST=mermaid
+      - KROKI_BPMN_HOST=bpmn
+      - KROKI_EXCALIDRAW_HOST=excalidraw
+      - KROKI_DIAGRAMSNET_HOST=diagramsnet
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  mermaid:
+    image: yuzutech/kroki-mermaid
+    expose:
+      - "8002"
+    restart: unless-stopped
+
+  bpmn:
+    image: yuzutech/kroki-bpmn
+    expose:
+      - "8002"
+    restart: unless-stopped
+
+  excalidraw:
+    image: yuzutech/kroki-excalidraw
+    expose:
+      - "8002"
+    restart: unless-stopped
+
+  diagramsnet:
+    image: yuzutech/kroki-diagramsnet
+    expose:
+      - "8002"
+    restart: unless-stopped
+```
+
+```bash
+docker compose up -d
+# Test
+curl http://localhost:8000/health
+```
+
+### Gateway only (single container)
 
 ```bash
 docker run -d \
   --name kroki \
-  -p 8000:8000 \
   --restart unless-stopped \
+  -p 127.0.0.1:8000:8000 \
   yuzutech/kroki
 ```
 
-The core image supports: PlantUML, Mermaid, GraphViz, D2, Ditaa, Nomnoml, Pikchr, Structurizr, BPMN, WireViz, Vega, Vega-Lite, and more.
-
-### Docker Compose (full — all diagram types)
-
-```yaml
-services:
-  core:
-    image: yuzutech/kroki
-    container_name: kroki
-    restart: unless-stopped
-    ports:
-      - "8000:8000"
-    environment:
-      KROKI_BLOCKDIAG_HOST: blockdiag
-      KROKI_MERMAID_HOST: mermaid
-      KROKI_EXCALIDRAW_HOST: excalidraw
-      KROKI_DIAGRAMSNET_HOST: diagramsnet
-
-  blockdiag:
-    image: yuzutech/kroki-blockdiag
-    container_name: kroki-blockdiag
-    restart: unless-stopped
-    expose:
-      - "8001"
-
-  mermaid:
-    image: yuzutech/kroki-mermaid
-    container_name: kroki-mermaid
-    restart: unless-stopped
-    expose:
-      - "8002"
-
-  excalidraw:
-    image: yuzutech/kroki-excalidraw
-    container_name: kroki-excalidraw
-    restart: unless-stopped
-    expose:
-      - "8004"
-
-  diagramsnet:
-    image: yuzutech/kroki-diagramsnet
-    container_name: kroki-diagramsnet
-    restart: unless-stopped
-    expose:
-      - "8005"
-```
-
-### API usage
+### Verify
 
 ```bash
-# GET request with base64-encoded compressed diagram
-curl https://kroki.io/plantuml/svg/SoWkIImgAStDuNBAJrBGjLDmpCbCJbMmKiX8pSd9vt98pKi1IW80
+# Health check
+curl http://localhost:8000/health
 
-# POST request with diagram source
-curl -X POST \
-  -H "Content-Type: text/plain" \
-  -d 'digraph G { A -> B -> C }' \
-  http://localhost:8000/graphviz/svg
-
-# POST with JSON
-curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '{"diagram_source": "A --> B", "diagram_type": "mermaid", "output_format": "svg"}' \
-  http://localhost:8000/
-```
-
-### Supported diagram types (core image)
-
-PlantUML, Mermaid, GraphViz (DOT), D2, Ditaa, Nomnoml, Pikchr, Structurizr, BPMN, WireViz, Vega, Vega-Lite, Erd, Svgbob, UMLet, Wavedrom, Bytefield, Nwdiag, Actdiag, Seqdiag, Rackdiag, Packetdiag (last six via companion blockdiag container), Excalidraw (companion), Diagrams.net/drawio (companion).
-
-### URL encoding helper (CLI tool)
-
-```bash
-# Install kroki CLI
-npm install -g @asciidoctor/kroki
-
-# Or use the online encoder: https://kroki.io/#try
+# Simple PlantUML test
+curl "http://localhost:8000/plantuml/svg/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000"
+# Should return SVG content
 ```
 
 ## Upgrade procedure
 
+Kroki is stateless — no backup needed before upgrading.
+
 ```bash
-docker compose pull && docker compose up -d
+cd /path/to/kroki
+
+# Pull latest images
+docker compose pull
+
+# Recreate containers
+docker compose up -d
+
+# Verify
+curl http://localhost:8000/health
 ```
+
+For pinned tags, update image tags in `compose.yaml` before pulling. Check latest tags at <https://hub.docker.com/r/yuzutech/kroki/tags>.
 
 ## Gotchas
 
-- Companion containers: blockdiag, excalidraw, and diagramsnet diagram types require separate companion containers. The core image alone won't render them.
-- Security: Kroki executes diagram rendering code server-side. Run behind a firewall or reverse proxy with auth if exposing to untrusted users — malicious PlantUML/Graphviz input could potentially abuse server resources.
-- PlantUML server: Kroki bundles its own PlantUML — no separate PlantUML server needed.
-- Mermaid companion: the core image includes Mermaid support via a lightweight renderer. The separate `kroki-mermaid` companion uses a full Chromium-based renderer for better compatibility.
-- Output formats: not all diagram types support all output formats. SVG is universally supported; PNG requires a compatible renderer; PDF is supported for some types.
+- **No built-in authentication.** Kroki has no auth layer — anyone who can reach the port can render diagrams. For public-facing deployments, place behind a reverse proxy with access controls.
+- **`KROKI_SAFE_MODE=secure` blocks remote includes.** PlantUML `!include https://...` and other remote-resource fetches are rejected in secure mode (the default). Set `KROKI_SAFE_MODE=unsafe` only if needed and only on internal deployments.
+- **Large diagrams may exceed URI length limit.** GET requests encode diagrams in the URL; complex diagrams can hit the JVM default ~8 KB limit. Use POST requests (supported by the API) or increase `KROKI_MAX_URI_LENGTH`.
+- **Companion containers use Docker's internal network.** Set `KROKI_*_HOST` env vars to Compose service names (not `localhost`) — the gateway reaches companions via Docker DNS.
+- **Mermaid companion is large.** The `kroki-mermaid` image includes a Chromium browser for headless rendering (~900 MB). Plan disk space accordingly.
+- **First-start delay for Mermaid.** The Mermaid companion initialises a headless browser on startup; the first request may take several seconds.
+- **Missing companion = error on that diagram type.** Without companion containers, diagram types that require them return an error. Check what's available at startup in the gateway logs.
 
-## Links
+## Upstream references
 
 - GitHub: <https://github.com/yuzutech/kroki>
-- Docs: <https://docs.kroki.io>
-- Hosted service: <https://kroki.io>
+- Official docs: <https://docs.kroki.io/>
+- Install guide: <https://docs.kroki.io/kroki/setup/install/>
 - Docker Hub: <https://hub.docker.com/r/yuzutech/kroki>
 - Supported diagram types: <https://kroki.io/#support>
+- HTTP API reference: <https://docs.kroki.io/kroki/api/http-api/>
