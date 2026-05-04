@@ -1,207 +1,140 @@
----
-name: home-assistant-project
-description: Home Assistant recipe for open-forge. Privacy-focused home automation platform (Apache-2.0). Upstream supports 4 install methods; this recipe covers Home Assistant Container (Docker) as the open-forge-compatible path. Mentions but does not deploy Home Assistant OS / Supervised / Core (those are tied to physical hardware / full-OS installs outside the cloud-VPS scope).
----
+# Home Assistant
 
-# Home Assistant (home automation)
+Open-source home automation platform that puts local control and privacy first. Integrates with 3,000+ devices and services — lights, locks, thermostats, cameras, media players, and more — without cloud dependency. 74K+ GitHub stars. Apache 2.0. Upstream: <https://github.com/home-assistant/core>. Docs: <https://www.home-assistant.io/docs>.
 
-Apache-2.0 self-hosted home automation platform. 3000+ integrations. Local-first, privacy-focused. Upstream supports four installation methods with different tradeoffs.
+> **Recommended install: Home Assistant OS (HAOS).** Running HA in Docker is supported but loses some features (add-ons, supervisor). For full functionality use HAOS on dedicated hardware (Raspberry Pi, NUC, etc.) or a VM.
 
-**Upstream README (core):** https://github.com/home-assistant/core (README is minimal by design — points to the docs site)
-**Docker repo:** https://github.com/home-assistant/docker
-**Install docs (all methods):** https://www.home-assistant.io/installation/
-**Container install:** https://www.home-assistant.io/installation/alternative/
+## Compatible install methods
 
-> [!NOTE]
-> Home Assistant's *primary* recommended install is **Home Assistant OS** — a full Linux distribution that takes over a whole device (Raspberry Pi, Intel NUC, etc.) and gives you the Add-on Store and Supervisor. That method is out of open-forge's scope (it's not a Docker-on-cloud path; it's an ISO-flash-the-whole-disk path). This recipe covers **Home Assistant Container** (Docker image), which is the upstream-blessed way to run HA as a Docker container on any OS you already manage.
+Verified against upstream docs at <https://www.home-assistant.io/installation/>.
 
-## Upstream-documented install methods
-
-Source: https://www.home-assistant.io/installation/
-
-| # | Method | Self-manageability | open-forge scope? |
+| Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| 1 | **Home Assistant OS (HAOS)** | Easiest. Vendor-managed OS + Supervisor + Add-ons. | ❌ — whole-device install, not a Docker container on a VPS |
-| 2 | **Home Assistant Supervised** | Debian + HA's Supervisor. Unsupported on anything but their Debian recipe. | ❌ — out of scope |
-| 3 | **Home Assistant Container** | Official Docker image. No Supervisor, no Add-on Store. | ✅ — this recipe |
-| 4 | **Home Assistant Core** | Python venv, manual. | ⚠️ — possible but harder than Container; not recommended by upstream |
-
-Self-hosting on a cloud VPS / home server where you already manage the OS → use **Container** (this recipe). Self-hosting on a dedicated board → use **HAOS** (flash an image to SD/eMMC, not covered here).
-
-## Compatible combos (Container path)
-
-| Infra | Runtime | Status | Notes |
-|---|---|---|---|
-| localhost | Docker | ✅ default | `docker run` per README |
-| localhost | Docker Compose | ✅ | Upstream ships a canonical compose snippet |
-| byo-vps | Docker | ✅ | Works, but Z-Wave/Zigbee USB integrations need local hardware — cloud VPS loses that |
-| raspberry-pi | Docker | ✅ | Excellent fit — local hardware + USB dongles |
-| home-server | Docker | ✅ | Preferred — HA is fundamentally LAN-oriented |
-| aws/ec2 | Docker | ⚠️ | Technically runs, but most integrations (Zigbee, Z-Wave, local mDNS discovery) don't work remotely. Cloud VPS is a poor fit for HA. Consider **Nabu Casa** cloud-tunnel or Tailscale + home-server instead. |
-| kubernetes | community Helm | ⚠️ | Exists (`pajikos/home-assistant`); most HA installs are single-node by nature. Flag as community-maintained. |
-
-## Key constraint: HA is designed for your LAN
-
-Home Assistant's core value is talking to Zigbee bulbs, Z-Wave locks, mDNS-discovered devices, Bluetooth presence sensors — **things on your LAN**. Running it in `aws-us-east-1` breaks most integrations. For "I want to access my HA from outside the house":
-
-- Run HA on a home-server / Pi
-- Tunnel with Tailscale / Nabu Casa / Cloudflare Tunnel
-
-If the user asks for cloud HA, clarify that's unusual. See `references/modules/tunnels.md`.
+| **Home Assistant OS (HAOS)** | Flash image to SD card / USB / VM | ✅ | **Recommended.** Full feature set: add-ons, supervisor, backups. |
+| Home Assistant Supervised | Debian install script | ✅ | Full feature set on existing Debian system. Requires strict OS constraints. |
+| Home Assistant Container | `docker run homeassistant/home-assistant` | ✅ | Docker-only. No add-ons, no supervisor. Config files managed manually. |
+| Home Assistant Core | `pip install homeassistant` + `hass` CLI | ✅ | Advanced: Python virtualenv, bare metal. |
+| Proxmox VE helper script | Community: <https://tteck.github.io/Proxmox/> | Community | Popular for Proxmox users. |
 
 ## Inputs to collect
 
-| Phase | Prompt | Format | Notes |
+| Phase | Prompt | Format | Applicability |
 |---|---|---|---|
-| infra | "Where are you running this — a local box / Pi, or a cloud VPS?" | AskUserQuestion | If cloud, warn that Zigbee/Z-Wave/mDNS don't work remotely |
-| config | "Config directory path on host?" | Free-text | e.g. `/srv/home-assistant/config`. Gets mapped to `/config` in the container. |
-| tz | "Timezone?" | Free-text | tz database name, e.g. `America/Los_Angeles` |
-| network | "Use host networking (needed for discovery)?" | AskUserQuestion: host (default) / bridge | Host required for mDNS/SSDP discovery of Chromecasts, Sonos, HomeKit, etc. |
-| hw | "Pass through USB devices (Zigbee stick, Z-Wave stick)?" | Free-text | List `--device=/dev/ttyUSB0`-style flags |
-| dns | "Domain for remote access?" | Free-text | Optional — only if setting up a reverse proxy |
+| install_method | "Install method: HAOS image, Docker container, or Core?" | `AskUserQuestion`: `HAOS / VM image`, `Docker container`, `Core (Python)` | All |
+| hardware | "Target hardware (Raspberry Pi 4/5, NUC, VM, other)?" | Free-text | HAOS |
+| port | "Home Assistant port (default: `8123`)?" | Free-text | Docker/Core |
 
-## Install method — Docker CLI (upstream canonical)
+## Software-layer concerns
 
-Source: https://www.home-assistant.io/installation/alternative/ (Container path)
+### Home Assistant OS (recommended)
 
-Requirements: **Docker Engine 23.0.0+**. Docker *Desktop* will **not** work — upstream is explicit.
+1. Download the HAOS image for your hardware: <https://www.home-assistant.io/installation/>
+2. Flash to SD card or SSD using Balena Etcher or Raspberry Pi Imager
+3. Boot and wait 5–10 minutes for first-run setup
+4. Visit `http://homeassistant.local:8123` (or `http://<ip>:8123`)
 
-```bash
-docker run -d \
-  --name homeassistant \
-  --privileged \
-  --restart=unless-stopped \
-  -e TZ=America/Los_Angeles \
-  -v /srv/home-assistant/config:/config \
-  -v /run/dbus:/run/dbus:ro \
-  --network=host \
-  ghcr.io/home-assistant/home-assistant:stable
-```
+For a VM (Proxmox, VirtualBox, VMware): download the `.ova` or `.qcow2` image and import.
 
-Access: `http://<host>:8123/`. First visit runs the onboarding wizard (admin user, location, units).
-
-### Why `--privileged` + `--network=host`
-
-- `--privileged` — HA needs raw USB access (Zigbee/Z-Wave) and Bluetooth
-- `--network=host` — mDNS / SSDP / DHCP-reflection discovery fails over Docker's default bridge network. Host networking is required, not optional, for most integrations.
-- `/run/dbus:ro` — Bluetooth integration
-
-On a cloud VPS (no USB hardware), you can drop `--privileged` and skip the dbus mount; use `-p 8123:8123` instead of `--network=host` if you want.
-
-## Install method — Docker Compose
-
-Source: same
+### Docker (Container mode)
 
 ```yaml
+version: "3"
 services:
   homeassistant:
     container_name: homeassistant
     image: ghcr.io/home-assistant/home-assistant:stable
     volumes:
-      - /srv/home-assistant/config:/config
+      - ./config:/config
       - /etc/localtime:/etc/localtime:ro
-      - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
-    network_mode: host
+    network_mode: host    # required for device discovery (mDNS, SSDP, etc.)
     environment:
-      TZ: America/Los_Angeles
+      - TZ=America/New_York
 ```
 
-`docker compose up -d`.
+```bash
+docker compose up -d
+# Access at http://localhost:8123
+```
 
-## Software-layer concerns
+> **`network_mode: host` is required** for device auto-discovery (Chromecast, Sonos, Z-Wave, Zigbee, etc.) to work correctly. Bridged networking breaks multicast/broadcast discovery.
 
-### Config dir is everything
+### Key environment variables
 
-Everything HA does — integrations, automations, scripts, add-ons (if any) — lives under `/config/` in the container, which maps to your host path. **Back up this directory** (`/srv/home-assistant/config`). That's your entire HA state.
-
-Subdirs of note:
-- `/config/configuration.yaml` — root config
-- `/config/.storage/` — UI-managed integrations + auth (binary blobs; do not hand-edit)
-- `/config/automations.yaml`, `scripts.yaml`, `scenes.yaml` — UI-manageable
-- `/config/secrets.yaml` — referenced via `!secret` YAML tag; keep out of git
-
-### Env vars (minimal)
-
-HA Container doesn't take many env vars — most config is YAML in `/config/`.
-
-| Var | Purpose |
+| Variable | Purpose |
 |---|---|
-| `TZ` | Timezone |
+| `TZ` | Container timezone (e.g. `America/New_York`) |
 
-### Reverse proxy
+Most configuration is done via the `configuration.yaml` file and the web UI — not environment variables.
 
-If exposing HA remotely, put it behind Caddy/Traefik/Nginx for TLS. HA has built-in TLS support via `http:` YAML, but a reverse proxy is more flexible.
+### Configuration directory structure
 
-Caddy:
-
-```caddy
-home.example.com {
-  reverse_proxy 127.0.0.1:8123
-}
+```
+config/
+├── configuration.yaml      # Main config (integrations, entities, automations)
+├── automations.yaml        # Automation rules (managed by UI)
+├── scripts.yaml            # Scripts (managed by UI)
+├── scenes.yaml             # Scenes (managed by UI)
+├── secrets.yaml            # Sensitive values (passwords, API keys)
+├── .storage/               # Runtime state (do NOT edit manually)
+└── custom_components/      # HACS-installed custom integrations
 ```
 
-Plus in `configuration.yaml`:
+### Key concepts
 
-```yaml
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 127.0.0.1
-    - ::1
-```
+| Concept | Description |
+|---|---|
+| **Integration** | Connects HA to a device/service (Philips Hue, Google Cast, etc.) |
+| **Entity** | A single controllable thing (light, switch, sensor, etc.) |
+| **Automation** | If-this-then-that rules (trigger → condition → action) |
+| **Script** | Reusable sequence of actions |
+| **Scene** | Snapshot of entity states to restore |
+| **Dashboard** | Customizable UI panel with cards |
+| **Add-on** (HAOS only) | Supplementary service (Mosquitto MQTT, Zigbee2MQTT, ESPHome, etc.) |
+| **HACS** | Home Assistant Community Store — install community integrations |
 
-Without `trusted_proxies`, HA rejects forwarded requests as a security measure and you'll see "HTTPS is not enabled" errors.
+### Ports
 
-### Image tags
+| Port | Service |
+|---|---|
+| `8123` | Home Assistant web UI + API |
+| `5353` | mDNS (discovery) |
 
-- `stable` — latest stable (default)
-- `beta`, `dev` — pre-release tracks
-- `X.Y.Z` — pinned version (recommended for reproducibility)
+### Remote access
 
-Image: `ghcr.io/home-assistant/home-assistant` (also mirrored on Docker Hub as `homeassistant/home-assistant`).
+Home Assistant offers **Nabu Casa** ($6.50/mo) for zero-config remote access, or self-configure:
+- NGINX/Caddy reverse proxy with TLS
+- Tailscale (recommended for private remote access)
+- DuckDNS + Let's Encrypt
+
+> **Do not expose HA directly to the internet on port 8123.** Always use a reverse proxy with HTTPS.
 
 ## Upgrade procedure
 
-```bash
-docker pull ghcr.io/home-assistant/home-assistant:stable
-docker stop homeassistant
-docker rm homeassistant
-docker run -d ... (same command as install)
-```
+- **HAOS:** Settings → System → Updates → click the update notification
+- **Docker:** `docker pull ghcr.io/home-assistant/home-assistant:stable && docker compose up -d`
+- **Core:** `pip install --upgrade homeassistant`
 
-Or with compose:
-
-```bash
-docker compose pull
-docker compose up -d
-```
-
-HA runs DB migrations on boot. First boot after a major upgrade can take 5+ minutes — **don't panic if `:8123` is slow to respond**. Tail logs: `docker logs -f homeassistant`.
-
-Release notes: https://www.home-assistant.io/blog/categories/release-notes/
-
-**Always back up `/config` before upgrading.** Rollback = restore config + use older image tag.
+Always **back up first**: Settings → System → Backups → Create backup.
 
 ## Gotchas
 
-- **Docker Desktop does not work.** Upstream is explicit: Docker *Engine* only. Desktop's VM handles networking differently enough that HA discovery breaks.
-- **Without `--network=host`, most integrations silently fail.** No mDNS → no Chromecast / Sonos / HomeKit / AirPlay autodiscovery. You can work around by specifying IPs manually, but it's painful.
-- **No Add-on Store in Container install.** Add-ons (Mosquitto broker, Z-Wave JS UI, ESPHome dashboard) are a Supervisor feature. In Container, you run those as *separate* Docker containers. This is fine, just different.
-- **Container is not the same as HAOS.** Users who install Container, then Google "how to install HACS" or "how to install an add-on" and try to use the HAOS path — it won't work. Community integrations (HACS) do work in Container; official "Add-ons" do not.
-- **Z-Wave/Zigbee USB passthrough.** Needs `--device=/dev/serial/by-id/usb-...` (by-id is stable across reboots; by-path isn't). Get the ID via `ls -la /dev/serial/by-id/` on the host.
-- **`trusted_proxies` is required behind a reverse proxy.** Without it HA rejects the forwarded request and complains about HTTPS/HTTP mismatches.
-- **DB is SQLite by default — OK up to a few hundred entities.** For large installs (500+ entities, high-frequency sensors), switch the `recorder:` integration to MariaDB or Postgres. Add the DB as a sibling container.
-- **Cloud VPS is a bad fit.** HA on AWS/DigitalOcean loses ~80% of its value because there's no LAN to discover. Unless the user explicitly wants a cloud bastion + Tailscale tunnel to a home LAN, redirect them to a home-server or Pi.
-- **HA Core (Python venv) is not recommended by upstream.** If a user asks for it, steer them toward Container.
-- **Nabu Casa is the upstream-blessed remote-access tunnel.** $6.50/mo, funds the project, zero-config remote access + Alexa/Google integration. Mention it when a user asks "how do I access HA from away from home?"
+- **Network mode host is mandatory for Docker.** Without `network_mode: host`, Chromecast, Sonos, Apple TV, and most LAN device discovery won't work.
+- **HAOS vs Container feature gap.** Docker Container mode loses: add-ons, Supervisor, OS-level backups, and one-click updates. For full functionality use HAOS.
+- **Supervised requires strict Debian.** Home Assistant Supervised is only officially supported on Debian 12 (no snap, no non-standard Docker). Drift from this causes "Unsupported" warnings in the UI.
+- **`secrets.yaml` for sensitive values.** Never put API keys or passwords directly in `configuration.yaml`. Use `!secret my_api_key` referencing `secrets.yaml`.
+- **Time zone matters.** Set `TZ` in Docker or `homeassistant: time_zone:` in `configuration.yaml`. Wrong timezone causes automation timing issues.
+- **Python version pinned.** HA Core requires a specific Python version (check release notes). Don't use system Python.
+- **Z-Wave / Zigbee requires USB passthrough.** Pass USB dongles to the container with `devices: [/dev/ttyUSB0:/dev/ttyUSB0]` or use network-attached controllers.
+- **License: Apache 2.0.** Core is fully open source. Nabu Casa cloud remote access is a paid optional service.
 
-## TODO — verify on subsequent deployments
+## Links
 
-- [ ] Test Container install on Hetzner CX22 with Tailscale-only access (cloud-HA "bastion" pattern).
-- [ ] Zigbee USB passthrough via `--device=/dev/serial/by-id/...` — verify stable across reboots.
-- [ ] MariaDB recorder swap for large installs.
-- [ ] Recommended community Helm chart — confirm `pajikos/home-assistant` is current.
-- [ ] Tunnel integration — Tailscale / Nabu Casa / Cloudflare Tunnel comparison in `references/modules/tunnels.md`.
-- [ ] Backup strategy: `/config` snapshots + recorder DB dumps.
+- Upstream: <https://github.com/home-assistant/core>
+- Docs: <https://www.home-assistant.io/docs>
+- Installation guide: <https://www.home-assistant.io/installation/>
+- Docker install: <https://www.home-assistant.io/installation/linux#docker-compose>
+- Integrations: <https://www.home-assistant.io/integrations/>
+- HACS: <https://hacs.xyz>
+- Community forum: <https://community.home-assistant.io>
