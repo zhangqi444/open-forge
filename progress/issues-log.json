@@ -10,6 +10,8 @@
   ,
     { "number": 42, "status": "skipped", "reason": "newsletter-only source (Self-Host Weekly 2026-05-01); 23 candidates logged but do not meet 3+ feedback threshold for Tier 1 promotion per CLAUDE.md graduation criteria; deferred for demand aggregation" },
     { "number": 43, "status": "addressed", "commit": "893af55", "action": "cherry-picked staleness TODOs for 6 recipes (dashy, ddns-updater, defguard, pangolin, technitium, zulip) + tightened bookstack gotcha wording from Self-Host Weekly 2026-05-01. Closes #43." },
-    { "number": 45, "status": "addressed", "commit": "9f1f056", "action": "cherry-picked f8cbe68 onto main: ARCHITECTURE.md (new, ~200 lines), cross-doc refresh (README, AGENTS.md, CLAUDE.md counts 950+ -> 1100+, curated bundles links), plugin.json 0.23.0 -> 0.23.1. Closes #45." }
+    { "number": 45, "status": "addressed", "commit": "9f1f056", "action": "cherry-picked f8cbe68 onto main: ARCHITECTURE.md (new, ~200 lines), cross-doc refresh (README, AGENTS.md, CLAUDE.md counts 950+ -> 1100+, curated bundles links), plugin.json 0.23.0 -> 0.23.1. Closes #45." },
+    { "number": 47, "status": "addressed", "commit": "5e3d2b8", "action": "deleted progress/heartbeat-log.md; updated CLAUDE.md + ARCHITECTURE.md to remove heartbeat-log refs + reflect actual state files; rebuilt dist bundles. Closes #47." },
+    { "number": 50, "status": "partial", "commit": "c6f9521", "action": "pushed CHANGELOG.md (206 lines, v0.1.0-v0.24.0), updated CLAUDE.md publish flow, README Updates section, dist regenerated. Blocked: release.yml needs PAT with workflow scope — maintainer must create .github/workflows/release.yml manually (content logged in issue comment attempt). Closes #50 via commit message." }
   ]
 }
