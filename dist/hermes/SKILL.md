@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. 1523+ verified recipes plus live-derived fallback for the long tail. Agent-mode rules apply (no chat-paste credentials, no group-channel deploys).
+description: Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. 1528+ verified recipes plus live-derived fallback for the long tail. Agent-mode rules apply (no chat-paste credentials, no group-channel deploys).
 ---
 
 # open-forge — self-host any open-source app
