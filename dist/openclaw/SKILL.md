@@ -1,6 +1,6 @@
 ---
 name: open-forge
-description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. 1446+ verified recipes plus live-derived fallback for the long tail."
+description: "Self-host any open-source app on the user's own infrastructure (cloud VM, VPS, Raspberry Pi, localhost, k8s, PaaS). Walks the user through provisioning, DNS, TLS, SMTP, and hardening in phased + resumable workflows. 1450+ verified recipes plus live-derived fallback for the long tail."
 metadata:
   {
     "openclaw":
