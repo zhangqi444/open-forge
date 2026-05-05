@@ -1,40 +1,32 @@
+---
+name: alfio-project
+description: Alf.io recipe for open-forge. Covers Docker Compose and Gradle/Java install as documented at https://github.com/alfio-event/alf.io.
+---
+
 # Alf.io
 
-Open-source event attendance management and ticket reservation system. Built for event organizers who prioritize privacy and fair pricing — supports multi-event management, multiple payment gateways, check-in apps, and waiting lists.
+Free and open source event attendance management and ticket reservation system. Built for event organizers who care about privacy, security, and fair pricing. Upstream: <https://github.com/alfio-event/alf.io>. Official site: <https://alf.io/>. Demo: <https://demo.alf.io/>.
 
-**Official site:** https://alf.io/
+## Compatible install methods
 
----
+| Method | Upstream reference | When to use |
+|---|---|---|
+| Docker Compose | <https://github.com/alfio-event/alf.io/blob/master/docker-compose.yml> | Recommended for most self-hosters |
+| Gradle + Java | <https://github.com/alfio-event/alf.io#run-on-your-machine> | Development or bare-metal installs |
 
-## Compatible Combos
+> ⚠️ The `master` branch may contain unstable code. For production, use the [`2.0-M4-maintenance`](https://github.com/alfio-event/alf.io/tree/2.0-M4-maintenance) branch per upstream recommendation.
 
-| Infra | Runtime | Notes |
-|-------|---------|-------|
-| Any Linux host | Docker Compose | Recommended; official image on Docker Hub |
-| Any Linux host | JAR (Java 17) | Run as a Spring Boot application |
-| Kubernetes | Helm (community) | Community charts available |
-| Cloud VPS | Docker Compose | Standard deployment |
+## Inputs to collect
 
----
+| Phase | Prompt | Format | Notes |
+|---|---|---|---|
+| preflight | "Which port should Alf.io be accessible on?" | Number (default `8080`) | Maps to container port `8080` |
+| db | "PostgreSQL database name?" | String (default `alfio`) | `POSTGRES_ENV_POSTGRES_DB` |
+| db | "PostgreSQL username?" | String (default `alfio`) | `POSTGRES_ENV_POSTGRES_USERNAME` |
+| db | "PostgreSQL password?" | String | `POSTGRES_ENV_POSTGRES_PASSWORD` — use a strong random value in production |
+| db | "PostgreSQL host (if external)?" | Hostname | Leave blank to use the bundled `db` service |
 
-## Inputs to Collect
-
-### Phase 1 — Planning
-- PostgreSQL 10+ instance (required — no SQLite support)
-- Domain name and TLS/reverse-proxy setup
-- Payment gateway credentials (Stripe, PayPal, Mollie, etc.) — optional for free events
-- Email/SMTP config for ticket delivery
-
-### Phase 2 — Deployment
-- `POSTGRES_*` connection environment variables
-- `SPRING_PROFILES_ACTIVE` profile (`dev` for development, `jdbc-session` for stateless sessions)
-- Admin credentials (created on first launch, printed to console)
-
----
-
-## Software-Layer Concerns
-
-### Docker Compose
+## Docker Compose (from upstream)
 
 ```yaml
 version: "3.7"
@@ -46,78 +38,60 @@ services:
       POSTGRES_PORT_5432_TCP_ADDR: db
       POSTGRES_ENV_POSTGRES_DB: alfio
       POSTGRES_ENV_POSTGRES_USERNAME: alfio
-      POSTGRES_ENV_POSTGRES_PASSWORD: alfio
+      POSTGRES_ENV_POSTGRES_PASSWORD: alfio      # change in production
       SPRING_PROFILES_ACTIVE: dev,jdbc-session
     ports:
       - "8080:8080"
-    depends_on:
-      - db
-
   db:
-    image: postgres:15
+    image: postgres:10
     environment:
       POSTGRES_DB: alfio
       POSTGRES_USER: alfio
       POSTGRES_PASSWORD: alfio
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: host
     volumes:
       - data-volume:/var/lib/postgresql/data
-
 volumes:
   data-volume:
 ```
 
-> **Note:** Change `SPRING_PROFILES_ACTIVE` to `prod,jdbc-session` for production. The `dev` profile enables debug logging and relaxed security settings.
+Access admin at `http://localhost:8080/admin` — default credentials printed to console on first start.
 
-### Environment Variables
-| Variable | Purpose |
-|----------|---------|
-| `POSTGRES_PORT_5432_TCP_ADDR` | PostgreSQL hostname |
-| `POSTGRES_PORT_5432_TCP_PORT` | PostgreSQL port |
-| `POSTGRES_ENV_POSTGRES_DB` | Database name |
-| `POSTGRES_ENV_POSTGRES_USERNAME` | DB username |
-| `POSTGRES_ENV_POSTGRES_PASSWORD` | DB password |
-| `SPRING_PROFILES_ACTIVE` | Spring profiles (use `prod,jdbc-session` for production) |
+## Software-layer concerns
 
-### Configuration Paths
-- `custom.jvmargs` — optional extra JVM flags (gitignored; can contain API keys)
-- Admin UI: `http://localhost:8080/admin` — log in with auto-generated credentials on first run
+| Concern | Detail |
+|---|---|
+| Database | PostgreSQL ≥ 10 required. The DB user must **not** be a superuser — row-level security policies won't apply otherwise. |
+| Admin URL | `/admin` — first-run creates an admin account with a printed password. |
+| Spring profiles | `dev,jdbc-session` for Docker. Production should use `prod,jdbc-session`. |
+| Session storage | `jdbc-session` profile stores sessions in PostgreSQL. Required for multi-node deployments. |
+| Port | App listens on `8080` inside the container. |
+| Data volume | PostgreSQL data persisted in `data-volume`. Back up this volume for disaster recovery. |
 
-### Java / JAR Install
+## Upgrade procedure
 
-```bash
-# Requires Java 17
-./gradlew -Pprofile=dev :bootRun
-# Or build a fat JAR:
-./gradlew -Pprofile=prod shadowJar
-java -jar build/libs/alfio-*-all.jar
-```
+Per <https://github.com/alfio-event/alf.io/releases>:
 
----
-
-## Upgrade Procedure
-
-**Docker:** `docker compose pull && docker compose up -d`
-
-Alf.io runs automatic database migrations on startup — no manual migration step needed.
-
-**JAR:** Download new release from [GitHub Releases](https://github.com/alfio-event/alf.io/releases), replace JAR, restart service.
-
----
+1. Pull the new image: `docker compose pull alfio`
+2. Restart: `docker compose up -d alfio`
+3. Alf.io applies database migrations automatically on startup via Flyway.
+4. Verify admin UI is accessible and check logs: `docker compose logs -f alfio`
 
 ## Gotchas
 
-- **Admin password is printed to console on first run** — check `docker compose logs alfio` to find it.
-- **PostgreSQL is mandatory** — no embedded or SQLite database support.
-- **Row-level security:** The DB user must NOT be a PostgreSQL SUPERUSER, or RLS policy checks are skipped.
-- **Java 17 required** — won't start on older JDKs.
-- **`2.0-M4-maintenance` branch** is the stable production-ready branch; `master` may contain unstable code.
-- **Check-in app:** Alf.io has companion mobile apps for event check-in — see the official site for links.
-- **Port 8080** is the default; put Nginx or Caddy in front for TLS termination.
+- **PostgreSQL superuser**: do NOT use a superuser account — row-level security (RLS) checks are skipped for superusers, creating a security gap.
+- **Production profile**: the upstream docker-compose uses `dev,jdbc-session`. Switch to `prod,jdbc-session` for production to disable dev-only endpoints.
+- **Unstable master branch**: upstream explicitly warns that `master` may be unstable. Pin to `alfio/alf.io:2.0-M4` or the `2.0-M4-maintenance` branch tag for stable deploys.
+- **SMTP required**: Alf.io sends confirmation emails for ticket purchases. Configure SMTP via environment variables or `config.properties`.
+- **Reverse proxy**: run behind Nginx or Caddy for TLS termination — Alf.io does not handle TLS natively.
 
----
+## Links
 
-## References
-- GitHub: https://github.com/alfio-event/alf.io
-- Official site: https://alf.io/
-- Docker Hub: https://hub.docker.com/r/alfio/alf.io
-- Releases: https://github.com/alfio-event/alf.io/releases
+- Upstream README: <https://github.com/alfio-event/alf.io>
+- Docker Hub: <https://hub.docker.com/r/alfio/alf.io/tags>
+- Demo: <https://demo.alf.io/>
+- Stable branch: <https://github.com/alfio-event/alf.io/tree/2.0-M4-maintenance>
