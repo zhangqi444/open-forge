@@ -1,141 +1,126 @@
 ---
 name: onyx-community-edition
-description: Onyx (Community Edition) recipe for open-forge. AI-powered search and answer engine with RAG, 50+ connectors, and multi-LLM support. Covers Docker Compose single-server deploy. Based on upstream docs at https://docs.onyx.app/ and the onyx-dot-app/onyx repo.
+description: Onyx (Community Edition) recipe for open-forge. Enterprise AI assistant platform with RAG, document connectors, and team knowledge search. Self-hosted via Docker Compose. Based on upstream README and docs at https://docs.onyx.app/ and the onyx-dot-app/onyx repo.
 ---
 
 # Onyx Community Edition
 
-AI-powered enterprise search, Q&A, and chat platform with Retrieval-Augmented Generation (RAG). Connects to 50+ data sources (Slack, Confluence, Google Drive, Jira, GitHub, etc.), indexes documents, and answers questions with citations. Self-hosted MIT-licensed Community Edition. Upstream: <https://github.com/onyx-dot-app/onyx>. Docs: <https://docs.onyx.app/>.
+Open-source enterprise AI assistant and knowledge search platform. Connects to 25+ data sources (Slack, Confluence, Google Drive, GitHub, Jira, Notion, web crawl, local files, and more), indexes them with Vespa, and provides a chat interface with RAG (Retrieval-Augmented Generation) over your organization's documents. License: MIT. Upstream: <https://github.com/onyx-dot-app/onyx>. Docs: <https://docs.onyx.app/>.
 
-Onyx is a multi-container application: API server, background workers, Vespa vector/search index, PostgreSQL, Redis, Nginx frontend, and optional model inference servers. The Docker Compose stack is the standard self-hosted path.
+The stack is multi-container Docker Compose: API server, background worker, Next.js web UI, inference model server (embedding/reranking), Vespa (vector + keyword search), OpenSearch (optional hybrid search), PostgreSQL, Redis, MinIO (S3-compatible file store), NGINX (reverse proxy).
 
 ## Compatible install methods
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker Compose (single server) | https://docs.onyx.app/deployment/docker_compose | Yes | Standard self-hosted deploy. All services on one host. |
-| Kubernetes / Helm | https://docs.onyx.app/deployment/kubernetes | Yes | Multi-node, higher availability. Uses community Helm chart. |
-| AWS / GCP / Azure cloud deploy | https://docs.onyx.app/deployment | Yes | Cloud-specific guides in upstream docs. |
+| Docker Compose (self-hosted) | https://docs.onyx.app/introduction | Yes | Primary self-hosted method. Linux or macOS with Docker. |
+| Kubernetes / Helm | https://github.com/onyx-dot-app/onyx/tree/main/deployment/helm | Yes | Production-grade k8s deploy (Helm chart in repo). |
+| Onyx Cloud (SaaS) | https://app.onyx.app | Yes | Managed hosted version — out of scope here. |
 
 ## Inputs to collect
 
 | Phase | Prompt | Format | Applicability |
 |---|---|---|---|
-| preflight | Which install method? | Choose from table above | Drives which section loads |
-| auth | Which authentication method? (basic / Google OAuth / OIDC / SAML / disabled) | Choose | All deploys — see AUTH_TYPE env var |
-| llm | Which LLM provider? (OpenAI / Anthropic / Azure OpenAI / self-hosted via Ollama / other) | Choose | All deploys |
-| llm | API key for chosen LLM provider | Free-text (sensitive) | All cloud LLM providers |
-| storage | Host path for persistent data volumes (e.g. /opt/onyx) | Free-text | Docker Compose |
-| domain | Domain or IP where Onyx will be accessed | Free-text | All deploys — for DOMAIN env var and TLS setup |
-| tls | Enable HTTPS via Let's Encrypt? | Yes/No | All public-facing deploys |
+| preflight | Which install method? | Docker Compose / Kubernetes | Drives which section loads |
+| auth | Authentication method? (basic / google_oauth / oidc / saml) | Choose | All installs |
+| llm | Which LLM backend? (OpenAI / Azure OpenAI / Anthropic / local Ollama / other) | Choose | All installs |
+| llm | API key for chosen LLM provider? | Free-text (sensitive) | Cloud LLM providers |
+| domain | Public domain for Onyx (for HTTPS)? | Free-text | All public-facing installs |
+| connectors | Which data sources to connect? (Slack / Confluence / Google Drive / etc.) | Multi-select | Post-install config via admin UI |
 
 ## Software-layer concerns
 
 | Concern | Detail |
 |---|---|
-| Services | api_server (port 8080), background (worker), web_server (nginx, port 80/443), vespa (vector index, port 19071/8081), relational_db (postgres, port 5432), cache (redis), inference_model_server (embedding), indexing_model_server |
-| Default ports | 80 (HTTP via nginx), 443 (HTTPS), 8080 (API, internal) |
-| Config file | deployment/docker_compose/.env — copy from env.template |
-| Auth | AUTH_TYPE env var: disabled / basic / google_oauth / oidc / saml. Default is basic (email+password). |
-| LLM | GEN_AI_MODEL_PROVIDER + GEN_AI_API_KEY env vars. Supports OpenAI, Anthropic, Azure OpenAI, Bedrock, Ollama, and others. |
-| Embedding | Default uses a local model server (no API key needed). Can switch to OpenAI/Cohere embeddings via env vars. |
-| Data volumes | Vespa index, Postgres DB, and file store (MinIO or local) hold all indexed documents and chat history. Back these up. |
-| File storage | FILE_STORE_BACKEND: local (default) or s3/minio for production. |
-| Connectors | Configured in the Onyx web UI after deploy. 50+ connectors including Slack, Confluence, Google Drive, Jira, GitHub, Notion, Salesforce, and more. |
-| Min resources | 4 vCPUs, 16 GB RAM recommended. Vespa alone requires ~4 GB RAM. |
+| Services | api_server, background (worker), web_server (Next.js), inference_model_server, indexing_model_server, relational_db (PostgreSQL), index (Vespa), opensearch (optional), nginx, cache (Redis), minio, code-interpreter |
+| Default port | 80 (NGINX reverse proxy). In dev mode: api_server on 8080 exposed directly. |
+| Config | .env file in deployment/docker_compose/. Copy env.template to .env and fill in. |
+| LLM config | Set GEN_AI_MODEL_PROVIDER, GEN_AI_API_KEY, GEN_AI_MODEL_VERSION in .env |
+| Auth | AUTH_TYPE in .env: basic (default), google_oauth, oidc, saml |
+| File storage | MinIO (S3-compatible) by default. Can switch to AWS S3 or GCS via FILE_STORE_BACKEND. |
+| Embeddings | Default embedding model downloaded to Docker volume (model_cache_huggingface). ~2-4GB on first start. |
+| Search index | Vespa (primary). OpenSearch optional for hybrid search — disable by removing opensearch service. |
+| Persistent data | Docker volumes: db_volume (Postgres), vespa_volume, minio_data, model caches, logs. |
+| Hardware | Minimum: 4 CPU, 8GB RAM. Recommended for production: 8+ CPU, 16GB+ RAM. GPU optional for local inference. |
+| First-run time | Expect 5-10 min on first docker compose up — embedding models download on startup. |
 
-## Method — Docker Compose (single server)
+## Method — Docker Compose
 
-Source: https://docs.onyx.app/deployment/docker_compose
+Source: https://docs.onyx.app/introduction and https://github.com/onyx-dot-app/onyx/tree/main/deployment/docker_compose
 
-    # 1. Clone the repo
     git clone https://github.com/onyx-dot-app/onyx.git
     cd onyx/deployment/docker_compose
 
-    # 2. Copy env template
+    # Copy and edit env file
     cp env.template .env
+    # Edit .env — minimum required:
+    #   GEN_AI_MODEL_PROVIDER=openai (or anthropic, azure, etc.)
+    #   GEN_AI_API_KEY=<your key>
+    #   GEN_AI_MODEL_VERSION=gpt-4o (or chosen model)
+    #   AUTH_TYPE=basic (or google_oauth/oidc/saml)
+    #   SECRET=<random string for session signing, e.g. openssl rand -hex 32>
+    #   WEB_DOMAIN=https://yourdomain.com (if exposing publicly)
 
-    # 3. Edit .env — minimum required changes:
-    #   - Set AUTH_TYPE (disabled for quick test, basic for production)
-    #   - Set GEN_AI_MODEL_PROVIDER and GEN_AI_API_KEY
-    #   - Set SECRET_JWT_KEY to a random string: openssl rand -hex 32
-    #   - Set DOMAIN if using custom domain + TLS
+    # Start stack (pulls images on first run, ~5-10 min for model downloads)
+    docker compose -f docker-compose.yml -p onyx up -d
 
-    # 4. Pull images and start
-    docker compose -f docker-compose.yml up -d --wait
+    # Wait for api_server health
+    docker compose -p onyx ps
+    docker compose -p onyx logs api_server -f
 
-    # Check status
-    docker compose ps
+Access UI at http://localhost:80 (or your domain if NGINX is configured with TLS).
 
-On startup, wait ~2-3 minutes for Vespa to initialize. Access at http://<host>:80.
+### Development mode (ports exposed)
 
-### Key .env settings
+    docker compose -f docker-compose.yml -f docker-compose.dev.yml -p onyx up -d
 
-    # Authentication
-    AUTH_TYPE=basic                          # disabled / basic / google_oauth / oidc / saml
+This exposes individual service ports (api_server: 8080, PostgreSQL: 5432, Vespa: 8081/19071, MinIO: 9001) for debugging.
 
-    # LLM (example: OpenAI)
-    GEN_AI_MODEL_PROVIDER=openai
-    GEN_AI_API_KEY=sk-...
-    GEN_AI_MODEL_VERSION=gpt-4o
+### Production hardening (from upstream checklist)
 
-    # Security — generate fresh values
-    SECRET_JWT_KEY=$(openssl rand -hex 32)
-    ENCRYPTION_KEY_SECRET=$(openssl rand -hex 32)
+1. Remove port exposures except NGINX (80/443) — comment out ports for api_server, relational_db, index, cache, minio.
+2. TLS: uncomment the certbot service in docker-compose.yml, add SSL volumes to nginx, change nginx command to app.conf.template.prod.
+3. Set DOMAIN env var in .env and configure DNS.
+4. Use explicit environment variables instead of env_file for secrets in production.
+5. Choose and configure an auth method (google_oauth or oidc recommended over basic for teams).
 
-    # Domain
-    DOMAIN=onyx.example.com
+## Key admin UI tasks (post-install)
 
-    # File storage (local is default; use s3 for production scale)
-    FILE_STORE_BACKEND=local
-
-### Enable HTTPS
-
-In .env, set DOMAIN to your domain. Then bring up with the prod docker-compose override which uses certbot:
-
-    docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-
-The prod compose file adds a certbot service and configures Nginx for SSL. DNS A-record must point to the server before running.
-
-### Expose ports for debugging (dev mode)
-
-    docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --wait
-
-This exposes api_server (8080), postgres (5432), vespa (8081/19071) for direct access during development.
-
-## First-time setup
-
-1. Visit http://<host>/ after containers are healthy.
-2. Create the first admin account (first signup becomes admin — secure this window).
-3. Go to Admin -> Connectors to add data sources.
-4. Configure the LLM under Admin -> LLM Providers if not set via env vars.
-5. Add users/groups under Admin -> Users.
+1. Navigate to http://localhost/admin (or your domain /admin).
+2. Create admin account on first login.
+3. Add connectors: Admin -> Add Connector -> choose source (Slack, Confluence, Google Drive, etc.).
+4. Configure LLM in Admin -> LLM if not set in .env.
+5. Create user groups and assign document sets for access control.
+6. Add personas (AI assistants with different system prompts and document set scope).
 
 ## Upgrade procedure
 
     cd onyx/deployment/docker_compose
     git pull
-    docker compose pull
-    docker compose up -d --wait
+    docker compose -f docker-compose.yml -p onyx pull
+    docker compose -f docker-compose.yml -p onyx up -d
 
-Alembic DB migrations run automatically on api_server startup. Review the changelog at https://github.com/onyx-dot-app/onyx/releases for breaking changes before major version upgrades.
+Alembic DB migrations run automatically on api_server startup. Check logs for migration errors:
+
+    docker compose -p onyx logs api_server | grep -i "alembic\|migration\|error"
 
 ## Gotchas
 
-- Min resources are real: Vespa requires ~4 GB RAM on its own. On a 4 GB host, other services will OOM. Use at least 8-16 GB RAM in production.
-- First signup = admin: the first user to register on a fresh deploy gets admin rights. On a public-facing instance, complete setup immediately or set AUTH_TYPE=disabled temporarily and configure OIDC/SAML before opening to users.
-- .env passwords are write-once: POSTGRES_PASSWORD and similar DB credentials cannot be changed after first init without a full volume reset + restore. Treat them as immutable.
-- SECRET_JWT_KEY must be set: the default template value is a placeholder. Use openssl rand -hex 32 to generate a real key. A known/default JWT key allows token forgery.
-- Connector credentials are stored encrypted: the ENCRYPTION_KEY_SECRET env var must be consistent across restarts. If it changes, all stored connector credentials become unreadable.
-- Vespa startup is slow: it takes 1-3 minutes for Vespa to reach healthy state. docker compose ps will show unhealthy briefly — wait for --wait to complete or check docker compose logs vespa.
-- Self-hosted embedding: the default embedding model server downloads a model on first start (~500MB). Ensure internet access or pre-pull the image.
-- MIT license (Community Edition): the enterprise features (SAML, advanced permissions, etc.) are in the Enterprise Edition. CE is MIT-licensed and fully functional for most self-hosted use cases.
+- First-run model download: embedding models (several GB) download to Docker volumes on first startup. The stack will appear unhealthy until downloads complete. Watch with: docker compose -p onyx logs inference_model_server -f
+- Memory requirements: Vespa alone needs ~3GB. Running the full stack under 8GB RAM causes OOM kills. Monitor with: docker stats
+- AUTH_TYPE=basic is insecure for multi-user: basic auth uses a shared login. For teams, configure google_oauth, oidc, or saml.
+- SECRET must be set: without SECRET in .env, session tokens are not properly signed. Generate with: openssl rand -hex 32
+- Vespa volume is large: the search index grows with document count. Plan storage accordingly — Vespa volume can reach tens of GB for large corpora.
+- MinIO default credentials: minioadmin/minioadmin. Change S3_AWS_ACCESS_KEY_ID and S3_AWS_SECRET_ACCESS_KEY in .env before exposing publicly.
+- OpenSearch is optional: if you don't need hybrid search, you can remove the opensearch service from docker-compose.yml to save ~2GB RAM.
+- Connector credentials are encrypted: connector OAuth tokens and API keys are stored encrypted in PostgreSQL. Don't lose your encryption key (derived from SECRET).
+- Onyx vs Danswer: Onyx is the renamed successor to Danswer (the project rebranded in 2024). Same codebase/team.
 
 ## Links
 
 - Docs: https://docs.onyx.app/
-- Docker Compose deploy: https://docs.onyx.app/deployment/docker_compose
-- Connectors: https://docs.onyx.app/connectors/overview
-- LLM configuration: https://docs.onyx.app/configuration_guide
+- Quick start: https://docs.onyx.app/introduction
+- Connector docs: https://docs.onyx.app/connectors/overview
 - GitHub: https://github.com/onyx-dot-app/onyx
+- Helm chart: https://github.com/onyx-dot-app/onyx/tree/main/deployment/helm
 - Releases: https://github.com/onyx-dot-app/onyx/releases
