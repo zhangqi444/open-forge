@@ -1,156 +1,101 @@
 ---
 name: stirling-pdf-project
-description: Stirling PDF recipe for open-forge. Open-core PDF editing platform — 50+ PDF tools (edit, merge, split, sign, redact, convert, OCR, compress) runnable as a single-container Spring Boot app. Covers the minimal `docker run`, full compose with OCR (tessdata) volume, key SYSTEM_ / SECURITY_ / UI_ env vars, and the typical 4 GB memory limit.
+description: Stirling PDF recipe for open-forge. Open-source PDF editing platform with 50+ tools. Covers Docker and Docker Compose deployment, configuration volumes, lite vs fat image variants, and upgrade procedure. Derived from https://github.com/Stirling-Tools/Stirling-PDF and https://docs.stirlingpdf.com.
 ---
 
-# Stirling PDF (self-hosted PDF platform)
+# Stirling PDF
 
-Open-core (MIT for core; some Enterprise features paid) self-hosted PDF platform. 50+ tools — edit, merge, split, sign, redact, OCR, compress, convert. Web UI + REST API. Runs as a single Java/Spring Boot container.
+Open-source PDF editing platform with 50+ tools. Upstream: <https://github.com/Stirling-Tools/Stirling-PDF>. Documentation: <https://docs.stirlingpdf.com>. License: MIT.
 
-**Upstream README:** https://github.com/Stirling-Tools/Stirling-PDF/blob/main/README.md
-**Docs:** https://docs.stirlingpdf.com
-**Example compose:** https://github.com/Stirling-Tools/Stirling-PDF/blob/master/exampleYmlFiles/docker-compose-latest.yml
-**Docker Hub / GHCR:** `docker.stirlingpdf.com/stirlingtools/stirling-pdf` (primary) or `ghcr.io/stirling-tools/stirling-pdf`
+Stirling PDF supports editing, merging, splitting, signing, redacting, converting (including OCR), compressing, and automating PDF workflows. Available as a desktop app, browser UI, and self-hosted server with REST API. Interface available in 40+ languages.
 
-## Compatible combos
+## Compatible install methods
 
-| Infra | Runtime | Status | Notes |
+| Method | Upstream URL | First-party? | When to use |
 |---|---|---|---|
-| localhost | Docker | ✅ default | One container, one port |
-| localhost | Docker Compose | ✅ | Recommended — adds persistent config/OCR volumes |
-| byo-vps | Docker | ✅ | 4 GB RAM recommended (OCR + LibreOffice conversions are heavy) |
-| aws/ec2 | Docker | ✅ | `t3.medium` minimum |
-| hetzner/cloud-cx | Docker | ✅ | CX22 works; CX32 for heavy OCR |
-| kubernetes | community Helm | ⚠️ | Upstream docs mention k8s but no first-party chart in the main repo. Community charts exist. |
-| desktop client | native | ✅ | Upstream ships a desktop build too (mentioned in README as "Desktop client"); not a typical self-host path |
+| Docker (single container) | <https://docs.stirlingpdf.com> | yes | Quickest deploy. |
+| Docker Compose | <https://docs.stirlingpdf.com> | yes | Recommended for persistent config/data. |
+| Desktop app | <https://docs.stirlingpdf.com> | yes | Windows/Mac/Linux local app. |
+| Kubernetes (Helm) | <https://docs.stirlingpdf.com> | yes | Large-scale deployments. |
+| Bare metal | <https://docs.stirlingpdf.com> | yes | Manual server setup without Docker. |
 
 ## Inputs to collect
 
 | Phase | Prompt | Format | Notes |
 |---|---|---|---|
-| dns | "Domain to host Stirling PDF on?" | Free-text | e.g. `pdf.example.com` |
-| tls | "Email for Let's Encrypt notices?" | Free-text | |
-| auth | "Enable login (multi-user)?" | AskUserQuestion: Yes / No | `SECURITY_ENABLELOGIN` — no by default; enable if exposing publicly |
-| i18n | "UI language(s)?" | Free-text | `LANGS` env var, comma-separated (40+ supported) |
-| storage | "Persist OCR data / config / logs?" | AskUserQuestion: Yes (bind mount) / No (ephemeral) | Volumes for `/usr/share/tessdata`, `/configs`, `/logs` |
-| limits | "Max upload file size (MB)?" | Free-text (default 100) | `SYSTEM_MAXFILESIZE` |
+| preflight | "What port should Stirling PDF run on?" | Integer default 8080 | Maps to 8080:8080 in compose. |
+| preflight | "Use lite image or fat image?" | lite / fat | fat includes extra fonts and tools for highest quality conversions and full format support. |
+| config | "Where to store config files on the host?" | Path default ./stirling-data | Mounted to /configs inside container. |
 
-## Install methods
+## Docker install
 
-### 1. Docker (quick-start, from README)
+Upstream: <https://docs.stirlingpdf.com>
 
 ```bash
-docker run -d --name stirling-pdf \
+docker run -d \
   -p 8080:8080 \
-  --restart unless-stopped \
-  docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
+  -v ./stirling-data:/configs \
+  stirlingtools/stirling-pdf:latest
 ```
 
-Dashboard: `http://localhost:8080`.
+Access at http://localhost:8080.
 
-### 2. Docker Compose (recommended — from upstream example)
+For the fat image (extra fonts, full format support):
 
-Source: https://github.com/Stirling-Tools/Stirling-PDF/blob/master/exampleYmlFiles/docker-compose-latest.yml
+```bash
+docker run -d \
+  -p 8080:8080 \
+  -v ./stirling-data:/configs \
+  stirlingtools/stirling-pdf:latest-fat
+```
 
-Stripped-down production-oriented variant (the upstream file targets their demo site with `-test:latest` tag + some demo-specific env vars):
+## Docker Compose install
 
 ```yaml
 services:
   stirling-pdf:
-    image: docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-    container_name: Stirling-PDF
-    deploy:
-      resources:
-        limits:
-          memory: 4G
+    image: stirlingtools/stirling-pdf:latest
     ports:
       - "8080:8080"
     volumes:
-      - ./stirling/data:/usr/share/tessdata:rw
-      - ./stirling/config:/configs:rw
-      - ./stirling/logs:/logs:rw
-    environment:
-      SECURITY_ENABLELOGIN: "false"
-      LANGS: "en_US"
-      SYSTEM_DEFAULTLOCALE: en-US
-      UI_APPNAME: Stirling-PDF
-      SYSTEM_MAXFILESIZE: "100"
-      METRICS_ENABLED: "true"
+      - ./stirling-data:/configs
+      # Optional: custom fonts
+      # - ./custom-fonts:/customFiles/fonts
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/api/v1/info/status | grep -q 'UP'"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 ```
 
-### 3. Other install options
-
-Per https://docs.stirlingpdf.com/#documentation-guide — upstream documents a desktop client (same codebase, packaged as a local app) and Kubernetes deployment. Details live at docs.stirlingpdf.com (not mirrored in the repo).
+Deploy:
+```bash
+docker compose up -d
+```
 
 ## Software-layer concerns
 
-### Image options
+### Image variants
 
-| Image | Purpose |
-|---|---|
-| `docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest` | Primary (Stirling's own registry) |
-| `docker.stirlingpdf.com/stirlingtools/stirling-pdf:X.Y.Z` | Pinned |
-| `ghcr.io/stirling-tools/stirling-pdf` | GHCR mirror |
-| `ghcr.io/stirling-tools/stirling-pdf-test` | Upstream demo builds (don't use in prod) |
-
-There are historically also `-ultra-lite`, `-fat` variants that differ in which Java runtime + OCR languages are bundled. Check docs.stirlingpdf.com for the current inventory.
-
-### Key env vars
-
-From the compose example. Full reference at https://docs.stirlingpdf.com.
-
-| Var | Default | Purpose |
+| Tag | Contents | Use when |
 |---|---|---|
-| `SECURITY_ENABLELOGIN` | `false` | Multi-user auth. **Must be `true` if publicly exposed.** |
-| `SYSTEM_MAXFILESIZE` | `100` (MB) | Upload size cap |
-| `SYSTEM_DEFAULTLOCALE` | `en-US` | Default UI locale |
-| `LANGS` | varies | Comma-separated list of UI languages to load |
-| `UI_APPNAME` | `Stirling PDF` | Display name |
-| `UI_HOMEDESCRIPTION` | | Shown on the home page |
-| `UI_APPNAMENAVBAR` | | Navbar title |
-| `METRICS_ENABLED` | | Exposes Prometheus metrics at `/actuator/prometheus` |
-| `SYSTEM_GOOGLEVISIBILITY` | `false` | `true` = allow search engines to index; `false` = `X-Robots-Tag: none` |
-| `SHOW_SURVEY` | | Suppress the feedback survey popup |
-
-### Volumes
-
-| Host path | Container path | Purpose |
-|---|---|---|
-| `./stirling/data/` | `/usr/share/tessdata` | OCR language data (downloaded on first OCR if not provided; volumes allow persistence between rebuilds) |
-| `./stirling/config/` | `/configs` | Runtime config files, user accounts (if login enabled) |
-| `./stirling/logs/` | `/logs` | Application logs |
+| latest | Standard image | Most users |
+| latest-fat | Extra fonts + Calibre, LibreOffice tools | Need highest quality conversions, full format support |
 
 ### Ports
 
-- `8080/tcp` — web UI + REST API
+| Port | Use |
+|---|---|
+| 8080 | Web UI and REST API (HTTP) |
 
-### Reverse proxy
+### Data directories (inside container)
 
-```caddy
-pdf.example.com {
-  reverse_proxy 127.0.0.1:8080
+| Path | Contents |
+|---|---|
+| /configs | Application configuration, settings, login config |
+| /customFiles/fonts | Optional custom font files |
+| /customFiles/signatures | Optional custom signature files |
+| /logs | Application logs |
 
-  request_body {
-    max_size 100MB
-  }
-}
-```
+### Configuration
 
-Raise Nginx / Caddy / CloudFront body-size to match `SYSTEM_MAXFILESIZE`, otherwise large uploads fail with 413 before reaching Stirling.
-
-### Memory
-
-The compose file declares `memory: 4G`. OCR + LibreOffice conversions (DOCX→PDF, ODT→PDF, etc.) are memory-hungry — 4 GB is a reasonable floor. On 2 GB hosts, most tools work but OCR on large scans can OOM.
-
-### API
-
-REST endpoints at `/api/v1/*`. Scalar docs at https://registry.scalar.com/@stirlingpdf/apis/stirling-pdf-processing-api/. Useful for "batch-OCR every PDF in a directory" automation via a script.
+Settings are persisted in /configs. The web UI Settings panel controls most options. For server-level config (authentication, API keys, security), edit /configs/settings.yml.
 
 ## Upgrade procedure
 
@@ -159,35 +104,18 @@ docker compose pull
 docker compose up -d
 ```
 
-Or manual:
-
-```bash
-docker pull docker.stirlingpdf.com/stirlingtools/stirling-pdf:latest
-docker stop stirling-pdf && docker rm stirling-pdf
-docker run ... (re-run install)
-```
-
-Stateless app — upgrades are trivial as long as the `/configs` volume survives. The OCR `tessdata` volume persists language data across upgrades.
-
-Release notes: https://github.com/Stirling-Tools/Stirling-PDF/releases
+Configuration in /configs is preserved across upgrades.
 
 ## Gotchas
 
-- **`SECURITY_ENABLELOGIN=false` means everyone who reaches the URL can use it.** If you reverse-proxy onto the public internet without login, anyone can burn your CPU doing OCR on random PDFs. Either enable login or gate at the proxy layer (Cloudflare Access / basic auth / Tailscale).
-- **First OCR run downloads language packs.** Expect the first OCR operation to take a bit — tessdata is pulled if not already mounted. Mounting a pre-warmed volume avoids this.
-- **Memory spike on large PDFs.** Redacting or OCR'ing a 500-page PDF can push Java past 2 GB. Raise `JAVA_OPTS` heap and the container memory limit for heavy workloads.
-- **LibreOffice conversions sandboxed differently.** Some DOCX → PDF paths shell out to a LibreOffice subprocess; it's sandboxed but occasionally crashes on malformed input. Errors surface as 500 responses.
-- **`-test:latest` is the demo tag.** The upstream compose file defaults to it because that compose file is literally what powers `demo.stirlingpdf.com`. For prod, use `-latest` or `-X.Y.Z` on the `stirlingtools/stirling-pdf` tag, not `-test:*`.
-- **Prometheus endpoint only if `METRICS_ENABLED=true`.** Path is `/actuator/prometheus`. Gate it with reverse-proxy access control if exposed.
-- **URL-based features can leak path metadata.** Tools like "merge by URL" will fetch user-supplied URLs from inside the container. If Stirling can reach private LAN services, SSRF risk. Consider egress firewalls or disabling URL-import features.
-- **Primary image registry is `docker.stirlingpdf.com`.** If your CI mirrors Docker Hub, add this registry; or pull from `ghcr.io` instead.
-- **Not OSS-pure.** Some features are paywalled (SSO, auditing, enterprise settings). Core PDF tools are MIT. Check `LICENSE` at the version you pull.
-- **`SYSTEM_GOOGLEVISIBILITY=true` will index your instance.** If you're the only user, leave it `false`.
+- **lite vs fat**: The standard (lite) image omits some conversion tools for a smaller image size. If conversions fail or quality is poor, switch to latest-fat.
+- **No login by default**: Authentication is disabled by default. For internet-facing deployments, enable login in Settings -> Security, or use a reverse proxy with auth.
+- **REST API**: All 50+ tools have REST API endpoints. See <https://docs.stirlingpdf.com> for the API reference (also accessible at /swagger-ui on a running instance).
+- **OCR**: OCR functionality requires Tesseract, which is included in the container. Language packs beyond English can be configured in settings.
+- **Memory**: Complex PDF operations (large files, OCR, conversion) are memory-intensive. Allocate 2+ GB RAM for the container.
 
-## TODO — verify on subsequent deployments
+## Links
 
-- [ ] Confirm which image variant is current "lite" vs "full" at next install (upstream re-orgs image names occasionally).
-- [ ] Test OCR with pre-warmed tessdata volume for languages beyond English.
-- [ ] Exercise the REST API for batch workflows; confirm auth-token shape when login is enabled.
-- [ ] Community Helm chart — identify most-active.
-- [ ] Enterprise / paid features gate — clarify boundary at first-deploy time.
+- GitHub: <https://github.com/Stirling-Tools/Stirling-PDF>
+- Documentation: <https://docs.stirlingpdf.com>
+- Docker Hub: <https://hub.docker.com/r/stirlingtools/stirling-pdf>
