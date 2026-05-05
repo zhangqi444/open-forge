@@ -1,38 +1,40 @@
 ---
 name: focalboard-project
-description: Focalboard recipe for open-forge. Open-source self-hosted project management tool (alternative to Trello/Notion/Asana). Covers Docker-based Personal Server deployment, configuration, and upgrade. Derived from https://github.com/mattermost/focalboard and https://www.focalboard.com/download/personal-edition/ubuntu/. Note: standalone Focalboard is no longer actively maintained; the Mattermost Boards plugin is the supported continuation.
+description: Focalboard recipe for open-forge. Open-source project management tool (Trello/Notion/Asana alternative) built on Go. Covers Personal Server (Docker/binary) and Mattermost plugin options. Derived from https://github.com/mattermost/focalboard and https://www.focalboard.com/docs/personal-edition/ubuntu/.
 ---
 
 # Focalboard
 
-Open-source self-hosted project management tool. Upstream: <https://github.com/mattermost/focalboard>. Documentation: <https://www.focalboard.com/>. License: MIT / Apache 2.0 / AGPL 3.0.
+Open-source, self-hosted project management tool. Upstream: <https://github.com/mattermost/focalboard>. License: MIT/Apache-2.0.
 
-Focalboard is an alternative to Trello, Notion, and Asana. It helps define, organize, track and manage work across individuals and teams using boards, cards, and views.
+Focalboard is an alternative to Trello, Notion, and Asana. It comes in two variants: a standalone Personal Server for teams, and a Mattermost plugin (boards) for Mattermost workspaces.
 
-**Important**: The standalone Focalboard repository is no longer actively maintained. The continuation is the [Mattermost Boards plugin](https://github.com/mattermost/mattermost-plugin-boards). For new deployments, consider deploying full Mattermost instead. Existing standalone deployments continue to work.
+**Note**: As of 2024, the standalone focalboard repository is no longer actively maintained by Mattermost. The actively developed version is the Mattermost Boards plugin at <https://github.com/mattermost/mattermost-plugin-boards>. The standalone server still works for existing installs.
 
 ## Compatible install methods
 
 | Method | Upstream URL | First-party? | When to use |
 |---|---|---|---|
-| Docker (Personal Server) | <https://hub.docker.com/r/mattermost/focalboard> | yes | Self-hosted multi-user server. SQLite or PostgreSQL backend. |
-| Ubuntu binary | <https://www.focalboard.com/download/personal-edition/ubuntu/> | yes | Bare-metal Ubuntu install. |
-| Desktop apps | <https://www.focalboard.com/download/personal-edition/desktop/> | yes | Single-user local app. No server needed. |
-| Mattermost Boards plugin | <https://github.com/mattermost/mattermost-plugin-boards> | yes | Recommended for new deployments — integrated into Mattermost. |
+| Personal Server (binary, Ubuntu) | <https://www.focalboard.com/download/personal-edition/ubuntu/> | yes | Standalone multi-user server. Runs on Ubuntu directly. |
+| Docker | <https://hub.docker.com/r/mattermost/focalboard> | yes | Containerized standalone server. |
+| Mattermost plugin (Boards) | <https://github.com/mattermost/mattermost-plugin-boards> | yes | Integrated with Mattermost. Actively maintained. Recommended for new installs. |
+| Desktop app | <https://www.focalboard.com/download/personal-edition/desktop/> | yes | Single-user local app (no server). Windows/Mac/Linux. |
 
 ## Inputs to collect
 
 | Phase | Prompt | Format | Notes |
 |---|---|---|---|
-| preflight | "What port should Focalboard run on?" | Integer default 8000 | Web UI and API port. |
-| config | "Use PostgreSQL or SQLite?" | PostgreSQL / SQLite | SQLite is fine for personal/small team; PostgreSQL for larger teams. |
-| config | "PostgreSQL connection string?" | postgres://user:pass@host/db | Only if PostgreSQL selected. |
+| preflight | "Standalone server or Mattermost plugin?" | Standalone / Mattermost plugin | Drives method selection. |
+| preflight | "What port should Focalboard listen on?" | Integer default 8000 | Configured in config.json. |
+| config | "Database backend?" | options: SQLite3 / PostgreSQL | SQLite3 is default (single-file). PostgreSQL for multi-user production. |
+| config | "PostgreSQL connection string?" | e.g. user=focalboard dbname=focalboard sslmode=disable | Only if PostgreSQL selected. |
+| config | "Enable telemetry?" | Yes / No default Yes | Set telemetry in config.json. |
 
 ## Docker install
 
 Upstream: <https://hub.docker.com/r/mattermost/focalboard>
 
-### docker-compose.yml (with SQLite, simplest)
+### docker-compose.yml (SQLite3, single-node)
 
 ```yaml
 services:
@@ -41,45 +43,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - focalboard-data:/data
+      - focalboard-data:/opt/focalboard/data
     restart: unless-stopped
 
 volumes:
-  focalboard-data:
-```
-
-### docker-compose.yml (with PostgreSQL)
-
-```yaml
-services:
-  db:
-    image: postgres:15
-    environment:
-      POSTGRES_USER: focalboard
-      POSTGRES_PASSWORD: focalboard
-      POSTGRES_DB: focalboard
-    volumes:
-      - focalboard-db:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "focalboard"]
-      interval: 10s
-      retries: 5
-  focalboard:
-    image: mattermost/focalboard:latest
-    ports:
-      - "8000:8000"
-    environment:
-      - FOCALBOARD_DB_TYPE=postgres
-      - FOCALBOARD_DB_CONFIG=postgres://focalboard:focalboard@db/focalboard?sslmode=disable
-    volumes:
-      - focalboard-data:/data
-    depends_on:
-      db:
-        condition: service_healthy
-    restart: unless-stopped
-
-volumes:
-  focalboard-db:
   focalboard-data:
 ```
 
@@ -91,30 +58,67 @@ docker compose up -d
 
 Access at http://localhost:8000. Register the first user account.
 
+### Custom config.json
+
+The default config is embedded in the image. To override, mount a custom config.json:
+
+```json
+{
+  "serverRoot": "http://localhost:8000",
+  "port": 8000,
+  "dbtype": "sqlite3",
+  "dbconfig": "./focalboard.db?_busy_timeout=5000",
+  "useSSL": false,
+  "webpath": "./webapp/pack",
+  "filesdriver": "local",
+  "filespath": "./files",
+  "telemetry": true,
+  "enableLocalMode": true,
+  "localModeSocketLocation": "/var/tmp/focalboard_local.socket"
+}
+```
+
+For PostgreSQL, change:
+```json
+  "dbtype": "postgres",
+  "dbconfig": "dbname=focalboard sslmode=disable host=db user=focalboard password=secret",
+```
+
+## Personal Server (Ubuntu binary)
+
+Upstream: <https://www.focalboard.com/download/personal-edition/ubuntu/>
+
+```bash
+# Download latest release from https://github.com/mattermost/focalboard/releases
+wget https://github.com/mattermost/focalboard/releases/download/v7.11.4/focalboard-server-linux-amd64.tar.gz
+tar -xvzf focalboard-server-linux-amd64.tar.gz
+# Move to /opt and run
+sudo mv focalboard /opt/focalboard
+# Create systemd service and run
+```
+
+See upstream Ubuntu guide for full systemd service setup.
+
 ## Software-layer concerns
 
 ### Ports
 
 | Port | Use |
 |---|---|
-| 8000 | Web UI and REST API |
+| 8000 | Web UI and API (HTTP) |
+| 9092 | Prometheus metrics (if enabled) |
 
 ### Data directories (inside container)
 
 | Path | Contents |
 |---|---|
-| /data | SQLite database and file uploads (SQLite mode) |
+| /opt/focalboard/data | SQLite database and uploaded files |
 
-### config.json
+### Database
 
-Focalboard uses a config.json for advanced configuration. The Docker image supports environment variables for the most common settings; full config reference at <https://www.focalboard.com/guide/admin/>.
-
-### Environment variables (Docker)
-
-| Variable | Description |
-|---|---|
-| FOCALBOARD_DB_TYPE | sqlite or postgres |
-| FOCALBOARD_DB_CONFIG | Database connection string |
+- Default: SQLite3 at ./focalboard.db — fine for single-user or small teams
+- PostgreSQL: set dbtype to postgres and dbconfig to a valid connection string
+- No automatic migrations between major versions — check release notes before upgrading
 
 ## Upgrade procedure
 
@@ -123,20 +127,19 @@ docker compose pull
 docker compose up -d
 ```
 
-Database migrations run automatically on startup.
+For binary installs, download the new release tarball and replace the binary. Back up the data directory first.
 
 ## Gotchas
 
-- **Maintenance status**: Standalone Focalboard is not actively maintained. It still works but will not receive new features. For new production deployments, use Mattermost with the Boards plugin.
-- **Port 8000 default**: The server listens on port 8000 by default. Configured in config.json (serverRoot, port fields).
-- **SQLite for small teams**: SQLite works well for personal or small team use. Switch to PostgreSQL for teams with many concurrent users.
-- **No built-in TLS**: Focalboard does not handle TLS itself. Use a reverse proxy (NGINX, Caddy) for HTTPS in production.
-- **File uploads**: Uploaded files are stored relative to the data directory. Back up /data before upgrades.
+- **Maintenance status**: The standalone focalboard repository is not actively maintained. For new production deployments, the Mattermost Boards plugin is preferred.
+- **Single-user mode**: By default, the server allows anyone to register. Consider firewalling port 8000 and using a reverse proxy with auth if exposing publicly.
+- **SQLite concurrency**: SQLite works fine for small teams but degrades under concurrent write load. Switch to PostgreSQL for teams of 10+.
+- **Reverse proxy**: For public exposure, place behind NGINX/Caddy for TLS. Set serverRoot in config.json to the public HTTPS URL.
+- **File uploads**: Uploaded files are stored alongside the database in the data directory. Include them in backups.
 
 ## Links
 
-- GitHub: <https://github.com/mattermost/focalboard>
-- Mattermost Boards plugin (maintained): <https://github.com/mattermost/mattermost-plugin-boards>
+- GitHub (standalone): <https://github.com/mattermost/focalboard>
+- GitHub (Mattermost plugin - actively maintained): <https://github.com/mattermost/mattermost-plugin-boards>
 - Docker Hub: <https://hub.docker.com/r/mattermost/focalboard>
-- Admin guide: <https://www.focalboard.com/guide/admin/>
-- Ubuntu install guide: <https://www.focalboard.com/download/personal-edition/ubuntu/>
+- Personal Server Ubuntu install: <https://www.focalboard.com/download/personal-edition/ubuntu/>
