@@ -1,178 +1,207 @@
 ---
 name: transfer-sh
-description: transfer.sh recipe for open-forge. Easy file sharing from the command line — self-hosted Go server. Supports local filesystem, S3, and Google Drive backends. Upstream: https://github.com/dutchcoders/transfer.sh
+description: transfer.sh recipe for open-forge. Covers Docker (local storage, S3, and other providers). transfer.sh is a lightweight Go service for easy command-line file sharing — upload with curl, share a URL, files expire automatically.
 ---
 
 # transfer.sh
 
-Easy and fast file sharing from the command line. A Go server you self-host that lets you upload files with `curl` and share download links instantly.
+Easy and fast file sharing from the command line. Upload a file with curl, get back a URL, share it — files expire after a configurable duration. Supports local filesystem, Amazon S3, Google Drive, and Storj as storage backends. Upstream: <https://github.com/dutchcoders/transfer.sh>. Docker Hub: <https://hub.docker.com/r/dutchcoders/transfer.sh>.
 
-15,834 stars · MIT
-
-Upstream: https://github.com/dutchcoders/transfer.sh
-Docker Hub: https://hub.docker.com/r/dutchcoders/transfer.sh
-
-## What it is
-
-transfer.sh provides a simple HTTP file sharing service:
-
-- Upload files with `curl --upload-file` and get a shareable URL back
-- Optional client-side encryption before upload (via GPG)
-- Configurable storage backends: local disk, Amazon S3, Google Drive, Storj
-- Configurable max file size and TTL (auto-delete)
-- Optional virus scanning (ClamAV integration)
-- HTTPS support (built-in Let's Encrypt or bring-your-own TLS)
-- Optional upload token authentication to restrict who can upload
-- Tor `.onion` address support
-
-The maintainers' position is that you should host your own instance rather than rely on any public installations.
+**License:** MIT · **Language:** Go · **Default port:** 8080 · **Stars:** ~15,800
 
 ## Compatible install methods
 
-| Method | Upstream | When to use |
-|---|---|---|
-| Docker (recommended) | https://github.com/dutchcoders/transfer.sh#docker | Easiest — single container |
-| Binary | https://github.com/dutchcoders/transfer.sh/releases | Bare metal / VM without Docker |
-| Build from source | https://github.com/dutchcoders/transfer.sh#building | Development |
+| Method | Upstream | First-party? | When to use |
+|---|---|---|---|
+| Docker (local storage) | <https://github.com/dutchcoders/transfer.sh#docker> | ✅ | Simplest self-hosted setup — files stored on local disk. |
+| Docker (S3 backend) | <https://github.com/dutchcoders/transfer.sh#docker> | ✅ | Production with S3-compatible storage (AWS S3, MinIO, etc.). |
+| Binary | <https://github.com/dutchcoders/transfer.sh/releases> | ✅ | Bare-metal installs without Docker. |
 
 ## Inputs to collect
 
-| Phase | Prompt | Applicability |
-|---|---|---|
-| domain | "What domain will transfer.sh be served on?" | All |
-| storage | "Storage backend: local, S3, or Google Drive?" | All |
-| s3 | "S3 bucket, region, access key, secret key?" | If using S3 |
-| max_size | "Max upload file size in bytes? (default: 10 GB)" | All |
-| purge_days | "How many days before uploaded files are deleted?" | All |
-| token | "Restrict uploads with a token? (yes/no)" | Optional |
+| Phase | Prompt | Format | Applicability |
+|---|---|---|---|
+| storage | "Storage backend: local disk, S3/S3-compatible, Google Drive, or Storj?" | AskUserQuestion | Determines provider flags. |
+| s3_creds | "AWS access key, secret key, bucket name, and region?" | Free-text (sensitive) | S3 provider. |
+| s3_endpoint | "Custom S3 endpoint URL? (for MinIO, Cloudflare R2, etc.)" | Free-text | S3-compatible non-AWS. |
+| basedir | "Local directory for file storage? (e.g. /data/transfers)" | Free-text | Local provider. |
+| domain | "Public URL for transfer.sh? (used in returned share URLs)" | Free-text | All methods. |
+| max_size | "Maximum upload size in bytes? (default: unlimited)" | Free-text | Optional. |
+| purge | "File retention / expiry in days? (default: no auto-purge)" | Free-text | Optional. |
 
-## Docker install (recommended)
+## Install — Docker (local storage)
 
-### Local filesystem storage
+```bash
+# Basic — stores files in /tmp inside container (ephemeral!)
+docker run -d \
+  --publish 8080:8080 \
+  --name transfer-sh \
+  dutchcoders/transfer.sh:latest-noroot \
+  --provider local \
+  --basedir /tmp/
 
-    mkdir -p /opt/transfersh/data
+# Persistent — mount a host directory
+docker run -d \
+  --publish 8080:8080 \
+  --name transfer-sh \
+  -v /opt/transfer-data:/data \
+  dutchcoders/transfer.sh:latest-noroot \
+  --provider local \
+  --basedir /data
+```
 
-    docker run -d \
-      --name transfer \
-      --restart always \
-      -p 8080:8080 \
-      -v /opt/transfersh/data:/tmp \
-      dutchcoders/transfer.sh:latest \
-        --provider local \
-        --basedir /tmp/ \
-        --listener :8080 \
-        --temp-path /tmp/ \
-        --log-file /tmp/transfer.log
-
-### S3 storage backend
-
-    docker run -d \
-      --name transfer \
-      --restart always \
-      -p 8080:8080 \
-      -e AWS_ACCESS_KEY=<key> \
-      -e AWS_SECRET_KEY=<secret> \
-      dutchcoders/transfer.sh:latest \
-        --provider s3 \
-        --aws-access-key $AWS_ACCESS_KEY \
-        --aws-secret-key $AWS_SECRET_KEY \
-        --bucket your-bucket-name \
-        --s3-region us-east-1 \
-        --listener :8080
+> **Use `-noroot` tag:** The `-noroot` image runs as UID/GID 5000 — recommended to reduce attack surface.
 
 ### Docker Compose (local storage)
 
-    services:
-      transfer:
-        image: dutchcoders/transfer.sh:latest
-        restart: always
-        ports:
-          - "8080:8080"
-        volumes:
-          - ./data:/tmp
-        command: >
-          --provider local
-          --basedir /tmp/
-          --listener :8080
-          --temp-path /tmp/
-          --max-upload-size 10737418240
-          --purge-days 7
+```yaml
+services:
+  transfer-sh:
+    image: dutchcoders/transfer.sh:latest-noroot
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - transfer-data:/data
+    command: --provider local --basedir /data
+    # Optional: set public URL for returned links
+    # command: --provider local --basedir /data --listener 0.0.0.0:8080 --url https://transfer.example.com
+
+volumes:
+  transfer-data:
+```
+
+## Install — Docker (S3 backend)
+
+```bash
+docker run -d \
+  --publish 8080:8080 \
+  --name transfer-sh \
+  dutchcoders/transfer.sh:latest-noroot \
+  --provider s3 \
+  --aws-access-key YOUR_ACCESS_KEY \
+  --aws-secret-key YOUR_SECRET_KEY \
+  --bucket your-bucket-name \
+  --s3-region us-east-1
+```
+
+For **MinIO or other S3-compatible storage**, add `--s3-endpoint`:
+
+```bash
+docker run -d \
+  --publish 8080:8080 \
+  --name transfer-sh \
+  dutchcoders/transfer.sh:latest-noroot \
+  --provider s3 \
+  --aws-access-key minio-access-key \
+  --aws-secret-key minio-secret-key \
+  --bucket transfers \
+  --s3-endpoint https://minio.example.com \
+  --s3-region us-east-1
+```
+
+## Usage (client side)
+
+```bash
+# Upload a file
+curl --upload-file ./myfile.tar.gz https://transfer.example.com/myfile.tar.gz
+# Returns: https://transfer.example.com/abc123/myfile.tar.gz
+
+# Upload from stdin
+cat /var/log/syslog | curl --upload-file - https://transfer.example.com/syslog.txt
+
+# Encrypt before upload
+gpg --armor --symmetric --output - /tmp/secret.txt | curl --upload-file - https://transfer.example.com/secret.txt.gpg
+
+# Download
+curl https://transfer.example.com/abc123/myfile.tar.gz -o myfile.tar.gz
+
+# Delete (using X-Url-Delete response header)
+curl -X DELETE <url-from-X-Url-Delete-header>
+
+# Upload with max downloads and expiry
+curl --upload-file ./file.txt https://transfer.example.com/file.txt \
+  -H "Max-Downloads: 5" \
+  -H "Max-Days: 3"
+```
+
+### Shell alias (convenience)
+
+Add to `~/.bashrc` or `~/.zshrc`:
+
+```bash
+transfer() {
+    curl --upload-file "$1" https://transfer.example.com/$(basename "$1")
+}
+```
+
+## nginx reverse proxy
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name transfer.example.com;
+
+    client_max_body_size 0;  # allow unlimited uploads (or set a limit)
+
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_request_buffering off;  # stream uploads without buffering
+    }
+}
+```
+
+## Software-layer concerns
+
+| Concern | Detail |
+|---|---|
+| Storage backends | local, s3 (AWS + compatible), gdrive (Google Drive), storj (Storj.io). Set with `--provider`. |
+| Public URL | Set `--url` (or `APP_URL` env) to your public HTTPS domain — otherwise returned links contain `localhost`. |
+| File expiry | `--purge-days` removes files older than N days. Not set by default — local storage grows unboundedly without it. |
+| Max upload size | Controlled by nginx `client_max_body_size` (default 1MB — set to 0 for unlimited) AND `--max-upload-size` flag. |
+| Max downloads | Clients can set `Max-Downloads` header per upload. Server-side default configurable with `--max-downloads`. |
+| Token auth | Add `--token` to require a pre-shared password for uploads (no auth by default). |
+| HTTP/S3 presigned URLs | S3 backend returns direct S3 presigned URLs for downloads (bypasses the server). Requires public or presigned-accessible bucket. |
+| TLS | No built-in TLS. Reverse proxy with nginx/Caddy. |
 
 ## Key CLI flags
 
-| Flag | Default | Description |
-|---|---|---|
-| `--provider` | required | Storage backend: `local`, `s3`, `gdrive`, `storj` |
-| `--listener` | `:8080` | Listen address and port |
-| `--basedir` | — | Base directory for local provider |
-| `--temp-path` | `/tmp` | Temp upload directory |
-| `--max-upload-size` | unlimited | Max file size in bytes |
-| `--purge-days` | 0 (no purge) | Auto-delete files after N days |
-| `--upload-token` | — | Require this token header for uploads |
-| `--lets-encrypt-hosts` | — | Comma-separated domains for auto TLS |
-| `--tls-listener` | — | `host:port` for TLS (with cert/key flags) |
-| `--clamav-host` | — | ClamAV host for virus scanning |
+| Flag | Env var | Default | Description |
+|---|---|---|---|
+| `--provider` | — | — | Storage provider: `local`, `s3`, `gdrive`, `storj` |
+| `--basedir` | — | — | Base directory for local storage |
+| `--listener` | — | `:8080` | Listen address |
+| `--url` | `URL` | — | Public URL returned in upload responses |
+| `--max-upload-size` | — | unlimited | Max upload size in bytes |
+| `--purge-days` | — | 0 (no purge) | Auto-delete files older than N days |
+| `--token` | — | — | Require auth token for uploads |
+| `--temp-path` | — | `/tmp` | Temp directory for in-progress uploads |
 
-Full flag reference: https://github.com/dutchcoders/transfer.sh#usage
+## Upgrade procedure
 
-## HTTPS
+```bash
+docker pull dutchcoders/transfer.sh:latest-noroot
+docker compose up -d
+```
 
-### Option 1 — Built-in Let's Encrypt
-
-    docker run -d \
-      --name transfer \
-      -p 80:80 -p 443:443 \
-      -v /opt/transfersh/data:/tmp \
-      dutchcoders/transfer.sh:latest \
-        --provider local \
-        --basedir /tmp/ \
-        --temp-path /tmp/ \
-        --lets-encrypt-hosts transfer.example.com \
-        --listener :80 \
-        --tls-listener :443
-
-### Option 2 — Reverse proxy (Caddy)
-
-    transfer.example.com {
-        reverse_proxy localhost:8080
-    }
-
-## Using your instance
-
-    # Upload a file
-    curl --upload-file ./report.pdf https://transfer.example.com/report.pdf
-
-    # Upload and get URL
-    curl --upload-file ./file.txt https://transfer.example.com/file.txt
-    # Returns: https://transfer.example.com/aBcDeF/file.txt
-
-    # Encrypt before uploading (GPG)
-    gpg --armor --symmetric --output - secret.txt | \
-      curl --upload-file - https://transfer.example.com/secret.txt.gpg
-
-    # Download
-    curl https://transfer.example.com/aBcDeF/file.txt -o file.txt
-
-    # Shell alias for convenience
-    transfer() { curl --upload-file "$1" "https://transfer.example.com/$(basename $1)"; }
-
-## Upgrade
-
-    docker pull dutchcoders/transfer.sh:latest
-    docker stop transfer && docker rm transfer
-    # Re-run the docker run command from your notes
+transfer.sh is stateless for local storage — the `/data` volume persists files independently of the container.
 
 ## Gotchas
 
-- **No built-in auth for downloads** — Anyone with the link can download. Upload tokens only restrict who can upload, not who can download. Use for internal/trusted use.
-- **Local storage data loss** — Files stored locally are lost if the container's volume is not mounted. Always mount `/tmp` to a host directory.
-- **`purge-days 0` means no deletion** — Files accumulate indefinitely without a purge policy. Set `--purge-days` appropriate to your storage capacity.
-- **Temp path must be writable** — The `--temp-path` dir is used during upload. Ensure it exists and is writable by the container.
-- **No web UI** — transfer.sh is a headless API server. There is no admin dashboard. Interaction is via `curl` or compatible clients.
-- **Public installations** — Do not rely on any third-party public transfer.sh instances for sensitive data. Self-host.
+- **`--basedir /tmp` is ephemeral:** The default Docker examples use `/tmp` inside the container. Files are lost on container restart. Mount a host volume or named volume to `/data` and use `--basedir /data` for persistence.
+- **nginx `client_max_body_size`:** nginx's default 1MB body limit will block large uploads. Set `client_max_body_size 0;` (unlimited) or a specific size limit in your nginx config.
+- **`proxy_request_buffering off`:** Without this, nginx buffers the entire upload to disk before proxying — doubles disk usage for large files. Always set it for upload proxies.
+- **`--url` must be set:** Without it, the returned download URL is `http://localhost:8080/...` which is useless from the client's perspective.
+- **No auth by default:** Anyone who can reach your transfer.sh instance can upload files. Add `--token` or put it behind nginx basic auth / IP allowlist if running publicly.
+- **Avoid `latest` tag with Watchtower:** The `latest` tag can reference dev/nightly builds. Pin to a specific version tag (e.g. `v1.6.1-noroot`) for stable deploys.
+- **Low maintenance recently:** Last release was December 2023. The project is stable but not actively developed. Check for security advisories periodically.
 
-## Links
+## Upstream links
 
-- GitHub: https://github.com/dutchcoders/transfer.sh
-- Docker Hub: https://hub.docker.com/r/dutchcoders/transfer.sh
-- Usage reference: https://github.com/dutchcoders/transfer.sh#usage
+- GitHub: <https://github.com/dutchcoders/transfer.sh>
+- Docker Hub: <https://hub.docker.com/r/dutchcoders/transfer.sh>
+- Releases: <https://github.com/dutchcoders/transfer.sh/releases>
