@@ -1,175 +1,126 @@
 ---
 name: baikal
-description: Baïkal recipe for open-forge. Lightweight CalDAV and CardDAV server built on PHP and sabre/dav. Source: https://github.com/sabre-io/Baikal. Website: https://sabre.io/baikal/.
+description: Baïkal recipe for open-forge. Covers self-hosting the lightweight CalDAV and CardDAV server. Upstream: https://github.com/sabre-io/Baikal
 ---
 
 # Baïkal
 
-Lightweight CalDAV (calendars) and CardDAV (contacts) server built on PHP and the [sabre/dav](https://sabre.io/dav/) library. Ideal for syncing calendars and address books across devices without a full Nextcloud install. Supports MySQL, PostgreSQL, and SQLite backends. Simple web admin panel for user and calendar management. License: GPL-3.0. Upstream: <https://github.com/sabre-io/Baikal>. Website: <https://sabre.io/baikal/>.
+Lightweight CalDAV and CardDAV server built on the sabre/dav library. Sync calendars and contacts between devices via standard protocols (CalDAV/CardDAV). Supports clients including Thunderbird (with Lightning), Apple Calendar, iOS, Android (via DAVx⁵), and any standard CalDAV/CardDAV client. Upstream: <https://github.com/sabre-io/Baikal>. Docs: <https://sabre.io/baikal/>.
 
-## Compatible combos
+**License:** GPL-3.0
 
-| Infra | Runtime | Notes |
-|---|---|---|
-| VPS / bare metal | PHP + Apache/Nginx | Most common; minimal requirements |
-| VPS / bare metal | Docker Compose | Containerized with NGINX and PHP-FPM |
-| Home server / Pi | PHP + Apache/Nginx | Runs well on low-powered hardware |
-| Shared hosting | Apache + PHP | Works on PHP-capable shared hosts |
+## Compatible install methods
+
+| Method | Upstream | First-party? | When to use |
+|---|---|---|---|
+| Download release ZIP + PHP web server | https://sabre.io/baikal/install/ | ✅ | Recommended; pre-built, no Composer required |
+| Docker (ckulka/baikal) | https://hub.docker.com/r/ckulka/baikal | Community | Containerised deployment |
+| Build from source (git + Composer) | https://github.com/sabre-io/Baikal | ✅ | Development or latest code |
 
 ## Inputs to collect
 
-| Phase | Prompt | Notes |
-|---|---|---|
-| domain | "Domain/subdomain for Baïkal?" | e.g. dav.example.com |
-| port | "Port to expose on (if Docker)?" | Default: 80 |
-| db_type | "Database type? (sqlite / mysql / pgsql)" | SQLite is simplest for personal use |
-| db_host | "Database host (if mysql/pgsql)?" | |
-| db_name | "Database name?" | e.g. baikal |
-| db_user | "Database user?" | |
-| db_pass | "Database password?" | |
-| admin_pass | "Admin password for web panel?" | Set during first-run wizard |
-| timezone | "Timezone?" | e.g. Europe/Paris, America/New_York |
+| Phase | Prompt | Format | Applicability |
+|---|---|---|---|
+| app | "Public URL?" | e.g. https://dav.example.com | All |
+| database | "Use SQLite or MySQL?" | SQLite (default) or MySQL/MariaDB | All |
+| database | "MySQL DB name/user/password?" | Free-text | MySQL only |
+| admin | "Admin password?" | Free-text | Required |
+
+## Install (release ZIP — recommended)
+
+```bash
+# Download latest release from https://github.com/sabre-io/Baikal/releases
+wget https://github.com/sabre-io/Baikal/releases/download/<version>/baikal-<version>.zip
+unzip baikal-<version>.zip -d /var/www/html/baikal
+
+# Set permissions (Specific/data must be writable)
+chown -R www-data:www-data /var/www/html/baikal
+chmod -R 755 /var/www/html/baikal
+chmod -R 777 /var/www/html/baikal/Specific
+
+# Configure nginx or Apache to serve /var/www/html/baikal/html/
+# See: https://sabre.io/baikal/install/#nginx
+```
+
+Then visit `http://yourhost/baikal/html/` to run the web-based setup wizard (database type, admin password).
+
+## Docker (community image)
+
+```yaml
+services:
+  baikal:
+    image: ckulka/baikal:nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./config:/var/www/baikal/config
+      - ./Specific:/var/www/baikal/Specific
+```
+
+```bash
+docker compose up -d
+# Visit http://localhost/baikal/html/ for initial setup
+```
 
 ## Software-layer concerns
 
-- **PHP 8.1+** required; required extensions: `curl`, `dom`, `intl`, `mbstring`, `pdo`, `pdo_sqlite` (or pdo_mysql/pdo_pgsql)
-- Web server must pass all requests to `html/index.php` (see Nginx config below)
-- First-run setup wizard at `https://your-domain/admin/` — must be completed before syncing clients
-- Config files live in `config/` directory — mount this as a Docker volume for persistence
-- SQLite database stored in `Specific/` directory — also needs to be a persistent volume
-- Admin panel: `https://your-domain/admin/`
-- CalDAV endpoint: `https://your-domain/cal.php/`
-- CardDAV endpoint: `https://your-domain/card.php/`
-- Principal URL (for auto-discovery): `https://your-domain/`
-
-### Docker Compose
-
-```yaml
-services:
-  baikal:
-    image: ckulka/baikal:nginx
-    container_name: baikal
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - baikal-config:/var/www/baikal/config
-      - baikal-specific:/var/www/baikal/Specific
-
-volumes:
-  baikal-config:
-  baikal-specific:
-```
-
-### Docker Compose (with MySQL)
-
-```yaml
-services:
-  baikal:
-    image: ckulka/baikal:nginx
-    container_name: baikal
-    restart: unless-stopped
-    ports:
-      - "80:80"
-    volumes:
-      - baikal-config:/var/www/baikal/config
-      - baikal-specific:/var/www/baikal/Specific
-    depends_on:
-      - db
-
-  db:
-    image: mysql:8.0
-    container_name: baikal-db
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: baikal
-      MYSQL_USER: baikal
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: rootsecret
-    volumes:
-      - baikal-db:/var/lib/mysql
-
-volumes:
-  baikal-config:
-  baikal-specific:
-  baikal-db:
-```
-
-### Bare-metal install (Debian/Ubuntu)
-
-```bash
-# Download the release package from GitHub
-wget https://github.com/sabre-io/Baikal/releases/latest/download/baikal.zip
-unzip baikal.zip -d /var/www/baikal
-chown -R www-data:www-data /var/www/baikal
-# Set up web server (see Nginx config below)
-# Visit https://your-domain/admin/ to complete setup
-```
-
-### Nginx server block
+### nginx config (key excerpt)
 
 ```nginx
 server {
-    listen 443 ssl;
+    listen 80;
     server_name dav.example.com;
-
-    ssl_certificate /etc/letsencrypt/live/dav.example.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/dav.example.com/privkey.pem;
-
-    root /var/www/baikal/html;
+    root /var/www/html/baikal/html;
     index index.php;
 
-    # Redirect to HTTPS
-    rewrite ^/.well-known/caldav$ /dav.php redirect;
-    rewrite ^/.well-known/carddav$ /dav.php redirect;
+    rewrite ^/.well-known/caldav /dav.php redirect;
+    rewrite ^/.well-known/carddav /dav.php redirect;
 
     location ~ \.php$ {
         fastcgi_pass unix:/run/php/php8.1-fpm.sock;
-        fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    }
-
-    # Block access to config and Specific dirs
-    location ~ /(config|Specific)/ {
-        deny all;
-        return 404;
     }
 }
 ```
 
-### Client configuration
+The `.well-known` rewrites are required for CalDAV/CardDAV autodiscovery.
 
-| Client | CalDAV URL | CardDAV URL |
-|---|---|---|
-| Thunderbird / Davx5 | `https://dav.example.com/cal.php/` | `https://dav.example.com/card.php/` |
-| Apple Calendar/Contacts | `https://dav.example.com/` (auto-discovery) | same |
-| Outlook (DAVMail or CalDAV-Sync) | `https://dav.example.com/cal.php/principals/<user>/` | — |
+### Key directories
+
+| Directory | Purpose |
+|---|---|
+| `Specific/` | SQLite database and config files; must be writable |
+| `Specific/db/` | SQLite database file(s) |
+| `config/` | Optional extra config (MySQL settings) |
+
+### PHP requirements
+
+PHP 7.3+ with extensions: pdo, pdo_sqlite (or pdo_mysql), curl, mbstring, xml
 
 ## Upgrade procedure
 
-1. **Docker**: `docker compose pull && docker compose up -d` (config/data volumes are preserved)
-2. **Bare metal**:
-   - Download new release zip
-   - Replace all files **except** `config/` and `Specific/` directories
-   - Visit admin panel — Baïkal runs any needed database migrations automatically
-3. Full upgrade guide: https://sabre.io/baikal/upgrade/
+```bash
+# Official: https://sabre.io/baikal/upgrade/
+# 1. Back up Specific/ directory (contains database)
+# 2. Download new release ZIP
+# 3. Extract over existing directory (preserve Specific/)
+# 4. Visit http://yourhost/baikal/html/ — upgrade wizard runs automatically if needed
+```
 
 ## Gotchas
 
-- **Admin panel exposed**: The `/admin/` path is publicly accessible by default. Protect it with IP allowlisting or HTTP basic auth in your web server if the server is internet-facing.
-- **`.well-known` redirects**: Apple devices use `.well-known/caldav` and `.well-known/carddav` for auto-discovery. Configure the rewrites in Nginx/Apache or iOS/macOS clients will fail to discover the server.
-- **SQLite concurrent writes**: SQLite handles concurrent reads well but struggles under heavy concurrent writes. For multi-user deployments with many simultaneous syncs, use MySQL or PostgreSQL.
-- **PHP timezone**: Set `date.timezone` in `php.ini` to your local timezone. Mismatched timezones between PHP and the database cause recurring events to shift.
-- **Protect config/ and Specific/ directories**: These directories contain your database file (if using SQLite) and config with admin credentials. Ensure the web server denies direct access (the Nginx config above does this).
-- **No user self-service**: Baïkal has no user registration or self-service portal. All user accounts must be created by an admin via the web panel.
+- **`Specific/` is your database.** Back it up before upgrading. All user data (calendars, contacts) lives here (SQLite) or in the MySQL DB.
+- **`.well-known` rewrites are required.** Without them, iOS/macOS/Android clients using autodiscovery won't find the server.
+- **No built-in TLS.** Deploy behind a reverse proxy (nginx/Caddy) with HTTPS. CalDAV/CardDAV clients typically require HTTPS in modern versions.
+- **SQLite vs MySQL.** SQLite is fine for personal use and small teams. Use MySQL/MariaDB for larger deployments or when you need concurrent writes.
+- **Principal URL format.** When configuring clients manually, use the principal URL: `https://dav.example.com/baikal/dav.php/principals/username/`.
 
-## Links
+## Upstream docs
 
-- Upstream repo: https://github.com/sabre-io/Baikal
-- Website: https://sabre.io/baikal/
-- Installation guide: https://sabre.io/baikal/install/
+- Install guide: https://sabre.io/baikal/install/
 - Upgrade guide: https://sabre.io/baikal/upgrade/
-- sabre/dav documentation: https://sabre.io/dav/
-- German installation guide: https://github.com/JsBergbau/BaikalAnleitung
-- Release downloads: https://github.com/sabre-io/Baikal/releases
+- Client setup (DAVx⁵/Thunderbird/iOS): https://sabre.io/baikal/
+- GitHub README: https://github.com/sabre-io/Baikal
+- Releases: https://github.com/sabre-io/Baikal/releases

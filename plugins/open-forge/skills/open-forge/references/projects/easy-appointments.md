@@ -1,126 +1,129 @@
 ---
 name: easy-appointments
-description: Easy!Appointments recipe for open-forge. Open-source web appointment scheduling app. Self-hosted via Docker Compose or LAMP/LEMP. Source: https://github.com/alextselegidis/easyappointments. Docs: https://easyappointments.org/docs.html.
+description: Easy!Appointments recipe for open-forge. Covers self-hosting the open-source web appointment scheduling application. Upstream: https://github.com/alextselegidis/easyappointments
 ---
 
 # Easy!Appointments
 
-Open-source web application for managing customer appointments. Customers self-book via an embeddable booking page; staff manage services, providers, and working hours in an admin panel. Supports Google Calendar sync. Written in PHP (CodeIgniter), backed by MySQL. Upstream: <https://github.com/alextselegidis/easyappointments>. Docs: <https://easyappointments.org/docs.html>.
+Highly customizable open-source appointment scheduling web app. Customers book appointments via a polished web interface; admins manage services, providers, working plans, and booking rules. Includes Google Calendar sync, email notifications, and a REST API. Upstream: <https://github.com/alextselegidis/easyappointments>. Site: <https://easyappointments.org>.
 
-## Compatible combos
+**License:** GPL-3.0
 
-| Infra | Runtime | Notes |
-|---|---|---|
-| VPS / bare metal | Docker Compose + MySQL | Upstream provides docker-compose.yml for dev; adapt for production |
-| VPS / bare metal | Apache/NGINX + PHP 8.1+ + MySQL | Traditional LAMP/LEMP |
-| Shared hosting | PHP + MySQL | Runs on most shared hosts with PHP 8.1+ |
+## Compatible install methods
+
+| Method | Upstream | First-party? | When to use |
+|---|---|---|---|
+| Docker Compose (nginx + php-fpm + MySQL) | https://github.com/alextselegidis/easyappointments/blob/develop/docker-compose.yml | ✅ | Recommended for containerised deployments |
+| Traditional PHP web server (LAMP/LEMP) | https://easyappointments.org/docs.html#1.4.0/installation | ✅ | Existing PHP stack; shared hosting or VPS |
 
 ## Inputs to collect
 
-| Phase | Prompt | Notes |
-|---|---|---|
-| preflight | "Docker or LAMP?" | Drives install path |
-| db | "MySQL database name, user, password?" | Dedicated DB user |
-| admin | "Admin display name, email, password?" | First admin account |
-| google | "Enable Google Calendar sync?" | Requires Google OAuth API credentials (optional) |
-| domain | "Public domain?" | Used for the booking page URL and HTTPS |
+| Phase | Prompt | Format | Applicability |
+|---|---|---|---|
+| database | "DB name/user/password?" | Free-text | All |
+| app | "Public URL?" | e.g. https://book.example.com | All |
+| app | "App timezone?" | TZ string | All |
+| google | "Google Calendar sync needed?" | Yes/No | Optional — requires Google OAuth credentials |
+| email | "SMTP settings?" | host/port/user/pass | Optional; for email notifications |
 
-## Software-layer concerns
-
-- Config: config.php (or .env for Docker builds) sets DB credentials, app URL, debug mode
-- Default port: 80
-- Data dirs: storage/ (logs, cache); uploads/ if file attachments are used
-- PHP requirements: PHP 8.1+; extensions: curl, gd, intl, mbstring, mysql, openssl, xml, zip
-- Google Calendar sync: optional; requires creating a Google Cloud OAuth 2.0 credential and configuring client ID/secret in admin settings
-- Embedding: booking page can be embedded in an external website via `<iframe>` or via the provided JS widget
-
-### Docker Compose (production-ready)
+## Docker Compose
 
 ```yaml
 services:
   php-fpm:
-    image: easyappointments/easyappointments:latest
+    build: docker/php-fpm
     working_dir: /var/www/html
     volumes:
-      - ea-storage:/var/www/html/storage
-    environment:
-      DB_HOST: mysql
-      DB_NAME: easyappointments
-      DB_USERNAME: easyappointments
-      DB_PASSWORD: <db-password>
-      APP_URL: https://your-domain.com
-      DEBUG_MODE: false
-    depends_on:
-      - mysql
-    restart: unless-stopped
+      - '.:/var/www/html'
+      - './docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini'
 
   nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-      - "443:443"
+    image: nginx:1.23.3-alpine
+    working_dir: /var/www/html
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - php-fpm
-    restart: unless-stopped
+      - '.:/var/www/html'
+      - './docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf'
+    ports:
+      - '80:80'
 
   mysql:
     image: mysql:8.0
-    environment:
-      MYSQL_DATABASE: easyappointments
-      MYSQL_USER: easyappointments
-      MYSQL_PASSWORD: <db-password>
-      MYSQL_ROOT_PASSWORD: <root-password>
     volumes:
-      - mysql-data:/var/lib/mysql
-    restart: unless-stopped
-
-volumes:
-  ea-storage:
-  mysql-data:
+      - './docker/mysql:/var/lib/mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=easyappointments
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - '3306:3306'
 ```
 
-> The upstream repo's docker-compose.yml is development-oriented (includes phpMyAdmin + Mailpit). Use a minimal production compose like above or follow the LAMP install for production.
+```bash
+git clone https://github.com/alextselegidis/easyappointments.git
+cd easyappointments
+npm install && composer install
+docker compose up -d
+```
 
-### LAMP quick-install
+## Traditional PHP install
 
 ```bash
-# Download release zip
-curl -L https://github.com/alextselegidis/easyappointments/releases/latest/download/easyappointments.zip -o ea.zip
-unzip ea.zip -d /var/www/html/appointments
+# Download from https://github.com/alextselegidis/easyappointments/releases
+unzip easyappointments-<version>.zip -d /var/www/html/appointments
 
 # Copy and edit config
 cp /var/www/html/appointments/config-sample.php /var/www/html/appointments/config.php
-# Edit config.php: set DB credentials, BASE_URL, DEBUG_MODE = FALSE
+# Edit config.php: DB credentials, base URL, timezone, Google OAuth, SMTP
 
 # Set permissions
 chown -R www-data:www-data /var/www/html/appointments
 ```
 
-Browse to your URL to complete setup. Admin login uses the credentials set in config.php.
+Then visit the configured URL — the installer runs on first access and creates the database schema.
+
+## Software-layer concerns
+
+### PHP requirements
+
+- PHP 7.4+ (8.x recommended); extensions: mysqli, gd, curl, xml, mbstring
+
+### Key config settings (config.php)
+
+```php
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'easyappointments');
+define('DB_USERNAME', 'user');
+define('DB_PASSWORD', 'password');
+define('BASE_URL', 'https://book.example.com');
+define('GOOGLE_SYNC_FEATURE', false); // set to true + add OAuth credentials for Google Calendar
+```
+
+### Writable directories
+
+| Directory | Purpose |
+|---|---|
+| `storage/` | Cached data, logs; must be writable |
 
 ## Upgrade procedure
 
-1. Backup database and storage/
-2. Download new release, replace application files (preserve config.php)
-3. Browse to the app URL — Easy!Appointments will detect and run DB migrations automatically
-4. Docker: pull new image, `docker compose up -d`
-5. Check release notes: https://github.com/alextselegidis/easyappointments/releases
+```bash
+# Official: https://easyappointments.org/docs.html#1.4.0/upgrade
+# 1. Back up database and files
+# 2. Download new release, extract (preserve config.php)
+# 3. Visit <base-url>/index.php/upgrade in browser to run DB migrations
+```
 
 ## Gotchas
 
-- **BASE_URL must match your domain**: If BASE_URL in config.php doesn't match the browser URL, assets fail to load and redirects break.
-- **Google Calendar sync**: Requires a Google Cloud project with the Calendar API enabled and an OAuth 2.0 Web Application credential. Callback URL must match your deployment URL.
-- **Email notifications**: Configure SMTP in Admin > Settings > Email; required for appointment confirmation and reminder emails.
-- **Timezone**: Set the default timezone in Admin > Settings > Business Logic to match your location; affects booking availability display.
-- **Embedding**: The `<iframe>` embed URL is `https://your-domain/index.php/appointments`; width/height are customisable.
-- **DEBUG_MODE**: Disable in production (DEBUG_MODE = FALSE) to prevent leaking stack traces to users.
+- **config.php is preserved across upgrades.** Do not overwrite it when updating files.
+- **Google Calendar sync is optional.** Requires Google OAuth 2.0 credentials; disable (`GOOGLE_SYNC_FEATURE=false`) if not needed.
+- **No HTTPS built-in.** Deploy behind nginx/Caddy with TLS; required for production and Google OAuth.
+- **First visit runs installer.** On a fresh install, the first browser visit sets up the database schema. Protect the URL until setup is complete.
+- **Docker Compose is dev-focused upstream.** The upstream compose includes phpMyAdmin and Mailpit (dev mail catcher). Strip these for production.
 
-## Links
+## Upstream docs
 
-- Upstream repo: https://github.com/alextselegidis/easyappointments
-- Docs: https://easyappointments.org/docs.html
-- Docker Hub: https://hub.docker.com/r/easyappointments/easyappointments
-- Release notes: https://github.com/alextselegidis/easyappointments/releases
-- Discord: https://discord.com/invite/UeeSkaw
+- Documentation: https://easyappointments.org/docs.html
+- GitHub README: https://github.com/alextselegidis/easyappointments
+- Releases: https://github.com/alextselegidis/easyappointments/releases
