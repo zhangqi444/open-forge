@@ -1,186 +1,140 @@
 ---
 name: october-cms
-description: October CMS recipe for open-forge. PHP CMS built on the Laravel framework. Covers Composer install (recommended), Docker local dev, server requirements, and plugin ecosystem. Upstream: https://octobercms.com
+description: October CMS recipe for open-forge. Covers Composer install on PHP/nginx or Apache. October CMS is a Laravel-based CMS platform. Note that while open source, a license subscription is required after the first year for marketplace/updates access.
 ---
 
 # October CMS
 
-Open-source PHP content management system built on the Laravel framework. Designed for simplicity and developer productivity — clean separation of front-end themes and back-end plugins.
+CMS platform built on the Laravel PHP framework. Known for its clean, simple design philosophy. Supports a plugin marketplace, theme system, backend form builder, and a strong developer community. Upstream: <https://github.com/octobercms/october>. Website: <https://octobercms.com>. Docs: <https://docs.octobercms.com>.
 
-11,133 stars · MIT
+**License:** Proprietary (EULA — free for first year, license subscription required for ongoing Marketplace/updates access) · **Language:** PHP (Laravel) · **Default port:** 80/443 · **Stars:** ~11,100
 
-Upstream: https://github.com/octobercms/october
-Website: https://octobercms.com
-Docs: https://docs.octobercms.com/
-Changelog: https://octobercms.com/changelog
-
-**License note**: October CMS is open source (MIT). New accounts include a complimentary license for the first year. After the first year, a paid license is required to receive updates and access the Marketplace. The core software remains open source; the update/marketplace service is commercial.
-
-## What it is
-
-October CMS focuses on developer experience:
-
-- **Theme system** — File-based HTML/CSS/JS themes with Twig templating
-- **Plugin architecture** — Modular Laravel packages for CMS functionality
-- **Tailor** — Low-code content modeling system (built-in database-backed content types)
-- **RainLab plugins** — Official plugin suite: Blog, Pages, Translate, User, Sitemap, and more
-- **Form Builder** — Visual admin form builder
-- **REST API** — Built-in API for headless/hybrid use
-- **Media Manager** — File uploads, images, documents
-- **Clean admin** — Polished, developer-friendly back office
+> **Note:** October CMS requires a paid license after the first year for marketplace access and updates. Review the [EULA](https://github.com/octobercms/october/blob/develop/LICENSE.md) before deploying for commercial use.
 
 ## Compatible install methods
 
-| Method | Upstream | When to use |
-|---|---|---|
-| Composer (recommended) | https://docs.octobercms.com/3.x/setup/installation.html | Standard production and dev install |
-| `october:install` command | https://docs.octobercms.com/3.x/setup/installation.html | Wizard-driven setup after Composer install |
-| Softaculous / cPanel auto-installer | Hosting panels | Shared hosting |
-
-## Requirements
-
-- PHP 8.0 or higher (8.1/8.2 recommended)
-- PHP extensions: `curl`, `json`, `mbstring`, `openssl`, `pdo`, `zip`, `gd` or `imagick`
-- MySQL 5.7+ / MariaDB 10.4+ / PostgreSQL 9.6+ / SQLite 3.8.8+
-- Apache (with `mod_rewrite`) or Nginx
-- Composer 2.x
+| Method | Upstream | First-party? | When to use |
+|---|---|---|---|
+| Composer (recommended) | <https://docs.octobercms.com/3.x/setup/installation.html> | ✅ | Standard install on any PHP server. |
+| Manual archive | <https://octobercms.com/download> | ✅ | Shared hosting or servers without Composer. |
 
 ## Inputs to collect
 
-| Phase | Prompt | Applicability |
-|---|---|---|
-| domain | "What domain will October CMS be served on?" | All |
-| database | "Database type: MySQL, PostgreSQL, or SQLite?" | All |
-| db_creds | "Database name, user, and password?" | MySQL/PostgreSQL |
-| admin | "Admin email and password?" | All |
+| Phase | Prompt | Format | Applicability |
+|---|---|---|---|
+| preflight | "Which web server — nginx or Apache?" | AskUserQuestion | Determines vhost config. |
+| php | "PHP version available? (8.1+ required, 8.2+ recommended)" | Free-text | Verify before install. |
+| domain | "What domain will October CMS serve?" | Free-text | All methods. |
+| database | "Database engine: MySQL, MariaDB, PostgreSQL, or SQLite?" | AskUserQuestion | All methods. |
+| db_credentials | "Database host, name, username, password?" | Free-text (sensitive) | MySQL/MariaDB/PostgreSQL. |
+| env | "Production or development environment?" | AskUserQuestion: production / development | All methods. |
 
-## Composer install (recommended)
+## Install — Composer (recommended)
 
-Upstream: https://docs.octobercms.com/3.x/setup/installation.html
+Reference: <https://docs.octobercms.com/3.x/setup/installation.html>
 
-### 1. Create project via Composer
+```bash
+# Install into directory 'myoctober'
+composer create-project october/october myoctober
 
-    composer create-project october/october mysite
+cd myoctober
 
-This creates a `mysite/` directory with all dependencies installed.
+# Run the interactive installer (sets up DB, admin account, etc.)
+php artisan october:install
+```
 
-### 2. Configure environment
+The `october:install` wizard configures:
+- Database connection
+- Administrator account
+- Application URL and encryption key
+- Demo content (optional)
 
-    cd mysite
-    cp .env.example .env
-    php artisan key:generate
+### nginx vhost
 
-Edit `.env` for your database:
+```nginx
+server {
+    listen 443 ssl;
+    server_name cms.example.com;
+    root /var/www/myoctober;
 
-    DB_CONNECTION=mysql
-    DB_HOST=127.0.0.1
-    DB_PORT=3306
-    DB_DATABASE=october
-    DB_USERNAME=october
-    DB_PASSWORD=your-password
+    index index.php;
 
-    APP_URL=https://yourdomain.com
-    APP_ENV=production
-    APP_DEBUG=false
-
-### 3. Run install wizard
-
-    php artisan october:install
-
-This runs database migrations and optionally seeds demo data.
-
-### 4. Set permissions
-
-    chmod -R 755 storage/ bootstrap/cache/
-    chmod -R 777 storage/app/ storage/logs/ storage/framework/ bootstrap/cache/
-
-### 5. Web server configuration
-
-**Apache** (in `.htaccess` or virtual host):
-
-    <VirtualHost *:80>
-        ServerName yourdomain.com
-        DocumentRoot /var/www/mysite
-        <Directory /var/www/mysite>
-            AllowOverride All
-            Require all granted
-        </Directory>
-    </VirtualHost>
-
-The project includes a `.htaccess` file — requires `mod_rewrite` enabled.
-
-**Nginx**:
-
-    server {
-        listen 80;
-        server_name yourdomain.com;
-        root /var/www/mysite;
-        index index.php;
-
-        location / {
-            try_files $uri $uri/ /index.php?$query_string;
-        }
-
-        location ~ \.php$ {
-            fastcgi_pass unix:/run/php/php8.2-fpm.sock;
-            fastcgi_index index.php;
-            include fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        }
-
-        location ~ /\. {
-            deny all;
-        }
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
     }
 
-### 6. Admin panel
+    location ~ ^/index.php {
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
 
-Access the backend at https://yourdomain.com/backend
+    # Block sensitive paths
+    location ~ /\. { deny all; }
+    location ~* ^/(config|bootstrap|modules|storage|vendor|plugins)/ { deny all; }
+}
+```
 
-Default admin credentials are set during `php artisan october:install`.
+### Apache .htaccess
 
-## Useful artisan commands
+October ships with `.htaccess` in the project root — enable `AllowOverride All` in your vhost and mod_rewrite will handle routing automatically.
 
-| Command | Description |
+## Software-layer concerns
+
+| Concern | Detail |
 |---|---|
-| `php artisan october:install` | Run setup wizard (initial install) |
-| `php artisan october:up` | Run database migrations |
-| `php artisan october:update` | Update October CMS and all plugins |
-| `php artisan plugin:install Author.PluginName` | Install a plugin from the Marketplace |
-| `php artisan plugin:refresh Author.PluginName` | Refresh plugin migrations |
-| `php artisan cache:clear` | Clear application cache |
+| PHP version | Requires PHP 8.1+; PHP 8.2+ recommended. Extensions: pdo, pdo_mysql or pdo_pgsql, mbstring, openssl, curl, json, gd, xml, fileinfo, zip. |
+| Database | MySQL 5.7+ / MariaDB 10.3+ / PostgreSQL 9.6+ / SQLite 3. Config in `config/database.php` or `.env`. |
+| .env file | Contains APP_KEY, DB_*, MAIL_* settings. Never commit to git. |
+| storage/ | Writable by web server (www-data). Contains caches, logs, uploads, media library. |
+| plugins/ | Third-party plugins installed here via `php artisan plugin:install Vendor.Plugin` or October marketplace. |
+| themes/ | Active theme set in Settings → CMS → Theme. |
+| Cron | Required for scheduled tasks: `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1` |
+| Queue | Optional but recommended for emails/async jobs: `php artisan queue:work` |
+| Marketplace | Requires an October CMS account and active license for plugin/theme downloads. |
 
-## Installing RainLab plugins
+## Upgrade procedure
 
-Official plugin suite from https://github.com/rainlab:
+Reference: <https://docs.octobercms.com/3.x/setup/updating.html>
 
-    php artisan plugin:install RainLab.Blog
-    php artisan plugin:install RainLab.Pages
-    php artisan plugin:install RainLab.Translate
-    php artisan plugin:install RainLab.User
+```bash
+cd /var/www/myoctober
 
-## Upgrade
+# Put site in maintenance mode (optional)
+php artisan down
 
-    composer update
-    php artisan october:up
+# Pull updates
+php artisan october:update
 
-Review the changelog at https://octobercms.com/changelog before upgrading major versions.
+# Or use Composer
+composer update
+
+# Run any pending migrations
+php artisan october:migrate
+
+# Clear caches
+php artisan cache:clear
+php artisan config:clear
+
+php artisan up
+```
+
+Back up the database and `storage/` directory before any major version update.
 
 ## Gotchas
 
-- **License requirement after year one** — October CMS requires a paid license to receive updates from the Marketplace after the first year. The core software is MIT-licensed and runs indefinitely without a license; you just won't get updates via `october:update`.
-- **`DocumentRoot` must point to project root** — Not to `public/`. October CMS uses `.htaccess` to route all requests; the web server must serve from the project root directory.
-- **Storage permissions** — `storage/` and `bootstrap/cache/` must be writable by the web server user. Permission errors are the most common install issue.
-- **`APP_DEBUG=false` in production** — Never run with `APP_DEBUG=true` publicly; it exposes stack traces and environment variables.
-- **PHP 8.0 minimum** — PHP 7.x is not supported in October CMS v3.x.
-- **SQLite** — Supported but only suitable for development or very low-traffic sites. Use MySQL/PostgreSQL for production.
+- **License required after year 1:** October CMS is free to install but requires a paid license to receive updates and access the plugin/theme Marketplace beyond the first year. See <https://octobercms.com/pricing>.
+- **APP_KEY must be preserved:** The encryption key in `.env` is used for encrypting session data and sensitive fields. Never regenerate it on an existing install — it will invalidate all sessions and encrypted values.
+- **storage/ permissions:** The entire `storage/` tree must be writable by the PHP process. Run `chmod -R 775 storage && chown -R www-data:www-data storage` after install.
+- **Cron required for scheduled tasks:** Email queues, cache pruning, and other scheduled tasks require the cron entry for `schedule:run`. Without it, those features silently fail.
+- **Plugin compatibility:** Plugins are versioned against specific October CMS versions. Check plugin compatibility before upgrading the CMS version.
+- **Composer memory limit:** The initial `composer create-project` can require a lot of memory. Set `COMPOSER_MEMORY_LIMIT=-1` if it fails with memory errors.
 
-## Links
+## Upstream links
 
-- GitHub: https://github.com/octobercms/october
-- Website: https://octobercms.com
-- Docs: https://docs.octobercms.com/
-- Install guide: https://docs.octobercms.com/3.x/setup/installation.html
-- RainLab plugins: https://github.com/rainlab
-- Plugin marketplace: https://octobercms.com/plugins
-- Changelog: https://octobercms.com/changelog
+- GitHub: <https://github.com/octobercms/october>
+- Documentation: <https://docs.octobercms.com>
+- Installation guide: <https://docs.octobercms.com/3.x/setup/installation.html>
+- Plugin marketplace: <https://octobercms.com/plugins>
+- Pricing / licensing: <https://octobercms.com/pricing>
