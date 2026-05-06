@@ -1,128 +1,149 @@
 ---
-name: grist-project
-description: Grist recipe for open-forge. Modern relational spreadsheet combining spreadsheet flexibility with database robustness. Covers Docker single-container deploy, grist-omnibus (with auth), environment variables, and persistence. Derived from https://github.com/gristlabs/grist-core.
+name: grist
+description: Grist recipe for open-forge. Modern relational spreadsheet combining spreadsheet flexibility with database robustness. Self-hosted via Docker. Upstream https://support.getgrist.com/self-managed/.
 ---
 
 # Grist
 
-Modern relational spreadsheet that combines spreadsheet flexibility with database robustness. Upstream: <https://github.com/gristlabs/grist-core>. License: Apache 2.0.
+Modern relational spreadsheet — a hybrid database/spreadsheet with named typed columns, Python formulas, drag-and-drop dashboards, OIDC/SAML SSO, REST API, and Zapier integrations. Built on SQLite. Upstream: <https://github.com/gristlabs/grist-core>. Docs: <https://support.getgrist.com/self-managed/>. License: Apache-2.0 (Community Edition `grist-core`).
 
-Grist supports Python formulas, cross-table references, access rules, OIDC/SAML SSO, and collaborative editing. It stores documents as SQLite files. Two variants: grist-core (Community, this recipe) and full Grist (additional features, free for individuals/small orgs).
+Grist listens on port `8484` by default. The upstream-documented self-host path is Docker. There is no docker-compose file in the repo root; upstream documents a `docker run` command and the self-managed guide covers all configuration.
 
 ## Compatible install methods
 
-| Method | Upstream URL | First-party? | When to use |
+| Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker (grist-core) | <https://github.com/gristlabs/grist-core#using-grist> | yes | Simplest deploy. No auth by default — use behind a reverse proxy with auth or grist-omnibus. |
-| grist-omnibus | <https://github.com/gristlabs/grist-omnibus> | yes | Bundles Grist + Traefik + Dex (OIDC). Recommended for internet-facing installs needing auth. |
-| Desktop app | <https://github.com/gristlabs/grist-desktop> | yes | Single-user local app. No server needed. |
-| getgrist.com hosted | <https://getgrist.com> | yes | Managed cloud. Out of scope for open-forge. |
+| Docker (single container) | <https://support.getgrist.com/self-managed/> | ✅ | Recommended. Single `gristlabs/grist` container. |
+| Build from source | <https://github.com/gristlabs/grist-core#building-from-source> | ✅ | Development / contribution. |
+| grist-desktop (native app) | <https://github.com/gristlabs/grist-desktop> | ✅ | Local desktop app — not a server deployment. |
+| grist-omnibus | <https://github.com/gristlabs/grist-omnibus> | ✅ | Pre-packaged solution with bundled SSO (Dex) for easier auth setup. |
+| getgrist.com managed | <https://getgrist.com> | ✅ | Hosted SaaS — out of scope for open-forge. |
 
 ## Inputs to collect
 
-| Phase | Prompt | Format | Notes |
+| Phase | Prompt | Format | Applicability |
 |---|---|---|---|
-| preflight | "What port should Grist run on?" | Integer default 8484 | Set via PORT env var. |
-| preflight | "Where should Grist documents be stored on the host?" | Path default ./persist | Mounted to /persist inside container. |
-| config | "App name to show in the UI?" | String default Grist | GRIST_APP_ROOT_URL displays this. |
-| config | "Enable gVisor sandboxing?" | Yes / No default No | GRIST_SANDBOX_FLAVOR=gvisor. Requires Linux + Docker. |
-| config | "AI Formula Assistant? (OpenAI or compatible)" | Yes / No | Set ASSISTANT_CHAT_COMPLETION_ENDPOINT and ASSISTANT_API_KEY. |
-| auth | "Authentication method?" | options: None (LAN-only) / grist-omnibus / External OIDC / External SAML | Drives auth config. |
+| preflight | "Which install method?" | Options from table above | Drives method section |
+| auth | "Default user email (GRIST_DEFAULT_EMAIL)?" | Email address | Required for initial access without SSO |
+| domain | "Public URL Grist will be served at (APP_HOME_URL)?" | Full URL | All public installs |
+| auth | "Admin panel boot key (GRIST_BOOT_KEY)?" | Random string | Optional but recommended for `/admin` page |
+| auth | "Configure OIDC or SAML SSO?" | Yes/No | Optional — see docs |
+| storage | "Host path for Grist data persistence?" | Free-text (default `./persist`) | All Docker installs |
 
-## Docker install (no auth, LAN/intranet use)
+## Docker — quick start
 
-Upstream: <https://github.com/gristlabs/grist-core#using-grist>
-
-```bash
-docker run -p 8484:8484 -v $PWD/persist:/persist -it gristlabs/grist
-```
-
-Access at http://localhost:8484. All documents are saved to ./persist on the host.
-
-To run on a different port:
+> **Source:** <https://github.com/gristlabs/grist-core#using-grist>
 
 ```bash
-docker run --env PORT=9999 -p 9999:9999 -v $PWD/persist:/persist -it gristlabs/grist
+# Minimal — data lost on container removal
+docker pull gristlabs/grist
+docker run -p 8484:8484 -it gristlabs/grist
+
+# With persistent data
+docker run -p 8484:8484 \
+  -v $PWD/persist:/persist \
+  -it gristlabs/grist
+
+# Visit http://localhost:8484
 ```
 
-### docker-compose.yml (single-node, no auth)
+## Docker Compose
+
+> No docker-compose is shipped in the upstream repo. The following is a representative pattern based on the upstream `docker run` documentation at <https://support.getgrist.com/self-managed/>.
 
 ```yaml
+# docker-compose.yml — based on upstream docker run docs
 services:
   grist:
-    image: gristlabs/grist:latest
+    image: gristlabs/grist
+    restart: unless-stopped
     ports:
       - "8484:8484"
     environment:
-      - PORT=8484
+      - GRIST_DEFAULT_EMAIL=${GRIST_DEFAULT_EMAIL}
+      - APP_HOME_URL=${APP_HOME_URL}
+      - GRIST_BOOT_KEY=${GRIST_BOOT_KEY}
+      # Optional: custom port
+      # - PORT=8484
+      # Optional: enable gVisor sandboxing
       # - GRIST_SANDBOX_FLAVOR=gvisor
     volumes:
       - ./persist:/persist
-    restart: unless-stopped
 ```
-
-## grist-omnibus (auth + TLS)
-
-For internet-facing deployments with authentication, use grist-omnibus which bundles Grist + Traefik + Dex (OIDC provider):
 
 ```bash
-git clone https://github.com/gristlabs/grist-omnibus
-cd grist-omnibus
-# Edit settings.env with your domain, admin email, etc.
 docker compose up -d
+# Visit http://localhost:8484
+# Admin panel at http://localhost:8484/admin?boot-key=<GRIST_BOOT_KEY>
 ```
-
-See <https://github.com/gristlabs/grist-omnibus> for full setup.
 
 ## Software-layer concerns
 
-### Key environment variables
+### Key env vars
 
-| Variable | Default | Description |
+| Variable | Default | Purpose |
 |---|---|---|
-| PORT | 8484 | Port Grist listens on inside container |
-| GRIST_APP_ROOT_URL | (auto) | Public URL of the instance |
-| GRIST_SANDBOX_FLAVOR | unsandboxed | gvisor for gVisor sandboxing (Linux + Docker only) |
-| GRIST_SESSION_SECRET | (random) | Secret for session cookies — set explicitly for stable sessions |
-| GRIST_SINGLE_ORG | (none) | Lock Grist to a single org (team site) slug |
-| GRIST_DEFAULT_EMAIL | (none) | Email of the default owner/admin |
-| ASSISTANT_CHAT_COMPLETION_ENDPOINT | (none) | OpenAI-compatible endpoint for AI formula assistant |
-| ASSISTANT_API_KEY | (none) | API key for AI formula assistant |
+| `GRIST_DEFAULT_EMAIL` | _(unset)_ | Email attributed to unauthenticated work in the default Docker config. Change to your email. |
+| `APP_HOME_URL` | auto-detected | Canonical public URL. Set when behind a reverse proxy. |
+| `PORT` | `8484` | Listening port inside container. Change port mapping too if changing this. |
+| `GRIST_BOOT_KEY` | _(unset)_ | Secret to access `/admin?boot-key=<key>`. Recommended. |
+| `GRIST_SANDBOX_FLAVOR` | _(unset)_ | Sandboxing: `gvisor` (Linux), `macSandboxExec` (macOS), `pyodide` (any OS/Windows) |
+| `GRIST_SESSION_SECRET` | _(unset)_ | Secret for session cookies. Set a random string in production. |
+| `GRIST_SINGLE_ORG` | _(unset)_ | Set to an org slug to restrict to a single organization. |
+| `GRIST_DOMAIN` | _(unset)_ | Domain for cookies. Required if using subdomains. |
+| `ASSISTANT_API_KEY` | _(unset)_ | OpenAI / OpenRouter API key for AI Formula Assistant. |
+| `ASSISTANT_CHAT_COMPLETION_ENDPOINT` | OpenAI default | Override to use OpenRouter or other OpenAI-compatible endpoint. |
+| `GRIST_ALLOWED_HOSTS` | _(unset)_ | Comma-separated allowed hostnames (for multi-tenant or proxy setups). |
 
-### Ports
+### Data directory
 
-| Port | Use |
+| Path (container) | Host mount | Contents |
+|---|---|---|
+| `/persist` | `./persist` | SQLite documents, attachments, user data |
+
+### Docker images
+
+| Image | Description |
 |---|---|
-| 8484 | Web UI and API (HTTP) |
-
-### Data directories (inside container)
-
-| Path | Contents |
-|---|---|
-| /persist | Grist documents (.grist SQLite files), plugins, and config |
+| `gristlabs/grist` | Default. Contains Community + extra source-available full-edition code (inactive unless enabled via Admin Panel). |
+| `gristlabs/grist-oss` | Exclusively FOSS code. Functionally equivalent to `gristlabs/grist` in default config. |
 
 ## Upgrade procedure
 
 ```bash
+cd ~/grist
+
+# Pull new image
 docker compose pull
+
+# Recreate container
 docker compose up -d
+
+# Migrations are handled automatically
 ```
 
-Grist documents are self-contained SQLite files in /persist. They are forward-compatible across versions.
+Or with docker run:
+```bash
+docker pull gristlabs/grist
+docker stop grist && docker rm grist
+# Re-run docker run command with same -v mount
+```
 
 ## Gotchas
 
-- **No auth by default**: Without auth configured, anyone who can reach port 8484 can access all documents. Use grist-omnibus, a reverse proxy with auth (Authelia, Authentik), or firewall to LAN only.
-- **Persist volume**: Without mounting /persist, all documents are lost when the container stops.
-- **gVisor sandboxing**: Requires Linux with Docker and kernel support. Set GRIST_SANDBOX_FLAVOR=gvisor only if confirmed supported by your kernel.
-- **GRIST_SESSION_SECRET**: Set this explicitly to a stable random string; otherwise sessions break on container restart.
-- **AI assistant**: Compatible with OpenAI, Claude (via OpenRouter), and any OpenAI-compatible endpoint. Set both ASSISTANT_CHAT_COMPLETION_ENDPOINT and ASSISTANT_API_KEY.
-- **Documents are SQLite**: Any SQLite-compatible tool can read numeric/text data from .grist files directly — excellent for backups and migrations.
+- **Authentication requires SSO or a custom auth solution for multi-user.** Out of the box, the Docker container operates in limited anonymous mode attributing work to `GRIST_DEFAULT_EMAIL`. For real multi-user auth, configure OIDC/SAML or use `grist-omnibus` which bundles Dex.
+- **`PORT` env var must match container port, not just the host-side mapping.** If you change `PORT=9999`, also change the container-side port: `-p 9999:9999`. Don't only change the host mapping.
+- **`gristlabs/grist` vs `gristlabs/grist-oss`.** Both are functionally equivalent by default. The full-edition features in `gristlabs/grist` only activate when enabled from the Admin Panel (requires a Grist activation key).
+- **Python formulas run in a sandbox.** On Linux with Docker, `GRIST_SANDBOX_FLAVOR=gvisor` enables gVisor isolation. On any OS, `pyodide` works via WebAssembly. No sandbox = Python runs directly on the host — don't use with untrusted documents.
+- **`/persist` must be writable by the container user.** On Linux hosts, ensure permissions allow the container to write (`chmod -R 777 ./persist` or match the container UID).
+- **Admin Panel available at `/admin`.** Requires `GRIST_BOOT_KEY` to be set; visit `/admin?boot-key=<key>`. Useful for diagnosing config problems.
 
-## Links
+## Upstream docs
 
-- GitHub: <https://github.com/gristlabs/grist-core>
-- grist-omnibus (auth): <https://github.com/gristlabs/grist-omnibus>
-- Docker Hub: <https://hub.docker.com/r/gristlabs/grist>
-- Documentation: <https://support.getgrist.com/>
-- Templates: <https://templates.getgrist.com/>
+- Self-Managed Grist: <https://support.getgrist.com/self-managed/>
+- OIDC setup: <https://support.getgrist.com/install/oidc/>
+- SAML setup: <https://support.getgrist.com/install/saml/>
+- Admin Panel: <https://support.getgrist.com/admin-panel/>
+- Configuration reference: <https://support.getgrist.com/self-managed/#environment-variables>
+- grist-omnibus (bundled auth): <https://github.com/gristlabs/grist-omnibus>
+- GitHub repo: <https://github.com/gristlabs/grist-core>
