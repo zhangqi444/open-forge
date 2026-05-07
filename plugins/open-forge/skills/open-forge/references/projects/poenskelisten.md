@@ -1,133 +1,111 @@
 # Pønskelisten
 
-> Self-hosted wishlist web app for families and friends — create and share wish lists, claim gifts anonymously (claimant is visible to others, not to the owner), and coordinate gift-giving without spoiling surprises.
+**Self-hosted wishlist sharing app** — create and share wishlists with friends and family for gift coordination, without spoiling surprises. Claims are anonymous to the list owner; collaborators can see what's taken.
 
-**URL:** https://github.com/aunefyren/poenskelisten
-**Source:** https://github.com/aunefyren/poenskelisten
-**License:** Not specified in README (check repository root)
+**Source:** https://github.com/aunefyren/poenskelisten  
+**Docker Hub:** https://hub.docker.com/r/aunefyren/poenskelisten  
+**License:** GPL-3.0
+
+---
 
 ## Compatible Combos
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any   | Docker  | Official image: `ghcr.io/aunefyren/poenskelisten:latest` |
-| Any   | Binary  | Download prebuilt executable from releases |
-| Any   | Build from source | Requires Go |
+| Any | Docker | Primary recommended method |
+| Linux/macOS/Windows | Binary (Go) | Pre-compiled releases available |
+| Any | Build from source | Requires Go |
+
+---
 
 ## Inputs to Collect
 
 ### Provision phase
-- Domain / public URL (for external access; optional for LAN-only use)
-- Database choice: SQLite (default, file-based), PostgreSQL, or MySQL
+| Input | Description | Default |
+|-------|-------------|---------|
+| `port` | HTTP port | `8080` |
+| `externalurl` | Public URL of the instance | — |
+| `timezone` | e.g. `Europe/Oslo` | — |
+| Database type | SQLite (default), PostgreSQL, MySQL | SQLite |
 
-### Deploy phase
-- `dbtype` — `sqlite`, `postgres`, or `mysql` (default: SQLite)
-- `externalurl` — public URL of the instance
-- `timezone` — timezone string (e.g. `Europe/Oslo`)
-- `generateinvite` — set `true` on first run to create an invite code; remove afterward
-- Optional: `dbip`, `dbport`, `dbusername`, `dbpassword`, `dbname`, `dbssl` — for PostgreSQL/MySQL
-- Optional: `smtphost`, `smtpport`, `smtpusername`, `smtppassword`, `smtpfrom` — for email notifications
+### Optional SMTP (for email invites/notifications)
+| Input | Description |
+|-------|-------------|
+| `smtphost` / `smtpport` | SMTP server |
+| `smtpusername` / `smtppassword` | SMTP credentials |
+| `smtpfrom` | Sender email address |
+
+---
 
 ## Software-layer Concerns
 
-### Docker Compose (SQLite — recommended)
+### Docker Compose
 ```yaml
 services:
-  poenskelisten-app:
-    container_name: poenskelisten-app
-    image: ghcr.io/aunefyren/poenskelisten:latest
-    restart: unless-stopped
+  poenskelisten:
+    image: aunefyren/poenskelisten:latest
     ports:
-      - "8080:8080"
+      - '8080:8080'
     environment:
-      PUID: 1000
-      PGID: 1000
-      dbtype: sqlite
-      timezone: Europe/Oslo
-      generateinvite: true
+      - port=8080
+      - externalurl=https://your-domain.com
+      - timezone=Europe/Oslo
+      # SQLite is default — no DB config needed
+      # For PostgreSQL:
+      # - dbtype=postgresql
+      # - dbhost=postgres
+      # - dbport=5432
+      # - dbusername=poenskelisten
+      # - dbpassword=secret
+      # - dbname=poenskelisten
     volumes:
-      - ./files/:/app/files/:rw
-      - ./images/:/app/images/:rw
-```
-Remove `generateinvite: true` after the first run.
-
-### Docker Compose (PostgreSQL)
-```yaml
-services:
-  db:
-    container_name: poenskelisten-db
-    image: postgres:16
+      - ./data:/app/data
     restart: unless-stopped
-    environment:
-      POSTGRES_DB: poenskelisten
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-    volumes:
-      - ./db/:/var/lib/postgresql/data/:rw
-
-  poenskelisten-app:
-    container_name: poenskelisten-app
-    image: ghcr.io/aunefyren/poenskelisten:latest
-    restart: unless-stopped
-    ports:
-      - "8080:8080"
-    environment:
-      PUID: 1000
-      PGID: 1000
-      dbtype: postgres
-      dbip: db
-      dbport: 5432
-      dbname: poenskelisten
-      dbusername: myuser
-      dbpassword: mypassword
-      timezone: Europe/Oslo
-      generateinvite: true
-    depends_on:
-      - db
-    volumes:
-      - ./files/:/app/files/:rw
-      - ./images/:/app/images/:rw
 ```
 
-### Config / env vars
-Environment variables match the config file keys directly:
+### Configuration methods (choose one)
+1. **Environment variables** — recommended for Docker
+2. **Startup flags** — e.g. `./poenskelisten -port 8080 -externalurl https://...`
+3. **config.json** — generated on first run, editable manually
 
-| Variable | Description |
-|----------|-------------|
-| `port` | Listen port (default `8080`) |
-| `externalurl` | Public URL of instance |
-| `environment` | `production` or `test` |
-| `timezone` | Timezone (e.g. `Europe/Oslo`) |
-| `dbtype` | `sqlite`, `postgres`, or `mysql` |
-| `dbip` | DB host (postgres/mysql) |
-| `dbport` | DB port |
-| `dbusername` / `dbpassword` / `dbname` | DB credentials |
-| `dbssl` | Use SSL for DB connection |
-| `generateinvite` | Generate invite code on startup (remove after first run) |
-| `smtphost` / `smtpport` / `smtpusername` / `smtppassword` / `smtpfrom` | SMTP for email notifications |
-| `loglevel` | `info`, `debug`, or `trace` |
-| `PUID` / `PGID` | UID/GID for file ownership inside container |
+### Key environment variables
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `port` | HTTP listen port | `8080` |
+| `externalurl` | Public URL (used in email links) | — |
+| `timezone` | Timezone for date display | — |
+| `environment` | `production` or `test` | `production` |
+| `dbtype` | `sqlite`, `postgresql`, `mysql` | `sqlite` |
+| `dbhost` / `dbport` / `dbusername` / `dbpassword` / `dbname` | DB connection | — |
+| `smtphost` / `smtpport` / `smtpusername` / `smtppassword` / `smtpfrom` | Email config | — |
+| `disablesmtp` | Set `true` to disable email features | `false` |
 
-### Data dirs
-- `./files/` → `/app/files/` — user-uploaded files and wishlist data
-- `./images/` → `/app/images/` — user-uploaded images
-- SQLite DB is stored inside the container's app directory (persist via volumes)
+### Features
+- Create wishlists and add wishes (name, description, URL, image)
+- Share wishlists with groups of people
+- Claims are anonymous to the list owner (others see an item is taken; owner does not)
+- Group management for collaborating with family/friends
+
+---
 
 ## Upgrade Procedure
+
 ```bash
 docker compose pull
 docker compose up -d
 ```
 
-## Gotchas
-- **Remove `generateinvite` after first run** — if left in, a new invite code is printed to logs on every container start.
-- **First registered user becomes admin** — there is no separate admin account setup; the first signup gets admin privileges.
-- **Invite-only registration** — new users need an invite code; generate additional codes from the admin panel.
-- **Lost admin access** — restart with `generateinvite=true` to get a new invite code and create a new admin account.
-- Mobile UI is not yet fully optimized for small screens (per README).
-- "Pønskelisten" is a Norwegian wordplay: "ønskeliste" = wishlist, "pønske" = to plot/plan.
+---
 
-## Links
-- [README](https://github.com/aunefyren/poenskelisten/blob/main/README.md)
-- [GitHub Container Registry — ghcr.io/aunefyren/poenskelisten](https://github.com/aunefyren/poenskelisten/pkgs/container/poenskelisten)
-- [Releases](https://github.com/aunefyren/poenskelisten/releases)
+## Gotchas
+
+- **`externalurl` is required for email invitations to work.** Without it, invite links in emails will be broken.
+- **SQLite is the easiest** database option — no extra container needed. The DB file is stored in the mounted data directory.
+- **UI not yet fully optimized for small screens** — noted as a known limitation in the README.
+- **SMTP is optional** but enables user invitations and notifications. Disable with `disablesmtp=true` for a local-only setup.
+
+---
+
+## References
+
+- Upstream README: https://github.com/aunefyren/poenskelisten#readme
