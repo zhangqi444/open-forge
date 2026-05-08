@@ -1,51 +1,46 @@
 ---
-name: poenskelisten
-description: Pønskelisten recipe for open-forge. Self-hosted collaborative wishlist app — share gift ideas without spoiling surprises. Go + Docker, SQLite/PostgreSQL/MySQL. Source: https://github.com/aunefyren/poenskelisten
+name: poenskelisten-project
+description: Poenskelisten recipe for open-forge. Self-hosted wishlist sharing app with anonymous gift claiming. Docker Compose with SQLite or PostgreSQL. Based on upstream README at https://github.com/aunefyren/poenskelisten.
 ---
 
 # Pønskelisten
 
-A self-hosted web app for creating, sharing, and collaborating on wishlists — without ruining the surprise. Share gift ideas with friends and family; participants can anonymously claim wishes (others see it's taken, the owner does not). GPL-3.0 licensed, written in Go. Upstream: <https://github.com/aunefyren/poenskelisten>. Docker Hub: <https://hub.docker.com/r/aunefyren/poenskelisten>
+Self-hosted web app for creating, sharing, and collaborating on wishlists without ruining the surprise. Friends can claim wishes anonymously (the owner cannot see who claimed what). Go binary, SQLite/PostgreSQL/MySQL. GPL-3.0. Upstream: https://github.com/aunefyren/poenskelisten. Docker: ghcr.io/aunefyren/poenskelisten.
 
-## Compatible Combos
+## Compatible install methods
 
-| Infra | Runtime | Database | Notes |
+| Method | Database | When to use |
+|---|---|---|
+| Docker Compose (SQLite) | SQLite | Simplest; recommended for personal/small use |
+| Docker Compose (PostgreSQL) | PostgreSQL | Production with more users |
+| Binary / executable | SQLite/PostgreSQL/MySQL | Bare-metal without Docker |
+
+## Inputs to collect
+
+| Phase | Prompt | Format | Notes |
 |---|---|---|---|
-| Any Linux VPS | Docker Compose | SQLite | Recommended — simplest setup |
-| Any Linux VPS | Docker Compose | PostgreSQL | Better for multi-user/production |
-| Any Linux VPS | Docker Compose | MySQL | Supported but not recommended |
-| Any Linux / macOS / Windows | Go binary (native) | Any supported | Download release binary |
+| preflight | "Docker or binary?" | Docker / Binary | |
+| config | "Database type?" | sqlite / postgres / mysql | sqlite is default and simplest |
+| config | "Public URL of the instance?" | URL | externalurl env var |
+| config | "Timezone?" | TZ string (e.g. Europe/Oslo) | |
+| database | "DB host / name / user / password?" | Four values | PostgreSQL/MySQL only |
+| smtp | "SMTP host, port, user, password, from?" | Five values | Optional; for notifications |
+| network | "Port to expose?" | Number (default 8080) | |
 
-## Inputs to Collect
+## Software-layer concerns
 
-### Phase 1 — Preflight
+| Concern | Detail |
+|---|---|
+| Language | Go single binary |
+| Config methods | Environment variables (recommended for Docker), startup flags, or config.json |
+| Data dirs | ./files/ and ./images/ — must be persisted |
+| First-run invite | Set generateinvite=true on first start to generate an invite code; remove after first user created |
+| Image | ghcr.io/aunefyren/poenskelisten:latest |
+| UID/GID | PUID/PGID env vars control the file-owning user inside container |
 
-| Prompt | Format | Notes |
-|---|---|---|
-| "Which database backend?" | sqlite / postgresql / mysql | SQLite is simplest for personal use |
-| "Port to expose?" | Number | Default 8080 |
-| "Timezone?" | TZ string | e.g. Europe/Oslo, America/New_York — affects date display |
-| "External URL (public URL of the instance)?" | URL | Needed for invite links to work correctly |
+## Install: Docker Compose (SQLite — recommended)
 
-### Phase 2 — Deploy
-
-| Prompt | Format | Notes |
-|---|---|---|
-| "Generate invite codes on startup?" | true / false | Set generateinvite=true for first run, then remove |
-| "SMTP config for email notifications?" | host:port + credentials | Optional; enables email invites and notifications |
-
-## Software-Layer Concerns
-
-- **No public registration by default**: Users join via invite codes. Set `generateinvite=true` on first start to get a code, then disable it.
-- **Anonymous wish claiming**: When a participant claims a wish, the list owner cannot see who claimed it — by design.
-- **Config via env vars**: All settings via environment variables (recommended for Docker). Also supports startup flags and a generated `config.json`.
-- **Data dirs**: `./files/` (user uploads) and `./images/` must be on persistent volumes.
-- **Database**: SQLite DB file lives inside the container — mount a volume to persist it, or use the files/ volume which includes it.
-- **Groups**: Users can create groups and share wishlists with groups for family/friend coordination.
-
-## Deployment
-
-### Docker Compose (SQLite — recommended)
+Source: https://github.com/aunefyren/poenskelisten/blob/main/README.md
 
 ```yaml
 services:
@@ -60,16 +55,23 @@ services:
       PGID: 1000
       dbtype: sqlite
       timezone: Europe/Oslo
-      generateinvite: true       # Remove after first run
-      externalurl: https://wishlists.example.com
+      externalurl: https://wishes.example.com
+      generateinvite: true    # remove after first user is created
     volumes:
       - ./files/:/app/files/:rw
       - ./images/:/app/images/:rw
 ```
 
-Remove `generateinvite: true` from the compose file after the first run and restart.
+```bash
+docker compose up -d
+# Get the invite code from logs:
+docker compose logs poenskelisten-app | grep -i invite
+# Visit http://localhost:8080 and register with the invite code
+```
 
-### Docker Compose (PostgreSQL)
+After the first user is created, remove `generateinvite: true` from the compose file and restart.
+
+## Install: Docker Compose (PostgreSQL)
 
 ```yaml
 services:
@@ -79,10 +81,10 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_DB: poenskelisten
-      POSTGRES_USER: poenskelisten
-      POSTGRES_PASSWORD: changeme
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - ./db/:/var/lib/postgresql/data/:rw
 
   poenskelisten-app:
     container_name: poenskelisten-app
@@ -93,41 +95,61 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      dbtype: postgresql
-      dbhost: db
+      dbtype: postgres
+      dbip: db
       dbport: 5432
       dbname: poenskelisten
-      dbusername: poenskelisten
-      dbpassword: changeme
+      dbusername: myuser
+      dbpassword: mypassword
       timezone: Europe/Oslo
-      generateinvite: true
-      externalurl: https://wishlists.example.com
+      externalurl: https://wishes.example.com
+      generateinvite: true    # remove after first user is created
+    depends_on:
+      - db
     volumes:
       - ./files/:/app/files/:rw
       - ./images/:/app/images/:rw
-    depends_on:
-      - db
-
-volumes:
-  pg_data:
 ```
 
-## Upgrade Procedure
+## Configuration reference
 
-1. Pull new image: `docker compose pull && docker compose up -d`
-2. Backup the `./files/` volume (contains SQLite DB if using SQLite) before upgrading.
-3. Check release notes at https://github.com/aunefyren/poenskelisten/releases for migration notes.
+Key environment variables:
+
+| Variable | Default | Description |
+|---|---|---|
+| dbtype | sqlite | sqlite, postgres, or mysql |
+| dbip | — | DB host (PostgreSQL/MySQL) |
+| dbport | — | DB port |
+| dbname | — | DB name |
+| dbusername | — | DB user |
+| dbpassword | — | DB password |
+| timezone | — | e.g. Europe/Oslo, America/New_York |
+| externalurl | — | Public URL of the instance |
+| port | 8080 | Listen port |
+| generateinvite | false | Generate invite code on startup |
+| smtphost | — | SMTP server |
+| smtpport | — | SMTP port |
+| smtpusername | — | SMTP user |
+| smtppassword | — | SMTP password |
+| smtpfrom | — | Sender address |
+
+## Upgrade procedure
+
+```bash
+docker compose pull
+docker compose up -d
+```
 
 ## Gotchas
 
-- **generateinvite must be removed after first run**: Leaving it enabled means a new invite code is generated every restart — harmless but noisy.
-- **externalurl required for invite links**: Without it, invite emails contain localhost URLs that don't work for recipients.
-- **UI not fully mobile-optimized**: Per upstream README — functional on mobile but not fully polished for small screens.
-- **Name contains special character**: Slug is `poenskelisten` (without ø) for filesystem compatibility. The ASD source entry uses the special character.
-- **No OAuth/SSO**: User management is invite-code based only. No LDAP or OAuth integration.
+- generateinvite must be removed after first user: If left enabled, a new invite code is generated every time the container starts. Remove it once you've registered your first account.
+- files/ and images/ must be writable: Uploaded images and files go here. If missing or not writable, uploads fail.
+- PUID/PGID must match the owner of mounted directories: Ensure ./files/ and ./images/ on the host are owned by the UID/GID specified.
+- No public registration by default: New users require an invite code. Share it to invite people.
+- Claiming is anonymous to the wishlist owner: Friends can see who claimed what; the wish owner cannot. This is by design.
 
 ## Links
 
-- Source: https://github.com/aunefyren/poenskelisten
+- GitHub: https://github.com/aunefyren/poenskelisten
 - Docker Hub: https://hub.docker.com/r/aunefyren/poenskelisten
 - Releases: https://github.com/aunefyren/poenskelisten/releases
