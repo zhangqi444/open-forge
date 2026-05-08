@@ -1,171 +1,133 @@
 ---
-name: easy-appointments
-description: Easy!Appointments recipe for open-forge. Covers PHP web server install (nginx or Apache) with MySQL/MariaDB. Easy!Appointments is a web-based appointment scheduling app that lets customers book appointments online with optional Google Calendar sync.
+name: easy-appointments-project
+description: Easy!Appointments recipe for open-forge. Open-source appointment scheduling web app in PHP + MySQL. Covers manual LAMP install. Based on upstream README at https://github.com/alextselegidis/easyappointments and docs at https://easyappointments.org.
 ---
 
 # Easy!Appointments
 
-Open-source web application that allows customers to book appointments via a web interface. Supports multiple services and providers, working schedules, booking rules, Google Calendar synchronization, and email notifications. Runs on any PHP-capable server with MySQL/MariaDB. Upstream: <https://github.com/alextselegidis/easyappointments>. Website: <https://easyappointments.org>. Demo: <https://demo.easyappointments.org>.
-
-**License:** GPL-3.0 · **Language:** PHP (CodeIgniter 4) · **Default port:** 80/443 · **Stars:** ~4,200
+Open-source appointment scheduling application that lets customers book appointments online. PHP-based, MySQL backend, Google Calendar sync, email notifications, translatable UI. GPL-3.0. Upstream: https://github.com/alextselegidis/easyappointments. Site: https://easyappointments.org. Current release: 1.5.2.
 
 ## Compatible install methods
 
-| Method | Upstream | First-party? | When to use |
-|---|---|---|---|
-| PHP on nginx | <https://github.com/alextselegidis/easyappointments#installation> | ✅ | Recommended — nginx + PHP-FPM on Linux. |
-| PHP on Apache | <https://github.com/alextselegidis/easyappointments#installation> | ✅ | Apache + mod_php or PHP-FPM; .htaccess required. |
-| Shared hosting | <https://github.com/alextselegidis/easyappointments/releases> | ✅ | Upload release zip to any PHP host via FTP/SFTP. |
-
-> **Note:** No official Docker image. Community images exist but may lag behind releases.
+| Method | When to use |
+|---|---|
+| Manual LAMP/LEMP | Standard; download release zip and configure |
+| Docker (dev build) | Development only — the official docker-compose.yml builds from source |
 
 ## Inputs to collect
 
-| Phase | Prompt | Format | Applicability |
+| Phase | Prompt | Format | Notes |
 |---|---|---|---|
-| preflight | "Which web server — nginx or Apache?" | AskUserQuestion | Determines server config below. |
-| domain | "What domain will Easy!Appointments be served on?" | Free-text | All methods. |
-| database | "MySQL/MariaDB host, database name, username, and password?" | Free-text (sensitive) | All methods. |
-| php | "PHP version available? (8.2+ required)" | Free-text | Verify before install. |
-| google_cal | "Enable Google Calendar synchronization?" | AskUserQuestion: Yes / No | Optional feature. |
-| google_cal_creds | "Google API key and client credentials?" | Free-text (sensitive) | If Google Calendar enabled. |
-
-## Install
-
-Reference: <https://github.com/alextselegidis/easyappointments#installation>
-
-### 1. Create database
-
-```sql
-CREATE DATABASE easyappointments CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'easyappts'@'localhost' IDENTIFIED BY 'strongpassword';
-GRANT ALL PRIVILEGES ON easyappointments.* TO 'easyappts'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-### 2. Download and extract
-
-```bash
-# Download latest stable release from:
-# https://github.com/alextselegidis/easyappointments/releases
-wget https://github.com/alextselegidis/easyappointments/releases/latest/download/easy-appointments.zip
-unzip easy-appointments.zip -d /var/www/easyappointments
-cd /var/www/easyappointments
-```
-
-### 3. Configure
-
-```bash
-cp config-sample.php config.php
-nano config.php
-```
-
-Minimal `config.php`:
-
-```php
-<?php
-define('BASE_URL', 'https://appointments.example.com/');
-define('STORAGE_PATH', __DIR__ . '/storage');
-define('DEBUG_MODE', FALSE);
-```
-
-Database configuration is set through the web-based installation wizard that runs on first visit.
-
-### 4. Set permissions
-
-```bash
-chown -R www-data:www-data /var/www/easyappointments
-chmod -R 755 /var/www/easyappointments
-chmod -R 775 /var/www/easyappointments/storage
-```
-
-### 5. Configure nginx
-
-```nginx
-server {
-    listen 443 ssl;
-    server_name appointments.example.com;
-
-    root /var/www/easyappointments;
-    index index.php;
-
-    # Block direct access to storage
-    location ^~ /storage {
-        deny all;
-    }
-
-    location / {
-        try_files $uri $uri/ /index.php$is_args$args;
-    }
-
-    location ~ \.php$ {
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-    }
-}
-```
-
-### 6. Run installation wizard
-
-Open the domain in a browser. The installation wizard will guide you through:
-1. Database connection setup (host, name, user, password)
-2. Admin account creation
-3. Initial configuration
+| preflight | "LAMP or Docker?" | LAMP / Docker | Docker compose in repo is for development use |
+| database | "MySQL host / name / user / password?" | Four values | Set in config.php |
+| config | "App URL?" | URL (e.g. https://appointments.example.com) | BASE_URL in config.php |
+| config | "Admin email?" | email | Set during web setup wizard |
+| config | "Admin password?" | Free-text (sensitive) | Set during web setup wizard |
+| smtp | "SMTP host, port, user, password?" | Separate values | For booking confirmation and notification emails |
+| google | "Google Calendar sync?" | Yes / No | Requires Google Calendar API credentials if yes |
 
 ## Software-layer concerns
 
 | Concern | Detail |
 |---|---|
-| PHP version | Requires PHP 8.2+. Extensions: pdo, pdo_mysql, curl, json, xml, mbstring, gd, intl. |
-| Database | MySQL 5.7+ or MariaDB 10.3+. Schema created automatically by the installation wizard. |
-| config.php | Contains BASE_URL and storage path. Must survive upgrades. |
-| storage/ directory | Contains application logs, caches, and uploads. Must be writable by www-data. |
-| .htaccess | Required for Apache URL rewriting. Included in the release archive. |
-| Email notifications | Configured via Settings → Email in admin panel. Supports SMTP. |
-| Google Calendar sync | Optional. Configure via Settings → Integration. Requires Google Cloud project with Calendar API enabled. |
-| Auth | Single admin account + provider accounts. No multi-user admin support. |
-| Booking page | Public booking page at the root URL — no auth required for customers. |
+| Language | PHP 8.x (recommended) |
+| Database | MySQL 8.x or MariaDB 10.x |
+| Web server | Apache (mod_rewrite) or nginx |
+| Config file | config.php — copy from config-sample.php and edit |
+| Writable dir | storage/ — must be writable by web server |
+| Setup wizard | Available on first visit to the app URL |
+| Google Calendar | Optional; requires OAuth2 client ID and secret from Google Cloud Console |
+| REST API | Built-in; documented via OpenAPI (openapi.yml in repo) |
+
+## Install: Manual LAMP
+
+Source: https://github.com/alextselegidis/easyappointments/blob/master/README.md#installation
+
+### 1. Download the latest release
+
+```bash
+# Download from GitHub releases
+wget https://github.com/alextselegidis/easyappointments/releases/download/1.5.2/easyappointments-1.5.2.zip
+unzip easyappointments-1.5.2.zip -d /var/www/html/
+mv /var/www/html/easyappointments-1.5.2 /var/www/html/appointments
+```
+
+Or use the direct download from https://easyappointments.org.
+
+### 2. Set permissions
+
+```bash
+chown -R www-data:www-data /var/www/html/appointments
+chmod -R 755 /var/www/html/appointments
+chmod -R 775 /var/www/html/appointments/storage
+```
+
+### 3. Configure
+
+```bash
+cd /var/www/html/appointments
+cp config-sample.php config.php
+```
+
+Edit config.php — set at minimum:
+```php
+define('BASE_URL', 'https://appointments.example.com');
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'easyappointments');
+define('DB_USERNAME', 'eauser');
+define('DB_PASSWORD', 'yourpassword');
+define('GOOGLE_SYNC_FEATURE', FALSE); // set TRUE to enable Google Calendar
+```
+
+### 4. Create MySQL database
+
+```sql
+CREATE DATABASE easyappointments CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'eauser'@'localhost' IDENTIFIED BY 'yourpassword';
+GRANT ALL PRIVILEGES ON easyappointments.* TO 'eauser'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+### 5. Apache virtual host
+
+```apache
+<VirtualHost *:80>
+    ServerName appointments.example.com
+    DocumentRoot /var/www/html/appointments
+    <Directory /var/www/html/appointments>
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+Enable mod_rewrite: `sudo a2enmod rewrite && sudo systemctl restart apache2`
+
+### 6. Complete setup wizard
+
+Visit https://appointments.example.com in a browser. The setup wizard will guide you through creating the admin account and verifying the database connection.
 
 ## Upgrade procedure
 
-Reference: <https://github.com/alextselegidis/easyappointments/wiki>
-
-```bash
-# 1. Backup database
-mysqldump -u easyappts -p easyappointments > easyappointments-backup-$(date +%Y%m%d).sql
-
-# 2. Backup config.php and storage/
-cp /var/www/easyappointments/config.php ~/config.php.bak
-tar czf ~/easyappointments-storage-bak.tar.gz /var/www/easyappointments/storage
-
-# 3. Download new release
-wget https://github.com/alextselegidis/easyappointments/releases/latest/download/easy-appointments.zip
-unzip easy-appointments.zip -d /tmp/easyappointments-new
-
-# 4. Deploy new files (preserve config.php and storage/)
-rsync -av --exclude='config.php' --exclude='storage/' /tmp/easyappointments-new/ /var/www/easyappointments/
-
-# 5. Fix permissions
-chown -R www-data:www-data /var/www/easyappointments
-
-# 6. Run database migrations
-# Navigate to your Easy!Appointments URL — migrations run automatically on first load after upgrade
-```
+1. Back up the database: `mysqldump -u eauser -p easyappointments > backup_$(date +%Y%m%d).sql`
+2. Back up storage/ directory
+3. Download the new release from https://github.com/alextselegidis/easyappointments/releases
+4. Extract and overwrite all files except config.php and storage/
+5. Visit the app — the upgrade will run automatically if needed
 
 ## Gotchas
 
-- **BASE_URL must match your domain exactly** (including trailing slash): If it's wrong, redirects and assets break. Update config.php whenever you change the domain.
-- **storage/ must be writable:** If PHP can't write to `storage/`, the app throws 500 errors. Run `chmod -R 775 storage && chown -R www-data:www-data storage`.
-- **Apache .htaccess required:** Without .htaccess (or equivalent Apache config with `AllowOverride All`), URL routing breaks and all paths return 404.
-- **Google Calendar sync requires OAuth setup:** You need a Google Cloud project with Calendar API enabled and an OAuth2 client credential. See upstream docs for the step-by-step.
-- **No official Docker image:** No upstream-maintained Docker image exists. For containerized deployment you'll need to build your own or use a community image.
-- **PHP 8.2+ required:** PHP 7.x is not supported as of current releases. Verify `php -v` before installing.
+- mod_rewrite required: Apache must have mod_rewrite enabled and AllowOverride All set. Without it, all routes except the root return 404.
+- storage/ must be writable: File uploads and cache writes go here. Incorrect permissions cause silent failures.
+- config.php is not overwritten on upgrade: Safe to deploy new version without losing configuration.
+- Google Calendar sync needs API credentials: Go to Google Cloud Console, create an OAuth2 client, and enter the credentials in config.php. Users must authorise the connection individually.
+- Docker compose in repo is for development: It builds from source and uses dev tooling. Not suitable for production use.
+- BASE_URL must match your actual URL: Mismatched BASE_URL causes redirect loops and broken asset loading.
 
-## Upstream links
+## Links
 
-- GitHub: <https://github.com/alextselegidis/easyappointments>
-- Website: <https://easyappointments.org>
-- Releases: <https://github.com/alextselegidis/easyappointments/releases>
-- Demo: <https://demo.easyappointments.org>
-- Google Calendar integration docs: <https://github.com/alextselegidis/easyappointments/wiki>
+- GitHub: https://github.com/alextselegidis/easyappointments
+- Releases: https://github.com/alextselegidis/easyappointments/releases
+- Official site: https://easyappointments.org
+- Discord: https://discord.com/invite/UeeSkaw
+- OpenAPI docs: https://github.com/alextselegidis/easyappointments/blob/master/openapi.yml
