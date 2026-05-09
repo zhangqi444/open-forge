@@ -81,7 +81,7 @@ EOF
 docker compose up -d
 ```
 
-The upstream compose (<https://github.com/activepieces/activepieces/blob/main/docker-compose.yml>) ships with a *slightly older worker tag than app* at time of writing (`app:0.80.1`, `worker:0.79.0`) — harmonize both to the same release before deploy. Pin to a concrete tag; avoid `latest`.
+The upstream compose (<https://github.com/activepieces/activepieces/blob/main/docker-compose.yml>) ships with a *slightly older worker tag than app* at time of writing (`app:0.82.2`, `worker:0.82.2`) — harmonize both to the same release before deploy. Pin to a concrete tag; avoid `latest`.
 
 Browse `https://flows.example.com` → create the admin account (first user becomes platform admin) → build a flow.
 

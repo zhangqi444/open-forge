@@ -60,7 +60,7 @@ Mealie is the go-to self-hosted recipe manager for food nerds. Core features:
 ```yaml
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v3.16.0    # pin; avoid :latest
+    image: ghcr.io/mealie-recipes/mealie:v3.17.0    # pin; avoid :latest
     container_name: mealie
     restart: always
     ports:
@@ -89,7 +89,7 @@ Recommended for multi-user, high-concurrency, or NAS-hosted data (SQLite + NFS/S
 ```yaml
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v3.16.0
+    image: ghcr.io/mealie-recipes/mealie:v3.17.0
     container_name: mealie
     restart: always
     ports:
@@ -183,7 +183,7 @@ docker compose exec -T postgres pg_dump -U mealie mealie | gzip > mealie-db-$(da
 
 - **SQLite + NAS = data corruption risk.** Don't put SQLite DB on NFS/SMB shares. Use Postgres for NAS setups or keep data on local disk.
 - **Memory limit recommended** (1 GB). Python's arena allocator can pre-allocate more than needed on big-RAM hosts; without a limit, idle containers look bloated.
-- **Pin to semver tag** (`v3.16.0`, not `:latest`). Upstream explicitly calls this out — release notes occasionally require manual migration steps.
+- **Pin to semver tag** (`v3.17.0`, not `:latest`). Upstream explicitly calls this out — release notes occasionally require manual migration steps.
 - **`BASE_URL` is used in email links** — OAuth redirects, invitation emails. Set correctly before inviting users.
 - **Repo moved from `hay-kot/mealie` → `mealie-recipes/mealie`** in 2023 after community took over. Old docker images `hkotel/mealie` may appear stale; use `ghcr.io/mealie-recipes/mealie` for the canonical image.
 - **Branch name is `mealie-next`** — the main development branch; `master` was retired. Docs link to `mealie-next`.

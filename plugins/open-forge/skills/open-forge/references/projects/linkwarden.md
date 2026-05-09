@@ -56,7 +56,7 @@ services:
       - postgres
       - meilisearch
   meilisearch:
-    image: getmeili/meilisearch:v1.12.8
+    image: getmeili/meilisearch:v1.43.0
     restart: always
     env_file:
       - .env

@@ -37,7 +37,7 @@ AGPL-3.0 self-hosted photo and video management. Mobile apps (iOS/Android) back 
 | storage | "Where should uploaded photos live? (host path)" | Free-text | `UPLOAD_LOCATION` — large dir, plan for growth. Network shares OK for media, NOT for the DB. |
 | storage | "Where should the Postgres data dir live? (host path)" | Free-text | `DB_DATA_LOCATION` — local disk only, not NFS/SMB. |
 | secrets | "Generate a strong Postgres password?" | Confirm | `DB_PASSWORD` — a-z, A-Z, 0-9 only (no special chars) |
-| version | "Pin to a specific release (e.g. `v2.1.0`) or track `v2`?" | AskUserQuestion: pinned / major-latest | `v2` = latest 2.x; pinning specific versions recommended for production. |
+| version | "Pin to a specific release (e.g. `v2.7.5`) or track `v2`?" | AskUserQuestion: pinned / major-latest | `v2` = latest 2.x; pinning specific versions recommended for production. |
 | hwaccel | "Use hardware acceleration for ML inference?" | AskUserQuestion: No / CUDA / OpenVINO / ROCm / ARM-NN / RKNN | Only if you have the hardware. |
 | hwaccel | "Use hardware acceleration for video transcoding?" | AskUserQuestion: No / NVENC / QuickSync / VAAPI / RKMPP | |
 | smtp | "Outbound email for password reset + sharing notifications?" | AskUserQuestion: Resend / SendGrid / Mailgun / Skip | Optional |
@@ -63,7 +63,7 @@ wget -O .env \
 #    DB_DATA_LOCATION   -> absolute path for Postgres (e.g. /srv/immich/postgres)
 #    TZ                 -> e.g. America/Los_Angeles
 #    DB_PASSWORD        -> strong password, [A-Za-z0-9] only
-#    IMMICH_VERSION     -> pinned tag like v2.1.0 or major-track like v2
+#    IMMICH_VERSION     -> pinned tag like v2.7.5 or major-track like v2
 
 # 3. Start
 docker compose up -d
@@ -153,7 +153,7 @@ Immich DB migrations run automatically on server start; rollback = restore the D
 
 ## Gotchas
 
-- **Pin the version.** `IMMICH_VERSION=release` pulls whatever `:release` currently points at — great for latest, painful when upstream ships a breaking v2→v3. Pin to `v2.1.0` or similar for stability.
+- **Pin the version.** `IMMICH_VERSION=release` pulls whatever `:release` currently points at — great for latest, painful when upstream ships a breaking v2→v3. Pin to `v2.7.5` or similar for stability.
 - **Postgres image is a custom upstream build.** Don't substitute `postgres:16` — Immich needs specific vector extensions at specific versions. The SHA-pinned tag in the compose is intentional.
 - **Do NOT store `DB_DATA_LOCATION` on NFS/SMB.** Postgres hates network filesystems. `UPLOAD_LOCATION` on NFS is fine (with caveats on performance and locking).
 - **`DB_PASSWORD` character set is restrictive.** Only `A-Za-z0-9` because it flows into URLs/connection strings without escaping.
