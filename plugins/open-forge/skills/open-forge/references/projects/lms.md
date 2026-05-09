@@ -1,149 +1,164 @@
 ---
-name: LMS (Lightweight Music Server)
-description: "Self-hosted music streaming server with web UI. C++/Wt. Docker + Debian packages + source. epoupon/lms. Subsonic/OpenSubsonic API, MusicBrainz, ListenBrainz, recommendations, transcoding."
+name: lms
+description: LMS (Lightweight Music Server) recipe for open-forge. Covers Docker (recommended), Debian/Ubuntu packages, and build-from-source install methods as documented in https://github.com/epoupon/lms/blob/master/INSTALL.md and the Docker Hub page.
 ---
 
 # LMS — Lightweight Music Server
 
-**Self-hosted music streaming software** — access your music collection from anywhere via a web interface. C++ server built on the Wt web toolkit. Full Subsonic/OpenSubsonic API support (works with any Subsonic-compatible client). Rich metadata: multi-valued tags, MusicBrainz IDs, release groups, artist relationships. Recommendation engine, radio mode, transcoding, podcast support, jukebox mode.
+Self-hosted music streaming server built on C++/Boost/Wt. Streams personal music libraries, supports multi-user access, scrobbling, and playlists. Upstream: <https://github.com/epoupon/lms>. License: GPL-3.0.
 
-Built + maintained by **Emeric Poupon (epoupon)**. Demo at [lms-demo.poupon.dev](http://lms-demo.poupon.dev) (admin settings not available in demo).
-
-- Upstream repo: <https://github.com/epoupon/lms>
-- Docker Hub: <https://hub.docker.com/r/epoupon/lms>
-- Install docs: <https://github.com/epoupon/lms/blob/master/INSTALL.md>
-- Subsonic API details: <https://github.com/epoupon/lms/blob/master/SUBSONIC.md>
-
-## Architecture in one minute
-
-- **C++ / Wt** web server (single binary, low resource usage)
-- **SQLite** database (default; handles large libraries well)
-- Port **5082** (Docker default)
-- Subsonic/OpenSubsonic API → compatible with all Subsonic clients (DSub, Symfonium, Navidrome apps, etc.)
-- Audio transcoding via **ffmpeg**
-- Authentication backends: internal, PAM, HTTP headers (SSO)
-- Jukebox mode: direct audio output via PulseAudio from the server
+LMS listens on port `5082` by default. What varies across install methods is whether you run the official Docker image (simplest, recommended), install from a prebuilt Debian/Ubuntu `.deb` package, or compile from source. All methods use the same config file format and data directory layout.
 
 ## Compatible install methods
 
-| Infra              | Runtime                      | Notes                                                             |
-| ------------------ | ---------------------------- | ----------------------------------------------------------------- |
-| **Docker**         | `epoupon/lms`                | **Easiest** — see Docker Hub for compose snippet                  |
-| **Debian package** | `apt install lms`            | Trixie (Debian 13) packages for amd64; custom apt repo            |
-| **Source**         | CMake + C++20                | For other distros; requires Wt4 + ffmpeg + several libs           |
+Verified against upstream's `INSTALL.md` and Docker Hub page.
+
+| Method | Upstream | When to use |
+|---|---|---|
+| Docker | <https://hub.docker.com/r/epoupon/lms> | Recommended — minimal host dependencies, cross-distro |
+| Debian/Ubuntu package | INSTALL.md §Debian/Ubuntu | When you prefer native packages over containers |
+| Build from source | INSTALL.md §Build | For custom builds or unsupported distros |
 
 ## Inputs to collect
 
-| Input                     | Example                          | Phase    | Notes                                                                                   |
-| ------------------------- | -------------------------------- | -------- | --------------------------------------------------------------------------------------- |
-| Music library path        | `/music`                         | Storage  | Mount into container; LMS scans this dir recursively                                    |
-| Domain                    | `music.example.com`              | URL      | Reverse proxy + TLS                                                                     |
-| Admin credentials         | username + password              | Auth     | Set on first-run wizard                                                                 |
-| Timezone                  | `America/New_York`               | Config   | For scheduler / timestamps                                                              |
-| Transcoding codec         | `mp3`, `opus`, `aac`             | Config   | Admin settings; requires ffmpeg in image (included in Docker)                           |
+| Phase | Prompt | Format | Notes |
+|---|---|---|---|
+| preflight | "Which install method?" | docker / deb / source | Drives method section |
+| volume | "Path to store LMS persistent data (database, config, cache)?" | Host path | E.g. /srv/lms |
+| music | "Path to your music library on the host?" | Host path | Mounted read-only |
+| port | "Which host port should LMS listen on?" | Number | Default 5082 |
+| user | "User ID and group ID to run LMS as (UID:GID)?" | UID:GID | Avoids permission issues with music files |
+| tls | "Front LMS with a reverse proxy for HTTPS?" | Yes / No | LMS itself has no TLS |
 
-## Install via Docker
+## Software-layer concerns
 
-Per [Docker Hub — epoupon/lms](https://hub.docker.com/r/epoupon/lms):
+### Config file
+
+LMS uses a config file at `/etc/lms.conf` (or a custom path passed as argument). Default values are conservative and sane. Key settings when running behind a reverse proxy:
+
+- `listen-addr` and `listen-port` — bind to localhost if reverse-proxied
+- `behind-reverse-proxy = true` — trust `X-Forwarded-*` headers from the proxy
+
+Default config: <https://github.com/epoupon/lms/blob/master/conf/lms.conf>
+
+### Data directory
+
+| Content | Container path |
+|---|---|
+| SQLite database | `/var/lms/lms.db` |
+| Optional custom config | `/var/lms/lms.conf` |
+| Transcoding cache | `/var/lms/cache/` |
+
+Mount `/var/lms` as a persistent volume. This path needs write access.
+
+### Music directory
+
+Mount music at `/music` (read-only). After first launch, add `/music` as a library from the LMS admin interface: **Settings → Libraries → Add**. Multiple mount points can serve multiple libraries.
+
+## Method — Docker
+
+> **Source:** <https://hub.docker.com/r/epoupon/lms>
+
+### Quick start
+
+```bash
+docker run \
+  --restart=unless-stopped \
+  --user <user_id:group_id> \
+  -p <host_port>:5082 \
+  -v <path_to_music>:/music:ro \
+  -v <path_to_persistent_data>:/var/lms:rw \
+  epoupon/lms
+```
+
+### Docker Compose
 
 ```yaml
 services:
   lms:
     image: epoupon/lms:latest
-    container_name: lms
-    ports:
-      - "5082:5082"
-    volumes:
-      - ./lms-data:/var/lms        # DB + config
-      - /path/to/music:/music:ro   # music library (read-only)
-    environment:
-      - TZ=America/New_York
     restart: unless-stopped
+    user: "${LMS_UID}:${LMS_GID}"
+    ports:
+      - "${LMS_PORT:-5082}:5082"
+    volumes:
+      - "${MUSIC_PATH}:/music:ro"
+      - "${DATA_PATH}:/var/lms:rw"
 ```
 
-Visit `http://<host>:5082`.
-
-## Install via Debian package (Trixie/amd64)
-
-```sh
-# Add upstream apt repo
-wget --backups=1 https://debian.poupon.dev/apt/debian/epoupon.gpg -P /usr/share/keyrings
-echo "deb [signed-by=/usr/share/keyrings/epoupon.gpg] https://debian.poupon.dev/apt/debian trixie main" \
-  > /etc/apt/sources.list.d/epoupon.list
-
-apt update && apt install lms
-# Service starts automatically as 'lms' system user
+`.env` file:
+```
+LMS_UID=1000
+LMS_GID=1000
+LMS_PORT=5082
+MUSIC_PATH=/path/to/your/music
+DATA_PATH=/srv/lms
 ```
 
-Config: `/etc/lms.conf`. Data: `/var/lms/`. Logs: systemd journal (`journalctl -u lms`).
-
-## First boot
-
-1. Deploy (Docker or package).
-2. Open the web UI → first-run wizard creates admin user.
-3. Add your music library path in Settings → Libraries.
-4. Trigger an initial scan (Admin → Database → Scan).
-5. Enable **transcoding** profiles if needed (Admin → Transcoding).
-6. Add other users; set their access level.
-7. Configure **Subsonic API** if you want to use external clients (DSub, Symfonium, etc.): Admin → API.
-8. Set up **ListenBrainz** scrobbling if desired (Settings → ListenBrainz).
-9. Put behind TLS.
-10. Back up `/var/lms/` (contains DB + config — not the music itself).
-
-## Data & config layout
-
-- `/var/lms/` — SQLite DB + LMS config
-- Music library: externally managed; LMS scans it, does not modify files
-
-## Backup
-
-```sh
-docker compose stop lms
-sudo tar czf lms-$(date +%F).tgz lms-data/
-docker compose start lms
-# The music itself is on your NAS/mount — back it up separately
+```bash
+docker compose up -d
+docker compose logs -f lms
 ```
 
-## Upgrade
+### Custom config file
 
-1. Releases: <https://github.com/epoupon/lms/releases>
-2. Docker: `docker compose pull && docker compose up -d`
-3. Debian: `apt update && apt upgrade lms`
+```bash
+# Place config in the data directory
+curl -o /srv/lms/lms.conf \
+  https://raw.githubusercontent.com/epoupon/lms/master/conf/lms.conf
+# Edit, then pass as argument:
+docker run ... epoupon/lms /var/lms/lms.conf
+```
+
+### Verify
+
+Open `http://<host>:<port>` — the LMS web UI should load. Create an admin account on first access. Then go to **Settings → Libraries** and add `/music` to start scanning.
+
+## Method — Debian/Ubuntu package
+
+> **Source:** <https://github.com/epoupon/lms/blob/master/INSTALL.md>
+
+```bash
+curl -fsSL https://lms.poupon.fr/repo.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/lms.gpg
+echo "deb [signed-by=/etc/apt/keyrings/lms.gpg] https://lms.poupon.fr bookworm main" \
+  | sudo tee /etc/apt/sources.list.d/lms.list
+sudo apt update && sudo apt install lms
+sudo systemctl enable --now lms
+```
+
+Config lives at `/etc/lms.conf`; data at `/var/lib/lms/`. Access at `http://localhost:5082`.
+
+## Upgrade procedure
+
+### Docker
+
+```bash
+docker pull epoupon/lms:latest
+docker compose down && docker compose up -d
+```
+
+LMS performs automatic database migrations on startup — no manual migration step required.
+
+### Debian/Ubuntu package
+
+```bash
+sudo apt update && sudo apt upgrade lms
+sudo systemctl restart lms
+```
 
 ## Gotchas
 
-- **Subsonic API is the primary client integration.** LMS's web UI is good for discovery/browsing, but most users pair it with a Subsonic-compatible mobile app (DSub, Symfonium, Foobar2000 with plugin, etc.). Configure API credentials in Admin → API.
-- **Tag quality matters a lot.** LMS relies heavily on file tags (MusicBrainz IDs, multi-valued tags, release types). A well-tagged library (via Picard or beets) unlocks artist relationships, release groups, and accurate recommendations. A mess of poorly-tagged rips will produce a mess in LMS.
-- **Initial scan can be slow for large libraries.** Tens of thousands of tracks take minutes to hours for the first full scan. Subsequent incremental scans are fast.
-- **Recommendation engine can slow the UI on large libraries / low-spec hardware.** Disable in Admin settings if the UI feels sluggish.
-- **Wt4 is not Debian-packaged.** Upstream packages handle this; building from source on non-Debian distros means compiling Wt4 yourself (not trivial — ~200MB+ of dependencies). Use Docker unless you're on Debian Trixie.
-- **ffmpeg is required for transcoding.** The official Docker image bundles it. If installing the Debian package, `apt install ffmpeg` separately.
-- **PAM + HTTP-header auth backends.** For SSO integrations (Authelia, Authentik, etc.), the HTTP-header backend is the pragmatic path — configure your reverse proxy to inject the user header.
-- **Jukebox mode** plays audio out of the server machine's sound card (PulseAudio). Useful for a dedicated music box / Pi; irrelevant for remote streaming.
-- **Artist information folder** (Kodi-format `artist.nfo` + `artist.jpg`): LMS supports it for biography + artwork. Place under a root-level `ArtistInfo/` directory in your library.
-- **ListenBrainz scrobbling** is per-user in Settings. Last.fm scrobbling is not built-in — use a Subsonic client that supports it (many do).
-- **SQLite scales well** — LMS is optimized for it; no need to migrate to Postgres.
-
-## Project health
-
-Active C++ development, Docker Hub, Debian apt repo, Subsonic API, demo instance, discussion forum. Solo-maintained by Emeric Poupon.
-
-## Music-server-family comparison
-
-- **LMS** — C++, Subsonic API, strong metadata/MusicBrainz integration, recommendation engine, low resource
-- **Navidrome** — Go, Subsonic API, simpler, more widely deployed, better Subsonic client compatibility
-- **Jellyfin** — .NET, multi-media (video + music + photos), heavier
-- **Plex** — proprietary, music + video, account required
-- **Ampache** — PHP, long-established, complex
-- **Funkwhale** — Python, federated (ActivityPub), social features
-
-**Choose LMS if:** you want a low-resource C++ music server with deep MusicBrainz/metadata support, Subsonic API, and a recommendation engine.
+- **User ownership matters.** Run LMS with `--user UID:GID` matching the owner of the music files. Without this, LMS defaults to root and may write root-owned files into the volume.
+- **First-run scan takes time.** The initial library scan can take minutes to hours depending on size. The UI remains accessible during scanning.
+- **`behind-reverse-proxy = true` is required when using a reverse proxy.** Without this setting, LMS won't trust `X-Forwarded-Proto` and may produce incorrect redirects.
+- **No TLS in the LMS image.** Use Caddy, nginx, or Traefik to add HTTPS. Bind `listen-addr = 127.0.0.1` when only accessed via a proxy.
+- **Jukebox mode (direct audio output) requires PulseAudio on the host.** Not available on headless servers. Pass `-e PULSE_SERVER=unix:/run/user/<uid>/pulse/native` and the corresponding volume mount to enable it.
+- **Do not change UIDs after first run** — the SQLite database and cache files will be owned by the original UID; changing it will break file access.
 
 ## Links
 
-- Repo: <https://github.com/epoupon/lms>
+- GitHub: <https://github.com/epoupon/lms>
+- INSTALL.md: <https://github.com/epoupon/lms/blob/master/INSTALL.md>
 - Docker Hub: <https://hub.docker.com/r/epoupon/lms>
-- Install docs: <https://github.com/epoupon/lms/blob/master/INSTALL.md>
-- Subsonic API: <https://github.com/epoupon/lms/blob/master/SUBSONIC.md>
-- Demo: <http://lms-demo.poupon.dev>
-- Navidrome (alt): <https://www.navidrome.org>
+- Default config: <https://github.com/epoupon/lms/blob/master/conf/lms.conf>
+- Subsonic API compatibility: <https://github.com/epoupon/lms/blob/master/SUBSONIC.md>
