@@ -81,7 +81,7 @@ EOF
 docker compose up -d
 ```
 
-The upstream compose (<https://github.com/activepieces/activepieces/blob/main/docker-compose.yml>) ships with a *slightly older worker tag than app* at time of writing (`app:0.82.2`, `worker:0.82.2`) — harmonize both to the same release before deploy. Pin to a concrete tag; avoid `latest`.
+The upstream compose (<https://github.com/activepieces/activepieces/blob/main/docker-compose.yml>) ships `0.83.0` as of the latest upstream compose. Harmonize both `app` and `worker` image tags to the same version before deploying. Pin to a concrete tag; avoid `latest`.
 
 Browse `https://flows.example.com` → create the admin account (first user becomes platform admin) → build a flow.
 
@@ -110,7 +110,7 @@ Critically, **back up `AP_ENCRYPTION_KEY`** alongside the DB dump. Every stored 
 
 ## Gotchas
 
-- **Worker version skew** with `app` is risky. The sample compose ships mismatched tags; always deploy them at the same version.
+- **Worker version skew** with `app` is risky. Always deploy app and worker at the same version tag.
 - **`AP_ENCRYPTION_KEY` is permanent** for the lifetime of the DB. Change it and every stored credential (OAuth tokens, API keys, DB passwords) becomes unreadable; users must re-authorize every connection.
 - **`AP_EXECUTION_MODE=UNSANDBOXED`** means user-authored code pieces run with worker-container privileges. Acceptable for single-tenant self-host; for multi-tenant, switch to `SANDBOXED` and set up the Docker-in-Docker prerequisites (see docs).
 - **Webhooks need `AP_FRONTEND_URL`** correct and reachable publicly (or via tunnel). A wrong value here yields 404s on external webhook triggers.
