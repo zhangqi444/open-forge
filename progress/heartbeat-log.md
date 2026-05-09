@@ -1725,3 +1725,21 @@ Commit: 9cc11cc
 - Step 2: Catalog freshness → Skipped (catalog-check.json last_checked_at: 2026-05-09T10:00:00Z — only ~6h46m ago, well within 7-day threshold). Previous freshness runs today updated mealie.md, immich.md, linkwarden.md, activepieces.md. No re-check needed.
 - Step 3: Catalog growth → Both batch sources complete (selfh.st 1,274/1,274; awesome-selfhosted-data 169 batches, ~817 net-new). Self-Host Weekly newsletter: 2026-05-08 and 2026-05-15 both return HTTP 404 (not yet published). Latest processed issue remains 2026-05-01. Next newsletter expected 2026-05-15. No new signal to process. Catalog at 2,119 recipes.
 - Status: HEARTBEAT_OK.
+
+## 2026-05-09T17:05:00Z
+
+- Step 0: git pull — already up to date (531bef9).
+- Step 1: GitHub issues — 0 open issues, nothing to action. Updated issues-log.json timestamp.
+- Step 2: Catalog freshness — last checked 2026-05-09T14:31:00Z (~2.5h ago), within 7-day window, skipped.
+- Step 3: Catalog growth — Both batch sources complete (selfh.st 1,274/1,274; awesome-selfhosted-data 169 batches, ~817 net-new). Self-Host Weekly newsletter: RSS feed confirms latest issue is still 2026-05-01 (already processed). 2026-05-08 returns HTTP 404 (not yet published). Next newsletter expected 2026-05-15.
+  - Cross-referenced selfh.st directory (1,282 slugs) against 2,119 existing recipes → found 39 uncatalogued slugs.
+  - After deduplication (cosmos-server→cosmos.md, ara-records-ansible→ara.md, gladys-assistant→gladys.md, zot-registry→zot.md, an-otter-wiki→otterwiki.md, zaneops→zane-ops.md, z-wave-js-ui→zwave-js-ui.md, lightweight-music-server→lms.md) — 31 genuinely new candidates remain.
+  - Skipped: dockhand (BSL 1.1, README explicitly prohibits AI scraping), runson (AWS CloudFormation, not standard Docker self-host), global-threat-map (requires Mapbox+Valyu API keys, no Docker compose), nextcloud-office (Nextcloud plugin/app, not standalone).
+  - Wrote 4 new recipes (batch 171):
+    - `operately.md` — Open-source company OS (OKRs/goals/projects/teams), Apache 2.0, Docker Compose single-host installer, 457★
+    - `cmintey-wishlist.md` — Sharable wishlist for friends/family, MIT, single Docker container + SQLite, 548★
+    - `mybibliotecha.md` — Personal library & reading tracker (Goodreads alternative), MIT, Docker Compose + KuzuDB, 562★
+    - `proxcenter.md` — Proxmox VE multi-cluster management UI (CE edition), AGPL-3.0, curl installer → Docker Compose, 873★
+  - Build: `./scripts/build-dist.sh all` → OK.
+  - Committed + pushed: 9e4688f "open-forge: batch 171 — operately, cmintey-wishlist, mybibliotecha, proxcenter".
+  - Catalog now at 2,123 recipes.
