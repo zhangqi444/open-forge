@@ -2054,3 +2054,65 @@ Used GitHub API search (topic:self-hosted+topic:docker and stars>2000) to find h
 
 - Ran build-dist.sh all — all 7 bundles rebuilt successfully.
 - Committed and pushed: cb391cf
+
+---
+
+## Heartbeat — 2026-05-09T22:30:00Z
+
+### Step 0 — Sync
+- `git pull --rebase --autostash` → Already up to date.
+
+### Step 1 — GitHub Issues
+- Fetched open issues from zhangqi444/open-forge.
+- No open issues found. issues-log.json already up to date.
+
+### Step 2 — Weekly Catalog Freshness Check
+- catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (within 7-day window).
+- Freshness check skipped — completed earlier today.
+
+### Step 3 — Catalog Growth
+- Both batch sources (selfh.st, awesome-selfhosted) complete. Operating on continuous source: GitHub API search.
+- Searched GitHub API: topic:self-hosted+created:>2024-06-01+stars:>300 and topic:self-hosted+stars:>800.
+- Cross-referenced ~80 candidates against 2181 existing recipes.
+- Skipped: meetily (desktop app — macOS/Windows/Linux binary, no server-side Docker), timelinize (desktop app, binary releases only), microsandbox (SDK/VM tooling, not a web service), pandawiki (install script only, no docker-compose, Chinese-only README), sidekick (server deploy orchestration tool, not a user-facing self-hosted service).
+- Added 3 new recipes (batch 24):
+
+1. **omni-tools.md** — iib0011/omni-tools (9478 ⭐, MIT)
+   - Self-hosted web toolbox with 100+ utility tools (image/video/PDF/text/math/data).
+   - All processing is client-side in the browser — files never leave the device.
+   - Single 28 MB nginx container on port 8080, zero configuration.
+
+2. **certimate.md** — certimate-go/certimate (8590 ⭐, MIT)
+   - Self-hosted SSL certificate ACME automation with visual workflow editor.
+   - Supports 60+ DNS providers, 120+ deployment targets, DNS-01 + HTTP-01 challenges.
+   - Single Go binary or Docker container (PocketBase embedded DB), port 8090, ~16 MB RAM.
+
+3. **laminar.md** — lmnr-ai/lmnr (2856 ⭐, Apache-2.0)
+   - Open-source AI observability platform for AI agents (YC S24).
+   - OpenTelemetry-native tracing, evals, AI monitoring, dashboards, SQL editor.
+   - Rust app-server + Next.js + ClickHouse + PostgreSQL + Quickwit; Docker Compose stack.
+
+- Ran build-dist.sh all — all 7 bundles rebuilt successfully.
+- Committed and pushed: f9e0844
+
+## 2026-05-09T22:53:07Z
+
+**Step 0 — Sync:** Repo already up to date.
+
+**Step 1 — GitHub Issues:** No open issues found.
+
+**Step 2 — Catalog freshness:** Skipped. Last check was 2026-05-09T14:31:00Z (less than 7 days ago).
+
+**Step 3 — Catalog growth:** Added 4 new recipes (batch 34):
+
+| Recipe | Stars | Category |
+|--------|-------|----------|
+| `suwayomi-server.md` | 6,897 | Media / Manga |
+| `rote.md` | 985 | Notes |
+| `benotes.md` | 857 | Notes + Bookmarks |
+| `easy-gate.md` | 363 | Dashboard / Homepage |
+
+Sources searched: GitHub topic:self-hosted+docker, topic:selfhosted+docker, topic:notes+self-hosted.
+Build: `./scripts/build-dist.sh all` — all bundles rebuilt successfully.
+Commit: `open-forge: batch 34 — Suwayomi-Server, easy-gate, Rote, Benotes`
+Push: success → main
