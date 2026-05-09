@@ -1,63 +1,58 @@
+---
+name: Flare
+description: "Modern self-hosted file sharing platform. Works with ShareX, Flameshot, KDE Spectacle out-of-the-box. Next.js + PostgreSQL + Docker. URL shortener, pastebin, OCR image search, rich embeds, S3-compatible storage option, admin dashboard, user management with quotas."
+---
+
 # Flare
 
-**Modern self-hosted file sharing platform with screenshot tool integration** — works seamlessly with ShareX, Flameshot, and KDE Spectacle. Combines file vault, URL shortener, pastebin, and OCR-powered search in one Next.js app backed by PostgreSQL.
+Flare is a **modern, self-hostable file sharing platform** built with Next.js, designed for integration with screenshot tools like **ShareX, Flameshot, and KDE Spectacle**. One-click config/script download from the dashboard gets any of these tools wired up immediately. Features URL shortener, pastebin with syntax highlighting, OCR text extraction from uploaded images, and rich social media embeds.
 
-**Official site:** https://github.com/FlintSH/Flare
-**Source:** https://github.com/FlintSH/Flare
-**License:** MIT
+- Upstream repo: <https://github.com/FlintSH/Flare>
+- Docker Hub: <https://hub.docker.com/r/flintsh/flare>
+- License: MIT
+- Discord: <https://discord.gg/mwVAjKwPus>
 
----
+## Architecture
 
-## Compatible Combos
+- **Frontend + backend**: Next.js (port 3000)
+- **Database**: PostgreSQL (required)
+- **Storage**: Local filesystem (`./uploads`) or S3-compatible
+- **OCR**: Automatic text extraction on image uploads (via optional dependency)
+
+## Compatible install methods
 
 | Infra | Runtime | Notes |
-|-------|---------|-------|
-| Any VPS / bare metal | Docker Compose | Recommended; needs PostgreSQL |
-| Railway | One-click deploy | Button available in repo README |
+|---|---|---|
+| Docker Compose | flintsh/flare:latest | Primary |
+| Railway | One-click template | Managed; set auth secret + create admin |
 
----
+## Inputs to collect
 
-## Inputs to Collect
+| Input | Example | Phase | Notes |
+|---|---|---|---|
+| Domain | share.example.com | dns | |
+| NEXTAUTH_SECRET | openssl rand -base64 32 | preflight | JWT signing key |
+| NEXTAUTH_URL | https://share.example.com | preflight | Full public URL |
+| PostgreSQL password | strong-random-pw | db | |
+| DATABASE_URL | postgresql://flareuser:pw@db:5432/flaredb?schema=public | db | Auto-built from above |
+| Storage backend | local or S3 | storage | Configure in dashboard after setup |
+| S3 endpoint / bucket / keys | varies | storage | Optional; configure in Settings |
 
-### Phase 1 — Planning
-- Domain / hostname for your instance
-- Storage backend: local filesystem or S3-compatible (Backblaze B2, MinIO, AWS S3, etc.)
-- Whether to run PostgreSQL in Docker Compose or use an external DB
+## Install via Docker Compose
 
-### Phase 2 — Deploy
-- `DATABASE_URL` — PostgreSQL connection string
-- `NEXTAUTH_SECRET` — random 32-byte base64 string (`openssl rand -base64 32`)
-- `NEXTAUTH_URL` — full public URL of your instance (e.g. `https://files.example.com`)
-- S3 credentials if using object storage: endpoint, bucket, access key, secret key
-- Admin account email/password (created on first launch)
-
----
-
-## Software-Layer Concerns
-
-- **Stack:** Next.js (App Router), PostgreSQL (via Prisma ORM), optional S3 storage
-- **Config:** All config via environment variables in `docker-compose.yml`
-- **Data dirs:** Local storage at `/app/uploads` (mount a volume); DB schema managed by Prisma migrations
-- **OCR:** Automatic text extraction from uploaded images; enables full-text search across uploads
-- **URL shortener:** Custom short URLs under your domain with click tracking
-- **Pastebin:** Code/text sharing with syntax highlighting
-- **Storage quotas:** Per-user configurable via admin dashboard
-- **Embeds:** Rich embeds on social platforms (Discord, Twitter, etc.)
-
----
-
-## Deployment
+From upstream README: <https://github.com/FlintSH/Flare#docker-deployment-self-hosted>
 
 ```yaml
-# docker-compose.yml
 version: '3.8'
+
 services:
   db:
     image: postgres:17-alpine
+    container_name: flare-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: flareuser
-      POSTGRES_PASSWORD: your-secure-password
+      POSTGRES_PASSWORD: your-secure-password-here   # CHANGE THIS
       POSTGRES_DB: flaredb
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
@@ -69,13 +64,14 @@ services:
 
   flare:
     image: flintsh/flare:latest
+    container_name: flare-app
     restart: unless-stopped
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgresql://flareuser:your-secure-password@db:5432/flaredb?schema=public
-      NEXTAUTH_SECRET: your-secret-here
-      NEXTAUTH_URL: https://files.example.com
+      DATABASE_URL: postgresql://flareuser:your-secure-password-here@db:5432/flaredb?schema=public
+      NEXTAUTH_SECRET: securestuffhere   # openssl rand -base64 32
+      NEXTAUTH_URL: http://localhost:3000  # change to https://yourdomain.com
     volumes:
       - ./uploads:/app/uploads
     depends_on:
@@ -85,34 +81,71 @@ services:
 
 ```bash
 docker compose up -d
-# First-run: visit your URL and create the admin account
+# Open http://localhost:3000 to complete setup and create admin account
 ```
 
----
+## First boot
 
-## Upgrade Procedure
+1. Browse to `http://localhost:3000`
+2. Complete setup wizard — creates admin account
+3. Go to Dashboard > Settings to configure:
+   - Storage quotas and file size limits
+   - Registration options (open/invite-only/closed)
+   - Appearance / custom CSS
+4. Go to Dashboard > Integrations to download ShareX config or Bash upload script
+
+## Configuration (in-app dashboard)
+
+Most configuration is done through `/dashboard/settings`:
+
+- **Storage**: file size limits, quotas per user
+- **Registration**: open, invite-only, or disabled
+- **Appearance**: theme, custom CSS, custom HTML
+- **Advanced**: custom CSS/HTML injection
+
+## ShareX integration
+
+1. Log in → go to Dashboard > Integrations
+2. Download the auto-generated ShareX config (`.sxcu` file)
+3. Import into ShareX — uploads immediately go to your Flare instance
+
+Same flow for Flameshot (bash script) and KDE Spectacle (bash script).
+
+## S3-compatible storage
+
+Configure in Settings after initial setup. Supports any S3-compatible provider (MinIO, Backblaze B2, Cloudflare R2, AWS S3).
+
+## Features summary
+
+- File upload with drag-and-drop
+- URL shortener with click tracking
+- Pastebin with syntax highlighting
+- OCR — automatic text extraction from images, searchable
+- Rich embeds on social platforms
+- Admin dashboard: usage stats, user management, content moderation
+- User management: role assignment, storage quotas
+- Role-based permissions, private files, password-protected files
+- Search by filename, OCR content, date with filters
+
+## Upgrade procedure
 
 ```bash
 docker compose pull
 docker compose up -d
-# Prisma migrations run automatically on startup
 ```
 
----
+Database migrations run automatically on startup.
 
 ## Gotchas
 
-- **PostgreSQL required** — no SQLite support; must have a running Postgres instance
-- **`NEXTAUTH_URL` must match your public URL exactly** — auth callbacks will fail otherwise
-- **First-run admin setup** happens via the web UI; no CLI provisioning
-- **OCR processing** runs asynchronously after upload; search index builds gradually
-- **ShareX config:** Download the pre-configured ShareX config from your Flare dashboard; no manual setup needed
-- **S3 storage:** Requires additional env vars (`STORAGE_TYPE=s3`, endpoint, bucket, key, secret); see upstream docs
-- **Local uploads volume** — ensure `./uploads` is on persistent storage; Docker volume recommended for production
+- NEXTAUTH_URL must exactly match your public URL (including https://) — wrong value causes auth failures
+- NEXTAUTH_SECRET must be set and stable — changing it invalidates all sessions
+- PostgreSQL is required — no SQLite option
+- uploads/ volume must be persisted; data loss if container recreated without volume bind
+- Behind a reverse proxy: set X-Forwarded-For and X-Real-IP headers; Next.js trusts proxied hosts
+- Large file uploads: increase `client_max_body_size` in nginx or `upload_max_filesize` in proxy config
 
----
+## TODO — verify on subsequent deployments
 
-## Links
-
-- Upstream README: https://github.com/FlintSH/Flare#readme
-- Discord: https://discord.gg/mwVAjKwPus
+- Confirm S3 storage configuration UI fields match latest release
+- Validate OCR search behavior with non-English text
