@@ -1743,3 +1743,60 @@ Commit: 9cc11cc
   - Build: `./scripts/build-dist.sh all` → OK.
   - Committed + pushed: 9e4688f "open-forge: batch 171 — operately, cmintey-wishlist, mybibliotecha, proxcenter".
   - Catalog now at 2,123 recipes.
+
+## 2026-05-09 — Heartbeat (17:25 UTC)
+
+- Step 0: Sync — already up to date (last commit 692dfbc from earlier today).
+- Step 1: GitHub Issues — 0 open issues. issues-log.json updated.
+- Step 2: Freshness check — catalog-check.json last_checked_at is 2026-05-09T10:00:00Z (same day, <7 hours ago). Skipped — not yet 7 days since last check.
+- Step 3: Catalog growth — selfh.st cross-reference. 35 slugs uncatalogued; after removing 12 known aliases/skips (cosmos-server, ara-records-ansible, an-otter-wiki, gladys-assistant, lightweight-music-server, z-wave-js-ui, zaneops, zot-registry, dockhand, runson, global-threat-map, nextcloud-office) → 23 genuinely new candidates.
+  - Also skipped: panora (archived on GitHub).
+  - Wrote 4 new recipes + updated 1 (batch 172):
+    - `zensical.md` — Modern static site generator by Material for MkDocs creators, MIT, Docker/pip, 4,567★
+    - `cr-nmaster.md` — Cron job management web UI with live logging, OIDC SSO, Docker privileged, 1,218★
+    - `sup3rs3cretmes5age.md` — Self-destructing one-time message service (HashiCorp Vault-backed), MIT, Docker Compose, 564★
+    - `operational.md` — Event tracking tool for tech products (signups/webhooks/cron), MIT, Docker Compose + MySQL, 461★
+    - `lancommander.md` — Open-source LAN game distribution platform, MIT, Docker + SQLite, 397★
+  - Build: `./scripts/build-dist.sh all` → OK.
+  - Committed + pushed: ee9cca5 "open-forge: batch 172 — zensical, cr-nmaster, sup3rs3cretmes5age, operational, lancommander".
+  - Catalog now at 2,127 recipes (4 new; sup3rs3cretmes5age.md was existing and updated).
+  - Remaining uncatalogued selfh.st candidates: ~18 (anyappstart, borg-backup-server, calagopus, crontab-guru, dock-dploy, dollardollar-bill-y-all, foundry-virtual-tabletop, html2rss, jellyplist, jellysweep, marpui, minuspod, nextcloud-forms, positive-intentions-chat, redict, sticky, stormkit).
+
+## 2026-05-09
+
+**Step 0 — Sync:** git pull --rebase, already up to date.
+
+**Step 1 — GitHub Issues:** No open issues. Nothing to address.
+
+**Step 2 — Catalog freshness:** catalog-check.json last checked today (2026-05-09). Skipped (within 7-day window).
+
+**Step 3 — Catalog growth:** Fetched fresh selfh.st directory (1274 apps). Found 4 newly-added apps not yet in selfhst-progress.json. All 4 were viable (Docker-based, open source, reachable upstream docs). Wrote recipes:
+
+- **borg-backup-server** — Self-hosted BorgBackup management web app. Agent-based architecture (agent polls server over HTTPS, transfers over SSH). Docker Compose single-container with bundled MariaDB + ClickHouse. Based on README + docker-compose.yml at github.com/marcpope/borgbackupserver (183 stars).
+- **calagopus** — Rust-based game server management platform. Docker-native with AIO image (Panel + Wings in one container) and multi-node option. Based on docs at calagopus.com/docs and github.com/calagopus/panel (298 stars, v1.0.4).
+- **dock-dploy** — Web-based visual builder/manager for Docker Compose files. Stateless React frontend, no DB needed. Based on README + docker-compose.yml at github.com/hhftechnology/Dock-Dploy (232 stars).
+- **minuspod** — Self-hosted podcast server with automatic LLM-based ad removal. Uses Whisper for transcription + LLM (Anthropic/OpenRouter/Ollama) for ad detection. GPU and CPU-only Docker images. Based on detailed README + docker-compose.yml at github.com/ttlequals0/MinusPod (164 stars).
+
+Build: `./scripts/build-dist.sh all` passed. Committed as "open-forge: batch 24 — borg-backup-server, calagopus, dock-dploy, minuspod" and pushed to main.
+
+## 2026-05-09 18:16 UTC — Heartbeat check
+
+**Step 0 — Sync:** `git pull --rebase --autostash` → Already up to date (f88f0c8).
+
+**Step 1 — GitHub Issues:** 0 open issues (API returned empty array). issues-log.json updated (last_checked_at: 2026-05-09T18:16:00Z).
+
+**Step 2 — Catalog freshness:** catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (same day, ~8h ago). Skipped — within 7-day threshold.
+
+**Step 3 — Catalog growth:**
+- Fetched fresh selfh.st directory: 1282 entries (vs 1278 in progress file). 4 missing: html2rss, zensical, proxcenter, marpui.
+  - html2rss, zensical, proxcenter: recipes already written in prior batches (173, 172, 171 respectively). Marked as "done" in selfhst-progress.json.
+  - marpui (13★): npm-install only, no Docker/server deployment option. Marked as "skipped".
+- Updated selfhst-progress.json: total → 1282, completed_at → 2026-05-09T18:16:00Z.
+- Detected anyappstart was marked "done" in selfhst-progress.json but had no recipe file (batch 24 bug). Wrote missing recipe.
+- Checked awesome-selfhosted-data for new additions since batch 169 (2026-05-08): Cardea, Ownfoil, LibreChat, MyTube, HamsterBase Tasks, LeafWiki, Onloc, BotWave all already have recipes. No new entries to process.
+- Newsletter check: latest Self-Host Weekly still 2026-05-01 (processed). 2026-05-08 and 2026-05-15 → HTTP 404.
+- Wrote 1 new recipe (batch 175):
+  - `anyappstart.md` — Lightweight Docker/Systemd/VM control panel (Start/Stop/Restart/Logs), no DB, YAML config, SSH remote support. aceberg/anyappstart, MIT, 212★.
+- Build: `./scripts/build-dist.sh all` → OK.
+- Committed + pushed: d5e4929 "open-forge: batch 175 — anyappstart".
+- Catalog now at 2,140 recipes.
