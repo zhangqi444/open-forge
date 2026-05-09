@@ -10205,7 +10205,75 @@
       }
    ],
    "fetched_at" : "2026-04-28T23:57:30Z",
-   "total" : 1274,
+      },
+      {
+         "desc" : "Centrally manage BorgBackup across endpoints",
+         "github" : "github.com/marcpope/borgbackupserver",
+         "name" : "Borg Backup Server",
+         "slug" : "borg-backup-server",
+         "stars" : 183,
+         "status" : "done"
+      },
+      {
+         "desc" : "Rust-based game server management platform",
+         "github" : "github.com/calagopus/panel",
+         "name" : "Calagopus",
+         "slug" : "calagopus",
+         "stars" : 298,
+         "status" : "done"
+      },
+      {
+         "desc" : "Visually build and manage Docker Compose files",
+         "github" : "github.com/hhftechnology/Dock-Dploy",
+         "name" : "Dock-Dploy",
+         "slug" : "dock-dploy",
+         "stars" : 232,
+         "status" : "done"
+      },
+      {
+         "desc" : "Podcast server with automatic ad removal",
+         "github" : "github.com/ttlequals0/MinusPod",
+         "name" : "MinusPod",
+         "slug" : "minuspod",
+         "stars" : 164,
+         "status" : "done"
+      },
+      {
+         "desc" : "Generate RSS feeds for any website",
+         "github" : "github.com/html2rss/html2rss-web",
+         "name" : "html2rss",
+         "slug" : "html2rss",
+         "stars" : 152,
+         "status" : "done"
+      },
+      {
+         "desc" : "Modern static site generator",
+         "github" : "github.com/zensical/zensical",
+         "name" : "Zensical",
+         "slug" : "zensical",
+         "stars" : 4563,
+         "status" : "done"
+      },
+      {
+         "desc" : "Modern web interface for Proxmox",
+         "github" : "github.com/adminsyspro/proxcenter-ui",
+         "name" : "ProxCenter",
+         "slug" : "proxcenter",
+         "stars" : 873,
+         "status" : "done"
+      },
+      {
+         "desc" : "Create, manage, and edit MARP presentations (npm-only, no Docker)",
+         "github" : "codeberg.org/ric_harvey/marp-ui",
+         "name" : "MarpUI",
+         "slug" : "marpui",
+         "stars" : 13,
+         "status" : "skipped",
+         "skip_reason" : "npm-install only, no Docker/server deployment option"
+      }
+   ],
+   "fetched_at" : "2026-04-28T23:57:30Z",
+   "total" : 1282,
    "source_status" : "complete",
-   "completed_at" : "2026-05-04T04:34:00Z"
+   "completed_at" : "2026-05-09T18:16:00Z"
 }
