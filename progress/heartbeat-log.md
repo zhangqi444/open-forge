@@ -1800,3 +1800,103 @@ Build: `./scripts/build-dist.sh all` passed. Committed as "open-forge: batch 24 
 - Build: `./scripts/build-dist.sh all` → OK.
 - Committed + pushed: d5e4929 "open-forge: batch 175 — anyappstart".
 - Catalog now at 2,140 recipes.
+
+## 2026-05-09 18:46 UTC — Heartbeat check
+
+**Step 0 — Sync:** `git pull --rebase --autostash` → Already up to date.
+
+**Step 1 — GitHub Issues:** 0 open issues (API returned empty array). issues-log.json updated (last_checked_at: 2026-05-09T18:46:00Z).
+
+**Step 2 — Catalog freshness:** catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (same day, ~8h ago). Skipped — within 7-day threshold.
+
+**Step 3 — Catalog growth / maintenance:**
+- selfh.st: live feed has 1282 entries, progress file has 1282 entries (1264 done + 18 skipped). No new entries.
+- awesome-selfhosted-data: recent commits (2026-05-08 → 2026-05-09) are all removals, no additions:
+  - Briefkasten removed (unmaintained >12 months since May 2025)
+  - txtdot removed (v1 discontinued, v2 branch had no code)
+  - Uploady removed (GitHub repo not found) — no recipe existed, nothing to update
+  - Rahoot removed (GitHub repo not found)
+- Newsletter: latest Self-Host Weekly still 2026-05-01 (processed). 2026-05-08 and 2026-05-15 → HTTP 404 (not yet published).
+- Actions taken:
+  - Updated `briefkasten.md` with ⚠️ unmaintained status banner
+  - Updated `txtdot.md` with ⚠️ unmaintained status banner
+  - Updated `rahoot.md` with ⚠️ source-unavailable status banner
+  - Built dist, committed b07a675 "open-forge: mark briefkasten, txtdot, rahoot as unmaintained/unavailable", pushed to main.
+- Catalog: 2142 recipes (no net change in count; 3 deprecation notices added).
+
+## 2026-05-09T19:10Z
+
+**Step 0 — Sync:** Repo up to date (no remote changes).
+
+**Step 1 — GitHub Issues:** 0 open issues. issues-log.json updated (last_checked_at: 2026-05-09T19:10Z).
+
+**Step 2 — Catalog freshness:** catalog-check.json last_checked_at = 2026-05-09T10:00Z (< 9 hours ago). Within 7-day window — skipped.
+
+**Step 3 — Catalog growth:** Both batch sources (selfh.st + awesome-selfhosted-data) complete at 1282/1282. Next Self-Host Weekly not until 2026-05-15. Processed 4 apps from issue #42 (Self-Host Weekly 2026-05-01 newsletter candidates):
+- **arkeep.md** — NEW: Backup management server/agent platform (Restic+Rclone)
+- **screentinker.md** — NEW: Digital signage management software
+- **stashcast.md** — NEW: Save online media as podcast feeds (yt-dlp based)
+- **flare.md** — EXPANDED: Replaced minimal stub with full recipe (ShareX file sharing, Next.js + PostgreSQL)
+
+Ran `./scripts/build-dist.sh all` → all bundles rebuilt. Committed as batch 176 and pushed.
+
+**Remaining newsletter candidates not yet processed** (issue #42): chorizard, codexa, coupleCards, galley, glycemicGPT, hostiqo, localetter, matcha, nutritrace, sympli-rss-fusion (10 items — awaiting additional demand signals per CLAUDE.md Tier 2 policy).
+
+## 2026-05-09T19:15Z
+
+**Step 0 — Sync:** `git pull --rebase --autostash` → Already up to date.
+
+**Step 1 — GitHub Issues:** 0 open issues (API returned empty array). No changes to issues-log.json.
+
+**Step 2 — Catalog freshness:** catalog-check.json last_checked_at = 2026-05-09T10:00Z (< 10 hours ago). Within 7-day window — skipped.
+
+**Step 3 — Catalog growth:**
+- selfh.st live feed: 1282 entries (matches tracked 1282). No new additions.
+- awesome-selfhosted-data: 0 new commits since 2026-05-09T19:00Z (last processed commits were briefkasten/txtdot/uploady removals from prior heartbeat).
+- Newsletter: 2026-05-01 still latest (2026-05-08 and 2026-05-15 → HTTP 404). Next expected ~2026-05-15.
+- No new demand signals for any Tier 2 candidates.
+
+**HEARTBEAT_OK** — No new recipes to write.
+
+## 2026-05-09 (heartbeat ~20:00 UTC)
+
+**Step 0 — Sync:** Repo already up to date.
+
+**Step 1 — GitHub Issues:** No open issues. issues-log.json updated with new timestamp.
+
+**Step 2 — Freshness check:** Skipped — catalog-check.json `last_checked_at` is 2026-05-09T10:00:00Z (within 7-day threshold).
+
+**Step 3 — Catalog growth:** Both batch sources exhausted. Used GitHub topic search (`topic:self-hosted+topic:docker+stars:>500`) to find high-quality projects not yet in catalog.
+
+Found 4 net-new recipes (all 2.9k–5.1k stars):
+- **sun-panel** (5,122 ★) — NAS/server navigation panel and browser homepage; hslr-s/sun-panel
+- **scraperr** (4,891 ★) — No-code web scraping platform (Next.js + FastAPI + MongoDB); jaypyles/Scraperr
+- **shynet** (3,133 ★) — Privacy-friendly cookie-free web analytics (Django + Postgres); milesmcc/shynet
+- **mirotalksfu** (2,968 ★) — WebRTC video conferencing via mediasoup SFU; miroslavpejic85/mirotalksfu
+
+Also evaluated but skipped: neosync (acquired by Grow Therapy, no longer maintained).
+
+Catalog: 2,149 → 2,153 recipes. Committed as batch 171, pushed to main.
+
+## 2026-05-09
+
+### Step 0 — Sync
+Pulled and rebased from origin/main. No conflicts.
+
+### Step 1 — GitHub Issues
+Fetched open issues. No new unaddressed issues found.
+
+### Step 2 — Catalog freshness check
+Skipped — `progress/catalog-check.json` shows last_checked_at within the past 24 hours (well under the 7-day threshold).
+
+### Step 3 — Catalog growth (batch 177)
+Searched GitHub for `topic:self-hosted+topic:docker`, stars > 300, created after 2024-01-01. Cross-referenced against 2,157 existing recipes. Added 3 new recipes:
+
+- **isaiah** (will-moss/isaiah, 1085 ⭐, MIT) — Web-based Docker fleet manager, browser clone of lazydocker. Go + Vanilla JS, ~4 MB image, WebSocket interface.
+- **telegram-files** (jarvis2f/telegram-files, 2254 ⭐, MIT) — Self-hosted Telegram file downloader. Java/TDLib backend + Next.js frontend. Pause/resume, multi-account, auto-transfer, PWA.
+- **networking-toolbox** (Lissy93/networking-toolbox, 2529 ⭐, MIT) — 100+ offline-first networking tools (DNS, IP, SSL, subnet calc, encoding). SvelteKit, all client-side, no external API calls.
+
+Skipped candidates:
+- **microsandbox** (superradcompany/microsandbox, 6007 ⭐) — SDK/CLI framework for AI agent sandboxing via microVMs, not a traditional self-hosted app; no Docker Compose install path.
+
+Built dist bundles and pushed commit `52bba83` to main.
