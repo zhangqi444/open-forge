@@ -1,125 +1,209 @@
 ---
-name: Sync-in
-description: "Self-hosted file storage, sync, and collaboration platform. Docker or npm. Node.js + TypeScript. Sync-in/server. WebDAV, OIDC/LDAP/MFA, full-text search, Collabora/OnlyOffice editing, desktop+CLI client. AGPL."
+name: sync-in
+description: Sync-in is a self-hosted platform for file storage, synchronization, and collaboration — OIDC/LDAP/MFA auth, Collabora/OnlyOffice integration, WebDAV, full-text search, role-based access, and desktop/CLI clients. MariaDB + Node.js Docker stack. Upstream: https://github.com/Sync-in/server
 ---
 
 # Sync-in
 
-**Self-hosted file storage, synchronization, and collaboration platform.** Secure file sharing with fine-grained access control, collaborative document editing (Collabora Online + OnlyOffice), full-text search, WebDAV access, OIDC/LDAP/MFA authentication, and a desktop + CLI client. An open-standards alternative to Nextcloud and Seafile.
+Sync-in is a **self-hosted file storage, synchronization, and collaboration platform** designed for individuals and organizations that want full control over their files. It provides a modern web interface, desktop sync client, WebDAV access, and deep collaborative editing via Collabora Online or OnlyOffice — with enterprise-grade authentication (OIDC, LDAP, MFA).
 
-Built + maintained by **Sync-in team**. AGPL-3.0 license.
+Upstream: <https://github.com/Sync-in/server>  
+Website: <https://sync-in.com>  
+Docs: <https://sync-in.com/docs>  
+Docker Hub: `syncin/server`  
+License: AGPL-3.0  
+Supported by the Docker-Sponsored Open Source Program.
 
-- Upstream repo: <https://github.com/Sync-in/server>
-- Website + docs: <https://sync-in.com/docs>
-- Docker Hub: <https://hub.docker.com/r/syncin/server>
-- Desktop + CLI: <https://github.com/Sync-in/desktop>
-- Discord: <https://discord.gg/qhJyzwaymT>
-- Demo: <https://sync-in.com/docs/demo>
+## What it does
 
-## Architecture in one minute
+- **File storage + sync** — upload, organize, and sync files across devices
+- **Desktop client** — cross-platform app for background sync (<https://github.com/Sync-in/desktop>)
+- **WebDAV** — native support for remote file access from file explorers and third-party tools
+- **OIDC / SSO** — federated authentication and Single Sign-On
+- **LDAP** — enterprise directory integration
+- **MFA** — multi-factor authentication, recovery codes, application passwords
+- **Spaces + Shares** — fine-grained permissions and role-based access control
+- **Collaborative editing** — Collabora Online and OnlyOffice integration (opt-in via Compose profiles)
+- **Full-text search** — deep document content indexing across multiple formats
+- **File activity tracking** — comments, notifications, change history
+- **Storage quotas + file locking**
 
-- **Node.js / TypeScript** backend + web frontend
-- **PostgreSQL** database
-- Port: configurable (check docs for defaults)
-- Docker deploy: see <https://sync-in.com/docs/setup-guide/docker>
-- Desktop + CLI client for Windows/macOS/Linux via `Sync-in/desktop`
-- Resource: **medium** — Node.js + PostgreSQL + optional office editors
+## Architecture
+
+- **`syncin/server`** — Node.js backend + web frontend (single image)
+- **MariaDB 11** — primary database
+- **Port**: `8080`
+- **Optional**: nginx reverse proxy, OnlyOffice, Collabora, desktop release server (separate Compose includes)
+- **Config**: `environment.yaml` file mounted into the container
 
 ## Compatible install methods
 
-| Infra      | Runtime              | Notes                                                              |
-| ---------- | -------------------- | ------------------------------------------------------------------ |
-| **Docker** | `syncin/server`      | **Primary** — Docker Hub; see Docker setup guide                   |
-| **npm**    | `@sync-in/server`    | npm package; `npx @sync-in/server` or global install               |
+| Infra | Runtime | Notes |
+|---|---|---|
+| Any Linux host | Docker Compose | Primary method. MariaDB + app container. |
+| Any Linux host | npm | Alternative for non-Docker deployments. |
 
-Full Docker install guide: <https://sync-in.com/docs/setup-guide/docker>
+## Inputs to collect
 
-Full npm install guide: <https://sync-in.com/docs/setup-guide/npm>
+| Phase | Prompt | Notes |
+|---|---|---|
+| preflight | "Domain for Sync-in?" | e.g. `files.example.com`. Used in TLS + OIDC callback URLs. |
+| database | "MariaDB root password?" | Set in compose env; also referenced in `environment.yaml`. |
+| auth | "Encryption key for tokens?" | Strong random string for `auth.encryptionKey` in `environment.yaml`. |
+| auth | "Access token secret?" | For `auth.token.access.secret`. |
+| auth | "Refresh token secret?" | For `auth.token.refresh.secret`. |
+| bootstrap | "Initial admin username / email / password?" | Set via `INIT_ADMIN`, `INIT_ADMIN_LOGIN`, `INIT_ADMIN_PASSWORD` env vars. |
+| optional | "Enable Collabora Online?" | Uncomment the collabora include in `docker-compose.yaml`. |
+| optional | "Enable OnlyOffice?" | Uncomment the onlyoffice include + set `onlyOfficeSecret` in `environment.yaml`. |
 
-## Features overview
+## Setup
 
-| Feature | Details |
-|---------|---------|
-| File storage | Upload, browse, download, manage files and folders |
-| Sync | Desktop + CLI client for continuous file synchronization |
-| Spaces + Shares | Fine-grained access control with role-based permissions |
-| Collaborative editing | Collabora Online + OnlyOffice integration; multi-editor support |
-| Full-text search | Deep document content indexing; multi-format support |
-| WebDAV | Native WebDAV support for remote file access |
-| OIDC SSO | Federated authentication and Single Sign-On |
-| LDAP | Enterprise directory integration |
-| MFA | Multi-factor authentication with recovery codes + app passwords |
-| File activity | Comments, notifications, activity tracking per file |
-| Document management | Storage quotas, file locking, versioning |
-| File locking | Prevent concurrent edits with controlled locking |
-| Multi-server | Desktop client supports connecting to multiple servers |
+### 1. Clone / create config files
 
-## Authentication
+```bash
+mkdir -p /opt/sync-in && cd /opt/sync-in
 
-Sync-in supports three authentication backends:
-- **Local** (built-in users with MFA/TOTP)
-- **LDAP** — enterprise directory integration
-- **OIDC** — Federated SSO with any OIDC provider (Authentik, Keycloak, etc.)
+# Download compose file
+curl -sLO https://raw.githubusercontent.com/Sync-in/server/main/docker/docker-compose.yaml
 
-All three can coexist (unified auth across Web, Desktop, and CLI).
+# Download the environment template
+curl -sLO https://raw.githubusercontent.com/Sync-in/server/main/docker/environment.yaml
+```
 
-## Collaborative editing
+### 2. Edit `environment.yaml`
 
-Sync-in integrates with:
-- **Collabora Online** — LibreOffice in the browser; open standards (ODF)
-- **OnlyOffice** — MS Office-compatible editing (DOCX, XLSX, PPTX)
+```yaml
+mysql:
+  url: mysql://root:${MYSQL_ROOT_PASSWORD}@mariadb:3306/sync_in
+auth:
+  encryptionKey: <strong-random-key>
+  token:
+    access:
+      secret: <strong-random-access-secret>
+    refresh:
+      secret: <strong-random-refresh-secret>
+applications:
+  files:
+    dataPath: /app/data
+    collabora:
+      enabled: false          # set true + uncomment compose include to enable
+    onlyoffice:
+      enabled: false          # set true + uncomment compose include to enable
+      secret: onlyOfficeSecret
+```
 
-Both require a separate Collabora/OnlyOffice server. Sync-in auto-selects the editor based on file type when both are configured.
+### 3. Create `.env`
 
-## Desktop + CLI client
+```bash
+cat > .env << EOF
+MYSQL_ROOT_PASSWORD=your-strong-db-password
+INIT_ADMIN=Admin
+INIT_ADMIN_LOGIN=admin@example.com
+INIT_ADMIN_PASSWORD=your-admin-password
+PUID=8888
+PGID=8888
+EOF
+```
 
-The `Sync-in/desktop` package provides:
-- Full-featured desktop app (Electron-based) for Windows/macOS/Linux
-- CLI for scripting and automation
-- Multi-server support
-- Cross-device file synchronization
+### 4. Start
 
-## Gotchas
+```bash
+docker compose up -d
+```
 
-- **Refer to official docs for current compose.** The install guide is at <https://sync-in.com/docs/setup-guide/docker>; the repo's docker folder may have the most current compose file. Check the docs — setup details evolve as the project matures.
-- **Collaborative editing needs separate server.** Collabora Online and OnlyOffice require their own Docker containers (or hosted services). Sync-in provides the integration glue but not the editor server itself.
-- **AGPL-3.0 license.** Modifications deployed as a network service must be open-sourced.
-- **Early-stage project.** Sync-in is relatively new. Expect active development, potential breaking changes between versions, and evolving documentation. Check the changelog and Discord before upgrading.
-- **WebDAV for legacy clients.** Native WebDAV means compatibility with macOS Finder, Windows Explorer, and any WebDAV-compatible tool — without needing the desktop app.
+Access at `http://<host>:8080`.
 
-## Backup
+## Docker Compose (full reference)
 
-```sh
-docker compose stop
-docker compose exec postgres pg_dump -U postgres syncin > syncin-$(date +%F).sql
-sudo tar czf syncin-files-$(date +%F).tgz ./data/   # adjust path per your config
-docker compose start
+```yaml
+# docker-compose.yaml (from upstream docker/docker-compose.yaml)
+# Uncomment include lines below to add nginx, OnlyOffice, or Collabora
+#include:
+#  - ./config/nginx/docker-compose.nginx.yaml
+#  - ./config/onlyoffice/docker-compose.onlyoffice.yaml
+#  - ./config/collabora/docker-compose.collabora.yaml
+
+name: sync-in
+services:
+  sync_in:
+    image: syncin/server:2
+    container_name: sync-in
+    restart: always
+    environment:
+      - INIT_ADMIN
+      - INIT_ADMIN_PASSWORD
+      - INIT_ADMIN_LOGIN
+      - PUID=${PUID:-8888}
+      - PGID=${PGID:-8888}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./environment.yaml:/app/environment/environment.yaml
+      - data:/app/data
+      - desktop_releases:/app/static/releases:ro
+    depends_on:
+      - mariadb
+    networks:
+      - sync_in_network
+
+  mariadb:
+    image: mariadb:11
+    container_name: mariadb
+    restart: always
+    command: --innodb_ft_cache_size=16000000 --max-allowed-packet=1G
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: sync_in
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - sync_in_network
+
+networks:
+  sync_in_network:
+    driver: bridge
+
+volumes:
+  data:
+  mariadb_data:
+  desktop_releases:
+```
+
+## Reverse proxy
+
+Sync-in serves plain HTTP on port `8080`. For HTTPS, front with Caddy or nginx. Upstream provides a Caddy/nginx include via the `docker/config/nginx/` directory.
+
+**Caddy example:**
+
+```caddyfile
+files.example.com {
+    reverse_proxy sync-in:8080
+}
 ```
 
 ## Upgrade
 
-```sh
+```bash
+cd /opt/sync-in
 docker compose pull && docker compose up -d
 ```
 
-## Project health
+## Backup
 
-Active Node.js/TypeScript development, Docker Hub, npm package, desktop + CLI client, Collabora + OnlyOffice, OIDC + LDAP + MFA, WebDAV, Discord. AGPL-3.0.
+```bash
+# Database dump
+docker exec mariadb mysqldump -uroot -p${MYSQL_ROOT_PASSWORD} sync_in \
+  > sync-in-db-$(date +%Y%m%d).sql
 
-## Self-hosted-cloud-family comparison
+# File data volume
+docker run --rm -v sync-in_data:/data -v $(pwd):/backup alpine \
+  tar czf /backup/sync-in-data-$(date +%Y%m%d).tar.gz -C /data .
+```
 
-- **Sync-in** — Node.js, files + collab editing, OIDC+LDAP+MFA, WebDAV, desktop+CLI sync, AGPL
-- **Nextcloud** — PHP, massive ecosystem, everything + kitchen sink; most mature
-- **ownCloud** — PHP, files focus, lighter than Nextcloud
-- **Seafile** — C, very fast sync, no built-in collab editing
-- **bewCloud** — Deno, files + CalDAV/CardDAV, simpler scope; no collab editing
+## Gotchas
 
-**Choose Sync-in if:** you want a self-hosted cloud storage + collaboration platform with Collabora/OnlyOffice editing, OIDC/LDAP, MFA, and a desktop sync client — without the complexity of Nextcloud.
-
-## Links
-
-- Repo: <https://github.com/Sync-in/server>
-- Docs: <https://sync-in.com/docs>
-- Docker guide: <https://sync-in.com/docs/setup-guide/docker>
-- Desktop + CLI: <https://github.com/Sync-in/desktop>
-- Discord: <https://discord.gg/qhJyzwaymT>
+- **`environment.yaml` is required** — the app will not start without this file mounted. Copy and edit the upstream template before first `docker compose up`.
+- **Encryption / token secrets are write-once** — changing `encryptionKey` or token secrets after users have logged in will invalidate all existing sessions and stored encrypted data. Generate strong values before first start.
+- **INIT_ADMIN env vars only apply on first boot** — after the admin account is created they are ignored; changing them does not update the existing account.
+- **`--innodb_ft_cache_size` flag on MariaDB** is required for full-text search indexing to work correctly — do not remove the `command:` override.
+- **PUID/PGID** — the container runs as a non-root user with these IDs. Ensure the host data volume is writable by this UID.

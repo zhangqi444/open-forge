@@ -1,118 +1,136 @@
 ---
-name: DumbAssets
-description: "Self-hosted simple asset and inventory tracking tool. Docker. Node.js. DumbWareio/DumbAssets. Track physical items with photos, custom fields, QR code labels, CSV export, auth, no frills. MIT."
+name: dumbassets
+description: DumbAssets is a stupid-simple self-hosted asset tracker for physical items — track models, serials, warranties, maintenance events, and components with photo/receipt uploads. Node.js + SQLite, single Docker container. Upstream: https://github.com/DumbWareio/DumbAssets
 ---
 
 # DumbAssets
 
-**Simple self-hosted asset and inventory tracking.** The DumbWare philosophy: do one thing, do it well, stay simple. Track physical assets — equipment, tools, devices, household items — with photos, custom fields, and QR code labels. No frills, no bloat. Part of the DumbWare ecosystem of intentionally simple self-hosted tools.
+DumbAssets is a **"stupid simple asset tracker"** for keeping track of physical assets — computers, appliances, vehicles, tools — along with their components, warranties, maintenance schedules, and receipts. No accounts system: secured by a PIN. Runs as a single Docker container with a file-based SQLite database.
 
-Built + maintained by **DumbWareio**. MIT license.
+Upstream: <https://github.com/DumbWareio/DumbAssets>  
+Demo: <https://dumbassets.dumbware.io>  
+Docker Hub: `dumbwareio/dumbassets`  
+License: GPL-3.0
 
-- Upstream repo: <https://github.com/DumbWareio/DumbAssets>
-- Website: <https://dumbware.io>
-- Docker Hub: <https://hub.docker.com/r/dumbwareio/dumbassets>
+## What it does
 
-## Architecture in one minute
+- **Asset tracking** — model, serial number, purchase date, price, description per asset
+- **Component tree** — add sub-components and nested hierarchies to any asset
+- **Photo + receipt uploads** — attach images and document scans to assets
+- **Warranty tracking** — expiration dates with configurable notifications
+- **Maintenance events** — log and schedule routine maintenance with notifications
+- **Tags** — flexible tagging for organization and filtering
+- **Search** — find by name, model, serial, or description
+- **Apprise notifications** — built-in integration for Discord, ntfy, Telegram, etc. (no separate Apprise service required)
+- **Currency configuration** — ISO 4217 currency codes + locale formatting
+- **PIN authentication** with brute-force protection
+- **Light / dark mode**
 
-- **Node.js** backend + web frontend
-- File-based storage (JSON) — no external database
-- Port **3000**
-- Data in `./config/` volume
-- Auth: optional PIN or password protection
-- Resource: **tiny** — Node.js + flat files
+## Architecture
+
+- **Single container** — Node.js ≥ 20 backend + embedded SQLite
+- **Port**: `3000`
+- **Storage**: `/app/data` volume (SQLite DB + uploaded files)
+- **Resource footprint**: very low
 
 ## Compatible install methods
 
-| Infra      | Runtime                        | Notes                                  |
-| ---------- | ------------------------------ | -------------------------------------- |
-| **Docker** | `dumbwareio/dumbassets`        | **Primary** — Docker Hub; multi-arch   |
+| Infra | Runtime | Notes |
+|---|---|---|
+| Any Linux host | Docker (single container) | Primary method. |
+| Any Linux host | Docker Compose | Recommended for environment variable management. |
 
 ## Inputs to collect
 
-| Input          | Example         | Phase  | Notes                                     |
-| -------------- | --------------- | ------ | ----------------------------------------- |
-| `DUMB_PASSWORD`| strong pin/pass | Auth   | Optional; protects the UI with a password |
-| `TZ`           | `UTC`           | Config | Timezone for timestamps                   |
+| Phase | Prompt | Notes |
+|---|---|---|
+| preflight | "Host port to expose DumbAssets on?" | Default `3000`. |
+| preflight | "Data path on host?" | e.g. `/opt/dumbassets/data`. Mounted at `/app/data`. |
+| security | "PIN for access control?" | 4+ digits. Optional — omit to leave open (LAN-only use). |
+| optional | "Apprise URL for notifications?" | e.g. `discord://webhook-token/channel-id`. Enables warranty + maintenance alerts. |
+| optional | "Currency code + locale?" | e.g. `EUR` / `de-DE`. Defaults: `USD` / `en-US`. |
 
-## Install via Docker Compose
+## Docker run (quick start)
+
+```bash
+docker run -d \
+  --name dumbassets \
+  --restart unless-stopped \
+  -p 3000:3000 \
+  -v ./data:/app/data \
+  dumbwareio/dumbassets:latest
+```
+
+## Docker Compose
 
 ```yaml
+# compose.yaml
 services:
   dumbassets:
     image: dumbwareio/dumbassets:latest
     container_name: dumbassets
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "${DUMBASSETS_PORT:-3000}:3000"
     volumes:
-      - ./config:/app/config
+      - ${DUMBASSETS_DATA_PATH:-./data}:/app/data
     environment:
-      - TZ=UTC
-      # - DUMB_PASSWORD=your_password  # optional
+      NODE_ENV: production
+      BASE_URL: ${DUMBASSETS_BASE_URL:-http://localhost:3000}
+      DUMBASSETS_PIN: ${DUMBASSETS_PIN:-}          # leave empty for no PIN
+      APPRISE_URL: ${DUMBASSETS_APPRISE_URL:-}     # leave empty to disable notifications
+      CURRENCY_CODE: ${DUMBASSETS_CURRENCY_CODE:-USD}
+      CURRENCY_LOCALE: ${DUMBASSETS_CURRENCY_LOCALE:-en-US}
+      TZ: ${TZ:-UTC}
 ```
 
-Visit `http://localhost:3000`.
+```bash
+docker compose up -d
+```
 
-## First boot
+## Environment variables reference
 
-1. `docker compose up -d`.
-2. Visit `http://localhost:3000`.
-3. If `DUMB_PASSWORD` is set, log in.
-4. Add your first asset:
-   - Name, description, category
-   - Upload a photo
-   - Add custom fields (serial number, purchase date, location, etc.)
-5. Print / scan QR code label for the asset.
-6. Put behind TLS.
+| Variable | Default | Description |
+|---|---|---|
+| `PORT` | `3000` | Container listen port |
+| `BASE_URL` | `http://localhost:3000` | Canonical URL (used in notification links) |
+| `DUMBASSETS_PIN` | _(none)_ | PIN for access control (4+ digits). Omit to disable PIN. |
+| `APPRISE_URL` | _(none)_ | Apprise notification URL for warranty/maintenance alerts |
+| `CURRENCY_CODE` | `USD` | ISO 4217 currency code |
+| `CURRENCY_LOCALE` | `en-US` | Locale for currency formatting |
+| `TZ` | `America/Chicago` | Container timezone |
+| `SITE_TITLE` | `DumbAssets` | Browser tab + header title |
+| `DEMO_MODE` | `false` | Read-only mode |
 
-## Features overview
+## Reverse proxy
 
-| Feature | Details |
-|---------|---------|
-| Asset tracking | Name, description, category, photo per asset |
-| Custom fields | Add any fields you need per asset |
-| QR codes | Generate printable QR code labels for assets |
-| Search + filter | Search by name, category, fields |
-| CSV export | Export all assets as a CSV file |
-| Authentication | Optional PIN/password protection |
-| File-based storage | JSON files — no database to manage |
-| Multi-arch Docker | amd64, arm64, arm/v7 |
+DumbAssets serves plain HTTP. For HTTPS, front with Caddy, Traefik, or nginx. Set `BASE_URL` to the public HTTPS URL so notification links resolve correctly.
 
-## Gotchas
+**Caddy example:**
 
-- **File-based storage means no concurrent writes.** DumbAssets stores data as JSON files — fine for personal/single-user use, but not designed for simultaneous edits from multiple users. Use one user at a time or assets may conflict.
-- **No user accounts / roles.** DumbAssets has a single optional password protecting the whole UI. There's no multi-user system with individual accounts. Everyone with the password sees all assets.
-- **Backups are easy.** Since everything is in `./config/`, just `tar czf backup.tgz config/` and you have a complete backup. No database dumps required.
-- **Part of the DumbWare ecosystem.** DumbWare builds intentionally simple tools (DumbDrop, DumbPad, DumbAssets, etc.). If you want more features (multi-user, complex queries, equipment maintenance scheduling), use Snipe-IT instead.
-
-## Backup
-
-```sh
-sudo tar czf dumbassets-$(date +%F).tgz config/
+```caddyfile
+assets.example.com {
+    reverse_proxy localhost:3000
+}
 ```
 
 ## Upgrade
 
-```sh
+```bash
 docker compose pull && docker compose up -d
 ```
 
-## Project health
+## Backup
 
-Active Node.js development, Docker Hub (multi-arch), part of DumbWare ecosystem. MIT license.
+All data (SQLite database + uploaded photos) lives in the mounted `/app/data` directory:
 
-## Asset-tracking-family comparison
+```bash
+tar czf dumbassets-backup-$(date +%Y%m%d).tar.gz ./data
+```
 
-- **DumbAssets** — Node.js, flat-file JSON, QR labels, CSV export, single-user, MIT; intentionally simple
-- **Snipe-IT** — PHP, full ITAM (IT Asset Management), multi-user, check-in/out, licenses, LDAP; enterprise scope
-- **Grocy** — PHP, household + consumable tracking; different focus
-- **Netbox** — Python, DCIM/IPAM; infrastructure assets; complex
+## Gotchas
 
-**Choose DumbAssets if:** you want a simple, no-database, self-hosted asset inventory with QR code labels and photo support — without the complexity of Snipe-IT.
-
-## Links
-
-- Repo: <https://github.com/DumbWareio/DumbAssets>
-- Docker Hub: <https://hub.docker.com/r/dumbwareio/dumbassets>
-- DumbWare ecosystem: <https://dumbware.io>
+- **`BASE_URL` must match your public URL** — notification messages include direct asset links; an incorrect `BASE_URL` generates broken links.
+- **Apprise is built-in** — no need to run a separate Apprise container; pass any Apprise-compatible URL directly via `APPRISE_URL`.
+- **PIN is optional** — without a PIN the app is wide open; deploy behind a VPN or authenticated reverse proxy if running on the public internet.
+- **`DEMO_MODE=true`** enables a fully read-only view — useful for sharing without allowing edits.
