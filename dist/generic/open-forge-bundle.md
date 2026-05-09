@@ -2,7 +2,7 @@
 
 This is a concatenation of the canonical open-forge skill content. Feed it as a system prompt or a long-context document to any LLM agent that supports tool use. The agent acts as a deployment runbook for self-hostable open-source apps.
 
-For per-recipe content (2149+ individual recipes under references/projects/), browse:
+For per-recipe content (2153+ individual recipes under references/projects/), browse:
   https://deepwiki.com/zhangqi444/open-forge
 
 Tool names like AskUserQuestion, WebFetch, mcp__github__* are Claude Code-specific — read as capabilities (structured-choice prompt; URL fetch; GitHub API) and use your platform's equivalents.
