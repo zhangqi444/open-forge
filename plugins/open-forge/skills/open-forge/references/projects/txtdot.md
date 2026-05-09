@@ -2,6 +2,8 @@
 
 **HTTP proxy for text-only page rendering** — strips ads, heavy scripts, and layout cruft from web pages, returning only text, links, and images. Uses Mozilla's Readability library. Useful for low-bandwidth connections and lightweight browsing.
 
+> ⚠️ **Project status: unmaintained (v1).** txtdot was removed from awesome-selfhosted in May 2026 — v1 development is discontinued and the v2 branch had no code at time of review. The upstream README explicitly states v1 is discontinued. Evaluate alternatives before deploying.
+
 > ⚠️ **Note:** V1 development is discontinued. Active development is on the [v2 branch](https://github.com/TempoWorks/txtdot/tree/v2). Check the v2 branch for the latest state before deploying.
 
 **Official site / docs:** https://tempoworks.github.io/documentation  

@@ -7,7 +7,9 @@ description: Briefkasten recipe for open-forge. Modern self-hosted bookmark mana
 
 Modern self-hosted bookmarking application. Saves links with automatic title/description extraction, supports categories, tags, full-text search, import/export of standard bookmark HTML, and a browser extension. Works with any Prisma-compatible database (MySQL, PostgreSQL, SQLite). Upstream: https://github.com/ndom91/briefkasten. Docs: https://docs.briefkastenhq.com.
 
-Note: Briefkasten v2 (codebase: ndom91/sveltekasten) is in active development and will supersede v1. v1 is still functional but new installs should monitor v2 progress.
+> ⚠️ **Project status: unmaintained (v1).** Briefkasten v1 was removed from awesome-selfhosted in May 2026 (no upstream activity >12 months). The v2 rewrite lives at https://github.com/ndom91/sveltekasten (SvelteKit); evaluate that before deploying.
+
+Note: Briefkasten v2 (codebase: ndom91/sveltekasten) is in active development and will supersede v1. New installs should use v2 (sveltekasten) instead.
 
 ## Compatible install methods
 

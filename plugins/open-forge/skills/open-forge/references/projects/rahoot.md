@@ -7,7 +7,7 @@ description: Rahoot recipe for open-forge. Covers Docker Compose (recommended) a
 
 Open-source, self-hostable quiz platform inspired by Kahoot — host live quizzes for smaller events on your own server. Upstream: <https://github.com/Ralex91/Rahoot>. Docker image: `ralex91/rahoot`.
 
-> ⚠️ Project is still under active development. Report bugs or suggestions via [upstream issues](https://github.com/Ralex91/Rahoot/issues).
+> ⚠️ **Project status: source unavailable.** Rahoot was removed from awesome-selfhosted in May 2026 because the upstream repository (https://github.com/Ralex91/Rahoot) was not found. The project may have been deleted, renamed, or made private. Verify current availability before deploying.
 
 Single-container Node.js app (Next.js) listening on port `3000`. Configuration is file-based (`config/game.json` + `config/quizz/*.json`) — no external database required. Both the manager interface and the player-facing game UI are served from the same container.
 
