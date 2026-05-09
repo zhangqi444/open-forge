@@ -1900,3 +1900,157 @@ Skipped candidates:
 - **microsandbox** (superradcompany/microsandbox, 6007 ⭐) — SDK/CLI framework for AI agent sandboxing via microVMs, not a traditional self-hosted app; no Docker Compose install path.
 
 Built dist bundles and pushed commit `52bba83` to main.
+
+## 2026-05-09 (session 2)
+
+### Step 0 — Sync
+Pulled and rebased from origin/main. Already up to date.
+
+### Step 1 — GitHub Issues
+Fetched open issues via API. No open issues found (empty array). issues-log.json already up to date with no new items.
+
+### Step 2 — Catalog freshness check
+Skipped — `progress/catalog-check.json` shows `last_checked_at: 2026-05-09T10:00:00Z`, well under the 7-day threshold.
+
+### Step 3 — Catalog growth (batch 178)
+Searched GitHub for `topic:self-hosted+topic:docker+stars:>500+created:>2024-01-01`. Cross-referenced against 2,168 existing recipes. Added 3 new recipes:
+
+- **cup** (sergi0g/cup, 1291 ⭐, AGPL-3.0) — Lightweight Docker container image update checker. Rust binary; CLI + persistent web server mode; JSON API; ~5 MB image. Supports Docker Hub, ghcr.io, Quay, lscr.io, Gitea.
+- **atlas** (karam-ajaj/atlas, 1085 ⭐, MIT) — Network infrastructure scanner and visualizer. Single Docker image (Go + FastAPI + NGINX + React); scans Docker containers and subnet hosts; interactive graph dashboard. Requires host networking + NET_RAW/NET_ADMIN caps.
+- **telescope** (iamtelescope/telescope, 685 ⭐, MIT) — Web-based log viewer UI. Django + React; supports ClickHouse, StarRocks, Docker, Kubernetes log sources; RBAC; GitHub/Okta OAuth. Latest: v0.0.27.
+
+Skipped candidates:
+- **cmms** (Grashjs/cmms) — docker-compose.yml depends on GCP buckets (GCP_BUCKET_NAME, GCP_PROJECT_ID) and Paddle paid API keys as required config; not infra-agnostic.
+
+Built dist bundles and pushed commit `1f0e1c4` to main.
+
+## 2026-05-09
+
+### Step 0 — Sync
+- Repo was already up to date.
+
+### Step 1 — GitHub Issues
+- Fetched open issues: none open. No action needed.
+- `issues-log.json` already current (last checked same session, no new issues).
+
+### Step 2 — Catalog Freshness Check
+- `catalog-check.json` last_checked_at: 2026-05-09T14:31:00Z — checked earlier today, less than 7 days ago. Skipped re-run.
+
+### Step 3 — Catalog Growth (3 new recipes)
+Used GitHub API search (topic:self-hosted+topic:docker and stars>2000) to find high-quality projects not yet in the catalog.
+
+**Added:**
+
+1. **pentagi** (`vxcontrol/pentagi`, 16.7k ⭐, v2.0.0)
+   - Autonomous AI penetration testing system; multi-agent LLM-driven; 20+ security tools; Docker Compose
+   - File: `references/projects/pentagi.md`
+
+2. **deepwiki-open** (`AsyncFuncAI/deepwiki-open`, 16.2k ⭐)
+   - AI-powered wiki generator for GitHub/GitLab/Bitbucket repos; RAG Q&A; Mermaid diagrams; Docker Compose
+   - File: `references/projects/deepwiki-open.md`
+
+3. **lasuite-docs** (`suitenumerique/docs`, 16.5k ⭐, v5.0.0)
+   - Open-source collaborative document editor (Notion/Google Docs alternative); real-time CRDT; Django+React; Docker Compose
+   - File: `references/projects/lasuite-docs.md`
+
+- Built dist bundles: `./scripts/build-dist.sh all` — all 7 targets succeeded
+- Committed and pushed: `open-forge: batch — pentagi, deepwiki-open, lasuite-docs`
+
+## 2026-05-09 (21:46 UTC)
+
+### Step 0 — Sync
+- Repo already up to date.
+
+### Step 1 — GitHub Issues
+- Fetched open issues from zhangqi444/open-forge.
+- No open issues found.
+- issues-log.json updated with new check timestamp.
+
+### Step 2 — Weekly Catalog Freshness Check
+- catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (earlier today, within 7-day window).
+- Freshness check skipped — already run today.
+
+### Step 3 — Catalog Growth
+- Searched GitHub API for high-quality self-hosted Docker projects.
+- Cross-referenced ~50 candidates against 2174 existing recipes.
+- Added 3 new recipes (batch 21):
+  - **hertzbeat.md** — Apache HertzBeat 1.8.0 (7.2k stars). AI-powered observability, agentless monitoring. Docker single-container + Docker Compose (MySQL + IoTDB variants).
+  - **uptrace.md** — Uptrace v2.1.0-beta.5 (4.2k stars). OpenTelemetry APM with traces/metrics/logs. Docker Compose with ClickHouse + PostgreSQL + Redis + OTEL Collector + Grafana.
+  - **4gaboards.md** — 4ga Boards v3.3.6 (504 stars). Realtime kanban with dark mode, SSO (Google/GitHub/Microsoft/OIDC), Trello import. Docker Compose + PostgreSQL.
+- Skipped candidates: bytebot (archived), neosync (archived), panora (archived), bytebot-ai (archived), microsandbox (no web UI), lmnr (AI monitoring platform with optional paid AI API - close call), opensail (agentic coding tool, no traditional web UI).
+- Ran build-dist.sh all — all bundles rebuilt successfully.
+- Committed and pushed: dbde04d
+
+
+## 2026-05-09 (22:05 UTC)
+
+### Step 0 — Sync
+- Repo already up to date (no commits to pull).
+
+### Step 1 — GitHub Issues
+- Fetched open issues from zhangqi444/open-forge.
+- No open issues found.
+- issues-log.json updated with new check timestamp.
+
+### Step 2 — Weekly Catalog Freshness Check
+- catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (same day, within 7-day window).
+- Freshness check skipped — already run earlier today.
+
+### Step 3 — Catalog Growth
+- Searched GitHub API using topic:self-hosted+docker and self-hosted+docker+stars queries.
+- Cross-referenced ~80+ candidates against existing 2177 recipes.
+- Skipped: jotsy (stale since 2022), libreddit (replaced by Redlib, already catalogued), job-ops (requires external RxResume API), av/harbor (CLI LLM stack manager, not standalone web app), community-scripts/ProxmoxVE (scripts-only), various archived repos.
+- Added 3 new recipes (batch 22):
+
+1. **gitea-mirror.md** — RayLabsHQ/gitea-mirror v3.15.10 (1195 ⭐)
+   - Automatically mirrors GitHub repos (public/private/starred/org) to self-hosted Gitea/Forgejo.
+   - Single-container Docker, SQLite, web UI for all config, scheduled syncs with metadata support.
+
+2. **traefik-manager.md** — chr0nzz/traefik-manager v1.0.4 (618 ⭐)
+   - Self-hosted web UI for Traefik reverse proxy. Browse routes, middlewares, services, certs.
+   - Python/Flask + Alpine Docker. TOTP 2FA, OIDC/SSO, Monaco static config editor, mobile app.
+
+3. **elasticvue.md** — cars10/elasticvue v1.14.0 (2650 ⭐)
+   - Self-hosted Elasticsearch/OpenSearch GUI. nginx + static Vue.js Docker container.
+   - Stateless (no DB), pre-seedable cluster connections via env var or volume.
+
+- Ran build-dist.sh all — all 7 bundles rebuilt successfully.
+- Committed and pushed: 6e71660
+
+---
+
+## Heartbeat — 2026-05-09T22:15:00Z
+
+### Step 0 — Sync
+- `git pull --rebase --autostash` → Already up to date.
+
+### Step 1 — GitHub Issues
+- Fetched open issues from zhangqi444/open-forge.
+- No open issues found. issues-log.json updated.
+
+### Step 2 — Weekly Catalog Freshness Check
+- catalog-check.json last_checked_at: 2026-05-09T10:00:00Z (within 7-day window).
+- Freshness check skipped — already completed earlier today.
+
+### Step 3 — Catalog Growth
+- Searched GitHub API: topic:self-hosted stars:>500, topic:homelab stars:>300, topic:selfhosted+docker stars:>400, self-hosted docker created:>2024-01-01
+- Cross-referenced ~120 candidates against existing 2180 recipes.
+- Skipped: Cosmos-Server (Apache 2.0 + Commons Clause), SparkyFitness (non-commercial license), archived repos, CLI-only tools, list/awesome repos.
+- Added 3 new recipes (batch 23):
+
+1. **yaade.md** — EsperoTech/yaade (1981 ⭐, MIT)
+   - Self-hosted collaborative API development environment (Postman/Hoppscotch alternative).
+   - Kotlin backend + React SPA, H2 embedded DB, single container on port 9339.
+   - Multi-user, persistent storage, CORS proxy browser extensions, WebSocket support.
+
+2. **dumbassets.md** — DumbWareio/DumbAssets (1103 ⭐, GPL-3.0)
+   - Stupid-simple physical asset tracker with warranty/maintenance tracking, photo uploads, Apprise notifications.
+   - Node.js + SQLite, single container on port 3000, PIN auth.
+
+3. **sync-in.md** — Sync-in/server (1148 ⭐, AGPL-3.0)
+   - Self-hosted file storage, sync, and collaboration platform.
+   - OIDC/LDAP/MFA auth, Collabora/OnlyOffice integration, WebDAV, full-text search.
+   - Node.js + MariaDB 11 Docker Compose stack; desktop + CLI clients available.
+
+- Ran build-dist.sh all — all 7 bundles rebuilt successfully.
+- Committed and pushed: cb391cf
