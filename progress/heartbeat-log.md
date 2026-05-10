@@ -2248,3 +2248,22 @@ Added 2 recipes:
 Skipped: secluso (Pi-specific hardware required), easy-invoice-pdf (in-browser only, no server), openyak (desktop app).
 
 Build: OK. Commit: 22803c9. Catalog: 2,205 recipes.
+
+## 2026-05-10 01:45 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — within 7-day window.
+
+### Step 3 — Catalog Growth
+Newsletter still 404. Scanned GitHub (self-hosted+dashboard topic, stars>300) for new candidates.
+
+Added 2 recipes:
+1. **mission-control** (builderz-labs/mission-control, 4.7k stars, MIT) — AI agent orchestration dashboard; task dispatch, cost tracking, multi-agent pipelines; SQLite, zero external deps
+2. **job-ops** (DaKheera47/job-ops, 3k stars, MIT) — self-hosted job search pipeline; aggregates 10+ boards, AI scoring/CV tailoring, Gmail tracking
+
+Skipped: all other dashboard candidates already in catalog.
+
+Build: OK. Commit: 07d0666. Catalog: 2,207 recipes.
