@@ -2189,3 +2189,24 @@ Build: `./scripts/build-dist.sh all` — OK.
 Commit: `open-forge: batch — bore, meteroid, lazytainer` (4f3abce)
 Pushed: success -> main
 Catalog: 2,198 recipes.
+
+## 2026-05-10 00:45 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — last_checked_at 2026-05-09T10:00:00Z (within 7-day window).
+
+### Step 3 — Catalog Growth
+Newsletter 2026-05-08 still returns HTTP 404. Scanned GitHub API (Python self-hosted, stars>400, pushed since 2026-01-01) for new candidates.
+
+Added 3 recipes:
+1. **la-suite-docs** (suitenumerique/docs, 16.5k stars, MIT) — real-time collaborative editor (Notion/Google Docs alternative); Django+React; Docker Compose + Kubernetes
+2. **babybuddy** (babybuddy/babybuddy, 2.8k stars, BSD-2) — infant care tracker (sleep, feedings, diapers); LinuxServer Docker image
+3. **pypiserver** (pypiserver/pypiserver, 2k stars, MIT) — minimal self-hosted PyPI server for private Python packages
+
+Build: `./scripts/build-dist.sh all` — OK.
+Commit: `open-forge: batch — la-suite-docs, babybuddy, pypiserver` (614d5f6)
+Pushed: success -> main
+Catalog: 2,201 recipes.
