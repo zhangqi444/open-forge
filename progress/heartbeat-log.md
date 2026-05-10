@@ -2267,3 +2267,22 @@ Added 2 recipes:
 Skipped: all other dashboard candidates already in catalog.
 
 Build: OK. Commit: 07d0666. Catalog: 2,207 recipes.
+
+## 2026-05-10 02:00 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — within 7-day window.
+
+### Step 3 — Catalog Growth
+Newsletter still 404. Scanned GitHub (self-hosted+monitoring, self-hosted+security topics) for new candidates.
+
+Added 2 recipes:
+1. **laminar-ai** (lmnr-ai/lmnr, 2.9k stars, Apache-2.0) — open-source AI agent observability; OpenTelemetry tracing, evals, dashboards, SQL; Docker Compose
+2. **pegaprox** (PegaProx/project-pegaprox, 1.2k stars, AGPL-3.0) — multi-cluster Proxmox VE/XCP-ng management dashboard; VNC/SSH console, VM migrations
+
+Skipped: Pi.Alert (bash-only installer, no Docker; NetAlertX is the Docker fork already in catalog), secluso (Pi-specific hardware), Observal (too early stage).
+
+Build: OK. Commit: fbd2aa5. Catalog: 2,209 recipes.
