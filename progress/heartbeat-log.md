@@ -2286,3 +2286,14 @@ Added 2 recipes:
 Skipped: Pi.Alert (bash-only installer, no Docker; NetAlertX is the Docker fork already in catalog), secluso (Pi-specific hardware), Observal (too early stage).
 
 Build: OK. Commit: fbd2aa5. Catalog: 2,209 recipes.
+
+## 2026-05-10T03:30:00Z
+- Step 0: repo up to date (synced from 85efa55)
+- Step 1: no open issues
+- Step 2: catalog freshness check skipped (not 7 days since last check)
+- Step 3: catalog growth — completed 2 deferred candidates from prior session
+  - `olares.md` — beclab/Olares, 4529★, AGPLv3 personal cloud OS (K3s + JuiceFS + MinIO + SSO). Script, Docker Compose, ISO, PVE, Raspberry Pi install methods.
+  - `labca.md` — hakwerk/labca, private ACME CA built on Let's Encrypt Boulder, Docker Compose deploy, web GUI
+  - Also carried over from prior session: `bonfire.md` — bonfire-networks/bonfire-app (Elixir federated social toolkit)
+  - Built dist (1331 lines bundle)
+  - Committed fec0203, pushed to main
