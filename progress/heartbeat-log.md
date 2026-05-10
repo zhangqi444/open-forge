@@ -2210,3 +2210,22 @@ Build: `./scripts/build-dist.sh all` — OK.
 Commit: `open-forge: batch — la-suite-docs, babybuddy, pypiserver` (614d5f6)
 Pushed: success -> main
 Catalog: 2,201 recipes.
+
+## 2026-05-10 01:15 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — within 7-day window.
+
+### Step 3 — Catalog Growth
+Newsletter 2026-05-08 still 404. Scanned GitHub API (JavaScript self-hosted + PHP self-hosted, stars>400/500) for new candidates.
+
+Added 2 recipes:
+1. **cosmos-server** (azukaar/Cosmos-Server, 5.9k stars, Apache-2.0) — all-in-one secure home server: reverse proxy, auth, container mgr, app store, VPN, monitoring, SmartShield
+2. **waline** (walinejs/waline, 3k stars, GPL-2.0) — self-hosted comment system for static sites; SQLite/MySQL/PostgreSQL backends
+
+Skipped: all other JS/PHP candidates already in catalog.
+
+Build: OK. Commit: 3fdd929. Catalog: 2,203 recipes.
