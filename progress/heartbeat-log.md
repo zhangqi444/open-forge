@@ -2116,3 +2116,76 @@ Sources searched: GitHub topic:self-hosted+docker, topic:selfhosted+docker, topi
 Build: `./scripts/build-dist.sh all` — all bundles rebuilt successfully.
 Commit: `open-forge: batch 34 — Suwayomi-Server, easy-gate, Rote, Benotes`
 Push: success → main
+
+## 2026-05-09
+
+### Step 1 — GitHub Issues
+No open issues found.
+
+### Step 2 — Catalog Freshness
+Skipped — last_checked_at is 2026-05-09T10:00:00Z (within 7 days).
+
+### Step 3 — Catalog Growth
+Added 3 new recipes via GitHub API search (topic:self-hosted+docker, stars>300/600):
+
+1. **cloudflare-ddns** (`favonia/cloudflare-ddns`, 2502⭐, Apache-2.0)
+   - Feature-rich Cloudflare DDNS updater; Docker-native, IPv4/IPv6, small image.
+
+2. **jump** (`daledavies/jump`, 601⭐, MIT)
+   - Self-hosted startpage and real-time server status page; Docker Compose.
+
+3. **selfhosted-gateway** (`hintjen/selfhosted-gateway`, 1699⭐, AGPL-3.0)
+   - Docker-native RPoVPN tunnel (WireGuard+Caddy+NGINX) to expose local services without port-forwarding or exposing home IP.
+
+Build: `./scripts/build-dist.sh all` — OK.
+Commit: `open-forge: batch N — cloudflare-ddns, jump, selfhosted-gateway`
+Pushed to: `zhangqi444/open-forge` main.
+
+## 2026-05-10 00:00 UTC
+
+### Step 1 — GitHub Issues
+No open issues found.
+
+### Step 2 — Catalog Freshness
+Skipped — last_checked_at is 2026-05-09T10:00:00Z (within 7-day window; next due ~2026-05-16).
+
+### Step 3 — Catalog Growth
+Completed carry-over from 2026-05-09 23:45 run + new batch:
+
+2 new recipes added via GitHub topic search (selfhosted+docker, homelab+docker):
+
+1. **docker-ipsec-vpn-server** (`hwdsl2/docker-ipsec-vpn-server`, 7068★, Alpine/Debian)
+   - IPsec VPN server with IKEv2, L2TP, and Cisco XAuth. Auto-generates credentials on first start. Multi-arch.
+
+2. **lazytainer** (`vmorganp/Lazytainer`, 744★, MIT)
+   - Docker container lazy-loader: stops/pauses containers when idle, wakes them on network traffic. Label-based configuration.
+
+Self-Host Weekly 2026-05-08 and 2026-05-15: both still HTTP 404.
+
+Build: ./scripts/build-dist.sh all — OK.
+Commit: `open-forge: batch — docker-ipsec-vpn-server, lazytainer` (e278ceb)
+Pushed to: zhangqi444/open-forge main.
+Catalog size: 2,196 recipes.
+
+## 2026-05-10 00:15 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — last_checked_at 2026-05-09T10:00:00Z (within 7-day window; next due ~2026-05-16).
+
+### Step 3 — Catalog Growth
+Newsletter 2026-05-08 still returns HTTP 404. Scanned GitHub API (Go + TypeScript + Rust self-hosted, stars>400, pushed since 2026-02-01) for new candidates.
+
+Added 3 recipes:
+1. **bore** (ekzhang/bore, 11.1k stars, MIT) — simple self-hosted TCP tunnel server; client+server Rust binary
+2. **meteroid** (meteroid-oss/meteroid, 1k stars, AGPL v3) — open-source billing/subscription infrastructure; Docker Compose + Helm
+3. **lazytainer** (vmorganp/Lazytainer, 744 stars, MIT) — Docker container lazy-loader; stops idle containers, wakes on traffic
+
+Skipped: meetily (macOS/Windows desktop app), wealthfolio (local desktop app), microsandbox (SDK/library), ohmyform (archived), panora (archived).
+
+Build: `./scripts/build-dist.sh all` — OK.
+Commit: `open-forge: batch — bore, meteroid, lazytainer` (4f3abce)
+Pushed: success -> main
+Catalog: 2,198 recipes.
