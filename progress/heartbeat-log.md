@@ -2229,3 +2229,22 @@ Added 2 recipes:
 Skipped: all other JS/PHP candidates already in catalog.
 
 Build: OK. Commit: 3fdd929. Catalog: 2,203 recipes.
+
+## 2026-05-10 01:30 UTC
+
+### Step 1 — GitHub Issues
+0 open issues.
+
+### Step 2 — Catalog Freshness
+Skipped — within 7-day window.
+
+### Step 3 — Catalog Growth
+Newsletter still 404. Scanned GitHub (recently-updated self-hosted, stars>500) for new candidates.
+
+Added 2 recipes:
+1. **autobase** (autobase-tech/autobase, 4.2k stars, MIT) — automated PostgreSQL cluster platform; self-hosted DBaaS alternative; Docker Compose + Caddy
+2. **bambuddy** (maziggy/bambuddy, 1.2k stars, MIT) — self-hosted Bambu Lab 3D printer management; proxy mode for remote printing without cloud
+
+Skipped: secluso (Pi-specific hardware required), easy-invoice-pdf (in-browser only, no server), openyak (desktop app).
+
+Build: OK. Commit: 22803c9. Catalog: 2,205 recipes.
