@@ -28,6 +28,8 @@ Older versions also shipped a **Redis** service. As of recent releases (2024.4+)
 | ------------------ | ----------------------------- | --------------------------------------------------------------------------- |
 | Single VM          | Docker + Compose              | Recommended; upstream publishes `docker-compose.yml` at goauthentik.io       |
 | Kubernetes         | Helm chart (official)         | `authentik/authentik` — production-grade                                    |
+| AWS                | CloudFormation (official)     | Official templates; docs: <https://docs.goauthentik.io/docs/install-config/install/aws/> |
+| DigitalOcean       | Marketplace (official)        | One-click Marketplace app; listing: <https://marketplace.digitalocean.com/apps/authentik> |
 | Bare metal         | Unsupported                   | Not a supported install path                                                |
 
 ## Inputs to collect
@@ -35,7 +37,7 @@ Older versions also shipped a **Redis** service. As of recent releases (2024.4+)
 | Input                       | Example                                 | Phase     | Notes                                                                      |
 | --------------------------- | --------------------------------------- | --------- | -------------------------------------------------------------------------- |
 | `PG_PASS`                   | strong random                           | Data      | **Required.** PostgreSQL password                                           |
-| `AUTHENTIK_SECRET_KEY`      | 50+ random chars                        | Runtime   | **Required.** Signs cookies/tokens; `openssl rand -base64 60 \| tr -d '\n'` |
+| `AUTHENTIK_SECRET_KEY`      | 50+ random chars                        | Runtime   | **Required.** Signs cookies/tokens; `openssl rand -base64 60 | tr -d '\n'` |
 | Host FQDN                   | `auth.example.com`                      | DNS/Proxy | Terminate TLS at a reverse proxy; point it at `server:9000`                 |
 | `AUTHENTIK_TAG`             | `2026.2.2` (current at time of writing) | Runtime   | Pin — floating tags are fine on dev, dangerous in prod                      |
 | SMTP                        | host, user, pass                        | Runtime   | Set `AUTHENTIK_EMAIL__*` — needed for password-reset / enrollment           |
@@ -118,6 +120,8 @@ tar czf authentik-data-$(date +%F).tgz data/ certs/ custom-templates/ .env
 
 - Docs: <https://docs.goauthentik.io/>
 - Docker-Compose install: <https://docs.goauthentik.io/docs/install-config/install/docker-compose>
+- AWS CloudFormation install: <https://docs.goauthentik.io/docs/install-config/install/aws/>
+- DigitalOcean Marketplace: <https://marketplace.digitalocean.com/apps/authentik>
 - Config reference: <https://docs.goauthentik.io/docs/install-config/configuration/>
 - Release notes: <https://docs.goauthentik.io/docs/releases>
 - GitHub releases: <https://github.com/goauthentik/authentik/releases>
