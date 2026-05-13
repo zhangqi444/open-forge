@@ -148,6 +148,22 @@ The installer:
 /pds/pdsadmin.sh request-crawl
 ```
 
+### goat CLI (bundled in container)
+
+The PDS container also ships `goat` — a lower-level AT Protocol admin CLI. Run commands via `docker exec`:
+
+```bash
+# Create an account (alternative to pdsadmin)
+docker exec pds goat pds admin account create --admin-password YOUR_ADMIN_PASS \
+  --handle user.pds.example.com --email user@email.com --password userpass
+
+# Create invite codes
+docker exec pds goat pds admin create-invites --admin-password YOUR_ADMIN_PASS
+
+# Check relay status
+docker exec pds sh -c 'goat relay host status "$PDS_HOSTNAME" --json'
+```
+
 ## Upgrade procedure
 
 Watchtower handles automatic nightly updates. To update manually:
