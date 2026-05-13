@@ -40,7 +40,7 @@ From upstream quick-start (<https://docs.asciinema.org/manual/server/self-hostin
 ```yaml
 services:
   asciinema:
-    image: ghcr.io/asciinema/asciinema-server:20251114   # pin; check releases link below
+    image: ghcr.io/asciinema/asciinema-server:20260207   # pin; check releases link below
     environment:
       - SECRET_KEY_BASE=REPLACE_WITH_64_CHARS
       - URL_HOST=asciinema.example.com
@@ -99,7 +99,7 @@ For a lan-only instance, omit Caddy and publish Phoenix directly:
 ```yaml
 services:
   asciinema:
-    image: ghcr.io/asciinema/asciinema-server:20251114
+    image: ghcr.io/asciinema/asciinema-server:20260207
     ports:
       - '80:4000'
     environment:
