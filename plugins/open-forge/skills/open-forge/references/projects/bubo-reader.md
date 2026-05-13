@@ -22,7 +22,7 @@ Upstream: https://github.com/georgemandis/bubo-rss | Demo: https://bubo-rss-demo
 
 | Phase | Prompt | Notes |
 |---|---|---|
-| config | Feed list | Edit conf/feeds.json with your feed URLs organized by category |
+| config | Feed list | Edit config/feeds.json with your feed URLs organized by category |
 | config (optional) | Template | Edit config/template.html (Nunjucks) to customize the output layout |
 | config (optional) | Cron schedule | How often to rebuild (e.g. every hour via cron or GitHub Actions schedule) |
 | config (optional) | MAX_CONNECTIONS | Max parallel feed requests per batch (in src/index.ts) |
@@ -34,7 +34,7 @@ Upstream: https://github.com/georgemandis/bubo-rss | Demo: https://bubo-rss-demo
 
 | File | Description |
 |---|---|
-| conf/feeds.json | Your feed URLs organized by category |
+| config/feeds.json | Your feed URLs organized by category |
 | config/template.html | Nunjucks HTML template for the output page |
 | public/index.html | Generated output -- serve this directory |
 | public/style.css | Stylesheet (customize freely) |
@@ -54,7 +54,7 @@ cd bubo-rss
 npm install
 
 # Edit your feeds
-nano conf/feeds.json
+nano config/feeds.json
 
 # Build
 npm run build:bubo
@@ -112,20 +112,12 @@ jobs:
 
 ```json
 {
-  "categories": [
-    {
-      "name": "Technology",
-      "feeds": [
-        "https://hnrss.org/frontpage",
-        "https://lobste.rs/rss"
-      ]
-    },
-    {
-      "name": "Blogs",
-      "feeds": [
-        "https://example.com/feed.xml"
-      ]
-    }
+  "Technology": [
+    "https://hnrss.org/frontpage",
+    "https://lobste.rs/rss"
+  ],
+  "Blogs": [
+    "https://example.com/feed.xml"
   ]
 }
 ```
