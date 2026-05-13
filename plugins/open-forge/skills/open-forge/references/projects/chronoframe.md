@@ -46,7 +46,7 @@ Features (per README):
 | Input                | Example                                                     | Phase        | Notes                                                                    |
 | -------------------- | ----------------------------------------------------------- | ------------ | ------------------------------------------------------------------------ |
 | Domain               | `lens.example.com`                                          | URL          | TLS (public-facing typical)                                                                                    |
-| Photo upload path    | `/data`                                                     | Storage      |                                                                                    |
+| Photo upload path    |  `/app/data`                                                   | Storage      |                                                                                    |
 | Admin                | Bootstrap                                                   | Auth         |                                                                                    |
 
 ## Install via Docker
@@ -55,10 +55,10 @@ See README. Typical:
 ```yaml
 services:
   chronoframe:
-    image: hoshinosuzumi/chronoframe:stable        # **pin** — use stable not nightly
+    image: ghcr.io/hoshinosuzumi/chronoframe:latest        # **pin** — use stable not nightly
     ports: ["3000:3000"]
     volumes:
-      - ./chronoframe-data:/data
+      - ./chronoframe-data:/app/data
     restart: unless-stopped
 ```
 
@@ -70,11 +70,11 @@ services:
 4. Verify EXIF + map
 5. Customize theme
 6. Put behind TLS
-7. Back up `/data`
+7. Back up `/app/data`
 
 ## Data & config layout
 
-- `/data/` — DB + uploaded photos + cache
+- `/app/data/` — DB + uploaded photos + cache
 
 ## Backup
 
