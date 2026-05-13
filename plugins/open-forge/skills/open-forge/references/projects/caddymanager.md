@@ -1,103 +1,144 @@
 ---
 name: CaddyManager
-description: "Web UI for managing Caddy reverse proxy configurations. Docker. Rust + React. caddymanager/caddymanager. CRUD for domains/upstreams/routes, real-time config preview, Caddy API integration, no config file editing. MIT."
+description: "Web UI for managing Caddy reverse proxy configurations. Docker. MEVN stack (Node.js/Express backend + Vue.js frontend). caddymanager/caddymanager. Multi-server management, SQLite or MongoDB storage, JWT auth, audit logging, Caddy API integration. MIT."
 ---
 
 # CaddyManager
 
-**Web UI for managing Caddy reverse proxy configurations.** Create, edit, and delete reverse proxy routes through a clean React interface — no manual JSON/Caddyfile editing. CaddyManager generates Caddy configurations via the Caddy Admin API, handles automatic TLS (Let's Encrypt), and shows a real-time preview of the generated config. Rust backend + React frontend.
+**Web UI for managing multiple Caddy2 reverse proxy servers.** Create, edit, and manage Caddyfiles and server configurations through a web interface. CaddyManager generates Caddy configurations via the Caddy Admin API. Built on the MEVN stack (Node.js/Express backend, Vue.js frontend); defaults to SQLite for zero-setup.
 
-Built + maintained by **caddymanager team**. MIT license.
+Built + maintained by **caddymanager team**. MIT license. Early development (pre-v0.1).
 
 - Upstream repo: <https://github.com/caddymanager/caddymanager>
-- Docker Hub: `ghcr.io/caddymanager/caddymanager` (check repo for image location)
+- Docker images: `caddymanager/caddymanager-backend:latest` and `caddymanager/caddymanager-frontend:latest`
+
+> Warning: Early development. Project is gearing up for v0.1. Back up Caddy configurations before testing.
 
 ## Architecture in one minute
 
-- **Rust** backend (lightweight API)
-- **React** frontend
-- Communicates with **Caddy's Admin API** (`http://caddy:2019`) to manage config
-- Port **3000** (CaddyManager web UI)
-- Caddy ports **80/443** (actual reverse proxy traffic)
-- Both run in Docker Compose (CaddyManager + Caddy)
-- Resource: **very low** — Rust backend + static React frontend
+- **Node.js/Express** backend (API server, Caddy API integration, JWT auth, audit logging)
+- **Vue.js** frontend (web UI, proxies `/api/*` requests to backend)
+- **SQLite** (default) or **MongoDB** for persistent storage
+- Default admin credentials: `admin` / `caddyrocks` -- **change after first login**
+- Backend port **3000** (internal only, not exposed directly to host)
+- Frontend port **80** (web UI, proxies API calls to backend)
 
 ## Compatible install methods
 
-| Infra              | Runtime                           | Notes                                           |
-| ------------------ | --------------------------------- | ----------------------------------------------- |
-| **Docker Compose** | `ghcr.io/caddymanager/caddymanager` | **Primary** — runs alongside Caddy              |
+| Infra              | Runtime                                 | Notes                                           |
+| ------------------ | --------------------------------------- | ----------------------------------------------- |
+| **Docker Compose** | Two containers: backend + frontend      | Primary path -- optional MongoDB via profile    |
+
+## Inputs to collect
+
+| Input | Example | Notes |
+|-------|---------|-------|
+| `JWT_SECRET` | random string | Change in production -- signs session tokens |
+| `DB_ENGINE` | `sqlite` (default) or `mongodb` | SQLite works out of the box |
+| `CADDY_SANDBOX_URL` | `http://caddy:2019` | Caddy Admin API URL for config testing |
+| `CORS_ORIGIN` | `http://localhost:80` | Set to your frontend URL |
+| Admin password | change from `caddyrocks` | Default on first run; change immediately |
 
 ## Install via Docker Compose
 
 ```yaml
 services:
-  caddymanager:
-    image: ghcr.io/caddymanager/caddymanager:latest
-    container_name: caddymanager
+  # Optional MongoDB -- use 'docker compose --profile mongodb up' to include
+  mongodb:
+    image: mongo:8.0
+    container_name: caddymanager-mongodb
     restart: unless-stopped
-    ports:
-      - "3000:3000"
     environment:
-      - CADDY_ADMIN_URL=http://caddy:2019
-    depends_on:
-      - caddy
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=someSecretPassword
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - caddymanager
+    profiles:
+      - mongodb
 
-  caddy:
-    image: caddy:latest
-    container_name: caddy
+  backend:
+    image: caddymanager/caddymanager-backend:latest
+    container_name: caddymanager-backend
     restart: unless-stopped
+    environment:
+      - PORT=3000
+      - DB_ENGINE=sqlite
+      - SQLITE_DB_PATH=/app/data/caddymanager.sqlite
+      - MONGODB_URI=mongodb://mongoadmin:someSecretPassword@mongodb:27017/caddymanager?authSource=admin
+      - CORS_ORIGIN=http://localhost:80
+      - LOG_LEVEL=debug
+      - CADDY_SANDBOX_URL=http://localhost:2019
+      - PING_INTERVAL=30000
+      - PING_TIMEOUT=2000
+      - AUDIT_LOG_MAX_SIZE_MB=100
+      - AUDIT_LOG_RETENTION_DAYS=90
+      - JWT_SECRET=your_jwt_secret_key_here
+      - JWT_EXPIRATION=24h
+    volumes:
+      - sqlite_data:/app/data
+    networks:
+      - caddymanager
+
+  frontend:
+    image: caddymanager/caddymanager-frontend:latest
+    container_name: caddymanager-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_HOST=backend:3000
+      - APP_NAME=Caddy Manager
+      - DARK_MODE=true
     ports:
       - "80:80"
-      - "443:443"
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
+    networks:
+      - caddymanager
+
+networks:
+  caddymanager:
+    driver: bridge
 
 volumes:
-  caddy_data:
-  caddy_config:
+  mongodb_data:
+  sqlite_data:
 ```
 
-Visit `http://localhost:3000` for the CaddyManager UI.
-
-> **Note:** Check the repo's `docker-compose.yml` for the current canonical example — the compose file in the repo is the authoritative reference.
+Visit `http://localhost:80`. Default credentials: `admin` / `caddyrocks` -- change immediately.
 
 ## First boot
 
-1. Deploy both CaddyManager and Caddy via Docker Compose.
-2. Visit `http://localhost:3000`.
-3. Add your first **domain** (e.g. `app.example.com`).
-4. Set the **upstream** (e.g. `http://myapp:8080`).
-5. CaddyManager pushes the config to Caddy via Admin API.
-6. Caddy automatically provisions a Let's Encrypt certificate for the domain.
-7. Test that the domain routes correctly.
-8. Manage all your reverse proxy routes from the web UI.
+1. `docker compose up -d`
+2. Visit `http://localhost:80`
+3. Log in with `admin` / `caddyrocks` -- change password immediately
+4. Add a Caddy server (provide its Admin API URL, e.g. `http://caddy:2019`)
+5. Create and manage Caddyfiles via the web UI
 
-## Features overview
+## Features
 
 | Feature | Details |
 |---------|---------|
-| Route management | Add, edit, delete reverse proxy routes via web UI |
-| Domain config | Set domain → upstream per route |
-| Auto TLS | Caddy handles Let's Encrypt automatically |
-| Config preview | Real-time JSON preview of generated Caddy config |
-| Caddy Admin API | Push changes to live Caddy without restarts |
-| No file editing | Never touch Caddy JSON or Caddyfile manually |
+| Multi-server | Add, remove, monitor multiple Caddy2 servers |
+| Config editor | Edit Caddyfiles with syntax highlighting and templates |
+| Auth | JWT sessions, RBAC, API key management |
+| Audit logging | Track all user and system actions |
+| Dual DB | SQLite (default, zero-setup) or MongoDB |
+| Swagger docs | Backend API docs at `/api-docs` |
 
 ## Gotchas
 
-- **Caddy Admin API must be accessible.** CaddyManager talks to Caddy on port 2019 (the Caddy Admin API). The Caddy container must be on the same Docker network as CaddyManager, and the Admin API must not be blocked. By default, Caddy's Admin API is `http://localhost:2019` — not HTTPS, and not protected by auth. Keep it on an internal Docker network only.
-- **Don't expose Caddy's Admin API externally.** Port 2019 gives full control over Caddy config. Keep it on the internal Docker network; don't publish it to the host.
-- **Caddy manages TLS automatically.** As long as your domain DNS points to the server's IP and port 80/443 are open, Caddy provisions Let's Encrypt certs without any configuration. This is Caddy's killer feature — CaddyManager just wires up the routing.
-- **Single Caddy instance.** CaddyManager manages one Caddy instance. For multiple servers or a Caddy cluster, this won't work as-is.
-- **Early-stage project.** CaddyManager is newer and simpler than alternatives. Check the issue tracker for known limitations before relying on it for production.
+- **Change default credentials.** Admin `admin`/`caddyrocks` is created on first run. Change immediately.
+- **Backend not directly exposed.** All API traffic routes through the frontend proxy (`/api/*` to backend:3000). Do not publish the backend port externally.
+- **Caddy Admin API security.** CaddyManager connects to each Caddy server's Admin API (port 2019 by default). Keep on internal Docker networks -- the Admin API gives full config control with no auth.
+- **SQLite default.** Zero-config; data in `sqlite_data` volume. Switch to MongoDB with `DB_ENGINE=mongodb` + the mongodb compose profile.
+- **JWT_SECRET required for production.** Use a long random secret. Changing it invalidates all active sessions.
+- **Early development.** Pre-v0.1. Check issue tracker for known limitations. Back up Caddy config volumes before testing.
 
 ## Backup
 
-CaddyManager's configuration is pushed to Caddy via the Admin API and persisted in Caddy's `caddy_config` volume. Back up:
 ```sh
-docker run --rm -v caddy_config:/data -v $(pwd):/backup alpine tar czf /backup/caddy-config-$(date +%F).tgz /data
+docker run --rm -v caddymanager_sqlite_data:/data -v $(pwd):/backup alpine tar czf /backup/caddymanager-$(date +%F).tgz /data
 ```
 
 ## Upgrade
@@ -105,20 +146,6 @@ docker run --rm -v caddy_config:/data -v $(pwd):/backup alpine tar czf /backup/c
 ```sh
 docker compose pull && docker compose up -d
 ```
-
-## Project health
-
-Active Rust + React development, Caddy Admin API integration, real-time config preview. MIT license.
-
-## Caddy-management-family comparison
-
-- **CaddyManager** — Rust+React, web UI for Caddy Admin API, route management, MIT
-- **Caddy** (native) — ACME automation + Caddyfile/JSON; powerful without a UI; hard to manage at scale
-- **Nginx Proxy Manager** — Node.js, nginx-based, mature, larger community; no Caddy
-- **Traefik** — Go, Docker-native auto-discovery; different paradigm; no manual UI needed
-- **Zoraxy** — Go, multi-protocol proxy + web UI; more features than CaddyManager
-
-**Choose CaddyManager if:** you already use Caddy and want a simple web UI to manage reverse proxy routes without editing JSON/Caddyfile manually.
 
 ## Links
 
