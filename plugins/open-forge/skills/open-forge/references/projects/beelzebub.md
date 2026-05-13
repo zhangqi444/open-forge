@@ -47,6 +47,8 @@ services:
       - "23:23"       # Telnet decoy
       - "2222:2222"   # Alt SSH decoy
       - "8080:8080"   # HTTP decoy
+      - "8081:8081"   # MCP decoy (AI agent deception)
+      - "3306:3306"   # MySQL/MariaDB decoy
       - "80:80"       # HTTP decoy (standard)
       - "2112:2112"   # Prometheus metrics
     environment:
