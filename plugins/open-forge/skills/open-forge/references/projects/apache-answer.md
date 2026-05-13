@@ -41,7 +41,7 @@ Upstream `docker-compose.yaml`:
 ```yaml
 services:
   answer:
-    image: apache/answer:1.5.1        # pin; check GitHub releases for latest
+    image: apache/answer:2.0.0        # pin; check GitHub releases for latest
     restart: unless-stopped
     ports:
       - "9080:80"
@@ -55,7 +55,7 @@ volumes:
 Or just `docker run`:
 
 ```sh
-docker run -d -p 9080:80 -v answer-data:/data --name answer apache/answer:1.5.1
+docker run -d -p 9080:80 -v answer-data:/data --name answer apache/answer:2.0.0
 ```
 
 Browse `http://<host>:9080`. The web installer walks through:
@@ -72,7 +72,7 @@ After completion, the installer writes config to `/data/conf/config.yaml` inside
 ```yaml
 services:
   answer:
-    image: apache/answer:1.5.1
+    image: apache/answer:2.0.0
     restart: unless-stopped
     ports:
       - "9080:80"
