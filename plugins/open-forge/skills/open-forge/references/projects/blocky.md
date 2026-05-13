@@ -1,6 +1,6 @@
 ---
 name: Blocky
-description: "Fast, lightweight DNS proxy + ad-blocker for local networks. YAML config, regex rules, per-client-group allowlists/denylists, DoH/DoT, DNSSEC, query logging to MySQL/Postgres, Prometheus metrics, Grafana dashboards. Single Go binary. Apache-2.0."
+description: "Fast, lightweight DNS proxy + ad-blocker for local networks. YAML config, regex rules, per-client-group allowlists/denylists, DoH/DoT/DoQ, DNSSEC, query logging to MySQL/Postgres, Prometheus metrics, Grafana dashboards. Single Go binary. Apache-2.0."
 ---
 
 # Blocky
@@ -18,7 +18,7 @@ Features:
 - **Per-group upstream resolvers** (e.g., kids → Cloudflare for Families 1.1.1.3)
 - **Caching + prefetching** — warm the cache for popular queries
 - **Multi-upstream** — hit multiple resolvers simultaneously; first-response wins
-- **Protocols**: DNS-over-UDP, DNS-over-TCP, **DoH** (DNS-over-HTTPS — both as client and as endpoint), **DoT** (DNS-over-TLS)
+- **Protocols**: DNS-over-UDP, DNS-over-TCP, **DoH** (DNS-over-HTTPS — both as client and as endpoint), **DoT** (DNS-over-TLS), **DoQ** (DNS-over-QUIC, RFC 9250)
 - **DNSSEC** validation
 - **Privacy** — random upstream rotation; no telemetry
 - **Query logging** — CSV files or MySQL/MariaDB/Postgres/Timescale
