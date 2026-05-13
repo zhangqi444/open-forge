@@ -10,9 +10,9 @@ Casdoor is an identity + access management (IAM) server focused on **plug-and-pl
 Extremely strong in the Chinese-market-integrations space (WeChat, Alipay, QQ, Baidu, Feishu). Multi-tenant ("organization" model). Covers federated SSO, MFA (TOTP/SMS/Email), WebAuthn, LDAP server mode, SCIM, CAS, SAML IdP + SP, password managers' OIDC, and has a built-in admin UI for user/permission/role management.
 
 - Upstream repo: <https://github.com/casdoor/casdoor>
-- Website: <https://casdoor.org>
-- Docs: <https://casdoor.org/docs/overview>
-- Docker install: <https://casdoor.org/docs/basic/server-installation#docker>
+- Website: <https://casdoor.ai> (formerly casdoor.org — redirects)
+- Docs: <https://casdoor.ai/docs/overview>
+- Docker install: <https://casdoor.ai/docs/basic/server-installation#docker>
 - Live demo: <https://door.casdoor.com> (read-only)
 
 ## Architecture in one minute
@@ -112,7 +112,7 @@ originFrontend =
 staticBaseUrl = "https://cdn.casbin.org"
 ```
 
-Upstream config reference: <https://casdoor.org/docs/basic/server-installation>.
+Upstream config reference: <https://casdoor.ai/docs/basic/server-installation>.
 
 ### First boot
 
@@ -191,11 +191,11 @@ tar czf casdoor-conf-$(date +%F).tgz ./conf
 ## Links
 
 - Repo: <https://github.com/casdoor/casdoor>
-- Website: <https://casdoor.org>
-- Docs: <https://casdoor.org/docs/overview>
-- Server installation: <https://casdoor.org/docs/basic/server-installation>
-- Docker: <https://casdoor.org/docs/basic/server-installation#docker>
-- Providers list: <https://casdoor.org/docs/provider/oauth/overview>
+- Website: <https://casdoor.ai> (formerly casdoor.org — redirects)
+- Docs: <https://casdoor.ai/docs/overview>
+- Server installation: <https://casdoor.ai/docs/basic/server-installation>
+- Docker: <https://casdoor.ai/docs/basic/server-installation#docker>
+- Providers list: <https://casdoor.ai/docs/provider/oauth/overview>
 - Docker Hub: <https://hub.docker.com/r/casbin/casdoor>
 - Helm chart: <https://github.com/casdoor/casdoor-helm>
 - Demo: <https://door.casdoor.com>
