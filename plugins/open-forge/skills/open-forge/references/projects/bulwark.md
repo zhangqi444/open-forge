@@ -114,7 +114,7 @@ All state is in named volumes; no data migration needed.
 - **Stalwart Mail Server is the primary target:** Bulwark is designed specifically for Stalwart's JMAP implementation; most features (Sieve filters, password change, file storage) require Stalwart — set STALWART_FEATURES=false for other JMAP servers
 - **JMAP server must exist separately:** Bulwark is a frontend only — you need a running JMAP mail server before deploying Bulwark
 - **SESSION_SECRET for "Remember me":** Without it, sessions are not persistent across restarts and settings sync is disabled; generate with: openssl rand -base64 32
-- **Admin dashboard on first run:** Access /admin to set the admin password; admin data (password hash, plugins) is stored in the bulwark-admin volume
+- **Setup wizard on first run (v1.6.4+):** If `JMAP_SERVER_URL` is *not* set in the environment, visiting the container root triggers a web-based setup wizard that walks through server, auth, security (SESSION_SECRET), logging, branding, and admin password -- no `.env.local` editing required. Setting `JMAP_SERVER_URL` env var skips the wizard and uses env-managed configuration instead. Admin data (password hash, plugins) is stored in the bulwark-admin volume.
 - **CORS for ALLOW_CUSTOM_JMAP_ENDPOINT:** If allowing custom JMAP endpoints, the external JMAP server must include Bulwark's domain in its CORS Access-Control-Allow-Origin header
 - **Telemetry is anonymous:** Contains no PII (version, feature toggles, bucketed counts only); disable with BULWARK_TELEMETRY=off if preferred
 - **Plugin marketplace:** Third-party plugins install as .zip bundles via the admin dashboard
