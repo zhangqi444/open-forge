@@ -29,7 +29,7 @@ Built + maintained by **bakito**. Go binary, GHCR Docker image, Brew cask.
 | ------------------ | ----------------------------------------------- | --------------------------------------- |
 | **Docker**         | `ghcr.io/bakito/adguardhome-sync`               | **Primary**                             |
 | **Go binary**      | `go install github.com/bakito/adguardhome-sync` | Any Linux/macOS/Windows host with Go    |
-| **Brew**           | `brew install --cask adguardhome-sync`          | macOS                                   |
+| **Brew**           | `brew tap bakito/tap && brew install --cask adguardhome-sync` | macOS              |
 | **systemd service**| Binary + `.service` unit                        | Bare-metal Linux                        |
 
 ## Inputs to collect
