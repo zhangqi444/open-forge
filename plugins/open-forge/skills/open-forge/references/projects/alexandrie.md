@@ -16,12 +16,13 @@ Built + maintained by **Smaug6739**. Live demo at [alexandrie-hub.fr](https://al
 
 ## Architecture in one minute
 
-- **Node.js** backend API + **Vue.js** (or similar) frontend
+- **Node.js** backend API + **Nuxt/Vue.js** frontend (two separate containers)
 - **MySQL 8.0** — primary relational DB (users, docs, permissions, categories)
 - **RustFS** (S3-compatible object storage) — file attachments + media
-- Three-service Docker Compose stack: `mysql` + `rustfs` + `alexandrie`
-- Port **3000** (frontend/API) — served by the app container
-- Object storage: port **9000** (RustFS S3 API)
+- Four-service Docker Compose stack: `mysql` + `rustfs` + backend + frontend
+- Port **8200** (frontend) — default `FRONTEND_EXTERNAL_PORT`
+- Port **8201** (backend API) — default `BACKEND_EXTERNAL_PORT`
+- Object storage: port **9005** (RustFS S3 API, default `RUSTFS_EXTERNAL_PORT`)
 - PWA: installable on any device (iOS/Android/Desktop); offline-capable
 - Resource: **medium** — Node.js + MySQL + object storage
 
@@ -51,7 +52,7 @@ cp .env.example .env   # edit passwords + keys
 docker compose up -d
 ```
 
-Visit `http://<host>:3000`.
+Visit `http://<host>:8200` (frontend). The backend API is on port `8201`.
 
 ### Minimal `.env` to set before starting
 
@@ -70,7 +71,7 @@ RUSTFS_SECRET_KEY=<strong-random-secret>
 
 1. Set passwords + keys in `.env`.
 2. `docker compose up -d` → wait for MySQL health check to pass (30s start_period).
-3. Visit `http://<host>:3000` → register the first user (becomes owner).
+3. Visit `http://<host>:8200` → register the first user (becomes owner).
 4. Create **workspaces** and **categories** to organize notes.
 5. Configure **SSO/OIDC** in Settings if desired.
 6. Set **permissions** on documents (5 levels: None / Read / Write / Admin / Owner).
