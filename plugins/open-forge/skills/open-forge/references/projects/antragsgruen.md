@@ -13,7 +13,7 @@ Web application for managing motions, amendments, and candidacies for political 
 |---|---|
 | Pre-bundled package (zip/bzip2) | Recommended for production; no build tooling needed |
 | Source install (Composer + npm) | Development or customisation |
-| Docker (community image) | Containerised; via Jugendpresse Deutschland image |
+| Docker (community image) | Containerised; via upstream `tobiashoessl/antragsgruen` or community `devopsansiblede/antragsgruen` |
 
 ## Inputs to collect
 
@@ -30,7 +30,7 @@ Web application for managing motions, amendments, and candidacies for political 
 
 | Concern | Detail |
 |---|---|
-| Language | PHP >= 7.1 (7.4+ recommended; PHP 8.x supported) |
+| Language | PHP >= 8.2 (8.4+ recommended) |
 | Database | MySQL 5.7+ or MariaDB 10.x |
 | Web server | Apache or nginx |
 | PHP extensions | php-intl, php-json, php-gd, php-mysql, php-opcache, php-curl, php-xml, php-mbstring, php-zip |
@@ -46,8 +46,8 @@ Source: https://github.com/CatoTH/antragsgruen/blob/master/README.md#using-the-p
 
 ```bash
 # Debian/Ubuntu
-sudo apt-get install php8.1 php8.1-cli php8.1-fpm php8.1-intl php8.1-json \
-  php8.1-gd php8.1-mysql php8.1-opcache php8.1-curl php8.1-xml php8.1-mbstring php8.1-zip
+sudo apt-get install php8.4 php8.4-cli php8.4-fpm php8.4-intl php8.4-gd \
+  php8.4-mysql php8.4-opcache php8.4-curl php8.4-xml php8.4-mbstring php8.4-zip php8.4-iconv
 ```
 
 ### 2. Download the latest release
@@ -85,7 +85,7 @@ server {
         try_files $uri $uri/ /index.php?$args;
     }
     location ~ \.php$ {
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.4-fpm.sock;
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     }
@@ -135,16 +135,18 @@ Visit the app to run the web installer.
 
 ## Install: Docker
 
-Source: https://github.com/jugendpresse/docker-antragsgruen
-
-Community Docker image maintained by Jugendpresse Deutschland e.V.:
+Upstream-provided Docker image (`tobiashoessl/antragsgruen`); see the [docker-compose.yml](https://github.com/CatoTH/antragsgruen/blob/master/docker-compose.yml) in the main repo for usage.
 
 ```bash
-git clone https://github.com/jugendpresse/docker-antragsgruen.git
-cd docker-antragsgruen
-# Follow the README instructions in that repo
-docker compose up -d
+# Clone the repo to get the docker-compose.yml
+git clone https://github.com/CatoTH/antragsgruen.git
+cd antragsgruen
+docker compose start
+docker exec antragsgruen-web-1 /root/enable-installer.sh   # enable installer
+# Visit http://localhost:12380/ to complete installation
 ```
+
+Alternative community image: `devopsansiblede/antragsgruen` ([devops-ansible/docker-antragsgruen](https://github.com/devops-ansible/docker-antragsgruen)) — rebuilt weekly, tracks upstream releases.
 
 ## Upgrade procedure
 
@@ -183,6 +185,7 @@ Always back up database and files before upgrading.
 - nginx sample config: https://github.com/CatoTH/antragsgruen/blob/master/docs/nginx.sample_single_site.conf
 - Apache sample config: https://github.com/CatoTH/antragsgruen/blob/master/docs/apache.sample.conf
 - Update troubleshooting: https://github.com/CatoTH/antragsgruen/blob/master/docs/update-troubleshooting.md
-- Docker image (community): https://github.com/jugendpresse/docker-antragsgruen
+- Docker image (upstream): https://hub.docker.com/r/tobiashoessl/antragsgruen
+- Docker image (community alt): https://github.com/devops-ansible/docker-antragsgruen
 - Hosted (German): https://antragsgruen.de
 - Hosted (English): https://motion.tools
