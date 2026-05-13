@@ -20,7 +20,7 @@ Features:
 - **Playlists** + favorites
 - **Multi-user** with admin account
 - **Docker-first** — single-container deploy
-- **Internal DB**: PostgreSQL bundled
+- **Internal DB**: SQLite by default (PostgreSQL optional for production)
 - **Queue worker** for scanning via Sidekiq
 
 - Upstream repo: <https://github.com/blackcandy-org/blackcandy>
@@ -34,7 +34,7 @@ Features:
 
 ## Architecture in one minute
 
-- **Rails** backend + embedded Postgres (bundled) or external
+- **Rails** backend + SQLite (default) or external PostgreSQL
 - **Sidekiq** worker (Redis) for background scans
 - **Exposes port 80** inside container (map to host)
 - **Resource**: moderate — 500MB-1GB RAM; scales with library size (metadata indexing)
@@ -54,10 +54,10 @@ Features:
 | -------------------- | ----------------------------------------------------------- | ------------ | ------------------------------------------------------------------------ |
 | Domain               | `music.example.com`                                             | URL          | TLS strongly recommended (mobile apps expect HTTPS usually)                                                                                    |
 | Media path (`MEDIA_PATH`) | `/media/music`                                                          | Storage      | Read-only mount of your music library                                                                                  |
-| Data volume          | Postgres + config + scans                                                            | Storage      | Persistent volume                                                                                          |
+| Data volume          | SQLite DB + uploads + cache                                                            | Storage      | Persistent volume                                                                                          |
 | `SECRET_KEY_BASE`    | Rails secret — random 64+ hex                                                              | Secret       | **Immutable** — rotating breaks session cookies + encrypted fields                                                               |
 | Admin creds          | First-run email + pass                                                                              | Bootstrap    | Default `admin@admin.com` / `foobar` — **CHANGE IMMEDIATELY**                                                                          |
-| External DB (opt)    | Postgres connection string                                                                                      | DB           | For production; bundled Postgres fine for homelab                                                                                                    |
+| External DB (opt)    | Postgres connection string                                                                                      | DB           | For production; SQLite fine for homelab                                                                                                    |
 | External Redis (opt) | Redis connection string                                                                                                      | Cache/Jobs   | Bundled Redis OK; external for scaling                                                                                                                |
 
 ## Install via Docker Compose
@@ -69,7 +69,7 @@ services:
     restart: unless-stopped
     ports: ["3000:80"]
     volumes:
-      - ./blackcandy-data:/app/storage
+      - ./blackcandy-data:/rails/storage
       - /mnt/music:/media/music:ro                    # read-only music library
     environment:
       MEDIA_PATH: /media/music
@@ -92,15 +92,15 @@ services:
 
 ## Data & config layout
 
-- `/app/storage/` — uploaded avatars + scan-cache + bundled Postgres
+- `/rails/storage/` — all persistent data: SQLite DB, uploaded avatars, scan cache
 - `MEDIA_PATH` — your music library (read-only mount)
 - Config via env vars
 
 ## Backup
 
 ```sh
-# If bundled Postgres:
-docker compose exec blackcandy pg_dump -U <user> blackcandy > blackcandy-db-$(date +%F).sql
+# Default SQLite — back up the storage volume:
+# (SQLite DB is at ./blackcandy-data/production.sqlite3)
 sudo tar czf blackcandy-storage-$(date +%F).tgz blackcandy-data/
 # Music library: back up separately at the storage layer; typically source of truth is your NAS/backup
 ```
@@ -116,7 +116,7 @@ sudo tar czf blackcandy-storage-$(date +%F).tgz blackcandy-data/
 ## Gotchas
 
 - **Default admin credentials are PUBLIC.** `admin@admin.com` / `foobar` is documented in the README → scanners scanning for default creds hit Black Candy instances constantly. **Change on first login, not later.** Same class as any admin-default-credential tool.
-- **Bundled Postgres inside the container** = simple for homelab but bad for production upgrades. If the container's Postgres binary version changes between releases, you may need to run `pg_upgrade` manually. Running **external Postgres** from day 1 removes this risk.
+- **SQLite is the default DB** — simple for homelab with no external dependencies. For production with many users, set `DB_ADAPTER=postgresql` and provide `DB_URL` for an external PostgreSQL instance.
 - **`SECRET_KEY_BASE` immutability (Rails class)** — rotating invalidates session cookies + any encrypted fields. Set once; store in secrets manager. Same pattern as Statamic APP_KEY (batch 77), FreeScout APP_KEY (batch 82), Fider JWT_SECRET (batch 82). **Immutability-of-secrets family continues.**
 - **"Your music" = legal files.** Don't host pirated music accessible to the public Internet. Streaming unlicensed music = copyright infringement + DMCA takedowns + potential civil suits. Private instance for your OWN-ripped/purchased music = fine.
 - **Mobile apps need reachable URL.** iOS and Android apps expect your server on a public domain with valid TLS (most mobile OS versions refuse self-signed). Options:
