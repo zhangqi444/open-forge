@@ -13,6 +13,8 @@ Database schema explorer and entity-relationship diagram (ERD) tool. Connects di
 | Any Linux host | Docker Compose | Recommended; Elixir/Phoenix + PostgreSQL |
 | Any Linux host | Build from source | Elixir/Node.js required |
 | VPS / cloud VM | Docker Compose + reverse proxy | Expose via Nginx/Traefik with HTTPS |
+| Heroku | Heroku template (official) | One-click deploy with Postgres, S3 (Stackhero), Mailgun; see [upstream template](https://github.com/azimuttapp/azimutt) |
+| Kubernetes | Helm chart (official) | See `charts/azimutt/` in the repo |
 
 ---
 
