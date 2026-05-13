@@ -70,6 +70,7 @@ services:
 | subtitles | Subtitle handling: `none`, `embed`, `external` | none |
 | subtitle_languages | Comma-separated subtitle languages | en |
 | include_id_in_filename | Append video ID to filename | false |
+| verbose_logs | Enable verbose logging | false |
 | short_video_cutoff | Min video length in seconds (shorter videos skipped) | 180 |
 | auto_update_hour | Hour (0–23) to auto-update yt-dlp daily | disabled |
 | ytdlp_update_type | yt-dlp update channel: `stable` or `nightly` | stable |
