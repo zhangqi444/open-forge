@@ -42,7 +42,7 @@ Default public port: `:80` + `:443` (Traefik). Admin UI is at `https://<host>/co
 | Phase | Prompt | Tool / format | Applicability |
 |---|---|---|---|
 | preflight | "Install method?" | `AskUserQuestion` | Drives section. |
-| preflight | "Install version?" | Free-text, e.g. `1.8.0` (check <https://github.com/appwrite/appwrite/releases>) | Pinned into the `appwrite/appwrite:<tag>` installer invocation. **Do not use `latest`** — version pinning is the whole upgrade story. |
+| preflight | "Install version?" | Free-text, e.g. `1.9.0` (check <https://github.com/appwrite/appwrite/releases>) | Pinned into the `appwrite/appwrite:<tag>` installer invocation. **Do not use `latest`** — version pinning is the whole upgrade story. |
 | preflight | "Install directory?" | Free-text, default `/root/appwrite` (installer mounts `$(pwd)/appwrite`) | Generated `docker-compose.yml` + `.env` live here. |
 | domain | "Public domain for Appwrite?" | Free-text | Set during installer prompt (`_APP_DOMAIN` / `_APP_DOMAIN_TARGET`). |
 | tls | "Let's Encrypt email?" | Free-text | Set as `_APP_SYSTEM_EMAIL_ADDRESS`. Traefik uses this for ACME. |
@@ -61,7 +61,7 @@ docker run -it --rm \
     --volume /var/run/docker.sock:/var/run/docker.sock \
     --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw \
     --entrypoint="install" \
-    appwrite/appwrite:1.8.0   # pin to specific version — check releases page
+    appwrite/appwrite:1.9.0   # pin to specific version — check releases page
 ```
 
 The installer:
@@ -82,7 +82,7 @@ docker run -it --rm ^
     --volume //var/run/docker.sock:/var/run/docker.sock ^
     --volume "%cd%"/appwrite:/usr/src/code/appwrite:rw ^
     --entrypoint="install" ^
-    appwrite/appwrite:1.8.0
+    appwrite/appwrite:1.9.0
 ```
 
 ### Windows (PowerShell)
@@ -92,7 +92,7 @@ docker run -it --rm `
     --volume /var/run/docker.sock:/var/run/docker.sock `
     --volume ${pwd}/appwrite:/usr/src/code/appwrite:rw `
     --entrypoint="install" `
-    appwrite/appwrite:1.8.0
+    appwrite/appwrite:1.9.0
 ```
 
 ## Post-install — lock down the console
@@ -114,7 +114,7 @@ docker run -it --rm \
     --volume /var/run/docker.sock:/var/run/docker.sock \
     --volume "$(pwd)"/appwrite:/usr/src/code/appwrite:rw \
     --entrypoint="upgrade" \
-    appwrite/appwrite:1.9.0   # new version
+    appwrite/appwrite:1.9.0
 ```
 
 The `upgrade` entrypoint:
