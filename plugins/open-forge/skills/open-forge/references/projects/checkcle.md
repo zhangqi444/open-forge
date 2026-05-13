@@ -1,124 +1,140 @@
 ---
 name: CheckCle
-description: "Real-time full-stack monitoring platform. Multi-language (English/Khmer/Japanese/Chinese). Modern UI; focus on developer-friendly monitoring. operacle/CheckCle; check upstream for feature-surface + license."
+description: "Real-time full-stack monitoring platform. Uptime, server metrics (CPU/RAM/disk), SSL/domain monitoring, status pages, incidents, notifications. Multi-language (English/Khmer/Japanese/Chinese). Single Docker container backed by PocketBase. MIT. operacle/checkcle."
 ---
 
 # CheckCle
 
-CheckCle is **"Uptime Kuma / StatusCake — but with fuller stack monitoring + modern UI + multi-language"** — a real-time full-stack monitoring platform. Monitors services, servers, and applications with a modern dashboard. Multi-language (English + Khmer + Japanese + Chinese — notable inclusion of Khmer).
+CheckCle is an open-source full-stack monitoring platform — monitoring HTTP, DNS, Ping, TCP, SSL/domain, and infrastructure servers (CPU/RAM/disk/network). Features status pages, incident management, maintenance scheduling, reports, and notifications via email, Telegram, Discord, Slack, Matrix and more. Multi-language UI (English, Khmer, Japanese, Chinese). **MIT licensed.** Single-container Docker deployment using PocketBase as the backend.
 
-Built + maintained by **operacle**. License: check LICENSE. README references "CheckCle Platform" — suggests mature-UX intent + team-oriented monitoring.
+Built + maintained by **operacle** (tolaleng@checkcle.io). Sponsored by Cloudflare, DigitalOcean, JetBrains.
 
-Use cases: (a) **uptime monitoring for services** (b) **server health monitoring** (c) **multi-language team monitoring** — accessible to non-English teams (d) **alternative to Uptime Kuma with richer feature-surface** (e) **real-time dashboards for service-status** (f) **status-page generation** (g) **SLA tracking**.
-
-Features (per README + project intent):
-
-- Real-time service monitoring
-- Server health monitoring
-- Multi-language UI (English/Khmer/Japanese/Chinese)
-- Modern dashboard
-- Check upstream for full feature details
+Use cases: (a) **uptime monitoring** (HTTP/DNS/Ping/TCP) (b) **server health monitoring** (CPU/RAM/disk/network) (c) **SSL & domain expiry tracking** (d) **public status pages** (e) **incident & maintenance management** (f) **multi-language team monitoring** — accessible to non-English teams.
 
 - Upstream repo: <https://github.com/operacle/checkcle>
+- Docs: <https://docs.checkcle.io>
+- Live demo: <https://demo.checkcle.io> (user: `admin@example.com` / password: `Admin123456`)
+- Discord: <https://discord.gg/xs9gbubGwX>
+- Website: <https://checkcle.io>
 
 ## Architecture in one minute
 
-- Check upstream repo (language + stack unclear from README snippet)
-- Likely: Node/Go/Python + database + agent for server-monitoring
-- Web UI for dashboard
+- **Single container** — `operacle/checkcle` bundles the app and PocketBase backend
+- **Port 8090** — web UI and API
+- **Volume `/mnt/pb_data`** — all monitoring data, config, users
+- **Architectures**: amd64, arm64 (Raspberry Pi 3/4/5, Apple Silicon)
 
 ## Compatible install methods
 
-| Infra              | Runtime                                                        | Notes                                                                          |
-| ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Docker**         | **Upstream images likely**                                      | Check repo                                                                        |
-| Source             | Per upstream                                                                            | Dev                                                                                   |
+| Infra              | Runtime                          | Notes                                              |
+| ------------------ | -------------------------------- | -------------------------------------------------- |
+| **Docker Compose** | `operacle/checkcle:latest`        | **Recommended** — single container                 |
+| **Docker run**     | `operacle/checkcle:latest`        | Quick start                                        |
 
 ## Inputs to collect
 
-| Input                | Example                                                     | Phase        | Notes                                                                    |
-| -------------------- | ----------------------------------------------------------- | ------------ | ------------------------------------------------------------------------ |
-| Domain               | `monitor.example.com`                                       | URL          | TLS                                                                                    |
-| Admin creds          | First-boot                                                  | Bootstrap    | Strong                                                                                    |
-| DB                   | Per upstream                                                | DB           |                                                                                    |
-| Notification channels | Email / Slack / Telegram / webhook                          | Integrations |                                                                                    |
-| Monitored targets    | URLs, servers, services                                                                                               | Config       |                                                                                    |
-| Agent tokens (if server-monitoring) | Per-server                                                                                            | **CRITICAL** | **Agents run AS admin on monitored servers**                                                                                    |
+| Input                     | Example                          | Phase        | Notes                                             |
+| ------------------------- | -------------------------------- | ------------ | ------------------------------------------------- |
+| Domain                    | `monitor.example.com`            | URL          | TLS via reverse proxy                             |
+| Admin creds               | `admin@example.com` / `Admin123456` | Bootstrap | Change on first login                             |
+| Notification channels     | Email / Slack / Telegram / Discord | Integrations |                                                  |
+| Monitored targets         | URLs, servers, services          | Config       |                                                   |
+| Agent tokens (server-monitoring) | Per-server                | **CRITICAL** | Agents run with elevated access on monitored hosts |
 
-## Install
+## Install via Docker Compose
 
-Follow upstream README / docs (not yet fully mapped here — repo access required).
+```yaml
+version: '3.9'
+
+services:
+  checkcle:
+    image: operacle/checkcle:latest
+    container_name: checkcle
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - /opt/pb_data:/mnt/pb_data
+    ulimits:
+      nofile:
+        soft: 4096
+        hard: 8192
+```
+
+## Install via Docker run
+
+```bash
+docker run -d \
+  --name checkcle \
+  --restart unless-stopped \
+  -p 8090:8090 \
+  -v /opt/pb_data:/mnt/pb_data \
+  --ulimit nofile=4096:8192 \
+  operacle/checkcle:latest
+```
 
 ## First boot
 
-1. Start CheckCle → browse web UI
-2. Create admin account
-3. Add first monitoring target (website / TCP / ICMP)
-4. Configure notification channels
-5. Add servers (if server-agent supported)
-6. Configure alert thresholds
-7. Put behind TLS reverse proxy + auth
-8. Back up DB
+1. Browse `http://your-server:8090`
+2. Log in with default credentials: `admin@example.com` / `Admin123456` — **change immediately**
+3. Add monitoring targets (HTTP / DNS / Ping / TCP / SSL)
+4. Configure notification channels (email, Telegram, Discord, Slack, Matrix)
+5. Set up server-monitoring agents (one-line install script from the UI)
+6. Create a public status page
+7. Put behind TLS reverse proxy
+8. Back up `/opt/pb_data`
 
 ## Data & config layout
 
-- Per upstream; typically DB + config
+- `/opt/pb_data` (host) -> `/mnt/pb_data` (container) — all data: monitors, incidents, users, config
 
 ## Backup
 
-Follow upstream; DB + config required.
+```sh
+# Stop container, archive data directory, restart
+docker stop checkcle
+sudo tar czf checkcle-$(date +%F).tgz /opt/pb_data
+docker start checkcle
+```
 
 ## Upgrade
 
-1. Releases: <https://github.com/operacle/checkcle/releases>. Check for cadence.
-2. Follow upstream upgrade guide
+```sh
+docker pull operacle/checkcle:latest
+docker stop checkcle && docker rm checkcle
+# Re-run with same flags (data persists in /opt/pb_data)
+docker run -d --name checkcle --restart unless-stopped \
+  -p 8090:8090 -v /opt/pb_data:/mnt/pb_data \
+  --ulimit nofile=4096:8192 operacle/checkcle:latest
+```
+
+Or with compose: `docker compose pull && docker compose up -d`
 
 ## Gotchas
 
-- **97th HUB-OF-CREDENTIALS TIER 2**:
-  - Holds: monitored-service credentials (HTTP basic-auth for authenticated checks), agent-tokens (server-wide access), notification-channel creds
-  - **97th tool in hub-of-credentials family — Tier 2**
-- **AGENT-ON-SERVER = PRIVILEGED ACCESS**:
-  - Server-monitoring agents typically run as root
-  - Compromise of CheckCle master → agent RCE on all monitored servers
-  - **Recipe convention: "monitoring-agent-master-compromise risk"** — extended from prior monitoring tools (Uptime Kuma, Netdata, Zabbix, etc.)
+- **Default credentials** — change `Admin123456` immediately after first login.
+- **Agent on server = privileged access** — server-monitoring agents run with elevated access. Compromise of CheckCle master -> potential agent RCE on all monitored hosts. Keep CheckCle network-isolated.
+- **PocketBase backend** — all data is in `/mnt/pb_data`. Back it up regularly.
+- **`nofile` ulimit** — required to avoid `too many open files` errors under load; the compose/run examples set it correctly.
+- **Notification channel creds** — email SMTP, Slack webhook, Telegram bot tokens, webhook URLs stored in CheckCle DB; protect with TLS + auth.
 - **MONITORING-TOOL-CATEGORY (crowded):**
-  - **CheckCle** — multi-language; full-stack
-  - **Uptime Kuma** — popular minimal
-  - **Healthchecks.io** — cron-check focused
-  - **Netdata** — metrics-heavy
-  - **Zabbix** — enterprise
-  - **Prometheus + Grafana** — modern metrics
-  - **Monitoror** — screen-wall focused
-  - **Gatus** — YAML-driven
-- **MULTI-LANGUAGE INCLUSION (KHMER)**:
-  - Khmer language support is uncommon in dev-tools
-  - Suggests Cambodia-based maintainer or user-base
-  - **Recipe convention: "uncommon-language-support positive-signal"** — inclusive
-  - **NEW positive-signal convention** (CheckCle 1st for Khmer)
-- **NOTIFICATION CHANNEL CREDS**:
-  - Email SMTP, Slack webhook, Telegram bot tokens, webhook URLs
-  - Compromise = spam-via-your-channels
-- **PROJECT HEALTH UNCERTAIN**:
-  - README snippet doesn't reveal much about maturity
-  - Check stars-trajectory + release-cadence + docs
-  - **Recipe convention: "README-thin-need-upstream-verification" callout**
-  - **NEW recipe convention** — flag for operator-verification
-- **CHECK UPSTREAM DOCS BEFORE DEPLOY**:
-  - Don't deploy based on this recipe alone; verify features + release-cadence + license
-- **INSTITUTIONAL-STEWARDSHIP**: operacle org. **83rd tool — org-with-modern-UX sub-tier** (preliminary).
-- **TRANSPARENT-MAINTENANCE**: multi-language + screenshots + images. **91st tool in transparent-maintenance family** (preliminary — verify active commits).
+  - **CheckCle** — multi-language; full-stack; single container
+  - **Uptime Kuma** — popular; minimal; SQLite
+  - **Checkmate** — uptime + infrastructure; Node.js + MongoDB
+  - **Gatus** — YAML-driven; minimal storage
+  - **Prometheus + Grafana** — metrics-first
 - **ALTERNATIVES WORTH KNOWING:**
   - **Uptime Kuma** — if you want simple + popular
-  - **Gatus** — if you want YAML-driven + modern
-  - **Healthchecks.io** — if you want cron-check
-  - **Prometheus + Grafana** — if you want metrics-first
-  - **Choose CheckCle if:** you want modern UI + multi-language team + full-stack coverage.
-- **NEUTRAL-SIGNAL**: README-in-translation-first ordering (Khmer before Japanese/Chinese) = **unusual + signals regional origin**
+  - **Checkmate** — if you want built-in infrastructure monitoring + Node.js stack
+  - **Gatus** — if you want YAML-driven + config-as-code
+  - **Choose CheckCle if:** you want modern UI + multi-language team + full-stack coverage in a single container.
 
 ## Links
 
 - Repo: <https://github.com/operacle/checkcle>
+- Docs: <https://docs.checkcle.io>
+- Demo: <https://demo.checkcle.io>
+- Discord: <https://discord.gg/xs9gbubGwX>
 - Uptime Kuma (alt): <https://github.com/louislam/uptime-kuma>
 - Gatus (alt): <https://github.com/TwiN/gatus>
-- Healthchecks.io (alt): <https://github.com/healthchecks/healthchecks>
+- Checkmate (alt): <https://github.com/bluewave-labs/checkmate>
