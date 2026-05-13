@@ -12,7 +12,7 @@ Open-source e-learning platform (Learning Management System) for education and c
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
 | Docker Compose | <https://github.com/chamilo/chamilo-lms#installation-guide> | Yes | Recommended for self-hosting. PHP-FPM + Nginx + MySQL. |
-| Manual PHP install | <https://docs.chamilo.org/> | Yes | Existing LAMP/LEMP stack. PHP 8.1+ + MySQL 8/MariaDB. |
+| Manual PHP install | <https://docs.chamilo.org/> | Yes | Existing LAMP/LEMP stack. PHP 8.2 or 8.3 + MySQL 8/MariaDB. |
 | Bitnami | <https://bitnami.com/stack/chamilo> | Community | Pre-packaged VM/container. |
 
 ## Inputs to collect
@@ -77,7 +77,7 @@ After containers start, navigate to `http://<host>:8080/main/install/` to run th
 
 ## Manual PHP method
 
-Requirements: PHP 8.1+ with extensions: curl, dom, gd, intl, json, mbstring, mysql/pdo_mysql, openssl, pcre, xml, zip. MySQL 8+ or MariaDB 10.4+.
+Requirements: PHP 8.2 or 8.3 with extensions: curl, dom, gd, intl, json, mbstring, mysql/pdo_mysql, openssl, pcre, xml, zip. MySQL 8+ or MariaDB 10.4+.
 
 ```bash
 # Clone the repo (or download release archive)
