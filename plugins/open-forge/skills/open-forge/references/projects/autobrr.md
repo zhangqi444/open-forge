@@ -84,6 +84,19 @@ volumes:
 6. Enable action → verify first-grab
 7. Put behind TLS reverse proxy + auth
 
+## OIDC Authentication (optional)
+
+autobrr supports OpenID Connect (OIDC) as an alternative to built-in username/password login. Configure via environment variables:
+
+| Variable | Description | Default |
+| -------- | ----------- | ------- |
+| `AUTOBRR__OIDC_ENABLED` | Enable OIDC authentication | `false` |
+| `AUTOBRR__OIDC_ISSUER` | OIDC issuer URL | — |
+| `AUTOBRR__OIDC_CLIENT_ID` | OIDC client ID | — |
+| `AUTOBRR__OIDC_CLIENT_SECRET` | OIDC client secret | — |
+| `AUTOBRR__OIDC_REDIRECT_URL` | OIDC callback URL | `https://baseurl/api/auth/oidc/callback` |
+| `AUTOBRR__OIDC_DISABLE_BUILT_IN_LOGIN` | Disable login form (only with external auth) | `false` |
+
 ## Data & config layout
 
 - `/config/` — SQLite DB + logs + filter state
