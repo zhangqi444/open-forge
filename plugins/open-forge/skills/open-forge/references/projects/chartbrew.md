@@ -36,7 +36,7 @@ Features:
 
 ## Architecture in one minute
 
-- **Node.js v20** backend (Express + Sequelize) + **React** frontend
+- **Node.js v22+** backend (Express + Sequelize) + **React** frontend
 - **MySQL 5+** or **PostgreSQL 12.5+** — metadata DB
 - **Redis 6+** — caching + sessions
 - **Resource**: modest — 300-700MB RAM typical
@@ -154,7 +154,7 @@ Without `CB_ENCRYPTION_KEY`, encrypted data-source creds are unrecoverable.
   - **Aggressive auto-refresh can hammer your prod DB** — tune refresh intervals to your DB's capacity. Use read replicas if possible.
 - **Credential-at-rest pattern**: encrypted via ENCRYPTION_KEY; decrypted in-memory at query time. If the Chartbrew container is compromised while running, all data-source creds are extractable from memory + env. Same class as any "proxy-to-databases" tool (Metabase, Superset, Redash).
 - **Embeddable charts + auth tokens**: when you embed a chart publicly, the underlying query runs against your data source with Chartbrew's creds. **Sanity-check embedded charts can't be manipulated (SQL-injection-style) via URL params.** Chartbrew enforces pre-baked queries but verify for your use-case.
-- **Node v20 requirement** — drift matters for bare-metal deploys. Keep Node version current per upstream.
+- **Node v22+ requirement** — drift matters for bare-metal deploys. Keep Node version current per upstream.
 - **Commercial-tier-funds-upstream** pattern — **managed chartbrew.com** SaaS + self-host OSS. Standard "managed-tier" (tier-type #2 in the taxonomy; not feature-gating). DigitalOcean 1-click droplet is another commercial-adjacent path.
 - **Alerts / notifications** — check current feature parity between SaaS + self-host; upstream occasionally ships features to SaaS first.
 - **OAuth + Google Analytics**: if you integrate Google Analytics, you're subject to Google's OAuth review policies (same class as Easy!Appointments batch 83 → Google Workspace OAuth review-policy risk). Plan for periodic re-review.
