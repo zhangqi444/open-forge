@@ -5,7 +5,7 @@ description: Actual Budget recipe for open-forge. Local-first personal finance a
 
 # Actual Budget
 
-Local-first personal finance tool built on Node.js. Upstream: <https://github.com/actualbudget/actual>. Server repo: <https://github.com/actualbudget/actual-server>. Documentation: <https://actualbudget.org/docs/install/docker/>.
+Local-first personal finance tool built on Node.js. Upstream: <https://github.com/actualbudget/actual>. Server repo: <https://github.com/actualbudget/actual-server> (read-only since Feb 2025 — merged into main repo under `packages/sync-server`). Documentation: <https://actualbudget.org/docs/install/docker/>.
 
 Actual is 100% free and open-source. It uses envelope budgeting and syncs changes across devices via the Actual Server component. All data is stored locally on the server — no cloud dependency required.
 
@@ -120,7 +120,7 @@ Actual Server uses rolling releases. The latest tag is updated frequently. Data 
 ## Links
 
 - GitHub (app): <https://github.com/actualbudget/actual>
-- GitHub (server): <https://github.com/actualbudget/actual-server>
+- GitHub (server, read-only since Feb 2025): <https://github.com/actualbudget/actual-server> — merged into main repo; see `packages/sync-server`
 - Install docs: <https://actualbudget.org/docs/install/docker/>
 - Configuration reference: <https://actualbudget.github.io/docs/Installing/Configuration>
 - Docker Hub: <https://hub.docker.com/r/actualbudget/actual-server>
