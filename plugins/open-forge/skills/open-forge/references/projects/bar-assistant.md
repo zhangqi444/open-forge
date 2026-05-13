@@ -30,7 +30,7 @@ Built + maintained by **karlomikus**. MIT license.
 | ------------------ | --------------------------- | ----------------------------------------------- |
 | **Docker Compose** | `barassistant/server` + `barassistant/salt-rim` | **Primary** — see docs |
 
-> No `latest` tag. Use versioned tags: `barassistant/server:v4`, `v4.4`, or `v4.4.1`.
+> No `latest` tag. Use versioned tags: `barassistant/server:v5`, `v5.15`, or `v5.15.0`. **v5 is a major release with breaking schema changes — see [migration guide](https://docs.barassistant.app/setup/migrate-to-50/) before upgrading from v4.**
 
 ## Install via Docker Compose
 
@@ -40,7 +40,7 @@ Example minimal stack:
 ```yaml
 services:
   bar-assistant:
-    image: barassistant/server:v4
+    image: barassistant/server:v5
     restart: unless-stopped
     environment:
       - APP_URL=https://bar.example.com
@@ -113,7 +113,7 @@ volumes:
 
 ## Gotchas
 
-- **No `latest` tag.** Bar Assistant doesn't publish a `latest` Docker image. Always specify a versioned tag (`v4`, `v4.4`, `v4.4.1`). The `dev` tag is unstable.
+- **No `latest` tag.** Bar Assistant doesn't publish a `latest` Docker image. Always specify a versioned tag (`v5`, `v5.15`, `v5.15.0`). The `dev` tag is unstable.
 - **Meilisearch master key must match.** The key in the `bar-assistant` container env and the Meilisearch `MEILI_MASTER_KEY` must be identical. Mismatch → search fails.
 - **Two separate images.** The backend (`barassistant/server`) and frontend (`barassistant/salt-rim`) are separate Docker images. Both are needed. Salt Rim needs to know the API URL via `API_URL`.
 - **Registration control.** Set `ALLOW_REGISTRATION=false` after creating your account to prevent others from signing up on your instance.
