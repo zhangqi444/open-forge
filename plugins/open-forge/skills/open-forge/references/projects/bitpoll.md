@@ -1,9 +1,9 @@
 ---
 name: Bitpoll
-description: Self-hosted scheduling and opinion poll tool. Create polls for dates, times, or general questions. Optional registration, anonymous voting, private polls. Django backend. MIT licensed.
+description: Self-hosted scheduling and opinion poll tool. Create polls for dates, times, or general questions. Optional registration, anonymous voting, private polls. Django backend. GPL-3.0 licensed.
 website: https://github.com/fsinfuhh/Bitpoll
 source: https://github.com/fsinfuhh/Bitpoll
-license: MIT
+license: GPL-3.0
 stars: 303
 tags:
   - scheduling
@@ -26,7 +26,7 @@ Live demo: https://bitpoll.de
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any Linux VM / VPS | Docker | Recommended |
+| Any Linux VM / VPS | Docker | Recommended — use upstream GHCR image |
 | Any Linux VM / VPS | Python/Django + PostgreSQL | Native install |
 
 ## Inputs to Collect
@@ -40,28 +40,30 @@ Live demo: https://bitpoll.de
 
 ## Software-Layer Concerns
 
-**Docker setup:**
+**Docker setup (upstream GHCR image — recommended):**
 
 ```bash
-git clone https://github.com/fsinfuhh/Bitpoll
-cd Bitpoll
-
 # Create config directories
 mkdir -p run/{log,static,config}
 
 # Get example settings and adapt
-cp bitpoll/settings/local.py.example run/config/local.py
-# Edit run/config/local.py with your settings
+wget https://raw.githubusercontent.com/fsinfuhh/Bitpoll/master/bitpoll/settings_local.sample.py \
+  -O run/config/settings.py
+# Edit run/config/settings.py with your settings (SECRET_KEY, ALLOWED_HOSTS, DB, etc.)
 
-docker build -t bitpoll .
-docker run -d \
+# Run the pre-built image (port 3009 is the HTTP port; 3008 is uwsgi)
+docker run -a stdout -a stderr --rm \
   --name bitpoll \
-  -p 8000:8000 \
-  -v $(pwd)/run:/app/run \
-  bitpoll
+  -p 3009:3009 \
+  -p 3008:3008 \
+  --volume ./run/static:/opt/static \
+  --volume ./run/config:/opt/config \
+  ghcr.io/fsinfuhh/bitpoll
 ```
 
-**Key `local.py` settings:**
+The web UI is available on **port 3009**. Port 3008 exposes uwsgi for external web servers serving static assets from `run/static` at `/static/`.
+
+**Key `settings.py` settings:**
 
 ```python
 SECRET_KEY = 'CHANGE_ME_RANDOM_STRING_50_CHARS'
@@ -103,24 +105,18 @@ services:
       - db_data:/var/lib/postgresql/data
 
   bitpoll:
-    build: .
+    image: ghcr.io/fsinfuhh/bitpoll
     ports:
-      - "8000:8000"
+      - "3009:3009"
+      - "3008:3008"
     volumes:
-      - ./run:/app/run
+      - ./run/static:/opt/static
+      - ./run/config:/opt/config
     depends_on:
       - db
 
 volumes:
   db_data:
-```
-
-**Run database migrations:**
-
-```bash
-docker exec bitpoll python manage.py migrate
-docker exec bitpoll python manage.py collectstatic --noinput
-docker exec bitpoll python manage.py createsuperuser
 ```
 
 **Nginx reverse proxy:**
@@ -135,7 +131,7 @@ server {
     }
 
     location / {
-        proxy_pass http://127.0.0.1:8000;
+        proxy_pass http://127.0.0.1:3009;
         proxy_set_header Host $host;
     }
 }
@@ -143,22 +139,27 @@ server {
 
 ## Upgrade Procedure
 
-1. `git pull`
-2. `docker build -t bitpoll .`
-3. `docker stop bitpoll && docker rm bitpoll`
-4. Re-run `docker run` with the same volume mounts
-5. `docker exec bitpoll python manage.py migrate`
+```bash
+docker pull ghcr.io/fsinfuhh/bitpoll
+docker stop bitpoll && docker rm bitpoll
+# Re-run docker run with the same volume mounts
+```
 
 ## Gotchas
 
-- **SECRET_KEY**: Must be a long random string (50+ chars) — never use the default placeholder; keeps sessions and CSRF tokens secure
-- **Static files**: Run `collectstatic` after each update — Django doesn't serve static files in production; Nginx must serve them from the `run/static/` directory
-- **Anonymous voting**: Controlled by `ALLOW_ANONYMOUS` setting — disable if you require all voters to identify themselves
-- **Email optional**: Without email config, invitations and notifications don't work, but polls are still fully functional
-- **URL is the poll access**: Bitpoll polls are shared by URL — treat private poll URLs as secrets
+- **Pre-built GHCR image**: Upstream publishes `ghcr.io/fsinfuhh/bitpoll` built from master — no local `docker build` required.
+- **Ports**: The container exposes port **3009** (HTTP web UI) and **3008** (uwsgi for external server). The previous port 8000 no longer applies.
+- **Settings file path**: The config file is mounted at `/opt/config/settings.py`. Use `settings_local.sample.py` from the repo as a template.
+- **SECRET_KEY**: Must be a long random string (50+ chars) — never use the default placeholder; keeps sessions and CSRF tokens secure.
+- **Static files**: Served from the mounted `run/static` volume — Nginx should serve `/static/` from there.
+- **Anonymous voting**: Controlled by `ALLOW_ANONYMOUS` setting — disable if you require all voters to identify themselves.
+- **Email optional**: Without email config, invitations and notifications don't work, but polls are still fully functional.
+- **URL is the poll access**: Bitpoll polls are shared by URL — treat private poll URLs as secrets.
+- **License**: GPL-3.0 (not MIT as previously noted).
 
 ## Links
 
 - Upstream README: https://github.com/fsinfuhh/Bitpoll/blob/master/README.md
 - Live instance: https://bitpoll.de
 - Releases: https://github.com/fsinfuhh/Bitpoll/releases
+- GHCR image: https://github.com/fsinfuhh/Bitpoll/pkgs/container/bitpoll
