@@ -1,6 +1,6 @@
 ---
 name: Bichon
-description: "Open-source email archiver with WebUI and full-text search. Docker. Rust. rustmailer/bichon. IMAP sync + REST API + search — read-only archive, not an email client."
+description: "Open-source email archiver with WebUI and full-text search. Docker. Rust. AGPLv3. rustmailer/bichon. IMAP sync + REST API + search — read-only archive, not an email client."
 ---
 
 # Bichon
