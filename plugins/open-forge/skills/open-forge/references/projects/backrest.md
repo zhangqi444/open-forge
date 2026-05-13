@@ -70,7 +70,7 @@ Features:
 ```yaml
 services:
   backrest:
-    image: garethgeorge/backrest:v1.12.1                # pin
+    image: garethgeorge/backrest:v1.13.0                # pin
     container_name: backrest
     hostname: backrest
     restart: unless-stopped
