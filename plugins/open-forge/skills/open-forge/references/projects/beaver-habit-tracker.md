@@ -59,7 +59,11 @@ Per README:
 ```yaml
 services:
   beaverhabits:
-    image: daya0576/beaverhabits:latest        # **pin**
+    image: daya0576/beaverhabits:latest
+    user: "1000:1000"  # Run as non-root for security
+    environment:
+      - HABITS_STORAGE=USER_DISK  # USER_DISK = per-user JSON files; DATABASE = single SQLite
+      # - TRUSTED_LOCAL_EMAIL=you@example.com  # Skip login for trusted local access
     ports: ["8080:8080"]
     volumes:
       - ./beaver-data:/app/.user
