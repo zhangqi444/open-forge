@@ -1,13 +1,13 @@
 ---
 name: Convoy
-description: "Open-source high-performance webhooks gateway. Ingest, persist, debug, deliver webhooks at scale. Retries, rate-limiting, static-IPs, circuit-breakers, rolling-secrets, fan-out. Go. MPL-2.0. Frain-dev org (commercial-tier + OSS)."
+description: "Open-source high-performance webhooks gateway. Ingest, persist, debug, deliver webhooks at scale. Retries, rate-limiting, static-IPs, circuit-breakers, rolling-secrets, fan-out. Go. Elastic License v2.0. Frain-dev org (commercial-tier + OSS)."
 ---
 
 # Convoy
 
 Convoy is **"Webhook / Hookdeck / Svix — but OSS + self-hosted + enterprise-grade"** — an open-source high-performance webhooks gateway. Securely ingest, persist, debug, deliver, manage **millions of events** reliably with retries + rate-limiting + static-IPs + circuit-breakers + rolling-secrets + fan-out routing. Acts as dedicated message queue for webhooks; horizontally scalable (api-server + workers + scheduler + socket-server components scale independently); payload-signing; bearer-token auth; static-IPs for firewall-restricted environments; rich web UI for debugging.
 
-Built + maintained by **Frain.dev (frain-dev)** — commercial-backed OSS org. License: **MPL-2.0** (verify). Active; Docker Compose deployment; golangci-lint + integration-tests CI; getconvoy.io commercial website; Slack community.
+Built + maintained by **Frain.dev (frain-dev)** — commercial-backed OSS org. License: **Elastic License v2.0**. Active; Docker Compose deployment; golangci-lint + integration-tests CI; getconvoy.io commercial website; Slack community.
 
 Use cases: (a) **outbound-webhooks from your app** — reliable delivery to customer endpoints (b) **inbound-webhooks from third-parties** — Stripe/GitHub/etc. → route to internal services (c) **webhooks-as-a-service** — build-your-own Stripe-webhook-infrastructure (d) **replace ad-hoc-retry-queues** — "we have bespoke retry Lambda" → Convoy (e) **webhook debugging** — see failures + payloads + replay (f) **multi-tenant SaaS webhooks** — dispatch to tenants' endpoints at scale (g) **strict-firewall outbound webhooks** — static-IPs for customer allowlisting (h) **rolling-secrets for HMAC** — rotate webhook signing keys without downtime (i) **fan-out event delivery** — one event → many endpoints.
 
@@ -179,10 +179,10 @@ cp convoy.json backups/convoy-$(date +%F).json
   - Frain.dev sells Convoy Cloud
   - OSS tier + Commercial tier
   - **Commercial-tier-taxonomy: "OSS + commercial-cloud parallel"** (reinforces many precedents)
-- **MPL-2.0 LICENSE**:
-  - File-level copyleft — modified files must be MPL; but can combine with proprietary
-  - Less viral than AGPL
-  - **Recipe convention: "MPL-2.0-weak-copyleft" sub-convention**
+- **ELASTIC LICENSE v2.0**:
+  - Source-available license (ELv2) — use is permitted for your own deployments; cannot offer Convoy as a competitive hosted service
+  - Less restrictive than AGPL but NOT open-source by OSI definition
+  - **Recipe convention: "ELv2-source-available" sub-convention**
   - **NEW convention**
 - **RISK: WEBHOOK-REPLAY-ATTACK**:
   - Replay-protection = timestamp + nonce
