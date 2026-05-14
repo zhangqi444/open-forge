@@ -45,7 +45,8 @@ Features (per README):
 
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Docker Compose** | **Upstream**                                                    | **Primary for single-node**                                                                        |
+| **Docker Compose** | **One-line install script (upstream-recommended)** | **Quickest path; interactive setup wizard**                                                                        |
+| **Standalone**     | System package (deb/rpm)                                               | [Standalone package install](https://docs.defguard.net/deployment-strategies/standalone-package-based-installation) |
 | **Kubernetes**     | **Multi-gateway / HA**                                          | Enterprise                                                                                   |
 | Source             | Rust build                                                                            | Dev                                                                                   |
 
@@ -63,10 +64,21 @@ Features (per README):
 | YubiKey PGP keys (opt) | For provisioning                                          | Hardware     |                                                                                    |
 | ACL rules            | Per-location                                                                                                           | Config       |                                                                                    |
 | Email (SMTP)         | Enrollment-invites                                                                                                     | Notifications |                                                                                    |
-
 ## Install via Docker
 
-Follow: <https://docs.defguard.net>
+### Option 1: One-line install (recommended)
+
+Per upstream docs — run in your shell and follow the prompts:
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://raw.githubusercontent.com/DefGuard/deployment/main/docker-compose/setup.sh -O && bash setup.sh
+```
+
+This downloads and runs the official interactive setup wizard, which configures PostgreSQL, the gateway, and SSL automatically. See [one-line install docs](https://docs.defguard.net/getting-started/one-line-install).
+
+### Option 2: Manual Docker Compose scaffold
+
+Follow: <https://docs.defguard.net/deployment-strategies/docker-compose>
 
 ```yaml
 # MINIMAL SCAFFOLD — follow upstream docs for production
@@ -205,10 +217,6 @@ sudo tar czf defguard-config-$(date +%F).tgz defguard-config/
   - **WireGuard-Easy** — if you want minimal single-admin WireGuard
   - **Choose Defguard if:** enterprise + MFA-on-VPN + LDAP/AD + YubiKey + security-transparent.
 - **PROJECT HEALTH**: active + Rust + enterprise-focus + public-security-practices + CI + docs. **EXCEPTIONAL** for transparency.
-
-## TODO — verify on subsequent deployments
-
-- **Defguard v2.0.0 (2026-05-01) — re-verify before next deploy.** Per Self-Host Weekly 2026-05-01: redesigned interface, **simplified deployment approach**, built-in SSL termination, static IP assignments, LDAP auto-enrollment. The deployment-approach simplification likely changes Docker Compose / install commands; built-in SSL means upstream now handles TLS internally (may obsolete the recipe's reverse-proxy section). Re-fetch upstream README + v2 migration guide before deploying.
 
 ## Links
 
