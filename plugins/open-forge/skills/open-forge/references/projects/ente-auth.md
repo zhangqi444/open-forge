@@ -5,7 +5,7 @@ description: Ente Auth recipe for open-forge. AGPL-3.0 end-to-end encrypted 2FA/
 
 # Ente Auth
 
-AGPL-3.0 end-to-end encrypted 2FA/TOTP authenticator. Upstream: <https://github.com/ente-io/ente> (monorepo, `auth/` subtree). Docs: <https://help.ente.io/auth>. Website: <https://ente.io/auth>.
+AGPL-3.0 end-to-end encrypted 2FA/TOTP authenticator. Upstream: <https://github.com/ente-io/ente> (monorepo, `auth/` subtree). Docs: <https://ente.com/help/auth>. Website: <https://ente.com/auth>.
 
 **Positioning:** open-source alternative to Authy / Google Authenticator / Microsoft Authenticator / 1Password 2FA — but with END-TO-END encrypted cloud sync. Your TOTP secrets are encrypted on-device before upload; even Ente the company can't see them. Ente's hosted auth service is **free**, even though Ente Photos is paid — they subsidize it because "2FA should be free."
 
@@ -22,7 +22,7 @@ If you're self-hosting Ente Photos already, Auth comes for free (same backend). 
 - **Encrypted cloud sync** via Museum — your codes auto-sync across devices.
 - **Desktop apps**: macOS, Windows, Linux (Electron).
 - **Mobile apps**: iOS, Android.
-- **Web app**: <https://auth.ente.io> (or your self-hosted instance).
+- **Web app**: <https://auth.ente.com> (or your self-hosted instance).
 - **No tracking, no ads, no upsell.**
 
 ## Architecture
@@ -42,7 +42,7 @@ Key distinction from Photos: Auth's encrypted blobs are TINY (just TOTP secrets 
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Use Ente's FREE hosted service | <https://auth.ente.io> | ✅ | Easiest. Genuinely free. |
+| Use Ente's FREE hosted service | <https://auth.ente.com> | ✅ | Easiest. Genuinely free. |
 | Self-host with Ente Photos stack | Same as Photos (see `ente-photos.md`) | ✅ | If you're already self-hosting Photos. |
 | Self-host Auth-only (minimal Museum) | Same compose, just don't deploy the photos-app container | ✅ | If you ONLY want Auth. Still needs Museum + Postgres + MinIO. |
 | Mobile apps directly — NO backend | Mobile apps work offline with local-only vault | ✅ | If you don't want cloud sync at all. |
@@ -64,8 +64,8 @@ The mobile/desktop apps support **offline-only mode** (no sync, no account) — 
 1. Download the app:
    - iOS: App Store → "Ente Auth"
    - Android: Play Store / F-Droid / Obtainium → "Ente Auth"
-   - Desktop: https://ente.io/download
-   - Web: https://auth.ente.io
+   - Desktop: https://ente.com/download
+   - Web: https://auth.ente.com
 2. Sign up (free) with email.
 3. Start adding 2FA codes.
 4. (Optional) Set up additional devices — they auto-sync.
@@ -144,11 +144,11 @@ Self-hosted: follow `ente-photos.md` upgrade (same Museum). Mobile/desktop apps:
 
 ## Gotchas
 
-- **Ente hosted Auth is FREE** — if you just want "Authy but better," don't self-host; use <https://auth.ente.io>. You'd spin up infrastructure for no reason.
+- **Ente hosted Auth is FREE** — if you just want "Authy but better," don't self-host; use <https://auth.ente.com>. You'd spin up infrastructure for no reason.
 - **Can't self-host Auth without Museum.** There's no "Auth-only backend" slim image. You need Postgres + MinIO + Museum, same as Photos.
 - **End-to-end encryption means lost password + lost recovery key = data gone.** Just like Photos. Ente (or you) CAN'T recover a forgotten password. Users MUST save the 24-word recovery key.
 - **Offline mode has no recovery mechanism.** Lose your phone → lose your 2FA secrets unless you have an export. Export to encrypted JSON monthly.
-- **Two app names / products**: mobile "Ente Auth" and web "auth.ente.io" are the same service; they sync via Museum.
+- **Two app names / products**: mobile "Ente Auth" and web "auth.ente.com" are the same service; they sync via Museum.
 - **Don't confuse Ente Auth with "Ente Authenticator"** — same thing, upstream calls it "Ente Auth."
 - **Custom server URL gotcha (mobile)**: long-press the "Sign in" button on the splash screen. Easy to miss — not a visible setting.
 - **Backup codes stored alongside TOTP** — convenient but concentrates risk. If vault is compromised, backup codes go too. Some users prefer separate storage for backup codes.
@@ -159,7 +159,7 @@ Self-hosted: follow `ente-photos.md` upgrade (same Museum). Mobile/desktop apps:
 - **F-Droid / Obtainium** have the Android app for users who avoid Play Store.
 - **Mobile app encryption** uses the device's secure enclave / keystore — phone PIN / biometric required to unlock vault.
 - **Sync latency** — typically seconds. Push-based + periodic pull.
-- **Subscription / billing NOT enforced** for Auth in self-hosted Museum. Whole service is free even on ente.io.
+- **Subscription / billing NOT enforced** for Auth in self-hosted Museum. Whole service is free even on ente.com.
 - **Desktop app (Electron)** runs heavy for what it does — if you prefer lightweight, use the web app instead.
 - **Web app works fully offline once loaded** (service worker + IndexedDB). Useful for kiosk-style setups.
 - **Passkeys (FIDO2)**: Auth supports passkey login to your Ente account itself (for the app), in addition to storing passkeys for OTHER sites via browser integration (that's KeePassXC-territory, not Ente's).
@@ -169,16 +169,16 @@ Self-hosted: follow `ente-photos.md` upgrade (same Museum). Mobile/desktop apps:
 
 - Upstream repo (monorepo): <https://github.com/ente-io/ente>
 - Auth subtree: <https://github.com/ente-io/ente/tree/main/auth>
-- Auth docs: <https://help.ente.io/auth>
-- Install Auth app: <https://help.ente.io/auth/faq/installing>
-- Hosted Auth (free): <https://auth.ente.io>
-- Self-hosting (shared with Photos): <https://help.ente.io/self-hosting>
-- Website: <https://ente.io/auth>
+- Auth docs: <https://ente.com/help/auth>
+- Install Auth app: <https://ente.com/help/auth/faq/installing>
+- Hosted Auth (free): <https://auth.ente.com>
+- Self-hosting (shared with Photos): <https://ente.com/help/self-hosting>
+- Website: <https://ente.com/auth>
 - iOS: <https://apps.apple.com/app/id6444121398>
 - Android (Play): <https://play.google.com/store/apps/details?id=io.ente.auth>
 - Android (F-Droid): <https://f-droid.org/packages/io.ente.auth>
-- Desktop: <https://ente.io/download>
-- Security model: <https://ente.io/architecture>
+- Desktop: <https://ente.com/download>
+- Security model: <https://ente.com/architecture>
 - Releases: <https://github.com/ente-io/ente/releases>
-- Discord: <https://ente.io/discord>
+- Discord: <https://ente.com/discord>
 - Related — same backend: see `ente-photos.md`

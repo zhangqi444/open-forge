@@ -5,7 +5,7 @@ description: Ente Photos recipe for open-forge. AGPL-3.0 end-to-end encrypted cl
 
 # Ente Photos
 
-AGPL-3.0 end-to-end encrypted cloud photo storage — self-hostable backend. Upstream: <https://github.com/ente-io/ente> (monorepo). Docs: <https://help.ente.io>. Self-hosting docs: <https://help.ente.io/self-hosting>. Website: <https://ente.io>.
+AGPL-3.0 end-to-end encrypted cloud photo storage — self-hostable backend. Upstream: <https://github.com/ente-io/ente> (monorepo). Docs: <https://ente.com/help/>. Self-hosting docs: <https://ente.com/help/self-hosting>. Website: <https://ente.com>.
 
 Ente Photos is a private, end-to-end encrypted alternative to Google Photos / iCloud Photos / OneDrive Photos. Everything is encrypted on-device (libsodium — XSalsa20 + Poly1305, X25519 ECDH, Argon2id KDF) before upload; the server ("Museum") stores only ciphertext + opaque metadata. Even Ente the company can't see your photos — neither can you after self-hosting.
 
@@ -24,7 +24,7 @@ In production, you'll want Museum + managed Postgres + real S3 (Backblaze B2 / W
 
 ## Client apps (all encrypt before upload)
 
-- **Photos**: iOS, Android, macOS, Windows, Linux, Web. <https://ente.io>
+- **Photos**: iOS, Android, macOS, Windows, Linux, Web. <https://ente.com>
 - **Auth** (separate recipe: `ente-auth.md`) — 2FA TOTP app backed by the same encrypted infra.
 
 ## Compatible install methods
@@ -33,8 +33,8 @@ In production, you'll want Museum + managed Postgres + real S3 (Backblaze B2 / W
 |---|---|---|---|
 | `quickstart.sh` | <https://raw.githubusercontent.com/ente-io/ente/main/server/quickstart.sh> | ✅ Recommended | 1-minute install. Creates `./my-ente/` + starts containers. |
 | Docker Compose from source | <https://github.com/ente-io/ente/tree/main/server/config> | ✅ | Customized / advanced. |
-| Manual server (Go binary + BYO Postgres + BYO S3) | <https://help.ente.io/self-hosting/installation/manual> | ✅ | Bare-metal / air-gapped. |
-| Ente Cloud (hosted) | <https://ente.io> | Paid | Don't self-host. |
+| Manual server (Go binary + BYO Postgres + BYO S3) | <https://ente.com/help/self-hosting/installation/manual> | ✅ | Bare-metal / air-gapped. |
+| Ente Cloud (hosted) | <https://ente.com> | Paid | Don't self-host. |
 
 Docker Compose **version 2.30 or higher** is required (per upstream requirements doc). `docker-compose` (v1) is NOT supported — use `docker compose` (v2 plugin).
 
@@ -205,7 +205,7 @@ Set matching `ENTE_API_ORIGIN` / `ENTE_PHOTOS_ORIGIN` / `ENTE_ALBUMS_ORIGIN` env
 - **Desktop (Electron)**: Settings → Advanced → Custom server URL.
 - **Web**: Already points at your self-hosted instance if you hosted the photos web app alongside.
 
-Upstream guide: <https://help.ente.io/self-hosting/installation/post-install>.
+Upstream guide: <https://ente.com/help/self-hosting/installation/post-install>.
 
 ## Data layout
 
@@ -253,7 +253,7 @@ Release notes: <https://github.com/ente-io/ente/releases>.
 - **Storage quotas default unbounded.** Set limits in `museum.yaml` (per-user) if you run a multi-user instance.
 - **Mobile app custom server URL**: long-press "Sign in" on the splash screen. Easy to miss — not a visible setting.
 - **Public albums** require the albums app running (`ente-albums` on :3002). If you disable it, public-share links break.
-- **Post-install setup** is non-trivial: <https://help.ente.io/self-hosting/installation/post-install> covers enabling custom endpoints in clients, SMTP testing, etc.
+- **Post-install setup** is non-trivial: <https://ente.com/help/self-hosting/installation/post-install> covers enabling custom endpoints in clients, SMTP testing, etc.
 - **The auth app (Ente Auth)** runs alongside and shares Museum + DB. See separate recipe.
 - **Upstream is a large monorepo** (~GB of Git history) — cloning takes a while. Use `--depth 1` for speed.
 - **Full-text search on photo content (faces, objects, EXIF)** happens ON-DEVICE (ML models shipped to the client) — server can't see. Expect higher client storage + battery use.
@@ -267,19 +267,19 @@ Release notes: <https://github.com/ente-io/ente/releases>.
 ## Links
 
 - Upstream repo (monorepo): <https://github.com/ente-io/ente>
-- Self-hosting docs: <https://help.ente.io/self-hosting>
-- Quickstart: <https://help.ente.io/self-hosting/installation/quickstart>
-- Compose from source: <https://help.ente.io/self-hosting/installation/compose>
-- Manual install: <https://help.ente.io/self-hosting/installation/manual>
-- Environment variables: <https://help.ente.io/self-hosting/installation/env-var>
-- Requirements: <https://help.ente.io/self-hosting/installation/requirements>
-- Post-install: <https://help.ente.io/self-hosting/installation/post-install>
-- Upgrade: <https://help.ente.io/self-hosting/installation/upgrade>
+- Self-hosting docs: <https://ente.com/help/self-hosting>
+- Quickstart: <https://ente.com/help/self-hosting/installation/quickstart>
+- Compose from source: <https://ente.com/help/self-hosting/installation/compose>
+- Manual install: <https://ente.com/help/self-hosting/installation/manual>
+- Environment variables: <https://ente.com/help/self-hosting/installation/env-var>
+- Requirements: <https://ente.com/help/self-hosting/installation/requirements>
+- Post-install: <https://ente.com/help/self-hosting/installation/post-install>
+- Upgrade: <https://ente.com/help/self-hosting/installation/upgrade>
 - Quickstart script: <https://raw.githubusercontent.com/ente-io/ente/main/server/quickstart.sh>
 - Museum (server) source: <https://github.com/ente-io/ente/tree/main/server>
 - Releases: <https://github.com/ente-io/ente/releases>
-- Hosted service: <https://ente.io>
-- Privacy + crypto whitepaper: <https://ente.io/architecture>
-- Discord: <https://ente.io/discord>
-- Mobile apps: iOS / Android / macOS / Windows / Linux / web (see ente.io)
+- Hosted service: <https://ente.com>
+- Privacy + crypto whitepaper: <https://ente.com/architecture>
+- Discord: <https://ente.com/discord>
+- Mobile apps: iOS / Android / macOS / Windows / Linux / web (see ente.com)
 - Related — Ente Auth (same backend): see `ente-auth.md`

@@ -7,7 +7,7 @@ description: "Send private end-to-end encrypted notes and files. Zero-knowledge 
 
 Enclosed is **"PrivateBin / OneTimeSecret — but modern + self-hostable + E2E-encrypted with server zero-knowledge"** — a minimalistic web application for sending private + secure notes and files. **All notes are end-to-end encrypted**; server has zero-knowledge of content. Password + TTL + self-destruct-after-read.
 
-Built + maintained by **Corentin Thomasset (CorentinTh)**. Demo at enclosed.cc. Docs site. CLI companion (`@enclosed/cli`). MIT likely.
+Built + maintained by **Corentin Thomasset (CorentinTh)**. Demo at enclosed.cc. Docs site. CLI companion (`@enclosed/cli`). Apache 2.0.
 
 Use cases: (a) **one-time secret sharing** — passwords to colleagues (b) **self-destruct sensitive notes** (c) **E2E-encrypted file transfer** (small files) (d) **Wetransfer-for-secrets** (e) **replace password-in-email** (f) **HR onboarding credentials delivery** (g) **CI secret-sharing** via CLI (h) **incident-response-secrets transport**.
 

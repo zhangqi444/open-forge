@@ -11,8 +11,8 @@ Open source social networking engine and PHP framework for building socially awa
 
 | Method | Platform | Notes |
 |---|---|---|
-| Composer + web server | PHP 8.1+ + MySQL/MariaDB | Recommended. Standard Composer-based PHP app install. |
-| Manual (archive) | PHP 8.1+ + MySQL/MariaDB | Download release archive, configure, run web installer. |
+| Composer + web server | PHP 8.3+ + MySQL/MariaDB | Recommended. Standard Composer-based PHP app install. |
+| Manual (archive) | PHP 8.3+ + MySQL/MariaDB | Download release archive, configure, run web installer. |
 
 ## Inputs to collect
 
@@ -27,7 +27,7 @@ Open source social networking engine and PHP framework for building socially awa
 
 ### Requirements
 
-  PHP 8.1+
+  PHP 8.3+
   PHP extensions: gd, mbstring, pdo_mysql, xml, intl, json, fileinfo, openssl
   MySQL 5.7+ or MariaDB 10.3+
   Web server: Apache (mod_rewrite) or nginx
@@ -114,7 +114,7 @@ Or install via Composer:
 - **PHP memory**: Elgg benefits from 256MB+ PHP memory limit for heavy pages with many plugins.
 - **File permissions**: the data directory must be writable by the web server user (www-data / nginx / apache).
 - **Caching**: for production, enable Elgg's built-in caching and optionally configure Redis/Memcache for sessions.
-- **Plugin compatibility**: community plugins may not all support the latest Elgg version (7.x). Check plugin compatibility before installing.
+- **Plugin compatibility**: community plugins may not all support the latest Elgg version (6.3). Check plugin compatibility before installing.
 
 ## References
 
