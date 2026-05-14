@@ -48,14 +48,14 @@
 - Install PHP 8.1/8.2 with required extensions
 - Create MySQL/MariaDB database and user
 - Clone repo or download zip to web root
-- Configure `app/includes/config.inc.php` with DB credentials
+- Configure `_includes/config.inc.php` with DB credentials
 - Point web server document root to the DomainMOD directory
 
 ---
 
 ## Software-Layer Concerns
 
-- **Config file:** `app/includes/config.inc.php` — DB credentials, app URL, timezone
+- **Config file:** `_includes/config.inc.php` — DB credentials, app URL, timezone
 - **Data directory:** Contains uploaded assets and cached data; back up alongside the database
 - **Data Warehouse:** WHM/cPanel server import requires cPanel API access credentials — optional feature
 - **Cron jobs:** Recommended for auto-refresh of domain expiry data; see docs for cron setup
