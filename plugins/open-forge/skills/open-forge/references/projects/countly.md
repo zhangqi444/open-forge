@@ -37,7 +37,7 @@ Features (Lite + Enterprise):
 - SDKs + docs: <https://support.countly.com>
 - Installation: <https://support.countly.com/hc/en-us/articles/360036862332-Installing-the-Countly-Server>
 - Discord: <https://discord.gg/countly>
-- Pricing (Enterprise): <https://countly.com/pricing>
+- Pricing (Enterprise / Flex): <https://countly.com/pricing>
 
 ## Architecture in one minute
 
@@ -56,7 +56,7 @@ Features (Lite + Enterprise):
 | Single VM          | **Docker Compose**                                                           | Community + official images                                                                   |
 | Kubernetes         | Helm chart (Enterprise support; community manifests exist)                                   | Scale path                                                                                                   |
 | Cluster            | Multi-node Countly + sharded MongoDB                                                                        | Production-scale HA                                                                                                             |
-| Managed            | **Countly Cloud** (Enterprise SaaS)                                                                                     | Commercial hosted                                                                                                                       |
+| Managed            | **Countly Flex** (fully managed SaaS)                                                                                   | Commercial hosted; region-based; Enterprise features included                                                                           |
 | Raspberry Pi       | Not the target — MongoDB footprint                                                                                                  |                                                                                                                                                            |
 
 ## Inputs to collect
@@ -172,7 +172,8 @@ Analytics data grows quickly — plan retention (e.g., keep raw events 90 days, 
 - Docs: <https://support.countly.com>
 - Releases: <https://github.com/Countly/countly-server/releases>
 - Discord: <https://discord.gg/countly>
-- Pricing (Enterprise / Cloud): <https://countly.com/pricing>
+- Pricing (Enterprise / Flex): <https://countly.com/pricing>
+- Countly Flex: <https://countly.com/flex>
 - PostHog (alt): <https://posthog.com>
 - Matomo (alt): <https://matomo.org>
 - Plausible (alt): <https://plausible.io>
