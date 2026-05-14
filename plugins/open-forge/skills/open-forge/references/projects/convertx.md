@@ -32,6 +32,8 @@ ConvertX is a browser frontend that dispatches to whichever CLI tool knows how t
 | `WEBROOT`                 | `/convert`                                  | Runtime  | Mount under a subpath behind a reverse proxy                       |
 | `FFMPEG_ARGS` / `FFMPEG_OUTPUT_ARGS` | `-hwaccel vaapi` / `-preset veryfast` | Runtime | Inject flags for hardware accel or quality presets              |
 | `MAX_CONVERT_PROCESS`     | `0` (unlimited)                              | Runtime  | Bound concurrency for small hosts                                  |
+| `HIDE_HISTORY`            | `false` (default)                           | Runtime  | Hide the conversion history page                                   |
+| `LANGUAGE`                | `en`                                        | Runtime  | BCP 47 language tag for date string formatting (e.g. `de`, `fr`)  |
 
 ## Install via Docker Compose (recommended)
 
