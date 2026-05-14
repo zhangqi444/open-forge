@@ -1,6 +1,6 @@
 ---
 name: directus-project
-description: Directus recipe for open-forge. Headless CMS + instant REST/GraphQL API for any SQL database (Postgres, MySQL, SQLite, MariaDB, MS SQL, CockroachDB, OracleDB). Written in Node.js + Vue 3. Historically BSL/public-source with free self-host for small-scale; **as of 2024-2025 Directus is in a license revision review — check current LICENSE before commercial deployment.** Covers Docker Compose with external Postgres (upstream-recommended for prod), Docker run (quick eval), and the minimum required secrets (KEY, SECRET, ADMIN_EMAIL, ADMIN_PASSWORD).
+description: Directus recipe for open-forge. Headless CMS + instant REST/GraphQL API for any SQL database (Postgres, MySQL, SQLite, MariaDB, MS SQL, CockroachDB, OracleDB). Written in Node.js + Vue 3. BSL 1.1 licensed (Monospace, Inc.) — free for organizations with Total Finances under US $5M/yr; paid license required above that threshold. Converts to GPL v3 three years after release. Covers Docker Compose with external Postgres (upstream-recommended for prod), Docker run (quick eval), and the minimum required secrets (KEY, SECRET, ADMIN_EMAIL, ADMIN_PASSWORD).
 ---
 
 # Directus
@@ -15,9 +15,15 @@ Headless CMS + instant REST and GraphQL API on top of any SQL database. Upstream
 
 ## ⚠️ License note
 
-Directus has shifted license models multiple times. As of this writing, upstream has publicly posted a **"Directus License Revision: Community Feedback Requested"** thread (<https://community.directus.io/t/directus-license-revision-community-feedback-requested/2125>). Before deploying Directus commercially, **read the current `LICENSE` file in the repo** and the latest blog post on licensing. Historically (BSL) it was free for small/medium self-host, paid for large-scale; future terms may differ. Don't assume "it was free last year = it's free this year."
+Directus is now licensed under the **Business Source License 1.1 (BSL 1.1)**, by **Monospace, Inc.** Current terms (verified May 2026):
 
-For individuals / small teams self-hosting for non-commercial or small-commercial use, the practical situation remains the same: self-host works, no license-key check on startup.
+- **Free to use in production** as long as your organization's Total Finances (aggregate gross revenues, budget, and/or funding) do **not exceed US $5,000,000** in the most recent 12-month period.
+- **Commercial license required** for organizations over the $5M threshold — see <https://directus.io/pricing>.
+- The Change Date is **three years from each release date**, at which point each version converts to **GPL v3**.
+
+In practice, most self-hosters (individuals, small businesses, nonprofits under $5M) can freely use Directus in production. Organizations with funding or revenue above $5M must purchase a commercial license.
+
+Always verify the current `LICENSE` file in the repo before deploying commercially.
 
 ## Compatible install methods
 
@@ -219,7 +225,7 @@ Directus runs its own Knex migrations on startup — DB tables are updated autom
 
 ## Gotchas
 
-- **License is in flux.** Past BSL → ??? — upstream is actively revising. Read the current `LICENSE` file. Don't assume commercial terms from a blog post or Stack Overflow answer.
+- **BSL 1.1 — $5M revenue threshold.** Directus is licensed BSL 1.1 (Monospace, Inc.): free for organizations with Total Finances under US $5M/yr; paid license required above that. Converts to GPL v3 three years after release. See the `LICENSE` file in the repo for exact current terms.
 - **`latest` tag drift.** Pin an explicit version (`directus/directus:11.x.x`) in production. Auto-pull can ship breaking changes.
 - **Root-of-repo `docker-compose.yml` is a dev-only multi-DB harness.** Do NOT use it for production — it spins up Postgres + MySQL + MariaDB + MSSQL + Oracle + MinIO + MailDev + CockroachDB + Keycloak simultaneously. Read the docs for the proper production compose.
 - **`ADMIN_EMAIL` / `ADMIN_PASSWORD` only work on FIRST boot.** After that, the admin user exists in the DB. Changing the env vars does nothing. To reset admin password, use `docker exec ... npx directus users passwd --email admin@example.com --password newpass`.
@@ -241,6 +247,5 @@ Directus runs its own Knex migrations on startup — DB tables are updated autom
 - Config options: <https://docs.directus.io/self-hosted/config-options>
 - CLI reference: <https://docs.directus.io/self-hosted/cli>
 - Docker Hub: <https://hub.docker.com/r/directus/directus>
-- Licensing thread: <https://community.directus.io/t/directus-license-revision-community-feedback-requested/2125>
 - Community forum: <https://community.directus.io>
 - Releases: <https://github.com/directus/directus/releases>
