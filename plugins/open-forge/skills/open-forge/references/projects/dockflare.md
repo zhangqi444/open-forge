@@ -7,7 +7,7 @@ description: "Automate Cloudflare Tunnels via Docker labels. Container-to-public
 
 DockFlare is **"Traefik-like ingress controller — but for Cloudflare Tunnels, driven by Docker labels"** — a self-hosted ingress + access-control plane for Cloudflare Tunnel. **Continuously reconciles** Docker labels + UI rules into Cloudflare DNS, tunnel ingress, and Access applications. Removes dashboard-click-work.
 
-Built + maintained by **ChrispyBacon-dev**. GPL-3.0. Swiss-made. v3.1.1 as of README. Python. Docker Hub (`alplat/dockflare`). GitHub Sponsors.
+Built + maintained by **ChrispyBacon-dev**. GPL-3.0. Swiss-made. v3.1.2 as of README. Python. Docker Hub (`alplat/dockflare`). GitHub Sponsors.
 
 Use cases: (a) **expose homelab containers** via CF Tunnel without port-forwarding (b) **label-driven ingress** — add label, get URL (c) **Access-rules-as-code** via labels (d) **fast-changing dev environments** (e) **no-dashboard-clicks ops** (f) **multi-container reverse-proxy to Cloudflare** (g) **remote-agent architecture** (h) **Zero-Trust-friendly homelab exposure**.
 
@@ -58,7 +58,7 @@ Per docs at <https://dockflare.app/docs>. Typical:
 ```yaml
 services:
   dockflare:
-    image: alplat/dockflare:v3.1.1        # **pin**
+    image: alplat/dockflare:v3.1.2        # **pin**
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./dockflare-data:/data
@@ -154,12 +154,12 @@ sudo tar czf dockflare-$(date +%F).tgz dockflare-data/
 - **GITHUB-SPONSORS-FUNDING**:
   - GitHub Sponsors for sole-dev
   - **GitHub-Sponsors-funding: 1 tool** 🎯 **NEW FAMILY** (DockFlare; distinct from Ko-Fi + Patreon + Open-Collective)
-- **VERSIONED-RELEASE-BADGE (v3.1.1)**:
+- **VERSIONED-RELEASE-BADGE (v3.1.2)**:
   - Visible release-version in README badge
   - Stable release-labeling
   - **Recipe convention: "README-release-version-badge positive-signal"**
   - **NEW positive-signal convention** (DockFlare 1st formally)
-- **INSTITUTIONAL-STEWARDSHIP**: ChrispyBacon-dev + website + docs + Sponsor + GPL-3.0 + active (v3.1.1) + label-discipline + Swiss-branding. **147th tool — sole-dev-with-full-product-site sub-tier** (NEW-soft).
+- **INSTITUTIONAL-STEWARDSHIP**: ChrispyBacon-dev + website + docs + Sponsor + GPL-3.0 + active (v3.1.2) + label-discipline + Swiss-branding. **147th tool — sole-dev-with-full-product-site sub-tier** (NEW-soft).
 - **TRANSPARENT-MAINTENANCE**: active + versioned-releases + docs + website + Sponsor + Docker-Hub-published. **153rd tool in transparent-maintenance family.**
 - **CF-TUNNEL-AUTOMATION-CATEGORY:**
   - **DockFlare** — label-driven; Python; full-ingress-plane
@@ -170,7 +170,7 @@ sudo tar czf dockflare-$(date +%F).tgz dockflare-data/
   - **cloudflared** (official) — if you want manual + Cloudflare-supported
   - **Traefik direct + cloudflared** — if you want decoupled
   - **Choose DockFlare if:** you want label-driven + Swiss-made + full-automation.
-- **PROJECT HEALTH**: active + v3.1.1 + docs + Sponsor + website. Strong for single-maintainer tool.
+- **PROJECT HEALTH**: active + v3.1.2 + docs + Sponsor + website. Strong for single-maintainer tool.
 
 ## Links
 

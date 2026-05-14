@@ -92,7 +92,7 @@ No database migrations or state to preserve — the application is stateless.
 - Docker Hub image tag — the README uses hhftechnology/dock-dploy:latest; the upstream docker-compose.yml defaults to building from source. Use the Docker Hub image for a quick deploy; clone the repo and build locally only if modifying the source.
 - No authentication — Dock-Dploy has no built-in access control. If exposing beyond localhost, place behind a reverse proxy with authentication (e.g. nginx basic auth, Authelia, Cloudflare Access).
 - Marketplace integration — the "Browse Marketplace" feature fetches templates from https://github.com/hhftechnology/Marketplace. Requires outbound internet access from the user's browser; the container itself does not fetch marketplace data.
-- VPN integration templates — Tailscale, WireGuard, Cloudflared, ZeroTier, and Netbird configuration blocks are available via the visual builder. These generate compose YAML; they do not configure the VPN services themselves.
+- VPN integration templates — Tailscale, Newt (Pangolin), WireGuard, Cloudflared, ZeroTier, and Netbird configuration blocks are available via the visual builder. These generate compose YAML; they do not configure the VPN services themselves.
 
 ## Links
 
