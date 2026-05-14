@@ -31,7 +31,7 @@ Built for public organizations, companies, and open communities that want data s
 
 | Method | Upstream | When to use |
 |---|---|---|
-| Docker Compose | https://github.com/suitenumerique/docs/blob/main/docs/installation.md | Production and local dev — recommended approach |
+| Docker Compose | https://github.com/suitenumerique/docs/blob/main/docs/installation/README.md | Production and local dev — recommended approach |
 | Source (dev) | https://github.com/suitenumerique/docs/blob/main/docs/dev.md | Contributing to the codebase |
 
 ## Requirements
@@ -52,7 +52,7 @@ Built for public organizations, companies, and open communities that want data s
 
 ## Docker Compose install
 
-Upstream: https://github.com/suitenumerique/docs/blob/main/docs/installation.md
+Upstream: https://github.com/suitenumerique/docs/blob/main/docs/installation/README.md
 
 ### 1. Clone and configure
 
@@ -142,6 +142,6 @@ The full state lives in PostgreSQL and (if configured) S3/local storage.
 
 - GitHub: https://github.com/suitenumerique/docs
 - Website: https://docs.numerique.gouv.fr/
-- Install docs: https://github.com/suitenumerique/docs/blob/main/docs/installation.md
+- Install docs: https://github.com/suitenumerique/docs/blob/main/docs/installation/README.md
 - Environment reference: https://github.com/suitenumerique/docs/blob/main/docs/env.md
 - Dev setup: https://github.com/suitenumerique/docs/blob/main/docs/dev.md
