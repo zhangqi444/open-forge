@@ -46,7 +46,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - dweebui:/app/config
+      - dweebui:/app
       - /var/run/docker.sock:/var/run/docker.sock
       # Podman (optional):
       # - /run/podman/podman.sock:/var/run/docker.sock
@@ -95,7 +95,7 @@ DweebUI's templates.json format is compatible with Portainer's app template form
 - **Docker socket = full Docker control.** Mounting `/var/run/docker.sock` gives DweebUI the same level of access as running commands as root. Only trusted users should have access. Don't expose DweebUI directly to the internet.
 - **Beta status.** DweebUI is v0.60 — beta. The author notes it started as a learning project and "there may be some rough edges and spaghetti code." Test before relying on it for critical container management.
 - **No automatic container updates.** Container update functionality is planned but not yet implemented. Manually pull new images and recreate containers.
-- **Volume mount path change.** Note: the compose example in the README uses `/app` but newer versions may use `/app/config`. Check the current README for the exact volume path — it may have changed since this recipe was written.
+- **Volume mount path:** The upstream README mounts the volume at `/app` (not `/app/config`). The compose example in this recipe reflects the current upstream.
 - **Wait for v1.0 before contributing.** The author recommends waiting for v1.0 before submitting PRs to avoid wasted effort on features that may be refactored.
 
 ## Backup
