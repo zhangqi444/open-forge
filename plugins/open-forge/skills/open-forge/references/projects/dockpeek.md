@@ -54,8 +54,14 @@ Per README:
 ```yaml
 services:
   dockpeek:
-    image: ghcr.io/dockpeek/dockpeek:latest        # **pin**
-    ports: ["8080:8080"]
+    image: dockpeek/dockpeek:latest
+    container_name: dockpeek
+    environment:
+      - SECRET_KEY=your_secure_secret_key  # Required
+      - USERNAME=admin
+      - PASSWORD=changeme
+    ports:
+      - "3420:8000"   # host:container
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro        # **RO**
     restart: unless-stopped
