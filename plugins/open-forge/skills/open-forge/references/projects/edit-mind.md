@@ -1,85 +1,79 @@
 ---
 name: EditMind
-description: "AI-powered video editing automation tool. Node.js. Docker. IliasHad/edit-mind. Automatic captions, highlight clips, viral short clips, B-roll suggestions from your video content."
+description: "Local-first video knowledge base with multi-modal AI analysis. Node.js + Python + Docker. IliasHad/edit-mind. Index videos with YOLO, DeepFace, Whisper, and ChromaDB; search semantically via natural language."
 ---
 
 # EditMind
 
-**AI-powered video editing automation tool.** Upload video content; EditMind automatically generates captions, identifies highlight clips, creates viral short-form clips for social media, and suggests B-roll inserts. Self-hostable alternative to expensive AI video editing SaaS tools.
+**Local-first video knowledge base.** Index your video library with multi-modal AI analysis — face recognition, transcription, object and text detection, scene analysis — then search your videos (or specific video scenes) using natural language. Runs fully locally, respects privacy, and is Docker-ready.
 
-Built + maintained by **IliasHad**.
+Built + maintained by **IliasHad**. Active development; not yet production-ready.
+
+> **Development Status:** Currently in **active development** and **not yet production-ready**. Expect incomplete features and occasional bugs.
 
 - Upstream repo: <https://github.com/IliasHad/edit-mind>
 - Docs: see repo README + inline documentation
 
-## Architecture in one minute
+## Architecture
 
-- **Node.js** backend + web UI
-- Requires external AI service connections (OpenAI / compatible LLM + transcription API)
-- Docker deployment
-- Resource: **medium** — Node.js + AI inference calls to external APIs
+| Area | Technology |
+|------|-----------|
+| **Monorepo** | pnpm workspaces |
+| **Containerization** | Docker, Docker Compose |
+| **Web Service** | React Router V7, TypeScript, Vite |
+| **Background Jobs** | Node.js, Express.js, BullMQ |
+| **ML Service** | Python, PyAV, PyTorch, OpenAI Whisper, Google Gemini or Ollama |
+| **Vector Database** | ChromaDB |
+| **Relational DB** | PostgreSQL (via Prisma ORM) |
 
 ## Compatible install methods
 
-| Infra        | Runtime                | Notes                             |
-| ------------ | ---------------------- | --------------------------------- |
-| **Docker**   | see repo Dockerfile    | **Primary** — build from source   |
-| **Node**     | `npm install && npm run dev` | Local development              |
+| Infra        | Runtime                      | Notes                                  |
+| ------------ | ---------------------------- | -------------------------------------- |
+| **Docker**   | Docker Compose               | **Primary** — all services together    |
+| **Desktop**  | Commercial desktop app       | macOS/Windows one-click installer (paid); Apple Silicon GPU support |
+| **Node**     | `pnpm install` (dev)         | Local development                      |
 
 ## Inputs to collect
 
-| Input                    | Example                        | Phase    | Notes                                                                        |
-| ------------------------ | ------------------------------ | -------- | ---------------------------------------------------------------------------- |
-| OpenAI API key           | `sk-...`                       | AI       | Required for clip analysis + caption generation                              |
-| Domain (optional)        | `video.example.com`            | URL      | Reverse proxy + TLS for production                                           |
+| Input                    | Example                        | Phase    | Notes                                                                     |
+| ------------------------ | ------------------------------ | -------- | ------------------------------------------------------------------------- |
+| Video directory          | `/path/to/videos`              | Storage  | Watched for new video files to index                                      |
+| AI provider              | Google Gemini / Ollama         | AI       | NLP/semantic search backend; Gemini API key or Ollama running locally     |
+| Port                     | (see compose)                  | Network  | Web UI port                                                               |
 
 ## Install via Docker
 
 ```bash
 git clone https://github.com/IliasHad/edit-mind.git
 cd edit-mind
-# Review and copy example env file (if present)
-# Set OPENAI_API_KEY and any other required env vars
-docker compose up -d   # if compose file exists, else: docker build -t edit-mind . && docker run ...
+# Configure .env (AI provider keys, video paths, etc.)
+docker compose up -d
 ```
 
-Or run locally:
-```bash
-npm install
-# Configure .env with API keys
-npm run dev
-```
+See the [Setup Video](https://www.youtube.com/watch?v=WVNuP8ic3uY) for a walkthrough.
 
-## First boot
+## Core Features
 
-1. Clone repo + configure environment variables (OpenAI API key).
-2. Deploy via Docker or run with Node.
-3. Visit the web UI.
-4. Upload a video file.
-5. Select desired automation tasks (captions, highlights, viral clips, B-roll).
-6. Let AI process → download results.
+- **Video Indexing:** Background service watches for new video files and queues AI-powered analysis
+- **AI Analysis:** Face recognition (DeepFace), transcription (Whisper), object & text detection (YOLO), scene analysis
+- **Semantic Search:** ChromaDB vector database for natural language search of video content
+- **Local / Private:** All processing runs on your own hardware; no cloud required
 
 ## Gotchas
 
-- **Early-stage project.** EditMind is a newer tool; expect rough edges and evolving API. Review the current README for the exact setup steps — they may have changed since this recipe was written.
-- **OpenAI API costs.** Video transcription + LLM analysis of long videos can consume meaningful API credits. Monitor usage and set billing alerts in OpenAI dashboard.
-- **Video processing is compute-intensive.** Even with AI APIs doing the heavy lifting, handling large video files requires adequate server RAM + disk space.
-- **Check current README.** For exact Docker run steps, env variables, and feature status — refer directly to <https://github.com/IliasHad/edit-mind/blob/main/README.md>.
+- **Not production-ready.** EditMind is under active development; expect rough edges and breaking changes.
+- **AI model downloads.** First run downloads Whisper, YOLO, and other model weights — allocate disk space accordingly.
+- **GPU helps.** Transcription and object detection are much faster with a GPU; CPU works but is slow for large libraries.
+- **Check current README.** Tech stack and setup steps evolve quickly — refer directly to <https://github.com/IliasHad/edit-mind/blob/main/README.md> for latest instructions.
+- **Desktop app (paid).** A commercial macOS/Windows desktop app with one-click install and Apple GPU support is available separately. The self-hosted Docker version is free.
 
 ## Project health
 
-Active development. Solo-maintained by IliasHad. Check GitHub for latest status.
-
-## AI-video-editing-family comparison
-
-- **EditMind** — Node.js, captions + highlights + viral clips + B-roll, self-hosted, OpenAI-powered
-- **Whisper (OpenAI)** — transcription only; no editing; CLI
-- **Descript** — SaaS, polished, expensive; the commercial reference
-- **Opus Clip** — SaaS, viral clip extraction; not self-hosted
-- **AutoCut** — Python, caption-based auto-cut; local model option
-
-**Choose EditMind if:** you want a self-hosted AI video editing automation tool and are comfortable with an early-stage project using OpenAI APIs.
+Active development. Solo-maintained by IliasHad. Pre-v1.0 alpha stage.
 
 ## Links
 
 - Repo: <https://github.com/IliasHad/edit-mind>
+- Demo video: <https://www.youtube.com/watch?v=YrVaJ33qmtg>
+- Desktop app: <https://shop.edit-mind.com/>

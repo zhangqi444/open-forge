@@ -59,7 +59,7 @@ docker run --rm -it -p 7860:7860 --gpus all \
   -v "$PWD/models:/app/models" \
   -v "$PWD/voices:/app/voices" \
   -v "$PWD/tmp:/app/tmp" \
-  athomasson2/ebook2audiobook:cu128      # or cu118 / cu122 / cu124 / cu126
+  athomasson2/ebook2audiobook:cu130      # or cu118 / cu122 / cu124 / cu126 / cu128
 ```
 
 Host must have NVIDIA driver + `nvidia-container-toolkit` configured. Match the CUDA minor version to your host driver when possible.
@@ -76,15 +76,15 @@ cd ebook2audiobook
 docker compose --profile cpu up --no-log-prefix
 
 # NVIDIA GPU (CUDA 12.8):
-DEVICE_TAG=cu128 docker compose --profile gpu up --no-log-prefix
+DEVICE_TAG=cu130 docker compose --profile gpu up --no-log-prefix
 
 # Headless single-shot conversion:
-DEVICE_TAG=cu128 docker compose --profile gpu run --rm ebook2audiobook-gpu \
+DEVICE_TAG=cu130 docker compose --profile gpu run --rm ebook2audiobook-gpu \
   --headless --ebook "/app/ebooks/mybook.epub" \
   --voice /app/voices/eng/adult/female/some_voice.wav
 ```
 
-Pin `APP_VERSION` in your `.env` (upstream compose uses `APP_VERSION=26.4.28` as the default build arg) and check <https://github.com/DrewThomasson/ebook2audiobook/releases> for newer versions.
+Pin `APP_VERSION` in your `.env` (upstream compose uses `APP_VERSION=26.5.10` as the default build arg) and check <https://github.com/DrewThomasson/ebook2audiobook/releases> for newer versions.
 
 ## Data & config layout
 
