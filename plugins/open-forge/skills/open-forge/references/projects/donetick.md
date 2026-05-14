@@ -52,16 +52,31 @@ Features (per README):
 
 ## Install via Docker
 
+> **Note:** A `selfhosted.yaml` config file is required before starting the container.
+> Copy the example from the repo to `./config/selfhosted.yaml`:
+> <https://github.com/donetick/donetick/blob/main/config/selfhosted.yaml>
+
 ```yaml
 services:
   donetick:
     image: donetick/donetick:latest        # **pin version**
-    ports: ["2021:2021"]
-    volumes:
-      - ./donetick-data:/data
-    environment:
-      DT_JWT_SECRET: ${JWT_SECRET}
+    container_name: donetick
     restart: unless-stopped
+    ports:
+      - 2021:2021
+    volumes:
+      - ./data:/donetick-data
+      - ./config:/config
+    environment:
+      - DT_ENV=selfhosted
+      - DT_SQLITE_PATH=/donetick-data/donetick.db
+      - TZ=Etc/UTC
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:2021/api/v1/health || exit 1
+      start_period: 1m
+      timeout: 5s
+      interval: 1m
+      retries: 3
 ```
 
 ## First boot
