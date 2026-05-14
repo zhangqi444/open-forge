@@ -5,7 +5,7 @@ description: Recipe for self-hosting Craftplan — an open-source ERP platform f
 
 # Craftplan
 
-Open-source ERP for small-scale artisanal manufacturers and craft businesses. Covers product catalog with Bills of Materials (BOMs), inventory with lot traceability, production batching, order management with calendar scheduling, purchasing, and a CRM — all in one self-hosted Elixir/Phoenix app. Upstream: <https://github.com/puemos/craftplan>. License: AGPLv3.
+Open-source ERP for small-scale artisanal manufacturers and craft businesses. Covers product catalog with Bills of Materials (BOMs), inventory with lot traceability, production batching, order management with calendar scheduling, purchasing, and a CRM — all in one self-hosted Elixir/Phoenix (with Ash Framework) app. Upstream: <https://github.com/puemos/craftplan>. Docs: <https://puemos.github.io/craftplan/docs/>. License: AGPLv3.
 
 Uses PostgreSQL for data and MinIO for file/image storage. Ships a ready-to-deploy `docker-compose.yml` that requires no repo clone.
 
@@ -150,5 +150,8 @@ Check release notes at: <https://github.com/puemos/craftplan/releases>
 
 ## References
 - Upstream README: <https://github.com/puemos/craftplan#readme>
+- Docs: <https://puemos.github.io/craftplan/docs/>
+- Self-hosting guide: <https://puemos.github.io/craftplan/docs/self-hosting/>
+- API reference: <https://puemos.github.io/craftplan/docs/api/>
 - Live demo: <https://craftplan.fly.dev> (credentials: `test@test.com` / `Aa123123123123`)
 - Release notes: <https://github.com/puemos/craftplan/releases>
