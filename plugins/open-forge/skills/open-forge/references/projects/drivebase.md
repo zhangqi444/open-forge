@@ -1,6 +1,6 @@
 # Drivebase
 
-> Self-hosted, cloud-agnostic file management platform. Connects Google Drive, AWS S3 (and S3-compatible services), and local filesystem under a single OS-like browser UI — windowed apps, a taskbar, and a desktop shell. Batch copy/move across providers with conflict resolution and real-time progress.
+> Self-hosted, cloud-agnostic file management platform. Connects Google Drive, AWS S3 (and S3-compatible services), Dropbox, OneDrive, and local filesystem under a single OS-like browser UI — windowed apps, a taskbar, and a desktop shell. Batch copy/move across providers with conflict resolution and real-time progress.
 
 **Official URL:** https://github.com/drivebase/drivebase
 
