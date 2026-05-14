@@ -66,6 +66,8 @@ services:
 | `TZ` | `Etc/UTC` | Timezone |
 | `WEBROOT` | — | Optional URL subpath (e.g. `domoticz`) |
 | `DBASE` | — | Custom database file path |
+| `DOMOTICZ_ADMIN_PASSWORD` | — | Auto-provision admin password on first run (Docker) |
+| `DOMOTICZ_ADMIN_USERNAME` | `admin` | Auto-provision admin username on first run (Docker, optional) |
 
 ### Native Install (Linux)
 
