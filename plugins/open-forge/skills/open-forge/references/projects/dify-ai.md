@@ -12,7 +12,7 @@ A platform for building, testing, and deploying LLM-powered applications. Provid
 | Infra | Runtime | Notes |
 |---|---|---|
 | Any Linux | Docker Compose | Primary supported deployment |
-| Kubernetes | Helm chart | Official Helm chart available |
+| Kubernetes | Helm chart | Community Helm charts available (no official first-party chart) |
 
 > Minimum recommended: 2 CPU cores, 4 GB RAM. LLM inference is via external API (OpenAI, Anthropic, Ollama, etc.) — not bundled.
 
@@ -97,14 +97,15 @@ server {
 ### Kubernetes (Helm)
 
 ```bash
-helm repo add dify https://langgenius.github.io/dify-helm
+# No official first-party Helm chart. Example using BorisPolonsky community chart:
+helm repo add dify https://borispolonsky.github.io/dify-helm/
 helm repo update
 helm upgrade --install dify dify/dify \
   --namespace dify --create-namespace \
   -f values.yaml
 ```
 
-See: https://github.com/langgenius/dify-helm
+# Community options: https://github.com/BorisPolonsky/dify-helm or https://github.com/magicsong/ai-charts
 
 ## Upgrade Procedure
 
@@ -134,5 +135,5 @@ docker compose up -d
 - Homepage: https://dify.ai
 - Source: https://github.com/langgenius/dify
 - Self-hosting docs: https://docs.dify.ai/getting-started/install-self-hosted
-- Helm chart: https://github.com/langgenius/dify-helm
+- Community Helm charts: https://github.com/BorisPolonsky/dify-helm (no official first-party chart)
 - Release notes: https://github.com/langgenius/dify/releases

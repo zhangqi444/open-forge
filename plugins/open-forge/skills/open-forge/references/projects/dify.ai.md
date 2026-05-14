@@ -42,10 +42,10 @@ Open-source LLM application development platform. Dify lets you build, deploy, a
 ### Services (docker-compose.yaml)
 | Service | Image | Role |
 |---------|-------|------|
-| `api` | `langgenius/dify-api:1.14.0` | Backend API server |
-| `worker` | `langgenius/dify-api:1.14.0` | Celery async worker |
-| `worker_beat` | `langgenius/dify-api:1.14.0` | Celery beat scheduler |
-| `web` | `langgenius/dify-web:1.14.0` | Next.js frontend |
+| `api` | `langgenius/dify-api:1.14.1` | Backend API server |
+| `worker` | `langgenius/dify-api:1.14.1` | Celery async worker |
+| `worker_beat` | `langgenius/dify-api:1.14.1` | Celery beat scheduler |
+| `web` | `langgenius/dify-web:1.14.1` | Next.js frontend |
 | `db_postgres` | `postgres:15-alpine` | Primary database |
 | `redis` | `redis:6-alpine` | Cache + task queue |
 | `sandbox` | `langgenius/dify-sandbox:0.2.15` | Isolated code execution |
@@ -83,7 +83,7 @@ REDIS_PORT=6379
 - Back up both before upgrades
 
 ### Vector store (optional)
-Dify supports pluggable vector stores for RAG. Default uses pgvector (built into postgres). Alternatives: Weaviate, Qdrant, etc. — configured in `.env`.
+Dify supports pluggable vector stores for RAG. Default vector DB is Weaviate (bundled in Compose). Alternatives: Qdrant, Milvus, pgvector, etc. — configured in `.env`.
 
 ---
 
