@@ -1,13 +1,15 @@
 ---
 name: Cup
-description: "Fast container image update checker. Docker or binary. Go. sergi0g/cup. CLI + web UI, Docker Hub/GHCR/Quay/lscr.io/Gitea support, JSON API, rate-limit-safe, tiny binary (5 MB)."
+description: "Fast container image update checker. Docker or binary. Rust. sergi0g/cup. CLI + web UI, Docker Hub/GHCR/Quay/lscr.io/Gitea support, JSON API, rate-limit-safe, tiny binary (5 MB)."
 ---
 
 # Cup
 
-**The easiest way to check for container image updates.** Cup compares your running container images against their registries and shows which ones have newer versions available. Go binary, fast (parallel checks), tiny (5 MB), and rate-limit-safe. CLI + optional web server with JSON API.
+**The easiest way to check for container image updates.** Cup compares your running container images against their registries and shows which ones have newer versions available. Rust binary, fast (parallel checks), tiny (5 MB), and rate-limit-safe. CLI + optional web server with JSON API.
 
 Built + maintained by **sergi0g**. MIT license.
+
+> ⚠️ **Development paused:** As of September 2025, active development is paused until approximately June 2026 while the maintainer finishes school. Cup is stable and functional; no new features or bug fixes are expected during this period. See [NOTICE.md](https://github.com/sergi0g/cup/blob/main/NOTICE.md) for details.
 
 - Upstream repo: <https://github.com/sergi0g/cup>
 - Docs: <https://cup.sergi0g.dev/docs>
@@ -16,7 +18,7 @@ Built + maintained by **sergi0g**. MIT license.
 
 ## Architecture in one minute
 
-- **Go** binary — single executable, no runtime dependencies
+- **Rust** binary — single executable, no runtime dependencies
 - Reads running containers via **Docker socket** (or agent mode for remote)
 - Queries container registries: Docker Hub, GHCR, Quay, lscr.io, Gitea (+ derivatives)
 - Two usage modes:
@@ -30,7 +32,7 @@ Built + maintained by **sergi0g**. MIT license.
 | Infra       | Runtime               | Notes                                             |
 | ----------- | --------------------- | ------------------------------------------------- |
 | **Docker**  | `ghcr.io/sergi0g/cup` | **Primary** — GHCR; mount Docker socket          |
-| **Binary**  | GitHub Releases       | Single Go binary; run on host directly            |
+| **Binary**  | GitHub Releases       | Single Rust binary; run on host directly          |
 
 ## Install via Docker (server mode)
 
@@ -128,11 +130,11 @@ docker compose pull && docker compose up -d
 
 ## Project health
 
-Active Go development, GHCR, docs site, Discord, JSON API, Homepage/Home Assistant integrations. Solo-maintained by sergi0g. MIT license.
+Development paused as of September 2025 until ~June 2026 (maintainer in final year of school). GHCR, docs site, Discord, JSON API, Homepage/Home Assistant integrations. Solo-maintained by sergi0g. MIT license. Stable and functional as-is.
 
 ## Container-update-checker-family comparison
 
-- **Cup** — Go, check-only, web UI + JSON API, rate-limit-safe, tiny (5 MB), MIT
+- **Cup** — Rust, check-only, web UI + JSON API, rate-limit-safe, tiny (5 MB), MIT
 - **Watchtower** — Go, auto-update daemon (pulls + restarts); no check-only mode
 - **Diun** — Go, check-only + notifications (email/Slack/etc.); feature-rich; heavier
 - **What's up Docker (WUD)** — Node.js, check + notify + integrations; more complex
