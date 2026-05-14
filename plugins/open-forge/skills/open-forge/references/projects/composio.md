@@ -1,6 +1,6 @@
 ---
 name: Composio
-description: "Integration platform for AI agents and LLMs — connect 250+ apps and services (GitHub, Slack, Gmail, etc.) to AI agents via standardized tool interfaces for Python and TypeScript. Python/TypeScript. Elastic-2.0."
+description: "Integration platform for AI agents and LLMs — connect 250+ apps and services (GitHub, Slack, Gmail, etc.) to AI agents via standardized tool interfaces for Python and TypeScript. Python/TypeScript. MIT."
 ---
 
 # Composio
@@ -9,7 +9,7 @@ Composio is an integration platform that connects AI agents and LLMs to 250+ ext
 
 Instead of writing custom integration code for each app, AI agent developers use Composio's SDK to get pre-built, auth-handled "tools" that agents (built with LangChain, LlamaIndex, OpenAI Agents, CrewAI, etc.) can call. Composio handles OAuth flows, credential storage, and API normalization.
 
-Maintained by ComposioHQ. Licensed under Elastic License 2.0 (core); self-hosting is permitted for internal/personal use. Composio.dev is the managed SaaS offering.
+Maintained by ComposioHQ. Licensed under MIT License. Composio.dev is the managed SaaS offering.
 
 Use cases: (a) AI agents that need to interact with real-world apps (b) LLM pipelines that trigger GitHub issues, send Slack messages, read emails (c) developer productivity automation with AI (d) agentic workflows that span multiple SaaS tools.
 
@@ -123,7 +123,7 @@ See https://docs.composio.dev/self-hosting for current self-hosted setup instruc
 
 ## Gotchas
 
-- **Elastic License 2.0 restrictions** — ELv2 allows self-hosting for internal use but prohibits providing Composio as a managed service to third parties or competing with Composio's SaaS offering. Fine for personal/team use; not fine for building a competing integration-platform SaaS.
+- **MIT License** — Composio is now licensed under MIT. Full permissive use; you can self-host, modify, and build on it freely including for commercial purposes.
 - **depends_3rdparty** — Composio itself runs locally, but every integration call goes to an external API (GitHub, Slack, etc.). It's not a fully offline tool; it reduces the integration code burden but doesn't eliminate external dependencies.
 - **Auth credentials stored server-side** — in self-hosted mode, OAuth tokens and API keys for connected apps are stored in your Composio database. Secure your database and server appropriately.
 - **Multi-user auth contexts** — when building apps where different end-users have different app connections (e.g., each user connects their own GitHub), Composio's `entity_id` / user-scoped connections handle this. Important to understand before building multi-tenant agents.
