@@ -52,7 +52,7 @@ docker run -d \
   -p 8080:8080 \
   -v ./rauthy-data:/app/data \
   -v ./rauthy.cfg:/app/rauthy.cfg \
-  ghcr.io/sebadob/rauthy:latest
+  ghcr.io/sebadob/rauthy:v0.35.1
 ```
 
 Visit `http://localhost:8080/auth/v1/`.
@@ -150,7 +150,7 @@ pg_dump rauthy > rauthy-$(date +%F).sql
 ## Upgrade
 
 1. Read CHANGELOG for breaking changes.
-2. `docker pull ghcr.io/sebadob/rauthy:latest && docker restart rauthy`.
+2. `docker pull ghcr.io/sebadob/rauthy:v0.35.1 && docker restart rauthy`.
 3. Rauthy handles DB migrations automatically.
 
 ## Project health

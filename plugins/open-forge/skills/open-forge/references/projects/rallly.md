@@ -62,7 +62,7 @@ Features:
 ```yaml
 services:
   rallly:
-    image: ghcr.io/lukevella/rallly:latest               # pin specific version in prod
+    image: ghcr.io/lukevella/rallly:4.10.1               # pin specific version in prod
     container_name: rallly
     restart: unless-stopped
     ports:

@@ -67,7 +67,7 @@ Using the well-maintained community image:
 ```yaml
 services:
   radicale:
-    image: tomsquest/docker-radicale:latest          # pin version in prod
+    image: tomsquest/docker-radicale:3.7.3.0          # pin version in prod
     container_name: radicale
     init: true
     read_only: true
