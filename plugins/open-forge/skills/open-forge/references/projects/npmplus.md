@@ -71,7 +71,7 @@ Features over upstream (summarized from README):
 ```yaml
 services:
   npmplus:
-    image: zoeyvid/npmplus:latest        # **pin version**
+    image: zoeyvid/npmplus:2026-04-21-r2        # **pin version**
     network_mode: host        # or publish 80, 443, 443/udp
     volumes:
       - ./npmplus-data:/data
