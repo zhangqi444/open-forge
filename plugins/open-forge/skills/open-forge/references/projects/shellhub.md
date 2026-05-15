@@ -61,15 +61,15 @@ services:
   redis:
     image: redis:7
   api:
-    image: shellhubio/api:latest        # **pin**
+    image: shellhubio/api:v0.24.2        # **pin**
     depends_on: [mongo, redis]
   ssh:
-    image: shellhubio/ssh:latest        # **pin**
+    image: shellhubio/ssh:v0.24.2        # **pin**
   gateway:
-    image: shellhubio/gateway:latest        # **pin**
+    image: shellhubio/gateway:v0.24.2        # **pin**
     ports: ["80:80", "443:443"]
   ui:
-    image: shellhubio/ui:latest        # **pin**
+    image: shellhubio/ui:v0.24.2        # **pin**
 ```
 
 Install agent on devices: see docs for one-liner install.

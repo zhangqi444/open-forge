@@ -70,7 +70,7 @@ Features:
 docker run -d --name shaarli \
   -p 8000:80 \
   -v shaarli-data:/var/www/shaarli/data \
-  ghcr.io/shaarli/shaarli:latest   # **pin version** in prod
+  ghcr.io/shaarli/shaarli:v0.16.1   # **pin version** in prod
 ```
 
 Or via docker-compose:
@@ -78,7 +78,7 @@ Or via docker-compose:
 ```yaml
 services:
   shaarli:
-    image: ghcr.io/shaarli/shaarli:latest    # pin
+    image: ghcr.io/shaarli/shaarli:v0.16.1    # pin
     restart: unless-stopped
     volumes:
       - ./shaarli-data:/var/www/shaarli/data

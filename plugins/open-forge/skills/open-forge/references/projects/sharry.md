@@ -47,7 +47,7 @@ Built + maintained by **eikek (Eike Kettner)**. GPLv3+ license.
 ```yaml
 services:
   restserver:
-    image: eikek0/sharry:latest
+    image: eikek0/sharry:v1.15.0
     container_name: sharry
     command: /opt/sharry.conf
     ports:
