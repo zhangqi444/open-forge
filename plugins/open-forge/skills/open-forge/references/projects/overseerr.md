@@ -49,7 +49,7 @@ docker run -d \
 ```yaml
 services:
   overseerr:
-    image: sctx/overseerr:latest
+    image: sctx/overseerr:1.35.0
     container_name: overseerr
     environment:
       - LOG_LEVEL=debug

@@ -89,7 +89,7 @@ services:
       retries: 5
 
   outline:
-    image: outlinewiki/outline:latest   # pin a version for prod
+    image: outlinewiki/outline:1.7.1   # pin a version for prod
     restart: unless-stopped
     depends_on:
       postgres:

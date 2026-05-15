@@ -52,7 +52,7 @@ Built + maintained by **OwnTracks team**. MIT license.
 ```yaml
 services:
   recorder:
-    image: owntracks/recorder:latest
+    image: owntracks/recorder:1.0.1
     container_name: recorder
     ports:
       - "8083:8083"
@@ -87,7 +87,7 @@ docker run -d \
   -v ./store:/store \
   -e OTR_HOST=0.0.0.0 \
   -e OTR_STORAGEDIR=/store \
-  owntracks/recorder:latest
+  owntracks/recorder:1.0.1
 ```
 
 ## First boot

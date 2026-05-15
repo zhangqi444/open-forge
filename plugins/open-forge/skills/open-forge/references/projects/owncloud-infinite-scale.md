@@ -62,7 +62,7 @@ See official docs: <https://doc.owncloud.com/ocis_release/deployment/>. Referenc
 ```yaml
 services:
   ocis:
-    image: owncloud/ocis:5.X.Y        # **pin — track EULA for your tag**
+    image: owncloud/ocis:8.0.3        # **pin — track EULA for your tag**
     environment:
       OCIS_URL: https://files.example.com
       OCIS_INSECURE: "false"
