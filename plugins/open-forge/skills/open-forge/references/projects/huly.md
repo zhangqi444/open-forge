@@ -24,7 +24,7 @@ All-in-one project management platform. Huly is a self-hosted alternative to Lin
 ### Required
 | Variable | Description | Example |
 |----------|-------------|---------|
-| `HULY_VERSION` | Platform release version tag | `v0.7.413` |
+| `HULY_VERSION` | Platform release version tag | `v0.7.423` |
 | `SECRET` | Server secret for JWT/signing | random string |
 | `HTTP_BIND` | Host IP to bind nginx | `0.0.0.0` |
 | `HTTP_PORT` | Host port for web access | `80` |
@@ -78,7 +78,7 @@ docker compose up -d
 | `elastic` | Elasticsearch indices |
 
 ### Version pinning
-Always set `HULY_VERSION` to a specific `v*` tag (e.g., `v0.7.413`). All `hardcoreeng/*` images are versioned together.
+Always set `HULY_VERSION` to a specific `v*` tag (e.g., `v0.7.423`). All `hardcoreeng/*` images are versioned together.
 
 ---
 
