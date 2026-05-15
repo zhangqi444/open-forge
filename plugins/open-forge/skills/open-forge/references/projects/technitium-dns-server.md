@@ -67,7 +67,7 @@ docker run -d \
   -p 5380:5380 \
   -v technitium-data:/etc/dns \
   --restart unless-stopped \
-  technitium/dns-server:latest
+  technitium/dns-server:15.2.0
 ```
 
 Admin UI: `http://localhost:5380` — first visit creates admin password.
@@ -77,7 +77,7 @@ Admin UI: `http://localhost:5380` — first visit creates admin password.
 ```yaml
 services:
   dns:
-    image: technitium/dns-server:latest
+    image: technitium/dns-server:15.2.0
     hostname: dns-server
     ports:
       - "53:53/udp"
@@ -131,7 +131,7 @@ Set your router's DNS to Technitium → all devices resolve `homeserver.example.
 ## Upgrade (Docker)
 
 ```sh
-docker pull technitium/dns-server:latest
+docker pull technitium/dns-server:15.2.0
 docker compose up -d
 ```
 

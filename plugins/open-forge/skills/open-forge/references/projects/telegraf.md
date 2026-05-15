@@ -48,7 +48,7 @@ services:
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: mytoken123
 
   telegraf:
-    image: telegraf:latest
+    image: telegraf:1.38.4
     container_name: telegraf
     restart: unless-stopped
     volumes:

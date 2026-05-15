@@ -52,7 +52,7 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
   thanos-sidecar:
-    image: quay.io/thanos/thanos:latest
+    image: quay.io/thanos/thanos:v0.41.0
     command:
       - sidecar
       - --tsdb.path=/prometheus
@@ -63,7 +63,7 @@ services:
       - ./bucket.yml:/etc/thanos/bucket.yml
 
   thanos-store:
-    image: quay.io/thanos/thanos:latest
+    image: quay.io/thanos/thanos:v0.41.0
     command:
       - store
       - --objstore.config-file=/etc/thanos/bucket.yml
@@ -73,7 +73,7 @@ services:
       - thanos-store-data:/var/thanos/store
 
   thanos-query:
-    image: quay.io/thanos/thanos:latest
+    image: quay.io/thanos/thanos:v0.41.0
     command:
       - query
       - --store=thanos-sidecar:10901
@@ -82,7 +82,7 @@ services:
       - "10902:10902"
 
   thanos-compactor:
-    image: quay.io/thanos/thanos:latest
+    image: quay.io/thanos/thanos:v0.41.0
     command:
       - compactor
       - --objstore.config-file=/etc/thanos/bucket.yml

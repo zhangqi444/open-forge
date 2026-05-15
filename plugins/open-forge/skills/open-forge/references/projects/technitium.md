@@ -71,7 +71,7 @@ docker run -d --name technitium-dns \
   -v /opt/technitium/config:/etc/dns/config \
   -e DNS_SERVER_DOMAIN=dns.example.com \
   -e DNS_SERVER_ADMIN_PASSWORD=<strong> \
-  technitium/dns-server:latest   # pin a specific version tag in prod
+  technitium/dns-server:15.2.0   # pin a specific version tag in prod
 ```
 
 `--network host` is the usual choice for DNS servers to avoid Docker's NAT for port 53.
@@ -81,7 +81,7 @@ docker run -d --name technitium-dns \
 ```yaml
 services:
   dns-server:
-    image: technitium/dns-server:latest    # pin specific version in prod
+    image: technitium/dns-server:15.2.0    # pin specific version in prod
     container_name: dns-server
     restart: unless-stopped
     network_mode: host      # easiest; or map ports
