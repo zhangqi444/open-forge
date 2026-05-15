@@ -40,13 +40,13 @@ docker run -d --name mynodered \
   -p 1880:1880 \
   -v node_red_data:/data \
   --restart unless-stopped \
-  nodered/node-red:4.1.8
+  nodered/node-red:4.1.10
 ```
 
 Tag policy — pin a real version from <https://hub.docker.com/r/nodered/node-red/tags> (at time of writing `4.1.8`, with node-20 by default). Alternative tags:
 
-- `:4.1.8-minimal` — smaller image, fewer built-in nodes (dashboard, etc. must be installed)
-- `:4.1.8-20` / `:4.1.8-22` — pin Node.js major alongside Node-RED
+- `:4.1.10-minimal` — smaller image, fewer built-in nodes (dashboard, etc. must be installed)
+- `:4.1.10-20` / `:4.1.10-22` — pin Node.js major alongside Node-RED
 - `:latest` — tracks newest stable; fine for tinkering, bad for reproducibility
 
 ### Compose variant
@@ -54,7 +54,7 @@ Tag policy — pin a real version from <https://hub.docker.com/r/nodered/node-re
 ```yaml
 services:
   node-red:
-    image: nodered/node-red:4.1.8
+    image: nodered/node-red:4.1.10
     container_name: node-red
     restart: unless-stopped
     environment:

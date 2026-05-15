@@ -71,7 +71,7 @@ docker run -dit --name nginx-ui \
   -v /opt/nginx-ui:/etc/nginx-ui \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -p 8080:80 -p 8443:443 \
-  uozi/nginx-ui:2.x.x    # pin; check Docker Hub
+  uozi/nginx-ui:2.3.10    # pin; check Docker Hub
 ```
 
 **First run**: ensure `/opt/nginx` (the `/etc/nginx` target) is **empty** — the container populates it. If it's non-empty with your existing config, the install wizard can import it.
@@ -87,7 +87,7 @@ Open <http://host:8080/install>. Complete wizard:
 ```yaml
 services:
   nginx-ui:
-    image: uozi/nginx-ui:2.x.x
+    image: uozi/nginx-ui:2.3.10
     container_name: nginx-ui
     restart: unless-stopped
     stdin_open: true
