@@ -59,7 +59,7 @@ Features (per README):
 ```yaml
 services:
   spoolman:
-    image: ghcr.io/donkie/spoolman:latest        # **pin version**
+    image: ghcr.io/donkie/spoolman:v0.23.1        # **pin version**
     environment:
       TZ: UTC
     volumes:

@@ -67,7 +67,7 @@ Features:
 ```yaml
 services:
   speedtest-tracker:
-    image: lscr.io/linuxserver/speedtest-tracker:latest     # pin in prod
+    image: lscr.io/linuxserver/speedtest-tracker:v1.14.1-ls150     # pin in prod
     container_name: speedtest-tracker
     restart: unless-stopped
     environment:
