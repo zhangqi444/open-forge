@@ -129,7 +129,7 @@ Config files in the mounted volume are preserved across upgrades. Check the rele
 - HOMEPAGE_ALLOWED_HOSTS is required: without it (or with the wrong value), Homepage returns a 400 error. Include port if non-default (e.g. homeserver:3000 or 192.168.1.100:3000).
 - Config changes require restart: YAML config file edits don't hot-reload in Docker. Restart the container: docker compose restart homepage.
 - Docker socket security: mounting /var/run/docker.sock gives Homepage read access to the Docker API. Running as non-root (PUID/PGID) does not limit socket access — use a Docker socket proxy (e.g. tecnativa/docker-socket-proxy) for stricter isolation.
-- :latest tag drift: Homepage releases frequently. Pin to a version tag (e.g. ghcr.io/gethomepage/homepage:v1.12.3) for predictable upgrades.
+- :latest tag drift: Homepage releases frequently. Pin to a version tag (e.g. ghcr.io/gethomepage/homepage:v1.13.1) for predictable upgrades.
 - Service widget API keys in config: env var substitution ({{HOMEPAGE_VAR_KEY}}) keeps keys out of YAML files on disk — use this pattern for all secrets.
 - ARM64 supported: the same image works on Raspberry Pi and Apple Silicon without a separate tag.
 - Docs site is authoritative: https://gethomepage.dev/ is the canonical reference for all service widgets, config options, and integration docs.
