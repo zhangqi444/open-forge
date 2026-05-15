@@ -110,7 +110,7 @@ spec:
 
 ```bash
 # In-place upgrade (re-run install script with new version)
-curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.32.0+k3s1 sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=v1.36.0+k3s1 sh -
 
 # Or use system-upgrade-controller for automated cluster upgrades
 # https://docs.k3s.io/upgrades/automated
