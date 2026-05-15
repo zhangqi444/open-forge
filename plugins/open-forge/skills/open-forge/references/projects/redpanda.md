@@ -34,7 +34,7 @@ Redpanda includes a built-in Schema Registry, HTTP Proxy (Pandaproxy), and Redpa
 version: "3.8"
 services:
   redpanda:
-    image: docker.redpanda.com/redpandadata/redpanda:latest
+    image: docker.redpanda.com/redpandadata/redpanda:v26.1.8
     command:
       - redpanda
       - start
@@ -59,7 +59,7 @@ services:
       - redpanda-data:/var/lib/redpanda/data
 
   console:
-    image: docker.redpanda.com/redpandadata/console:latest
+    image: docker.redpanda.com/redpandadata/console:v3.7.2
     environment:
       CONFIG_FILEPATH: /tmp/config.yml
     entrypoint: /bin/sh

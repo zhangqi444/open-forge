@@ -42,7 +42,7 @@ Redmine is a flexible, open-source project management and issue tracking web app
 version: "3.8"
 services:
   redmine:
-    image: redmine:latest
+    image: redmine:6.1.2
     container_name: redmine
     environment:
       REDMINE_DB_POSTGRES: db

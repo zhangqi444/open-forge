@@ -13,7 +13,7 @@ Self-host lets you own your resume data (useful for enterprises / privacy-consci
 
 | Service | Image | Purpose |
 |---|---|---|
-| `reactive_resume` | `amruthpillai/reactive-resume:latest` (or `ghcr.io/amruthpillai/reactive-resume:latest`) | Main Node.js app — web UI + API. Listens on `:3000`. |
+| `reactive_resume` | `amruthpillai/reactive-resume:v5.1.4` (or `ghcr.io/amruthpillai/reactive-resume:v5.1.4`) | Main Node.js app — web UI + API. Listens on `:3000`. |
 | `postgres` | `postgres:latest` | User accounts, resume data, versions. |
 | `browserless` | `ghcr.io/browserless/chromium:latest` | Headless Chromium exposed via WebSocket; renders PDFs on demand. (Alternative: `chromedp/headless-shell:latest`.) |
 | `seaweedfs` | `chrislusf/seaweedfs:latest` | S3-compatible object store for uploaded images + generated PDFs. |
@@ -123,7 +123,7 @@ services:
     # ... creates the reactive-resume bucket, then exits
 
   reactive_resume:
-    image: amruthpillai/reactive-resume:latest
+    image: amruthpillai/reactive-resume:v5.1.4
     ports: [ "3000:3000" ]
     environment:
       APP_URL: http://localhost:3000
@@ -213,7 +213,7 @@ Prisma migrations run automatically on `reactive_resume` startup. If migrations 
 - **SeaweedFS unauthenticated S3 on port 8333.** Exposed only on the `storage_network` by default — fine. If you map it to host, enable real auth first.
 - **RAM footprint is ~2 GB idle.** Chromium (Browserless) is the majority; Postgres + Node are small. Low-end VPS should pick a plan with ≥2 GB RAM.
 - **MIT license applies to the code**, but the templates shipped with the app may have their own licenses — check `LICENSE` and `apps/client/public/templates/` before redistributing.
-- **Version tag drift.** `amruthpillai/reactive-resume:latest` pulls the current main build. For production, pin a specific version from <https://github.com/AmruthPillai/Reactive-Resume/releases>.
+- **Version tag drift.** `amruthpillai/reactive-resume:v5.1.4` pulls the current main build. For production, pin a specific version from <https://github.com/AmruthPillai/Reactive-Resume/releases>.
 
 ## Links
 
