@@ -1,6 +1,6 @@
 # GlitchTip
 
-A self-hosted, open-source application monitoring platform compatible with Sentry's client SDKs. Collect JavaScript, Python, Ruby, Go, and other error events using any Sentry SDK — just point it at your GlitchTip instance. Also includes uptime monitoring and basic performance monitoring. Multi-user, multi-team, multi-project. Backed by PostgreSQL and Redis. Distributed via Docker.
+A self-hosted, open-source application monitoring platform compatible with Sentry's client SDKs. Collect JavaScript, Python, Ruby, Go, and other error events using any Sentry SDK — just point it at your GlitchTip instance. Also includes uptime monitoring and basic performance monitoring. Multi-user, multi-team, multi-project. Backed by PostgreSQL and Redis (Valkey optional for improved performance). Runs with as little as 512MB RAM. Distributed via Docker.
 
 - **GitLab (backend):** https://gitlab.com/glitchtip/glitchtip-backend
 - **Docker Hub:** https://hub.docker.com/r/glitchtip/glitchtip
@@ -13,7 +13,7 @@ A self-hosted, open-source application monitoring platform compatible with Sentr
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Any Docker host | Docker Compose | Requires PostgreSQL + Redis |
+| Any Docker host | Docker Compose | Requires PostgreSQL + Redis (Valkey is a drop-in alternative) |
 
 ---
 
@@ -41,7 +41,7 @@ A self-hosted, open-source application monitoring platform compatible with Sentr
 ## Software-Layer Concerns
 
 ### Architecture
-- **web** — Django REST API + serves frontend (single image: `glitchtip/glitchtip`)
+- **web** — Django 6 REST API (Python 3, async, typed) + serves frontend (single image: `glitchtip/glitchtip`)
 - **worker** — Celery task worker (same image, different command)
 - **migrate** — runs DB migrations on startup (same image, one-shot)
 - **postgresql** — PostgreSQL database
