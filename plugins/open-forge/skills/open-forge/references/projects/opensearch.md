@@ -45,7 +45,7 @@ Verified against upstream docs at <https://docs.opensearch.org/docs/latest/insta
 ```yaml
 services:
   opensearch:
-    image: opensearchproject/opensearch:latest
+    image: opensearchproject/opensearch:3.6.0
     container_name: opensearch
     environment:
       cluster.name: opensearch-cluster
@@ -68,7 +68,7 @@ services:
     restart: unless-stopped
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
+    image: opensearchproject/opensearch-dashboards:3.6.0
     container_name: opensearch-dashboards
     ports:
       - "5601:5601"

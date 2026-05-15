@@ -7,7 +7,7 @@
 - **Install docs:** https://www.openproject.org/docs/installation-and-operations/installation/
 - **License:** GPL-3.0
 - **Stars:** ~15k
-- **Latest release:** v17.3.1
+- **Latest release:** v17.4.0
 
 ---
 
