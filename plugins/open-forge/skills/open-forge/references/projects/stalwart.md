@@ -49,7 +49,7 @@ The same hard mail-hosting prerequisites apply: dedicated VPS with port 25 open,
 
 | Infra         | Runtime                                       | Notes                                                                     |
 | ------------- | --------------------------------------------- | ------------------------------------------------------------------------- |
-| Single VM     | Docker (`stalwartlabs/stalwart:v0.16.3`)        | **Recommended** for most self-hosts                                        |
+| Single VM     | Docker (`stalwartlabs/stalwart:v0.16.5`)        | **Recommended** for most self-hosts                                        |
 | Single VM     | Docker with FoundationDB image (`:v0.16-fdb`) | For FDB deployments                                                         |
 | Single VM     | Debian package / macOS / Windows native       | Packages at <https://stalw.art/download>                                    |
 | Kubernetes    | Community Helm                                  | Kubernetes + orchestration supported                                        |
@@ -83,7 +83,7 @@ docker run -d --name stalwart --restart unless-stopped \
   -p 110:110 -p 995:995 \
   -p 443:443 -p 8080:8080 \
   -e STALWART_RECOVERY_ADMIN="admin:$(openssl rand -base64 24 | tr -d /=+)" \
-  stalwartlabs/stalwart:v0.16.3    # pin; avoid :latest
+  stalwartlabs/stalwart:v0.16.5    # pin; avoid :latest
 ```
 
 Compose equivalent:
@@ -91,7 +91,7 @@ Compose equivalent:
 ```yaml
 services:
   stalwart:
-    image: stalwartlabs/stalwart:v0.16.3
+    image: stalwartlabs/stalwart:v0.16.5
     container_name: stalwart
     restart: unless-stopped
     environment:

@@ -35,7 +35,7 @@ Upstream: <https://docs.stirlingpdf.com>
 docker run -d \
   -p 8080:8080 \
   -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest
+  stirlingtools/stirling-pdf:2.10.1
 ```
 
 Access at http://localhost:8080.
@@ -46,7 +46,7 @@ For the fat image (extra fonts, full format support):
 docker run -d \
   -p 8080:8080 \
   -v ./stirling-data:/configs \
-  stirlingtools/stirling-pdf:latest-fat
+  stirlingtools/stirling-pdf:2.10.1-fat
 ```
 
 ## Docker Compose install
@@ -54,7 +54,7 @@ docker run -d \
 ```yaml
 services:
   stirling-pdf:
-    image: stirlingtools/stirling-pdf:latest
+    image: stirlingtools/stirling-pdf:2.10.1
     ports:
       - "8080:8080"
     volumes:
