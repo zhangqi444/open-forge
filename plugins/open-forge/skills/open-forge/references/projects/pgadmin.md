@@ -49,7 +49,7 @@ Features:
 
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Docker (web)**   | **`dpage/pgadmin4:latest`**                                     | **Easiest self-host**                                                              |
+| **Docker (web)**   | **`dpage/pgadmin4:9.15.0`**                                     | **Easiest self-host**                                                              |
 | Native packages    | Debian/Ubuntu/Fedora/RHEL via pgAdmin apt/yum repos                       | For bare-metal                                                                                   |
 | Desktop (Electron) | macOS/Win/Linux downloads                                                          | Single-user local                                                                          |
 | Python pip         | `pip install pgadmin4` (in venv)                                                                   | For embedded / CI                                                                                                 |
@@ -71,7 +71,7 @@ Features:
 ```yaml
 services:
   pgadmin:
-    image: dpage/pgadmin4:latest    # **pin version** in prod
+    image: dpage/pgadmin4:9.15.0    # **pin version** in prod
     restart: unless-stopped
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@example.com

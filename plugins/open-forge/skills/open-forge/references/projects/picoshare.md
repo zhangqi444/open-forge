@@ -65,7 +65,7 @@ docker run -d \
   -v "${PWD}/data:/data" \
   --name picoshare \
   --restart unless-stopped \
-  mtlynch/picoshare:latest        # **pin version in prod**
+  mtlynch/picoshare:1.5.1        # **pin version in prod**
 ```
 
 ## First boot

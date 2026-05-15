@@ -47,7 +47,7 @@ Built + maintained by **CaramelFur**. See repo license.
 version: '3'
 services:
   picsur:
-    image: ghcr.io/caramelfur/picsur:latest
+    image: ghcr.io/caramelfur/picsur:0.5.6
     container_name: picsur
     ports:
       - '8080:8080'

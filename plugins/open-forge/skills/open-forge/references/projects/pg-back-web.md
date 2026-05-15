@@ -58,7 +58,7 @@ Features (per README + common PG-backup tool features):
 ```yaml
 services:
   pgbackweb:
-    image: eduardolat/pgbackweb:latest        # **pin version; watch for UFO Backup rebrand images**
+    image: eduardolat/pgbackweb:0.5.1        # **pin version; watch for UFO Backup rebrand images**
     environment:
       PBW_ENCRYPTION_KEY: ${ENCRYPTION_KEY}
     volumes:

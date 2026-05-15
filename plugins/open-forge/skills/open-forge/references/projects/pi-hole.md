@@ -15,7 +15,7 @@ Pi-hole is **v6+ currently** (as of late 2024 / 2025). The v5 → v6 jump rewrot
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker Compose (`pihole/pihole:latest`) | <https://github.com/pi-hole/docker-pi-hole> · <https://hub.docker.com/r/pihole/pihole> | ✅ Recommended for self-host | Upstream-maintained official image. Most open-forge deploys land here. |
+| Docker Compose (`pihole/pihole:2026.05.0`) | <https://github.com/pi-hole/docker-pi-hole> · <https://hub.docker.com/r/pihole/pihole> | ✅ Recommended for self-host | Upstream-maintained official image. Most open-forge deploys land here. |
 | `docker run` | Same image, no compose | ✅ | Quick test / one-liner. Prefer Compose for persistence + readability. |
 | Native install (`curl | bash` AIO) | <https://install.pi-hole.net> (<https://github.com/pi-hole/pi-hole/blob/master/automated%20install/basic-install.sh>) | ✅ | Raspberry Pi / dedicated Linux box. Installs as systemd services. |
 | Build from source | `pi-hole/pi-hole` + `pi-hole/FTL` | ✅ | Dev. Not a user-facing install method. |
@@ -42,7 +42,7 @@ From upstream's README (`pi-hole/docker-pi-hole` on `master`):
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+    image: pihole/pihole:2026.05.0
     ports:
       - "53:53/tcp"
       - "53:53/udp"
