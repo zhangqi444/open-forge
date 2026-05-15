@@ -63,7 +63,7 @@ Features (per README; active-WIP):
 ```yaml
 services:
   stump:
-    image: aaronleopold/stump:latest        # **pin - early versions may be breaking**
+    image: aaronleopold/stump:0.1.2        # **pin - early versions may be breaking**
     volumes:
       - ./stump-config:/config
       - /media/books:/data:ro
