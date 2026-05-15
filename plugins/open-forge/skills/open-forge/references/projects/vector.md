@@ -86,7 +86,7 @@ sudo systemctl restart vector
 ```yaml
 services:
   vector:
-    image: timberio/vector:0.46.0-debian    # pin; see https://hub.docker.com/r/timberio/vector/tags
+    image: timberio/vector:0.55.0-debian    # pin; see https://hub.docker.com/r/timberio/vector/tags
     restart: unless-stopped
     volumes:
       - ./vector.yaml:/etc/vector/vector.yaml:ro

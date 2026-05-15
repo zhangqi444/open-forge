@@ -3,7 +3,7 @@
 **What it is:** Self-hosted IPTV player with a modern web interface. Streams M3U playlists with EPG (electronic program guide) data. Features multi-user management, TV guide, multi-view (watch multiple channels simultaneously), Chromecast support, DVR/recording, push notifications, FFMPEG transcoding (including GPU), and admin activity monitoring.
 
 **GitHub:** https://github.com/ardoviniandrea/ViniPlay  
-**Docker Hub:** `ardovini/viniplay:latest`  
+**Docker Hub:** `ardovini/viniplay:v0.11.0`  
 **License:** CC BY-NC-SA 4.0 (non-commercial)
 
 ---
@@ -58,7 +58,7 @@ All other configuration (M3U sources, EPG sources, user management, stream profi
 ```yaml
 services:
   viniplay:
-    image: ardovini/viniplay:latest
+    image: ardovini/viniplay:v0.11.0
     container_name: viniplay
     ports:
       - "8998:8998"

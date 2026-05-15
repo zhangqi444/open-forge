@@ -67,7 +67,7 @@ Features (per upstream README + docs):
 ```yaml
 services:
   viseron:
-    image: roflcoopter/viseron:latest        # **pin + pick accelerator variant**
+    image: roflcoopter/viseron:v3.5.3        # **pin + pick accelerator variant**
     container_name: viseron
     restart: unless-stopped
     ports:

@@ -42,7 +42,7 @@ Built with Rust (backend) + Vue.js (frontend). Container image available via Git
 ### Image
 
 ```
-ghcr.io/7ritn/vaultls:latest
+ghcr.io/7ritn/vaultls:v1.1.1
 ```
 
 ### Compose
@@ -50,7 +50,7 @@ ghcr.io/7ritn/vaultls:latest
 ```yaml
 services:
   vaultls:
-    image: ghcr.io/7ritn/vaultls:latest
+    image: ghcr.io/7ritn/vaultls:v1.1.1
     restart: unless-stopped
     ports:
       - "5173:80"

@@ -84,7 +84,7 @@ docker run -d --name valkey \
   -p 6379:6379 \
   -v valkey_data:/data \
   --restart unless-stopped \
-  valkey/valkey:8.1-alpine \
+  valkey/valkey:8.1.7-alpine \
   valkey-server \
     --requirepass "<strong-password>" \
     --maxmemory 2gb \
@@ -101,7 +101,7 @@ docker exec -it valkey valkey-cli -a '<strong-password>' PING
 ```yaml
 services:
   valkey:
-    image: valkey/valkey:8.1-alpine
+    image: valkey/valkey:8.1.7-alpine
     restart: unless-stopped
     command:
       - "valkey-server"

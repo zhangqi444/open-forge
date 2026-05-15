@@ -65,7 +65,7 @@ Or docker-compose (community):
 ```yaml
 services:
   versitygw:
-    image: versity/versitygw:latest        # **check for official image**
+    image: versity/versitygw:v1.4.1        # **check for official image**
     environment:
       ROOT_ACCESS_KEY: ${ROOT_ACCESS_KEY}
       ROOT_SECRET_KEY: ${ROOT_SECRET_KEY}

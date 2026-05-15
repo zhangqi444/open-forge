@@ -41,7 +41,7 @@ Headless, open-source e-commerce framework built on TypeScript, Node.js, NestJS,
 ```yaml
 services:
   vendure:
-    image: vendure/vendure:latest
+    image: vendure/vendure:3.6.3
     depends_on:
       - postgres
     environment:

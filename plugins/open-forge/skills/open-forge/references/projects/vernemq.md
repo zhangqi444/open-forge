@@ -51,7 +51,7 @@ Features:
 
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Docker**         | **`vernemq/vernemq:latest`**                                   | **Primary self-host path**                                                         |
+| **Docker**         | **`vernemq/vernemq:2.1.2`**                                   | **Primary self-host path**                                                         |
 | .deb / .rpm        | Binary packages for Debian/Ubuntu/RHEL                                    | Traditional install                                                                                   |
 | Kubernetes         | Helm charts + StatefulSet pattern                                                               | For production clusters                                                                                                 |
 | Source build       | Erlang toolchain + `make rel`                                                                                 | For dev / custom builds                                                                                                             |
@@ -72,7 +72,7 @@ Features:
 ```yaml
 services:
   vernemq:
-    image: vernemq/vernemq:latest   # **pin to a specific version in prod**
+    image: vernemq/vernemq:2.1.2   # **pin to a specific version in prod**
     restart: unless-stopped
     environment:
       - DOCKER_VERNEMQ_ACCEPT_EULA=yes
