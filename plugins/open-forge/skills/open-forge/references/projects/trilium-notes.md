@@ -22,7 +22,7 @@ AGPL-3.0 hierarchical note-taking + knowledge-base app. Upstream (active fork): 
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker Compose (`triliumnext/trilium:latest`) | <https://github.com/TriliumNext/Trilium/blob/main/docker-compose.yml> | ✅ Recommended | Most self-hosted deploys land here. |
+| Docker Compose (`triliumnext/trilium:v0.103.0`) | <https://github.com/TriliumNext/Trilium/blob/main/docker-compose.yml> | ✅ Recommended | Most self-hosted deploys land here. |
 | Docker `docker run` | Same image | ✅ | Quick test. |
 | Desktop app (Electron) | <https://github.com/TriliumNext/Trilium/releases> | ✅ | Local-only notes OR desktop client syncing to self-hosted server. |
 | Source install (`pnpm install && pnpm run electron-rebuild`) | <https://docs.triliumnotes.org/user-guide/setup/server/installation> | ✅ | Contributors / custom builds. |
@@ -47,7 +47,7 @@ AGPL-3.0 hierarchical note-taking + knowledge-base app. Upstream (active fork): 
 # docker-compose.yml — from TriliumNext/Trilium on main
 services:
   trilium:
-    image: triliumnext/trilium:latest     # pin a version like v0.90.3 for production
+    image: triliumnext/trilium:v0.103.0     # pin a version like v0.103.0 for production
     restart: unless-stopped
     environment:
       - TRILIUM_DATA_DIR=/home/node/trilium-data
@@ -80,7 +80,7 @@ docker run -d \
   -v /etc/timezone:/etc/timezone:ro \
   -v /etc/localtime:/etc/localtime:ro \
   --restart unless-stopped \
-  triliumnext/trilium:latest
+  triliumnext/trilium:v0.103.0
 ```
 
 ## Install — Desktop app
@@ -178,7 +178,7 @@ Built-in update check. In-app prompt on new release.
 
 ## Gotchas
 
-- **zadam/trilium is archived.** If a user's docker-compose references `zadam/trilium:latest`, migrate to `triliumnext/trilium:latest` — same data dir format, drop-in replacement. Don't leave them on an unmaintained image.
+- **zadam/trilium is archived.** If a user's docker-compose references `zadam/trilium:latest`, migrate to `triliumnext/trilium:v0.103.0` — same data dir format, drop-in replacement. Don't leave them on an unmaintained image.
 - **No default credentials shipped.** First visit asks you to set a password. Before that screen, the instance is unlocked — anyone with network access during the first few seconds can claim admin. Firewall the port until you've completed first-run setup, or run first-run on localhost only.
 - **SQLite single-writer.** Single user on the server is fine; multi-user write contention is not the target workload. For a team knowledge base, use Trilium as personal notes + BookStack / Outline as the shared KB.
 - **Sync uses HTTPS with cert validation.** Plain-HTTP sync is blocked by default on desktop clients. Deploy behind Caddy / Let's Encrypt; self-signed works but requires a toggle in client options.

@@ -86,7 +86,7 @@ sudo systemctl start traccar
 ```yaml
 services:
   traccar:
-    image: traccar/traccar:ubuntu              # pin specific version in prod
+    image: traccar/traccar:6.13.3-debian              # pin specific version in prod
     container_name: traccar
     restart: unless-stopped
     ports:

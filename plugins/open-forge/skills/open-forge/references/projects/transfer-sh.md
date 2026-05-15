@@ -36,7 +36,7 @@ Easy and fast file sharing from the command line. Upload a file with curl, get b
 docker run -d \
   --publish 8080:8080 \
   --name transfer-sh \
-  dutchcoders/transfer.sh:latest-noroot \
+  dutchcoders/transfer.sh:v1.6.1-noroot \
   --provider local \
   --basedir /tmp/
 
@@ -45,7 +45,7 @@ docker run -d \
   --publish 8080:8080 \
   --name transfer-sh \
   -v /opt/transfer-data:/data \
-  dutchcoders/transfer.sh:latest-noroot \
+  dutchcoders/transfer.sh:v1.6.1-noroot \
   --provider local \
   --basedir /data
 ```
@@ -57,7 +57,7 @@ docker run -d \
 ```yaml
 services:
   transfer-sh:
-    image: dutchcoders/transfer.sh:latest-noroot
+    image: dutchcoders/transfer.sh:v1.6.1-noroot
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -77,7 +77,7 @@ volumes:
 docker run -d \
   --publish 8080:8080 \
   --name transfer-sh \
-  dutchcoders/transfer.sh:latest-noroot \
+  dutchcoders/transfer.sh:v1.6.1-noroot \
   --provider s3 \
   --aws-access-key YOUR_ACCESS_KEY \
   --aws-secret-key YOUR_SECRET_KEY \
@@ -91,7 +91,7 @@ For **MinIO or other S3-compatible storage**, add `--s3-endpoint`:
 docker run -d \
   --publish 8080:8080 \
   --name transfer-sh \
-  dutchcoders/transfer.sh:latest-noroot \
+  dutchcoders/transfer.sh:v1.6.1-noroot \
   --provider s3 \
   --aws-access-key minio-access-key \
   --aws-secret-key minio-secret-key \
@@ -184,7 +184,7 @@ server {
 ## Upgrade procedure
 
 ```bash
-docker pull dutchcoders/transfer.sh:latest-noroot
+docker pull dutchcoders/transfer.sh:v1.6.1-noroot
 docker compose up -d
 ```
 

@@ -43,7 +43,7 @@ Built + maintained by **the traggo team**.
 ```yaml
 services:
   traggo:
-    image: traggo/server:latest
+    image: traggo/server:0.8.3
     container_name: traggo
     ports:
       - "3030:3030"

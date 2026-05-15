@@ -167,7 +167,7 @@ The `loadbalancer.server.port` label is **required** if the container exposes mu
 
 ```bash
 # 1. Pick version + arch from https://github.com/traefik/traefik/releases
-TRAEFIK_VERSION="v3.2.1"
+TRAEFIK_VERSION="v3.7.1"
 ARCH="linux_amd64"
 
 # 2. Download + install
