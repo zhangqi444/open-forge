@@ -102,6 +102,8 @@ sudo tar czf ferron-$(date +%F).tgz ferron-config/ ferron-data/
 
 ## Gotchas
 
+- **⚠️ VERSION NOTE — Use Ferron 2.x**: The default `main` branch (1.x) is under maintenance mode. Upstream recommends using [Ferron 2](https://github.com/ferronweb/ferron/tree/develop-2.x) instead. Pin Docker image to a `2.x` release tag or use the `develop-2.x` branch.
+
 - **156th HUB-OF-CREDENTIALS CROWN-JEWEL TIER 1 — EDGE-PROXY CREDS**:
   - Let's Encrypt private keys for ALL domains
   - Backend server credentials (if basic-auth etc.)
