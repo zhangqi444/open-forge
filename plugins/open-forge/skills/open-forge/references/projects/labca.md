@@ -34,7 +34,7 @@ LabCA wraps Boulder in a single Docker Compose stack and adds a web GUI for cert
 |---|---|---|
 | preflight | What FQDN will LabCA be accessible at? (e.g. labca.internal.example.com) | Must resolve in DNS before starting. Set as LABCA_FQDN |
 | preflight | Is that hostname already in your local DNS? | LabCA will fail setup if DNS doesn't resolve |
-| deploy | Pin to a specific version, or use :latest? | :latest auto-updates; pinned version via LABCA_IMAGE_VERSION=v25.03 |
+| deploy | Pin to a specific version, or use :latest? | :latest auto-updates; pinned version via LABCA_IMAGE_VERSION=v26.04 |
 
 ---
 
@@ -84,13 +84,13 @@ After setup completes: **export and back up your Root CA and Issuer certificates
 To avoid auto-pulling `:latest` on each restart, set a version via `.env`:
 
 ```bash
-echo "LABCA_IMAGE_VERSION=v25.03" > labca.env
+echo "LABCA_IMAGE_VERSION=v26.04" > labca.env
 ```
 
 Or export before running compose:
 
 ```bash
-export LABCA_IMAGE_VERSION=v25.03
+export LABCA_IMAGE_VERSION=v26.04
 docker compose up -d
 ```
 
