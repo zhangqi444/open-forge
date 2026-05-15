@@ -114,7 +114,7 @@ docker compose up -d
 
 Tab data persists in `./data`.
 
-> Tag `1` is a floating tag (tracks latest 1.x release). Pin to a specific version tag (e.g., `louislam/its-mytabs:1.0.0`) for reproducible deployments.
+> Tag `1` is a floating tag (tracks latest 1.x release). Pin to a specific version tag (e.g., `louislam/its-mytabs:1.6.2`) for reproducible deployments.
 
 ## Gotchas
 
