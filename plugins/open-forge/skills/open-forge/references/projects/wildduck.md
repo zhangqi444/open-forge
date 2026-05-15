@@ -62,7 +62,7 @@ docker-compose logs -f wildduck
 ```yaml
 services:
   wildduck:
-    image: ghcr.io/zone-eu/wildduck:latest
+    image: ghcr.io/zone-eu/wildduck:v1.48.1
     restart: always
     ports:
       - "8080:8080"   # API

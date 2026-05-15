@@ -31,7 +31,7 @@ From <https://hub.docker.com/_/wordpress>:
 - `wordpress:<version>-fpm-alpine` — slim FPM variant
 - `wordpress:cli` — Alpine-based WP-CLI (does not run WordPress itself)
 
-Always **pin a major-minor** (e.g. `wordpress:6.7-apache`) instead of floating `latest` in production.
+Always **pin a major-minor** (e.g. `wordpress:6.9-apache`) instead of floating `latest` in production.
 
 ## Inputs to collect
 
@@ -53,7 +53,7 @@ Upstream's reference compose (from <https://github.com/docker-library/docs/blob/
 ```yaml
 services:
   wordpress:
-    image: wordpress:6.7-apache      # pin — don't use :latest
+    image: wordpress:6.9-apache      # pin — don't use :latest
     restart: always
     ports:
       - 8080:80

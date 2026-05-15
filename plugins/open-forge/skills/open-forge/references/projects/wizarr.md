@@ -60,7 +60,7 @@ Features (per README):
 ```yaml
 services:
   wizarr:
-    image: ghcr.io/wizarrrr/wizarr:latest        # **pin version**
+    image: ghcr.io/wizarrrr/wizarr:v2026.4.0        # **pin version**
     ports: ["5690:5690"]
     volumes:
       - wizarr-data:/data/database

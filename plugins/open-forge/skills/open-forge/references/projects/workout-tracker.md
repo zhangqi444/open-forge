@@ -34,7 +34,7 @@ Built + maintained by **jovandeginste**. MIT license.
 ```yaml
 services:
   workout-tracker:
-    image: ghcr.io/jovandeginste/workout-tracker:latest
+    image: ghcr.io/jovandeginste/workout-tracker:v2.6.0
     container_name: workout-tracker
     restart: unless-stopped
     ports:
@@ -54,7 +54,7 @@ Use `docker-compose.postgres.yaml` from the repo, or adapt:
 ```yaml
 services:
   workout-tracker:
-    image: ghcr.io/jovandeginste/workout-tracker:latest
+    image: ghcr.io/jovandeginste/workout-tracker:v2.6.0
     environment:
       - WT_JWT_ENCRYPTION_KEY=change_this_secret
       - WT_DATABASE_DRIVER=postgres

@@ -67,7 +67,7 @@ Typical stack: nginx + PHP-FPM + MySQL/MariaDB + Redis (object cache, optional) 
 ```yaml
 services:
   wordpress:
-    image: wordpress:6.8-php8.3-fpm-alpine    # pin WP + PHP version
+    image: wordpress:6.9-php8.3-fpm-alpine    # pin WP + PHP version
     container_name: wordpress
     restart: unless-stopped
     depends_on:

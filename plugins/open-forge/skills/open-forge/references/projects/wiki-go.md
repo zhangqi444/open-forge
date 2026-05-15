@@ -68,7 +68,7 @@
 ```yaml
 services:
   wiki-go:
-    image: ghcr.io/leomoon-studios/wiki-go:latest
+    image: ghcr.io/leomoon-studios/wiki-go:v1.8.9
     container_name: wiki-go
     ports:
       - "8080:8080"

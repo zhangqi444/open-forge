@@ -29,7 +29,7 @@ GitHub: https://github.com/Trugamr/wol
 ```yaml
 services:
   wol:
-    image: ghcr.io/trugamr/wol:latest
+    image: ghcr.io/trugamr/wol:v0.1.0
     command: serve
     network_mode: "host"
     volumes:

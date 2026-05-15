@@ -3,7 +3,7 @@
 **What it is:** Self-hosted shareable wishlist app for friends and family. Users add items to their wishlist; others can claim items to avoid gift duplication. Supports multiple groups, Registry Mode (single public list, no account required for claimers), item suggestions with approval workflows, auto-fetch of product data from URLs, OAuth, SMTP invites, and PWA.
 
 **GitHub:** https://github.com/cmintey/wishlist  
-**Docker image:** `ghcr.io/cmintey/wishlist:latest`  
+**Docker image:** `ghcr.io/cmintey/wishlist:v0.64.1`  
 **Helm chart:** https://github.com/mddeff/wishlist-charts (community)
 
 ---
@@ -70,7 +70,7 @@
 services:
   wishlist:
     container_name: wishlist
-    image: ghcr.io/cmintey/wishlist:latest
+    image: ghcr.io/cmintey/wishlist:v0.64.1
     ports:
       - "3280:3280"
     volumes:
