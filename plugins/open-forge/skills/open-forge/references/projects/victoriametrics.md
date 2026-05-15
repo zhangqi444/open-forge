@@ -76,7 +76,7 @@ If you already have Prometheus scraping and just want long-term storage:
 ```yaml
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.142.0
+    image: victoriametrics/victoria-metrics:v1.143.0
     container_name: victoriametrics
     restart: unless-stopped
     ports:
@@ -134,7 +134,7 @@ Live-consistent snapshots via HTTP API — no downtime:
 # Create snapshot
 curl http://victoriametrics:8428/snapshot/create
 # Upload to S3 (production path)
-docker run --rm victoriametrics/vmbackup:v1.142.0 \
+docker run --rm victoriametrics/vmbackup:v1.143.0 \
   -storageDataPath=/storage \
   -snapshotName=<name> \
   -dst=s3://bucket/vm-backups/$(date +%F)

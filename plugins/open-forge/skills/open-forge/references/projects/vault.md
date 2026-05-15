@@ -76,7 +76,7 @@ ui = true
 ```yaml
 services:
   vault:
-    image: hashicorp/vault:latest
+    image: hashicorp/vault:2.0.0
     cap_add:
       - IPC_LOCK
     ports:

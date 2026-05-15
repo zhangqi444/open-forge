@@ -43,7 +43,7 @@ Per upstream README's `## Usage` section.
 
 ```bash
 # 1. Pull + run (single container)
-docker pull vaultwarden/server:latest
+docker pull vaultwarden/server:1.36.0
 
 mkdir -p /vw-data
 docker run -d \
@@ -52,7 +52,7 @@ docker run -d \
   --env DOMAIN="https://${CANONICAL_HOST}" \
   --volume /vw-data/:/data/ \
   --publish 127.0.0.1:8000:80 \
-  vaultwarden/server:latest
+  vaultwarden/server:1.36.0
 ```
 
 Binding to `127.0.0.1:8000` (NOT `0.0.0.0:8000`) is intentional — the reverse proxy on the same host will front it over HTTPS. Never expose Vaultwarden's plaintext port publicly.
@@ -63,7 +63,7 @@ Binding to `127.0.0.1:8000` (NOT `0.0.0.0:8000`) is intentional — the reverse 
 # compose.yaml
 services:
   vaultwarden:
-    image: vaultwarden/server:latest
+    image: vaultwarden/server:1.36.0
     container_name: vaultwarden
     restart: unless-stopped
     environment:
@@ -105,8 +105,8 @@ Upstream publishes multiple tag shapes — see <https://github.com/dani-garcia/v
 Three mirrors, same content:
 
 - `ghcr.io/dani-garcia/vaultwarden:latest` (GitHub Container Registry)
-- `docker.io/vaultwarden/server:latest` (Docker Hub)
-- `quay.io/vaultwarden/server:latest` (Red Hat Quay)
+- `docker.io/vaultwarden/server:1.36.0` (Docker Hub)
+- `quay.io/vaultwarden/server:1.36.0` (Red Hat Quay)
 
 Pick whichever has fewer pull-rate issues.
 
@@ -205,7 +205,7 @@ Mobile clients won't get real-time push without `PUSH_ENABLED=true` + registerin
 
 ```bash
 # Docker
-docker pull vaultwarden/server:latest
+docker pull vaultwarden/server:1.36.0
 docker stop vaultwarden && docker rm vaultwarden
 # Re-run the same `docker run` command above (or `docker compose pull && docker compose up -d`)
 ```

@@ -30,7 +30,7 @@ Fast, cost-effective, scalable monitoring solution for time-series data. Drop-in
 version: "3.9"
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics:latest
+    image: victoriametrics/victoria-metrics:v1.143.0
     restart: unless-stopped
     ports:
       - "8428:8428"    # HTTP: query API, push endpoint, UI
