@@ -49,7 +49,7 @@ services:
     entrypoint: memcached -m 256
 
   seafile:
-    image: seafileltd/seafile-mc:12.0-latest
+    image: seafileltd/seafile-mc:13.0-latest
     container_name: seafile
     restart: unless-stopped
     ports:

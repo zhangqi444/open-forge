@@ -45,7 +45,7 @@ Upstream: <https://github.com/seatsurfing/seatsurfing> | Docs: <https://seatsurf
 ```yaml
 services:
   server:
-    image: ghcr.io/seatsurfing/backend
+    image: ghcr.io/seatsurfing/backend:v1.91.1
     restart: always
     networks:
       - sql

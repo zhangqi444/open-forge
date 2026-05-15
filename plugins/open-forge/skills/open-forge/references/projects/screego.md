@@ -10,7 +10,7 @@ Verified against upstream docs at <https://screego.net/#/install>.
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker | `docker run -e ... screego/server:latest` | ✅ | Easiest path. |
+| Docker | `docker run -e ... screego/server:1.12.4` | ✅ | Easiest path. |
 | Docker Compose | See below | ✅ | Easier env management. |
 | Binary (Linux) | Download from GitHub releases | ✅ | No Docker. |
 | Reverse proxy (with SSL) | <https://screego.net/#/reverse-proxy> | ✅ | Production — TLS via Caddy/nginx/Traefik. |
@@ -30,7 +30,7 @@ Verified against upstream docs at <https://screego.net/#/install>.
 ```yaml
 services:
   screego:
-    image: ghcr.io/screego/server:latest
+    image: ghcr.io/screego/server:1.12.4
     ports:
       - "5050:5050"
       - "3478:3478/udp"
@@ -75,7 +75,7 @@ Generate a bcrypt password hash for users:
 htpasswd -bnBC 10 "" "mypassword" | tr -d ':\n'
 
 # Option 2: Docker
-docker run --rm screego/server:latest hash --value "mypassword"
+docker run --rm screego/server:1.12.4 hash --value "mypassword"
 ```
 
 ### NAT traversal / TURN
@@ -118,7 +118,7 @@ Set `SCREEGO_TRUST_PROXY_HEADERS=true` when behind a proxy so users get correct 
 ## Upgrade procedure
 
 ```bash
-docker pull ghcr.io/screego/server:latest
+docker pull ghcr.io/screego/server:1.12.4
 docker compose up -d
 ```
 
