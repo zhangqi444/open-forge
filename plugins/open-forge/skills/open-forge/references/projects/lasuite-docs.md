@@ -19,7 +19,7 @@ La Suite Docs is an open-source alternative to Notion or Google Docs, built for 
 Built by the French government's "La Suite Numérique" program. Production-grade and actively maintained.
 
 - Upstream repo: <https://github.com/suitenumerique/docs>
-- Latest release: v5.0.0 (check <https://github.com/suitenumerique/docs/releases>)
+- Latest release: v5.1.0 (check <https://github.com/suitenumerique/docs/releases>)
 - Docker images: `lasuite/impress-backend`, `lasuite/impress-frontend`, `lasuite/impress-y-provider`
 - Docker Hub: <https://hub.docker.com/u/lasuite>
 - Demo: <https://docs.la-suite.eu/docs/9137bbb5-3e8a-4ff7-8a36-fcc4e8bd57f4/>
