@@ -94,7 +94,7 @@ Forward Email is a Node.js monorepo running multiple services:
 - **Port 25 must be open**: many cloud providers block port 25 (inbound SMTP). Check with your provider before attempting self-hosting.
 - **Reverse DNS (PTR) is critical**: without matching PTR record, outbound mail will be rejected by major providers (Gmail, Outlook).
 - **Complex dependency stack**: Node.js 18 exact version, Redis, SQLite, system packages. Not a trivial setup.
-- **License is BUSL-1.1**: the Business Source License restricts commercial use/competition with the hosted service. Self-hosting for personal/organizational use is permitted.
+- **License is BUSL-1.1 AND MPL-2.0**: BUSL-1.1 applies to the server-side code (restricts commercial competition with the hosted service — self-hosting for personal/organizational use is permitted); MPL-2.0 applies to client/library components.
 - **Encrypted mailboxes**: each alias has a passphrase-encrypted SQLite DB. Lost passphrase = lost mailbox. Back up both the SQLite files AND the passphrases.
 - **Spam/blocklist risk**: new mail servers almost always start on blocklists. Plan for a warm-up period and register with major postmaster portals.
 
