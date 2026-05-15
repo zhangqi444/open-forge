@@ -85,7 +85,7 @@ From upstream [`tools/docker/docker-compose.yml`](https://github.com/kopia/kopia
 ```yaml
 services:
   kopia:
-    image: kopia/kopia:0.22.3    # pin; :latest moves
+    image: kopia/kopia:0.23.0    # pin; :latest moves
     container_name: kopia
     user: "0:0"                   # needed to read arbitrary source files
     restart: unless-stopped

@@ -46,7 +46,7 @@ From <https://github.com/koel/docker/blob/master/docker-compose.mysql.yml> (valu
 ```yaml
 services:
   koel:
-    image: phanan/koel:v9.2.0          # pin; never rely on :latest in prod
+    image: phanan/koel:v9.2.1          # pin; never rely on :latest in prod
     depends_on:
       - database
     ports:
@@ -82,7 +82,7 @@ volumes:
 ### Generate `APP_KEY` before first run
 
 ```sh
-docker run --rm phanan/koel:v9.2.0 php artisan key:generate --show
+docker run --rm phanan/koel:v9.2.1 php artisan key:generate --show
 # output: base64:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
 ```
 
@@ -148,7 +148,7 @@ done
 3. `docker compose pull && docker compose up -d`.
 4. Container entrypoint re-runs `koel:init`; migrations apply automatically unless `SKIP_INIT=true`.
 5. For manual migrations: `docker exec -it <koel> php artisan migrate --force`.
-6. `master` branch docs may document features not in your tag — switch to the tag on GitHub for accurate docs: `https://github.com/koel/docker/tree/v9.2.0`.
+6. `master` branch docs may document features not in your tag — switch to the tag on GitHub for accurate docs: `https://github.com/koel/docker/tree/v9.2.1`.
 
 ## Gotchas
 
