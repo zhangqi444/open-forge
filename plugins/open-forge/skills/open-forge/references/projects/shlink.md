@@ -95,7 +95,7 @@ services:
       - ./db:/var/lib/mysql
 
   shlink-web-client:
-    image: shlinkio/shlink-web-client:latest
+    image: shlinkio/shlink-web-client:4.7.1
     restart: unless-stopped
     ports:
       - "8081:8080"

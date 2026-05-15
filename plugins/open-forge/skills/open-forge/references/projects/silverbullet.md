@@ -63,7 +63,7 @@ Features:
 ```yaml
 services:
   silverbullet:
-    image: zefhemel/silverbullet:latest                  # pin in prod
+    image: zefhemel/silverbullet:2.8.0                  # pin in prod
     container_name: silverbullet
     restart: unless-stopped
     environment:

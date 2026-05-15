@@ -60,7 +60,7 @@ docker run -d \
   -e PUID=1001 -e PGID=1002 \
   -e TZ=Europe/London \
   --restart unless-stopped \
-  b3log/siyuan \
+  b3log/siyuan:v3.6.5 \
   --workspace=/siyuan/workspace/ \
   --accessAuthCode='change-me-to-a-long-secret'
 ```
@@ -73,7 +73,7 @@ Visit `http://<host>:6806/` → prompts for the access auth code.
 # docker-compose.yml — based on upstream README
 services:
   siyuan:
-    image: b3log/siyuan
+    image: b3log/siyuan:v3.6.5
     container_name: siyuan
     command:
       - '--workspace=/siyuan/workspace/'

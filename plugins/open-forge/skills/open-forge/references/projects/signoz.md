@@ -31,7 +31,7 @@ From upstream `deploy/docker/docker-compose.yaml`:
 | `init-clickhouse` | `clickhouse/clickhouse-server:25.5.6` | One-shot: fetches + installs `histogram-quantile` UDF binary into ClickHouse user_scripts. |
 | `zookeeper-1` | `signoz/zookeeper:3.7.1` | ClickHouse coordination (single node OK; cluster in HA mode). |
 | `clickhouse` | `clickhouse/clickhouse-server:25.5.6` | Column-store DB — all telemetry data (traces, logs, metrics). |
-| `signoz` | `signoz/signoz:v0.120.0` | Main app — UI, query engine, alertmanager (built-in), auth. SQLite meta-store. |
+| `signoz` | `signoz/signoz:v0.124.0` | Main app — UI, query engine, alertmanager (built-in), auth. SQLite meta-store. |
 | `otel-collector` | `signoz/signoz-otel-collector:v0.144.3` | OTLP receiver on `:4317` (gRPC) + `:4318` (HTTP); writes to ClickHouse. |
 | `signoz-telemetrystore-migrator` | `signoz/signoz-otel-collector:v0.144.3` | One-shot ClickHouse schema migrations. |
 
