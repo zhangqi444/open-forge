@@ -53,7 +53,7 @@ Follow: <http://bpatrik.github.io/pigallery2/setup/docker>
 ```yaml
 services:
   pigallery2:
-    image: bpatrik/pigallery2:latest        # **pin version**
+    image: bpatrik/pigallery2:3.5.2        # **pin version**
     volumes:
       - ./pigallery2-config:/app/data/config
       - ./pigallery2-db:/app/data/db

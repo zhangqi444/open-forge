@@ -57,7 +57,7 @@
 ```yaml
 services:
   planarally:
-    image: kruptein/planarally:latest
+    image: kruptein/planarally:v2026.1.2
     container_name: planarally
     ports:
       - "8000:8000"

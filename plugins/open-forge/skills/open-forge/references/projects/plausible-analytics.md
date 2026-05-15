@@ -40,7 +40,7 @@ Lightweight, privacy-friendly web analytics. Plausible Community Edition (CE) is
 
 ### Quick start
 ```sh
-git clone -b v2.1.4 --single-branch https://github.com/plausible/community-edition plausible-ce
+git clone -b v3.2.1 --single-branch https://github.com/plausible/community-edition plausible-ce
 cd plausible-ce
 
 # Create .env
@@ -66,7 +66,7 @@ Visit `$BASE_URL` and create the first user account.
 ### Services
 | Service | Image | Role |
 |---------|-------|------|
-| `plausible` | `ghcr.io/plausible/community-edition:v2.1.4` | Main app server |
+| `plausible` | `ghcr.io/plausible/community-edition:v3.2.1` | Main app server |
 | `plausible_db` | `postgres:16-alpine` | User data and site config |
 | `plausible_events_db` | `clickhouse/clickhouse-server:24.3.3.102-alpine` | Event data (pageviews, etc.) |
 
@@ -107,7 +107,7 @@ If using nginx/Traefik in front of Plausible:
 - **ClickHouse requires SSE 4.2 / NEON** — modern CPUs are fine; very old VMs or some ARM boards may fail to start ClickHouse
 - **AGPL-3.0 license** — modifications must be open-sourced if offered as a network service
 - **Two databases required** — Postgres stores users/config; ClickHouse stores all event data; both must be backed up
-- **Pin to a release tag** — always clone a specific version tag (`-b v2.1.4`) rather than `main`; `main` may be unstable
+- **Pin to a release tag** — always clone a specific version tag (`-b v3.2.1`) rather than `main`; `main` may be unstable
 - **DISABLE_REGISTRATION** — set to `true` after creating your account to prevent unauthorized signups on public instances
 - **SECRET_KEY_BASE must not change** — changing it invalidates all active sessions and API keys
 

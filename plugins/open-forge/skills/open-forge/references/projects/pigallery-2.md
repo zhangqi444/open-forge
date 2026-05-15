@@ -73,13 +73,13 @@ PiGallery 2 provides a lightweight photo gallery:
     -v /path/to/photos:/app/data/images:ro \
     -v ./config:/app/data/config \
     -v ./cache:/app/data/cache \
-    bpatrik/pigallery2:latest
+    bpatrik/pigallery2:3.5.2
 
 ### Docker Compose
   version: '3'
   services:
     pigallery2:
-      image: bpatrik/pigallery2:latest
+      image: bpatrik/pigallery2:3.5.2
       container_name: pigallery2
       restart: unless-stopped
       ports:
@@ -108,7 +108,7 @@ First run: log in with admin / admin, then change password in settings.
 
 ## Upgrade procedure
 
-1. docker pull bpatrik/pigallery2:latest
+1. docker pull bpatrik/pigallery2:3.5.2
 2. docker compose up -d --force-recreate pigallery2
 3. No database migration needed for most updates — thumbnail cache is regenerated on demand
 
