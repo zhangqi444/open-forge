@@ -48,7 +48,7 @@ Built + maintained by **Go Lift**. MIT license.
 ```yaml
 services:
   unpackerr:
-    image: golift/unpackerr:latest
+    image: golift/unpackerr:0.15.2
     container_name: unpackerr
     volumes:
       - /data/downloads:/data/downloads    # same path as download client

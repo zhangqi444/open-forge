@@ -46,7 +46,7 @@ From the official repo:
 ```yaml
 services:
   web:
-    image: unleashorg/unleash-server:latest
+    image: unleashorg/unleash-server:7.6.4
     ports:
       - "4242:4242"
     environment:
@@ -84,7 +84,7 @@ Default access: `http://localhost:4242` — login `admin` / `unleash4all`.
 ```yaml
 services:
   unleash:
-    image: unleashorg/unleash-server:latest
+    image: unleashorg/unleash-server:7.6.4
     ports:
       - "4242:4242"
     environment:

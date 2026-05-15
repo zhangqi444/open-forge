@@ -82,7 +82,7 @@ services:
     image: redis:6.2.2-alpine
 
   uptrace:
-    image: uptrace/uptrace:2.1.0-beta.5
+    image: uptrace/uptrace:2.0.3
     ports:
       - '14317:4317'   # OTLP gRPC
       - '14318:80'     # Web UI + OTLP HTTP

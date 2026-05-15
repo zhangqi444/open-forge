@@ -45,7 +45,7 @@ Upstream's `docker-compose.yml` on `master`:
 ```yaml
 services:
   umami:
-    image: ghcr.io/umami-software/umami:latest
+    image: ghcr.io/umami-software/umami:v3.1.0
     ports:
       - "3000:3000"
     environment:
@@ -107,7 +107,7 @@ docker run -d \
   -e DATABASE_URL='postgresql://umami:xxx@db.internal:5432/umami' \
   -e APP_SECRET='<generated>' \
   --restart unless-stopped \
-  ghcr.io/umami-software/umami:latest
+  ghcr.io/umami-software/umami:v3.1.0
 ```
 
 On first boot, Umami runs its own Prisma migrations and creates tables + the default admin.
@@ -204,7 +204,7 @@ pnpm start
 - **Rotating `APP_SECRET` invalidates all sessions.** All users get logged out and must re-login. That's the intended behavior but surprises admins mid-day.
 - **Ad-blockers block `/script.js` and `/api/send`.** Many uBlock lists ship Umami signatures now. Rename via `TRACKER_SCRIPT_NAME` + `COLLECT_API_ENDPOINT` env vars, or proxy the endpoints through your own domain's paths (e.g. `/_analytics/script.js`), which defeats naive path-based blocklists but not signature-based ones.
 - **v1 → v2 data migration was painful.** If you're still on Umami v1 (pre-2023), upgrading to v2 requires running a separate migration script, not just a `docker compose pull`. Read <https://umami.is/docs/migrate-v1-v2> first.
-- **`latest` tag drift.** Auto-updaters like Watchtower can bring in a breaking migration. Pin a version tag (`ghcr.io/umami-software/umami:v2.15`) in production.
+- **`latest` tag drift.** Auto-updaters like Watchtower can bring in a breaking migration. Pin a version tag (`ghcr.io/umami-software/umami:v3.1.0`) in production.
 - **PostgreSQL 15+ required.** Older PG versions (12/13) still work but upstream dev is tested against 15+. Compose ships `postgres:15-alpine`.
 - **No built-in TLS.** Terminate at reverse proxy. With a proxy, set `CLIENT_IP_HEADER=X-Forwarded-For` (or `X-Real-IP`) so Umami gets the client's real IP for geo lookups.
 - **Trailing-slash double-counts.** `/` and `""` register as different URLs by default. Set `REMOVE_TRAILING_SLASH=1` to normalize, or accept it.
