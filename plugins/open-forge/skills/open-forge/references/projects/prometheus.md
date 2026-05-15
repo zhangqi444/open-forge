@@ -146,7 +146,7 @@ docker run -d \
   -p 9090:9090 \
   -v /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro \
   -v /var/lib/prometheus:/prometheus \
-  prom/prometheus:latest \
+  prom/prometheus:v3.11.3 \
   --config.file=/etc/prometheus/prometheus.yml \
   --storage.tsdb.path=/prometheus \
   --storage.tsdb.retention.time=15d \
@@ -212,7 +212,7 @@ sudo systemctl start prometheus
 # Schema migrations happen transparently; TSDB format is backward-compatible within major versions.
 
 # Docker
-docker pull prom/prometheus:latest
+docker pull prom/prometheus:v3.11.3
 docker stop prometheus && docker rm prometheus
 # Re-run docker run with the new image.
 ```

@@ -55,7 +55,7 @@ sudo pufferpanel user add --admin --email admin@example.com --username admin --p
 ```yaml
 services:
   pufferpanel:
-    image: pufferpanel/pufferpanel:latest
+    image: pufferpanel/pufferpanel:3.0.7
     restart: unless-stopped
     ports:
       - 8080:8080

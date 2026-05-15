@@ -37,7 +37,7 @@ Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels. Node E
 ```yaml
 services:
   node_exporter:
-    image: quay.io/prometheus/node-exporter:latest
+    image: quay.io/prometheus/node-exporter:v1.11.1
     container_name: node_exporter
     command:
       - '--path.rootfs=/host'

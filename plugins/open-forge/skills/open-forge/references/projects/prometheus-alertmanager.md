@@ -34,7 +34,7 @@ Handles alerts fired by Prometheus (and other compatible sources). Deduplicates 
 ```yaml
 services:
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.11.3
     container_name: prometheus
     restart: unless-stopped
     ports:
@@ -47,7 +47,7 @@ services:
       - '--alertmanager.url=http://alertmanager:9093'
 
   alertmanager:
-    image: prom/alertmanager:latest
+    image: prom/alertmanager:v0.32.1
     container_name: alertmanager
     restart: unless-stopped
     ports:

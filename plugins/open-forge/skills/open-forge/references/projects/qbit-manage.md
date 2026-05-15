@@ -49,7 +49,7 @@ Built + maintained by **StuffAnThings / bobokun**. Supported on Notifiarr Discor
 ```yaml
 services:
   qbit-manage:
-    image: bobokun/qbit_manage:latest
+    image: bobokun/qbit_manage:v4.7.0
     container_name: qbit-manage
     volumes:
       - ./qbm-config:/config         # config.yml lives here
