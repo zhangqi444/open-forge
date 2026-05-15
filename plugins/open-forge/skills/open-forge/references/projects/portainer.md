@@ -53,7 +53,7 @@ docker run -d \
   -p 8000:8000 \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v portainer_data:/data \
-  portainer/portainer-ce:latest
+  portainer/portainer-ce:2.41.1
 ```
 
 Or as Compose (preferred for long-term):
@@ -62,7 +62,7 @@ Or as Compose (preferred for long-term):
 # compose.yaml
 services:
   portainer:
-    image: portainer/portainer-ce:latest   # pin an exact version in prod
+    image: portainer/portainer-ce:2.41.1   # pin an exact version in prod
     container_name: portainer
     restart: always
     ports:
@@ -89,7 +89,7 @@ Open `https://<host>:9443/` → accept the self-signed cert → create the initi
 # Hash a password (bcrypt) on your workstation
 htpasswd -nbB admin 'your-strong-password' | cut -d ':' -f 2 > /tmp/admin_password
 docker run --rm -v /tmp/admin_password:/tmp/admin_password:ro \
-  portainer/portainer-ce:latest \
+  portainer/portainer-ce:2.41.1 \
   --admin-password-file /tmp/admin_password
 ```
 

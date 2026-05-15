@@ -35,7 +35,7 @@ PocketBase listens on port `8090` by default. Because it ships as a self-contain
 # 1. Download the prebuilt executable for your platform from the releases page
 #    https://github.com/pocketbase/pocketbase/releases
 # Example for Linux amd64:
-PB_VERSION=0.23.0   # replace with latest from releases page
+PB_VERSION=0.38.1   # replace with latest from releases page
 wget "https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip"
 unzip pocketbase_${PB_VERSION}_linux_amd64.zip -d /opt/pocketbase
 

@@ -38,7 +38,7 @@ Upstream: <https://github.com/SamTV12345/PodFetch> | Docs: <https://samtv12345.g
 ### Image
 
 ```
-samuel19982/podfetch:latest
+samuel19982/podfetch:v5.1.1
 ```
 
 Docker Hub: <https://hub.docker.com/r/samuel19982/podfetch>
@@ -50,7 +50,7 @@ Use a specific tag or digest for stability, or pair with Watchtower for auto-upd
 ```yaml
 services:
   podfetch:
-    image: samuel19982/podfetch:latest
+    image: samuel19982/podfetch:v5.1.1
     user: ${UID:-1000}:${GID:-1000}
     restart: unless-stopped
     ports:
@@ -72,7 +72,7 @@ volumes:
 ```yaml
 services:
   podfetch:
-    image: samuel19982/podfetch:latest
+    image: samuel19982/podfetch:v5.1.1
     user: ${UID:-1000}:${GID:-1000}
     restart: unless-stopped
     ports:

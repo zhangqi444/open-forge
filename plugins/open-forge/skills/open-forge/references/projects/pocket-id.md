@@ -72,7 +72,7 @@ Features:
 ```yaml
 services:
   pocket-id:
-    image: ghcr.io/pocket-id/pocket-id:v2.6.2   # pin specific version
+    image: ghcr.io/pocket-id/pocket-id:v2.7.0   # pin specific version
     container_name: pocket-id
     restart: unless-stopped
     environment:
@@ -166,7 +166,7 @@ docker compose start pocket-id
 - **No LDAP / no AD sync** — Pocket ID is standalone; not designed to federate with corporate identity.
 - **No SAML** — OIDC only. Services that only speak SAML (old corporate apps) need a different IdP.
 - **No password fallback** — some services (Gitea, Nextcloud, Jellyfin) keep local passwords active by default when you also add OIDC. Disable local login if you want Pocket ID to be the only path.
-- **v2.x major upgrade** — v2.6.2 is current; v1→v2 is a major version change. Back up database before upgrading and read upstream release notes.
+- **v2.x major upgrade** — v2.7.0 is current; v1→v2 is a major version change. Back up database before upgrading and read upstream release notes.
 - **Commercial use**: MIT license is permissive; OK for companies.
 - **Alternatives worth knowing:**
   - **Keycloak** — feature-rich enterprise SSO; complex (separate recipe)
