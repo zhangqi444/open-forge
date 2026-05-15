@@ -45,7 +45,7 @@ GitHub: https://github.com/cpvalente/ontime
 services:
   ontime:
     container_name: ontime
-    image: getontime/ontime:latest
+    image: getontime/ontime:v4.8.0
     ports:
       - '4001:4001/tcp'
       - '8888:8888/udp'

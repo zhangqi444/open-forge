@@ -34,7 +34,7 @@ Example files in repo: `examples/compose-mariadb.yaml`, `examples/compose-postgr
 ```yaml
 services:
   openbudgeteer:
-    image: axelander/openbudgeteer:latest
+    image: axelander/openbudgeteer:1.11
     container_name: openbudgeteer
     ports:
       - "8081:80"
@@ -70,7 +70,7 @@ volumes:
 ```yaml
 services:
   openbudgeteer:
-    image: axelander/openbudgeteer:latest
+    image: axelander/openbudgeteer:1.11
     container_name: openbudgeteer
     ports:
       - "8081:80"
@@ -135,7 +135,7 @@ Visit `http://localhost:8081` after startup.
 
 ## Gotchas
 
-- **Example compose uses `openbudgeteer:pre-release` image.** Use `axelander/openbudgeteer:latest` (or a specific release tag) for production. The example compose files in the repo reference a local pre-release build.
+- **Example compose uses `openbudgeteer:pre-release` image.** Use `axelander/openbudgeteer:1.11` (or a specific release tag) for production. The example compose files in the repo reference a local pre-release build.
 - **Example compose uses an external `app-global` network.** If you don't have this external network, either create it (`docker network create app-global`) or remove the `networks` blocks and use the default bridge.
 - **SQLite path.** For SQLite, set `CONNECTION_PROVIDER=sqlite` and mount a volume for the SQLite file. See the docs for the exact path.
 - **No multi-user support.** OpenBudgeteer is a single-user app by design — no login screen or user management; expose behind a reverse proxy with auth.

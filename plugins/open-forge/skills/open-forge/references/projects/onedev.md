@@ -53,7 +53,7 @@ From <https://github.com/theonedev/onedev/blob/main/server-product/docker/docker
 ```yaml
 services:
   onedev:
-    image: 1dev/server:latest          # pin to specific release tag in production
+    image: 1dev/server:15.0.7          # pin to specific release tag in production
     restart: always
     ports:
       - "6610:6610"                    # HTTP
