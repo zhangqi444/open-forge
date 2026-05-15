@@ -48,7 +48,7 @@ volumes:
 
 services:
   app:
-    image: snipe/snipe-it:v8.4.1          # pin! :latest moves fast
+    image: snipe/snipe-it:v8.5.0          # pin! :latest moves fast
     restart: unless-stopped
     volumes:
       - storage:/var/lib/snipeit         # uploads, logs, backups

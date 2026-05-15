@@ -63,7 +63,7 @@ Linux-only production (macOS + Windows supported for dev).
 ```yaml
 services:
   sonarqube:
-    image: sonarqube:10.x.x-community     # pin; check Docker Hub
+    image: sonarqube:26.5.0.122743-community     # pin; check Docker Hub
     container_name: sonarqube
     restart: unless-stopped
     depends_on:

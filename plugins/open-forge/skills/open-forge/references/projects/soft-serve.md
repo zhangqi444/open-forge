@@ -104,7 +104,7 @@ WantedBy=multi-user.target
 ```yaml
 services:
   soft-serve:
-    image: charmcli/soft-serve:v0.x         # pin minor
+    image: charmcli/soft-serve:v0.11.6         # pin minor
     container_name: soft-serve
     restart: unless-stopped
     environment:

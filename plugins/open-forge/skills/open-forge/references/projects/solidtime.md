@@ -70,7 +70,7 @@ The `self-hosting-examples` repo is the canonical source. Outline:
 ```yaml
 services:
   solidtime:
-    image: solidtime/solidtime:1.x   # pin; check Docker Hub / GHCR
+    image: solidtime/solidtime:0.12.1   # pin; check Docker Hub / GHCR
     container_name: solidtime
     restart: unless-stopped
     depends_on:

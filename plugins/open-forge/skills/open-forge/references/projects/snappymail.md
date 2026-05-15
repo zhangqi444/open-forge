@@ -44,7 +44,7 @@ Built + maintained by **the-djmaze**. Replaces RainLoop (which is unmaintained).
 ```yaml
 services:
   snappymail:
-    image: djmaze/snappymail:latest
+    image: djmaze/snappymail:v2.38.2
     container_name: snappymail
     ports:
       - "8888:8888"

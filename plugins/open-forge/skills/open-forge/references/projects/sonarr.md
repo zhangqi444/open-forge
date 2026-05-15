@@ -47,7 +47,7 @@ Not a downloader itself; orchestrates indexers + download clients + media server
 ```yaml
 services:
   sonarr:
-    image: lscr.io/linuxserver/sonarr:4.0.17.2952-ls310    # pin; or use :latest for stable
+    image: lscr.io/linuxserver/sonarr:4.0.17.2952-ls311    # pin; or use :latest for stable
     container_name: sonarr
     restart: unless-stopped
     environment:
