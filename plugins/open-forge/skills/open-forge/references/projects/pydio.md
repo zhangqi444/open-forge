@@ -39,7 +39,7 @@ Pydio Cells provides a full enterprise file management platform:
 
 | Infra | Runtime | Notes |
 |-------|---------|-------|
-| Docker | Single container | pydio/cells:latest; recommended |
+| Docker | Single container | pydio/cells:4.4.17; recommended |
 | Docker Compose | cells + mysql/postgres | Production with external DB |
 | Bare metal | Go binary | Download from releases; self-contained |
 
@@ -67,7 +67,7 @@ Pydio Cells provides a full enterprise file management platform:
   docker run -d --name cells \
     -p 8080:8080 \
     -v cells_data:/var/cells \
-    pydio/cells:latest
+    pydio/cells:4.4.17
 
 Access at http://localhost:8080 — follow the web installer.
 
@@ -75,7 +75,7 @@ Access at http://localhost:8080 — follow the web installer.
   version: '3'
   services:
     cells:
-      image: pydio/cells:latest
+      image: pydio/cells:4.4.17
       restart: unless-stopped
       ports:
         - "8080:8080"
@@ -124,7 +124,7 @@ First run visits http://localhost:8080 for the web installer (configure DB, admi
 
 1. Backup database: mysqldump -u cells -p cells > backup.sql
 2. Backup /var/cells/data/ (file storage)
-3. docker pull pydio/cells:latest
+3. docker pull pydio/cells:4.4.17
 4. docker compose up -d --force-recreate cells
 5. Cells applies database migrations automatically on start
 6. Verify sync clients reconnect and file access works
