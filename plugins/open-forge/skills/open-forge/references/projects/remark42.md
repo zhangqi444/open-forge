@@ -103,7 +103,7 @@ Container exposes 8080 internally. Use reverse proxy for HTTPS.
   version: "2"
   services:
     remark42:
-      image: ghcr.io/umputun/remark42:latest
+      image: ghcr.io/umputun/remark42:v1.15.0
       container_name: remark42
       restart: always
       environment:
@@ -123,7 +123,7 @@ Add Nginx/Traefik in front for HTTPS (required for OAuth callbacks).
 
 ## Upgrade procedure
 
-1. Pull new image: docker pull ghcr.io/umputun/remark42:latest
+1. Pull new image: docker pull ghcr.io/umputun/remark42:v1.15.0
 2. Stop: docker compose stop remark42
 3. Start: docker compose up -d remark42
 4. Verify backup in ./var/backup/ was created on startup (auto-backup on version change)

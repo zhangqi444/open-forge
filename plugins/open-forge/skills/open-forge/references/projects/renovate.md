@@ -36,7 +36,7 @@ docker run --rm \
   -e RENOVATE_TOKEN=your_platform_token \
   -e RENOVATE_PLATFORM=github \
   -v /tmp/renovate:/tmp/renovate \
-  renovate/renovate:latest \
+  renovate/renovate:43.180 \
   owner/repo1 owner/repo2
 ```
 
@@ -45,7 +45,7 @@ docker run --rm \
 ```yaml
 services:
   renovate:
-    image: renovate/renovate:latest
+    image: renovate/renovate:43.180
     restart: "no"    # run once then exit; use cron or a loop to schedule
     environment:
       RENOVATE_TOKEN: your_platform_token
@@ -114,7 +114,7 @@ module.exports = {
 ## Upgrade procedure
 
 ```bash
-docker pull renovate/renovate:latest
+docker pull renovate/renovate:43.180
 # Re-run via cron or manually
 ```
 
