@@ -7,7 +7,7 @@ description: Recipe for LibreBooking — an open-source resource scheduling and 
 
 Open-source resource scheduling and reservation platform. Manage room bookings, equipment reservations, and any other shared resources. Supports multi-resource scheduling, waitlists, role-based access control, usage quotas, reporting, and calendar integration (iCal/Outlook). Fork of Booked Scheduler. Upstream: <https://github.com/LibreBooking/librebooking>. Docs: <https://librebooking.readthedocs.io/>.
 
-License: GPL-3.0. Platform: PHP 8.2+, MariaDB 10.6+, Docker. Latest stable: v4.3.0 (April 2026). Actively maintained.
+License: GPL-3.0. Platform: PHP 8.2+, MariaDB 10.6+, Docker. Latest stable: v5.0.2. Actively maintained.
 
 ## Compatible install methods
 
