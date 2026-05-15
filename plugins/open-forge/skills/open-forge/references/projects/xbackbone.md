@@ -35,7 +35,7 @@ Built + maintained by **SergiX44 (Sergio Brighenti)**. AGPL-3.0 license.
 ```yaml
 services:
   xbackbone:
-    image: ghcr.io/sergix44/xbackbone:latest
+    image: ghcr.io/sergix44/xbackbone:3.8.1
     container_name: xbackbone
     ports:
       - "80:80"

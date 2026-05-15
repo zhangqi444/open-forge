@@ -29,8 +29,8 @@ Features:
 - Donation: <https://www.paypal.com/donate/?hosted_button_id=BLAPT49PK9A8G>
 - Spotify dashboard (for app registration): <https://developer.spotify.com/dashboard/applications>
 - Docker images:
-  - `yooooomi/your_spotify_server`
-  - `yooooomi/your_spotify_client`
+  - `yooooomi/your_spotify_server:1.19.0`
+  - `yooooomi/your_spotify_client:1.19.0`
 - Releases: <https://github.com/Yooooomi/your_spotify/releases>
 
 ## Architecture in one minute
@@ -69,7 +69,7 @@ Features:
 ```yaml
 services:
   server:
-    image: yooooomi/your_spotify_server               # pin version in prod
+    image: yooooomi/your_spotify_server:1.19.0               # pin version in prod
     restart: always
     ports: ["8080:8080"]
     depends_on: [mongo]
@@ -84,7 +84,7 @@ services:
     volumes:
       - ./your_spotify_db:/data/db
   web:
-    image: yooooomi/your_spotify_client
+    image: yooooomi/your_spotify_client:1.19.0
     restart: always
     ports: ["3000:3000"]
     environment:
@@ -160,8 +160,8 @@ sudo tar czf your-spotify-db-$(date +%F).tgz your_spotify_db/
 
 - Repo: <https://github.com/Yooooomi/your_spotify>
 - Releases: <https://github.com/Yooooomi/your_spotify/releases>
-- Docker Hub (server): <https://hub.docker.com/r/yooooomi/your_spotify_server>
-- Docker Hub (client): <https://hub.docker.com/r/yooooomi/your_spotify_client>
+- Docker Hub (server): <https://hub.docker.com/r/yooooomi/your_spotify_server:1.19.0>
+- Docker Hub (client): <https://hub.docker.com/r/yooooomi/your_spotify_client:1.19.0>
 - LinuxServer image: <https://github.com/linuxserver/docker-your_spotify>
 - Spotify Developer Dashboard: <https://developer.spotify.com/dashboard/applications>
 - Spotify API docs: <https://developer.spotify.com/documentation/web-api>

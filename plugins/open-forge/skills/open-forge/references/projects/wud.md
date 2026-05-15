@@ -62,7 +62,7 @@ Features (from upstream repo + docs):
 ```yaml
 services:
   wud:
-    image: getwud/wud:8.x.x         # **pin version**
+    image: getwud/wud:8.2.2         # **pin version**
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro

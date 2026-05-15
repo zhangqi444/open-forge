@@ -86,7 +86,7 @@ Wrap with systemd unit + reverse proxy for TLS.
 ```yaml
 services:
   writefreely:
-    image: ghcr.io/writefreely/writefreely:latest          # pin in prod
+    image: ghcr.io/writefreely/writefreely:v0.16.0          # pin in prod
     container_name: writefreely
     restart: unless-stopped
     ports:

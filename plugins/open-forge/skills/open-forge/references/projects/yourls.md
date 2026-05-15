@@ -56,7 +56,7 @@ Using the official `yourls` Docker Hub image:
 ```yaml
 services:
   yourls:
-    image: yourls:1.10.2-apache    # pin to specific version
+    image: yourls:1.10.3-apache    # pin to specific version
     container_name: yourls
     restart: unless-stopped
     depends_on:

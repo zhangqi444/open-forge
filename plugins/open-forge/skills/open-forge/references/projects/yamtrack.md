@@ -65,7 +65,7 @@ Features (per README):
 ```yaml
 services:
   yamtrack:
-    image: ghcr.io/fuzzygrim/yamtrack:latest        # **pin version**
+    image: ghcr.io/fuzzygrim/yamtrack:v0.25.2        # **pin version**
     environment:
       SECRET_KEY: ${SECRET_KEY}
       DATABASE_URL: postgresql://yamtrack:${DB_PASSWORD}@db:5432/yamtrack

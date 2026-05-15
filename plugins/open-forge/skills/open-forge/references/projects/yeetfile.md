@@ -39,14 +39,14 @@
 
 ### Docker image
 ```
-ghcr.io/benbusby/yeetfile:latest
+ghcr.io/benbusby/yeetfile:v0.2.0
 ```
 
 ### docker-compose.yml
 ```yaml
 services:
   api:
-    image: ghcr.io/benbusby/yeetfile:latest
+    image: ghcr.io/benbusby/yeetfile:v0.2.0
     container_name: yeetfile
     restart: unless-stopped
     ports:
