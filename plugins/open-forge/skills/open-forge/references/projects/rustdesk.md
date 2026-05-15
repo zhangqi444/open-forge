@@ -43,7 +43,7 @@ services:
       - 21116:21116
       - 21116:21116/udp
       - 21118:21118
-    image: rustdesk/rustdesk-server:latest
+    image: rustdesk/rustdesk-server:1.1.15
     command: hbbs -r rustdesk.example.com:21117
     volumes:
       - ./data:/root
@@ -58,7 +58,7 @@ services:
     ports:
       - 21117:21117
       - 21119:21119
-    image: rustdesk/rustdesk-server:latest
+    image: rustdesk/rustdesk-server:1.1.15
     command: hbbr
     volumes:
       - ./data:/root

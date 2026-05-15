@@ -47,7 +47,7 @@ Built + maintained by **orhun (Orhun Parmaksız)**. MIT license.
 ```yaml
 services:
   rustypaste:
-    image: orhunp/rustypaste:latest
+    image: orhunp/rustypaste:0.17.0
     container_name: rustypaste
     restart: always
     environment:

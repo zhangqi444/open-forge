@@ -43,7 +43,7 @@ Features (from upstream README + docs):
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | **Docker compose** | **Upstream-provided `docker-compose.yml`**                      | **Primary path**                                                                   |
-| Docker standalone  | `ignisda/ryot:latest`                                                     | Simpler single-container                                                                                   |
+| Docker standalone  | `ignisda/ryot:v10.3.0`                                                     | Simpler single-container                                                                                   |
 | Bare-metal Rust    | Clone + build with cargo                                                                                   | For Rust-adjacent dev                                                                                               |
 | Pro (commercial)   | ryot.io hosted                                                                                                | If you don't want to self-host                                                                                                 |
 
@@ -73,7 +73,7 @@ services:
       - ./ryot-db:/var/lib/postgresql/data
 
   ryot:
-    image: ignisda/ryot:latest    # **pin specific version in prod**
+    image: ignisda/ryot:v10.3.0    # **pin specific version in prod**
     restart: unless-stopped
     environment:
       - DATABASE_URL=postgres://ryot:${DB_PASSWORD}@ryot-db:5432/ryot
