@@ -34,7 +34,7 @@ Vendor-agnostic, open-source telemetry agent and pipeline. Receives telemetry (t
 ```yaml
 services:
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:latest
+    image: otel/opentelemetry-collector-contrib:0.152.0
     container_name: otel-collector
     restart: unless-stopped
     command: ["--config=/etc/otel-collector-config.yaml"]

@@ -33,7 +33,7 @@ Hardened, OpenID Certified OAuth 2.0 Authorization Server and OpenID Connect Pro
 ```yaml
 services:
   hydra-migrate:
-    image: oryd/hydra:latest
+    image: oryd/hydra:v26.2.0
     environment:
       DSN: postgres://hydra:secret@postgresd:5432/hydra?sslmode=disable
     command: migrate sql -e --yes
@@ -42,7 +42,7 @@ services:
       - postgresd
 
   hydra:
-    image: oryd/hydra:latest
+    image: oryd/hydra:v26.2.0
     ports:
       - "4444:4444"   # public API
       - "4445:4445"   # admin API (internal only)
@@ -113,7 +113,7 @@ hydra list clients --endpoint http://localhost:4445
 
 ```bash
 # Run migrations first
-docker run --rm oryd/hydra:latest migrate sql -e --yes
+docker run --rm oryd/hydra:v26.2.0 migrate sql -e --yes
 
 # Then update service
 docker compose pull && docker compose up -d

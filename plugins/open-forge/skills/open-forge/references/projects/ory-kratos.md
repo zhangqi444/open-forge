@@ -33,7 +33,7 @@ API-first, cloud-native identity and user management system. Handles login, regi
 ```yaml
 services:
   kratos-migrate:
-    image: oryd/kratos:latest
+    image: oryd/kratos:v26.2.0
     environment:
       DSN: sqlite:///var/lib/sqlite/db.sqlite?_fk=true&mode=rwc
     volumes:
@@ -45,7 +45,7 @@ services:
   kratos:
     depends_on:
       - kratos-migrate
-    image: oryd/kratos:latest
+    image: oryd/kratos:v26.2.0
     ports:
       - "4433:4433"   # public API
       - "4434:4434"   # admin API (never expose publicly)
@@ -150,7 +150,7 @@ Kratos has no built-in UI. You must provide one. Options:
 
 ```bash
 # Run migrations first
-docker run --rm oryd/kratos:latest migrate sql -e --yes --config /etc/config/kratos/kratos.yml
+docker run --rm oryd/kratos:v26.2.0 migrate sql -e --yes --config /etc/config/kratos/kratos.yml
 
 # Then update the service
 docker compose pull && docker compose up -d
