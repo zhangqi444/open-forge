@@ -72,7 +72,7 @@ On first boot, Homer creates a default `config.yml` in the bind-mounted director
 ```yaml
 services:
   homer:
-    image: b4bz/homer:25.x.x       # pin; check Docker Hub tags
+    image: b4bz/homer:v26.4.2       # pin; check Docker Hub tags
     container_name: homer
     restart: unless-stopped
     ports:
