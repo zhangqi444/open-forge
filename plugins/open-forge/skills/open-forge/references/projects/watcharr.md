@@ -44,7 +44,7 @@ Built + maintained by **sbondCo**. MIT license.
 ```yaml
 services:
   watcharr:
-    image: ghcr.io/sbondco/watcharr:latest
+    image: ghcr.io/sbondco/watcharr:v3.0.1
     container_name: watcharr
     ports:
       - "3080:3080"

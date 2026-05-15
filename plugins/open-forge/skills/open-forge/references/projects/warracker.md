@@ -12,7 +12,7 @@ Built + maintained by **Sassanix** and contributors. MIT license.
 - Upstream repo: <https://github.com/sassanix/Warracker>
 - Docs: in `Docker/` directory of repo
 - Discord: <https://discord.gg/PGxVS3U2Nw>
-- GHCR: `ghcr.io/sassanix/warracker/main:latest`
+- GHCR: `ghcr.io/sassanix/warracker/main:1.0.2`
 
 ## Architecture in one minute
 
@@ -27,7 +27,7 @@ Built + maintained by **Sassanix** and contributors. MIT license.
 
 | Infra             | Runtime                                  | Notes                                                  |
 | ----------------- | ---------------------------------------- | ------------------------------------------------------ |
-| **Docker Compose**| `ghcr.io/sassanix/warracker/main:latest` | **Primary** — see `Docker/` in repo for env + compose  |
+| **Docker Compose**| `ghcr.io/sassanix/warracker/main:1.0.2` | **Primary** — see `Docker/` in repo for env + compose  |
 
 ## Inputs to collect
 
@@ -51,7 +51,7 @@ Full compose + `.env` example in the repo's `Docker/` directory:
 # Abbreviated — see Docker/docker-compose.yml in repo for full version
 services:
   warracker:
-    image: ghcr.io/sassanix/warracker/main:latest
+    image: ghcr.io/sassanix/warracker/main:1.0.2
     ports:
       - "8005:80"
     volumes:

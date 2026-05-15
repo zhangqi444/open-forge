@@ -38,7 +38,7 @@ Built + maintained by **arabcoders**. Also makes YTPTube (yt-dlp frontend).
 ```yaml
 services:
     watchstate:
-        image: ghcr.io/arabcoders/watchstate:latest
+        image: ghcr.io/arabcoders/watchstate:v1.8.2
         user: "${UID:-1000}:${UID:-1000}"
         container_name: watchstate
         restart: unless-stopped

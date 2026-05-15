@@ -69,7 +69,7 @@ docker run -d --name wallos \
   -v /opt/wallos/db:/var/www/html/db \
   -v /opt/wallos/logos:/var/www/html/images/uploads/logos \
   -e TZ=America/Los_Angeles \
-  bellamy/wallos:latest    # pin a specific version in prod
+  bellamy/wallos:4.8.4    # pin a specific version in prod
 ```
 
 ## Install via Docker Compose
@@ -77,7 +77,7 @@ docker run -d --name wallos \
 ```yaml
 services:
   wallos:
-    image: bellamy/wallos:latest    # pin specific tag for prod
+    image: bellamy/wallos:4.8.4    # pin specific tag for prod
     container_name: wallos
     restart: unless-stopped
     ports:

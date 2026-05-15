@@ -38,7 +38,7 @@ services:
       - "8088:8088"
     volumes:
       - './data:/data'
-    image: 'quxfoo/wastebin:latest'
+    image: 'quxfoo/wastebin:3.6.2'
 ```
 Ensure ./data is writable by uid 10001 (the container user).
 

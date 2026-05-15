@@ -52,7 +52,7 @@ mkdir wayback && cd wayback
 cat > docker-compose.yml << 'COMPOSE'
 services:
   wayback:
-    image: wabarc/wayback:latest
+    image: wabarc/wayback:v0.20.1
     restart: unless-stopped
     environment:
       - WAYBACK_TELEGRAM_TOKEN=YOUR_BOT_TOKEN
@@ -82,7 +82,7 @@ docker run -d \
   -p 8964:8964 \
   -e WAYBACK_ENABLE_IA=true \
   -e WAYBACK_ENABLE_IS=true \
-  wabarc/wayback:latest \
+  wabarc/wayback:v0.20.1 \
   wayback --daemon web
 ```
 

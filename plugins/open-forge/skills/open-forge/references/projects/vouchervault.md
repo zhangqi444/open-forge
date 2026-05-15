@@ -35,7 +35,7 @@ Runs as the `www-data` user (UID/GID 33). **Volume permissions must be set to UI
 ### Image
 
 ```
-l4rm4nd/vouchervault:1.27.x
+l4rm4nd/vouchervault:v1.27.8
 ```
 
 Docker Hub: <https://hub.docker.com/r/l4rm4nd/vouchervault>
@@ -56,7 +56,7 @@ The container runs as `www-data` (UID/GID 33). Without correct ownership the app
 ```yaml
 services:
   app:
-    image: l4rm4nd/vouchervault:1.27.x
+    image: l4rm4nd/vouchervault:v1.27.8
     container_name: vouchervault
     restart: unless-stopped
     environment:

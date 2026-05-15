@@ -83,7 +83,7 @@ sudo systemctl enable --now warpgate
 ```yaml
 services:
   warpgate:
-    image: ghcr.io/warp-tech/warpgate:0.x        # pin
+    image: ghcr.io/warp-tech/warpgate:v0.23.4        # pin
     container_name: warpgate
     restart: unless-stopped
     volumes:
@@ -98,7 +98,7 @@ services:
 
 Run `warpgate setup` once inside the container to initialize config:
 ```sh
-docker run --rm -it -v $(pwd)/data:/data ghcr.io/warp-tech/warpgate:0.x setup
+docker run --rm -it -v $(pwd)/data:/data ghcr.io/warp-tech/warpgate:v0.23.4 setup
 ```
 
 ## First boot

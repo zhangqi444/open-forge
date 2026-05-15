@@ -66,7 +66,7 @@ mkdir wavelog && cd wavelog
 cat > docker-compose.yml << 'EOF'
 services:
   wavelog:
-    image: ghcr.io/wavelog/wavelog:latest
+    image: ghcr.io/wavelog/wavelog:2.4.2
     restart: unless-stopped
     depends_on:
       db:

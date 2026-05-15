@@ -78,7 +78,7 @@ Access the web UI at http://localhost (or your configured port).
 ```yaml
 services:
   vod2pod:
-    image: madiele/vod2pod-rss:latest
+    image: madiele/vod2pod-rss:v1.2.4
     restart: unless-stopped
     depends_on:
       - redis

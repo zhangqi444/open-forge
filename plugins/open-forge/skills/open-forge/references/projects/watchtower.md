@@ -34,7 +34,7 @@ Watchtower itself is a stateless Docker container that watches the Docker socket
 # compose.yaml
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: containrrr/watchtower:v1.7.1
     container_name: watchtower
     restart: unless-stopped
     volumes:

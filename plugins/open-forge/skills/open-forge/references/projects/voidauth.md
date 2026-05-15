@@ -53,7 +53,7 @@ See <https://voidauth.app/> for exact config. Typical:
 ```yaml
 services:
   voidauth:
-    image: voidauth/voidauth:latest        # **pin version**
+    image: voidauth/voidauth:1.12.4        # **pin version**
     ports: ["3000:3000"]
     volumes:
       - ./voidauth-data:/data

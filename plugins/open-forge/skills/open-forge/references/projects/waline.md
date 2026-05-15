@@ -34,7 +34,7 @@ Simple, safe, self-hosted comment system with a backend. Embeds in any static si
 ```yaml
 services:
   waline:
-    image: lizheming/waline:latest
+    image: lizheming/waline:1.39.3
     container_name: waline
     restart: always
     ports:

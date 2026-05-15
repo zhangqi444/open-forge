@@ -71,7 +71,7 @@ docker run -d --name wyl \
   --network=host \
   -v /srv/wyl:/data/WatchYourLAN \
   --restart unless-stopped \
-  aceberg/watchyourlan:2.x          # pin major/minor
+  aceberg/watchyourlan:2.1.4          # pin major/minor
 ```
 
 Or Compose:
@@ -79,7 +79,7 @@ Or Compose:
 ```yaml
 services:
   wyl:
-    image: aceberg/watchyourlan:2.x
+    image: aceberg/watchyourlan:2.1.4
     container_name: wyl
     network_mode: host
     environment:
