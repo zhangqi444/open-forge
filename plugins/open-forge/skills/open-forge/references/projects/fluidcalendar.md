@@ -133,6 +133,8 @@ Visit `http://localhost:3000` after startup.
 
 ## Gotchas
 
+- **⚠️ Not production-ready.** Upstream README explicitly warns: "ACTIVE DEVELOPMENT VERY BUGGY — NOT recommended for production use." Expect rough edges, incomplete features, and breaking changes. File bugs upstream; use for personal/testing only until stabilized.
+
 - **Google OAuth requires a Consent Screen.** Before users can connect Google Calendar, you must publish the OAuth consent screen in Google Cloud Console. During development, add test users to bypass the review requirement.
 - **Redirect URIs must match exactly.** OAuth callback URIs must match exactly between the provider console and your instance URL — including protocol (http vs https) and port.
 - **`NEXTAUTH_URL` must be accurate.** Set this to the exact public URL (with protocol) that users reach your instance at. Mismatches break OAuth callbacks.
