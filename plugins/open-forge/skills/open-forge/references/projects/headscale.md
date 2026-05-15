@@ -57,7 +57,7 @@ mkdir -p ./headscale/config ./headscale/lib
 cd ./headscale
 
 # 2. Download example config for your version
-HS_VERSION=0.27.0   # check https://github.com/juanfont/headscale/releases
+HS_VERSION=0.28.0   # check https://github.com/juanfont/headscale/releases
 curl -o config/config.yaml \
   "https://raw.githubusercontent.com/juanfont/headscale/v${HS_VERSION}/config-example.yaml"
 
@@ -114,7 +114,7 @@ Front with a reverse proxy for `https://headscale.example.com → 127.0.0.1:8080
 ## Install — Debian/Ubuntu `.deb` + systemd
 
 ```bash
-HS_VERSION=0.27.0
+HS_VERSION=0.28.0
 ARCH=amd64
 curl -LO "https://github.com/juanfont/headscale/releases/download/v${HS_VERSION}/headscale_${HS_VERSION}_linux_${ARCH}.deb"
 sudo apt install "./headscale_${HS_VERSION}_linux_${ARCH}.deb"
