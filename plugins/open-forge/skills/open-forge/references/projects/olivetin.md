@@ -52,7 +52,7 @@ Features (from upstream README):
 
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| **Docker**         | **`jamesread/olivetin:latest`** (multi-arch)                    | **Easiest**                                                                        |
+| **Docker**         | **`jamesread/olivetin:3000.11.3`** (multi-arch)                    | **Easiest**                                                                        |
 | Static binary      | Download from releases                                                    | Just run it                                                                                   |
 | Debian/Ubuntu .deb | Package releases available                                                        | systemd-friendly                                                                                         |
 | Kubernetes         | Works as a container                                                                                  | Minimal pattern                                                                                            |
@@ -72,7 +72,7 @@ Features (from upstream README):
 ```yaml
 services:
   olivetin:
-    image: jamesread/olivetin:latest     # **pin version** in prod
+    image: jamesread/olivetin:3000.11.3     # **pin version** in prod
     restart: unless-stopped
     volumes:
       - ./olivetin-config.yaml:/config/config.yaml:ro
