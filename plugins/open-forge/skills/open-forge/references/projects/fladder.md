@@ -38,6 +38,7 @@ Features (per README):
 | Infra              | Runtime                                                        | Notes                                                                          |
 | ------------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | **Platform binaries** | **Android APK / iOS / macOS / Windows / Linux**              | **Primary**                                                                        |
+| Web / Docker          | `ghcr.io/donutware/fladder:latest` (or `-rootless`)          | Self-host the web frontend in Docker; `http` works for self-hosted (GitHub-hosted requires `https`) |
 
 ## Inputs to collect
 
@@ -59,6 +60,13 @@ Desktop + mobile:
    - `.exe` / installer for Windows
    - `.AppImage` / `.deb` for Linux
 3. Install
+
+Docker (web frontend):
+```bash
+docker run -d --name fladder -p 8080:80 ghcr.io/donutware/fladder:latest
+```
+- Rootless variant: `ghcr.io/donutware/fladder-rootless:latest`
+- Also available on **Google Play Store** for Android.
 
 ## First boot
 
