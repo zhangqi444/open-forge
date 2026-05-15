@@ -74,7 +74,7 @@ services:
       - "--entrypoints.websecure.address=:443"
 
   tinyauth:
-    image: ghcr.io/tinyauthapp/tinyauth:latest      # pin specific version in prod
+    image: ghcr.io/tinyauthapp/tinyauth:v5.0.7      # pin specific version in prod
     container_name: tinyauth
     restart: unless-stopped
     environment:

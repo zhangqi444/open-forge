@@ -39,7 +39,7 @@ services:
       - tolgee-db:/var/lib/postgresql/data
 
   tolgee:
-    image: tolgee/tolgee:latest
+    image: tolgee/tolgee:v3.186.2
     restart: unless-stopped
     depends_on:
       - postgres

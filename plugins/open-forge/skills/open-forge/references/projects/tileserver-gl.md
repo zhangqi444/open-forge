@@ -39,7 +39,7 @@ wget https://github.com/maptiler/tileserver-gl/releases/download/v1.3.0/zurich_s
 docker run --rm -it \
   -v "$(pwd)":/data \
   -p 8080:8080 \
-  maptiler/tileserver-gl:latest \
+  maptiler/tileserver-gl:v5.6.0 \
   --file zurich_switzerland.mbtiles
 ```
 
@@ -48,7 +48,7 @@ docker run --rm -it \
 ```yaml
 services:
   tileserver:
-    image: maptiler/tileserver-gl:latest
+    image: maptiler/tileserver-gl:v5.6.0
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -121,7 +121,7 @@ tileserver-gl-light --file zurich_switzerland.mbtiles
 ## Upgrade procedure
 
 ```bash
-docker pull maptiler/tileserver-gl:latest
+docker pull maptiler/tileserver-gl:v5.6.0
 docker compose pull && docker compose up -d
 ```
 

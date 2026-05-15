@@ -75,7 +75,7 @@ services:
     restart: always
 
   tianji:
-    image: moonrailgun/tianji:latest        # **pin version**
+    image: moonrailgun/tianji:1.31.25        # **pin version**
     ports: ["12345:12345"]
     restart: always
     environment:
