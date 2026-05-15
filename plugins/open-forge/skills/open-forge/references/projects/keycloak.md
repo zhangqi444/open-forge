@@ -129,7 +129,7 @@ Do NOT run `start-dev` in production. It disables security checks.
 java -version
 
 # Download
-VERSION=26.0.0
+VERSION=26.6.0
 curl -LO "https://github.com/keycloak/keycloak/releases/download/${VERSION}/keycloak-${VERSION}.zip"
 sudo unzip "keycloak-${VERSION}.zip" -d /opt/
 sudo ln -sfn "/opt/keycloak-${VERSION}" /opt/keycloak
@@ -180,9 +180,9 @@ WantedBy=multi-user.target
 
 ```bash
 # 1. Install the CRDs + operator
-kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.0.0/kubernetes/keycloaks.k8s.keycloak.org-v1.yml
-kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.0.0/kubernetes/keycloakrealmimports.k8s.keycloak.org-v1.yml
-kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.0.0/kubernetes/kubernetes.yml
+kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.6.0/kubernetes/keycloaks.k8s.keycloak.org-v1.yml
+kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.6.0/kubernetes/keycloakrealmimports.k8s.keycloak.org-v1.yml
+kubectl apply -f https://raw.githubusercontent.com/keycloak/keycloak-k8s-resources/26.6.0/kubernetes/kubernetes.yml
 
 # 2. Create a Keycloak CR
 cat <<EOF | kubectl apply -f -

@@ -40,7 +40,7 @@ Queue + repository backends: Postgres (recommended) / MySQL / H2 (embedded, dev 
 | Azure | <https://kestra.io/docs/installation/azure-vm> | ✅ | Azure users. |
 | Kestra Cloud (hosted) | <https://kestra.io> | Paid | Don't self-host. |
 
-Image: `kestra/kestra:latest` or `kestra/kestra:v0.21` (pin the minor in prod).
+Image: `kestra/kestra:latest` or `kestra/kestra:v1.3` (pin the minor in prod).
 
 ## Inputs to collect
 
@@ -96,7 +96,7 @@ services:
       retries: 10
 
   kestra:
-    image: kestra/kestra:latest              # pin a version in prod e.g. :v0.21
+    image: kestra/kestra:latest              # pin a version in prod e.g. :v1.3
     pull_policy: always
     stop_grace_period: 6m                    # 5m Kestra termination + buffer for active tasks
     user: "root"                             # required to access /var/run/docker.sock
@@ -276,7 +276,7 @@ docker compose logs -f kestra
 
 Kestra runs DB migrations on startup. Release notes + migration guides at <https://github.com/kestra-io/kestra/releases>.
 
-Minor versions (`v0.21.x`) are safe. Major (`v0.20 → v0.21`) read release notes — plugin API changes may require flow updates.
+Minor versions (`v1.3.x`) are safe. Major (e.g. `v1.2 → v1.3`) read release notes — plugin API changes may require flow updates.
 
 ## Gotchas
 
