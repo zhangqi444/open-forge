@@ -58,7 +58,7 @@ helm install longhorn longhorn/longhorn \
 ### kubectl install
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.11.1/deploy/longhorn.yaml
+kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.11.2/deploy/longhorn.yaml
 ```
 
 ### S3 backup credentials secret

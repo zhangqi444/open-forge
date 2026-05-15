@@ -73,7 +73,7 @@ Prod-style compose (external DB, pinned tag, TLS via reverse proxy):
 ```yaml
 services:
   logto:
-    image: svhd/logto:1.28.0       # pin; check https://github.com/logto-io/logto/releases
+    image: svhd/logto:1.39.0       # pin; check https://github.com/logto-io/logto/releases
     container_name: logto
     restart: unless-stopped
     entrypoint: ["sh", "-c", "npm run cli db seed -- --swe && npm start"]

@@ -88,7 +88,7 @@ networks:
 
 services:
   loki:
-    image: grafana/loki:latest            # pin a version in prod, e.g. :3.2.1
+    image: grafana/loki:latest            # pin a version in prod, e.g. :3.7.2
     container_name: loki
     ports:
       - "3100:3100"
