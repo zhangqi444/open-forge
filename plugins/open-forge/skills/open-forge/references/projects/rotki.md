@@ -71,7 +71,7 @@ Download from <https://rotki.com> → install → launch → create user profile
 ```yaml
 services:
   rotki:
-    image: rotki/rotki:latest         # **pin version** in prod
+    image: rotki/rotki:v1.43.0         # **pin version** in prod
     restart: unless-stopped
     volumes:
       - ./rotki-data:/data

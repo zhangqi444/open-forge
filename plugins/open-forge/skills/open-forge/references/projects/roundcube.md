@@ -73,7 +73,7 @@ Features:
 ```yaml
 services:
   roundcube:
-    image: roundcube/roundcubemail:1.6.x-apache   # pin minor + variant
+    image: roundcube/roundcubemail:1.6.15-apache   # pin minor + variant
     restart: unless-stopped
     depends_on: [db]
     environment:

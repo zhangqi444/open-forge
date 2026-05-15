@@ -69,7 +69,7 @@ What you get:
 ```yaml
 services:
   romm:
-    image: rommapp/romm:3.x                # pin to a specific version tag
+    image: rommapp/romm:4.8.1                # pin to a specific version tag
     container_name: romm
     restart: unless-stopped
     depends_on: [romm_db, romm_redis]

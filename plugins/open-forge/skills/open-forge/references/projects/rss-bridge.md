@@ -62,7 +62,7 @@ docker run -d --name rss-bridge \
   --restart unless-stopped \
   -p 3000:80 \
   -v /opt/rss-bridge/config:/app/config \
-  rssbridge/rss-bridge:latest   # pin specific tag in prod
+  rssbridge/rss-bridge:2025-08-05   # pin specific tag in prod
 ```
 
 Browse `http://<host>:3000`.
@@ -72,7 +72,7 @@ Browse `http://<host>:3000`.
 ```yaml
 services:
   rss-bridge:
-    image: rssbridge/rss-bridge:2024-02-01   # pin by date tag or commit SHA
+    image: rssbridge/rss-bridge:2025-08-05   # pin by date tag or commit SHA
     container_name: rss-bridge
     restart: unless-stopped
     ports:
