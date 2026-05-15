@@ -59,7 +59,7 @@ Follow: <https://docs.myspeed.dev/setup/linux>
 ```yaml
 services:
   myspeed:
-    image: germannewsmaker/myspeed:latest        # **pin version in prod**
+    image: germannewsmaker/myspeed:1.0.9        # **pin version in prod**
     ports: ["5216:5216"]
     volumes:
       - myspeed-data:/myspeed/data

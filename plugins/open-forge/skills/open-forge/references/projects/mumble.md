@@ -83,7 +83,7 @@ docker run -d --name mumble \
   -v /srv/mumble:/data \
   -e MUMBLE_CONFIG_SERVER_PASSWORD=<optional> \
   -e MUMBLE_SUPERUSER_PASSWORD=<strong> \
-  mumblevoip/mumble-server:v1.5   # pin tag
+  mumblevoip/mumble-server:v1.5.857   # pin tag
 ```
 
 ## Install via Docker Compose
@@ -91,7 +91,7 @@ docker run -d --name mumble \
 ```yaml
 services:
   mumble-server:
-    image: mumblevoip/mumble-server:v1.5   # pin specific version
+    image: mumblevoip/mumble-server:v1.5.857   # pin specific version
     container_name: mumble-server
     restart: unless-stopped
     ports:
