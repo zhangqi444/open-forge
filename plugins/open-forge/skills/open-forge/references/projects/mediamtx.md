@@ -61,7 +61,7 @@ Features:
 
 ```sh
 # Download latest release (Linux amd64 example)
-wget https://github.com/bluenviron/mediamtx/releases/latest/download/mediamtx_v1.x.x_linux_amd64.tar.gz
+wget https://github.com/bluenviron/mediamtx/releases/latest/download/mediamtx_v1.18.1_linux_amd64.tar.gz
 tar xzf mediamtx_*.tar.gz
 # Runs immediately with default config
 ./mediamtx

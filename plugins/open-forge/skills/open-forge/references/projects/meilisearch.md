@@ -118,7 +118,7 @@ Save the master key somewhere durable — you'll need it for every API call.
 # compose.yaml
 services:
   meilisearch:
-    image: getmeili/meilisearch:v1.42.1   # pin a specific tag; `latest` drifts
+    image: getmeili/meilisearch:v1.43.1   # pin a specific tag; `latest` drifts
     container_name: meilisearch
     restart: unless-stopped
     ports:
@@ -251,7 +251,7 @@ If a version bump requires index migration (rare but happens), upstream's releas
 - **`MEILI_ENV=development` exposes a web dashboard at `/`.** The dashboard uses the master key directly. Fine for local dev; disable (`MEILI_ENV=production`) before exposing the service.
 - **No built-in TLS.** Terminate at a reverse proxy (Caddy / nginx / Traefik). Upstream's docs explicitly recommend this.
 - **LMDB file size grows, doesn't shrink.** Meilisearch maps a big sparse file for the LMDB env. `du -sh` shows a lot of disk; the actual used portion is much smaller. To shrink: dump → fresh instance → restore.
-- **`latest` tag drift.** On Docker, pin an explicit tag (`v1.42.1`). Upstream pushes `latest` on every release; auto-updaters like Watchtower can bring in a breaking version.
+- **`latest` tag drift.** On Docker, pin an explicit tag (`v1.43.1`). Upstream pushes `latest` on every release; auto-updaters like Watchtower can bring in a breaking version.
 - **Analytics opt-out.** By default Meilisearch phones home anonymous usage stats. Set `MEILI_NO_ANALYTICS=true` (or `no_analytics = true` in config.toml) to disable.
 - **glibc 2.35+ requirement on Linux.** Verify with `ldd --version`. Ubuntu 22.04+ / Debian 12+ are fine. Older distros need the Docker install or a statically-linked custom build.
 - **Dump/snapshot distinction.** A *dump* is a cross-version portable backup (slow, big, resumable). A *snapshot* is a fast binary copy of the LMDB (same-version only). Use dumps for long-term backups.
