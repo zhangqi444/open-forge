@@ -70,7 +70,7 @@ docker run -d --name privatebin \
   -p 8080:8080 \
   -v /opt/privatebin/data:/srv/data \
   -v /opt/privatebin/conf.php:/srv/cfg/conf.php:ro \
-  privatebin/nginx-fpm-alpine:1.x    # pin; check Docker Hub
+  privatebin/nginx-fpm-alpine:2.0.4    # pin; check Docker Hub
 ```
 
 ## Install via Docker Compose
@@ -78,7 +78,7 @@ docker run -d --name privatebin \
 ```yaml
 services:
   privatebin:
-    image: privatebin/nginx-fpm-alpine:1.x    # pin specific version
+    image: privatebin/nginx-fpm-alpine:2.0.4    # pin specific version
     container_name: privatebin
     restart: unless-stopped
     read_only: true

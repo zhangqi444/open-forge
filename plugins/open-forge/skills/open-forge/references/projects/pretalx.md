@@ -74,7 +74,7 @@ Edit `docker-compose.yml` to set the PostgreSQL password matching `pretalx.cfg`:
 ```yaml
 services:
   pretalx:
-    image: pretalx/standalone:latest
+    image: pretalx/standalone:v2026.1.2
     container_name: pretalx
     restart: unless-stopped
     depends_on:

@@ -76,7 +76,7 @@ Based on upstream `docker-compose.yaml` (<https://github.com/gitroomhq/postiz-ap
 # compose.yaml
 services:
   postiz:
-    image: ghcr.io/gitroomhq/postiz-app:latest       # pin a version in prod
+    image: ghcr.io/gitroomhq/postiz-app:v2.21.7       # pin a version in prod
     container_name: postiz
     restart: always
     environment:
