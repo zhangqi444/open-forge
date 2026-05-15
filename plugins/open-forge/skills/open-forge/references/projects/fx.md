@@ -1,11 +1,11 @@
 ---
 name: fx
-description: fx recipe for open-forge. Minimalist self-hosted microblogging platform. Write posts in Markdown, syntax highlighting, LaTeX math, file/image uploads, RSS, POSSE-friendly. SQLite, tiny memory footprint. Docker. Source: https://github.com/rikhuijzer/fx
+description: fx recipe for open-forge. Minimalist self-hosted microblogging platform. Write posts in Markdown, syntax highlighting, LaTeX math, file/image uploads, RSS (publish + follow), POSSE-friendly. SQLite, tiny memory footprint. Docker. Source: https://github.com/rikhuijzer/fx
 ---
 
 # fx
 
-Minimalist self-hosted Twitter/Bluesky-like microblogging service. Write posts in Markdown with built-in syntax highlighting and LaTeX math rendering. Publish and edit from desktop or mobile. Upload files and images. RSS feed for syndication (POSSE). Automatic backup to plain text files. SQLite — tiny memory footprint (a few MB). Docker. MIT licensed.
+Minimalist self-hosted Twitter/Bluesky-like microblogging service. Write posts in Markdown with built-in syntax highlighting and LaTeX math rendering. Publish and edit from desktop or mobile. Upload files and images. RSS feed for syndication (POSSE). Follow RSS feeds from other sites. Automatic backup to plain text files. SQLite — tiny memory footprint (a few MB). Docker. MIT licensed.
 
 Demo: <https://fx-demo.huijzer.xyz> (resets hourly) | Upstream: <https://github.com/rikhuijzer/fx>
 
