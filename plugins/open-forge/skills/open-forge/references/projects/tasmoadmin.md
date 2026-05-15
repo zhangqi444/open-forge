@@ -35,7 +35,7 @@ Built + maintained by **TasmoAdmin team**. MIT license.
 ```yaml
 services:
   tasmoadmin:
-    image: ghcr.io/tasmoadmin/tasmoadmin:latest
+    image: ghcr.io/tasmoadmin/tasmoadmin:v5.0.0
     restart: unless-stopped
     ports:
       - "9541:80"

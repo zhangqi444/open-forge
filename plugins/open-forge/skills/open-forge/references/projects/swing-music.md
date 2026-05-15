@@ -62,7 +62,7 @@ Check community Docker images. Typical pattern:
 ```yaml
 services:
   swingmusic:
-    image: swingmx/swingmusic:latest        # **pin** — check upstream
+    image: ghcr.io/swingmx/swingmusic:v2.1.4        # **pin** — check upstream
     ports: ["1970:1970"]
     volumes:
       - /music:/music:ro        # **RO mount**

@@ -84,7 +84,7 @@ services:
       - ./postgresql:/var/lib/postgresql/data
 
   web_recipes:
-    image: vabene1111/recipes:1.x              # pin specific version
+    image: vabene1111/recipes:2.6.9              # pin specific version
     restart: unless-stopped
     depends_on: [db_recipes]
     env_file: .env

@@ -80,7 +80,7 @@ Features (protocol-level):
 ```yaml
 services:
   synapse:
-    image: ghcr.io/element-hq/synapse:latest           # **pin version** in prod
+    image: ghcr.io/element-hq/synapse:v1.152.1           # **pin version** in prod
     restart: always
     volumes:
       - ./synapse-data:/data
@@ -106,7 +106,7 @@ For first-time config generation:
 ```sh
 docker run -it --rm -v ./synapse-data:/data \
   -e SYNAPSE_SERVER_NAME=example.com -e SYNAPSE_REPORT_STATS=no \
-  ghcr.io/element-hq/synapse:latest generate
+  ghcr.io/element-hq/synapse:v1.152.1 generate
 ```
 Edit `homeserver.yaml` → set `database:` to Postgres, SMTP, etc.
 

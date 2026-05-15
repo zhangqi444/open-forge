@@ -35,7 +35,7 @@ mkdir -p config
 cat > docker-compose.yml << 'COMPOSE'
 services:
   swingmusic:
-    image: ghcr.io/swingmx/swingmusic:latest
+    image: ghcr.io/swingmx/swingmusic:v2.1.4
     container_name: swingmusic
     restart: unless-stopped
     ports:
