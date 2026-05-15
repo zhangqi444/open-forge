@@ -74,7 +74,7 @@ ERPNext runs as multiple services:
 
 | Variable | Purpose |
 |---|---|
-| `FRAPPE_VERSION` | Frappe framework version tag (e.g. `v15.x.x`) |
+| `FRAPPE_VERSION` | Frappe framework version tag (e.g. `v16.x.x`) |
 | `ERPNEXT_VERSION` | ERPNext app version tag |
 | `DB_PASSWORD` | MariaDB root password |
 | `ADMIN_PASSWORD` | ERPNext Administrator password |
