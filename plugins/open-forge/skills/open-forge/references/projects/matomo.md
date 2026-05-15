@@ -55,7 +55,7 @@ services:
       - MARIADB_USER=matomo
 
   app:
-    image: matomo:5.3.2-apache     # pin; see https://hub.docker.com/_/matomo/tags
+    image: matomo:5.10.0-apache     # pin; see https://hub.docker.com/_/matomo/tags
     restart: always
     volumes:
       - matomo:/var/www/html:z
