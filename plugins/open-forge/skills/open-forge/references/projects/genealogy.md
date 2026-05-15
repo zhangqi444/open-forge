@@ -5,7 +5,7 @@ description: Genealogy recipe for open-forge. Family tree web application built 
 
 # Genealogy
 
-Free and open-source family tree web application. Record family members and their relationships (biological parents, partners, children, siblings) and build a browsable family tree. Built on the TALL stack (Tailwind CSS, Alpine.js, Livewire 4, Laravel 12) with Filament table builder and Laravel Jetstream teams. PHP 8.4 + MySQL 8+ / MariaDB 10.2+. MIT licensed.
+Free and open-source family tree web application. Record family members and their relationships (biological parents, partners, children, siblings) and build a browsable family tree. Built on the TALL stack (Tailwind CSS, Alpine.js, Livewire 4, Laravel 12) with Filament 5 table builder and Laravel Jetstream teams. PHP 8.4 + MySQL 8+ / MariaDB 10.2+. MIT licensed.
 
 Live demo: <https://genealogy.kreaweb.be/> | Upstream: <https://github.com/MGeurts/genealogy>
 

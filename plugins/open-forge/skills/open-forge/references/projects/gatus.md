@@ -93,7 +93,7 @@ docker run -d --name gatus \
   -p 8080:8080 \
   -v /opt/gatus/config:/config \
   -v /opt/gatus/data:/data \
-  ghcr.io/twin/gatus:v5.x.x    # pin; check GHCR tags
+  ghcr.io/twin/gatus:stable    # or pin a specific tag; check GHCR tags
 ```
 
 ## Install via Docker Compose
@@ -101,7 +101,7 @@ docker run -d --name gatus \
 ```yaml
 services:
   gatus:
-    image: ghcr.io/twin/gatus:v5.x.x
+    image: ghcr.io/twin/gatus:stable
     container_name: gatus
     restart: unless-stopped
     ports:
