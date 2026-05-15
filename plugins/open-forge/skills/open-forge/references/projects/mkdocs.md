@@ -38,7 +38,7 @@ On any Linux box with Python 3.9+:
 ```sh
 python3 -m venv venv
 . venv/bin/activate
-pip install 'mkdocs==1.6.1' 'mkdocs-material==9.5.44'   # pin versions
+pip install 'mkdocs==1.6.1' 'mkdocs-material==9.7.6'   # pin versions
 
 # New project scaffold (skip if you already have docs/)
 mkdocs new mysite
@@ -68,13 +68,13 @@ Use the Material-maintained image if you are also using the Material theme; it b
 
 ```sh
 docker run --rm -it -v "$PWD":/docs -p 8000:8000 \
-  squidfunk/mkdocs-material:9.5.44 serve --dev-addr 0.0.0.0:8000
+  squidfunk/mkdocs-material:9.7.6 serve --dev-addr 0.0.0.0:8000
 ```
 
 For a build-only step in CI:
 
 ```sh
-docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material:9.5.44 build --strict
+docker run --rm -v "$PWD":/docs squidfunk/mkdocs-material:9.7.6 build --strict
 ```
 
 Then deploy `site/` via nginx/caddy/S3/whatever. Do **not** run `mkdocs serve` in production — it's a dev server.

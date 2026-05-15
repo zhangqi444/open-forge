@@ -70,7 +70,7 @@ Use upstream's example compose file. Brief version:
 ```sh
 git clone --depth 1 https://github.com/misskey-dev/misskey
 cd misskey
-git checkout 2024.10.1        # use a tagged release, NOT `develop`
+git checkout 2026.5.1        # use a tagged release, NOT `develop`
 # Copy the example configs:
 cp .config/docker_example.yml .config/default.yml
 cp .config/example.env .config/docker.env
@@ -146,7 +146,7 @@ cp .config/default.yml .config/docker.env ~/backup/
 3. Pull new tag → `docker compose pull && docker compose up -d`. Migrations run on startup.
 4. **Read CHANGELOG carefully** — minor versions occasionally add mandatory env/config changes.
 5. **DB migrations are one-way** — back up first.
-6. For major versions (like 2024.x → 2025.x), test on staging.
+6. For major versions (like 2025.x → 2026.x), test on staging.
 
 ## Gotchas
 
