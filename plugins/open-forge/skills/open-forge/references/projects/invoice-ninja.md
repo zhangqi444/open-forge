@@ -72,7 +72,7 @@ What Invoice Ninja gets you:
 # Prereqs: PHP 8.2+ with ext-bcmath ext-zip ext-gd ext-gmp ext-intl ext-mysql ext-mbstring ext-xml ext-curl ext-xmlwriter; Composer 2; Node.js; Web server; DB
 
 # Clone specific tag (avoid v5-develop in prod)
-git clone --depth 1 -b v5.11.53 https://github.com/invoiceninja/invoiceninja.git
+git clone --depth 1 -b v5.13.22 https://github.com/invoiceninja/invoiceninja.git
 cd invoiceninja
 cp .env.example .env
 # Edit .env: APP_URL, DB_*, MAIL_*, QUEUE_CONNECTION
