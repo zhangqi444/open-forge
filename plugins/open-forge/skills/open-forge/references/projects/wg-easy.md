@@ -36,7 +36,7 @@ All-in-one WireGuard VPN server + web management UI in a single Docker container
 version: "3.9"
 services:
   wg-easy:
-    image: ghcr.io/wg-easy/wg-easy:latest
+    image: ghcr.io/wg-easy/wg-easy:v15.2.2
     container_name: wg-easy
     restart: unless-stopped
     cap_add:

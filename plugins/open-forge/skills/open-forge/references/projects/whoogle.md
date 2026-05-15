@@ -69,7 +69,7 @@ Trimmed from upstream `docker-compose.yml`:
 ```yaml
 services:
   whoogle-search:
-    image: benbusby/whoogle-search:0.9.0    # pin (check Docker Hub tags)
+    image: benbusby/whoogle-search:1.2.4    # pin (check Docker Hub tags)
     container_name: whoogle-search
     restart: unless-stopped
     pids_limit: 50
@@ -104,7 +104,7 @@ docker run -d --name whoogle \
   -p 5000:5000 \
   -e WHOOGLE_USER=alice -e WHOOGLE_PASS=<strong> \
   --restart unless-stopped \
-  benbusby/whoogle-search:0.9.0
+  benbusby/whoogle-search:1.2.4
 ```
 
 ## Browser integration

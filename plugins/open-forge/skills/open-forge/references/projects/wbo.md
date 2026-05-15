@@ -37,7 +37,7 @@ chown -R 1000:1000 wbo-boards
 docker run -it \
   --publish 5001:80 \
   --volume "$(pwd)/wbo-boards:/opt/app/server-data" \
-  lovasoa/wbo:latest
+  lovasoa/wbo:v2.8.4
 ```
 
 WBO is now available at `http://localhost:5001`.
@@ -47,7 +47,7 @@ WBO is now available at `http://localhost:5001`.
 ```yaml
 services:
   wbo:
-    image: lovasoa/wbo:latest
+    image: lovasoa/wbo:v2.8.4
     restart: unless-stopped
     ports:
       - "5001:80"
@@ -122,7 +122,7 @@ WBO starts on port 5001 by default.
 ## Upgrade procedure
 
 ```bash
-docker pull lovasoa/wbo:latest
+docker pull lovasoa/wbo:v2.8.4
 docker compose pull && docker compose up -d
 ```
 

@@ -49,7 +49,7 @@ docker run -d \
   --name web-check \
   --restart unless-stopped \
   -p 3000:3000 \
-  lissy93/web-check:latest
+  lissy93/web-check:2.1.0
 ```
 
 Open `http://<host>:3000/`.
@@ -61,7 +61,7 @@ Open `http://<host>:3000/`.
 services:
   web-check:
     container_name: web-check
-    image: lissy93/web-check:latest     # pin a specific tag in production
+    image: lissy93/web-check:2.1.0     # pin a specific tag in production
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -84,8 +84,8 @@ services:
 
 ### Image sources
 
-- Docker Hub: `lissy93/web-check:latest`
-- GHCR: `ghcr.io/lissy93/web-check:latest`
+- Docker Hub: `lissy93/web-check:2.1.0`
+- GHCR: `ghcr.io/lissy93/web-check:2.1.0`
 
 Both auto-built from `master` by the `Build + Publish Docker Image` workflow.
 
@@ -166,7 +166,7 @@ No backup required (config + image tag is all you need to reproduce).
 ## Upgrade procedure
 
 ```bash
-docker pull lissy93/web-check:latest
+docker pull lissy93/web-check:2.1.0
 docker stop web-check && docker rm web-check
 # Re-run docker run OR docker compose up -d
 ```

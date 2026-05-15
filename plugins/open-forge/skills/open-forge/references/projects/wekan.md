@@ -73,7 +73,7 @@ services:
       - wekan-db-dump:/dump
 
   wekan:
-    image: ghcr.io/wekan/wekan:v7.90   # pin — see https://github.com/wekan/wekan/releases
+    image: ghcr.io/wekan/wekan:v9.18   # pin — see https://github.com/wekan/wekan/releases
     container_name: wekan-app
     restart: always
     networks: [wekan-tier]

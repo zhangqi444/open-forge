@@ -33,7 +33,7 @@ Weaviate is available as self-hosted Docker/K8s or managed via Weaviate Cloud (f
 version: "3.8"
 services:
   weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:1.30.0
+    image: cr.weaviate.io/semitechnologies/weaviate:1.37.4
     ports:
       - "8080:8080"    # REST + GraphQL
       - "50051:50051"  # gRPC
@@ -64,7 +64,7 @@ volumes:
 version: "3.8"
 services:
   weaviate:
-    image: cr.weaviate.io/semitechnologies/weaviate:1.30.0
+    image: cr.weaviate.io/semitechnologies/weaviate:1.37.4
     ports:
       - "8080:8080"
       - "50051:50051"

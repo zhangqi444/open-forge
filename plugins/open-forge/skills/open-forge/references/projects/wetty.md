@@ -63,7 +63,7 @@ Features:
 ```yaml
 services:
   wetty:
-    image: wettyoss/wetty:latest                          # pin a specific version
+    image: wettyoss/wetty:2.5.0                          # pin a specific version
     container_name: wetty
     restart: unless-stopped
     command:

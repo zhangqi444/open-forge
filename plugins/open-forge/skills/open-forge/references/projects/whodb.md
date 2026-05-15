@@ -70,7 +70,7 @@ Enterprise Edition adds: Oracle, SQL Server, DynamoDB, Athena, Snowflake, Cassan
 ## Install via Docker
 
 ```sh
-docker run -d --name whodb -p 8080:8080 clidey/whodb:latest      # pin specific version in prod
+docker run -d --name whodb -p 8080:8080 clidey/whodb:0.110.0      # pin specific version in prod
 # → browse http://localhost:8080
 ```
 
@@ -78,7 +78,7 @@ Compose variant with Ollama:
 ```yaml
 services:
   whodb:
-    image: clidey/whodb:latest
+    image: clidey/whodb:0.110.0
     ports: ["8080:8080"]
     environment:
       WHODB_OLLAMA_HOST: host.docker.internal

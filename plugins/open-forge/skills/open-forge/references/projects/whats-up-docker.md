@@ -31,7 +31,7 @@ Monitors running Docker containers and detects when newer image versions are ava
 ```yaml
 services:
   wud:
-    image: getwud/wud:latest
+    image: getwud/wud:8.2.2
     container_name: wud
     restart: unless-stopped
     ports:
