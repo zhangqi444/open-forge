@@ -1,0 +1,16 @@
+{
+  "last_checked_at": "2026-05-09T10:00:00Z",
+  "checked": [
+    "activepieces.md","actual-budget.md","adguard-home.md","ackee.md","affine.md",
+    "gitea.md","nextcloud.md","vaultwarden.md","immich.md","paperless-ngx.md",
+    "uptime-kuma.md","portainer.md","mealie.md","stirling-pdf.md","grocy.md",
+    "homer.md","linkwarden.md","komga.md","jellyfin.md"
+  ],
+  "pending": [],
+  "updated": [
+    "mealie.md (v3.16.0 -> v3.17.0)",
+    "immich.md (example pin v2.1.0 -> v2.7.5)",
+    "linkwarden.md (meilisearch v1.12.8 -> v1.43.0)",
+    "activepieces.md (example compose version note updated to 0.82.2)"
+  ]
+}
