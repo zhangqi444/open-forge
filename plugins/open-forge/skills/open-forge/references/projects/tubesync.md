@@ -60,7 +60,7 @@ Features (per README + docs):
 ```yaml
 services:
   tubesync:
-    image: ghcr.io/meeb/tubesync:latest        # **pin version**
+    image: ghcr.io/meeb/tubesync:v0.17.3        # **pin version**
     environment:
       PUID: 1000
       PGID: 1000

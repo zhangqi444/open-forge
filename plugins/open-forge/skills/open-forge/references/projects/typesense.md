@@ -10,7 +10,7 @@ Verified against upstream README at <https://github.com/typesense/typesense#inst
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Docker | `docker run -p 8108:8108 typesense/typesense:27.1` | ✅ | Simplest self-hosted path. |
+| Docker | `docker run -p 8108:8108 typesense/typesense:30.2` | ✅ | Simplest self-hosted path. |
 | Docker Compose | See below | ✅ | Persistent production deployment. |
 | Binary packages | <https://typesense.org/downloads> | ✅ | Linux/macOS bare-metal installs. |
 | DEB/RPM packages | <https://typesense.org/downloads> | ✅ | Systemd-managed Linux service. |
@@ -32,7 +32,7 @@ Verified against upstream README at <https://github.com/typesense/typesense#inst
 docker run -d \
   -p 8108:8108 \
   -v /path/to/typesense-data:/data \
-  typesense/typesense:27.1 \
+  typesense/typesense:30.2 \
   --data-dir /data \
   --api-key=your-api-key-here \
   --enable-cors
@@ -43,7 +43,7 @@ docker run -d \
 ```yaml
 services:
   typesense:
-    image: typesense/typesense:27.1
+    image: typesense/typesense:30.2
     restart: unless-stopped
     ports:
       - "8108:8108"

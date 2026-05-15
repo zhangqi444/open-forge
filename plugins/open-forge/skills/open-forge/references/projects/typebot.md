@@ -82,13 +82,13 @@ services:
 
   typebot-builder:
     <<: *typebot-common
-    image: baptistearno/typebot-builder:latest
+    image: baptistearno/typebot-builder:3.16.1
     ports:
       - "8080:3000"
 
   typebot-viewer:
     <<: *typebot-common
-    image: baptistearno/typebot-viewer:latest
+    image: baptistearno/typebot-viewer:3.16.1
     ports:
       - "8081:3000"
 

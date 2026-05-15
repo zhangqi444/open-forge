@@ -64,7 +64,7 @@ cp .env.example .env
 
 ```bash
 # Minimum required for a working deploy:
-TAG=latest   # pin to a specific version in production, e.g. TAG=v0.58.0
+TAG=latest   # pin to a specific version in production, e.g. TAG=v2.4.0
 
 SERVER_URL=https://crm.example.com
 
@@ -192,7 +192,7 @@ docker compose exec db pg_dump -U postgres default > backup-pre-upgrade.sql
 #    but read them to know what's changing.
 
 # 3. Update TAG in .env (or edit docker-compose.yml directly)
-sed -i 's/^TAG=.*/TAG=v0.59.0/' .env
+sed -i 's/^TAG=.*/TAG=v2.4.0/' .env
 
 # 4. Pull + recreate
 docker compose pull
