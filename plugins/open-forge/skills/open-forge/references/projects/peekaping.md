@@ -44,7 +44,7 @@ docker run -d --restart=always \
   -e DB_NAME=/app/data/peekaping.db \
   -v $(pwd)/.data/sqlite:/app/data \
   --name peekaping \
-  0xfurai/peekaping-bundle-sqlite:latest
+  0xfurai/peekaping-bundle-sqlite:0.0.46
 ```
 
 Visit `http://localhost:8383`.
@@ -56,7 +56,7 @@ See: <https://docs.peekaping.com/self-hosting/docker-with-postgres>
 ```yaml
 services:
   peekaping:
-    image: 0xfurai/peekaping-bundle-postgres:latest
+    image: 0xfurai/peekaping-bundle-postgres:0.0.46
     ports:
       - "8383:8383"
     environment:

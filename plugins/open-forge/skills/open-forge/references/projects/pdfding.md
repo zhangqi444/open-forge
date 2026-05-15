@@ -53,7 +53,7 @@ Per docs.pdfding.com/getting_started/docker:
 ```yaml
 services:
   pdfding:
-    image: mrmn/pdfding:latest        # **pin**
+    image: mrmn/pdfding:v1.7.2        # **pin**
     ports: ["8000:8000"]
     volumes:
       - ./pdfding-data:/home/nonroot/pdfding/media

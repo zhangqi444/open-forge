@@ -62,7 +62,7 @@ docker run \
 ```yaml
 services:
   peanut:
-    image: brandawg93/peanut:latest
+    image: brandawg93/peanut:6.0.0
     container_name: PeaNUT
     restart: unless-stopped
     volumes:
