@@ -40,7 +40,7 @@ Upstream's canonical compose (at <https://github.com/knadh/listmonk/blob/master/
 curl -LO https://github.com/knadh/listmonk/raw/master/docker-compose.yml
 
 # Pin image + set admin creds. Edit docker-compose.yml:
-#   image: listmonk/listmonk:v5.0.0   (avoid :latest in production)
+#   image: listmonk/listmonk:v6.1.0   (avoid :latest in production)
 #
 # And create .env next to it:
 cat > .env <<EOF
