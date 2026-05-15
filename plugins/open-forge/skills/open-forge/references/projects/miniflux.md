@@ -63,7 +63,7 @@ What makes it stand out:
 ```yaml
 services:
   miniflux:
-    image: ghcr.io/miniflux/miniflux:2.x   # pin; check releases
+    image: ghcr.io/miniflux/miniflux:2.2.19   # pin; check releases
     container_name: miniflux
     restart: unless-stopped
     depends_on:

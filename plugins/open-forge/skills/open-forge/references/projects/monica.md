@@ -38,7 +38,7 @@ Upstream's canonical apache example (from <https://github.com/monicahq/docker#ap
 ```yaml
 services:
   app:
-    image: monica:4.1    # pin to a real release; avoid :latest in production
+    image: monica:4.1.2    # pin to a real release; avoid :latest in production
     depends_on:
       - db
     ports:
