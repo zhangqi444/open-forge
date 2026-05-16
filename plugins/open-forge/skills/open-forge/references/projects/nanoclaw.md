@@ -5,7 +5,7 @@ description: NanoClaw recipe for open-forge. MIT-licensed minimalist AI-assistan
 
 # NanoClaw
 
-MIT-licensed AI-assistant framework. Upstream: <https://github.com/qwibitai/nanoclaw>. Docs: <https://docs.nanoclaw.dev>. Website: <https://nanoclaw.dev>.
+MIT-licensed AI-assistant framework. Upstream: <https://github.com/nanocoai/nanoclaw>. Docs: <https://docs.nanoclaw.dev>. Website: <https://nanoclaw.dev>.
 
 **Positioning:** Built explicitly as a minimalist alternative to [OpenClaw](https://github.com/openclaw/openclaw). From the README:
 
@@ -61,7 +61,7 @@ Key files (from upstream):
 
 | Method | Upstream | First-party? | When to use |
 |---|---|---|---|
-| Bootstrap script (`nanoclaw.sh`) | <https://github.com/qwibitai/nanoclaw> | ✅ Only documented path | The standard install. Works on fresh machine. |
+| Bootstrap script (`nanoclaw.sh`) | <https://github.com/nanocoai/nanoclaw> | ✅ Only documented path | The standard install. Works on fresh machine. |
 | Manual (clone + `pnpm install`) | Implicit — read `nanoclaw.sh` | ⚠️ Advanced | Contributors. Not officially documented. |
 | Windows native | ❌ Not supported | Use WSL2. |
 
@@ -80,7 +80,7 @@ There are no multi-user / K8s / VPS deployment methods (yet) — it's a workstat
 ## Install — Bootstrap script
 
 ```bash
-git clone https://github.com/qwibitai/nanoclaw.git nanoclaw-v2
+git clone https://github.com/nanocoai/nanoclaw.git nanoclaw-v2
 cd nanoclaw-v2
 bash nanoclaw.sh
 ```
@@ -179,7 +179,7 @@ git merge upstream/main                    # or cherry-pick security fixes only
 
 The README explicitly states: **only security fixes, bug fixes, and clear improvements** will be accepted to base configuration. Everything else (new capabilities, OS support, hardware) should be contributed as skills on `channels` / `providers` branches.
 
-Changelog: <https://github.com/qwibitai/nanoclaw/blob/main/CHANGELOG.md>. Full release history: <https://docs.nanoclaw.dev/changelog>.
+Changelog: <https://github.com/nanocoai/nanoclaw/blob/main/CHANGELOG.md>. Full release history: <https://docs.nanoclaw.dev/changelog>.
 
 ## Gotchas
 
@@ -204,14 +204,14 @@ Changelog: <https://github.com/qwibitai/nanoclaw/blob/main/CHANGELOG.md>. Full r
 
 ## Links
 
-- Upstream repo: <https://github.com/qwibitai/nanoclaw>
+- Upstream repo: <https://github.com/nanocoai/nanoclaw>
 - Docs: <https://docs.nanoclaw.dev>
 - Website: <https://nanoclaw.dev>
 - Security model: <https://docs.nanoclaw.dev/concepts/security>
 - Architecture: `docs/architecture.md` in the repo
 - Isolation model: `docs/isolation-model.md`
 - Docker Sandboxes: `docs/docker-sandboxes.md`
-- Changelog: <https://github.com/qwibitai/nanoclaw/blob/main/CHANGELOG.md>
+- Changelog: <https://github.com/nanocoai/nanoclaw/blob/main/CHANGELOG.md>
 - OneCLI (credential vault dependency): <https://github.com/onecli/onecli>
 - Anthropic Claude Agent SDK: <https://docs.anthropic.com>
 - Claude Code (required): <https://claude.ai/download>

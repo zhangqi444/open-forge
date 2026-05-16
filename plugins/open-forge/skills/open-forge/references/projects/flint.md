@@ -1,15 +1,15 @@
 ---
 name: Flint
-description: "Modern KVM management tool. Single Go binary + embedded Next.js web UI + CLI + API. ccheshirecat/flint (volantvm/flint). No XML, no bloat. libvirt-based. Remote KVM via SSH."
+description: "Modern KVM management tool. Single Go binary + embedded Next.js web UI + CLI + API. 0xchasercat/flint (volantvm/flint). No XML, no bloat. libvirt-based. Remote KVM via SSH."
 ---
 
 # Flint
 
 **Modern KVM management, reimagined.** A single <11MB Go binary with an embedded Next.js web UI, CLI, and REST API for managing KVM/libvirt virtual machines. No XML. No Virt-Manager. No bloat. Built for developers, sysadmins, and homelabbers who want zero-friction VM management.
 
-Built + maintained by **volantvm** / ccheshirecat. Built quickly out of frustration with existing tooling.
+Built + maintained by **volantvm** / 0xchasercat. Built quickly out of frustration with existing tooling.
 
-- Upstream repo: <https://github.com/ccheshirecat/flint> (also: <https://github.com/volantvm/flint>)
+- Upstream repo: <https://github.com/0xchasercat/flint> (also: <https://github.com/volantvm/flint>)
 - Releases: <https://github.com/volantvm/flint/releases/latest>
 - Chaser platform: <https://chaser.sh>
 
@@ -185,7 +185,7 @@ Active releases, CI (GitHub Actions), solo-maintained by volantvm/ccheshirecat, 
 
 ## Links
 
-- Repo: <https://github.com/ccheshirecat/flint>
+- Repo: <https://github.com/0xchasercat/flint>
 - Releases: <https://github.com/volantvm/flint/releases>
 - Proxmox (alt): <https://www.proxmox.com>
 - Cockpit (alt): <https://cockpit-project.org>
