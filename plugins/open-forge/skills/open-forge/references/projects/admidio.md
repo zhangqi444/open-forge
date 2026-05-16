@@ -1,144 +1,182 @@
 ---
-name: admidio
-description: Admidio recipe for open-forge. Open-source user management system for clubs, associations and organisations. Flexible role model, event management, member lists, messaging, photo albums. Upstream: https://github.com/Admidio/admidio
+name: admidio-project
+description: Admidio recipe for open-forge. Covers ZIP install on a web server and Docker Compose deployment. Open-source member management system for clubs, associations, and organisations — role model, events, messaging, photo albums, documents.
 ---
 
 # Admidio
 
-Open-source user management system designed for clubs, associations, and organisations. Uses a flexible role model to mirror your org's structure and permissions. Built-in modules: member lists, event management, messaging, photo albums, document repository, and customisable profile fields. Available in 20+ languages. Upstream: <https://github.com/Admidio/admidio> — GPL-2.0.
+Open-source member management system for clubs, associations, and non-profit organisations. Flexible role model mirrors your org structure. Core modules: member lists, roles/groups, events, internal messaging, announcements, photo albums, document storage, guest book. GPL-2.0.
 
-PHP 8.2+ + MySQL 5.0+ / MariaDB 10+ / PostgreSQL 11+.
+- **GitHub:** https://github.com/Admidio/admidio (455 stars)
+- **Site:** https://www.admidio.org/
+- **Docs:** https://www.admidio.org/dokuwiki/doku.php
+- **Demo:** https://www.admidio.org/demo/
 
 ## Compatible install methods
 
-| Method | Upstream | First-party? | When to use |
-|---|---|---|---|
-| Docker Compose | <https://hub.docker.com/r/admidio/admidio> | Yes | Recommended. First-party image. |
-| Manual PHP install | <https://www.admidio.org/dokuwiki/doku.php?id=en:2.0:installation> | Yes | Shared hosting or existing LAMP/LEMP stack. |
+| Method | When to use |
+|---|---|
+| ZIP download + web server | Traditional LAMP/LEMP stack |
+| Docker Compose (`admidio/admidio`) | Containerised deployment |
 
-## Inputs to collect
+## Requirements
 
-| Phase | Prompt | Format | Applicability |
-|---|---|---|---|
-| db | Database host | Free-text | All |
-| db | Database name, user, password | Free-text / sensitive | All |
-| admin | Admin username, password, email | Free-text / sensitive | All |
-| site | Organisation name | Free-text | First-run config |
-| domain | Public root URL (ADMIDIO_ROOT_PATH) | Free-text | Docker — used for links in emails and UI |
+| Component | Minimum |
+|---|---|
+| PHP | 8.2+ |
+| MySQL | 5.0+ |
+| MariaDB | 10.0+ |
+| PostgreSQL | 11+ |
+| Extensions | `pdo`, `pdo_mysql`/`pdo_pgsql`, `gd`, `mbstring`, `openssl`, `curl`, `zip` |
+| Web server | Apache 2.4+ or NGINX |
 
-## Docker Compose method
+## Install — ZIP on web server
+
+```bash
+# 1. Download latest release ZIP from GitHub
+wget https://github.com/Admidio/admidio/releases/latest/download/admidio-<version>.zip
+
+# 2. Extract
+unzip admidio-<version>.zip -d /var/www/html/
+
+# 3. Set permissions
+chown -R www-data:www-data /var/www/html/admidio
+# adm_my_files must be writable — this is where Admidio stores all persistent data
+chmod -R 775 /var/www/html/admidio/adm_my_files
+
+# 4. Create database (MySQL example)
+mysql -u root -p -e "
+  CREATE DATABASE admidio CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+  CREATE USER 'admidio'@'localhost' IDENTIFIED BY 'changeme';
+  GRANT ALL PRIVILEGES ON admidio.* TO 'admidio'@'localhost';
+  FLUSH PRIVILEGES;"
+```
+
+Visit `http://your-domain/admidio/` to run the web installer.
+
+## Docker Compose
 
 ```yaml
-version: "3.8"
-
 services:
-  admidio-db:
-    image: mariadb:10.11
-    container_name: admidio-db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: REPLACE_ROOT_PASSWORD
-      MYSQL_DATABASE: admidio
-      MYSQL_USER: admidio
-      MYSQL_PASSWORD: REPLACE_DB_PASSWORD
-    volumes:
-      - admidio_db:/var/lib/mysql
-
   admidio:
     image: admidio/admidio:latest
     container_name: admidio
     restart: unless-stopped
-    depends_on:
-      - admidio-db
     ports:
       - "8080:8080"
     environment:
-      ADMIDIO_DB_HOST: admidio-db
+      ADMIDIO_DB_HOST: db
+      ADMIDIO_DB_PORT: 3306
       ADMIDIO_DB_NAME: admidio
       ADMIDIO_DB_USER: admidio
-      ADMIDIO_DB_PASSWORD: REPLACE_DB_PASSWORD
-      # Root path must match the public URL your users will use
-      ADMIDIO_ROOT_PATH: https://members.example.com
+      ADMIDIO_DB_PASSWORD: changeme
+      # Public URL of your Admidio install — used for links in emails
+      ADMIDIO_ROOT_PATH: http://localhost:8080/admidio
+      # Organisation name shown on the login page
+      ADMIDIO_ORG_NAME: My Organisation
+      # Short abbreviation used in table names (change before first install only)
+      ADMIDIO_ORG_SHORTNAME: ORG
     volumes:
-      - admidio_data:/var/www/html/adm_my_files
+      # adm_my_files contains all uploaded files, config, and generated data
+      # This MUST be persisted — losing it means losing all uploads and config
+      - admidio-data:/var/www/html/admidio/adm_my_files
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: admidio-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: admidio
+      MYSQL_USER: admidio
+      MYSQL_PASSWORD: changeme
+      MYSQL_ROOT_PASSWORD: changeme-root
+    volumes:
+      - admidio-db:/var/lib/mysql
 
 volumes:
-  admidio_db:
-  admidio_data:
-```
-
-After first start, navigate to `http://<host>:8080` and complete the web installer (creates DB tables and first admin account).
-
-## Manual PHP install
-
-Requirements: PHP 8.2+ with pdo_mysql/pdo_pgsql, gd, json, mbstring; web server with URL rewriting.
-
-```bash
-# Download latest release
-wget https://github.com/Admidio/admidio/releases/latest/download/admidio-latest.zip
-unzip admidio-latest.zip -d /var/www/html/admidio
-
-# Set permissions
-chown -R www-data:www-data /var/www/html/admidio
-chmod -R 777 /var/www/html/admidio/adm_my_files
-
-# Visit http://<host>/admidio/installation/ to run the installer
+  admidio-data:
+  admidio-db:
 ```
 
 ## Key environment variables (Docker)
 
-| Variable | Purpose |
-|---|---|
-| `ADMIDIO_DB_HOST` | Database host |
-| `ADMIDIO_DB_NAME` | Database name |
-| `ADMIDIO_DB_USER` | Database username |
-| `ADMIDIO_DB_PASSWORD` | Database password |
-| `ADMIDIO_ROOT_PATH` | Full public URL (e.g. https://members.example.com) — used in email links |
+| Variable | Description | Default |
+|---|---|---|
+| `ADMIDIO_DB_HOST` | Database hostname | `localhost` |
+| `ADMIDIO_DB_PORT` | Database port | `3306` |
+| `ADMIDIO_DB_NAME` | Database name | `admidio` |
+| `ADMIDIO_DB_USER` | Database user | — |
+| `ADMIDIO_DB_PASSWORD` | Database password | — |
+| `ADMIDIO_ROOT_PATH` | Public URL of the install | — |
+| `ADMIDIO_ORG_NAME` | Organisation display name | `My Organisation` |
+| `ADMIDIO_ORG_SHORTNAME` | Short prefix for DB tables (set once) | `ORG` |
+| `ADMIDIO_MAIL_HOST` | SMTP hostname | — |
+| `ADMIDIO_MAIL_PORT` | SMTP port | `25` |
+| `ADMIDIO_MAIL_USER` | SMTP username | — |
+| `ADMIDIO_MAIL_PASSWORD` | SMTP password | — |
 
 ## Key directories
 
 | Path | Purpose |
 |---|---|
-| `adm_my_files/` | All persistent data: uploads, config, generated files — must be volume-mounted |
-| `adm_plugins/` | Third-party plugins — persist if using plugins |
+| `adm_my_files/` | **All** persistent data — uploads, generated config, session data, backups. Volume-mount this. |
+| `adm_plugins/` | Third-party plugins |
 | `adm_themes/` | Custom themes |
 
-## Key features
+## Apache vhost
 
-- **Flexible roles:** Create roles (e.g. Board Member, Volunteer, Coach) with custom permissions; members can belong to multiple roles
-- **Custom profile fields:** Add/remove fields per role (phone, address, instrument, jersey number — whatever your org needs)
-- **Member relationships:** Link members as spouse, parent/child, coach/athlete
-- **Event management:** Create events, publish online, track member sign-ups and attendance
-- **Messaging:** Send HTML emails to all members, specific roles, or groups
-- **Photo albums:** Upload and manage photo collections with member tagging
-- **Document repository:** Store and share files with role-based access
-- **Export:** Member lists to CSV, Excel (ODS), and PDF
-- **Import:** Bulk import members from CSV
+```apache
+<VirtualHost *:80>
+    ServerName example.com
+    DocumentRoot /var/www/html/admidio
 
-## Upgrade procedure
+    <Directory /var/www/html/admidio>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
 
-```bash
-docker compose pull admidio
-docker compose up -d admidio
+    # Protect sensitive directories
+    <Directory /var/www/html/admidio/adm_my_files>
+        Require all denied
+    </Directory>
+</VirtualHost>
 ```
 
-For manual installs — from the Admidio wiki:
-1. Delete all files and folders **except** `adm_my_files/` and `adm_plugins/`
-2. Copy all folders from the new release **except** `adm_my_files/`
-3. Visit `http://<host>/admidio/installation/update.php` to run database migrations
+## Inputs to collect
 
-## Gotchas
+| Phase | Prompt | Notes |
+|---|---|---|
+| preflight | "Install method? (Docker / ZIP)" | |
+| db | "Database type? (MySQL/MariaDB or PostgreSQL)" | |
+| db | "Database host, name, user, password?" | |
+| org | "Organisation name and short abbreviation?" | Short name is used as DB table prefix — cannot be changed after install |
+| org | "Public URL where Admidio will be accessible?" | Set as `ADMIDIO_ROOT_PATH` |
+| admin | "Admin email and password?" | First admin account created during install wizard |
+| mail | "SMTP server details for email notifications?" | Events, new member registrations, messages |
 
-- **`adm_my_files/` is everything.** All user uploads, config, and session data live here. In Docker, this volume is the only thing you need to back up (plus the database). Never lose it.
-- **`ADMIDIO_ROOT_PATH` must be exact.** If you run behind a reverse proxy with a subdirectory path (e.g. `https://example.com/members`), set it accordingly. Wrong paths cause broken email links and login redirects.
-- **Installer lock file.** After installation, the installer directory is locked by a flag file in `adm_my_files/`. Don't delete `adm_my_files/` unless you want to reinstall from scratch.
-- **PHP GD required.** Photo album thumbnails and image resizing need the GD extension. Without it, photos will upload but not display correctly.
-- **Upgrade order: files first, then DB migration.** If you swap files before running the update wizard, the app may show errors until migrations complete. Run the update wizard promptly after file replacement.
+## Features overview
 
-## Upstream docs
+| Module | What it does |
+|---|---|
+| Members | Custom profile fields, import/export CSV/Excel/PDF |
+| Roles | Hierarchical roles mirroring your org chart; member-role assignments |
+| Events | Create events, manage registrations, send invitations |
+| Announcements | Internal news / bulletin board |
+| Messaging | Private messages between members |
+| Photo albums | Upload and share photo albums |
+| Documents | File sharing and document library |
+| Guest book | Public-facing guest book |
+| Links | Curated link list for members |
+| Forum | Discussion threads (optional module) |
 
-- GitHub: <https://github.com/Admidio/admidio>
-- Installation guide: <https://www.admidio.org/dokuwiki/doku.php?id=en:2.0:installation>
-- Update guide: <https://www.admidio.org/dokuwiki/doku.php?id=en:2.0:update>
-- Docker Hub: <https://hub.docker.com/r/admidio/admidio>
-- Demo: <https://www.admidio.org/demo/>
+## Notes
+
+- The `adm_my_files/` directory is the single most important thing to back up — it contains all uploaded files and the generated `config.php`.
+- `ADMIDIO_ORG_SHORTNAME` is used as a prefix for all database table names and **cannot be changed after the first install** without a full database migration.
+- Admidio supports 20+ UI languages out of the box.
+- Member relationships (spouse, parent/child, etc.) can be defined under **Configuration → User relation types**.
+- Email notifications for events and registrations require SMTP to be configured under **Organisation Settings → Email**.
+- Demo: https://www.admidio.org/demo/ (credentials shown on the page)

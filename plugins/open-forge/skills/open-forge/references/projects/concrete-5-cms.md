@@ -1,147 +1,192 @@
 ---
-name: concrete-5-cms
-description: Concrete CMS recipe for open-forge. Open-source PHP CMS with inline page editing, marketplace add-ons, and Express Objects for custom data. Formerly concrete5. Upstream: https://github.com/concretecms/concretecms
+name: concrete-5-cms-project
+description: Concrete CMS (formerly concrete5) recipe for open-forge. Covers Composer install, ZIP download, Docker Compose, and web-server configuration. PHP CMS with inline page editing and an official marketplace for add-ons and themes.
 ---
 
 # Concrete CMS
 
-Open-source content management system with inline page editing — click any element on the page to edit it directly in the browser. Includes a marketplace for themes and add-ons, Express Objects for custom data types, multilingual support, and a built-in workflow engine. Formerly known as concrete5 (rebranded 2021). Upstream: <https://github.com/concretecms/concretecms> — MIT.
+Open-source PHP CMS with inline page editing (click any element on a live page to edit it), an official marketplace for add-ons and themes, and Express Objects for custom data structures. Formerly known as concrete5; rebranded to Concrete CMS in 2021. MIT licensed.
 
-PHP + MySQL/MariaDB/PostgreSQL.
+- **GitHub:** https://github.com/concretecms/concretecms (828 stars)
+- **Site:** https://www.concretecms.com
+- **Download:** https://www.concretecms.com/download
+- **Marketplace:** https://marketplace.concretecms.com
+- **Docs:** https://documentation.concretecms.org/
 
 ## Compatible install methods
 
-| Method | Upstream | First-party? | When to use |
-|---|---|---|---|
-| Composer (recommended) | <https://documentation.concretecms.org/developers/installation> | Yes | Clean install on any PHP host. |
-| Release ZIP | <https://www.concretecms.com/download> | Yes | Shared hosting or servers without Composer. |
-| Docker Compose | Community | Community | Containerised dev/production. No official first-party image. |
+| Method | When to use |
+|---|---|
+| Composer (`create-project`) | Recommended for new installs; pulls latest stable |
+| ZIP download | Manual install or air-gapped environments |
+| Docker Compose (community image) | Containerised deployments |
 
-## Inputs to collect
+## Requirements
 
-| Phase | Prompt | Format | Applicability |
-|---|---|---|---|
-| db | Database name, user, password | Free-text / sensitive | All |
-| db | Database host (default: localhost) | Free-text | All |
-| db | Database type (MySQL/MariaDB or PostgreSQL) | Choice | All |
-| admin | Admin username, password, email | Free-text / sensitive | First-run installer |
-| site | Site name | Free-text | First-run installer |
-| domain | Public hostname | Free-text | All |
+| Component | Minimum |
+|---|---|
+| PHP | 8.1+ (8.2 recommended) |
+| MySQL | 8.0+ |
+| MariaDB | 10.4+ |
+| PostgreSQL | 14+ |
+| Extensions | `pdo`, `pdo_mysql`/`pdo_pgsql`, `json`, `dom`, `mbstring`, `openssl`, `curl`, `gd` or `imagick`, `fileinfo`, `zip` |
+| Web server | Apache 2.4+ (mod_rewrite required) or NGINX |
+| Memory limit | 128 MB minimum (256 MB recommended) |
 
-## Composer install (recommended)
-
-Requirements: PHP 8.1+, Composer, MySQL 8+ / MariaDB 10.4+ / PostgreSQL 11+, Apache or Nginx.
+## Install — Composer
 
 ```bash
+# Install Concrete CMS into ./my-site
 composer create-project -n concrete5/concrete5 my-site
+
+# Move into your web root or configure your web server to point at my-site/
 cd my-site
-# Set web server document root to /path/to/my-site
-# Visit http://<host>/ to run the web installer
 ```
 
-Required PHP extensions: pdo_mysql (or pdo_pgsql), gd, xml, json, mbstring, curl, zip, fileinfo.
+Then visit `http://your-domain/` in a browser to run the web-based installer.
 
-Apache: enable mod_rewrite and set AllowOverride All. Concrete CMS ships a .htaccess that handles URL rewriting.
+## Install — ZIP download
 
-Nginx:
-```nginx
-location / {
-    try_files $uri $uri/ /index.php$is_args$args;
-}
-location ~ \.php$ {
-    fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-    include fastcgi_params;
-}
+```bash
+# Download from https://www.concretecms.com/download
+unzip concrete-cms-<version>.zip -d /var/www/html/my-site
+
+# Set permissions
+chown -R www-data:www-data /var/www/html/my-site
+find /var/www/html/my-site -type d -exec chmod 755 {} \;
+find /var/www/html/my-site -type f -exec chmod 644 {} \;
+
+# application/files and application/config must be writable
+chmod -R 775 /var/www/html/my-site/application/files
+chmod -R 775 /var/www/html/my-site/application/config
 ```
 
-## Docker Compose (community)
+Visit the site URL to run the installer.
+
+## Docker Compose (community image)
 
 ```yaml
-version: "3.8"
-
 services:
-  concretecms-db:
-    image: mysql:8
-    container_name: concretecms-db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: REPLACE_ROOT_PASSWORD
-      MYSQL_DATABASE: concretecms
-      MYSQL_USER: concretecms
-      MYSQL_PASSWORD: REPLACE_DB_PASSWORD
-    volumes:
-      - concretecms_db:/var/lib/mysql
-
   concretecms:
     image: concrete5/concrete5:latest
     container_name: concretecms
     restart: unless-stopped
-    depends_on:
-      - concretecms-db
     ports:
       - "8080:80"
     environment:
-      DB_SERVER: concretecms-db
-      DB_DATABASE: concretecms
-      DB_USERNAME: concretecms
-      DB_PASSWORD: REPLACE_DB_PASSWORD
+      - CONCRETE5_DB_SERVER=db
+      - CONCRETE5_DB_DATABASE=concretecms
+      - CONCRETE5_DB_USERNAME=concretecms
+      - CONCRETE5_DB_PASSWORD=changeme
     volumes:
-      - concretecms_files:/var/www/html/application/files
-      - concretecms_packages:/var/www/html/packages
+      - concrete-files:/var/www/html/application/files
+      - concrete-config:/var/www/html/application/config
+      - concrete-packages:/var/www/html/packages
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: concretecms-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: concretecms
+      MYSQL_USER: concretecms
+      MYSQL_PASSWORD: changeme
+      MYSQL_ROOT_PASSWORD: changeme-root
+    volumes:
+      - concrete-db:/var/lib/mysql
 
 volumes:
-  concretecms_db:
-  concretecms_files:
-  concretecms_packages:
+  concrete-files:
+  concrete-config:
+  concrete-packages:
+  concrete-db:
 ```
 
-Note: the community Docker image (concrete5/concrete5) is not maintained by the Concrete CMS core team.
+## Apache vhost
+
+```apache
+<VirtualHost *:80>
+    ServerName example.com
+    DocumentRoot /var/www/html/my-site
+
+    <Directory /var/www/html/my-site>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/concretecms_error.log
+    CustomLog ${APACHE_LOG_DIR}/concretecms_access.log combined
+</VirtualHost>
+```
+
+Ensure `mod_rewrite` is enabled: `sudo a2enmod rewrite && sudo systemctl reload apache2`
+
+## NGINX server block
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/html/my-site;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+
+    # Block direct access to application internals
+    location ~ ^/application/(cache|config|files/cache|logs|tmp) {
+        deny all;
+    }
+}
+```
 
 ## Key directories
 
 | Path | Purpose |
 |---|---|
-| application/files/ | User uploads — must be writable and persisted in Docker |
-| application/config/ | Generated config (database.php, app.php) |
-| application/cache/ | Page and block cache — must be writable |
-| packages/ | Installed marketplace add-ons and themes |
-| concrete/ | Core CMS code — do not edit; overwritten on upgrade |
+| `application/files/` | User uploads and file manager — **must be writable, volume-mount in Docker** |
+| `application/config/` | Generated config (database, site settings) — **must be writable** |
+| `application/cache/` | Page / block cache — writable |
+| `packages/` | Installed marketplace add-ons |
+| `concrete/` | Core CMS files — do not modify |
 
-## Key features
+## Inputs to collect
 
-- **Inline editing:** Click any block on the page to edit content without leaving the front end
-- **Express Objects:** Define custom data types via GUI (like custom post types), no coding required
-- **Marketplace:** Themes and add-ons at https://marketplace.concretecms.com
-- **Multilingual:** Built-in i18n with locale-specific content trees
-- **Workflow:** Approval workflows before page publishing
-- **File Manager:** Integrated media library with tagging and image editing
-- **Blocks:** Text, image, gallery, form, calendar, search — drag-and-drop onto any page
+| Phase | Prompt | Notes |
+|---|---|---|
+| preflight | "Install method? (Composer / ZIP / Docker)" | |
+| db | "Database type? (MySQL / MariaDB / PostgreSQL)" | |
+| db | "Database host, name, user, password?" | |
+| site | "Site URL?" | Used during install wizard |
+| site | "Admin email and password?" | First admin account |
+| mail | "SMTP server details?" | Concrete CMS sends email for user registration, notifications |
 
-## Upgrade procedure
+## Upgrading
 
-Via Dashboard: Dashboard > System & Settings > Update Concrete CMS > click "Update to X.Y.Z"
+In the Concrete CMS Dashboard: **System & Settings → Update Concrete CMS → Check for Updates**.
 
-Via CLI:
+Or via CLI (Concrete CLI tool):
+
 ```bash
-composer update concrete5/concrete5
-php concrete/bin/concrete5 c5:update
+cd /var/www/html/my-site
+./vendor/bin/concrete5 c5:update
 ```
 
-Always back up the database and application/files/ before upgrading.
+## Notes
 
-## Gotchas
-
-- **Never edit /concrete/ directly.** It is the core and is overwritten on every upgrade. Put customisations in /application/ or a package.
-- **application/files/ must be persisted in Docker.** All uploads live here. Losing this volume loses all media.
-- **.htaccess required for Apache.** Without mod_rewrite and AllowOverride All, pretty URLs break.
-- **Cache can mask changes.** After editing templates, clear via Dashboard > System > Clear Cache or php concrete/bin/concrete5 c5:cache:clear.
-- **Concrete CMS 9.x is current.** Versions 8.x and 5.7.x are legacy branches.
-
-## Upstream docs
-
-- GitHub: https://github.com/concretecms/concretecms
-- Documentation: https://documentation.concretecms.org
-- Marketplace: https://marketplace.concretecms.com
-- Community forums: https://forums.concretecms.org
-- Docker Hub: https://hub.docker.com/r/concrete5/concrete5
+- The `application/` directory persists all user data — back it up before upgrading.
+- After a major upgrade, run **Dashboard → System & Settings → Clear Cache** if you see layout issues.
+- Marketplace add-ons are installed via Dashboard → Extend Concrete → Add Functionality.
+- Concrete CMS supports multi-language sites natively via the Multilingual package.
+- Demo available at https://www.concretecms.com/about/try-concrete-cms
