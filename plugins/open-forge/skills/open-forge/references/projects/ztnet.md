@@ -51,7 +51,7 @@ services:
       - app-network
 
   zerotier:
-    image: zyclonite/zerotier:1.14.2
+    image: zyclonite/zerotier:1.16.1
     hostname: zerotier
     container_name: zerotier
     restart: unless-stopped
@@ -71,7 +71,7 @@ services:
       - ZT_ALLOW_MANAGEMENT_FROM=172.31.255.0/29
 
   ztnet:
-    image: sinamics/ztnet:latest
+    image: sinamics/ztnet:v0.7.18
     container_name: ztnet
     ports:
       - "3000:3000"

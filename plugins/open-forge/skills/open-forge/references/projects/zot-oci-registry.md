@@ -51,7 +51,7 @@ CONFIG
 cat > docker-compose.yml << 'COMPOSE'
 services:
   zot:
-    image: ghcr.io/project-zot/zot-linux-amd64:latest
+    image: ghcr.io/project-zot/zot-linux-amd64:v2.1.16
     container_name: zot
     restart: unless-stopped
     ports:

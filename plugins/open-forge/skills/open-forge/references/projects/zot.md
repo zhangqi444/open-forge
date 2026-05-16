@@ -56,7 +56,7 @@ Follow: <https://zotregistry.dev/v2.1.4/install-guides/install-guide-docker/>
 ```yaml
 services:
   zot:
-    image: ghcr.io/project-zot/zot-linux-amd64:latest        # **pin version**
+    image: ghcr.io/project-zot/zot-linux-amd64:v2.1.16        # **pin version**
     ports: ["5000:5000"]
     volumes:
       - ./zot-data:/var/lib/registry

@@ -65,7 +65,7 @@ Features (from upstream README):
 ```yaml
 services:
   zipline:
-    image: ghcr.io/diced/zipline:latest    # **pin version**
+    image: ghcr.io/diced/zipline:v4.6.0    # **pin version**
     restart: unless-stopped
     environment:
       - CORE_RETURN_HTTPS=true

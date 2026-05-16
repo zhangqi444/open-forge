@@ -50,7 +50,7 @@ Built + maintained by **zwave-js team (robertsLando)**. MIT license.
 services:
   zwave-js-ui:
     container_name: zwave-js-ui
-    image: zwavejs/zwave-js-ui:latest
+    image: zwavejs/zwave-js-ui:v11.17.0
     restart: always
     tty: true
     stop_signal: SIGINT
