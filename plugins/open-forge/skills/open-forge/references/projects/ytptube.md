@@ -39,7 +39,7 @@ Built + maintained by **arabcoders**. MIT.
 services:
   ytptube:
     user: "${UID:-1000}:${UID:-1000}"   # Change to your UID:GID
-    image: ghcr.io/arabcoders/ytptube:latest
+    image: ghcr.io/arabcoders/ytptube:v2.5.2
     container_name: ytptube
     restart: unless-stopped
     environment:

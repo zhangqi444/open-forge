@@ -66,7 +66,7 @@ version: '3.7'
 services:
   zwave-js-ui:
     container_name: zwave-js-ui
-    image: zwavejs/zwave-js-ui:latest   # pin a specific tag in production
+    image: zwavejs/zwave-js-ui:v11.17.0   # pin a specific tag in production
     restart: always
     tty: true
     stop_signal: SIGINT
@@ -149,7 +149,7 @@ docker start zwave-js-ui
 
 1. Check releases at <https://github.com/zwave-js/zwave-js-ui/releases>
 2. **Back up first** — especially the NVM (network config); a bad upgrade can corrupt the Z-Wave network
-3. `docker pull zwavejs/zwave-js-ui:latest && docker compose up -d`
+3. `docker pull zwavejs/zwave-js-ui:v11.17.0 && docker compose up -d`
 4. Review release notes for breaking changes (security key format changes, API changes)
 
 ## Gotchas

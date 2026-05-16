@@ -17,7 +17,7 @@ Built + maintained by **tryzealot** (community project).
 ## Architecture in one minute
 
 - Ruby on Rails application backed by **PostgreSQL** (required) and optionally **Redis** (for background jobs via Sidekiq)
-- Official Docker image: `ghcr.io/tryzealot/zealot:latest`
+- Official Docker image: `ghcr.io/tryzealot/zealot:6.2.1`
 - Deploy via the `zealot-docker` helper repo which generates a full `docker-compose.yml` from a `.env` template with Caddy as a reverse proxy for automatic TLS
 
 ## Compatible install methods
@@ -125,7 +125,7 @@ services:
     restart: unless-stopped
 
   zealot:
-    image: ghcr.io/tryzealot/zealot:latest
+    image: ghcr.io/tryzealot/zealot:6.2.1
     depends_on:
       - postgres
     env_file: .env

@@ -63,7 +63,7 @@ Features (from upstream README):
 ```yaml
 services:
   youtubedl-material:
-    image: tzahi12345/youtubedl-material:latest    # **pin version**
+    image: tzahi12345/youtubedl-material:v4.3.2    # **pin version**
     container_name: ytdlm
     restart: unless-stopped
     ports: ["17442:17442"]

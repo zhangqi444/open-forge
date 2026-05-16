@@ -61,7 +61,7 @@ Features (per README):
 ```yaml
 services:
   ytdl-sub:
-    image: ghcr.io/jmbannon/ytdl-sub:latest        # **pin version**
+    image: ghcr.io/jmbannon/ytdl-sub:2026.05.10.post1        # **pin version**
     volumes:
       - ./config:/config
       - ./media:/media       # Output to Plex/Jellyfin library

@@ -73,7 +73,7 @@ Straight from upstream README:
 ```yaml
 services:
   zerobyte:
-    image: ghcr.io/nicotsx/zerobyte:v0.35            # pin
+    image: ghcr.io/nicotsx/zerobyte:v0.36.0            # pin
     container_name: zerobyte
     restart: unless-stopped
     cap_add:

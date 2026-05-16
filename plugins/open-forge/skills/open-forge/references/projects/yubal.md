@@ -38,7 +38,7 @@ Built + maintained by **guillevc**. See repo license.
 ```yaml
 services:
   yubal:
-    image: ghcr.io/guillevc/yubal:latest
+    image: ghcr.io/guillevc/yubal:v0.8.0
     container_name: yubal
     ports:
       - 8000:8000

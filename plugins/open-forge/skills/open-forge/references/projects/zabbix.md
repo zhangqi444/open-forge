@@ -83,7 +83,7 @@ services:
     volumes:
       - ./pg:/var/lib/postgresql/data
   zabbix-server:
-    image: zabbix/zabbix-server-pgsql:alpine-7.0-latest     # pin to exact version in prod
+    image: zabbix/zabbix-server-pgsql:alpine-7.4-latest     # pin to exact version in prod
     environment:
       DB_SERVER_HOST: zabbix-db
       POSTGRES_USER: zabbix
@@ -94,7 +94,7 @@ services:
     depends_on:
       - zabbix-db
   zabbix-web:
-    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.0-latest
+    image: zabbix/zabbix-web-nginx-pgsql:alpine-7.4-latest
     environment:
       DB_SERVER_HOST: zabbix-db
       POSTGRES_USER: zabbix

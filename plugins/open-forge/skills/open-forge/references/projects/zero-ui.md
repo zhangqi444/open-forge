@@ -78,7 +78,7 @@ version: "3"
 
 services:
   zerotier:
-    image: zyclonite/zerotier:1.10.6
+    image: zyclonite/zerotier:1.16.1
     container_name: zu-controller
     restart: unless-stopped
     volumes:
@@ -92,7 +92,7 @@ services:
       - "9993:9993/udp"
 
   zero-ui:
-    image: dec0dos/zero-ui:latest
+    image: dec0dos/zero-ui:1.5.8
     container_name: zu-main
     restart: unless-stopped
     depends_on:
