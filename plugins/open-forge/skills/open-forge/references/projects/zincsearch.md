@@ -11,6 +11,8 @@ ZincSearch is a single binary with no external dependencies (storage is local di
 
 > **Scope:** ZincSearch is an **app search** tool — it's designed for adding search to a website or application. For **log search / observability** (structured log ingestion, dashboards, alerting), use OpenObserve or Grafana Loki instead.
 
+> ⚠️ **Maintenance status**: ZincSearch latest release is **v0.4.10 (January 2024)**. The project appears to be in low-activity / maintenance mode. For new projects, evaluate alternatives. Existing deployments continue to work.
+
 | | |
 |---|---|
 | **License** | Apache 2.0 |
@@ -83,7 +85,7 @@ docker run -d \
   -e ZINC_FIRST_ADMIN_PASSWORD=Complexpass#123 \
   -v /tmp/zincsearch:/var/lib/zincsearch \
   --name zincsearch \
-  public.ecr.aws/zinclabs/zincsearch:latest
+  public.ecr.aws/zinclabs/zincsearch:0.4.10
 ```
 
 ### Docker Compose
@@ -91,7 +93,7 @@ docker run -d \
 ```yaml
 services:
   zincsearch:
-    image: public.ecr.aws/zinclabs/zincsearch:latest
+    image: public.ecr.aws/zinclabs/zincsearch:0.4.10
     ports:
       - "4080:4080"
     environment:
@@ -111,7 +113,7 @@ volumes:
 **Docker Compose:**
 
 ```bash
-docker pull public.ecr.aws/zinclabs/zincsearch:latest
+docker pull public.ecr.aws/zinclabs/zincsearch:0.4.10
 docker compose up -d
 ```
 
@@ -120,7 +122,7 @@ Index data in the named volume persists across image updates.
 ## Gotchas
 
 - **`ZINC_FIRST_ADMIN_USER` and `ZINC_FIRST_ADMIN_PASSWORD` only take effect on first run.** These environment variables are read once when ZincSearch initialises an empty data directory. If you change them after the first start, nothing happens — the original credentials remain. To change the admin password after first run, use the web UI's admin settings.
-- **Image is on AWS ECR, not Docker Hub.** The registry is `public.ecr.aws/zinclabs/zincsearch` — not `zincsearch/zincsearch` or `docker.io/zinclabs/zincsearch`. Pull works without credentials (`docker pull public.ecr.aws/zinclabs/zincsearch:latest`), but tooling that assumes Docker Hub by default will fail unless you specify the full registry prefix.
+- **Image is on AWS ECR, not Docker Hub.** The registry is `public.ecr.aws/zinclabs/zincsearch` — not `zincsearch/zincsearch` or `docker.io/zinclabs/zincsearch`. Pull works without credentials (`docker pull public.ecr.aws/zinclabs/zincsearch:0.4.10`), but tooling that assumes Docker Hub by default will fail unless you specify the full registry prefix.
 - **Single-node only — no clustering or HA.** ZincSearch has no distributed mode. All data lives on one node. For high-availability or distributed search requirements, use Elasticsearch or OpenSearch instead.
 - **Designed for app search, not log analytics.** ZincSearch is optimised for document search (product catalogs, site search, knowledge bases). It is not designed for high-volume structured log ingestion, time-series queries, or observability dashboards. For log search, use OpenObserve or Grafana Loki.
 - **No persistent query history or saved searches in the UI.** Searches in the web UI are ephemeral — there is no saved-search or query-history feature. Results disappear on page refresh.
@@ -129,6 +131,6 @@ Index data in the named volume persists across image updates.
 
 - GitHub: <https://github.com/zincsearch/zincsearch>
 - Docs: <https://zincsearch-docs.zinc.dev/>
-- Docker image (AWS ECR): `public.ecr.aws/zinclabs/zincsearch:latest`
+- Docker image (AWS ECR): `public.ecr.aws/zinclabs/zincsearch:0.4.10`
 - Elasticsearch bulk API (compatible): <https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html>
 - OpenObserve (log search alternative): <https://github.com/openobserve/openobserve>

@@ -22,7 +22,7 @@ Official site: https://zim-wiki.org/
 Source: https://github.com/zim-desktop-wiki/zim-desktop-wiki  
 Docs: https://zim-wiki.org/manual/  
 Downloads: https://zim-wiki.org/downloads.html  
-Latest release: v0.75.2 (2024)
+Latest release: v0.76.3 (2025)
 
 > **Note**: Zim is a **desktop GUI application** — it runs on a local machine with a graphical interface (GTK3). It is not a web application. Self-hosting context: it can serve a static HTML export, or be run on a server with X11/VNC forwarding.
 

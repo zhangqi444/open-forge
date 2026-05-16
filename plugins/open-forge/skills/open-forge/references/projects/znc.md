@@ -36,7 +36,7 @@ mkdir znc && cd znc
 cat > docker-compose.yml << 'COMPOSE'
 services:
   znc:
-    image: lscr.io/linuxserver/znc:latest
+    image: lscr.io/linuxserver/znc:1.10.2
     container_name: znc
     environment:
       - PUID=1000
