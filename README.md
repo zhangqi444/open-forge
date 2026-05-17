@@ -5,7 +5,7 @@
 <h1 align="center">open-forge</h1>
 
 <p align="center">
-  <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/plugin-v0.20.1-F97316?style=flat-square&labelColor=0F172A" alt="Plugin version" /></a>
+  <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fzhangqi444%2Fopen-forge%2Fmain%2Fplugins%2Fopen-forge%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=plugin&style=flat-square&color=F97316&labelColor=0F172A" alt="Plugin version" /></a>
   <a href="https://deepwiki.com/zhangqi444/open-forge"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki" /></a>
   <a href="https://github.com/zhangqi444/open-forge/tree/main/plugins/open-forge/skills/open-forge/references/projects"><img src="https://img.shields.io/github/directory-file-count/zhangqi444/open-forge/plugins/open-forge/skills/open-forge/references/projects?type=file&extension=md&style=flat-square&labelColor=0F172A&color=EA580C&label=verified%20recipes" alt="Verified recipes" /></a>
   <a href="#install"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-D77756?style=flat-square&labelColor=0F172A" alt="Built for Claude Code" /></a>
@@ -19,7 +19,7 @@
 ```
 > "Self-host OpenClaw on AWS Lightsail with Bedrock pre-wired."
 
-  [open-forge] Loading verified recipe openclaw.md (v0.20.1).
+  [open-forge] Loading verified recipe openclaw.md (v0.24.0).
   [open-forge] Combo: AWS Lightsail OpenClaw blueprint (vendor-bundled, Bedrock IAM included).
   [open-forge] I'll need your AWS profile and the domain you want.
 
