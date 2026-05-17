@@ -4,7 +4,9 @@
 
 <h1 align="center">open-forge</h1>
 
-<p align="center"><strong>A Claude Code skill that self-deploys 2,200+ open-source apps to your own infrastructure.</strong></p>
+<p align="center"><strong>Turn Claude Code (and Codex / Cursor / Aider / OpenClaw / Hermes) into your self-hosting deploy engineer.</strong></p>
+
+<p align="center">2,200+ verified open-source apps, deployed to your own infrastructure.</p>
 
 <p align="center">
   <a href="https://github.com/zhangqi444/open-forge/releases"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fzhangqi444%2Fopen-forge%2Fmain%2Fplugins%2Fopen-forge%2F.claude-plugin%2Fplugin.json&query=%24.version&prefix=v&label=plugin&style=flat-square&color=F97316&labelColor=0F172A" alt="Plugin version" /></a>
@@ -15,11 +17,11 @@
   <a href="https://github.com/zhangqi444/open-forge/stargazers"><img src="https://img.shields.io/github/stars/zhangqi444/open-forge?style=flat-square&labelColor=0F172A&color=FACC15" alt="GitHub stars" /></a>
 </p>
 
-> **Tell Claude Code what to self-host. It does the rest** — picks the right install method, provisions the server, configures DNS + TLS, sets up SMTP, hardens it, and brings the app up at your domain.
+> **Tell your AI coding agent what to self-host. It does the rest** — picks the right install method, provisions the server, configures DNS + TLS, sets up SMTP, hardens it, and brings the app up at your domain.
 >
-> No more reading a 30-step README and copy-pasting bash for hours. You stay in chat; Claude Code drives the CLIs (aws, gcloud, kubectl, docker, ssh, …) and asks you only the things only you can answer (which cloud, which domain, which credential).
+> No more reading a 30-step README and copy-pasting bash for hours. You stay in chat; the agent drives the CLIs (aws, gcloud, kubectl, docker, ssh, …) and asks you only the things only you can answer (which cloud, which domain, which credential).
 >
-> Backed by a self-improving catalog: every deploy can feed gotchas back so the next user starts further ahead.
+> Canonical install is Claude Code; same skill ships for Codex, Cursor, Aider, OpenClaw, and Hermes-Agent. Backed by a self-improving catalog — every deploy can feed gotchas back so the next user starts further ahead.
 
 ```
 > "Self-host OpenClaw on AWS Lightsail with Bedrock pre-wired."
@@ -33,14 +35,16 @@
 
 > *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [2,200+ verified recipes](#coverage).)*
 
-## Install in Claude Code
+## Install
+
+**Claude Code** (canonical — one-line marketplace install):
 
 ```
 /plugin marketplace add zhangqi444/open-forge
 /plugin install open-forge@open-forge
 ```
 
-That's it. From now on, just say what you want self-hosted in any Claude Code session:
+That's it. From now on, just say what you want self-hosted in any session:
 
 > *"Self-host Vaultwarden on my laptop, expose via Cloudflare Tunnel."*
 >
@@ -48,9 +52,7 @@ That's it. From now on, just say what you want self-hosted in any Claude Code se
 >
 > *"Deploy Ghost on AWS Lightsail at blog.mydomain.com."*
 
-### Also works on other AI coding tools and agent platforms
-
-Claude Code is the canonical home, but the same recipes ship for other agents — see [`docs/platforms/`](docs/platforms/):
+**Other AI coding tools and agent platforms** — same recipes, generated bundles, see [`docs/platforms/`](docs/platforms/):
 
 | Platform | How |
 |---|---|
@@ -76,9 +78,9 @@ To know when a new version ships:
 
 To apply an update in Claude Code: `/plugin marketplace update zhangqi444/open-forge`
 
-## Why use open-forge instead of asking Claude Code directly?
+## Why use open-forge instead of asking your agent directly?
 
-Raw Claude Code can absolutely deploy software for you — but it starts from zero every session. `open-forge` *accumulates* — every deploy can feed gotchas back into the catalog so the next user starts further ahead.
+A raw AI coding agent (Claude Code, Codex, Cursor, …) can absolutely deploy software for you — but it starts from zero every session. `open-forge` *accumulates* — every deploy can feed gotchas back into the catalog so the next user starts further ahead.
 
 ```
    you deploy ─► skill captures gotchas ─► you review + opt in to share
@@ -97,7 +99,7 @@ Raw Claude Code can absolutely deploy software for you — but it starts from ze
 
 That's why captured tribal knowledge already includes things like *"OpenClaw's three installers (`install.sh`, `install-cli.sh`, `install.ps1`) don't share state — pick one and stick with it"*, *"the Lightsail OpenClaw blueprint runs the gateway as a systemd USER unit with `loginctl enable-linger` so it survives no-login sessions"*, *"on Windows, OpenClaw's `iwr | iex` failures are non-fatal to the shell — silent partial installs are common, always check the explicit success line"*, and *"Bitnami's `bncert-tool` won't accept `--unattended`"* — none of which are in any upstream README.
 
-**Other reasons it's better than raw Claude Code:**
+**Other reasons it's better than a raw agent:**
 
 - **Resumable across sessions** — phased workflow + state file at `~/.open-forge/deployments/<name>.yaml`. If TLS fails at 11pm, resume from the `tls` phase tomorrow.
 - **Consistent across clouds** — "install Docker on Ubuntu" is written once and reused for Hetzner / DO / Lightsail / localhost. Swap clouds without re-deriving.
@@ -112,7 +114,7 @@ That's why captured tribal knowledge already includes things like *"OpenClaw's t
 
 📖 **Browse the catalog**: [deepwiki.com/zhangqi444/open-forge](https://deepwiki.com/zhangqi444/open-forge) — auto-generated wiki view of every recipe, infra adapter, and module. Stays current with the repo.
 
-Or just tell Claude Code — *"self-host X on Y"* — and it'll match.
+Or just tell your agent — *"self-host X on Y"* — and it'll match.
 
 ## Contributing
 
