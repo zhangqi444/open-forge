@@ -481,7 +481,7 @@ open-forge/
     └── skills/open-forge/
         ├── SKILL.md                       ← end-user-Claude entrypoint
         ├── references/
-        │   ├── projects/<name>.md         ← software layer (1,100+ Tier 1 verified recipes)
+        │   ├── projects/<name>.md         ← software layer (2,200+ Tier 1 verified recipes)
         │   ├── runtimes/<name>.md         ← runtime layer (docker.md, podman.md, native.md, kubernetes.md)
         │   ├── infra/<name>.md            ← infra layer (aws/, azure/, hetzner/, digitalocean/, gcp/, oracle/, paas/, hostinger.md, raspberry-pi.md, macos-vm.md, byo-vps.md, localhost.md)
         │   ├── modules/<name>.md          ← cross-cutting (preflight, dns, tls, smtp providers, inbound forwarders, tunnels, credentials, feedback, backups, monitoring)

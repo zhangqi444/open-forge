@@ -81,7 +81,7 @@ The simplest framing for newcomers: **open-forge is a recipe library that happen
 | ✅ | Backups + Monitoring modules | PR #44, #46 |
 | ✅ | Curated bundles (AI homelab, privacy stack) | PR #44 |
 | ✅ | ARCHITECTURE.md + signal-source registration | PR #45, #48 |
-| ⏳ | Per-recipe `## Backup` + `## Monitoring` section sweeps | ~1,100 recipes; bot work over weeks |
+| ⏳ | Per-recipe `## Backup` + `## Monitoring` section sweeps | ~2,200 recipes; bot work over weeks |
 | ⏳ | awesome-selfhosted-data ingestion (after selfh.st completes) | Queued in `progress/sources.md` |
 | 📋 | Cost estimation pre-deploy | Per-adapter; small per-item, lots of items |
 | 📋 | Recipe-staleness automation (CI cron job) | Re-fetch upstream URLs; flag drift |
