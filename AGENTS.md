@@ -6,7 +6,7 @@
 
 ## What this project is
 
-`open-forge` is a guided self-hosting **skill** distributed via Claude Code's plugin marketplace and adapted for 6+ other AI platforms. It walks users from *"I have a cloud account and a domain"* to *"working app at https://my.domain"* via a phased workflow (preflight → provision → dns → tls → smtp → inbound → hardening → feedback) using 1,100+ verified recipes plus curated bundles for goal-shaped requests (AI homelab, privacy stack) plus a live-derived fallback for the long tail.
+`open-forge` is a guided self-hosting **skill** distributed via Claude Code's plugin marketplace and adapted for 6+ other AI platforms. It walks users from *"I have a cloud account and a domain"* to *"working app at https://my.domain"* via a phased workflow (preflight → provision → dns → tls → smtp → inbound → hardening → feedback) using 2,200+ verified recipes plus curated bundles for goal-shaped requests (AI homelab, privacy stack) plus a live-derived fallback for the long tail.
 
 This **isn't a typical software repo** — it's a library of platform-agnostic markdown recipes + a thin Bash build script. There's no compiled artifact, no test suite, no lint config. The "build" is regenerating distribution bundles from canonical sources.
 

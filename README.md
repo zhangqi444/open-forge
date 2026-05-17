@@ -26,7 +26,7 @@
   AWS profile name?
 ```
 
-> *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [1,100+ verified recipes](#coverage).)*
+> *(OpenClaw — the self-hosted personal AI agent at [openclaw.ai](https://openclaw.ai) — is the project's signature use case; works the same way for any of the [2,200+ verified recipes](#coverage).)*
 
 ## Install
 
@@ -102,7 +102,7 @@ That's why captured tribal knowledge already includes things like *"OpenClaw's t
 
 ## Coverage
 
-- **Software**: 1,100+ verified recipes for popular self-hostable apps — AI stack (Ollama · vLLM · Open WebUI · …), publishing (Ghost · WordPress · …), productivity (Nextcloud · Joplin · …), photos & media (Immich · Jellyfin · …), monitoring, security, networking, communication, automation. Plus **curated bundles** ([AI homelab](plugins/open-forge/skills/open-forge/references/bundles/ai-homelab.md), [privacy stack](plugins/open-forge/skills/open-forge/references/bundles/privacy-stack.md)) for goal-shaped requests, and **live-derived fallback** for anything else with public docs (best-effort; you'll see a banner before it starts).
+- **Software**: 2,200+ verified recipes for popular self-hostable apps — AI stack (Ollama · vLLM · Open WebUI · …), publishing (Ghost · WordPress · …), productivity (Nextcloud · Joplin · …), photos & media (Immich · Jellyfin · …), monitoring, security, networking, communication, automation. Plus **curated bundles** ([AI homelab](plugins/open-forge/skills/open-forge/references/bundles/ai-homelab.md), [privacy stack](plugins/open-forge/skills/open-forge/references/bundles/privacy-stack.md)) for goal-shaped requests, and **live-derived fallback** for anything else with public docs (best-effort; you'll see a banner before it starts).
 - **Where**: any cloud VM (AWS · Azure · GCP · Hetzner · DigitalOcean · Oracle Always-Free ARM · Hostinger), your own machine, Raspberry Pi, macOS VM (Lume), any Kubernetes cluster (EKS · GKE · AKS · DOKS · k3s · kind), or PaaS (Fly.io · Render · Railway · Northflank · exe.dev).
 - **How**: Docker · Podman · Native · Kubernetes (Kustomize-first; Helm where upstream ships one).
 
