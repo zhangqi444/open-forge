@@ -1,1 +1,1 @@
-{"issues":[]}
+{"issues":[{"number":55,"title":"[software-nomination] OpenCode","action":"implemented","commit":"467a6eb","notes":"Added Tier 1 recipe at references/projects/opencode.md. Covers all upstream install methods. Comment attempt failed (PAT lacks issues:write scope).","processed_at":"2026-06-03T12:00:00Z"}]}
